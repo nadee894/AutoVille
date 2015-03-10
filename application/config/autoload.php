@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('template', 'database', 'session', 'email'); //edited
+$autoload['libraries'] = array();
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('template', 'database', 'session', 'email'); //ed
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('form', 'url'); //edited
+$autoload['helper'] = array();
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('form', 'url'); //edited
 |
 */
 
-$autoload['config'] = array('autoville_config');//edited
+$autoload['config'] = array();
 
 
 /*

@@ -18,19 +18,19 @@
 
         <!-- Favicons -->
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url(); ?>application_resources/assets/images/icons/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url(); ?>application_resources/assets/images/icons/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>application_resources/assets/images/icons/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>application_resources/assets/images/icons/apple-touch-icon-57-precomposed.png">
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>application_resources/assets/images/icons/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/favicon.png">
 
 
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application_resources/assets-minified/admin-all-demo.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>backend_resources/assets-minified/admin-all-demo.css">
 
         <!-- JS Core -->
 
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets-minified/js-core.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets-minified/js-core.js"></script>
 
 
 
@@ -58,7 +58,7 @@
                         <ul class="chat-box">
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial1.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial1.jpg" alt="">
                                     <div class="small-badge bg-green"></div>
                                 </div>
                                 <b>
@@ -69,7 +69,7 @@
                             </li>
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial2.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial2.jpg" alt="">
                                     <div class="small-badge bg-green"></div>
                                 </div>
                                 <b>
@@ -80,7 +80,7 @@
                             </li>
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial3.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial3.jpg" alt="">
                                     <div class="small-badge bg-green"></div>
                                 </div>
                                 <b>
@@ -91,7 +91,7 @@
                             </li>
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial4.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial4.jpg" alt="">
                                     <div class="small-badge bg-green"></div>
                                 </div>
                                 <b>
@@ -102,7 +102,7 @@
                             </li>
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial5.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial5.jpg" alt="">
                                     <div class="small-badge bg-green"></div>
                                 </div>
                                 <b>
@@ -116,7 +116,7 @@
                         <ul class="chat-box">
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial6.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial6.jpg" alt="">
                                     <div class="small-badge bg-orange"></div>
                                 </div>
                                 <b>
@@ -127,7 +127,7 @@
                             </li>
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial7.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial7.jpg" alt="">
                                     <div class="small-badge bg-orange"></div>
                                 </div>
                                 <b>
@@ -138,7 +138,7 @@
                             </li>
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial8.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial8.jpg" alt="">
                                     <div class="small-badge bg-orange"></div>
                                 </div>
                                 <b>
@@ -152,7 +152,7 @@
                         <ul class="chat-box">
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial1.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial1.jpg" alt="">
                                     <div class="small-badge bg-red"></div>
                                 </div>
                                 <b>
@@ -163,7 +163,7 @@
                             </li>
                             <li>
                                 <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>application_resources/assets/image-resources/people/testimonial2.jpg" alt="">
+                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial2.jpg" alt="">
                                     <div class="small-badge bg-red"></div>
                                 </div>
                                 <b>
@@ -428,7 +428,7 @@
                     <div id="header-nav-left">
                         <div class="user-account-btn dropdown">
                             <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
-                                <img width="28" src="<?php echo base_url(); ?>application_resources/assets/image-resources/gravatar.jpg" alt="Profile image">
+                                <img width="28" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/gravatar.jpg" alt="Profile image">
                                 <span>Thomas Barnes</span>
                                 <i class="glyph-icon icon-angle-down"></i>
                             </a>
@@ -437,7 +437,7 @@
                                     <div class="login-box clearfix">
                                         <div class="user-img">
                                             <a href="#" title="" class="change-img">Change photo</a>
-                                            <img src="<?php echo base_url(); ?>application_resources/assets/image-resources/gravatar.jpg" alt="">
+                                            <img src="<?php echo base_url(); ?>backend_resources/assets/image-resources/gravatar.jpg" alt="">
                                         </div>
                                         <div class="user-info">
                                             <span>
@@ -827,7 +827,7 @@
 
 
             <!-- JS Demo -->
-            <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets-minified/admin-all-demo.js"></script>
+            <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets-minified/admin-all-demo.js"></script>
 
 
         </div>
