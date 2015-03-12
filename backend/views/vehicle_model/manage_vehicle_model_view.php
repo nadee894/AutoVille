@@ -54,7 +54,7 @@
 </div>
 
 <!--Vehicle Model Add Modal -->
-<div class="modal fade " id="vehicle_model_add_modal" tabindex="-1" role="dialog" aria-labelledby="transmission_add_modal_label" aria-hidden="true">
+<div class="modal fade " id="vehicle_model_add_modal" tabindex="-1" role="dialog" aria-labelledby="vehicle_model_add_modal_label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
