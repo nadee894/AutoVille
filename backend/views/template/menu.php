@@ -9,7 +9,7 @@
 
     <li class="sub-menu">
         <a href="javascript:;" >
-            <i class="fa fa-laptop"></i>
+            <i class="fa fa-cogs"></i>
             <span>Vehicle Specifications</span>
         </a>
         <ul class="sub">

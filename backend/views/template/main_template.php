@@ -16,9 +16,14 @@
         <link href="<?php echo base_url(); ?>backend_resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>backend_resources/css/bootstrap-reset.css" rel="stylesheet">
         <!--external css-->
-        <link href="<?php echo base_url(); ?>backend_resources/assets/font-awesome/<?php echo base_url(); ?>backend_resources/css/font-awesome.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>backend_resources/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>backend_resources/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
         <link rel="stylesheet" href="<?php echo base_url(); ?>backend_resources/css/owl.carousel.css" type="text/css">
+
+        <!--dynamic table-->
+        <link href="<?php echo base_url(); ?>backend_resources/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>backend_resources/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>backend_resources/assets/data-tables/DT_bootstrap.css" />
 
         <!--right slidebar-->
         <link href="<?php echo base_url(); ?>backend_resources/css/slidebars.css" rel="stylesheet">
@@ -289,7 +294,7 @@
             <aside>
                 <div id="sidebar"  class="nav-collapse ">
                     <!-- sidebar menu start-->
-                    <?php echo $this->load->view('template/menu');?>
+                    <?php echo $this->load->view('template/menu'); ?>
                     <!-- sidebar menu end-->
                 </div>
             </aside>
@@ -297,7 +302,7 @@
             <!--main content start-->
             <section id="main-content">
                 <section class="wrapper">
-                    <?php echo $content;?>
+                    <?php echo $content; ?>
                 </section>
             </section>
             <!--main content end-->
@@ -465,6 +470,9 @@
         <script class="include" type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.dcjqaccordion.2.7.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.scrollTo.min.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+        <script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>backend_resources/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets/data-tables/DT_bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.sparkline.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>backend_resources/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/owl.carousel.js" ></script>
@@ -474,6 +482,10 @@
         <!--right slidebar-->
         <script src="<?php echo base_url(); ?>backend_resources/js/slidebars.min.js"></script>
 
+        <!--dynamic table initialization -->
+        <script src="<?php echo base_url(); ?>backend_resources/js/dynamic_table_init.js"></script>
+
+
         <!--common script for all pages-->
         <script src="<?php echo base_url(); ?>backend_resources/js/common-scripts.js"></script>
 
@@ -481,6 +493,10 @@
         <script src="<?php echo base_url(); ?>backend_resources/js/sparkline-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/count.js"></script>
+        
+        
+        <!-- custom js files-->
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_gaya.js"></script>
 
         <script>
 
