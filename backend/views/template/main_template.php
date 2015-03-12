@@ -51,7 +51,7 @@
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                 </div>
                 <!--logo start-->
-                <a href="index.html" class="logo">Flat<span>lab</span></a>
+                <a href="index.html" class="logo"></a>
                 <!--logo end-->
                 <div class="nav notify-row" id="top_menu">
                     <!--  notification start -->
@@ -463,7 +463,11 @@
             </footer>
             <!--footer end-->
         </section>
+        <script>
+            var base_url = "<?php echo base_url(); ?>";
+            var site_url = "<?php echo site_url(); ?>";
 
+        </script>
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
@@ -477,6 +481,7 @@
         <script src="<?php echo base_url(); ?>backend_resources/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/owl.carousel.js" ></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.customSelect.min.js" ></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.validate.min.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/respond.min.js" ></script>
 
         <!--right slidebar-->
@@ -490,11 +495,15 @@
         <script src="<?php echo base_url(); ?>backend_resources/js/common-scripts.js"></script>
 
         <!--script for this page-->
+        <script src="<?php echo base_url(); ?>backend_resources/js/form-validation-script.js"></script>
+
+
+        <!--script for this page-->
         <script src="<?php echo base_url(); ?>backend_resources/js/sparkline-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/count.js"></script>
-        
-        
+
+
         <!-- custom js files-->
         <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_gaya.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_ishani.js"></script>

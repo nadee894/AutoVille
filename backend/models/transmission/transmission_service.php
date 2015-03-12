@@ -11,8 +11,8 @@ class Transmission_service extends CI_Model {
     /*
      * This is the service function to add a new comapny
      */
-    function add_new_company($company_model) {
-        return $this->db->insert('company', $company_model);
+    function add_new_transmission($transmission_model) {
+        return $this->db->insert('transmission', $transmission_model);
     }
 
     
