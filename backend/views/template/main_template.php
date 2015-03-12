@@ -497,6 +497,10 @@
         
         <!-- custom js files-->
         <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_gaya.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_ishani.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_heshani.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_ashani.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_nadeesha.js"></script>
 
         <script>
 
