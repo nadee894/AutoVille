@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-                <h2>Manage Manufacturers</h2>
+                <h2>Manage Body Types</h2>
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-times"></a>
