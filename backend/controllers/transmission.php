@@ -35,11 +35,10 @@ class Transmission extends CI_Controller {
 
         $transmission_model->set_name($this->input->post('name', TRUE));
         $transmission_model->set_added_by(1);
+        $transmission_model->set_added_date(date("Y-m-d H:i:s"));
+        $transmission_model->set_updated_by(1);
         $transmission_model->set_is_published('1');
-        $transmission_model->set_del_ind('0');
-
-
-
+        $transmission_model->set_is_deleted('0');
 
        echo $transmission_service->add_new_transmission($transmission_model);
 
