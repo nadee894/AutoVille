@@ -38,16 +38,14 @@ class Vehicle_Model extends CI_Controller {
 
             $vehicle_model_model = new Vehicle_model_model();
             $vehicle_model_service = new Vehicle_model_service();
-
-            $vehicle_model_model->set_id($this->input->post('id', TRUE));
+            
             $vehicle_model_model->set_name($this->input->post('name', TRUE));
-            $vehicle_model_model->set_is_published($this->input->post('is_published', TRUE));
+            $vehicle_model_model->set_is_published('1');
             $vehicle_model_model->set_is_deleted('0');
-            $vehicle_model_model->set_added_date(($this->input->post('added_date', TRUE)));
-            $vehicle_model_model->set_added_by($this->input->post('added_by', TRUE));
-            $vehicle_model_model->set_updated_date(($this->input->post('updated_date', TRUE)));
-            $vehicle_model_model->set_updated_by($this->input->post('updated_by', TRUE));
-
+            $vehicle_model_model->set_added_date(date("Y-m-d H:i:s"));
+            $vehicle_model_model->set_added_by(1);            
+            $vehicle_model_model->set_updated_by(1);
+        
             echo $vehicle_model_service->add_new_vehicle_model($vehicle_model_model);
         } else {
             
