@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-                <h2>Manage Transmissions</h2>
+                Manage Transmissions
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-times"></a>
