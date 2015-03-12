@@ -1,837 +1,531 @@
-<!DOCTYPE html> 
-<html  lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- Mirrored from demo.agileui.com/monarch/demo/admin-template/index-alt.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Mar 2015 04:59:55 GMT -->
+    <!-- Mirrored from thevectorlab.net/flatlab/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Mar 2015 10:18:52 GMT -->
     <head>
-
-        <style>
-            /* Loading Spinner */
-            .spinner{margin:0;width:70px;height:18px;margin:-35px 0 0 -9px;position:absolute;top:50%;left:50%;text-align:center}.spinner > div{width:18px;height:18px;background-color:#333;border-radius:100%;display:inline-block;-webkit-animation:bouncedelay 1.4s infinite ease-in-out;animation:bouncedelay 1.4s infinite ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both}.spinner .bounce1{-webkit-animation-delay:-.32s;animation-delay:-.32s}.spinner .bounce2{-webkit-animation-delay:-.16s;animation-delay:-.16s}@-webkit-keyframes bouncedelay{0%,80%,100%{-webkit-transform:scale(0.0)}40%{-webkit-transform:scale(1.0)}}@keyframes bouncedelay{0%,80%,100%{transform:scale(0.0);-webkit-transform:scale(0.0)}40%{transform:scale(1.0);-webkit-transform:scale(1.0)}}
-        </style>
-
-
-        <meta charset="UTF-8">
-        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-        <title> Monarch UI - Bootstrap Frontend &amp; Admin Template </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="author" content="Mosaddek">
+        <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>backend_resources/img/favicon.html">
 
-        <!-- Favicons -->
+        <title>AutoVille</title>
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/apple-touch-icon-57-precomposed.png">
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>backend_resources/assets/images/icons/favicon.png">
+        <!-- Bootstrap core CSS -->
+        <link href="<?php echo base_url(); ?>backend_resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>backend_resources/css/bootstrap-reset.css" rel="stylesheet">
+        <!--external css-->
+        <link href="<?php echo base_url(); ?>backend_resources/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>backend_resources/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>backend_resources/css/owl.carousel.css" type="text/css">
 
+        <!--dynamic table-->
+        <link href="<?php echo base_url(); ?>backend_resources/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>backend_resources/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>backend_resources/assets/data-tables/DT_bootstrap.css" />
 
+        <!--right slidebar-->
+        <link href="<?php echo base_url(); ?>backend_resources/css/slidebars.css" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>backend_resources/assets-minified/admin-all-demo.css">
+        <!-- Custom styles for this template -->
 
-        <!-- JS Core -->
-
-        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets-minified/js-core.js"></script>
-
-
-
-
-
-        <script type="text/javascript">
-            $(window).load(function() {
-                setTimeout(function() {
-                    $('#loading').fadeOut(400, "linear");
-                }, 300);
-            });
-        </script>
+        <link href="<?php echo base_url(); ?>backend_resources/css/style.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>backend_resources/css/style-responsive.css" rel="stylesheet" />
 
 
 
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+          <script src="<?php echo base_url(); ?>backend_resources/js/html5shiv.js"></script>
+          <script src="<?php echo base_url(); ?>backend_resources/js/respond.min.js"></script>
+        <![endif]-->
     </head>
 
-
     <body>
-        <div id="sb-site">
-            <div class="sb-slidebar bg-black sb-left sb-style-overlay">
-                <div class="scrollable-content scrollable-slim-sidebar">
-                    <div class="pad10A">
-                        <div class="divider-header">Online</div>
-                        <ul class="chat-box">
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial1.jpg" alt="">
-                                    <div class="small-badge bg-green"></div>
-                                </div>
-                                <b>
-                                    Grace Padilla
-                                </b>
-                                <p>On the other hand, we denounce...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial2.jpg" alt="">
-                                    <div class="small-badge bg-green"></div>
-                                </div>
-                                <b>
-                                    Carl Gamble
-                                </b>
-                                <p>Dislike men who are so beguiled...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial3.jpg" alt="">
-                                    <div class="small-badge bg-green"></div>
-                                </div>
-                                <b>
-                                    Michael Poole
-                                </b>
-                                <p>Of pleasure of the moment, so...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial4.jpg" alt="">
-                                    <div class="small-badge bg-green"></div>
-                                </div>
-                                <b>
-                                    Bill Green
-                                </b>
-                                <p>That they cannot foresee the...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial5.jpg" alt="">
-                                    <div class="small-badge bg-green"></div>
-                                </div>
-                                <b>
-                                    Cheryl Soucy
-                                </b>
-                                <p>Pain and trouble that are bound...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                        </ul>
-                        <div class="divider-header">Idle</div>
-                        <ul class="chat-box">
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial6.jpg" alt="">
-                                    <div class="small-badge bg-orange"></div>
-                                </div>
-                                <b>
-                                    Jose Kramer
-                                </b>
-                                <p>Equal blame belongs to those...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial7.jpg" alt="">
-                                    <div class="small-badge bg-orange"></div>
-                                </div>
-                                <b>
-                                    Dan Garcia
-                                </b>
-                                <p>Weakness of will, which is same...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial8.jpg" alt="">
-                                    <div class="small-badge bg-orange"></div>
-                                </div>
-                                <b>
-                                    Edward Bridges
-                                </b>
-                                <p>These cases are perfectly simple...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                        </ul>
-                        <div class="divider-header">Offline</div>
-                        <ul class="chat-box">
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial1.jpg" alt="">
-                                    <div class="small-badge bg-red"></div>
-                                </div>
-                                <b>
-                                    Randy Herod
-                                </b>
-                                <p>In a free hour, when our power...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                            <li>
-                                <div class="status-badge">
-                                    <img class="img-circle" width="40" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/people/testimonial2.jpg" alt="">
-                                    <div class="small-badge bg-red"></div>
-                                </div>
-                                <b>
-                                    Patricia Bagley
-                                </b>
-                                <p>when nothing prevents our being...</p>
-                                <a href="#" class="btn btn-md no-border radius-all-100 btn-black"><i class="glyph-icon icon-comments-o"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+
+        <section id="container" >
+            <!--header start-->
+            <header class="header white-bg">
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                 </div>
-            </div>
-
-            <div class="sb-slidebar bg-black sb-right sb-style-overlay">
-                <div class="scrollable-content scrollable-slim-sidebar">
-                    <div class="pad15A">
-                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-1" class="popover-title">
-                            Cloud status
-                            <span class="caret"></span>
-                        </a>
-                        <div id="sidebar-toggle-1" class="collapse in">
-                            <div class="pad15A">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="text-center font-gray pad5B text-transform-upr font-size-12">New visits</div>
-                                        <div class="chart-alt-3 font-gray-dark" data-percent="55"><span>55</span>%</div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="text-center font-gray pad5B text-transform-upr font-size-12">Bounce rate</div>
-                                        <div class="chart-alt-3 font-gray-dark" data-percent="46"><span>46</span>%</div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="text-center font-gray pad5B text-transform-upr font-size-12">Server load</div>
-                                        <div class="chart-alt-3 font-gray-dark" data-percent="92"><span>92</span>%</div>
-                                    </div>
-                                </div>
-                                <div class="divider mrg15T mrg15B"></div>
-                                <div class="text-center">
-                                    <a href="#" class="btn center-div btn-info mrg5T btn-sm text-transform-upr updateEasyPieChart">
-                                        <i class="glyph-icon icon-refresh"></i>
-                                        Update charts
+                <!--logo start-->
+                <a href="index.html" class="logo">Flat<span>lab</span></a>
+                <!--logo end-->
+                <div class="nav notify-row" id="top_menu">
+                    <!--  notification start -->
+                    <ul class="nav top-menu">
+                        <!-- settings start -->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <i class="fa fa-tasks"></i>
+                                <span class="badge bg-success">6</span>
+                            </a>
+                            <ul class="dropdown-menu extended tasks-bar">
+                                <div class="notify-arrow notify-arrow-green"></div>
+                                <li>
+                                    <p class="green">You have 6 pending tasks</p>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="task-info">
+                                            <div class="desc">Dashboard v1.3</div>
+                                            <div class="percent">40%</div>
+                                        </div>
+                                        <div class="progress progress-striped">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                <span class="sr-only">40% Complete (success)</span>
+                                            </div>
+                                        </div>
                                     </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-6" class="popover-title">
-                            Latest transfers
-                            <span class="caret"></span>
-                        </a>
-                        <div id="sidebar-toggle-6" class="collapse in">
-
-                            <ul class="files-box">
-                                <li>
-                                    <i class="files-icon glyph-icon font-red icon-file-archive-o"></i>
-                                    <div class="files-content">
-                                        <b>blog_export.zip</b>
-                                        <div class="files-date">
-                                            <i class="glyph-icon icon-clock-o"></i>
-                                            added on <b>22.10.2014</b>
-                                        </div>
-                                    </div>
-                                    <div class="files-buttons">
-                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                            <i class="glyph-icon icon-cloud-download"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                            <i class="glyph-icon icon-times"></i>
-                                        </a>
-                                    </div>
                                 </li>
-                                <li class="divider"></li>
                                 <li>
-                                    <i class="files-icon glyph-icon icon-file-code-o"></i>
-                                    <div class="files-content">
-                                        <b>homepage-test.html</b>
-                                        <div class="files-date">
-                                            <i class="glyph-icon icon-clock-o"></i>
-                                            added  <b>19.10.2014</b>
+                                    <a href="#">
+                                        <div class="task-info">
+                                            <div class="desc">Database Update</div>
+                                            <div class="percent">60%</div>
                                         </div>
-                                    </div>
-                                    <div class="files-buttons">
-                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                            <i class="glyph-icon icon-cloud-download"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                            <i class="glyph-icon icon-times"></i>
-                                        </a>
-                                    </div>
+                                        <div class="progress progress-striped">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                <span class="sr-only">60% Complete (warning)</span>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </li>
-                                <li class="divider"></li>
                                 <li>
-                                    <i class="files-icon glyph-icon font-yellow icon-file-image-o"></i>
-                                    <div class="files-content">
-                                        <b>monthlyReport.jpg</b>
-                                        <div class="files-date">
-                                            <i class="glyph-icon icon-clock-o"></i>
-                                            added on <b>10.9.2014</b>
+                                    <a href="#">
+                                        <div class="task-info">
+                                            <div class="desc">Iphone Development</div>
+                                            <div class="percent">87%</div>
                                         </div>
-                                    </div>
-                                    <div class="files-buttons">
-                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                            <i class="glyph-icon icon-cloud-download"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                            <i class="glyph-icon icon-times"></i>
-                                        </a>
-                                    </div>
+                                        <div class="progress progress-striped">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
+                                                <span class="sr-only">87% Complete</span>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </li>
-                                <li class="divider"></li>
                                 <li>
-                                    <i class="files-icon glyph-icon font-green icon-file-word-o"></i>
-                                    <div class="files-content">
-                                        <b>new_presentation.doc</b>
-                                        <div class="files-date">
-                                            <i class="glyph-icon icon-clock-o"></i>
-                                            added on <b>5.9.2014</b>
+                                    <a href="#">
+                                        <div class="task-info">
+                                            <div class="desc">Mobile App</div>
+                                            <div class="percent">33%</div>
                                         </div>
-                                    </div>
-                                    <div class="files-buttons">
-                                        <a href="#" class="btn btn-xs hover-info tooltip-button" data-placement="left" title="Download">
-                                            <i class="glyph-icon icon-cloud-download"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-xs hover-danger tooltip-button" data-placement="left" title="Delete">
-                                            <i class="glyph-icon icon-times"></i>
-                                        </a>
-                                    </div>
+                                        <div class="progress progress-striped">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
+                                                <span class="sr-only">33% Complete (danger)</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="task-info">
+                                            <div class="desc">Dashboard v1.3</div>
+                                            <div class="percent">45%</div>
+                                        </div>
+                                        <div class="progress progress-striped active">
+                                            <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                                <span class="sr-only">45% Complete</span>
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                </li>
+                                <li class="external">
+                                    <a href="#">See All Tasks</a>
                                 </li>
                             </ul>
-
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-3" class="popover-title">
-                            Tasks for today
-                            <span class="caret"></span>
-                        </a>
-                        <div id="sidebar-toggle-3" class="collapse in">
-
-                            <ul class="progress-box">
+                        </li>
+                        <!-- settings end -->
+                        <!-- inbox dropdown start-->
+                        <li id="header_inbox_bar" class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-important">5</span>
+                            </a>
+                            <ul class="dropdown-menu extended inbox">
+                                <div class="notify-arrow notify-arrow-red"></div>
                                 <li>
-                                    <div class="progress-title">
-                                        New features development
-                                        <b>87%</b>
-                                    </div>
-                                    <div class="progressbar-smaller progressbar" data-value="87">
-                                        <div class="progressbar-value bg-azure">
-                                            <div class="progressbar-overlay"></div>
-                                        </div>
-                                    </div>
+                                    <p class="red">You have 5 new messages</p>
                                 </li>
                                 <li>
-                                    <div class="progress-title">
-                                        Finishing uploading files
-                                        <b>66%</b>
-                                    </div>
-                                    <div class="progressbar-smaller progressbar" data-value="66">
-                                        <div class="progressbar-value bg-red">
-                                            <div class="progressbar-overlay"></div>
-                                        </div>
-                                    </div>
+                                    <a href="#">
+                                        <span class="photo"><img alt="avatar" src="<?php echo base_url(); ?>backend_resources/img/avatar-mini.jpg"></span>
+                                        <span class="subject">
+                                            <span class="from">Jonathan Smith</span>
+                                            <span class="time">Just now</span>
+                                        </span>
+                                        <span class="message">
+                                            Hello, this is an example msg.
+                                        </span>
+                                    </a>
                                 </li>
                                 <li>
-                                    <div class="progress-title">
-                                        Creating tutorials
-                                        <b>58%</b>
-                                    </div>
-                                    <div class="progressbar-smaller progressbar" data-value="58">
-                                        <div class="progressbar-value bg-blue-alt"></div>
-                                    </div>
+                                    <a href="#">
+                                        <span class="photo"><img alt="avatar" src="<?php echo base_url(); ?>backend_resources/img/avatar-mini2.jpg"></span>
+                                        <span class="subject">
+                                            <span class="from">Jhon Doe</span>
+                                            <span class="time">10 mins</span>
+                                        </span>
+                                        <span class="message">
+                                            Hi, Jhon Doe Bhai how are you ?
+                                        </span>
+                                    </a>
                                 </li>
                                 <li>
-                                    <div class="progress-title">
-                                        Frontend bonus theme
-                                        <b>74%</b>
-                                    </div>
-                                    <div class="progressbar-smaller progressbar" data-value="74">
-                                        <div class="progressbar-value bg-purple"></div>
-                                    </div>
+                                    <a href="#">
+                                        <span class="photo"><img alt="avatar" src="<?php echo base_url(); ?>backend_resources/img/avatar-mini3.jpg"></span>
+                                        <span class="subject">
+                                            <span class="from">Jason Stathum</span>
+                                            <span class="time">3 hrs</span>
+                                        </span>
+                                        <span class="message">
+                                            This is awesome dashboard.
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="photo"><img alt="avatar" src="<?php echo base_url(); ?>backend_resources/img/avatar-mini4.jpg"></span>
+                                        <span class="subject">
+                                            <span class="from">Jondi Rose</span>
+                                            <span class="time">Just now</span>
+                                        </span>
+                                        <span class="message">
+                                            Hello, this is metrolab
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">See all messages</a>
                                 </li>
                             </ul>
+                        </li>
+                        <!-- inbox dropdown end -->
+                        <!-- notification dropdown start-->
+                        <li id="header_notification_bar" class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <a href="#" title="" data-toggle="collapse" data-target="#sidebar-toggle-4" class="popover-title">
-                            Pending notifications
-                            <span class="bs-label bg-orange tooltip-button" title="Label example">New</span>
-                            <span class="caret"></span>
-                        </a>
-                        <div id="sidebar-toggle-4" class="collapse in">
-                            <ul class="notifications-box notifications-box-alt">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="badge bg-warning">7</span>
+                            </a>
+                            <ul class="dropdown-menu extended notification">
+                                <div class="notify-arrow notify-arrow-yellow"></div>
                                 <li>
-                                    <span class="bg-purple icon-notification glyph-icon icon-users"></span>
-                                    <span class="notification-text">This is an error notification</span>
-                                    <div class="notification-time">
-                                        a few seconds ago
-                                        <span class="glyph-icon icon-clock-o"></span>
-                                    </div>
-                                    <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
-                                        <i class="glyph-icon icon-arrow-right"></i>
+                                    <p class="yellow">You have 7 new notifications</p>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                        Server #3 overloaded.
+                                        <span class="small italic">34 mins</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <span class="bg-warning icon-notification glyph-icon icon-ticket"></span>
-                                    <span class="notification-text">This is a warning notification</span>
-                                    <div class="notification-time">
-                                        <b>15</b> minutes ago
-                                        <span class="glyph-icon icon-clock-o"></span>
-                                    </div>
-                                    <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
-                                        <i class="glyph-icon icon-arrow-right"></i>
+                                    <a href="#">
+                                        <span class="label label-warning"><i class="fa fa-bell"></i></span>
+                                        Server #10 not respoding.
+                                        <span class="small italic">1 Hours</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <span class="bg-green icon-notification glyph-icon icon-random"></span>
-                                    <span class="notification-text font-green">A success message example.</span>
-                                    <div class="notification-time">
-                                        <b>2 hours</b> ago
-                                        <span class="glyph-icon icon-clock-o"></span>
-                                    </div>
-                                    <a href="#" class="notification-btn btn btn-xs btn-black tooltip-button" data-placement="left" title="View details">
-                                        <i class="glyph-icon icon-arrow-right"></i>
+                                    <a href="#">
+                                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                        Database overloaded 24%.
+                                        <span class="small italic">4 hrs</span>
                                     </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="label label-success"><i class="fa fa-plus"></i></span>
+                                        New user registered.
+                                        <span class="small italic">Just now</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="label label-info"><i class="fa fa-bullhorn"></i></span>
+                                        Application error.
+                                        <span class="small italic">10 mins</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">See all notifications</a>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
+                        </li>
+                        <!-- notification dropdown end -->
+                    </ul>
+                    <!--  notification end -->
                 </div>
+                <div class="top-nav ">
+                    <!--search & user info start-->
+                    <ul class="nav pull-right top-menu">
+                        <li>
+                            <input type="text" class="form-control search" placeholder="Search">
+                        </li>
+                        <!-- user login dropdown start-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <img alt="" src="<?php echo base_url(); ?>backend_resources/img/avatar1_small.jpg">
+                                <span class="username">Jhon Doue</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+                                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                                <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
+                                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                        <li class="sb-toggle-right">
+                            <i class="fa  fa-align-right"></i>
+                        </li>
+                        <!-- user login dropdown end -->
+                    </ul>
+                    <!--search & user info end-->
+                </div>
+            </header>
+            <!--header end-->
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar"  class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <?php echo $this->load->view('template/menu'); ?>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+            <!--main content start-->
+            <section id="main-content">
+                <section class="wrapper">
+                    <?php echo $content; ?>
+                </section>
+            </section>
+            <!--main content end-->
+
+            <!-- Right Slidebar start -->
+            <div class="sb-slidebar sb-right sb-style-overlay">
+                <h5 class="side-title">Online Customers</h5>
+                <ul class="quick-chat-list">
+                    <li class="online">
+                        <div class="media">
+                            <a href="#" class="pull-left media-thumb">
+                                <img alt="" src="<?php echo base_url(); ?>backend_resources/img/chat-avatar2.jpg" class="media-object">
+                            </a>
+                            <div class="media-body">
+                                <strong>John Doe</strong>
+                                <small>Dream Land, AU</small>
+                            </div>
+                        </div><!-- media -->
+                    </li>
+                    <li class="online">
+                        <div class="media">
+                            <a href="#" class="pull-left media-thumb">
+                                <img alt="" src="<?php echo base_url(); ?>backend_resources/img/chat-avatar.jpg" class="media-object">
+                            </a>
+                            <div class="media-body">
+                                <div class="media-status">
+                                    <span class=" badge bg-important">3</span>
+                                </div>
+                                <strong>Jonathan Smith</strong>
+                                <small>United States</small>
+                            </div>
+                        </div><!-- media -->
+                    </li>
+
+                    <li class="online">
+                        <div class="media">
+                            <a href="#" class="pull-left media-thumb">
+                                <img alt="" src="<?php echo base_url(); ?>backend_resources/img/pro-ac-1.png" class="media-object">
+                            </a>
+                            <div class="media-body">
+                                <div class="media-status">
+                                    <span class=" badge bg-success">5</span>
+                                </div>
+                                <strong>Jane Doe</strong>
+                                <small>ABC, USA</small>
+                            </div>
+                        </div><!-- media -->
+                    </li>
+                    <li class="online">
+                        <div class="media">
+                            <a href="#" class="pull-left media-thumb">
+                                <img alt="" src="<?php echo base_url(); ?>backend_resources/img/avatar1.jpg" class="media-object">
+                            </a>
+                            <div class="media-body">
+                                <strong>Anjelina Joli</strong>
+                                <small>Fockland, UK</small>
+                            </div>
+                        </div><!-- media -->
+                    </li>
+                    <li class="online">
+                        <div class="media">
+                            <a href="#" class="pull-left media-thumb">
+                                <img alt="" src="<?php echo base_url(); ?>backend_resources/img/mail-avatar.jpg" class="media-object">
+                            </a>
+                            <div class="media-body">
+                                <div class="media-status">
+                                    <span class=" badge bg-warning">7</span>
+                                </div>
+                                <strong>Mr Tasi</strong>
+                                <small>Dream Land, USA</small>
+                            </div>
+                        </div><!-- media -->
+                    </li>
+                </ul>
+                <h5 class="side-title"> pending Task</h5>
+                <ul class="p-task tasks-bar">
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Dashboard v1.3</div>
+                                <div class="percent">40%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Database Update</div>
+                                <div class="percent">60%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div style="width: 60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-warning">
+                                    <span class="sr-only">60% Complete (warning)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Iphone Development</div>
+                                <div class="percent">87%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div style="width: 87%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                                    <span class="sr-only">87% Complete</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Mobile App</div>
+                                <div class="percent">33%</div>
+                            </div>
+                            <div class="progress progress-striped">
+                                <div style="width: 33%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" class="progress-bar progress-bar-danger">
+                                    <span class="sr-only">33% Complete (danger)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Dashboard v1.3</div>
+                                <div class="percent">45%</div>
+                            </div>
+                            <div class="progress progress-striped active">
+                                <div style="width: 45%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" role="progressbar" class="progress-bar">
+                                    <span class="sr-only">45% Complete</span>
+                                </div>
+                            </div>
+
+                        </a>
+                    </li>
+                    <li class="external">
+                        <a href="#">See All Tasks</a>
+                    </li>
+                </ul>
             </div>
-            <div id="loading">
-                <div class="spinner">
-                    <div class="bounce1"></div>
-                    <div class="bounce2"></div>
-                    <div class="bounce3"></div>
+            <!-- Right Slidebar end -->
+
+            <!--footer start-->
+            <footer class="site-footer">
+                <div class="text-center">
+                    2013 &copy; FlatLab by VectorLab.
+                    <a href="#" class="go-top">
+                        <i class="fa fa-angle-up"></i>
+                    </a>
                 </div>
-            </div>
+            </footer>
+            <!--footer end-->
+        </section>
 
-            <div id="page-wrapper">
-                <div id="page-header" class="bg-gradient-9">
-                    <div id="mobile-navigation">
-                        <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar"><span></span></button>
-                        <a href="index-2.html" class="logo-content-small" title="MonarchUI"></a>
-                    </div>
-                    <div id="header-logo" class="logo-bg">
-                        <a href="index-2.html" class="logo-content-big" title="MonarchUI">
-                            Monarch <i>UI</i>
-                            <span>The perfect solution for user interfaces</span>
-                        </a>
-                        <a href="index-2.html" class="logo-content-small" title="MonarchUI">
-                            Monarch <i>UI</i>
-                            <span>The perfect solution for user interfaces</span>
-                        </a>
-                        <a id="close-sidebar" href="#" title="Close sidebar">
-                            <i class="glyph-icon icon-angle-left"></i>
-                        </a>
-                    </div>
-                    <div id="header-nav-left">
-                        <div class="user-account-btn dropdown">
-                            <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
-                                <img width="28" src="<?php echo base_url(); ?>backend_resources/assets/image-resources/gravatar.jpg" alt="Profile image">
-                                <span>Thomas Barnes</span>
-                                <i class="glyph-icon icon-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu float-left">
-                                <div class="box-sm">
-                                    <div class="login-box clearfix">
-                                        <div class="user-img">
-                                            <a href="#" title="" class="change-img">Change photo</a>
-                                            <img src="<?php echo base_url(); ?>backend_resources/assets/image-resources/gravatar.jpg" alt="">
-                                        </div>
-                                        <div class="user-info">
-                                            <span>
-                                                Thomas Barnes
-                                                <i>UX/UI developer</i>
-                                            </span>
-                                            <a href="#" title="Edit profile">Edit profile</a>
-                                            <a href="#" title="View notifications">View notifications</a>
-                                        </div>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <ul class="reset-ul mrg5B">
-                                        <li>
-                                            <a href="#">
-                                                View login page example
-                                                <i class="glyph-icon float-right icon-caret-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                View lockscreen example
-                                                <i class="glyph-icon float-right icon-caret-right"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                View account details
-                                                <i class="glyph-icon float-right icon-caret-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="pad5A button-pane button-pane-alt text-center">
-                                        <a href="#" class="btn display-block font-normal btn-danger">
-                                            <i class="glyph-icon icon-power-off"></i>
-                                            Logout
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- #header-nav-left -->
+        <!-- js placed at the end of the document so the pages load faster -->
+        <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
+        <script class="include" type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.dcjqaccordion.2.7.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/jquery.scrollTo.min.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/jquery.nicescroll.js" type="text/javascript"></script>
 
-                    <div id="header-nav-right">
-                        <a href="#" class="hdr-btn popover-button" title="Search" data-placement="bottom" data-id="#popover-search">
-                            <i class="glyph-icon icon-search"></i>
-                        </a>
-                        <div class="hide" id="popover-search">
-                            <div class="pad5A box-md">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search terms here ...">
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-primary" href="#">Search</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="hdr-btn" id="fullscreen-btn" title="Fullscreen">
-                            <i class="glyph-icon icon-arrows-alt"></i>
-                        </a>
-                        <a href="#" class="hdr-btn sb-toggle-left" id="chatbox-btn" title="Chat sidebar">
-                            <i class="glyph-icon icon-linecons-paper-plane"></i>
-                        </a>
-                        <div class="dropdown" id="notifications-btn">
-                            <a data-toggle="dropdown" href="#" title="">
-                                <span class="small-badge bg-yellow"></span>
-                                <i class="glyph-icon icon-linecons-megaphone"></i>
-                            </a>
-                            <div class="dropdown-menu box-md float-right">
+        <script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>backend_resources/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets/data-tables/DT_bootstrap.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/jquery.sparkline.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/owl.carousel.js" ></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/jquery.customSelect.min.js" ></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/respond.min.js" ></script>
 
-                                <div class="popover-title display-block clearfix pad10A">
-                                    Notifications
-                                    <a class="text-transform-cap font-primary font-normal btn-link float-right" href="#" title="View more options">
-                                        More options...
-                                    </a>
-                                </div>
-                                <div class="scrollable-content scrollable-slim-box">
-                                    <ul class="no-border notifications-box">
-                                        <li>
-                                            <span class="bg-danger icon-notification glyph-icon icon-bullhorn"></span>
-                                            <span class="notification-text">This is an error notification</span>
-                                            <div class="notification-time">
-                                                a few seconds ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-warning icon-notification glyph-icon icon-users"></span>
-                                            <span class="notification-text font-blue">This is a warning notification</span>
-                                            <div class="notification-time">
-                                                <b>15</b> minutes ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-green icon-notification glyph-icon icon-sitemap"></span>
-                                            <span class="notification-text font-green">A success message example.</span>
-                                            <div class="notification-time">
-                                                <b>2 hours</b> ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-azure icon-notification glyph-icon icon-random"></span>
-                                            <span class="notification-text">This is an error notification</span>
-                                            <div class="notification-time">
-                                                a few seconds ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-warning icon-notification glyph-icon icon-ticket"></span>
-                                            <span class="notification-text">This is a warning notification</span>
-                                            <div class="notification-time">
-                                                <b>15</b> minutes ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-blue icon-notification glyph-icon icon-user"></span>
-                                            <span class="notification-text font-blue">Alternate notification styling.</span>
-                                            <div class="notification-time">
-                                                <b>2 hours</b> ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                                            <span class="notification-text">This is an error notification</span>
-                                            <div class="notification-time">
-                                                a few seconds ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                                            <span class="notification-text">This is a warning notification</span>
-                                            <div class="notification-time">
-                                                <b>15</b> minutes ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-green icon-notification glyph-icon icon-user"></span>
-                                            <span class="notification-text font-green">A success message example.</span>
-                                            <div class="notification-time">
-                                                <b>2 hours</b> ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-purple icon-notification glyph-icon icon-user"></span>
-                                            <span class="notification-text">This is an error notification</span>
-                                            <div class="notification-time">
-                                                a few seconds ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="bg-warning icon-notification glyph-icon icon-user"></span>
-                                            <span class="notification-text">This is a warning notification</span>
-                                            <div class="notification-time">
-                                                <b>15</b> minutes ago
-                                                <span class="glyph-icon icon-clock-o"></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="pad10A button-pane button-pane-alt text-center">
-                                    <a href="#" class="btn btn-primary" title="View all notifications">
-                                        View all notifications
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dropdown" id="progress-btn">
-                            <a data-toggle="dropdown" href="#" title="">
-                                <span class="small-badge bg-azure"></span>
-                                <i class="glyph-icon icon-linecons-params"></i>
-                            </a>
-                            <div class="dropdown-menu pad0A box-sm float-right" id="progress-dropdown">
-                                <div class="scrollable-content scrollable-slim-box">
-                                    <ul class="no-border progress-box progress-box-links">
-                                        <li>
-                                            <a href="#" title="">
-                                                <div class="progress-title">
-                                                    Finishing uploading files
-                                                    <b>23%</b>
-                                                </div>
-                                                <div class="progressbar-smaller progressbar" data-value="23">
-                                                    <div class="progressbar-value bg-blue-alt">
-                                                        <div class="progressbar-overlay"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">
-                                                <div class="progress-title">
-                                                    Roadmap progress
-                                                    <b>91%</b>
-                                                </div>
-                                                <div class="progressbar-smaller progressbar" data-value="91">
-                                                    <div class="progressbar-value bg-red">
-                                                        <div class="progressbar-overlay"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">
-                                                <div class="progress-title">
-                                                    Images upload
-                                                    <b>58%</b>
-                                                </div>
-                                                <div class="progressbar-smaller progressbar" data-value="58">
-                                                    <div class="progressbar-value bg-green"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">
-                                                <div class="progress-title">
-                                                    WordPress migration
-                                                    <b>74%</b>
-                                                </div>
-                                                <div class="progressbar-smaller progressbar" data-value="74">
-                                                    <div class="progressbar-value bg-purple"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">
-                                                <div class="progress-title">
-                                                    Agile development procedures
-                                                    <b>91%</b>
-                                                </div>
-                                                <div class="progressbar-smaller progressbar" data-value="91">
-                                                    <div class="progressbar-value bg-black">
-                                                        <div class="progressbar-overlay"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">
-                                                <div class="progress-title">
-                                                    Systems integration
-                                                    <b>58%</b>
-                                                </div>
-                                                <div class="progressbar-smaller progressbar" data-value="58">
-                                                    <div class="progressbar-value bg-azure"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">
-                                                <div class="progress-title">
-                                                    Code optimizations
-                                                    <b>97%</b>
-                                                </div>
-                                                <div class="progressbar-smaller progressbar" data-value="97">
-                                                    <div class="progressbar-value bg-yellow"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="pad5A button-pane button-pane-alt text-center">
-                                    <a href="#" class="btn display-block font-normal hover-green" title="View all notifications">
-                                        View all notifications
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dropdown" id="cloud-btn">
-                            <a href="#" data-placement="bottom" class="tooltip-button sb-toggle-right" title="Statistics Sidebar">
-                                <i class="glyph-icon icon-linecons-cloud"></i>
-                            </a>
-                        </div>
-                        <div class="dropdown" id="dashnav-btn">
-                            <a href="#" data-toggle="dropdown" data-placement="bottom" class="popover-button-header tooltip-button" title="Dashboard Quick Menu">
-                                <i class="glyph-icon icon-linecons-cog"></i>
-                            </a>
-                            <div class="dropdown-menu float-right">
-                                <div class="box-sm">
-                                    <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                                        <a href="#" class="btn vertical-button hover-blue-alt" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                                            </span>
-                                            Dashboard
-                                        </a>
-                                        <a href="#" class="btn vertical-button hover-green" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                                            </span>
-                                            Widgets
-                                        </a>
-                                        <a href="#" class="btn vertical-button hover-orange" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                                            </span>
-                                            Tables
-                                        </a>
-                                        <a href="#" class="btn vertical-button hover-orange" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                                            </span>
-                                            Charts
-                                        </a>
-                                        <a href="#" class="btn vertical-button hover-purple" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                                            </span>
-                                            Buttons
-                                        </a>
-                                        <a href="#" class="btn vertical-button hover-azure" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                                            </span>
-                                            Panels
-                                        </a>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <div class="pad5T pad5B pad10L pad10R dashboard-buttons clearfix">
-                                        <a href="#" class="btn vertical-button remove-border btn-info" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-dashboard opacity-80 font-size-20"></i>
-                                            </span>
-                                            Dashboard
-                                        </a>
-                                        <a href="#" class="btn vertical-button remove-border btn-danger" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-tags opacity-80 font-size-20"></i>
-                                            </span>
-                                            Widgets
-                                        </a>
-                                        <a href="#" class="btn vertical-button remove-border btn-purple" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-fire opacity-80 font-size-20"></i>
-                                            </span>
-                                            Tables
-                                        </a>
-                                        <a href="#" class="btn vertical-button remove-border btn-azure" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-bar-chart-o opacity-80 font-size-20"></i>
-                                            </span>
-                                            Charts
-                                        </a>
-                                        <a href="#" class="btn vertical-button remove-border btn-yellow" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-laptop opacity-80 font-size-20"></i>
-                                            </span>
-                                            Buttons
-                                        </a>
-                                        <a href="#" class="btn vertical-button remove-border btn-warning" title="">
-                                            <span class="glyph-icon icon-separator-vertical pad0A medium">
-                                                <i class="glyph-icon icon-code opacity-80 font-size-20"></i>
-                                            </span>
-                                            Panels
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="header-btn" id="logout-btn" href="lockscreen-3.html" title="Lockscreen page example">
-                            <i class="glyph-icon icon-linecons-lock"></i>
-                        </a>
+        <!--right slidebar-->
+        <script src="<?php echo base_url(); ?>backend_resources/js/slidebars.min.js"></script>
 
-                    </div><!-- #header-nav-right -->
-
-                </div>
-                <div id="page-sidebar">
-                    <div class="scroll-sidebar">
-                        <!-- menu goes here -->
-                        <?php echo $this->load->view('template/menu'); ?>
-
-                    </div>
-                </div>
-                <div id="page-content-wrapper">
-                    <div id="page-content">
-                        <!-- content goes here -->
-                        <?php echo $content; ?>
-                    </div>
-                </div>
-            </div>
+        <!--dynamic table initialization -->
+        <script src="<?php echo base_url(); ?>backend_resources/js/dynamic_table_init.js"></script>
 
 
-            <!-- JS Demo -->
-            <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets-minified/admin-all-demo.js"></script>
+        <!--common script for all pages-->
+        <script src="<?php echo base_url(); ?>backend_resources/js/common-scripts.js"></script>
 
+        <!--script for this page-->
+        <script src="<?php echo base_url(); ?>backend_resources/js/sparkline-chart.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/easy-pie-chart.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/count.js"></script>
+        
+        
+        <!-- custom js files-->
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_gaya.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_ishani.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_heshani.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_ashani.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_nadeesha.js"></script>
 
-        </div>
+        <script>
+
+            //owl carousel
+
+            $(document).ready(function() {
+                $("#owl-demo").owlCarousel({
+                    navigation: true,
+                    slideSpeed: 300,
+                    paginationSpeed: 400,
+                    singleItem: true,
+                    autoPlay: true
+
+                });
+            });
+
+            //custom select box
+
+            $(function() {
+                $('select.styled').customSelect();
+            });
+
+        </script>
+
     </body>
 
-    <!-- Mirrored from demo.agileui.com/monarch/demo/admin-template/index-alt.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Mar 2015 04:59:56 GMT -->
+    <!-- Mirrored from thevectorlab.net/flatlab/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Mar 2015 10:19:46 GMT -->
 </html>

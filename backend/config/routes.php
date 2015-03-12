@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "transmission/manage_transmission";
 $route['404_override'] = '';
 
 
