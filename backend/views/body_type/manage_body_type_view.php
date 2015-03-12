@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-                <h2>Manage Body Types</h2>
+                Manage Body Types
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-times"></a>
@@ -10,23 +10,30 @@
             </header>
             <div class="panel-body">
                 <div class="adv-table">
-                    <table  class="display table table-bordered table-striped" id="body_type_table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Added By</th>
-                                <th>Added Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#body_type_add_modal" data-toggle="modal">
+                                Add New
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <table  class="display table table-bordered table-striped" id="transmission_table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Added By</th>
+                                    <th>Added Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             <?php
                             $i = 0;
                             foreach ($results as $result) {
                                 ?>
                                 <tr>
-                                    <td><?php echo++$i; ?></td>
+                                    <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
                                     <td><?php echo $result->added_by; ?></td>
                                     <td><?php echo $result->added_date; ?></td>

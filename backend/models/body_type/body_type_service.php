@@ -14,6 +14,10 @@ class Body_type_service extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    
+    function add_new_body_type($body_type_model) {
+        return $this->db->insert('body_type', $body_type_model);
+    }
 }
 /* 
  * To change this license header, choose License Headers in Project Properties.
