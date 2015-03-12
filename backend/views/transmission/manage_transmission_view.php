@@ -64,7 +64,7 @@
                 <h4 class="modal-title">Add new transmission</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="add_transmission_form" name="add_transmission_form">
                     <div class="form-group">
                         <label for="name">Title</label>
                         <input id="name" class="form-control" type="name" placeholder="Enter Title">
