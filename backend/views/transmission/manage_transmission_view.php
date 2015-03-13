@@ -24,6 +24,7 @@
                                     <th>Name</th>
                                     <th>Added By</th>
                                     <th>Added Date</th>
+                                    <th>Active Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -38,7 +39,15 @@
                                         <td><?php echo $result->added_by_user; ?></td>
                                         <td><?php echo $result->added_date; ?></td>
                                         <td>
-                                            <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+                                            <?php if ($result->is_published) { ?>
+                                                <a class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
+                                            <?php } else { ?>
+                                                <a class="btn btn-warning btn-xs"><i class="fa fa-exclamation-circle"></i></a>
+                                            <?php } ?>
+                                        </td>
+
+                                        <td>
+                                            <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-info btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
                                             <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
                                         </td>
