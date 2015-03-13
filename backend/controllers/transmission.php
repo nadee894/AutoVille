@@ -55,53 +55,17 @@ class Transmission extends CI_Controller {
     }
 
     /*
-     * This function is to add a new company using the method add_new_company 
-     * in company service
+     * This is to change the published status of the transmission 
      */
 
-    function add_new_company() {
-        $perm = Access_controll_service::check_access('ADD_NEW_COMPANY');
-        if ($perm) {
+    function change_publish_status() {
+        $transmission_model   = new Transmission_model();
+        $transmission_service = new Transmission_service();
 
-            $company_model   = new Company_model();
-            $company_service = new Company_service();
+        $transmission_model->set_id(trim($this->input->post('id', TRUE)));
+        $transmission_model->set_is_published(trim($this->input->post('value', TRUE)));
 
-            $company_model->set_company_code($this->input->post('company_code', TRUE));
-            $company_model->set_company_name($this->input->post('company_name', TRUE));
-            $company_model->set_company_email($this->input->post('company_email', TRUE));
-            $company_model->set_company_address($this->input->post('company_address', TRUE));
-            $company_model->set_company_contact(($this->input->post('company_contact', TRUE)));
-            $company_model->set_company_desc($this->input->post('company_description', TRUE));
-            $company_model->set_del_ind('1');
-
-
-            echo $company_service->add_new_company($company_model);
-        } else {
-            
-        }
-    }
-
-    /*
-     * This is to represent the edit company view. This funtion is passing 
-     * company_code as the parameter 
-     */
-
-    function edit_company_view($company_code) {
-        $perm = Access_controll_service::check_access('EDIT_COMPANY');
-        if ($perm) {
-
-            $company_service = new Company_service();
-
-
-            $data['heading'] = "Edit Company Deatils";
-            $data['company'] = $company_service->get_company_by_id($company_code);
-
-
-            $partials = array('content' => 'company/edit_company_view');
-            $this->template->load('template/main_template', $partials, $data);
-        } else {
-            
-        }
+        echo $transmission_service->publish_transmission($transmission_model);
     }
 
     /*

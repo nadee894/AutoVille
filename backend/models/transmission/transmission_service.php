@@ -15,12 +15,6 @@ class Transmission_service extends CI_Model {
         return $this->db->insert('transmission', $transmission_model);
     }
 
-    
-    function add_new_company_registration($company_model) {
-
-        $this->db->insert('company', $company_model);
-        return $this->db->insert_id();
-    }
 
     
     /*
@@ -47,6 +41,14 @@ class Transmission_service extends CI_Model {
     }
 
     
+    /*
+     * This service function is to update publish status of a transmission
+     */
+    public function publish_transmission($transmission_model) {
+        $data = array('is_published' => $transmission_model->get_is_published());
+        $this->db->update('transmission', $data, array('id' => $transmission_model->get_id()));
+        return $this->db->affected_rows();
+    }
     
     
     //update company

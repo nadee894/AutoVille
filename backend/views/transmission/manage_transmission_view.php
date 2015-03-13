@@ -17,48 +17,49 @@
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
-                        <table  class="display table table-bordered table-striped" id="transmission_table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Added By</th>
-                                    <th>Added Date</th>
-                                    <th>Active Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 0;
-                                foreach ($results as $result) {
-                                    ?>
-                                    <tr id="transmission_<?php echo $result->id; ?>">
-                                        <td><?php echo ++$i; ?></td>
-                                        <td><?php echo $result->name; ?></td>
-                                        <td><?php echo $result->added_by_user; ?></td>
-                                        <td><?php echo $result->added_date; ?></td>
-                                        <td>
-                                            <?php if ($result->is_published) { ?>
-                                                <a class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
-                                            <?php } else { ?>
-                                                <a class="btn btn-warning btn-xs"><i class="fa fa-exclamation-circle"></i></a>
-                                            <?php } ?>
-                                        </td>
-
-                                        <td>
-                                            <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-info btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
-                                            <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
-
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-
-                            </tbody>
-
-                        </table>
                     </div>
+                    <table  class="display table table-bordered table-striped" id="transmission_table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Added By</th>
+                                <th>Added Date</th>
+                                <th>Active Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $i = 0;
+                            foreach ($results as $result) {
+                                ?>
+                                <tr id="transmission_<?php echo $result->id; ?>">
+                                    <td><?php echo++$i; ?></td>
+                                    <td><?php echo $result->name; ?></td>
+                                    <td><?php echo $result->added_by_user; ?></td>
+                                    <td><?php echo $result->added_date; ?></td>
+                                    <td align="center">
+                                        <?php if ($result->is_published) { ?>
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate transmission"><i class="fa fa-check"></i></a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate transmission"><i class="fa fa-exclamation-circle"></i></a>
+                                        <?php } ?>
+                                    </td>
+
+                                    <td align="center">
+                                        <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-primary btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+                                        <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
+
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                        </tbody>
+
+                    </table>
                 </div>
+            </div>
         </section>
     </div>
 </div>
@@ -95,60 +96,90 @@
 <!-- active selected menu -->
 
 <script type="text/javascript">
-    $('#vehicle_spec_menu').addClass('active open');
+                                        $('#vehicle_spec_menu').addClass('active');
 
 
-    $(document).ready(function() {
+                                        $(document).ready(function() {
 
-        $('#transmission_table').dataTable();
-
-
-        $("#add_transmission_form").validate({
-            rules: {
-                name: "required"
-            },
-            messages: {
-                name: "Please enter a title"
-            }, submitHandler: function(form)
-            {
-                $.post(site_url + '/transmission/add_transmission', $('#add_transmission_form').serialize(), function(msg)
-                {
-                    if (msg == 1) {
-
-                        add_transmission_form.reset();
-                        window.location = site_url + '/transmission/manage_transmissions';
-                    } else {
-
-                    }
-                });
+                                            $('#transmission_table').dataTable();
 
 
-            }
-        });
-    });
+                                            $("#add_transmission_form").validate({
+                                                rules: {
+                                                    name: "required"
+                                                },
+                                                messages: {
+                                                    name: "Please enter a title"
+                                                }, submitHandler: function(form)
+                                                {
+                                                    $.post(site_url + '/transmission/add_transmission', $('#add_transmission_form').serialize(), function(msg)
+                                                    {
+                                                        if (msg == 1) {
+
+                                                            add_transmission_form.reset();
+                                                            window.location = site_url + '/transmission/manage_transmissions';
+                                                        } else {
+
+                                                        }
+                                                    });
+
+
+                                                }
+                                            });
+                                        });
 
 
 
-    //delete transmissions
-    function delete_transmission(id) {
+                                        //delete transmissions
+                                        function delete_transmission(id) {
 
-        if (confirm('Are you sure want to delete this Transmission ?')) {
+                                            if (confirm('Are you sure want to delete this Transmission ?')) {
 
-            $.ajax({
-                type: "POST",
-                url: site_url + '/transmission/delete_transmissions',
-                data: "id=" + id,
-                success: function(msg) {
-                    //alert(msg);
-                    if (msg == 1) {
-                        //document.getElementById(trid).style.display='none';
-                        $('#transmission_' + id).hide();
-                    }
-                    else if (msg == 2) {
-                        alert('Cannot be deleted as it is already assigned to others. !!');
-                    }
-                }
-            });
-        }
-    }
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/transmission/delete_transmissions',
+                                                    data: "id=" + id,
+                                                    success: function(msg) {
+                                                        //alert(msg);
+                                                        if (msg == 1) {
+                                                            //document.getElementById(trid).style.display='none';
+                                                            $('#transmission_' + id).hide();
+                                                        }
+                                                        else if (msg == 2) {
+                                                            alert('Cannot be deleted as it is already assigned to others. !!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
+
+
+                                        //change publish status of transmission
+                                        function change_publish_status(transmission_id, value, element) {
+
+                                            var condition = 'Do you want to activate this transmission ?';
+                                            if (value == 0) {
+                                                condition = 'Do you want to deactivate this transmission?';
+                                            }
+
+                                            if (confirm(condition)) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/transmission/change_publish_status',
+                                                    data: "id=" + transmission_id + "&value=" + value,
+                                                    success: function(msg) {
+                                                        if (msg == 1) {
+                                                            if (value == 1) {
+                                                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + transmission_id + ',0,this)" title="click to deactivate transmission"><i class="fa fa-check"></i></a>');
+                                                            } else {
+                                                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + transmission_id + ',1,this)" title="click to activate transmission"><i class="fa fa-exclamation-circle"></i></a>');
+                                                            }
+
+                                                        } else if (msg == 2) {
+                                                            alert('Error !!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
 </script>
