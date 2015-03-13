@@ -54,7 +54,7 @@
                     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
                 </div>
                 <!--logo start-->
-                <a href="index.html" class="logo"></a>
+                <a href="<?php echo site_url(); ?>/dashboard" class="logo"></a>
                 <!--logo end-->
 <!--                <div class="nav notify-row" id="top_menu">
                       notification start 
@@ -505,13 +505,6 @@
         <script src="<?php echo base_url(); ?>backend_resources/js/easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/count.js"></script>
 
-
-        <!-- custom js files-->
-        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_gaya.js"></script>
-        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_ishani.js"></script>
-        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_heshani.js"></script>
-        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_ashani.js"></script>
-        <script src="<?php echo base_url(); ?>backend_resources/custom_js/custom_nadeesha.js"></script>
 
         <script>
 

@@ -1,7 +1,7 @@
 
 <ul class="sidebar-menu" id="nav-accordion">
     <li>
-        <a class="active" href="index.html">
+        <a  href="<?php echo site_url(); ?>/dashboard" id="dashboard_menu">
             <i class="fa fa-dashboard"></i>
             <span>Dashboard</span>
         </a>
