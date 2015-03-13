@@ -38,6 +38,24 @@ class Body_type extends CI_Controller {
         echo $body_type_service->add_new_body_type($body_type_model);
     }
 
+    function delete_body_types() {
+        $body_type_service = new Body_type_service();
+
+        echo $body_type_service->delete_body_type(trim($this->input->post('id', TRUE)));
+    }
+    
+    function change_publish_status(){
+        $body_type_model = new Body_type_model();
+        $body_type_service = new Body_type_service();
+        
+        $body_type_model->set_id(trim($this->input->post('id', TRUE)));
+        $body_type_model->set_is_published(trim($this->input->post('value', TRUE)));
+        
+        echo $body_type_service->publish_body_types($body_type_model);
+        
+    }
+    
+
 }
 
 /* 
