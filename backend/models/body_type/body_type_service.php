@@ -7,10 +7,11 @@ class Body_type_service extends CI_Model{
     
     public function get_all_body_types() {
 
-        $this->db->select('*');
+        $this->db->select('body_type.*,user.name as added_by_user');
         $this->db->from('body_type');
-        $this->db->where('is_deleted','0');
-        $this->db->order_by("added_date", "desc");
+        $this->db->join('user','user.id =body_type.added_by');
+        $this->db->where('body_type.is_deleted','0');
+        $this->db->order_by("body_type.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
     }
