@@ -17,7 +17,7 @@
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
-                        <table  class="display table table-bordered table-striped" id="manufacture_table">
+                        <table  class="display table table-bordered table-striped" id="body_type_table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -54,15 +54,15 @@
     </div>
 </div>
 
-<!--Manufacture add model-->
-<div class="modal fade " id="manufacture_add_modal" tabindex="-1" role="dialog" aria-labelledby="body_type_add_modal_label" aria-hidden="true">
+<!--Body Type add model-->
+<div class="modal fade " id="body_type_add_modal" tabindex="-1" role="dialog" aria-labelledby="body_type_add_modal_label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Add New Manufacturer</h4>
+                <h4 class="modal-title">Add New Body Type</h4>
             </div>
-            <form id="add_manufacture_form" name="add_body_type_form">
+            <form id="add_body_type_form" name="add_body_type_form">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -85,9 +85,9 @@
     $('#vehicle_spec_menu').addClass('active open');
 
     $(document).ready(function() {
-        $('#manufacture_table').dataTable();
+        $('#body_type_table').dataTable();
 
-        $("#add_manufacture_form").validate({
+        $("#add_body_type_form").validate({
             rules: {
                 name: "required"
             },
@@ -95,12 +95,12 @@
                 name: "Please enter a title"
             }, submitHandler: function(form)
             {
-                $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)
+                $.post(site_url + '/body_type/add_body_type', $('#add_body_type_form').serialize(), function(msg)
                 {
                     if (msg == 1) {
 
-                        add_manufacture_form.reset();
-                        window.location = site_url + '/manufacture/manage_manufactures';
+                        add_body_type_form.reset();
+                        window.location = site_url + '/body_type/manage_body_types';
                     } else {
 
                     }

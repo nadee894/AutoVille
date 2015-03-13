@@ -28,7 +28,7 @@ class Body_type extends CI_Controller {
         $body_type_service = new Body_type_service();
 
         $body_type_model->set_name($this->input->post('name', TRUE));
-        $body_type_model->set_added_by(1);
+        $body_type_model->set_added_by(3);
         $body_type_model->set_added_date(date("Y-m-d H:i:s"));
         $body_type_model->set_updated_date(date("Y-m-d H:i:s"));
         $body_type_model->set_updated_by(1);
