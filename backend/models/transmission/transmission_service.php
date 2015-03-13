@@ -28,14 +28,27 @@ class Transmission_service extends CI_Model {
      */
     public function get_all_transmissions() {
 
-        $this->db->select('*');
+        $this->db->select('transmission.*,user.name as added_by_user');
         $this->db->from('transmission');
-        $this->db->where('is_deleted','0');
-        $this->db->order_by("added_date", "desc");
+        $this->db->join('user', 'user.id = transmission.added_by');
+        $this->db->where('transmission.is_deleted','0');
+        $this->db->order_by("transmission.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
     }
 
+    /*
+     * This service function is to delete a transmission
+     */
+    function delete_transmission($transmission_id) {
+        $data = array('is_deleted' => '1');
+        $this->db->where('id', $transmission_id);
+        return $this->db->update('transmission', $data);
+    }
+
+    
+    
+    
     //update company
     function update_company($company_model) {
 
@@ -62,13 +75,5 @@ class Transmission_service extends CI_Model {
         return $query->row();
     }
     
-    /*
-     * This service function is to delete a company
-     */
-    function delete_company($company_code) {
-        $data = array('del_ind' => '0');
-        $this->db->where('company_code', $company_code);
-        return $this->db->update('company', $data);
-    }
-
+    
 }

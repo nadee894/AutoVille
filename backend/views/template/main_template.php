@@ -33,6 +33,9 @@
         <link href="<?php echo base_url(); ?>backend_resources/css/style.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>backend_resources/css/style-responsive.css" rel="stylesheet" />
 
+        
+        <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
 
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
@@ -53,10 +56,10 @@
                 <!--logo start-->
                 <a href="index.html" class="logo"></a>
                 <!--logo end-->
-                <div class="nav notify-row" id="top_menu">
-                    <!--  notification start -->
+<!--                <div class="nav notify-row" id="top_menu">
+                      notification start 
                     <ul class="nav top-menu">
-                        <!-- settings start -->
+                         settings start 
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="fa fa-tasks"></i>
@@ -138,8 +141,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- settings end -->
-                        <!-- inbox dropdown start-->
+                         settings end 
+                         inbox dropdown start
                         <li id="header_inbox_bar" class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <i class="fa fa-envelope-o"></i>
@@ -203,8 +206,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- inbox dropdown end -->
-                        <!-- notification dropdown start-->
+                         inbox dropdown end 
+                         notification dropdown start
                         <li id="header_notification_bar" class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
@@ -256,10 +259,10 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- notification dropdown end -->
+                         notification dropdown end 
                     </ul>
-                    <!--  notification end -->
-                </div>
+                      notification end 
+                </div>-->
                 <div class="top-nav ">
                     <!--search & user info start-->
                     <ul class="nav pull-right top-menu">
@@ -469,8 +472,7 @@
 
         </script>
         <!-- js placed at the end of the document so the pages load faster -->
-        <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
-        <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
+        
         <script class="include" type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.dcjqaccordion.2.7.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.scrollTo.min.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.nicescroll.js" type="text/javascript"></script>

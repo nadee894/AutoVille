@@ -32,14 +32,14 @@
                                 $i = 0;
                                 foreach ($results as $result) {
                                     ?>
-                                    <tr>
-                                        <td><?php echo++$i; ?></td>
+                                    <tr id="transmission_<?php echo $result->id; ?>">
+                                        <td><?php echo ++$i; ?></td>
                                         <td><?php echo $result->name; ?></td>
-                                        <td><?php echo $result->added_by; ?></td>
+                                        <td><?php echo $result->added_by_user; ?></td>
                                         <td><?php echo $result->added_date; ?></td>
                                         <td>
                                             <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
-                                            <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
+                                            <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
                                         </td>
                                     </tr>
@@ -61,7 +61,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Add new transmission</h4>
+                <h4 class="modal-title">Add New Transmission</h4>
             </div>
             <form id="add_transmission_form" name="add_transmission_form">
                 <div class="modal-body">
@@ -81,3 +81,65 @@
     </div>
 </div>
 <!-- modal -->
+
+
+<!-- active selected menu -->
+
+<script type="text/javascript">
+    $('#vehicle_spec_menu').addClass('active open');
+
+
+    $(document).ready(function() {
+
+        $('#transmission_table').dataTable();
+
+
+        $("#add_transmission_form").validate({
+            rules: {
+                name: "required"
+            },
+            messages: {
+                name: "Please enter a title"
+            }, submitHandler: function(form)
+            {
+                $.post(site_url + '/transmission/add_transmission', $('#add_transmission_form').serialize(), function(msg)
+                {
+                    if (msg == 1) {
+
+                        add_transmission_form.reset();
+                        window.location = site_url + '/transmission/manage_transmissions';
+                    } else {
+
+                    }
+                });
+
+
+            }
+        });
+    });
+
+
+
+    //delete transmissions
+    function delete_transmission(id) {
+
+        if (confirm('Are you sure want to delete this Transmission ?')) {
+
+            $.ajax({
+                type: "POST",
+                url: site_url + '/transmission/delete_transmissions',
+                data: "id=" + id,
+                success: function(msg) {
+                    //alert(msg);
+                    if (msg == 1) {
+                        //document.getElementById(trid).style.display='none';
+                        $('#transmission_' + id).hide();
+                    }
+                    else if (msg == 2) {
+                        alert('Cannot be deleted as it is already assigned to others. !!');
+                    }
+                }
+            });
+        }
+    }
+</script>

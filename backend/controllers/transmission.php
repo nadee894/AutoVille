@@ -30,8 +30,8 @@ class Transmission extends CI_Controller {
 
     function add_transmission() {
 
-        $transmission_model              = new Transmission_model();
-        $transmission_service            = new Transmission_service();
+        $transmission_model   = new Transmission_model();
+        $transmission_service = new Transmission_service();
 
         $transmission_model->set_name($this->input->post('name', TRUE));
         $transmission_model->set_added_by(1);
@@ -40,42 +40,18 @@ class Transmission extends CI_Controller {
         $transmission_model->set_is_published('1');
         $transmission_model->set_is_deleted('0');
 
-       echo $transmission_service->add_new_transmission($transmission_model);
-
-        
+        echo $transmission_service->add_new_transmission($transmission_model);
     }
 
-    //generate token
-    public function generate_random_string($length = 10) {
-        $characters    = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $random_string = '';
-        for ($i = 0; $i < $length; $i++) {
-            $random_string .= $characters[rand(0, strlen($characters) - 1)];
-        }
-        return $random_string;
-    }
+    /*
+     * This is to delete a transmission
+     */
 
-    public function account_activation($emp_id, $token) {
+    function delete_transmissions() {
 
-        $employee_service = new Employee_service();
-        $employee_model   = new Employee_model();
+        $transmission_service = new Transmission_service();
 
-        $employee_model->set_employee_code($emp_id);
-        $employee_model->set_account_activation_code($token);
-
-        $count = $employee_service->check_user_id_token_combination($employee_model);
-
-        if ($count == 1) {
-            $data['emp_id'] = $emp_id;
-            $employee_model->set_del_ind('1');
-            $employee_service->activate_employee_account($employee_model);
-
-            echo $this->load->view('template/success_account_activated_view', $data);
-        } else {
-            $data['heading'] = "Invalid URL Request";
-
-            echo $this->load->view('users/invalid_url', $data);
-        }
+        echo $transmission_service->delete_transmission(trim($this->input->post('id', TRUE)));
     }
 
     /*
@@ -175,31 +151,6 @@ class Transmission extends CI_Controller {
         $mpdf->SetFooter($footer);
         $mpdf->WriteHTML($SResultString);
         $mpdf->Output();
-    }
-
-    /*
-     * This is to delete a company by checking the no. of employees assign to
-     *  that company
-     */
-
-    function delete_company() {
-
-        $perm = Access_controll_service::check_access('DELETE_COMPANY');
-        if ($perm) {
-            $company_service  = new Company_service();
-            $employee_service = new employee_service();
-
-            $employees = $employee_service->get_employees_by_company_id_manage(trim($this->input->post('code', TRUE)));
-
-            //if no employees in company we can delete otherwise we cant delete the company
-            if (count($employees) == 0) {
-                echo $company_service->delete_company(trim($this->input->post('code', TRUE)));
-            } else {
-                echo 2;
-            }
-        } else {
-            
-        }
     }
 
 }
