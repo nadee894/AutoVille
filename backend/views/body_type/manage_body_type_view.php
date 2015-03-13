@@ -24,6 +24,7 @@
                                     <th>Name</th>
                                     <th>Added By</th>
                                     <th>Added Date</th>
+                                    <th>Active Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -32,14 +33,21 @@
                                 $i = 0;
                                 foreach ($results as $result) {
                                     ?>
-                                    <tr>
+                                    <tr id="transmission_<?php echo $result->id; ?>">
                                         <td><?php echo ++$i; ?></td>
                                         <td><?php echo $result->name; ?></td>
                                         <td><?php echo $result->added_by_user; ?></td>
                                         <td><?php echo $result->added_date; ?></td>
-                                        <td>
-                                            <a href="<?php echo site_url(); ?>/Body_type/manage_body_types" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
-                                            <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
+                                        <td align="center">
+                                        <?php if ($result->is_published) { ?>
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate transmission"><i class="fa fa-check"></i></a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate transmission"><i class="fa fa-exclamation-circle"></i></a>
+                                        <?php } ?>
+                                    </td>
+                                        <td align="center">
+                                            <a href="<?php echo site_url(); ?>/Body_type/manage_body_types" cclass="btn btn-primary btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+                                            <a class="btn btn-danger btn-xs" onclick="delete_body_types(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
                                         </td>
                                     </tr>
@@ -84,7 +92,7 @@
 
     $('#vehicle_spec_menu').addClass('active open');
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#body_type_table').dataTable();
 
         $("#add_body_type_form").validate({
@@ -93,9 +101,9 @@
             },
             messages: {
                 name: "Please enter a title"
-            }, submitHandler: function(form)
+            }, submitHandler: function (form)
             {
-                $.post(site_url + '/body_type/add_body_type', $('#add_body_type_form').serialize(), function(msg)
+                $.post(site_url + '/body_type/add_body_type', $('#add_body_type_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
 
@@ -111,6 +119,61 @@
         });
 
     });
+    
+                                     //delete body types
+                                        function delete_body_types(id) {
+
+                                            if (confirm('Are you sure want to delete this Body Type ?')) {
+
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/body_type/delete_body_types',
+                                                    data: "id=" + id,
+                                                    success: function(msg) {
+                                                        //alert(msg);
+                                                        if (msg == 1) {
+                                                            //document.getElementById(trid).style.display='none';
+                                                            $('#body_type_' + id).hide();
+                                                        }
+                                                        else if (msg == 2) {
+                                                            alert('Cannot be deleted as it is already assigned to others. !!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
+                                        
+                                        
+                                         //change publish status of body types
+                                        function change_publish_status(body_type_id, value, element) {
+
+                                            var condition = 'Do you want to activate this body type ?';
+                                            if (value == 0) {
+                                                condition = 'Do you want to deactivate this body type?';
+                                            }
+
+                                            if (confirm(condition)) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/body_type/change_publish_status',
+                                                    data: "id=" + body_type_id + "&value=" + value,
+                                                    success: function(msg) {
+                                                        if (msg == 1) {
+                                                            if (value == 1) {
+                                                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + body_type_id + ',0,this)" title="click to deactivate body type"><i class="fa fa-check"></i></a>');
+                                                            } else {
+                                                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + body_type_id + ',1,this)" title="click to activate body type"><i class="fa fa-exclamation-circle"></i></a>');
+                                                            }
+
+                                                        } else if (msg == 2) {
+                                                            alert('Error !!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
 
 </script>
+
+
 
