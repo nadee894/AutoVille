@@ -28,7 +28,7 @@ class Manufacture extends CI_Controller {
     }
 
     /*
-     * adding a manufactoure
+     * adding a manufacture
      */
 
     function add_manufacture() {

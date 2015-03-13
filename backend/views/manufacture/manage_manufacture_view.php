@@ -17,7 +17,7 @@
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
-                        <table  class="display table table-bordered table-striped" id="manufacturer_table">
+                        <table  class="display table table-bordered table-striped" id="manufacture_table">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -35,7 +35,7 @@
                                     <tr>
                                         <td><?php echo ++$i; ?></td>
                                         <td><?php echo $result->name; ?></td>
-                                        <td><?php echo $result->added_by; ?></td>
+                                        <td><?php echo $result->added_by_user; ?></td>
                                         <td><?php echo $result->added_date; ?></td>
                                         <td>
                                             <a href="<?php echo site_url(); ?>/manufacture/manage_manufactures" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
@@ -60,7 +60,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Add new transmission</h4>
+                <h4 class="modal-title">Add New Manufacturer</h4>
             </div>
             <form id="add_manufacture_form" name="add_manufacture_form">
                 <div class="modal-body">
@@ -79,4 +79,38 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $('#vehicle_spec_menu').addClass('active open');
+
+    $(document).ready(function() {
+        $('#manufacture_table').dataTable();
+
+        $("#add_manufacture_form").validate({
+            rules: {
+                name: "required"
+            },
+            messages: {
+                name: "Please enter a title"
+            }, submitHandler: function(form)
+            {
+                $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)
+                {
+                    if (msg == 1) {
+
+                        add_manufacture_form.reset();
+                        window.location = site_url + '/manufacture/manage_manufactures';
+                    } else {
+
+                    }
+                });
+
+
+            }
+        });
+
+    });
+
+</script>
 
