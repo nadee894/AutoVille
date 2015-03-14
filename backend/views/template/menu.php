@@ -20,6 +20,16 @@
             <li><a  href="<?php echo site_url(); ?>/fuel_type/manage_fuel_types">Manage Fuel Types</a></li>
         </ul>
     </li>
+    
+    <li class="sub-menu">
+        <a href="javascript:;" id="advertisements_menu">
+            <i class="fa fa-cogs"></i>
+            <span>Advertisements</span>
+        </a>
+        <ul class="sub">
+            <li><a  href="<?php echo site_url(); ?>/vehicle_advertisements/manage_advertisements">Vehicle Advertisements</a></li>
+        </ul>
+    </li>
 
    
 
