@@ -23,7 +23,7 @@
     
     <li class="sub-menu">
         <a href="javascript:;" id="advertisements_menu">
-            <i class="fa fa-cogs"></i>
+            <i class="fa fa-film"></i>
             <span>Advertisements</span>
         </a>
         <ul class="sub">

@@ -19,12 +19,12 @@ class Vehicle_advertisements extends CI_Controller {
 
     function manage_advertisements() {
 
-        $transmission_service = new Transmission_service();
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
-        $data['heading'] = "Manage Transmissions";
-        $data['results'] = $transmission_service->get_all_transmissions();
+        $data['heading'] = "Advertisements";
+        $data['results'] = $vehicle_advertisments_service->get_all_advertisements();
 
-        $parials = array('content' => 'transmission/manage_transmission_view');
+        $parials = array('content' => 'vehicle_advertisements/manage_advertisements_view');
         $this->template->load('template/main_template', $parials, $data);
     }
 

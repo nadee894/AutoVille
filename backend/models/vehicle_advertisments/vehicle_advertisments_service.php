@@ -6,19 +6,17 @@ class Vehicle_advertisments_service extends CI_Model {
         parent::__construct();
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
     }
-   
-
     
     /*
-     * This is the service function to get all transmissions
+     * This is the service function to get all advertisements
      */
-    public function get_all_transmissions() {
+    public function get_all_advertisements() {
 
-        $this->db->select('transmission.*,user.name as added_by_user');
-        $this->db->from('transmission');
-        $this->db->join('user', 'user.id = transmission.added_by');
-        $this->db->where('transmission.is_deleted','0');
-        $this->db->order_by("transmission.added_date", "desc");
+        $this->db->select('vehicle_advertisements.*,user.name as added_by_user');
+        $this->db->from('vehicle_advertisements');
+        $this->db->join('user', 'user.id = vehicle_advertisements.added_by');
+        $this->db->where('vehicle_advertisements.is_deleted','0');
+        $this->db->order_by("vehicle_advertisements.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
     }

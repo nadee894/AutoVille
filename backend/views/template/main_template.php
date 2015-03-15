@@ -272,8 +272,8 @@
                         <!-- user login dropdown start-->
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <img alt="" src="<?php echo base_url(); ?>backend_resources/img/avatar1_small.jpg">
-                                <span class="username">Jhon Doue</span>
+                                <img alt="" src="<?php echo base_url(); ?>uploads/user_avatars/avatar.jpg">
+                                <span class="username">Heshani Herath</span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
@@ -456,14 +456,14 @@
             <!-- Right Slidebar end -->
 
             <!--footer start-->
-            <footer class="site-footer">
+<!--            <footer class="site-footer">
                 <div class="text-center">
                     2015 &copy; AutoVille by Armates.
                     <a href="#" class="go-top">
                         <i class="fa fa-angle-up"></i>
                     </a>
                 </div>
-            </footer>
+            </footer>-->
             <!--footer end-->
         </section>
         <script>
