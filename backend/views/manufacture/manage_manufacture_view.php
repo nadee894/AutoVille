@@ -35,7 +35,7 @@
                             foreach ($results as $result) {
                                 ?>
                                 <tr id="manufacture_<?php echo $result->id; ?>">
-                                    <td><?php echo ++$i; ?></td>
+                                    <td><?php echo++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
     <!--                                        <td><?php echo $result->added_by_user; ?></td>-->
     <!--                                        <td><?php echo $result->added_date; ?></td>-->
@@ -43,7 +43,7 @@
                                         <?php if ($result->is_published) { ?>
                                             <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> 
                                         <?php } else { ?> 
-                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate manufacture"><i class="fa fa-exclamation-circle"></i></a> 
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate manufacture"><i class="fa fa-exclamation-circle"></i></a> 
                                         <?php } ?>
                                     </td>
                                     <td align="center">
@@ -91,82 +91,82 @@
 
 <script type="text/javascript">
 
-    $('#vehicle_spec_menu').addClass('active open');
+                                        $('#vehicle_spec_menu').addClass('active open');
 
-    $(document).ready(function() {
-        $('#manufacture_table').dataTable();
+                                        $(document).ready(function() {
+                                            $('#manufacture_table').dataTable();
 
-        $("#add_manufacture_form").validate({
-            rules: {
-                name: "required"
-            },
-            messages: {
-                name: "Please enter a title"
-            }, submitHandler: function(form)
-            {
-                $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)
-                {
-                    if (msg == 1) {
+                                            $("#add_manufacture_form").validate({
+                                                rules: {
+                                                    name: "required"
+                                                },
+                                                messages: {
+                                                    name: "Please enter a title"
+                                                }, submitHandler: function(form)
+                                                {
+                                                    $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)
+                                                    {
+                                                        if (msg == 1) {
 
-                        add_manufacture_form.reset();
-                        window.location = site_url + '/manufacture/manage_manufactures';
-                    } else {
+                                                            add_manufacture_form.reset();
+                                                            window.location = site_url + '/manufacture/manage_manufactures';
+                                                        } else {
 
-                    }
-                });
+                                                        }
+                                                    });
 
 
-            }
-        });
+                                                }
+                                            });
 
-    });
+                                        });
 
-    //delete manufacture
-    function delete_manufacture(id) {
-        if (confirm('Are you sure want to delete this Manufacture ?')) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/manufacture/delete_manufactures',
-                data: "id" + id,
-                success: function(msg) {
-                    if (msg == 1) {
-                        $('#manufacture_' + id).hide();
-                    }
-                    else if (msg == 2) {
-                        alert('Cannot be deleted as it is already assigned to others. !!');
-                    }
+                                        //delete manufacture
+                                        function delete_manufacture(id) {
+                                            if (confirm('Are you sure want to delete this Manufacture ?')) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/manufacture/delete_manufactures',
+                                                    data: "id=" + id,
+                                                    success: function(msg) {
+                                                        if (msg == 1) {
+                                                            $('#manufacture_' + id).hide();
+                                                        }
+                                                        else if (msg == 2) {
+                                                            alert('Cannot be deleted as it is already assigned to others. !!');
+                                                        }
 
-                }
-            });
-        }
-    }
+                                                    }
+                                                });
+                                            }
+                                        }
 
-    //change publish status of manufacture
-    function change_publish_status(manufacture_id, value, element) {
-        var condition = 'Do you want to activate this manufacture?';
-        if (value == 0) {
-            condition = 'Do you want to deactivate this manufacture?';
-        }
+                                        //change publish status of manufacture
+                                        function change_publish_status(manufacture_id, value, element) {
+                                            var condition = 'Do you want to activate this manufacture?';
+                                            if (value == 0) {
+                                                condition = 'Do you want to deactivate this manufacture?';
+                                            }
 
-        if (confirm(condition)) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/manufacture/change_publish_status',
-                data:"id" + manufacture_id + "&value" = value,
-                        success: function(msg) {
-                            if (msg == 1) {
-                                if (value == 1) {
-                                    $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
-                                } else {
-                                    $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
-                                }
-                            } else if (msg == 2) {
-                                alert('Error !!!');
-                            }
-                        }
-            });
-        }
-    }
+                                            if (confirm(condition)) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/manufacture/change_publish_status',
+                                                    data: "id=" + manufacture_id + "&value=" + value,
+                                                    success: function(msg) {
+                                                        if (msg == 1) {
+                                                            if (value == 1) {
+                                                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
+                                                            } else {
+                                                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
+                                                            }
+                                                        } else if (msg == 2) {
+                                                            alert('Error !!!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
 
 </script>
 
