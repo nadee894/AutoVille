@@ -49,18 +49,60 @@
                     Red
                 </td>
                 <td class="p-progress">
-                   Rs.56000000.00
+                    Rs.56000000.00
                 </td>
                 <td>
                     <span class="label label-primary">Active</span>
                 </td>
                 <td>
-                    <a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                    <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-primary btn-xs"><i class="fa fa-pencil"  title="Update"></i></a>
+                    <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php //echo $result->id;         ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
+                    <a href="project_details.html" class="btn btn-info btn-xs"><i class="fa fa-folder" title="View"></i></a>
+
                 </td>
             </tr>
-            
+            <?php foreach ($results as $result) { ?>
+                <tr>
+                    <td class="p-name">
+                        <a href="project_details.html"><?php echo ucfirst($result->manufacture . ' ' . $result->model . ' ' . $result->year); ?></a>
+                        <br>
+                        <small>Created <?php echo date('Y-m-d', strtotime($result->added_date)); ?></small>
+                    </td>
+                    <td class="p-team">
+                        <?php echo $result->transmission; ?>
+                    </td>
+                    <td class="p-team">
+                        <?php echo $result->fuel_type; ?>
+                    </td>
+                    <td class="p-team">
+                        Body Type
+                    </td>
+                    <td class="p-team">
+                        <?php echo $result->colour; ?>
+                    </td>
+                    <td class="p-progress">
+                        <?php echo $result->price; ?>
+                    </td>
+                    <td>
+                        <?php if ($result->is_published == '1') { ?>
+                            <span class="label label-primary">Active</span>
+                        <?php } elseif ($result->is_published == '0') { ?>
+                            <span class="label label-default">Pending</span>  
+                        <?php } else { ?>
+                            <span class="label label-danger">Rejected</span>  
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-primary btn-xs"><i class="fa fa-pencil"  title="Update"></i></a>
+                        <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
+                        <a href="project_details.html" class="btn btn-info btn-xs"><i class="fa fa-folder" title="View"></i></a>
+
+                    </td>
+                </tr>
+
+            <?php }
+            ?>
+
         </tbody>
     </table>
 </section>
@@ -70,5 +112,5 @@
 <!-- active selected menu -->
 
 <script type="text/javascript">
-    $('#advertisements_menu').addClass('active');
+                        $('#advertisements_menu').addClass('active');
 </script>
