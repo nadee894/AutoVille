@@ -43,27 +43,31 @@
             $i = 0;
             foreach ($results as $result) {
                 ?>
-                <div class="col-md-6 col-sm-6">
-                    <div class="panel">
+                <div class="col-md-6 col-sm-6"id="admin_<?php echo $result->id; ?>" >
+                    <?php echo ++$i; ?>
+                    <div class="panel" >
+
                         <div class="panel-body">
-                            <div class="media">
+                            <div class="media" >
+
                                 <a class="pull-left" href="#">
                                     <img class="thumb media-object" src="/backend_resources/img/users/hesha.jpg" alt="">
                                 </a>
-                                <div class="media-body">
+
+                                <div class="media-body" >
                                     <h4><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
-                                    <ul class="social-links">
-                                        <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                    </ul>
-<!--                                    <address>
-                                        <strong>VectorLab, Inc.</strong><br>
-                                        Vamoil Ave, Suite 23<br>
-                                        Dream land, Australia <br>
-                                        <abbr title="Phone">P:</abbr> (142) 454-7890
-                                    </address>-->
+                                    <!--                                    <ul class="social-links">
+                                                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                                                        </ul>-->
+                                    <!--                                    <address>
+                                                                            <strong>VectorLab, Inc.</strong><br>
+                                                                            Vamoil Ave, Suite 23<br>
+                                                                            Dream land, Australia <br>
+                                                                            <abbr title="Phone">P:</abbr> (142) 454-7890
+                                                                        </address>-->
 
                                 </div>
                             </div>
