@@ -34,7 +34,7 @@
                             $i = 0;
                             foreach ($results as $result) {
                                 ?>
-                                <tr id='vehicle_model_<?php echo $result->id; ?>'>
+                                <tr id="vehicle_model_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
                                     <td><?php echo $result->added_by_user; ?></td>
@@ -50,8 +50,7 @@
 
                                     <td>
                                         <a href="<?php echo site_url(); ?>/ edit method" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
-                                        <a class="btn btn-danger btn-xs" onclick="delete_vehicle_model(<?php $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
-
+                                        <a class="btn btn-danger btn-xs" onclick="delete_vehicle_model(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -120,6 +119,8 @@
 
                     }
                 });
+
+
             }
         });
     });

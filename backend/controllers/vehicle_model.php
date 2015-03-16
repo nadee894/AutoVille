@@ -57,18 +57,22 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_service = new Vehicle_model_service();
 
         echo $vehicle_model_service->delete_vehicle_model(trim($this->input->post('id', TRUE)));
-    }
+    } 
     
+    /*
+     * This function is to change publish status of a vehicle model using 
+     * publish_vehicle_model function in vehicle_model_service
+     */
     function change_publish_status(){
         $vehicle_model_model=new Vehicle_model_model();
         $vehicle_model_service=new Vehicle_model_service();
         
         $vehicle_model_model->set_id(trim($this->input->post('id',TRUE)));
-        $vehicle_model_model->set_is_published(trim($this->input->post('is_published',TRUE)));
+        $vehicle_model_model->set_is_published(trim($this->input->post('value',TRUE)));
         
         echo $vehicle_model_service->publish_vehicle_model($vehicle_model_model);
     }
-    
+  
     /*
      * Edit vehicle model function using the update_company function in the 
      * Vehicle_model_service
