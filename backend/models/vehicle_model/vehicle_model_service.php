@@ -36,7 +36,7 @@ class Vehicle_model_service extends CI_Model {
 
     function update_vehicle_model($vehicle_model_model) {
 
-        $data = array('id'           => $vehicle_model_model->get_id(),
+        $data = array('id' => $vehicle_model_model->get_id(),
             'name'         => $vehicle_model_model->get_name(),
             'is_published' => $vehicle_model_model->get_is_published(),
             'is_deleted'   => $vehicle_model_model->get_is_deleted(),
@@ -47,7 +47,7 @@ class Vehicle_model_service extends CI_Model {
         );
 
         $this->db->where('id', $vehicle_model_model->get_id());
-        return $this->db->update('model', $data);
+        return $this->db->update('model', $data); //table name,data
     }
 
     /*
@@ -70,5 +70,14 @@ class Vehicle_model_service extends CI_Model {
         $this->db->where('id', $id);
         return $this->db->update('model', $data);
     }
+    
+    /*
+     * This service function is to change the published status
+     */
 
+    function publish_vehicle_model($vehicle_model_model){
+        $data=array('is_published' => $vehicle_model_model->get_is_published());
+        $this->db->update('model',$data, array('id' => $vehicle_model_model->get_id()));
+        return $this->db->affected_rows();
+    }
 }
