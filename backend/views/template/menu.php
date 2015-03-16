@@ -41,6 +41,16 @@
             <li><a  href="<?php echo site_url(); ?>/comments/manage_comments">Website Reviews</a></li>
         </ul>
     </li>
+    
+    <li class="sub-menu">
+        <a href="javascript:;" id="user_menu">
+            <i class="fa fa-film"></i>
+            <span>Users</span>
+        </a> 
+        <ul class="sub">
+            <li><a  href="<?php echo site_url(); ?>/users/manage_admins">Manage Administrators</a></li>
+        </ul>
+    </li>
 
    
 

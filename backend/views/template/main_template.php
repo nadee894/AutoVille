@@ -157,7 +157,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <span class="photo"><img alt="avatar" src="<?php echo base_url(); ?>backend_resources/img/avatar-mini.jpg"></span>
+                                                        <span class="photo"><img alt="avatar" src="<?php echo base_url(); ?>backend_resources/img/heshani.jpg"></span>
                                                         <span class="subject">
                                                             <span class="from">Jonathan Smith</span>
                                                             <span class="time">Just now</span>
@@ -274,7 +274,7 @@
                         <!-- user login dropdown start-->
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <img alt="" src="<?php echo base_url(); ?>uploads/user_avatars/avatar.jpg">
+                                <img alt="" height="30" width="30" src="<?php echo base_url(); ?>backend_resources/img/users/hesha.jpg">
                                 <span class="username">Heshani Herath</span>
                                 <b class="caret"></b>
                             </a>
