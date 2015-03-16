@@ -66,16 +66,17 @@ class Transmission extends CI_Controller {
 
         echo $transmission_service->publish_transmission($transmission_model);
     }
-    
+
     /*
      * Edit transmission pop up content set up and then send .
      */
+
     function load_edit_transmission_content() {
         $transmission_model   = new Transmission_model();
         $transmission_service = new Transmission_service();
 
         $transmission_model->set_id(trim($this->input->post('transmission_id', TRUE)));
-        $transmission = $transmission_service->get_transmission_by_id($transmission_model);
+        $transmission         = $transmission_service->get_transmission_by_id($transmission_model);
         $data['transmission'] = $transmission;
 
 
@@ -83,30 +84,20 @@ class Transmission extends CI_Controller {
     }
 
     /*
-     * Edit company function using the update_company function in the 
-     * company_service
+     * This function is to update the transmission details
      */
 
-    function edit_company() {
+    function edit_transmission() {
 
-        $perm = Access_controll_service::check_access('EDIT_COMPANY');
-        if ($perm) {
+        $transmission_model   = new Transmission_model();
+        $transmission_service = new Transmission_service();
 
-            $company_model   = new company_model();
-            $company_service = new company_service();
+        $transmission_model->set_id($this->input->post('transmission_id', TRUE));
+        $transmission_model->set_name($this->input->post('name', TRUE));
+        $transmission_model->set_updated_by(1);
+        $transmission_model->set_updated_date(date("Y-m-d H:i:s"));
 
-            $company_model->set_company_code($this->input->post('company_code', TRUE));
-            $company_model->set_company_name($this->input->post('company_name', TRUE));
-            $company_model->set_company_email($this->input->post('company_email', TRUE));
-            $company_model->set_company_address($this->input->post('company_address', TRUE));
-            $company_model->set_company_contact($this->input->post('company_contact', TRUE));
-            $company_model->set_company_desc($this->input->post('company_description', TRUE));
-
-            echo $company_service->update_company($company_model);
-        } else {
-            
-        }
+        echo $transmission_service->update_transmission($transmission_model);
     }
-
 
 }
