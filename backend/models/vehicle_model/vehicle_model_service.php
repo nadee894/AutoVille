@@ -31,37 +31,6 @@ class Vehicle_model_service extends CI_Model {
     }
 
     /*
-     * This is the service function to update vehicle models
-     */
-
-    function update_vehicle_model($vehicle_model_model) {
-
-        $data = array('id' => $vehicle_model_model->get_id(),
-            'name' => $vehicle_model_model->get_name(),
-            'is_published' => $vehicle_model_model->get_is_published(),
-            'is_deleted' => $vehicle_model_model->get_is_deleted(),
-            'added_date' => $vehicle_model_model->get_added_date(),
-            'added_by' => $vehicle_model_model->get_added_by(),
-            'updated_date' => $vehicle_model_model->get_updated_date(),
-            'updated_by' => $vehicle_model_model->get_updated_by()
-        );
-
-        $this->db->where('id', $vehicle_model_model->get_id());
-        return $this->db->update('model', $data); //table name,data
-    }
-
-    /*
-     * This is the service function to get vehicle model by model id passing the 
-     * id as a parameter
-     */
-
-    function get_vehicle_model_by_id($id) {
-
-        $query = $this->db->get_where('model', array('id' => $id, 'is_deleted' => '0'));
-        return $query->row();
-    }
-
-    /*
      * This service function is to delete a vehicle model
      */
 
@@ -79,6 +48,37 @@ class Vehicle_model_service extends CI_Model {
         $data = array('is_published' => $vehicle_model_model->get_is_published());
         $this->db->update('model', $data, array('id' => $vehicle_model_model->get_id()));
         return $this->db->affected_rows();
+    }
+
+    /*
+     * This is the service function to get vehicle model by model id passing the 
+     * id as a parameter
+     */
+
+    function get_vehicle_model_by_id($id) {
+
+        $query = $this->db->get_where('model', array('id' => $id, 'is_deleted' => '0'));
+        return $query->row();
+    }
+
+    /*
+     * This is the service function to update vehicle models
+     */
+
+    function update_vehicle_model($vehicle_model_model) {
+
+        $data = array('id' => $vehicle_model_model->get_id(),
+            'name' => $vehicle_model_model->get_name(),
+            'is_published' => $vehicle_model_model->get_is_published(),
+            'is_deleted' => $vehicle_model_model->get_is_deleted(),
+            'added_date' => $vehicle_model_model->get_added_date(),
+            'added_by' => $vehicle_model_model->get_added_by(),
+            'updated_date' => $vehicle_model_model->get_updated_date(),
+            'updated_by' => $vehicle_model_model->get_updated_by()
+        );
+
+        $this->db->where('id', $vehicle_model_model->get_id());
+        return $this->db->update('model', $data); //table name,data
     }
 
 }

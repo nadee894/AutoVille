@@ -18,6 +18,7 @@
             <li><a  href="<?php echo site_url(); ?>/manufacture/manage_manufactures">Manage Manufactures</a></li>
             <li><a  href="<?php echo site_url(); ?>/body_type/manage_body_types">Manage Vehicle Body Types</a></li>
             <li><a  href="<?php echo site_url(); ?>/fuel_type/manage_fuel_types">Manage Fuel Types</a></li>
+            <li><a  href="<?php echo site_url(); ?>/equipment/manage_equipment">Manage Equipments</a></li>
         </ul>
     </li>
     

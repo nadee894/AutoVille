@@ -42,7 +42,7 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_model->set_is_deleted('0');
         $vehicle_model_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_model_model->set_added_by(2);
-        $vehicle_model_model->set_updated_by(2);
+        //$vehicle_model_model->set_updated_by(2);
 
         echo $vehicle_model_service->add_new_vehicle_model($vehicle_model_model);
     }
