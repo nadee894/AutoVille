@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 3.5.5
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 14, 2015 at 03:35 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Host: localhost
+-- Generation Time: Mar 16, 2015 at 09:37 AM
+-- Server version: 5.1.63-0ubuntu0.10.04.1-log
+-- PHP Version: 5.3.2-1ubuntu4.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -339,6 +339,39 @@ INSERT INTO `country` (`id`, `country`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `equipment`
+--
+
+CREATE TABLE IF NOT EXISTS `equipment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(300) NOT NULL,
+  `is_published` enum('1','0') NOT NULL DEFAULT '1',
+  `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
+  `added_date` timestamp NULL DEFAULT NULL,
+  `added_by` int(11) DEFAULT NULL,
+  `updated_date` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `equipment`
+--
+
+INSERT INTO `equipment` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 'ABS', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(2, 'EDS', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(3, 'ESP', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(4, 'Air Conditioning', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(5, 'Panaromic roof', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(6, 'protection framework', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(7, 'Tow', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(8, 'Traction control', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(9, 'Steering wheel controls', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fabrication`
 --
 
@@ -620,6 +653,19 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_equipment`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicle_equipment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_id` int(11) NOT NULL,
+  `equipment_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
