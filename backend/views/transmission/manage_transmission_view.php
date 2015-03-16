@@ -205,7 +205,7 @@
         });
         $("#transmission_edit_div").dialog({
             autoOpen: false,
-            title: "Edit Transmission",
+            title: "Transmission Quick Edit",
             modal: true,
             width: "650"
 
