@@ -47,7 +47,6 @@ class Vehicle_Model extends CI_Controller {
         echo $vehicle_model_service->add_new_vehicle_model($vehicle_model_model);
     }
 
-    
     /*
      * This is to delete a vehicle model     
      */
@@ -57,48 +56,51 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_service = new Vehicle_model_service();
 
         echo $vehicle_model_service->delete_vehicle_model(trim($this->input->post('id', TRUE)));
-    } 
-    
+    }
+
     /*
      * This function is to change publish status of a vehicle model using 
      * publish_vehicle_model function in vehicle_model_service
      */
-    function change_publish_status(){
-        $vehicle_model_model=new Vehicle_model_model();
-        $vehicle_model_service=new Vehicle_model_service();
-        
-        $vehicle_model_model->set_id(trim($this->input->post('id',TRUE)));
-        $vehicle_model_model->set_is_published(trim($this->input->post('value',TRUE)));
-        
+
+    function change_publish_status() {
+        $vehicle_model_model = new Vehicle_model_model();
+        $vehicle_model_service = new Vehicle_model_service();
+
+        $vehicle_model_model->set_id(trim($this->input->post('id', TRUE)));
+        $vehicle_model_model->set_is_published(trim($this->input->post('value', TRUE)));
+
         echo $vehicle_model_service->publish_vehicle_model($vehicle_model_model);
     }
-  
+
     /*
-     * Edit vehicle model function using the update_company function in the 
+     * edit_vehicle_model function using the update_vehicle_model function in the 
      * Vehicle_model_service
      */
 
     function edit_vehicle_model() {
 
-        $perm = Access_controll_service::check_access('EDIT_COMPANY');
-        if ($perm) {
+        $vehicle_model_model = new Vehicle_model_model();
+        $vehicle_model_service = new Vehicle_model_service();
 
-            $vehicle_model_model = new Vehicle_model_model();
-            $vehicle_model_service = new Vehicle_model_service();
+        $vehicle_model_model->set_id($this->input->post('vehicle_model_id', TRUE));
+        $vehicle_model_model->set_name($this->input->post('name', TRUE));
+        $vehicle_model_model->set_updated_date(date("Y-m-d H:i:s"));
+        $vehicle_model_model->set_updated_by(1);
 
-            $vehicle_model_model->set_id($this->input->post('id', TRUE));
-            $vehicle_model_model->set_name($this->input->post('name', TRUE));
-            $vehicle_model_model->set_is_published($this->input->post('is_published', TRUE));
-            $vehicle_model_model->set_is_deleted('0');
-            $vehicle_model_model->set_added_date(($this->input->post('added_date', TRUE)));
-            $vehicle_model_model->set_added_by($this->input->post('added_by', TRUE));
-            $vehicle_model_model->set_updated_date(($this->input->post('updated_date', TRUE)));
-            $vehicle_model_model->set_updated_by($this->input->post('updated_by', TRUE));
+        echo $vehicle_model_service->update_vehicle_model($vehicle_model_model);
+    }
 
-            echo $vehicle_model_service->update_vehicle_model($vehicle_model_model);
-        } else {
-            
-        }
+    function load_edit_vehicle_model_content() {
+
+        $vehicle_model_model = new Vehicle_model_model();
+        $vehicle_model_service = new Vehicle_model_service();
+
+        $vehicle_model_model->set_id(trim($this->input->post('vehicle_model_id', TRUE)));
+        $vehicle_model = $vehicle_model_service->get_vehicle_model_by_id($vehicle_model_model);
+        $data['vehicle_model']=$vehicle_model;
+        
+        echo $this->load->view('vehicle_model/vehicle_model_edit_pop_up', $data, TRUE);
     }    
 
 }

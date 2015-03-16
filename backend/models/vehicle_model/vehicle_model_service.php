@@ -55,9 +55,9 @@ class Vehicle_model_service extends CI_Model {
      * id as a parameter
      */
 
-    function get_vehicle_model_by_id($id) {
+    function get_vehicle_model_by_id($vehicle_model_model) {
 
-        $query = $this->db->get_where('model', array('id' => $id, 'is_deleted' => '0'));
+        $query = $this->db->get_where('model', array('id' => $vehicle_model_model->get_id(), 'is_deleted' => '0'));
         return $query->row();
     }
 
@@ -67,12 +67,7 @@ class Vehicle_model_service extends CI_Model {
 
     function update_vehicle_model($vehicle_model_model) {
 
-        $data = array('id' => $vehicle_model_model->get_id(),
-            'name' => $vehicle_model_model->get_name(),
-            'is_published' => $vehicle_model_model->get_is_published(),
-            'is_deleted' => $vehicle_model_model->get_is_deleted(),
-            'added_date' => $vehicle_model_model->get_added_date(),
-            'added_by' => $vehicle_model_model->get_added_by(),
+        $data = array('name' => $vehicle_model_model->get_name(),            
             'updated_date' => $vehicle_model_model->get_updated_date(),
             'updated_by' => $vehicle_model_model->get_updated_by()
         );

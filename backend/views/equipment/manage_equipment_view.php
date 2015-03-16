@@ -44,8 +44,8 @@
                                         <?php } ?>
                                     </td>
 
-                                    <td>
-                                        <a href="<?php echo site_url(); ?>/ edit method" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+                                    <td align="center">
+                                        <a class="btn btn-primary btn-xs" onclick="display_edit_equipment_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil"  data-original-title="Update"></i></a>                                        
                                         <a class="btn btn-danger btn-xs" onclick="delete_equipment(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
                                     </td>
                                 </tr>
@@ -88,6 +88,14 @@
 </div>
 <!-- modal -->
 
+<!--Equipment Edit Modal -->
+<div  id="equipment_edit_div" >
+    <div class="modal-dialog">
+        <div class="modal-content" id="equipment_edit_content">
+
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -167,5 +175,23 @@
         }
     }
 
+    function display_edit_equipment_pop_up(equipment_id) {
+
+        $.post(site_url + '/equipment/load_edit_equipment_content', {equipment_id: equipment_id}, function (msg) {
+
+            $('#equipment_edit_content').html('');
+            $('#equipment_edit_content').html(msg);
+
+        });
+
+        $("#equipment_edit_div").dialog({
+            autoOpen: false,
+            title: "Equipment Quick Edit",
+            modal: true,
+            width: "650"
+
+        });
+        $("#equipment_edit_div").dialog("option", {modal: true}).dialog("open");
+    }
 </script>
 
