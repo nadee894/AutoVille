@@ -274,7 +274,7 @@
                         <!-- user login dropdown start-->
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <img alt="" height="30" width="30" src="<?php echo base_url(); ?>backend_resources/img/users/hesha.jpg">
+                                <img alt="" height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg">
                                 <span class="username">Heshani Herath</span>
                                 <b class="caret"></b>
                             </a>

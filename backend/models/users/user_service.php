@@ -11,7 +11,7 @@ class User_service extends CI_Model {
         $this->db->select('user.*, user_type.type');
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
-        $this->db->where('user_type.id', '2');
+        $this->db->where('user_type.id in (2,1)');
         $this->db->order_by("user.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
