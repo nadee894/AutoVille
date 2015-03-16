@@ -10,37 +10,45 @@
             </header>
             <div class="panel-body">
                 <div class="adv-table">
-                    <table  class="display table table-bordered table-striped" id="fuel_types_table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Added By</th>
-                                <th>Added Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $i = 0;
-                            foreach ($results as $result) {
-                                ?>
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#transmission_add_modal" data-toggle="modal">
+                                Add New
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <table  class="display table table-bordered table-striped" id="fuel_types_table">
+                            <thead>
                                 <tr>
-                                    <td><?php echo++$i; ?></td>
-                                    <td><?php echo $result->name; ?></td>
-                                    <td><?php echo $result->added_by; ?></td>
-                                    <td><?php echo $result->added_date; ?></td>
-                                    <td>
-                                        <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
-                                        <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
-
-                                    </td>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Added By</th>
+                                    <th>Added Date</th>
+                                    <th>Actions</th>
                                 </tr>
-                            <?php } ?>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $i = 0;
+                                foreach ($results as $result) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo ++$i; ?></td>
+                                        <td><?php echo $result->name; ?></td>
+                                        <td><?php echo $result->added_by; ?></td>
+                                        <td><?php echo $result->added_date; ?></td>
+                                        <td>
+                                            <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+                                            <a class="btn btn-danger btn-xs"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
-                        </tbody>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
 
-                    </table>
+                            </tbody>
+
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
