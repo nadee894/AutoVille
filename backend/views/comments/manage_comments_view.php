@@ -11,12 +11,12 @@
             <div class="panel-body">
                 <div class="adv-table">
                     <div class="clearfix">
-<!--                        <div class="btn-group">
-                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#comments_add_modal" data-toggle="modal">
-                                Add New
-                                <i class="fa fa-plus"></i>
-                            </a>
-                        </div>-->
+                        <!--                        <div class="btn-group">
+                                                    <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#comments_add_modal" data-toggle="modal">
+                                                        Add New
+                                                        <i class="fa fa-plus"></i>
+                                                    </a>
+                                                </div>-->
                     </div>
                     <table  class="display table table-bordered table-striped" id="manufacture_table">
                         <thead>
@@ -45,7 +45,7 @@
                                         <?php } ?>
                                     </td>
                                     <td align="center">
-<!--                                        <a href="<?php echo site_url(); ?>/comments/manage_comments" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>-->
+    <!--                                        <a href="<?php echo site_url(); ?>/comments/manage_comments" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>-->
                                         <a class="btn btn-danger btn-xs" onclick="delete_comment(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
                                     </td>
@@ -61,3 +61,52 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    //delete comment
+    function delete_comment(id) {
+        if (confirm('Are you sure want ot delete this comment ?')) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/comments/delete_comments',
+                data: "id=" + id,
+                success: function(msg) {
+                    if (msg == 1) {
+                        $('#comments_' + id).hide();
+                    }
+                    else if (msg == 2) {
+                        alert('Cannot be deleted as it is already assigned to others. !!');
+                    }
+
+                }
+            });
+        }
+    }
+
+    //change publish status of comment
+    function change_publish_status(comment_id, value, element) {
+        var condition = 'Do you want to activate this Comment?';
+        if (value == 0) {
+            condition = 'Do you want to deactivate this Comment?';
+        }
+
+        if (confirm(condition)) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/comments/change_publish_status',
+                data: "id=" + comment_id + "&value=" + value,
+                success: function(msg) {
+                    if (msg == 1) {
+                        if (value == 1) {
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
+                        } else {
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
+                        }
+                    } else if (msg == 2) {
+                        alert('Error !!!');
+                    }
+                }
+            });
+        }
+
+    }
+</script>
