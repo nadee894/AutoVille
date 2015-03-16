@@ -68,12 +68,12 @@ class Transmission_service extends CI_Model {
     
 
     /*
-     * This is the service function to get company by company_id passing the 
-     * company_code as a parameter
+     * This is the service function to get transmission detail by  passing the 
+     * transmission_id as a parameter
      */
-    function get_company_by_id($company_code) {
+    function get_transmission_by_id($transmission_model) {
 
-        $query = $this->db->get_where('company', array('company_code' => $company_code,'del_ind'=>'1'));
+        $query = $this->db->get_where('transmission', array('id' => $transmission_model->get_id(),'is_deleted'=>'0'));
         return $query->row();
     }
     

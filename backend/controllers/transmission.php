@@ -36,7 +36,6 @@ class Transmission extends CI_Controller {
         $transmission_model->set_name($this->input->post('name', TRUE));
         $transmission_model->set_added_by(1);
         $transmission_model->set_added_date(date("Y-m-d H:i:s"));
-        $transmission_model->set_updated_by(1);
         $transmission_model->set_is_published('1');
         $transmission_model->set_is_deleted('0');
 
@@ -72,14 +71,12 @@ class Transmission extends CI_Controller {
      * Edit transmission pop up content set up and then send .
      */
     function load_edit_transmission_content() {
-        $interviewsmodel = new Interviewsmodel();
-        $interviewsservice = new Interviewsservice();
+        $transmission_model   = new Transmission_model();
+        $transmission_service = new Transmission_service();
 
-        $interviewsmodel->setinterviews_applicants_id(trim($this->input->post('applicant_id', TRUE)));
-        $interviewsmodel->setinterviews_vacancies_id(trim($this->input->post('vac_id', TRUE)));
-//        $vacancymodel = $vacancyservice->get_vacancy_by_vacancy_id(trim($this->input->get('vacancy_selector', TRUE)));
-        $interview = $interviewsservice->find_interview($interviewsmodel);
-        $data['interview'] = $interview;
+        $transmission_model->set_id(trim($this->input->post('transmission_id', TRUE)));
+        $transmission = $transmission_service->get_transmission_by_id($transmission_model);
+        $data['transmission'] = $transmission;
 
 
         echo $this->load->view('HR/Interviews/InterviewDetailPopUp', $data, TRUE);
