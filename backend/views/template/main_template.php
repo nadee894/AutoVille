@@ -32,6 +32,7 @@
 
         <link href="<?php echo base_url(); ?>backend_resources/css/style.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>backend_resources/css/style-responsive.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>backend_resources/assets/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
         
 
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
@@ -475,6 +476,8 @@
         </script>
         <!-- js placed at the end of the document so the pages load faster -->
 
+        
+        <script src="<?php echo base_url(); ?>backend_resources/assets/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
         <script class="include" type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.dcjqaccordion.2.7.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.scrollTo.min.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.nicescroll.js" type="text/javascript"></script>

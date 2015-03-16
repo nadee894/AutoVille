@@ -210,7 +210,7 @@
             width: "650"
 
         });
-        $("#transmission_edit_div").dialog("option", {modal: false}).dialog("open");
+        $("#transmission_edit_div").dialog("option", {modal: true}).dialog("open");
 
     }
 </script>

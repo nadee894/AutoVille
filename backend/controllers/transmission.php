@@ -79,7 +79,7 @@ class Transmission extends CI_Controller {
         $data['transmission'] = $transmission;
 
 
-        echo $this->load->view('HR/Interviews/InterviewDetailPopUp', $data, TRUE);
+        echo $this->load->view('transmission/transmission_edit_pop_up', $data, TRUE);
     }
 
     /*
