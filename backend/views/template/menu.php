@@ -47,7 +47,7 @@
             <span>Users</span>
         </a> 
         <ul class="sub">
-            <li><a  href="<?php echo site_url(); ?>/comments/manage_comments">Manage Administrators</a></li>
+            <li><a  href="<?php echo site_url(); ?>/users/manage_admins">Manage Administrators</a></li>
         </ul>
     </li>
 

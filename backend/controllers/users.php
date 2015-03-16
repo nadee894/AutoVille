@@ -14,12 +14,16 @@ class Users extends CI_Controller {
 
     function manage_admins() {
         $user_service = new User_service();
+//        $user_model = new User_model();
         $data['heading'] = "Manage Admins";
         $data['results'] = $user_service->get_admin_details();
 
-        $partials = array('content' => 'users/manage_admin_view');
+        $parials = array('content' => 'users/manage_admin_view');
         $this->template->load('template/main_template', $parials, $data);
+       
     }
+    
+    
 
 }
 

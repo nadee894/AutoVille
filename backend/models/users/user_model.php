@@ -1,6 +1,8 @@
 <?php
 
 class User_model extends CI_Model {
+    
+    
 
     var $id;
     var $title;
@@ -18,6 +20,10 @@ class User_model extends CI_Model {
     var $updated_date;
     var $updated_by;
     
+    function __construct() {
+        parent::__construct();
+    }
+            
     function get_id() {
         return $this->id;
     }

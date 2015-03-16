@@ -45,10 +45,10 @@
                             <div class="panel-body">
                                 <div class="media">
                                     <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user1.png" alt="">
+                                        <img class="thumb media-object" src="backend_resources/img/users/hesha.jpg" alt="">
                                     </a>
                                     <div class="media-body">
-                                        <h4>John Doe <span class="text-muted small"> - UI Engineer</span></h4>
+                                        <h4 >Nadeesha Perera <span class="text-muted small">- UI Engineer</span></h4>
                                         <ul class="social-links">
                                             <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                             <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
@@ -66,316 +66,39 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>   
 
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user4.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Jane Doe <span class="text-muted small"> - Graphics Designer</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
+                    <?php
+                    $i = 0;
+                    foreach ($results as $result) {
+                        ?>
+                        <div class="col-md-6 col-sm-6"id="<?php echo $result->id; ?>">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="thumb media-object" src="img/photos/user1.png" alt="">
+                                        </a>
+                                        <div class="media-body" <?php echo++$i; ?> >
+                                            <h4><?php echo $result->name; ?><span class="text-muted small"> - Front End Developer</span></h4>
+                                            <ul class="social-links">
+                                                <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                                <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                            </ul>
+                                            <address>
+                                                <strong><?php echo $result->user_type; ?></strong><br>
+                                               <?php echo $result->user_name; ?><br>
+                                                <?php echo $result->is_published; ?><br>
+                                                <abbr title="Password"></abbr> <?php echo $result->password; ?>
+                                            </address>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user2.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Demos Dika <span class="text-muted small"> - Software Tester</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user3.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4> Jonathan Smith <span class="text-muted small"> - Product Manager</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user1.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Jason Statum <span class="text-muted small"> - Ast. Magager</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user5.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Joli Rose <span class="text-muted small"> - Graphics Designer</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user3.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Tawseef <span class="text-muted small"> - Managing Director</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user2.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Paipa Deocos <span class="text-muted small"> - Executive Officer</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user1.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>John Doe <span class="text-muted small"> - Front End Developer</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user5.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Jane Doe <span class="text-muted small"> - Graphics Designer</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user2.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>Paipa Deocos <span class="text-muted small"> - Executive Officer</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="thumb media-object" src="img/photos/user1.png" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4>John Doe <span class="text-muted small"> - Front End Developer</span></h4>
-                                        <ul class="social-links">
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                        </ul>
-                                        <address>
-                                            <strong>VectorLab, Inc.</strong><br>
-                                            Vamoil Ave, Suite 23<br>
-                                            Dream land, Australia <br>
-                                            <abbr title="Phone">P:</abbr> (142) 454-7890
-                                        </address>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <?php } ?>
                 </div>
             </div>
             <!-- page end-->
