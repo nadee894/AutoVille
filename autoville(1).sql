@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 13, 2015 at 09:44 AM
+-- Generation Time: Mar 16, 2015 at 09:37 AM
 -- Server version: 5.1.63-0ubuntu0.10.04.1-log
 -- PHP Version: 5.3.2-1ubuntu4.17
 
@@ -32,11 +32,20 @@ CREATE TABLE IF NOT EXISTS `body_type` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `body_type`
+--
+
+INSERT INTO `body_type` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 'czxcxcxc', '1', '1', '0000-00-00 00:00:00', 3, NULL, 0),
+(2, 'ggf', '1', '0', '2015-03-13 12:15:45', 3, '2015-03-13 12:15:45', 1),
+(3, 'fsdfsdfdfd', '1', '1', '2015-03-14 04:46:10', 3, '2015-03-14 04:46:10', 1);
 
 -- --------------------------------------------------------
 
@@ -52,9 +61,9 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -330,6 +339,39 @@ INSERT INTO `country` (`id`, `country`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `equipment`
+--
+
+CREATE TABLE IF NOT EXISTS `equipment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(300) NOT NULL,
+  `is_published` enum('1','0') NOT NULL DEFAULT '1',
+  `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
+  `added_date` timestamp NULL DEFAULT NULL,
+  `added_by` int(11) DEFAULT NULL,
+  `updated_date` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `equipment`
+--
+
+INSERT INTO `equipment` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 'ABS', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(2, 'EDS', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(3, 'ESP', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(4, 'Air Conditioning', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(5, 'Panaromic roof', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(6, 'protection framework', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(7, 'Tow', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(8, 'Traction control', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1),
+(9, 'Steering wheel controls', '1', '0', '2015-03-15 18:30:00', 1, '2015-03-15 18:30:00', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fabrication`
 --
 
@@ -339,9 +381,9 @@ CREATE TABLE IF NOT EXISTS `fabrication` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -357,9 +399,9 @@ CREATE TABLE IF NOT EXISTS `fuel_type` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -376,11 +418,11 @@ CREATE TABLE IF NOT EXISTS `manufacture` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `manufacture`
@@ -391,7 +433,8 @@ INSERT INTO `manufacture` (`id`, `name`, `description`, `is_published`, `is_dele
 (2, 'Nissan', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
 (3, 'Honda', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
 (4, 'Suzuki', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(5, 'Ford', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0);
+(5, 'Ford', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
+(6, 'sdsads', '0', '1', '0', '2015-03-14 04:46:26', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -405,9 +448,9 @@ CREATE TABLE IF NOT EXISTS `model` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -440,9 +483,9 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -461,9 +504,9 @@ CREATE TABLE IF NOT EXISTS `review` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -493,24 +536,34 @@ CREATE TABLE IF NOT EXISTS `transmission` (
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `transmission`
 --
 
 INSERT INTO `transmission` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 'Automatic', '1', '0', '2015-03-13 02:38:00', 1, NULL, 1),
+(1, 'Automatic', '0', '0', '2015-03-13 02:38:00', 1, NULL, 1),
 (2, 'Manual', '1', '0', '2015-03-13 02:54:55', 1, NULL, 1),
 (3, 'Automated Manual', '1', '0', '2015-03-13 02:55:06', 1, NULL, 1),
 (4, 'Continuously Variable', '1', '0', '2015-03-13 02:55:21', 1, NULL, 1),
 (5, 'fdfdf', '1', '1', '2015-03-13 03:19:47', 1, NULL, 1),
 (6, '0', '1', '1', '2015-03-13 03:27:02', 1, NULL, 1),
-(7, 'sdsf', '1', '0', '2015-03-13 03:43:49', 1, NULL, 1);
+(7, 'sdsf', '0', '1', '2015-03-13 03:43:49', 1, NULL, 1),
+(8, 'rewrwe', '1', '0', '2015-03-14 06:18:40', 1, NULL, 1),
+(9, 'werer', '1', '0', '2015-03-14 06:18:45', 1, NULL, 1),
+(10, 'rwere', '1', '0', '2015-03-14 06:18:49', 1, NULL, 1),
+(11, 'rwerwer', '1', '0', '2015-03-14 06:18:53', 1, NULL, 1),
+(12, 'adasd', '1', '0', '2015-03-14 06:19:50', 1, NULL, 1),
+(13, 'asdasds', '1', '0', '2015-03-14 06:19:56', 1, NULL, 1),
+(14, 'asdasadas', '1', '0', '2015-03-14 06:20:01', 1, NULL, 1),
+(15, 'asdasd', '1', '0', '2015-03-14 06:20:06', 1, NULL, 1),
+(16, 'adad', '1', '0', '2015-03-14 06:20:12', 1, NULL, 1),
+(17, 'asdasd', '1', '0', '2015-03-14 06:20:25', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -524,16 +577,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(300) NOT NULL,
   `user_name` varchar(300) NOT NULL,
   `user_type` int(11) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `address` varchar(500) DEFAULT NULL,
+  `contact_no_1` varchar(15) DEFAULT NULL,
+  `contact_no_2` varchar(15) DEFAULT NULL,
   `profile_pic` varchar(500) DEFAULT NULL,
   `password` varchar(300) NOT NULL,
   `account_activation_code` varchar(500) NOT NULL,
   `is_online` enum('1','0') NOT NULL DEFAULT '1' COMMENT 'Online =1,Offline=0',
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
-  `added_by` int(11) NOT NULL,
+  `added_by` int(11) DEFAULT NULL,
   `added_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -541,12 +598,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `profile_pic`, `password`, `account_activation_code`, `is_online`, `is_published`, `is_deleted`, `added_by`, `added_date`, `updated_date`, `updated_by`) VALUES
-(1, 'Ms', 'Gayathma', 'gayathma@gmail.com', 1, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(2, 'Ms', 'Heshani', 'heshani@gmail.com', 1, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(3, 'Ms', 'Nadeesha', 'heshani@gmail.com', 1, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(4, 'Ms', 'Ashani', 'heshani@gmail.com', 1, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(5, 'Ms', 'Ishani', 'heshani@gmail.com', 1, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0);
+INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `address`, `contact_no_1`, `contact_no_2`, `profile_pic`, `password`, `account_activation_code`, `is_online`, `is_published`, `is_deleted`, `added_by`, `added_date`, `updated_date`, `updated_by`) VALUES
+(1, 'Ms', 'Gayathma', 'gayathma@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(2, 'Ms', 'Heshani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(3, 'Ms', 'Nadeesha', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(4, 'Ms', 'Ashani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(5, 'Ms', 'Ishani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -568,6 +625,49 @@ INSERT INTO `user_type` (`id`, `type`) VALUES
 (1, 'Super Admin'),
 (2, 'Admin'),
 (3, 'Registered User');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_advertisements`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `transmission_id` int(11) NOT NULL,
+  `year` int(5) NOT NULL,
+  `model` int(11) NOT NULL,
+  `fuel_type_id` int(11) NOT NULL,
+  `manufacture_id` int(11) NOT NULL,
+  `model_id` int(11) NOT NULL,
+  `body_type_id` int(11) NOT NULL,
+  `doors` int(11) NOT NULL,
+  `cilindrics` int(11) NOT NULL,
+  `colour` varchar(100) NOT NULL,
+  `description` text,
+  `chassis_no` varchar(200) NOT NULL,
+  `price` decimal(20,2) NOT NULL,
+  `is_published` enum('1','0') NOT NULL DEFAULT '1',
+  `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
+  `added_date` timestamp NULL DEFAULT NULL,
+  `added_by` int(11) DEFAULT NULL,
+  `updated_date` timestamp NULL DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_equipment`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicle_equipment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_id` int(11) NOT NULL,
+  `equipment_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

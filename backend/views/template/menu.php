@@ -23,11 +23,21 @@
     
     <li class="sub-menu">
         <a href="javascript:;" id="advertisements_menu">
-            <i class="fa fa-cogs"></i>
+            <i class="fa fa-film"></i>
             <span>Advertisements</span>
         </a>
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/vehicle_advertisements/manage_advertisements">Vehicle Advertisements</a></li>
+        </ul>
+    </li>
+    
+    <li class="sub-menu">
+        <a href="javascript:;" id="comments_menu">
+            <i class="fa fa-film"></i>
+            <span>Reviews</span>
+        </a> 
+        <ul class="sub">
+            <li><a  href="<?php echo site_url(); ?>/comments/manage_comments">Website Reviews</a></li>
         </ul>
     </li>
 

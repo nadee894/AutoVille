@@ -19,7 +19,7 @@ class Manufacture extends CI_Controller {
     function manage_manufactures() {
 
         $manufacture_service = new Manufacture_service();
-        
+
         $data['heading'] = "Manage Manufactures";
         $data['results'] = $manufacture_service->get_all_manufactures();
 
@@ -44,6 +44,29 @@ class Manufacture extends CI_Controller {
         $manufacture_model->set_is_deleted('0');
 
         echo $manufacture_service->add_new_manufacture($manufacture_model);
+    }
+
+    /*
+     * Delete manufacture
+     */
+
+    function delete_manufactures() {
+        $manufacture_service = new Manufacture_service();
+        echo $manufacture_service->delete_manufacture(trim($this->input->post('id', TRUE)));
+    }
+
+    /*
+     * change the publish status of the manufacture
+     */
+
+    function change_publish_status() {
+        $manufacture_model = new Manufacture_model();
+        $manufacture_service = new Manufacture_service();
+
+        $manufacture_model->set_id(trim($this->input->post('id', TRUE)));
+        $manufacture_model->set_is_published(trim($this->input->post('value', TRUE)));
+
+        echo $manufacture_service->publish_manufacture($manufacture_model);
     }
 
 }

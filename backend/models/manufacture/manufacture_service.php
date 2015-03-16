@@ -15,6 +15,10 @@ class Manufacture_service extends CI_Model {
         return $this->db->insert('manufacture', $manufacture_model);
     }
 
+    /*
+     * service function to get all manufacure
+     */
+
     public function get_all_manufactures() {
 
         $this->db->select('manufacture.*,user.name as added_by_user');
@@ -24,6 +28,26 @@ class Manufacture_service extends CI_Model {
         $this->db->order_by("manufacture.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
+    }
+
+    /*
+     * service function to deleter manufacture
+     */
+
+    public function delete_manufacture($manufacture_id) {
+        $data = array('is_deleted' => '1');
+        $this->db->where('id', $manufacture_id);
+        return $this->db->update('manufacture', $data);
+    }
+
+    /*
+     * service function to update publish status of a manufacture
+     */
+
+    public function publish_manufacture($manufacture_model) {
+        $data = array('is_published' => $manufacture_model->get_is_published());
+        $this->db->update('manufacture', $data, array('id' => $manufacture_model->get_id()));
+        return $this->db->affected_rows();
     }
 
 }
