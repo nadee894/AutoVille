@@ -22,9 +22,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <!--<th>Added By</th>
-                                <th>Added Date</th>-->
+                                <th>Name</th>                                
                                 <th>Active Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -34,27 +32,25 @@
                             $i = 0;
                             foreach ($results as $result) {
                                 ?>
-                                <tr id="equipment_"<?php echo $result->id ?>>
-                                    <td><?php echo ++$i ?></td>
-                                    <td><?php echo $result->name; ?></td>
-                                    <!--<td><?php echo $result->username; ?></td>
-                                    <td><?php echo $result->added_date; ?></td> -->
+                                <tr id="equipment_<?php echo $result->id; ?>">
+                                    <td><?php echo ++$i; ?></td>
+                                    <td><?php echo $result->name; ?></td>                                    
 
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>
-                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate euipment"><i class="fa fa-check"></i></a>
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate equipment"><i class="fa fa-check"></i></a>
                                         <?php } else { ?>
-                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate euipment"><i class="fa fa-exclamation-circle"></i></a>
-                                        <?php } ?>    
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate equipment"><i class="fa fa-exclamation-circle"></i></a>
+                                        <?php } ?>
                                     </td>
 
                                     <td>
-                                        <a class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+                                        <a href="<?php echo site_url(); ?>/ edit method" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
                                         <a class="btn btn-danger btn-xs" onclick="delete_equipment(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
                                     </td>
+                                </tr>
+                            <?php } ?>
 
-                                </tr>>
-                            <?php } ?>                            
                         </tbody>
                     </table>
                 </div>
@@ -101,7 +97,7 @@
 
         $('#equipment_table').dataTable();
 
-        $('#equipment_add_form').validate({
+        $("#equipment_add_form").validate({
             rules: {
                 name: "required"
             },
@@ -109,8 +105,8 @@
                 name: "Please enter a title"
             }, submitHandler: function (form)
             {
-                $.post(site_url + '/equipment/add_new_equipment', $('#equipment_add_form').serialize(), function (msg) {
-
+                $.post(site_url + '/equipment/add_new_equipment', $('#equipment_add_form').serialize(), function (msg)
+                {
                     if (msg == 1) {
                         equipment_add_form.reset();
                         window.location = site_url + '/equipment/manage_equipment';
@@ -145,9 +141,9 @@
 
     function change_publish_status(equipment_id, value, element) {
 
-        var condition = 'Do you want to activate this vehicle model ?';
+        var condition = 'Do you want to activate this equipment ?';
         if (value == 0) {
-            condition = 'Do you want to deactivate this vehicle model ?';
+            condition = 'Do you want to deactivate this equipment ?';
         }
 
         if (confirm(condition)) {
@@ -158,9 +154,9 @@
                 success: function (msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + equipment_id + ',0,this)" title="click to deactivate vehicle model"><i class="fa fa-check"></i></a>');
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + equipment_id + ',0,this)" title="click to deactivate equipment"><i class="fa fa-check"></i></a>');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + equipment_id + ',1,this)" title="click to activate vehicle model"><i class="fa fa-exclamation-circle"></i></a>');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + equipment_id + ',1,this)" title="click to activate equipment"><i class="fa fa-exclamation-circle"></i></a>');
                         }
 
                     } else if (msg == 2) {
