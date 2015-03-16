@@ -45,7 +45,7 @@
         foreach ($results as $result) {
             ?>
             <div class="col-md-6 col-sm-6"id="admin_<?php echo $result->id; ?>" >
-                <?php echo ++$i; ?>
+                <?php ++$i; ?>
                 <div class="panel" >
 
                     <div class="panel-body">
@@ -56,25 +56,28 @@
                             </a>
 
                             <div class="media-body" >
-                                <h4><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+
+                                <?php if ($result->is_online) { ?>
+                                    <h4><i class="fa  fa-circle  text-success"></i>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+                                <?php } else { ?>
+                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+
+                                <?php } ?>
                                 <ul class="social-links">
                                     <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                     <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
                                     <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
                                     <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
                                 </ul>
-                                <!--                                <address>
-                                                                    <strong>VectorLab, Inc.</strong><br>
-                                                                    Vamoil Ave, Suite 23<br>
-                                                                    Dream land, Australia <br>
-                                                                    <abbr title="Phone">P:</abbr> (142) 454-7890
-                                                                </address>-->
 
                                 <address>
                                     <strong>Address : <?php echo $result->address; ?></strong><br>
                                     <abbr title="Phone">P1:</abbr> <?php echo $result->contact_no_1; ?><br>
-                                    <abbr title="Phone2">P2:</abbr> <?php echo $result->contact_no_2; ?>
-                                </address>
+                                    <abbr title="Phone2">P2:</abbr> <?php echo $result->contact_no_2; ?></address>
+                                <email>E-mail : <?php echo $result->email; ?></email>
+
 
 
 
@@ -90,11 +93,31 @@
 </div>
 <!-- page end-->
 
+<script type="text/javascript">
+
+    //change Online status of body types
+    function change_online_status(user_id, value, element) {
 
 
-/* 
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+        $.ajax({
+            type: "POST",
+            url: site_url + '/users/change_online_status',
+            data: "id=" + user_id + "&value=" + value,
+            success: function (msg) {
+                if (msg == 1) {
+                    if (value == 1) {
+                        $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
+                    } else {
+                        $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
+                    }
 
+                } else if (msg == 2) {
+                    alert('Error !!');
+                }
+            }
+        });
+
+    }
+
+
+</script>
