@@ -149,7 +149,7 @@
 
 
     //vehicle model public status changing function
-    function function change_publish_status(vehicle_model_id, value, element) {
+    function change_publish_status(vehicle_model_id, value, element) {
 
         var condition = 'Do you want to activate this vehicle model ?';
         if (value == 0) {
