@@ -20,10 +20,7 @@ class Users extends CI_Controller {
 
         $parials = array('content' => 'users/manage_admin_view');
         $this->template->load('template/main_template', $parials, $data);
-       
     }
-    
-    
 
 }
 
