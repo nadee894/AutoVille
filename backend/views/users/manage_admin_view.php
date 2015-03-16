@@ -52,7 +52,7 @@
                         <div class="media" >
 
                             <a class="pull-left" href="#">
-                                <img class="thumb media-object" src="/uploads/user_avatars/avatar.jpg" alt="">
+                                <img alt="" class="thumb media-object" height="120" width="100" src="<?php echo base_url(); ?>/uploads/4.jpg" >
                             </a>
 
                             <div class="media-body" >
