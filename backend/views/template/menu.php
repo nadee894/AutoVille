@@ -44,7 +44,7 @@
     
     <li class="sub-menu">
         <a href="javascript:;" id="user_menu">
-            <i class="fa fa-film"></i>
+            <i class="fa fa-users"></i>
             <span>Users</span>
         </a> 
         <ul class="sub">
