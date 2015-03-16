@@ -67,6 +67,23 @@ class Transmission extends CI_Controller {
 
         echo $transmission_service->publish_transmission($transmission_model);
     }
+    
+    /*
+     * Edit transmission pop up content set up and then send .
+     */
+    function load_edit_transmission_content() {
+        $interviewsmodel = new Interviewsmodel();
+        $interviewsservice = new Interviewsservice();
+
+        $interviewsmodel->setinterviews_applicants_id(trim($this->input->post('applicant_id', TRUE)));
+        $interviewsmodel->setinterviews_vacancies_id(trim($this->input->post('vac_id', TRUE)));
+//        $vacancymodel = $vacancyservice->get_vacancy_by_vacancy_id(trim($this->input->get('vacancy_selector', TRUE)));
+        $interview = $interviewsservice->find_interview($interviewsmodel);
+        $data['interview'] = $interview;
+
+
+        echo $this->load->view('HR/Interviews/InterviewDetailPopUp', $data, TRUE);
+    }
 
     /*
      * Edit company function using the update_company function in the 
@@ -94,27 +111,5 @@ class Transmission extends CI_Controller {
         }
     }
 
-    /*
-     * Printing reports 
-     */
-
-    public function print_company_pdf_report() {
-        $company_service = new Company_service();
-
-
-
-        $current_companies = $company_service->get_all_companies();
-        $data['companies'] = $current_companies;
-
-        $data['title'] = 'Company Report';
-        $SResultString = $this->load->view('reports/view_company_report', $data, TRUE);
-        $footer        = $this->load->view('reports/pdf_footer', $data, TRUE);
-        $this->load->library('MPDF56/mpdf');
-        $mpdf          = new mPDF('utf-8', 'A4');
-        $mpdf->SetDisplayMode('fullpage');
-        $mpdf->SetFooter($footer);
-        $mpdf->WriteHTML($SResultString);
-        $mpdf->Output();
-    }
 
 }
