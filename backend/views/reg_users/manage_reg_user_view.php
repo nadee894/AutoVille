@@ -1,7 +1,5 @@
-
-
 <header class="panel-heading">
-    Manage Administrators
+    Manage Registered Users
     <span class="tools pull-right">
         <a href="javascript:;" class="fa fa-chevron-down"></a>
         <a href="javascript:;" class="fa fa-times"></a>
@@ -9,7 +7,7 @@
 </header>
 <!-- page start-->
 <ul class="directory-list">
-    <li><a href="<?php echo site_url(); ?>/users/load_admins_by_letter/A">a</a></li>
+    <li><a href="#">a</a></li>
     <li><a href="#">b</a></li>
     <li><a href="#">c</a></li>
     <li><a href="#">d</a></li>
@@ -59,10 +57,10 @@
 
                                 <?php if ($result->is_online) { ?>
                                     <h4><i class="fa  fa-circle  text-success"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
-                                    <?php } else { ?>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>
+                                <?php } else { ?>
                                     <h4><i class="fa  fa-circle  text-danger"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>
 
                                 <?php } ?>
                                 <ul class="social-links">
@@ -78,9 +76,6 @@
                                     <abbr title="Phone2">P2:</abbr> <?php echo $result->contact_no_2; ?></address>
                                 <email>E-mail : <?php echo $result->email; ?></email>
 
-
-
-
                             </div>
                         </div>
                     </div>
@@ -95,7 +90,7 @@
 
 <script type="text/javascript">
 
-    //change Online status of body types
+    //change Online status of regisstered users
     function change_online_status(user_id, value, element) {
 
 
@@ -106,9 +101,9 @@
             success: function (msg) {
                 if (msg == 1) {
                     if (value == 1) {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
+                        $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>');
                     } else {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
+                        $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>');
                     }
 
                 } else if (msg == 2) {
@@ -116,23 +111,9 @@
                 }
             }
         });
+
     }
-
-    //load admins by letter
-    function load_admins_by_letter(letter) {
-
-
-        $.ajax({
-            type: "POST",
-            url: site_url + '/users/load_admins_by_letter',
-            data: "$myletter=" + letter,
-            success: function (msg)
-            {
-                alert("success!");
-            }
-        });
-    }
-
 
 
 </script>
+

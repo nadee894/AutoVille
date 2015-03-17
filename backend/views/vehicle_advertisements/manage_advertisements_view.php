@@ -9,17 +9,22 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <div class="input-group">
-                    <select>
-                        <?php foreach ($reg_users as $user) { ?>
-                            <option id="<?php echo $user->id; ?>"><?php echo $user->name; ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-
-                    <input type="text" placeholder="Search Here" class="input-sm form-control"> <span class="input-group-btn">
-                        <button type="button" class="btn btn-sm btn-success"> Go!</button> </span></div>
+                <div class="form-group">
+                    <div class="col-lg-2 col-sm-2">
+                        <select class="form-control input-sm m-bot15">
+                            <?php foreach ($reg_users as $user) { ?>
+                                <option id="<?php echo $user->id; ?>"><?php echo $user->name; ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="text" placeholder="Search Here" class="input-sm form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-success"> Go!</button> </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -95,39 +100,39 @@
 
 
 <script type="text/javascript">
-    //delete advertisement
-    function delete_advertisement(id) {
+                //delete advertisement
+                function delete_advertisement(id) {
 
-        if (confirm('Are you sure want to delete this Vehicle Advertisement ?')) {
+                    if (confirm('Are you sure want to delete this Vehicle Advertisement ?')) {
 
-            $.ajax({
-                type: "POST",
-                url: site_url + '/vehicle_advertisements/delete_advertisement',
-                data: "id=" + id,
-                success: function(msg) {
-                    //alert(msg);
-                    if (msg == 1) {
-                        //document.getElementById(trid).style.display='none';
-                        $('#advertisement_' + id).hide();
-                    }
-                    else if (msg == 2) {
-                        alert('Cannot be deleted as it is already assigned to others. !!');
+                        $.ajax({
+                            type: "POST",
+                            url: site_url + '/vehicle_advertisements/delete_advertisement',
+                            data: "id=" + id,
+                            success: function(msg) {
+                                //alert(msg);
+                                if (msg == 1) {
+                                    //document.getElementById(trid).style.display='none';
+                                    $('#advertisement_' + id).hide();
+                                }
+                                else if (msg == 2) {
+                                    alert('Cannot be deleted as it is already assigned to others. !!');
+                                }
+                            }
+                        });
                     }
                 }
-            });
-        }
-    }
 
-    //Reloading advertisements
-    function reload_advertisements() {
-        $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
-        var x = $('.load-anim').show().delay(5000);
-        $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function(msg) {
-            $('#advertisement_div').html('');
-            $('#advertisement_div').html(msg);
-            x.fadeOut('slow');
-        });
-    }
+                //Reloading advertisements
+                function reload_advertisements() {
+                    $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
+                    var x = $('.load-anim').show().delay(5000);
+                    $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function(msg) {
+                        $('#advertisement_div').html('');
+                        $('#advertisement_div').html(msg);
+                        x.fadeOut('slow');
+                    });
+                }
 
 </script>
 

@@ -276,7 +276,7 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <img alt="" height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg">
-                                <span class="username">Heshani Herath</span>
+                                <span class="username"><?php echo $this->session->userdata('USER_NAME');?></span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
@@ -284,7 +284,7 @@
                                 <li><a href="<?php echo site_url(); ?>/users/manage_admin_profile_view"><i class=" fa fa-suitcase"></i>Profile</a></li>
                                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                                 <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-                                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                                <li><a href="<?php echo site_url(); ?>/login/logout"><i class="fa fa-key"></i> Log Out</a></li>
                             </ul>
                         </li>
                         <li class="sb-toggle-right">
