@@ -133,15 +133,7 @@
         });
     }
 
-    //load admins by letter
-    function load_all_admins() {
-
-        var address = $('#address');
-        var contact_no_01 = $('#contact_no_1');
-        var contact_no_02 = $('#contact_no_2');
-
-
-    }
+   
 
 
 </script>
