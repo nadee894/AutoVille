@@ -50,6 +50,9 @@
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/users/manage_admins">Manage Administrators</a></li>
         </ul>
+        <ul class="sub">
+            <li><a  href="<?php echo site_url(); ?>/users/manage_registered_users">Manage Registered Users</a></li>
+        </ul>
     </li>
 
    
