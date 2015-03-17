@@ -91,7 +91,7 @@
 </div>
 
 <!--Manufacture edit modal-->
-<div  id="manufacture_edit_div" >
+<div class="modal fade "  id="manufacture_edit_div" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="manufacture_edit_content">
             
@@ -185,14 +185,9 @@
             
             $('#manufacture_edit_content').html('');
             $('#manufacture_edit_content').html(msg);
+            $('#manufacture_edit_div').modal('show');
         });
-        $("#manufacture_edit_div").dialog({
-            autoOpen: false,
-            title: "Manufacture Quick Edit",
-            modal: true,
-            width: "650"
-        });
-        $("#manufacture_edit_div").dialog("option", {modal: true}).dialog("open");
+        
     }
 
 </script>

@@ -93,7 +93,7 @@
 <!-- modal -->
 
 <!--Fuel Type Edit Modal -->
-<div  id="fuel_type_edit_div" >
+<div class="modal fade "  id="fuel_type_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="fuel_type_edit_content">
             
@@ -201,15 +201,9 @@
 
             $('#fuel_type_edit_content').html('');
             $('#fuel_type_edit_content').html(msg);
+            $('#fuel_type_edit_div').modal('show');
         });
-        $("#fuel_type_edit_div").dialog({
-            autoOpen: false,
-            title: "Fuel Type Quick Edit",
-            modal: true,
-            width: "650"
-
-        });
-        $("#fuel_type_edit_div").dialog("option", {modal: true}).dialog("open");
+        
 
     }
 </script>

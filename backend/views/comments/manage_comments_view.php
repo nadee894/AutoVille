@@ -18,7 +18,7 @@
                                                     </a>
                                                 </div>-->
                     </div>
-                    <table  class="display table table-bordered table-striped" id="manufacture_table">
+                    <table  class="display table table-bordered table-striped" id="comment_table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -62,6 +62,12 @@
 </div>
 
 <script type="text/javascript">
+    
+     $('#comments_menu').addClass('active open');
+     
+    $(document).ready(function () {
+        $('#comment_table').dataTable();        
+    });
     //delete comment
     function delete_comment(id) {
         if (confirm('Are you sure want ot delete this comment ?')) {
