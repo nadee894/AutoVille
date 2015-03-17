@@ -16,7 +16,7 @@
     <li><a href="#">e</a></li>
     <li><a href="#">f</a></li>
     <li><a href="#">g</a></li>
-    <li><a href="#">h</a></li>
+    <li onclick="load_admins_by_letter(<?php echo 'H'?>)"><a href="#">h</a></li>
     <li><a href="#">i</a></li>
     <li><a href="#">j</a></li>
     <li><a href="#">k</a></li>
@@ -120,8 +120,6 @@
 
     //load admins by letter
     function load_admins_by_letter(letter) {
-
-
         $.ajax({
             type: "POST",
             url: site_url + '/users/load_admins_by_letter',
