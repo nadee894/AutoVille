@@ -31,7 +31,7 @@ class Equipment extends CI_Controller {
         $equipment_model->set_is_published('1');
         $equipment_model->set_is_deleted('0');
         $equipment_model->set_added_date(date("Y-m-d H:i:s"));
-        $equipment_model->set_added_by(2);
+        $equipment_model->set_added_by($this->session->userdata('USER_ID'));
 
         echo $equipment_service->add_new_equipment($equipment_model);
     }
@@ -60,7 +60,7 @@ class Equipment extends CI_Controller {
         $equipment_model->set_id($this->input->post('equipment_id', TRUE));
         $equipment_model->set_name($this->input->post('name', TRUE));
         $equipment_model->set_updated_date(date("Y-m-d H:i:s"));
-        $equipment_model->set_updated_by(1);
+        $equipment_model->set_updated_by($this->session->userdata('USER_ID'));
 
         echo $equipment_service->update_equipment($equipment_model);
     }

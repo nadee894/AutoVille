@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-                Manage Transmissions
+                Manage Fuel Type
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-times"></a>
@@ -147,7 +147,7 @@
 
             $.ajax({
                 type: "POST",
-                url: site_url + '/fuel_type/delete_fuel_types',
+                url: site_url + '/fuel_type/delete_fuel_type',
                 data: "id=" + id,
                 success: function(msg) {
                     //alert(msg);

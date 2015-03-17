@@ -41,8 +41,7 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_model->set_is_published('1');
         $vehicle_model_model->set_is_deleted('0');
         $vehicle_model_model->set_added_date(date("Y-m-d H:i:s"));
-        $vehicle_model_model->set_added_by(2);
-        //$vehicle_model_model->set_updated_by(2);
+        $vehicle_model_model->set_added_by($this->session->userdata('USER_ID'));        
 
         echo $vehicle_model_service->add_new_vehicle_model($vehicle_model_model);
     }
@@ -86,7 +85,7 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_model->set_id($this->input->post('vehicle_model_id', TRUE));
         $vehicle_model_model->set_name($this->input->post('name', TRUE));
         $vehicle_model_model->set_updated_date(date("Y-m-d H:i:s"));
-        $vehicle_model_model->set_updated_by(1);
+        $vehicle_model_model->set_updated_by($this->session->userdata('USER_ID'));
 
         echo $vehicle_model_service->update_vehicle_model($vehicle_model_model);
     }
