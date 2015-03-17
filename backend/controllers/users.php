@@ -21,6 +21,23 @@ class Users extends CI_Controller {
         $parials = array('content' => 'users/manage_admin_view');
         $this->template->load('template/main_template', $parials, $data);
     }
+    
+    /*
+     * Function to load admin profile, edit and sen
+     */
+
+    function load_admin_profile() {
+        $user_model = new User_model();
+        $user_service = new User_service();
+
+        $user_model->set_id(trim($this->input->post('user_id', TRUE)));
+        $user_type = $user_service->get_admin_by_id($user_model);
+        $data['user'] = $user_type;
+
+        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
+    }
+
+    
 
 }
 
