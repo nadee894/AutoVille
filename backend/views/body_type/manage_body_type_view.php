@@ -89,6 +89,18 @@
     </div>
 </div>
 
+
+<!--Transmission Edit Modal -->
+<div  id="body_type_edit_div" >
+    <div class="modal-dialog">
+        <div class="modal-content" id="body_type_edit_content">
+            
+        </div>
+    </div>
+</div>
+
+
+
 <script type="text/javascript">
 
     $('#vehicle_spec_menu').addClass('active open');
