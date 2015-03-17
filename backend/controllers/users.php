@@ -21,7 +21,7 @@ class Users extends CI_Controller {
         $parials = array('content' => 'users/manage_admin_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
+
     /*
      * Function to load admin profile, edit and sen
      */
@@ -36,14 +36,25 @@ class Users extends CI_Controller {
 
         echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
     }
+//
+//    function load_admins_by_letter() {
+//        $user_model = new User_model();
+//        $user_service = new User_service();
+//
+//        $user_model->set_id(trim($this->input->post('user_id', TRUE)));
+//        $user_type = $user_service->get_admin_by_name($user_model);
+//        $data['user'] = $user_type;
+//
+//        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
+//    }
 
-    
+    function load_admins_by_letter($letter) {
+        $user_service = new User_service();
+
+        $user_type = $user_service->get_admin_by_name($letter);
+        $data['results'] = $user_type;
+
+        echo $this->load->view('users/manage_admin_view', $data, TRUE);
+    }
 
 }
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-

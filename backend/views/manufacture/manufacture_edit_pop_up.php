@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="name">Title</label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $manufacture->name; ?>">
-            <input id="manufacture__id"  name="manufacture_id" type="hidden" value="<?php echo $manufacture->id; ?>">
+            <input id="manufacture_id"  name="manufacture_id" type="hidden" value="<?php echo $manufacture->id; ?>">
         </div>
     </div>
     <div class="modal-footer">
