@@ -12,6 +12,10 @@ class Body_type extends CI_Controller {
         $this->load->model('body_type/body_type_service');
     }
 
+    /*
+     * Function to display all the body types
+     */
+
     function manage_body_types() {
 
         $body_type_service = new Body_type_service();
@@ -22,6 +26,10 @@ class Body_type extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    /*
+     * Function to Add body types 
+     */
+
     function add_body_type() {
 
         $body_type_model = new Body_type_model();
@@ -29,38 +37,67 @@ class Body_type extends CI_Controller {
 
         $body_type_model->set_name($this->input->post('name', TRUE));
         $body_type_model->set_added_by(3);
-//        $body_type_model->set_added_date(date("Y-m-d H:i:s"));
+        $body_type_model->set_added_date(date("Y-m-d H:i:s"));
 //        $body_type_model->set_updated_date(date("Y-m-d H:i:s"));
-        $body_type_model->set_updated_by(1);
+//        $body_type_model->set_updated_by(1);
         $body_type_model->set_is_published('1');
         $body_type_model->set_is_deleted('0');
 
         echo $body_type_service->add_new_body_type($body_type_model);
     }
 
+    /*
+     * Function to delete body types 
+     */
+
     function delete_body_types() {
         $body_type_service = new Body_type_service();
 
         echo $body_type_service->delete_body_type(trim($this->input->post('id', TRUE)));
     }
-    
-    function change_publish_status(){
+
+    /*
+     * Function to change publish status of a body type
+     */
+
+    function change_publish_status() {
         $body_type_model = new Body_type_model();
         $body_type_service = new Body_type_service();
-        
+
         $body_type_model->set_id(trim($this->input->post('id', TRUE)));
         $body_type_model->set_is_published(trim($this->input->post('value', TRUE)));
-        
+
         echo $body_type_service->publish_body_types($body_type_model);
-        
     }
-    
+
+    /*
+     * Function to load update pop up, edit and send
+     */
+
+    function load_update_body_type_popup() {
+        $body_type_model = new Body_type_model();
+        $body_type_service = new Body_type_service();
+
+        $body_type_model->set_id(trim($this->input->post('body_type_id', TRUE)));
+        $body_type = $body_type_service->get_body_type_by_id($body_type_model);
+        $data['body_type'] = $body_type;
+
+        echo $this->load->view('body_type/body_type_edit_popup', $data, TRUE);
+    }
+
+    /*
+     * Function to update body types 
+     */
+
+    function update_body_types() {
+        $body_type_model = new Body_type_model();
+        $body_type_service = new Body_type_service();
+
+        $body_type_model->set_id($this->input->post('body_type_id', TRUE));
+        $body_type_model->set_name($this->input->post('name', TRUE));
+        $body_type_model->set_updated_date(date("Y-m-d H:i:s"));
+
+        echo $body_type_service->update_body_type($body_type_model);
+    }
 
 }
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
