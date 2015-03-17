@@ -4,7 +4,6 @@
         All Advertisements
         <span class="pull-right">
             <button type="button" id="loading-btn" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Refresh</button>
-            <a href="#" class=" btn btn-success btn-xs"> Create New Project</a>
         </span>
     </header>
     <div class="panel-body">

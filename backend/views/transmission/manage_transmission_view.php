@@ -93,7 +93,7 @@
 <!-- modal -->
 
 <!--Transmission Edit Modal -->
-<div class="modal fade " id="transmission_edit_div" tabindex="-1" role="dialog" aria-labelledby="transmission_edit_modal_label" aria-hidden="true">
+<div  id="transmission_edit_div" >
     <div class="modal-dialog">
         <div class="modal-content" id="transmission_edit_content">
             
@@ -114,7 +114,7 @@
 
         $('#transmission_table').dataTable();
 
-
+        //add transmission form validation
         $("#add_transmission_form").validate({
             rules: {
                 name: "required"
@@ -133,10 +133,9 @@
 
                     }
                 });
-
-
             }
         });
+        
     });
 
 
@@ -210,7 +209,7 @@
             width: "650"
 
         });
-        $("#transmission_edit_div").dialog("option", {modal: false}).dialog("open");
+        $("#transmission_edit_div").dialog("option", {modal: true}).dialog("open");
 
     }
 </script>

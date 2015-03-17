@@ -24,8 +24,8 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Added By</th>
-                                <th>Added Date</th>
-                                <th>Active Status</th>
+                                <!--<th>Added Date</th>
+                                <th>Active Status</th>-->
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -37,8 +37,8 @@
                                 <tr id="vehicle_model_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
-                                    <td><?php echo $result->added_by_user; ?></td>
-                                    <td><?php echo $result->added_date; ?></td>
+                                    <!--<td><?php echo $result->added_by_user; ?></td>
+                                    <td><?php echo $result->added_date; ?></td>-->
 
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>
@@ -48,8 +48,8 @@
                                         <?php } ?>
                                     </td>
 
-                                    <td>
-                                        <a href="<?php echo site_url(); ?>/ edit method" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+                                    <td align="center">
+                                        <a class="btn btn-primary btn-xs" onclick="display_edit_vehicle_model_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil"  data-original-title="Update"></i></a>                                        
                                         <a class="btn btn-danger btn-xs" onclick="delete_vehicle_model(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
                                     </td>
                                 </tr>
@@ -92,6 +92,14 @@
 </div>
 <!-- modal -->
 
+<!--Vehicle Model Edit Modal -->
+<div  id="vehicle_model_edit_div" >
+    <div class="modal-dialog">
+        <div class="modal-content" id="vehicle_model_edit_content">
+
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -116,7 +124,7 @@
                         vehicle_model_add_form.reset();
                         window.location = site_url + '/vehicle_model/manage_models';
                     } else {
-
+                        alert("error occured");
                     }
                 });
 
@@ -175,6 +183,25 @@
                 }
             });
         }
+    }
+
+    function display_edit_vehicle_model_pop_up(vehicle_model_id) {
+
+        $.post(site_url + '/vehicle_model/load_edit_vehicle_model_content', {vehicle_model_id: vehicle_model_id}, function (msg) {
+
+            $('#vehicle_model_edit_content').html('');
+            $('#vehicle_model_edit_content').html(msg);
+            
+        });
+        
+        $("#vehicle_model_edit_div").dialog({
+            autoOpen: false,
+            title: "Vehicle Model Quick Edit",
+            modal: true,
+            width: "650"
+
+        });
+        $("#vehicle_model_edit_div").dialog("option", {modal: true}).dialog("open");
     }
 </script>
 
