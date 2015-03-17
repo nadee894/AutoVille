@@ -39,9 +39,9 @@
                                     <td><?php echo $result->description; ?></td>
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>
-                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> 
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate comment"><i class="fa fa-check"></i></a> 
                                         <?php } else { ?> 
-                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate manufacture"><i class="fa fa-exclamation-circle"></i></a> 
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate comment"><i class="fa fa-exclamation-circle"></i></a> 
                                         <?php } ?>
                                     </td>
                                     <td align="center">
@@ -90,9 +90,9 @@
 
     //change publish status of comment
     function change_publish_status(comment_id, value, element) {
-        var condition = 'Do you want to activate this Comment?';
+        var condition = 'Do you want to activate this comment?';
         if (value == 0) {
-            condition = 'Do you want to deactivate this Comment?';
+            condition = 'Do you want to deactivate this comment?';
         }
 
         if (confirm(condition)) {
@@ -103,9 +103,9 @@
                 success: function(msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate comment"><i class="fa fa-check"></i></a> ');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + comment_id + ', 1, this)" title="click to activate comment"><i class="fa fa-exclamation-circle"></i></a>  ');
                         }
                     } else if (msg == 2) {
                         alert('Error !!!');
