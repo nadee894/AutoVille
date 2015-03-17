@@ -35,7 +35,7 @@
                             foreach ($results as $result) {
                                 ?>
                                 <tr id="manufacture_<?php echo $result->id; ?>">
-                                    <td><?php echo++$i; ?></td>
+                                    <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
     <!--                                        <td><?php echo $result->added_by_user; ?></td>-->
     <!--                                        <td><?php echo $result->added_date; ?></td>-->
@@ -47,7 +47,8 @@
                                         <?php } ?>
                                     </td>
                                     <td align="center">
-                                        <a href="<?php echo site_url(); ?>/manufacture/manage_manufactures" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
+    <!--                                        <a href="<?php echo site_url(); ?>/manufacture/manage_manufactures" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>-->
+                                        <a class="btn btn-primary btn-xs" onclick="display_edit_manufacture_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil" data-original-title="Update"></i> </a>
                                         <a class="btn btn-danger btn-xs" onclick="delete_manufacture(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
                                     </td>
@@ -89,84 +90,110 @@
     </div>
 </div>
 
+<!--Manufacture edit modal-->
+<div  id="manufacture_edit_div" >
+    <div class="modal-dialog">
+        <div class="modal-content" id="manufacture_edit_content">
+            
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
-                                        $('#vehicle_spec_menu').addClass('active open');
+    $('#vehicle_spec_menu').addClass('active open');
 
-                                        $(document).ready(function() {
-                                            $('#manufacture_table').dataTable();
+    $(document).ready(function() {
+        $('#manufacture_table').dataTable();
 
-                                            $("#add_manufacture_form").validate({
-                                                rules: {
-                                                    name: "required"
-                                                },
-                                                messages: {
-                                                    name: "Please enter a title"
-                                                }, submitHandler: function(form)
-                                                {
-                                                    $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)
-                                                    {
-                                                        if (msg == 1) {
+        $("#add_manufacture_form").validate({
+            rules: {
+                name: "required"
+            },
+            messages: {
+                name: "Please enter a title"
+            }, submitHandler: function(form)
+            {
+                $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)
+                {
+                    if (msg == 1) {
 
-                                                            add_manufacture_form.reset();
-                                                            window.location = site_url + '/manufacture/manage_manufactures';
-                                                        } else {
+                        add_manufacture_form.reset();
+                        window.location = site_url + '/manufacture/manage_manufactures';
+                    } else {
 
-                                                        }
-                                                    });
+                    }
+                });
 
 
-                                                }
-                                            });
+            }
+        });
 
-                                        });
+    });
 
-                                        //delete manufacture
-                                        function delete_manufacture(id) {
-                                            if (confirm('Are you sure want to delete this Manufacture ?')) {
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: site_url + '/manufacture/delete_manufactures',
-                                                    data: "id=" + id,
-                                                    success: function(msg) {
-                                                        if (msg == 1) {
-                                                            $('#manufacture_' + id).hide();
-                                                        }
-                                                        else if (msg == 2) {
-                                                            alert('Cannot be deleted as it is already assigned to others. !!');
-                                                        }
+    //delete manufacture
+    function delete_manufacture(id) {
+        if (confirm('Are you sure want to delete this Manufacture ?')) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/manufacture/delete_manufactures',
+                data: "id=" + id,
+                success: function(msg) {
+                    if (msg == 1) {
+                        $('#manufacture_' + id).hide();
+                    }
+                    else if (msg == 2) {
+                        alert('Cannot be deleted as it is already assigned to others. !!');
+                    }
 
-                                                    }
-                                                });
-                                            }
-                                        }
+                }
+            });
+        }
+    }
 
-                                        //change publish status of manufacture
-                                        function change_publish_status(manufacture_id, value, element) {
-                                            var condition = 'Do you want to activate this manufacture?';
-                                            if (value == 0) {
-                                                condition = 'Do you want to deactivate this manufacture?';
-                                            }
+    //change publish status of manufacture
+    function change_publish_status(manufacture_id, value, element) {
+        var condition = 'Do you want to activate this manufacture?';
+        if (value == 0) {
+            condition = 'Do you want to deactivate this manufacture?';
+        }
 
-                                            if (confirm(condition)) {
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: site_url + '/manufacture/change_publish_status',
-                                                    data: "id=" + manufacture_id + "&value=" + value,
-                                                    success: function(msg) {
-                                                        if (msg == 1) {
-                                                            if (value == 1) {
-                                                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
-                                                            } else {
-                                                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
-                                                            }
-                                                        } else if (msg == 2) {
-                                                            alert('Error !!!');
-                                                        }
-                                                    }
-                                                });
-                                            }
-                                        }
+        if (confirm(condition)) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/manufacture/change_publish_status',
+                data: "id=" + manufacture_id + "&value=" + value,
+                success: function(msg) {
+                    if (msg == 1) {
+                        if (value == 1) {
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
+                        } else {
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
+                        }
+                    } else if (msg == 2) {
+                        alert('Error !!!');
+                    }
+                }
+            });
+        }
+    }
+
+    //edit Manufacure
+    function display_edit_manufacture_pop_up(manufacture_id) {
+    
+        $.post(site_url + '/manufacture/load_edit_manufacture_content', {manufacture_id: manufacture_id}, function(msg) {
+            
+            $('#manufacture_edit_content').html('');
+            $('#manufacture_edit_content').html(msg);
+        });
+        $("#manufacture_edit_div").dialog({
+            autoOpen: false,
+            title: "Manufacture Quick Edit",
+            modal: true,
+            width: "650"
+        });
+        $("#manufacture_edit_div").dialog("option", {modal: true}).dialog("open");
+    }
 
 </script>
 

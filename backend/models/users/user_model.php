@@ -8,6 +8,7 @@ class User_model extends CI_Model {
     var $title;
     var $name;
     var $user_name;
+    var $email;
     var $user_type;
     var $profile_pic;
     var $password;
@@ -144,13 +145,12 @@ class User_model extends CI_Model {
         $this->updated_by = $updated_by;
     }
 
+    function get_email() {
+        return $this->email;
+    }
 
+    function set_email($email) {
+        $this->email = $email;
+    }
 
 }
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-

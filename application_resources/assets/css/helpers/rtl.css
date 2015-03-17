@@ -1,0 +1,7 @@
+.show-more:before, .show-more:after {
+  right: 0 !important;
+}
+
+body {
+  background-color: red;
+}

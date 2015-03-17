@@ -69,4 +69,36 @@ class Manufacture extends CI_Controller {
         echo $manufacture_service->publish_manufacture($manufacture_model);
     }
 
+    /*
+     * Edit manufacture pop up content set up and then send
+     */
+
+    function load_edit_manufacture_content() {
+        $manufacure_model = new Manufacture_model();
+        $manufacure_service = new Manufacture_service();
+
+        $manufacure_model->set_id(trim($this->input->post('manufacture_id', TRUE)));
+        $manufacure = $manufacure_service->get_manufacure_by_id($manufacure_model);
+        $data['manufacture'] = $manufacure;
+
+        echo $this->load->view('manufacture/manufacture_edit_pop_up', $data, TRUE);
+    }
+
+    /*
+     * update the manufacute details
+     */
+
+    function edit_manufacture() {
+        $manufacure_model = new Manufacture_model();
+        $manufacure_service = new Manufacture_service();
+        
+        $manufacure_model->set_id($this->input->post('manufacture_id', TRUE));
+        $manufacure_model->set_name($this->input->post('name',TRUE));
+        $manufacure_model->updated_by(1);
+        $manufacure_model->updated_date(date("Y-m-d H:i:s"));
+        
+        echo $manufacure_service->update_manufacure($manufacure_model);
+
+    }
+
 }
