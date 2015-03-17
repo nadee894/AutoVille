@@ -29,29 +29,32 @@ class Login extends CI_Controller {
         $username = $this->input->post('login_username', TRUE);
 
         $user_model->set_user_name($username);
-        $user_model->set_password($this->input->post('login_password', TRUE));
+        $user_model->set_password(md5($this->input->post('login_password', TRUE)));
         
-        echo count($user_service->authenticate_user_with_password($user_model));
+        $result_user=$user_service->authenticate_user_with_password($user_model);
+
         
-        if (count($user_service->authenticate_user_with_password($user_model)) == 0) {
+        if (count($result_user) == 0) {
             $logged_user_result = false;
         } else {
             $logged_user_result = true;
-            echo "user exist";
         }
 
         if ($logged_user_result) {
 
             $user_model->set_is_online('1');
 
-            $this->session->set_userdata('USER_ID', $user_model->get_id());
-            $this->session->set_userdata('USER_NAME', $user_model->get_name());
-            $this->session->set_userdata('USER_TYPE', $user_model->get_user_type());
-            $this->session->set_userdata('USER_EMAIL', $user_model->get_email());
-            $this->session->set_userdata('USER_PROFILE_PIC', $user_model->get_profile_pic());
+            $this->session->set_userdata('USER_ID', $result_user->id);
+            $this->session->set_userdata('USER_NAME', $result_user->name);
+            $this->session->set_userdata('USER_TYPE', $result_user->user_type);
+            $this->session->set_userdata('USER_EMAIL', $result_user->email);
+            $this->session->set_userdata('USER_PROFILE_PIC', $result_user->profile_pic);
             $this->session->set_userdata('USER_ONLINE', 'Y');
 
             $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
+             echo 1;
+        }else{
+            echo 0;
         }
              
     }
