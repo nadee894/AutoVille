@@ -12,7 +12,7 @@ class Login extends CI_Controller {
        
     }
 
-    function index(){
+    function load_login(){
         if ($this->session->userdata('USER_LOGGED_IN')) {
             $this->template->load('template/main_template');
         } else {
@@ -22,19 +22,22 @@ class Login extends CI_Controller {
 
     //Login details checking function 
     function authenticate_user() {
-        echo "came to authenticate_user";
+        
         $user_model   = new User_model();
         $user_service = new User_service();
 
         $username = $this->input->post('login_username', TRUE);
 
-        $user_model->set_user_name($user_name);
+        $user_model->set_user_name($username);
         $user_model->set_password($this->input->post('login_password', TRUE));
-
+        
+        echo count($user_service->authenticate_user_with_password($user_model));
+        
         if (count($user_service->authenticate_user_with_password($user_model)) == 0) {
             $logged_user_result = false;
         } else {
             $logged_user_result = true;
+            echo "user exist";
         }
 
         if ($logged_user_result) {
@@ -65,7 +68,7 @@ class Login extends CI_Controller {
         $this->session->set_userdata('USER_LOGGED_IN', 'FALSE');
 
         $this->session->sess_destroy();
-        redirect(site_url() . '/login/index');
+        redirect(site_url() . '/login/load_login');
     }
 
 }

@@ -100,6 +100,7 @@
                                 rules: {
                                     txtusername: "required",
                                     txtpassword: "required"
+                                }, submitHandler: function (form) {
                                 }
                             });
 
@@ -110,16 +111,13 @@
                             var login_username = $('#txtusername').val();
                             var login_password = $('#txtpassword').val();
 
-                            if ($('#login_form').valid()) {
-                                alert("valid form");
+                            if ($('#login_form').valid()) {                                
 
                                 $.ajax({
                                     type: "POST",
                                     url: site_url + '/login/authenticate_user',
                                     data: "login_username=" + login_username + "&login_password=" + login_password,
-                                    async: false,
-                                    success: function (msg) {
-                                        alert(msg);
+                                    success: function (msg) {                                        
 
                                         if (msg == 1) {
                                             alert("login success");
