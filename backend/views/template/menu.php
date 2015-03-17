@@ -34,7 +34,7 @@
     
     <li class="sub-menu">
         <a href="javascript:;" id="comments_menu">
-            <i class="fa fa-film"></i>
+            <i class="fa fa-comment-o"></i>
             <span>Reviews</span>
         </a> 
         <ul class="sub">

@@ -50,4 +50,27 @@ class Manufacture_service extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    /*
+     * update the manufacure
+     */
+
+    function update_manufacure($manufacture_model) {
+        $data = array('name' => $manufacture_model->get_name(),
+            'updated_date' => $manufacture_model->get_updated_date(),
+            'updated_by' => $manufacture_model->get_updated_by()
+        );
+
+        $this->db->where('id', $manufacture_model->get_id());
+        return $this->db->update('manufacture', $data);
+    }
+
+    /*
+     * get the manufacture details by pasing the manufacture id as a parameter
+     */
+
+    function get_manufacure_by_id($manufacture_model) {
+        $query = $this->db->get_where('manufacture', array('id' => $manufacture_model->get_id(), 'is_deleted' => '0'));
+        return $query->row();
+    }
+
 }
