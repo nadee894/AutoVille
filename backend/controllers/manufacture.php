@@ -94,8 +94,8 @@ class Manufacture extends CI_Controller {
         
         $manufacure_model->set_id($this->input->post('manufacture_id', TRUE));
         $manufacure_model->set_name($this->input->post('name',TRUE));
-        $manufacure_model->updated_by(1);
-        $manufacure_model->updated_date(date("Y-m-d H:i:s"));
+        $manufacure_model->set_updated_by(1);
+        $manufacure_model->set_updated_date(date("Y-m-d H:i:s"));
         
         echo $manufacure_service->update_manufacure($manufacure_model);
 
