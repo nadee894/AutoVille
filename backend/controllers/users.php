@@ -52,7 +52,7 @@ class Users extends CI_Controller {
         $user_service = new User_service();
 
         $user_type = $user_service->get_admin_by_name($letter);
-        $data['results'] = $user_type;
+        $data['results2'] = $user_type;
 
         echo $this->load->view('users/manage_admin_view', $data, TRUE);
     }
