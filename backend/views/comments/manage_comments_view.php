@@ -63,6 +63,8 @@
 
 <script type="text/javascript">
     
+     $('#comments_menu').addClass('active open');
+     
     $(document).ready(function () {
         $('#comment_table').dataTable();        
     });

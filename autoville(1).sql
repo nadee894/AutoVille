@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.5
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 17, 2015 at 04:38 PM
--- Server version: 5.1.63-0ubuntu0.10.04.1-log
--- PHP Version: 5.3.2-1ubuntu4.17
+-- Host: 127.0.0.1
+-- Generation Time: Mar 17, 2015 at 06:46 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `contents` (
 --
 
 INSERT INTO `contents` (`content_id`, `content_title`, `content`, `content_hcode`, `delete_status`, `added_by`, `added_date`, `updated_by`, `updated_date`) VALUES
-(1, 'About Us', '<p>\n	&nbsp;</p>\n<p>\n	MonaruLanka is a fully Sri Lankan owned private sector organization that was born out of a deep passion for the nation, and bearing an affinity for the country&rsquo;s unique heritage and cultural diversity.11</p>\n<p>\n	Incorporated as a limited liability company in September 2011, MonaruLanka has achieved many of its initial targets and milestones and is currently at the 7th Stage of Civil Aviation Authority of Sri Lanka&rsquo;s Air Operator Certificate (AOC).</p>\n<p>\n	Long distance air travel should no more be considered a luxury that is enjoyed by a select few. Connecting people, families and businesses across continents, MonaruLanka&rsquo;s vision is to provide affordable air travel to everyone. It will be operated with the best of efficiencies while with the highest safety and cutting-edge operating standards of the industry, and the airline will initially be equipped with two Airbus A330-200 aircraft. Not least among its many aims will be to raise Sri Lanka&rsquo;s reach and standing in the global arena, assisting the country in its forward march towards prosperity.</p>\n<p>\n	MonaruLanka is managed by professionals with decades of airline experience who understand that the bottom-line which matters is really the happy and satisfied customer that is truly our guest.</p>\n<p>\n	With professionally trained staff who are fully passenger-focused, MonaruLanka will partner our guests in their unique journeys to make your trip the best possible experience.</p>\n<p>\n	<a href="/content_files/files/(certificate company).pdf" target="_blank">&gt;&gt; View Our Business Registration <br />\n	</a></p>\n', 'ABOUTUS', '0', 1, '2014-05-28 07:12:16', NULL, NULL),
-(2, 'Destinations', '<div class="destination-page"> <strong>Commencing operations with initial services to&hellip;<br />\n  </strong>\n  <p>&nbsp; </p>\n  <p> <i class="fa  fa-plane"></i> Australia</p>\n  <p> <i class="fa  fa-plane"> </i> South Africa</p>\n  <p> <i class="fa  fa-plane"></i> China</p>\n</div>\n', 'DESTINATIONS', '0', 1, '2014-05-28 00:00:00', NULL, NULL),
+(1, 'About Us', '&nbsp;\n\n	MonaruLanka is a fully Sri Lankan owned private sector organization that was born out of a deep passion for the nation, and bearing an affinity for the country’s unique heritage and cultural diversity.11\n\n	Incorporated as a limited liability company in September 2011, MonaruLanka has achieved many of its initial targets and milestones and is currently at the 7th Stage of Civil Aviation Authority of Sri Lanka’s Air Operator Certificate (AOC).\n\n	Long distance air travel should no more be considered a luxury that is enjoyed by a select few. Connecting people, families and businesses across continents, MonaruLanka’s vision is to provide affordable air travel to everyone. It will be operated with the best of efficiencies while with the highest safety and cutting-edge operating standards of the industry, and the airline will initially be equipped with two Airbus A330-200 aircraft. Not least among its many aims will be to raise Sri Lanka’s reach and standing in the global arena, assisting the country in its forward march towards prosperity.\n\n	MonaruLanka is managed by professionals with decades of airline experience who understand that the bottom-line which matters is really the happy and satisfied customer that is truly our guest.\n\n	With professionally trained staff who are fully passenger-focused, MonaruLanka will partner our guests in their unique journeys to make your trip the best possible experience.\n<span>\n	<a rel="" target="_blank">&gt;&gt; View Our Business Registration<br>\n	</a></span>', 'ABOUTUS', '0', 1, '2014-05-28 07:12:16', NULL, NULL),
+(2, 'Destinations', '<div> <span><b>Commencing operations with initial services to…</b><br><b>\n  </b></span><b>\n  &nbsp; \n  </b><span><b> </b><i></i><b> Australia</b></span><b>\n  </b><span><b> </b><i><b> </b></i><b> South Africa</b></span><b>\n  </b><span><b> </b><i></i><b> China</b></span>\n</div>', 'DESTINATIONS', '0', 1, '2014-05-28 00:00:00', NULL, NULL),
 (3, 'Rightside Snippet', '<div class="right-snipt">\n	<a href="/index.php/destinations"><img alt="" class="img-responsive" src="/content_files/images/destinations-btn.jpg" /></a></div>\n<!--<div class="right-snipt">\n	<a href="#"><img alt="" class="img-responsive" src="/content_files/images/destinations-btn(1).jpg" /></a></div>-->', 'RIGHTSIDESNIPPET', '0', 1, '2014-05-28 06:28:41', NULL, NULL),
 (4, 'Welcome Message - Home Page', '<p style="text-align: justify;">\n	MonaruLanka is the first long range low-cost carrier from the Pearl of the Indian ocean, Sri Lanka, and the project of many professionals involved from various disciples. We are an entity geared to serve our guest in the most professional, warm and friendly manner. We at MonaruLanka, with the blessings of the governance of the country, welcome all onboard for an unforgettable journey via the most beautiful island of the Indian Ocean, SRI LANKA.</p>\n', 'WELCOMEHOMEPAGE', '0', 1, '2014-05-28 06:28:41', NULL, NULL),
 (5, 'Welcome To Monaru Lanka', 'test welcoem inner page', 'WELCOMEINNERPAGE', '0', 1, '2014-05-28 07:12:16', NULL, NULL),
@@ -435,14 +435,15 @@ CREATE TABLE IF NOT EXISTS `fuel_type` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `fuel_type`
 --
 
 INSERT INTO `fuel_type` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 'xcvcv', '1', '0', '0000-00-00 00:00:00', NULL, NULL, NULL);
+(1, 'xcvcv', '1', '0', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(2, 'bcbvbv', '1', '0', '2015-03-17 13:03:43', 1, '2015-03-17 13:05:15', 1);
 
 -- --------------------------------------------------------
 
@@ -473,7 +474,7 @@ INSERT INTO `manufacture` (`id`, `name`, `description`, `is_published`, `is_dele
 (3, 'Honda', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
 (4, 'Suzuki', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
 (5, 'Ford', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(6, 'sdsads', '0', '1', '0', '2015-03-14 04:46:26', 1, NULL, 1);
+(6, 'sdsadswwwwwwwwwwwwwwwwwww', '0', '0', '0', '2015-03-14 04:46:26', 1, '2015-03-17 13:00:46', 1);
 
 -- --------------------------------------------------------
 
@@ -491,7 +492,7 @@ CREATE TABLE IF NOT EXISTS `model` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `model`
@@ -503,7 +504,8 @@ INSERT INTO `model` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `
 (3, 'Dodge', '1', '0', '2015-03-13 03:46:10', 2, NULL, 0),
 (4, 'Honda', '1', '0', '2015-03-13 03:46:10', 2, NULL, 2),
 (5, 'Jaguar', '1', '1', '2015-03-13 03:46:28', 2, NULL, 2),
-(6, 'Chrysler', '1', '0', '2015-03-11 18:30:00', 2, NULL, 0);
+(6, 'Chrysler', '1', '0', '2015-03-11 18:30:00', 2, NULL, 0),
+(7, 'gfdgdfg', '1', '0', '2015-03-17 11:58:52', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -579,7 +581,7 @@ CREATE TABLE IF NOT EXISTS `transmission` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `transmission`
@@ -605,7 +607,13 @@ INSERT INTO `transmission` (`id`, `name`, `is_published`, `is_deleted`, `added_d
 (17, 'asdasd', '1', '0', '2015-03-14 06:20:25', 1, NULL, 1),
 (18, '0', '1', '0', '2015-03-17 04:40:06', 1, NULL, NULL),
 (19, '0', '1', '1', '2015-03-17 04:53:46', 1, NULL, NULL),
-(20, '0', '1', '1', '2015-03-17 05:07:40', 1, NULL, NULL);
+(20, '0', '1', '1', '2015-03-17 05:07:40', 1, NULL, NULL),
+(21, 'cxcxc', '1', '0', '2015-03-17 11:14:22', 1, NULL, NULL),
+(22, 'vcxvcv', '1', '0', '2015-03-17 11:14:43', 1, NULL, NULL),
+(23, 'vcxvcv', '1', '0', '2015-03-17 11:15:09', 1, NULL, NULL),
+(24, 'vcxvcv', '1', '0', '2015-03-17 11:15:45', 1, NULL, NULL),
+(25, 'gdfgf', '1', '0', '2015-03-17 11:58:58', NULL, NULL, NULL),
+(26, 'xzxzx', '1', '0', '2015-03-17 12:04:03', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -626,7 +634,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `profile_pic` varchar(500) DEFAULT NULL,
   `password` varchar(300) NOT NULL,
   `account_activation_code` varchar(500) NOT NULL,
-  `is_online` enum('1','0') NOT NULL DEFAULT '1' COMMENT 'Online =1,Offline=0',
+  `is_online` enum('1','0') NOT NULL DEFAULT '0' COMMENT 'Online =1,Offline=0',
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_by` int(11) DEFAULT NULL,
@@ -641,7 +649,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `address`, `contact_no_1`, `contact_no_2`, `profile_pic`, `password`, `account_activation_code`, `is_online`, `is_published`, `is_deleted`, `added_by`, `added_date`, `updated_date`, `updated_by`) VALUES
-(1, 'Ms', 'Gayathma', 'gayathma@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(1, 'Ms', 'Gayathma', 'gayathma', 1, '', NULL, NULL, NULL, NULL, 'c4961b067d274050e43e26beb9d7d19c', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
 (2, 'Ms', 'Heshani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
 (3, 'Ms', 'Nadeesha', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
 (4, 'Ms', 'Ashani', 'heshani@gmail.com', 3, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
@@ -702,7 +710,7 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
 --
 
 INSERT INTO `vehicle_advertisements` (`id`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 1, 32434, 1, 1, 1, 1, 1, 1, 'sdfdf', NULL, '535235', '0.00', '1', '0', '0000-00-00 00:00:00', 1, NULL, NULL);
+(1, 1, 32434, 1, 1, 1, 1, 1, 1, 'sdfdf', NULL, '535235', 0.00, '1', '0', '0000-00-00 00:00:00', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 

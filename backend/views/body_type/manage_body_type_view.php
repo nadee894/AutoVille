@@ -91,7 +91,7 @@
 
 
 <!--Transmission Edit Modal -->
-<div  id="body_type_edit_div" >
+<div class="modal fade "  id="body_type_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="body_type_edit_content">
             
@@ -194,15 +194,9 @@
 
             $('#body_type_edit_content').html('');
             $('#body_type_edit_content').html(msg);
+            $('#body_type_edit_div').modal('show');
         });
-        $("#body_type_edit_div").dialog({
-            autoOpen: false,
-            title: "Body Type Quick Edit",
-            modal: true,
-            width: "650"
- 
-        });
-        $("#body_type_edit_div").dialog("option", {modal: true}).dialog("open");
+        
 
     }
 

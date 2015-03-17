@@ -96,7 +96,7 @@
 <!-- modal -->
 
 <!--Transmission Edit Modal -->
-<div  id="transmission_edit_div" >
+<div  class="modal fade "   id="transmission_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="transmission_edit_content">
 
@@ -206,15 +206,7 @@
 
                                                         $('#transmission_edit_content').html('');
                                                         $('#transmission_edit_content').html(msg);
+                                                        $('#transmission_edit_div').modal('show');
                                                     });
-                                                    $("#transmission_edit_div").dialog({
-                                                        autoOpen: false,
-                                                        title: "Transmission Quick Edit",
-                                                        modal: true,
-                                                        width: "650"
-
-                                                    });
-                                                    $("#transmission_edit_div").dialog("option", {modal: true}).dialog("open");
-
                                                 }
 </script>

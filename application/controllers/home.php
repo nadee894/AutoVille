@@ -14,7 +14,7 @@ class Home extends CI_Controller {
         $data['heading'] = "Manage Transmissions";
 
        // $parials = array('content' => 'transmission/manage_transmission_view');
-        $this->template->load('template/main_template', '', $data);
+        $this->template->load('template/main_template',NULL, $data);
     }
 
     

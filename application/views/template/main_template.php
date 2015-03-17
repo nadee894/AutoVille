@@ -67,7 +67,7 @@
                     <!--Page Content-->
                     <div id="page-content">
                         <!--Hero Image-->
-                        <section class="hero-image search-filter-bottom">
+<!--                        <section class="hero-image search-filter-bottom">
                             <div class="inner">
                                 <div class="container">
                                     <h1>Find Your Dream Car</h1>
@@ -86,7 +86,7 @@
                                                         <option value="7">Toyota</option>
                                                     </select>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                                 <div class="form-group">
                                                     <label for="model">Model</label>
                                                     <select name="model" id="model" multiple title="Model" data-live-search="true">
@@ -99,14 +99,14 @@
                                                         <option value="7">Transit</option>
                                                     </select>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                                 <div class="form-group">
                                                     <label for="location">Location</label>
                                                     <div class="input-group location">
                                                         <input type="text" class="form-control" id="location" placeholder="Enter Location">
                                                     </div>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                                 <div class="form-group">
                                                     <label>Year</label>
                                                     <div class="ui-slider" id="year-slider" data-value-min="1920" data-value-max="2015" data-step="1">
@@ -117,7 +117,7 @@
                                                         <div class="element"></div>
                                                     </div>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                             </div>
                                             <div class="input-row">
                                                 <div class="form-group">
@@ -130,7 +130,7 @@
                                                         <div class="element"></div>
                                                     </div>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                                 <div class="form-group">
                                                     <label for="fuel">Fuel</label>
                                                     <select name="manufacturer" id="fuel" multiple title="Any">
@@ -141,7 +141,7 @@
                                                         <option value="5">Gas</option>
                                                     </select>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                                 <div class="form-group">
                                                     <label for="type">Sale Type</label>
                                                     <select name="type" id="type" multiple title="Any">
@@ -149,31 +149,31 @@
                                                         <option value="2">Used</option>
                                                     </select>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                                 <div class="form-group">
                                                     <label for="keyword">Keyword</label>
                                                     <input type="text" class="form-control" id="keyword" placeholder="Enter Keyword">
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                                 </div>
-                                                <!-- /.form-group -->
+                                                 /.form-group 
                                             </div>
                                         </form>
-                                        <!-- /.main-search -->
+                                         /.main-search 
                                     </div>
-                                    <!-- /.search-bar -->
+                                     /.search-bar 
                                 </div>
                             </div>
                             <div class="background">
                                 <img src="<?php echo base_url(); ?>application_resources/assets/img/cars-bg.jpg" alt="">
-                            </div>
+                            </div>-->
                         </section>
                         <!--end Hero Image-->
 
                         <!--Featured-->
-                        <section id="featured" class="block background-color-grey-dark equal-height">
+<!--                        <section id="featured" class="block background-color-grey-dark equal-height">
                             <div class="container">
                                 <header><h2>Featured</h2></header>
                                 <div class="row">
@@ -215,9 +215,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- /.item-->
+                                         /.item
                                     </div>
-                                    <!--/.col-sm-4-->
+                                    /.col-sm-4
                                     <div class="col-md-3 col-sm-3">
                                         <div class="item featured">
                                             <div class="image">
@@ -250,9 +250,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- /.item-->
+                                         /.item
                                     </div>
-                                    <!--/.col-sm-4-->
+                                    /.col-sm-4
                                     <div class="col-md-3 col-sm-3">
                                         <div class="item featured">
                                             <div class="image">
@@ -285,9 +285,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- /.item-->
+                                         /.item
                                     </div>
-                                    <!--/.col-sm-4-->
+                                    /.col-sm-4
                                     <div class="col-md-3 col-sm-3">
                                         <div class="item featured">
                                             <div class="image">
@@ -323,11 +323,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- /.item-->
+                                         /.item
                                     </div>
-                                    <!--/.col-sm-4-->
+                                    /.col-sm-4
                                 </div>
-                            </div>
+                            </div>-->
+                        <?php echo '';?>
                         </section>
                         <!--end Featured-->
 

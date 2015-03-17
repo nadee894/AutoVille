@@ -93,7 +93,7 @@
 <!-- modal -->
 
 <!--Vehicle Model Edit Modal -->
-<div  id="vehicle_model_edit_div" >
+<div  class="modal fade " id="vehicle_model_edit_div" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="vehicle_model_edit_content">
 
@@ -191,17 +191,10 @@
 
             $('#vehicle_model_edit_content').html('');
             $('#vehicle_model_edit_content').html(msg);
-            
+            $('#vehicle_model_edit_div').modal('show');
         });
         
-        $("#vehicle_model_edit_div").dialog({
-            autoOpen: false,
-            title: "Vehicle Model Quick Edit",
-            modal: true,
-            width: "650"
-
-        });
-        $("#vehicle_model_edit_div").dialog("option", {modal: true}).dialog("open");
+        
     }
 </script>
 
