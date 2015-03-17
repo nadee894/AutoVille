@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <!-- Mirrored from thevectorlab.net/flatlab/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Mar 2015 10:18:52 GMT -->
+    
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <meta name="author" content="Mosaddek">
-        <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <meta name="author" content="Armates">
+        <meta name="keyword" content="AutoVille">
         <link rel="shortcut icon" href="<?php echo base_url(); ?>backend_resources/img/favicon.html">
 
         <title>AutoVille</title>
@@ -536,5 +536,4 @@
 
     </body>
 
-    <!-- Mirrored from thevectorlab.net/flatlab/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Mar 2015 10:19:46 GMT -->
 </html>

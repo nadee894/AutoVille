@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -14,7 +13,7 @@ class Login extends CI_Controller {
         // $this->load->library("settings_option_handler");
     }
 
-    function index() {
+    function index(){
         if ($this->session->userdata('USER_LOGGED_IN')) {
             $this->template->load('template/main_template');
         } else {
@@ -25,7 +24,7 @@ class Login extends CI_Controller {
     //Login details checking function 
     function authenticate_user() {
 
-        $user_model = new User_model();
+        $user_model   = new User_model();
         $user_service = new User_service();
 
         $username = $this->input->post('login_username', TRUE);
@@ -51,13 +50,12 @@ class Login extends CI_Controller {
             $this->session->set_userdata('USER_ONLINE', 'Y');
 
             $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
-           
         }
     }
 
     function logout() {
 
-        $user_model = new User_model();
+        $user_model   = new User_model();
         $user_service = new User_service();
 
         $user_model->set_is_online('0');
