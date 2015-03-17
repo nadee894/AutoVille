@@ -30,7 +30,7 @@
     <body class="login-body">
 
         <div class="container">
-            <form class="form-signin" id="login_form" name="login_form">
+            <form class="form-signin" id="login_form" name="login_form" method="POST">
                 <h2 class="form-signin-heading">sign in now</h2>
                 <div class="login-wrap">
                     <input id="txtusername" name="txtusername" type="text" class="form-control" placeholder="Username" autofocus>
