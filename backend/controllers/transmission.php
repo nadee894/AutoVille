@@ -34,7 +34,7 @@ class Transmission extends CI_Controller {
         $transmission_service = new Transmission_service();
 
         $transmission_model->set_name($this->input->post('name', TRUE));
-        $transmission_model->set_added_by(1);
+        $transmission_model->set_added_by($this->session->userdata('USER_ID'));
         $transmission_model->set_added_date(date("Y-m-d H:i:s"));
         $transmission_model->set_is_published('1');
         $transmission_model->set_is_deleted('0');
@@ -94,7 +94,7 @@ class Transmission extends CI_Controller {
 
         $transmission_model->set_id($this->input->post('transmission_id', TRUE));
         $transmission_model->set_name($this->input->post('name', TRUE));
-        $transmission_model->set_updated_by(1);
+        $transmission_model->set_updated_by($this->session->userdata('USER_ID'));
         $transmission_model->set_updated_date(date("Y-m-d H:i:s"));
 
         echo $transmission_service->update_transmission($transmission_model);

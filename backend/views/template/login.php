@@ -121,6 +121,7 @@
 
                                         if (msg == 1) {
                                             alert("login success");
+                                            setTimeout("location.href = site_url+'/login/load_login';", 100);
                                         } else {
                                             alert("login not success");
                                         }
