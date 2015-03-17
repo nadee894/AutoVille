@@ -10,6 +10,7 @@
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $transmission->name; ?>">
             <input id="transmission_id"  name="transmission_id" type="hidden" value="<?php echo $transmission->id; ?>">
         </div>
+        <span id="rtn_msg_edit"></span>
     </div>
     <div class="modal-footer">
         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
@@ -31,9 +32,11 @@
             $.post(site_url + '/transmission/edit_transmission', $('#edit_transmission_form').serialize(), function(msg)
             {
                 if (msg == 1) {
+                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
                     window.location = site_url + '/transmission/manage_transmissions';
                 } else {
+                    $('#rtn_msg_edit').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
 
                 }
             });

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 16, 2015 at 09:37 AM
+-- Generation Time: Mar 17, 2015 at 04:38 PM
 -- Server version: 5.1.63-0ubuntu0.10.04.1-log
 -- PHP Version: 5.3.2-1ubuntu4.17
 
@@ -66,6 +66,38 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contents`
+--
+
+CREATE TABLE IF NOT EXISTS `contents` (
+  `content_id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_title` varchar(100) NOT NULL,
+  `content` text NOT NULL,
+  `content_hcode` varchar(20) NOT NULL,
+  `delete_status` enum('1','0') NOT NULL DEFAULT '0' COMMENT '1 = deleted , 0  =  not deleted',
+  `added_by` int(11) NOT NULL,
+  `added_date` datetime NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`content_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `contents`
+--
+
+INSERT INTO `contents` (`content_id`, `content_title`, `content`, `content_hcode`, `delete_status`, `added_by`, `added_date`, `updated_by`, `updated_date`) VALUES
+(1, 'About Us', '<p>\n	&nbsp;</p>\n<p>\n	MonaruLanka is a fully Sri Lankan owned private sector organization that was born out of a deep passion for the nation, and bearing an affinity for the country&rsquo;s unique heritage and cultural diversity.11</p>\n<p>\n	Incorporated as a limited liability company in September 2011, MonaruLanka has achieved many of its initial targets and milestones and is currently at the 7th Stage of Civil Aviation Authority of Sri Lanka&rsquo;s Air Operator Certificate (AOC).</p>\n<p>\n	Long distance air travel should no more be considered a luxury that is enjoyed by a select few. Connecting people, families and businesses across continents, MonaruLanka&rsquo;s vision is to provide affordable air travel to everyone. It will be operated with the best of efficiencies while with the highest safety and cutting-edge operating standards of the industry, and the airline will initially be equipped with two Airbus A330-200 aircraft. Not least among its many aims will be to raise Sri Lanka&rsquo;s reach and standing in the global arena, assisting the country in its forward march towards prosperity.</p>\n<p>\n	MonaruLanka is managed by professionals with decades of airline experience who understand that the bottom-line which matters is really the happy and satisfied customer that is truly our guest.</p>\n<p>\n	With professionally trained staff who are fully passenger-focused, MonaruLanka will partner our guests in their unique journeys to make your trip the best possible experience.</p>\n<p>\n	<a href="/content_files/files/(certificate company).pdf" target="_blank">&gt;&gt; View Our Business Registration <br />\n	</a></p>\n', 'ABOUTUS', '0', 1, '2014-05-28 07:12:16', NULL, NULL),
+(2, 'Destinations', '<div class="destination-page"> <strong>Commencing operations with initial services to&hellip;<br />\n  </strong>\n  <p>&nbsp; </p>\n  <p> <i class="fa  fa-plane"></i> Australia</p>\n  <p> <i class="fa  fa-plane"> </i> South Africa</p>\n  <p> <i class="fa  fa-plane"></i> China</p>\n</div>\n', 'DESTINATIONS', '0', 1, '2014-05-28 00:00:00', NULL, NULL),
+(3, 'Rightside Snippet', '<div class="right-snipt">\n	<a href="/index.php/destinations"><img alt="" class="img-responsive" src="/content_files/images/destinations-btn.jpg" /></a></div>\n<!--<div class="right-snipt">\n	<a href="#"><img alt="" class="img-responsive" src="/content_files/images/destinations-btn(1).jpg" /></a></div>-->', 'RIGHTSIDESNIPPET', '0', 1, '2014-05-28 06:28:41', NULL, NULL),
+(4, 'Welcome Message - Home Page', '<p style="text-align: justify;">\n	MonaruLanka is the first long range low-cost carrier from the Pearl of the Indian ocean, Sri Lanka, and the project of many professionals involved from various disciples. We are an entity geared to serve our guest in the most professional, warm and friendly manner. We at MonaruLanka, with the blessings of the governance of the country, welcome all onboard for an unforgettable journey via the most beautiful island of the Indian Ocean, SRI LANKA.</p>\n', 'WELCOMEHOMEPAGE', '0', 1, '2014-05-28 06:28:41', NULL, NULL),
+(5, 'Welcome To Monaru Lanka', 'test welcoem inner page', 'WELCOMEINNERPAGE', '0', 1, '2014-05-28 07:12:16', NULL, NULL),
+(6, 'Footer Right', '<div class="row">\n	<div class="col-xs-2 text-right">\n		<img alt="" height="46" src="/content_files/images/email-ico.png" width="46" /></div>\n	<div class="col-xs-10">\n		<h3>\n			Sign up today!</h3>\n		<p>\n			Register your email with us and be the first to know about latest offers and promotions.</p>\n	</div>\n</div>\n', 'FOOTERROGHT', '0', 1, '2014-08-18 00:00:00', NULL, NULL),
+(7, 'Careers', '<p>\n	We are a low cost , long range airline. We are in the process of forming our operational and administrative team. Currently we are recruiting for the below mentioned positionsif you are interested in an exciting and a rewarding career with dynamic and well managed, forward thinking airline,<br />\n	please attach c.v <br />\n	fill and submit the below form</p>\n<table border="0" cellpadding="3" cellspacing="0" width="100%">\n	<tbody>\n		<tr>\n			<td width="2%">\n				&nbsp;</td>\n			<td width="25%">\n				A330 Captains</td>\n			<td width="2%">\n				&nbsp;</td>\n			<td width="40%">\n				Occ Officers</td>\n			<td width="2%">\n				&nbsp;</td>\n			<td width="29%">\n				Station Officer</td>\n				\n				\n				\n				\n				\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				A330 F/Officers</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Engineering and Maint Quality Manager</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Commercial Manager</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				Operations Manager</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				A330tre Pilot</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Finance Manager</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				Safety And Quality Manger</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Flight Attendants (Male/Female)</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Executive Secretary</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				Security Manager</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Cabin Crew Managers</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Transport Manager</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				Maintenance Director</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Aircraft Maintenance Engineer B1and B2(Trent/Ge)</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Human Resource Officers</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				Maintenance Manager</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Cargo Manager</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Training Manager</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				Mcc/Occ Manager</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Cargo Officer</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				&nbsp;</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				Mcc Eng B1and B2</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				Station Manager</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				&nbsp;</td>\n		</tr>\n		<tr>\n			<td>\n				&nbsp;</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				&nbsp;</td>\n			<td>\n				&nbsp;</td>\n		</tr>\n	</tbody>\n</table>', 'CAREERS', '0', 0, '0000-00-00 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -403,7 +435,14 @@ CREATE TABLE IF NOT EXISTS `fuel_type` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `fuel_type`
+--
+
+INSERT INTO `fuel_type` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 'xcvcv', '1', '0', '0000-00-00 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -463,7 +502,7 @@ INSERT INTO `model` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `
 (2, 'BMW', '1', '0', '2015-03-13 03:46:10', 2, NULL, 0),
 (3, 'Dodge', '1', '0', '2015-03-13 03:46:10', 2, NULL, 0),
 (4, 'Honda', '1', '0', '2015-03-13 03:46:10', 2, NULL, 2),
-(5, 'Jaguar', '1', '0', '2015-03-13 03:46:28', 2, NULL, 2),
+(5, 'Jaguar', '1', '1', '2015-03-13 03:46:28', 2, NULL, 2),
 (6, 'Chrysler', '1', '0', '2015-03-11 18:30:00', 2, NULL, 0);
 
 -- --------------------------------------------------------
@@ -540,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `transmission` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `transmission`
@@ -563,7 +602,10 @@ INSERT INTO `transmission` (`id`, `name`, `is_published`, `is_deleted`, `added_d
 (14, 'asdasadas', '1', '0', '2015-03-14 06:20:01', 1, NULL, 1),
 (15, 'asdasd', '1', '0', '2015-03-14 06:20:06', 1, NULL, 1),
 (16, 'adad', '1', '0', '2015-03-14 06:20:12', 1, NULL, 1),
-(17, 'asdasd', '1', '0', '2015-03-14 06:20:25', 1, NULL, 1);
+(17, 'asdasd', '1', '0', '2015-03-14 06:20:25', 1, NULL, 1),
+(18, '0', '1', '0', '2015-03-17 04:40:06', 1, NULL, NULL),
+(19, '0', '1', '1', '2015-03-17 04:53:46', 1, NULL, NULL),
+(20, '0', '1', '1', '2015-03-17 05:07:40', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -602,7 +644,7 @@ INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `a
 (1, 'Ms', 'Gayathma', 'gayathma@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
 (2, 'Ms', 'Heshani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
 (3, 'Ms', 'Nadeesha', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(4, 'Ms', 'Ashani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(4, 'Ms', 'Ashani', 'heshani@gmail.com', 3, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
 (5, 'Ms', 'Ishani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0);
 
 -- --------------------------------------------------------
@@ -636,7 +678,6 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `transmission_id` int(11) NOT NULL,
   `year` int(5) NOT NULL,
-  `model` int(11) NOT NULL,
   `fuel_type_id` int(11) NOT NULL,
   `manufacture_id` int(11) NOT NULL,
   `model_id` int(11) NOT NULL,
@@ -654,7 +695,14 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `vehicle_advertisements`
+--
+
+INSERT INTO `vehicle_advertisements` (`id`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 1, 32434, 1, 1, 1, 1, 1, 1, 'sdfdf', NULL, '535235', '0.00', '1', '0', '0000-00-00 00:00:00', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 

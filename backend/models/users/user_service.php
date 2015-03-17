@@ -22,10 +22,10 @@ class User_service extends CI_Model {
      */
 
     function authenticate_user_with_password($user_model) {
+        // 'user_type' => $user_model->get_user_type(),
+        $data = array('user_name' => $user_model->get_user_name(), 'password' => $user_model->get_password(), 'is_deleted' => '0', 'is_published' => '1');
 
-        $data = array('user_name' => $user_model->get_user_name(), 'password' => $user_model->get_password(), 'user_type' => $user_model->get_user_type(), 'is_deleted' => '0', 'is_published' => '1');
-
-        $this->db->select('user.*,user_type.name as user_type_name');
+        $this->db->select('user.*,user_type.type as user_type_name');
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type = user_type.id');
         $this->db->where($data);

@@ -35,7 +35,7 @@
                             foreach ($results as $result) {
                                 ?>
                                 <tr id="transmission_<?php echo $result->id; ?>">
-                                    <td><?php echo ++$i; ?></td>
+                                    <td><?php echo++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
     <!--                                    <td><?php echo $result->added_by_user; ?></td>
                                     <td><?php echo $result->added_date; ?></td>-->
@@ -80,10 +80,13 @@
                         <label for="name">Title</label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
                     </div>
+                    
+                <span id="rtn_msg"></span>
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
                     <button class="btn btn-success" type="submit">Save changes</button>
+                    
                 </div>
             </form>
 
@@ -96,7 +99,7 @@
 <div  id="transmission_edit_div" >
     <div class="modal-dialog">
         <div class="modal-content" id="transmission_edit_content">
-            
+
         </div>
     </div>
 </div>
@@ -107,109 +110,111 @@
 <!-- active selected menu -->
 
 <script type="text/javascript">
-    $('#vehicle_spec_menu').addClass('active');
+                                                $('#vehicle_spec_menu').addClass('active');
 
 
-    $(document).ready(function() {
+                                                $(document).ready(function() {
 
-        $('#transmission_table').dataTable();
+                                                    $('#transmission_table').dataTable();
 
-        //add transmission form validation
-        $("#add_transmission_form").validate({
-            rules: {
-                name: "required"
-            },
-            messages: {
-                name: "Please enter a title"
-            }, submitHandler: function(form)
-            {
-                $.post(site_url + '/transmission/add_transmission', $('#add_transmission_form').serialize(), function(msg)
-                {
-                    if (msg == 1) {
+                                                    //add transmission form validation
+                                                    $("#add_transmission_form").validate({
+                                                        rules: {
+                                                            name: "required"
+                                                        },
+                                                        messages: {
+                                                            name: "Please enter a title"
+                                                        }, submitHandler: function(form)
+                                                        {
+                                                            $.post(site_url + '/transmission/add_transmission', $('#add_transmission_form').serialize(), function(msg)
+                                                            {
+                                                                if (msg == 1) {
+                                                                    $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
-                        add_transmission_form.reset();
-                        window.location = site_url + '/transmission/manage_transmissions';
-                    } else {
+                                                                    add_transmission_form.reset();
+                                                                    window.location = site_url + '/transmission/manage_transmissions';
+                                                                } else {
+                                                                    $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
 
-                    }
-                });
-            }
-        });
-        
-    });
+                                                                }
+                                                            });
+                                                        }
+                                                    });
 
-
-
-    //delete transmissions
-    function delete_transmission(id) {
-
-        if (confirm('Are you sure want to delete this Transmission ?')) {
-
-            $.ajax({
-                type: "POST",
-                url: site_url + '/transmission/delete_transmissions',
-                data: "id=" + id,
-                success: function(msg) {
-                    //alert(msg);
-                    if (msg == 1) {
-                        //document.getElementById(trid).style.display='none';
-                        $('#transmission_' + id).hide();
-                    }
-                    else if (msg == 2) {
-                        alert('Cannot be deleted as it is already assigned to others. !!');
-                    }
-                }
-            });
-        }
-    }
+                                                });
 
 
-    //change publish status of transmission
-    function change_publish_status(transmission_id, value, element) {
 
-        var condition = 'Do you want to activate this transmission ?';
-        if (value == 0) {
-            condition = 'Do you want to deactivate this transmission?';
-        }
+                                                //delete transmissions
+                                                function delete_transmission(id) {
 
-        if (confirm(condition)) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/transmission/change_publish_status',
-                data: "id=" + transmission_id + "&value=" + value,
-                success: function(msg) {
-                    if (msg == 1) {
-                        if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + transmission_id + ',0,this)" title="click to deactivate transmission"><i class="fa fa-check"></i></a>');
-                        } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + transmission_id + ',1,this)" title="click to activate transmission"><i class="fa fa-exclamation-circle"></i></a>');
-                        }
+                                                    if (confirm('Are you sure want to delete this Transmission ?')) {
 
-                    } else if (msg == 2) {
-                        alert('Error !!');
-                    }
-                }
-            });
-        }
-    }
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: site_url + '/transmission/delete_transmissions',
+                                                            data: "id=" + id,
+                                                            success: function(msg) {
+                                                                //alert(msg);
+                                                                if (msg == 1) {
+                                                                    //document.getElementById(trid).style.display='none';
+                                                                    $('#transmission_' + id).hide();
+                                                                }
+                                                                else if (msg == 2) {
+                                                                    alert('Cannot be deleted as it is already assigned to others. !!');
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                }
 
 
-    //Edit Transmission
-    function  display_edit_transmission_pop_up(transmission_id) {
+                                                //change publish status of transmission
+                                                function change_publish_status(transmission_id, value, element) {
 
-        $.post(site_url + '/transmission/load_edit_transmission_content', {transmission_id: transmission_id}, function(msg) {
+                                                    var condition = 'Do you want to activate this transmission ?';
+                                                    if (value == 0) {
+                                                        condition = 'Do you want to deactivate this transmission?';
+                                                    }
 
-            $('#transmission_edit_content').html('');
-            $('#transmission_edit_content').html(msg);
-        });
-        $("#transmission_edit_div").dialog({
-            autoOpen: false,
-            title: "Transmission Quick Edit",
-            modal: true,
-            width: "650"
+                                                    if (confirm(condition)) {
+                                                        $.ajax({
+                                                            type: "POST",
+                                                            url: site_url + '/transmission/change_publish_status',
+                                                            data: "id=" + transmission_id + "&value=" + value,
+                                                            success: function(msg) {
+                                                                if (msg == 1) {
+                                                                    if (value == 1) {
+                                                                        $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + transmission_id + ',0,this)" title="click to deactivate transmission"><i class="fa fa-check"></i></a>');
+                                                                    } else {
+                                                                        $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + transmission_id + ',1,this)" title="click to activate transmission"><i class="fa fa-exclamation-circle"></i></a>');
+                                                                    }
 
-        });
-        $("#transmission_edit_div").dialog("option", {modal: true}).dialog("open");
+                                                                } else if (msg == 2) {
+                                                                    alert('Error !!');
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                }
 
-    }
+
+                                                //Edit Transmission
+                                                function  display_edit_transmission_pop_up(transmission_id) {
+
+                                                    $.post(site_url + '/transmission/load_edit_transmission_content', {transmission_id: transmission_id}, function(msg) {
+
+                                                        $('#transmission_edit_content').html('');
+                                                        $('#transmission_edit_content').html(msg);
+                                                    });
+                                                    $("#transmission_edit_div").dialog({
+                                                        autoOpen: false,
+                                                        title: "Transmission Quick Edit",
+                                                        modal: true,
+                                                        width: "650"
+
+                                                    });
+                                                    $("#transmission_edit_div").dialog("option", {modal: true}).dialog("open");
+
+                                                }
 </script>
