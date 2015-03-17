@@ -29,7 +29,7 @@
 
     <li class="sub-menu">
         <a href="javascript:;" id="pages_menu">
-            <i class="fa fa-comment-o"></i>
+            <i class="fa fa-folder-open"></i>
             <span>Manage Pages</span>
         </a> 
         <ul class="sub">
