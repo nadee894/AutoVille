@@ -113,11 +113,7 @@
                 var icon = $(element).parent('.input-with-icon').children('i');
                 icon.removeClass("fa fa-exclamation").addClass('fa fa-check');
                 parent.removeClass('error-control').addClass('success-control');
-            },
-            errorPlacement: function (label, element) {
-                $('<span class="arrow"></span>').insertBefore(element);
-                $('<span class="error"></span>').insertAfter(element).append(label)
-            }
+            }            
         });
 
     });
@@ -137,37 +133,9 @@
                 success: function (msg) {
 
                     if (msg == 1) {
-                        $('#login_msg').html('<span class="input-notification success png_bg">Login Success...</span>');
-                        element = $('#txtusername');
-                        var parent = $(element).parent('.input-with-icon');
-                        var icon = $(element).parent('.input-with-icon').children('i');
-                        icon.removeClass("fa fa-exclamation").addClass('fa fa-check');
-                        parent.removeClass('error-control').addClass('success-control');
-                        element = $('#txtpassword');
-                        var parent = $(element).parent('.input-with-icon');
-                        var icon = $(element).parent('.input-with-icon').children('i');
-                        icon.removeClass("fa fa-exclamation").addClass('fa fa-check');
-                        parent.removeClass('error-control').addClass('success-control');
-                        setTimeout("location.href = site_url+'/login/login_controller/';", 100);
-                        x.fadeOut('slow');
+                        alert("login success");
                     } else {
-                        x.fadeOut('fast');
-                        $('#login_msg').html('<span class="input-notification error png_bg">Invalid login details...</span>');
-                        $('#login_msg').show();
-                        element = $('#txtusername');
-                        label = '<label class="error" for="txtusername">Please enter at least 6 characters.</label>';
-                        $('<span class="error"></span>').insertAfter($(element).parent().parent());
-                        var parent = $(element).parent('.input-with-icon');
-                        var icon = $(element).parent('.input-with-icon').children('i');
-                        icon.removeClass('fa fa-check').addClass('fa fa-exclamation');
-                        parent.removeClass('success-control').addClass('error-control');
-                        element = $('#txtpassword');
-                        label = '<label class="error" for="txtusername">Please enter at least 6 characters.</label>';
-                        $('<span class="error"></span>').insertAfter($(element).parent().parent());
-                        var parent = $(element).parent('.input-with-icon');
-                        var icon = $(element).parent('.input-with-icon').children('i');
-                        icon.removeClass('fa fa-check').addClass('fa fa-exclamation');
-                        parent.removeClass('success-control').addClass('error-control');
+                        alert("login not success");
                     }
 
                 }

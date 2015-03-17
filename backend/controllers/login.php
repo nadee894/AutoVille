@@ -14,10 +14,9 @@ class Login extends CI_Controller {
         // $this->load->library("settings_option_handler");
     }
 
-    function index() {        
+    function index() {
         if ($this->session->userdata('USER_LOGGED_IN')) {
-            //redirect(base_url() . 'index.php/dashboard/dashboard_controller/');
-        $this->template->load('template/main_template');
+            $this->template->load('template/main_template');
         } else {
             $this->template->load('template/login');
         }
@@ -32,7 +31,7 @@ class Login extends CI_Controller {
         $username = $this->input->post('login_username', TRUE);
 
         $user_model->set_user_name($user_name);
-        $user_model->set_password(md5($this->input->post('login_password', TRUE)));
+        $user_model->set_password($this->input->post('login_password', TRUE));
 
         if (count($user_service->authenticate_user_with_password($user_model)) == 0) {
             $logged_user_result = false;
@@ -52,8 +51,7 @@ class Login extends CI_Controller {
             $this->session->set_userdata('USER_ONLINE', 'Y');
 
             $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
-            
-            $this->template->load('template/main_template');
+           
         }
     }
 
@@ -64,12 +62,12 @@ class Login extends CI_Controller {
 
         $user_model->set_is_online('0');
         $user_model->set_id($this->session->userdata('USER_ID'));
-        
+
         $this->session->set_userdata('USER_ONLINE', 'N');
         $this->session->set_userdata('USER_LOGGED_IN', 'FALSE');
 
         $this->session->sess_destroy();
         redirect(site_url() . '/login/index');
     }
-    
+
 }
