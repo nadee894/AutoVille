@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -11,6 +10,9 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
+        
+        $this->load->model('users/user_model');
+        $this->load->model('users/user_service');
     }
 
     /* manage_advertisements function
@@ -20,12 +22,27 @@ class Vehicle_advertisements extends CI_Controller {
     function manage_advertisements() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $user_service= new User_service();
 
         $data['heading'] = "Advertisements";
         $data['results'] = $vehicle_advertisments_service->get_all_advertisements();
+        $data['reg_users']=$user_service->get_all_active_registered_users();
 
         $parials = array('content' => 'vehicle_advertisements/manage_advertisements_view');
         $this->template->load('template/main_template', $parials, $data);
+    }
+    
+     /*
+      *  This function is to search advertisements
+     */
+
+    function search_advertisements() {
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        $data['results'] = $vehicle_advertisments_service->search_advertisements();
+
+        $this->load->view('vehicle_advertisements/search_results_advertisements', $data);
     }
 
     /*
@@ -37,19 +54,4 @@ class Vehicle_advertisements extends CI_Controller {
 
         echo $vehicle_advertisments_service->delete_advertisement(trim($this->input->post('id', TRUE)));
     }
-
-    /*
-     * This is to change the published status of the transmission 
-     */
-
-    function change_publish_status() {
-        $transmission_model   = new Transmission_model();
-        $transmission_service = new Transmission_service();
-
-        $transmission_model->set_id(trim($this->input->post('id', TRUE)));
-        $transmission_model->set_is_published(trim($this->input->post('value', TRUE)));
-
-        echo $transmission_service->publish_transmission($transmission_model);
-    }
-
 }
