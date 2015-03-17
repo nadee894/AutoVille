@@ -5,7 +5,6 @@ class Vehicle_advertisments_model extends CI_Model {
     var $id;
     var $transmission_id;
     var $year;
-    var $model;
     var $fuel_type_id;
     var $manufacture_id;
     var $model_id;

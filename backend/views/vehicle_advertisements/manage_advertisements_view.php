@@ -3,106 +3,93 @@
     <header class="panel-heading">
         All Advertisements
         <span class="pull-right">
-            <button type="button" id="loading-btn" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Refresh</button>
+            <button type="button" onclick="reload_advertisements()" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Refresh</button>
         </span>
     </header>
     <div class="panel-body">
         <div class="row">
-
             <div class="col-md-12">
-                <div class="input-group"><input type="text" placeholder="Search Here" class="input-sm form-control"> <span class="input-group-btn">
+                <div class="input-group">
+                    <select>
+                        <?php foreach ($reg_users as $user) { ?>
+                            <option id="<?php echo $user->id; ?>"><?php echo $user->name; ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+
+                    <input type="text" placeholder="Search Here" class="input-sm form-control"> <span class="input-group-btn">
                         <button type="button" class="btn btn-sm btn-success"> Go!</button> </span></div>
             </div>
         </div>
     </div>
-    <table class="table table-hover p-table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Transmission</th>
-                <th>Fuel Type</th>
-                <th>Body Type</th>
-                <th>Color</th>
-                <th>Price</th>
-                <th>Active Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="p-name">
-                    <a href="project_details.html">Toyota Prius N77 Model</a>
-                    <br>
-                    <small>Created 13.03.2015</small>
-                </td>
-                <td class="p-team">
-                    Auto
-                </td>
-                <td class="p-team">
-                    Petrol
-                </td>
-                <td class="p-team">
-                    Body Type
-                </td>
-                <td class="p-team">
-                    Red
-                </td>
-                <td class="p-progress">
-                    Rs.56000000.00
-                </td>
-                <td>
-                    <span class="label label-primary">Active</span>
-                </td>
-                <td>
-                    <a href="<?php echo site_url(); ?>/transmission/manage_transmissions" class="btn btn-primary btn-xs"><i class="fa fa-pencil"  title="Update"></i></a>
-                    <a class="btn btn-danger btn-xs" onclick="delete_transmission(<?php //echo $result->id;          ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
-                    <a href="project_details.html" class="btn btn-info btn-xs"><i class="fa fa-folder" title="View"></i></a>
-
-                </td>
-            </tr>
-            <?php foreach ($results as $result) { ?>
-            <tr id="advertisement_<?php echo $result->id;?>">
-                    <td class="p-name">
-                        <a href="project_details.html"><?php echo ucfirst($result->manufacture . ' ' . $result->model . ' ' . $result->year); ?></a>
-                        <br>
-                        <small>Created <?php echo date('Y-m-d', strtotime($result->added_date)); ?></small>
-                    </td>
-                    <td class="p-team">
-                        <?php echo $result->transmission; ?>
-                    </td>
-                    <td class="p-team">
-                        <?php echo $result->fuel_type; ?>
-                    </td>
-                    <td class="p-team">
-                        <?php echo $result->body_type; ?>
-                    </td>
-                    <td class="p-team">
-                        <?php echo $result->colour; ?>
-                    </td>
-                    <td class="p-progress">
-                        <?php echo $result->price; ?>
-                    </td>
-                    <td>
-                        <?php if ($result->is_published == '1') { ?>
-                            <span class="label label-primary">Active</span>
-                        <?php } elseif ($result->is_published == '0') { ?>
-                            <span class="label label-default">Pending</span>  
-                        <?php } else { ?>
-                            <span class="label label-danger">Rejected</span>  
-                        <?php } ?>
-                    </td>
-                    <td>
-                        <a class="btn btn-danger btn-xs" onclick="delete_advertisement(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
-                        <a href="project_details.html" class="btn btn-info btn-xs"><i class="fa fa-folder" title="View"></i></a>
-
-                    </td>
+    <div id="advertisement_div"> 
+        <table class="table table-hover p-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Chassis No</th>
+                    <th>Transmission</th>
+                    <th>Fuel Type</th>
+                    <th>Body Type</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                    <th>Added By</th>
+                    <th>Active Status</th>
+                    <th>Actions</th>
                 </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($results as $result) { ?>
+                    <tr id="advertisement_<?php echo $result->id; ?>">
+                        <td class="p-name">
+                            <a href="project_details.html"><?php echo ucfirst($result->manufacture . ' ' . $result->model . ' ' . $result->year); ?></a>
+                            <br>
+                            <small>Created <?php echo date('Y-m-d', strtotime($result->added_date)); ?></small>
+                        </td>
+                        <td class="p-team">
+                            <?php echo $result->chassis_no; ?>
+                        </td>
+                        <td class="p-team">
+                            <?php echo $result->transmission; ?>
+                        </td>
+                        <td class="p-team">
+                            <?php echo $result->fuel_type; ?>
+                        </td>
+                        <td class="p-team">
+                            <?php echo $result->body_type; ?>
+                        </td>
+                        <td class="p-team">
+                            <?php echo $result->colour; ?>
+                        </td>
+                        <td class="p-progress">
+                            <?php echo $result->price; ?>
+                        </td>
+                        <td class="p-progress">
+                            <?php echo $result->added_by_user; ?>
+                        </td>
+                        <td>
+                            <?php if ($result->is_published == '1') { ?>
+                                <span class="label label-primary">Active</span>
+                            <?php } elseif ($result->is_published == '0') { ?>
+                                <span class="label label-default">Pending</span>  
+                            <?php } else { ?>
+                                <span class="label label-danger">Rejected</span>  
+                            <?php } ?>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-xs"  onclick="delete_advertisement(<?php echo $result->id; ?>);"><i class="fa fa-trash-o " title="Remove"></i></a>
+                            <a href="project_details.html" class="btn btn-info btn-xs"><i class="fa fa-folder" title="View"></i></a>
 
-            <?php }
-            ?>
+                        </td>
+                    </tr>
 
-        </tbody>
-    </table>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </section>
 <!-- page end-->
 
@@ -130,6 +117,18 @@
             });
         }
     }
+
+    //Reloading advertisements
+    function reload_advertisements() {
+        $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
+        var x = $('.load-anim').show().delay(5000);
+        $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function(msg) {
+            $('#advertisement_div').html('');
+            $('#advertisement_div').html(msg);
+            x.fadeOut('slow');
+        });
+    }
+
 </script>
 
 
