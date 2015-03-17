@@ -30,7 +30,7 @@
     <body class="login-body">
 
         <div class="container">
-            <form class="form-signin"  id="login_form" name="login_form">
+            <form class="form-signin" id="login_form" name="login_form">
                 <h2 class="form-signin-heading">sign in now</h2>
                 <div class="login-wrap">
                     <input id="txtusername" name="txtusername" type="text" class="form-control" placeholder="Username" autofocus>
@@ -39,10 +39,9 @@
                         <input type="checkbox" value="remember-me"> Remember me
                         <span class="pull-right">
                             <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-
                         </span>
                     </label>
-                    <button onclick="login();" class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
+                    <button onclick="login()" class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
 
                     <div class="registration">
                         Don't have an account yet?
@@ -77,6 +76,7 @@
             </div>
             <!-- modal -->
         </div>
+
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
@@ -90,14 +90,16 @@
 
 <script type="text/javascript">
 
-                        $(document).ready(function() {
+                        var base_url = "<?php echo base_url(); ?>";
+                        var site_url = "<?php echo site_url(); ?>";
+
+                        $(document).ready(function () {
                             $("#login_form").validate({
+                                focusInvalid: false,
+                                ignore: "",
                                 rules: {
                                     txtusername: "required",
                                     txtpassword: "required"
-                                }, submitHandler: function(form)
-                                {
-
                                 }
                             });
 
@@ -109,22 +111,24 @@
                             var login_password = $('#txtpassword').val();
 
                             if ($('#login_form').valid()) {
+                                alert("valid form");
 
                                 $.ajax({
                                     type: "POST",
-                                    url: site_url + "/login/authenticate_user",
+                                    url: site_url + '/login/authenticate_user',
                                     data: "login_username=" + login_username + "&login_password=" + login_password,
                                     async: false,
-                                    success: function(msg) {
+                                    success: function (msg) {
+                                        alert(msg);
 
                                         if (msg == 1) {
                                             alert("login success");
                                         } else {
                                             alert("login not success");
                                         }
-
                                     }
                                 });
                             }
                         }
+
 </script>

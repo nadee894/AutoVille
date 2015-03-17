@@ -9,8 +9,7 @@ class Login extends CI_Controller {
 
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
-
-        // $this->load->library("settings_option_handler");
+       
     }
 
     function index(){
@@ -23,7 +22,7 @@ class Login extends CI_Controller {
 
     //Login details checking function 
     function authenticate_user() {
-
+        echo "came to authenticate_user";
         $user_model   = new User_model();
         $user_service = new User_service();
 
@@ -51,6 +50,7 @@ class Login extends CI_Controller {
 
             $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
         }
+             
     }
 
     function logout() {
