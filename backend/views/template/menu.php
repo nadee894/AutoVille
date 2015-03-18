@@ -36,11 +36,11 @@
         </a> 
         <ul class="sub">
             <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/ABOUTUS">About Us</a></li>
-            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/DESTINATIONS">Destinations</a></li>
+            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/DESTINATIONS">FAQs</a></li>
             <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/RIGHTSIDESNIPPET">Rightside Snippet</a></li>
             <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/WELCOMEHOMEPAGE">Welcomer Message Home Page</a></li>
-            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/WELCOMEINNERPAGE">Welcomer Message Read Mor</a></li>
-            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/FOOTERROGHT">Footer Right</a></li>
+            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/WELCOMEINNERPAGE">Welcomer Message </a></li>
+            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/FOOTERROGHT">Footer Statement</a></li>
         </ul>
     </li>
 
