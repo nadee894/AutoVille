@@ -51,7 +51,7 @@ class Login extends CI_Controller {
 
             $user_model->set_id($this->session->userdata('USER_ID'));
             $user_model->set_is_online('1');
-            //echo $user_service->update_user_online_status($user_model);
+            $user_service->update_user_online_status($user_model);
 
             echo 1;
         } else {
@@ -66,7 +66,7 @@ class Login extends CI_Controller {
 
         $user_model->set_is_online('0');
         $user_model->set_id($this->session->userdata('USER_ID'));
-        //echo $user_service->update_user_online_status($user_model);
+        $user_service->update_user_online_status($user_model);
 
         $this->session->set_userdata('USER_ONLINE', 'N');
         $this->session->set_userdata('USER_LOGGED_IN', 'FALSE');
