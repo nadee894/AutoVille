@@ -1,54 +1,62 @@
-<div class="page-title">	
-    <h3><?php echo $heading; ?></h3>		
-</div>
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Manage Privileges
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#add_privilege_modal" data-toggle="modal">
+                                Add New
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <table class="display table table-bordered table-striped" id="privilege_master_table" >
+                        <thead>
+                            <tr>
+                                <th>Master Privilege ID</th>
+                                <th>Master Privilege</th>
+                                <th>Description</th>
+                                <th>System</th>
+                                <th>Options</th>
 
-<div class="row-fluid">
-    <div class="span12">
-        <div class="grid simple ">
-            <div class="grid-title">
-                <h4>Advance <span class="semi-bold">Options</span></h4>
-                <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="javascript:;" class="reload"></a> </div>
-            </div>
-            <div class="grid-body ">
-                <table class="table table-hover" id="privilege_master_table" >
-                    <thead>
-                        <tr>
-                            <th>Master Privilege ID</th>
-                            <th>Master Privilege</th>
-                            <th>Description</th>
-                            <th>System</th>
-                            <th>Options</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($privilege_masters as $privilege_master) {
-                            ?> 
-                            <tr  id="privilege_master_<?php echo $privilege_master->privilege_master_code; ?>">
-                                <td><?php echo $privilege_master->privilege_master_code; ?></td>
-                                <td><?php echo $privilege_master->master_privilege; ?></td>
-                                <td><?php echo $privilege_master->master_privilege_description; ?></td>
-                                <td>
-                                    <?php echo $privilege_master->system; ?> 
-
-                                </td>
-                                <td>
-                                    <a href="<?php echo site_url(); ?>/settings/privilege_master_controller/edit_master_privileges_view/<?php echo $privilege_master->privilege_master_code; ?>">
-                                        <span class="label label-info">Edit</span>
-                                    </a>
-                                    <a style="cursor: pointer;"   title="Delete this Master Privilege" onclick="delete_privilege_master(<?php echo $privilege_master->privilege_master_code; ?>)">
-                                        <span class="label label-important">Delete</span>
-                                    </a>
-
-                                </td>
                             </tr>
-                        <?php } ?>    
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($privilege_masters as $privilege_master) {
+                                ?> 
+                                <tr  id="privilege_master_<?php echo $privilege_master->privilege_master_code; ?>">
+                                    <td><?php echo $privilege_master->privilege_master_code; ?></td>
+                                    <td><?php echo $privilege_master->master_privilege; ?></td>
+                                    <td><?php echo $privilege_master->master_privilege_description; ?></td>
+                                    <td>
+                                        <?php echo $privilege_master->system; ?> 
 
-                    </tbody>
-                </table>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-xs" href="<?php echo site_url(); ?>/settings/privilege_master_controller/edit_master_privileges_view/<?php echo $privilege_master->privilege_master_code; ?>">
+                                            <i class="fa fa-pencil"  title="Update"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs"  title="Delete this Master Privilege" onclick="delete_privilege_master(<?php echo $privilege_master->privilege_master_code; ?>)">
+                                            <i class="fa fa-trash-o " title="Remove"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            <?php } ?>    
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 </div>
 

@@ -12,7 +12,7 @@
                 <div class="adv-table">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#transmission_add_modal" data-toggle="modal">
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#add_privilege_modal" data-toggle="modal">
                                 Add New
                                 <i class="fa fa-plus"></i>
                             </a>
@@ -51,10 +51,10 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-primary btn-xs" href="<?php echo site_url(); ?>/settings/privilege_controller/edit_privileges_view/<?php echo $privilege->privilege_code; ?>">
-                                            <i class="fa fa-pencil"  data-original-title="Update"></i>
+                                            <i class="fa fa-pencil"  title="Update"></i>
                                         </a>
                                         <a class="btn btn-danger btn-xs"   title="Delete this Privilege" onclick="delete_privilege(<?php echo $privilege->privilege_code; ?>)">
-                                            <i class="fa fa-trash-o " title="" data-original-title="Remove"></i>
+                                            <i class="fa fa-trash-o " title="Remove"></i>
                                         </a>
 
                                     </td>
@@ -78,97 +78,56 @@
             </div>
             <form id="add_privilege_form" name="add_privilege_form">
                 <div class="modal-body">
-                    <div class="row form-row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">Master Privilege</label>
-                                <span style="color: red">*</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-with-icon  right">                                       
-                                <i class=""></i>
-                                <select name="master_privilege_code" id="master_privilege_code" class="select2 form-control"  >
-                                    <?php foreach ($master_privileges as $master_privilege) {
-                                        ?> 
-                                        <option value="<?php echo $master_privilege->privilege_master_code; ?>"><?php echo $master_privilege->master_privilege; ?></option>
-                                    <?php } ?>
-                                </select>                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form-row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">Privilege</label>
-                                <span style="color: red">*</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-with-icon  right">                                       
-                                <i class=""></i>
-                                <input id="privilege" class="form-control" type="text" name="privilege" onkeyup="auto_write_human_friendly_code()">                              
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form-row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">Privilege Description</label>
-                                <span style="color: red">*</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-with-icon  right">                                       
-                                <i class=""></i>
-                                <input id="privilege_desc" class="form-control" type="text" name="privilege_desc">                              
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form-row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">Human Friendly Privilege Code</label>
-                                <span style="color: red">*</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-with-icon  right">                                       
-                                <i class=""></i>
-                                <input id="privilege_hf" class="form-control" type="text" name="privilege_hf" readonly="true">                              
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Master Privilege</label>
+                        <span style="color: red">*</span>
+                        <select name="master_privilege_code" id="master_privilege_code" class="select2 form-control"  >
+                            <?php foreach ($master_privileges as $master_privilege) {
+                                ?> 
+                                <option value="<?php echo $master_privilege->privilege_master_code; ?>"><?php echo $master_privilege->master_privilege; ?></option>
+                            <?php } ?>
+                        </select>    
                     </div>
 
-                    <div class="row form-row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="form-label">Assign For</label>
-                                <span style="color: red">*</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-with-icon  right">                                       
-                                <i class=""></i>
-                                <select name="assign_for" id="assign_for" class="select2 form-control"  >
-                                    <option value="1">Admin</option>
-                                    <option value="2">Company Owner</option>
-                                    <option value="3">Employee</option>
-                                    <option value="4">All</option>
-
-                                </select>                              
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Privilege</label>
+                        <span style="color: red">*</span>
+                        <input id="privilege" class="form-control" type="text" name="privilege" onkeyup="auto_write_human_friendly_code()">                              
                     </div>
 
+
+                    <div class="form-group">
+                        <label class="form-label">Privilege Description</label>
+                        <span style="color: red">*</span>
+
+                        <input id="privilege_desc" class="form-control" type="text" name="privilege_desc">                              
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Human Friendly Privilege Code</label>
+                        <span style="color: red">*</span>
+
+                        <input id="privilege_hf" class="form-control" type="text" name="privilege_hf" readonly="true">                              
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Assign For</label>
+                        <span style="color: red">*</span>
+
+                        <select name="assign_for" id="assign_for" class="select2 form-control"  >
+                            <option value="1">Admin</option>
+                            <option value="2">Company Owner</option>
+                            <option value="3">Employee</option>
+                            <option value="4">All</option>
+
+                        </select>                              
+                    </div>
+                    <div id="add_privilege_msg" class="form-row"> </div>
                 </div>
-                <div id="add_privilege_msg" class="form-row"> </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="submit">Save changes</button>
                 </div>
-
             </form>
         </div>
         <!-- /.modal-content -->
@@ -178,5 +137,5 @@
 <!-- /.modal -->
 
 <script type="text/javascript">
-                                        $('#settings_parent_menu').addClass('active open');
+    $('#settings_menu').addClass('active');
 </script>
