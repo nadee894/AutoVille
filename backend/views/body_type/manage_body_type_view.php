@@ -41,14 +41,14 @@
                                     <td><?php echo $result->added_date; ?></td>-->
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>
-                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate transmission"><i class="fa fa-check"></i></a>
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate body type"><i class="fa fa-check"></i></a>
                                         <?php } else { ?>
-                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate transmission"><i class="fa fa-exclamation-circle"></i></a>
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate body type"><i class="fa fa-exclamation-circle"></i></a>
                                         <?php } ?>
                                     </td>
                                     <td align="center">
-                                        <a class="btn btn-primary btn-xs" onclick="display_edit_body_type_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil"  data-original-title="Update"></i></a>
-                                        <a class="btn btn-danger btn-xs" onclick="delete_body_types(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
+                                        <a class="btn btn-primary btn-xs" onclick="display_edit_body_type_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil" title="Update"></i></a>
+                                        <a class="btn btn-danger btn-xs" onclick="delete_body_types(<?php echo $result->id; ?>)"><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
                                     </td>
                                 </tr>
@@ -75,8 +75,8 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
+                        <label for="name">Enter Body Type</label>
+                        <input id="name" class="form-control" name="name" type="text" placeholder="Body Type">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -113,7 +113,7 @@
                 name: "required"
             },
             messages: {
-                name: "Please enter a title"
+                name: "Please enter a Body Type"
             }, submitHandler: function (form)
             {
                 $.post(site_url + '/body_type/add_body_type', $('#add_body_type_form').serialize(), function (msg)
@@ -122,6 +122,8 @@
 
                         add_body_type_form.reset();
                         window.location = site_url + '/body_type/manage_body_types';
+                        
+                        
                     } else {
 
                     }
