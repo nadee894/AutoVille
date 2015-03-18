@@ -9,7 +9,7 @@
 </header>
 <!-- page start-->
 <ul class="directory-list">
-    <li><a href="#">a</a></li>
+    <li><a href="<?php echo site_url(); ?>/users/load_admins_by_letter/A">a</a></li>
     <li><a href="#">b</a></li>
     <li><a href="#">c</a></li>
     <li><a href="#">d</a></li>
@@ -60,7 +60,7 @@
                                 <?php if ($result->is_online) { ?>
                                     <h4><i class="fa  fa-circle  text-success"></i>
                                         <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
-                                <?php } else { ?>
+                                    <?php } else { ?>
                                     <h4><i class="fa  fa-circle  text-danger"></i>
                                         <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
 
@@ -99,25 +99,41 @@
     function change_online_status(user_id, value, element) {
 
 
-        $.ajax({
-            type: "POST",
+    $.ajax({
+    type: "POST",
             url: site_url + '/users/change_online_status',
             data: "id=" + user_id + "&value=" + value,
             success: function (msg) {
-                if (msg == 1) {
-                    if (value == 1) {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
-                    } else {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
-                    }
-
-                } else if (msg == 2) {
-                    alert('Error !!');
-                }
+            if (msg == 1) {
+            if (value == 1) {
+            $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
+            } else {
+            $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
             }
-        });
 
+            } else if (msg == 2) {
+            alert('Error !!');
+            }
+            }
+    });
     }
+
+    //load admins by letter
+    function load_admins_by_letter(letter) {
+
+
+    $.ajax({
+            type: "POST",
+            url: site_url + '/users/load_admins_by_letter',
+            data:"letter_=" + letter,
+//           $user_service = new User_service();
+
+//            $user_type = $user_service - > load_admins_by_letter($letter);
+//            $data['results'] = $user_type;
+//            echo $this - > load - > view('users/manage_admin_view', $data, TRUE);
+    });
+    }
+
 
 
 </script>

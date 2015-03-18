@@ -31,7 +31,7 @@
 
     <li class="sub-menu">
         <a href="javascript:;" id="pages_menu">
-            <i class="fa fa-comment-o"></i>
+            <i class="fa fa-folder-open"></i>
             <span>Manage Pages</span>
         </a> 
         <ul class="sub">
@@ -66,6 +66,9 @@
             <li><a  href="<?php echo site_url(); ?>/body_type/manage_body_types">Manage Vehicle Body Types</a></li>
             <li><a  href="<?php echo site_url(); ?>/fuel_type/manage_fuel_types">Manage Fuel Types</a></li>
             <li><a  href="<?php echo site_url(); ?>/equipment/manage_equipment">Manage Equipments</a></li>
+        </ul>
+        <ul class="sub">
+            <li><a  href="<?php echo site_url(); ?>/users/manage_registered_users">Manage Registered Users</a></li>
         </ul>
     </li>
 

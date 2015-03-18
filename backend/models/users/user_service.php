@@ -25,7 +25,7 @@ class User_service extends CI_Model {
         // 'user_type' => $user_model->get_user_type(),
         $data = array('user_name' => $user_model->get_user_name(), 'password' => $user_model->get_password(), 'is_deleted' => '0', 'is_published' => '1');
 
-        $this->db->select('user.*,user_type.name as user_type_name');
+        $this->db->select('user.*,user_type.type as user_type_name');
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type = user_type.id');
         $this->db->where($data);
@@ -57,6 +57,21 @@ class User_service extends CI_Model {
         $data = array('id' => $user_model->get_id(), 'is_deleted' => '0');
         $query = $this->db->get_where('user', $data);
         return $query->row();
+    }
+
+    function get_admin_by_name($letter) {
+
+        $this->db->select('user.*, user_type.type');
+        $this->db->from('user');
+        $this->db->join('user_type', 'user.user_type= user_type.id');
+        $this->db->where('user_type.id in (2,1)');
+        $this->db->where('user.name like "A%"');
+//        echo $letter;
+        $this->db->where('user.is_deleted', '0');
+        $this->db->order_by("user.added_date", "desc");
+
+        $query = $this->db->get();
+        return $query->result();
     }
 
 }
