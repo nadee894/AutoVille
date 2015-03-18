@@ -52,12 +52,12 @@ class Users extends CI_Controller {
     function load_admins_by_letter() {
         $user_service = new User_service();
 
-        $letter = $this->input->post('$myletter', TRUE);
+        $letter = $this->input->post('myletter', TRUE);
         $user_type = $user_service->get_admin_by_name($letter);
         
         $data['results'] = $user_type;
-        $parials = array('content' => 'users/manage_admin_view');
-        $this->template->load('template/main_template', $parials, $data);
+        
+        $this->load->view('users/admin_filter_view',$data);
                                 
     }
 
