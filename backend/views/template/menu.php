@@ -68,6 +68,18 @@
             <li><a  href="<?php echo site_url(); ?>/equipment/manage_equipment">Manage Equipments</a></li>
         </ul>        
     </li>
+    
+    <li class="sub-menu">
+        <a href="javascript:;" id="settings_menu">
+            <i class="fa fa-cogs"></i>
+            <span>Settings</span>
+        </a>
+        <ul class="sub">
+            <li><a  href="<?php echo site_url(); ?>/transmission/manage_transmissions">Manage Master Privileges</a></li>
+            <li><a  href="<?php echo site_url(); ?>/privilege/manage_privileges">Manage Privileges</a></li>
+           
+        </ul>        
+    </li>
 
 
 

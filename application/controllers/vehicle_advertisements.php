@@ -3,15 +3,15 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Vehicle_advertisements extends CI_Controller {
 
     function __construct() {
         parent::__construct();
     }
 
-    function index() {
+    function post_new_advertisement() {
 
-        $data['heading'] = "Manage Transmissions";
+        $data['heading'] = "Submit Your Advertisement";
 
         $parials = array('content' => 'content_pages/home_content');
         $this->template->load('template/main_template',$parials, $data);
