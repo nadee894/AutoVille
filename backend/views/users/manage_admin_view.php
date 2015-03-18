@@ -9,35 +9,35 @@
 </header>
 <!-- page start-->
 <ul class="directory-list">
-    <li><a href="<?php echo site_url(); ?>/users/load_admins_by_letter/A">a</a></li>
-    <li><a href="#">b</a></li>
-    <li><a href="#">c</a></li>
-    <li><a href="#">d</a></li>
-    <li><a href="#">e</a></li>
-    <li><a href="#">f</a></li>
-    <li><a href="#">g</a></li>
-    <li onclick="load_admins_by_letter(<?php echo 'H'?>)"><a href="#">h</a></li>
-    <li><a href="#">i</a></li>
-    <li><a href="#">j</a></li>
-    <li><a href="#">k</a></li>
-    <li><a href="#">l</a></li>
-    <li><a href="#">m</a></li>
-    <li><a href="#">n</a></li>
-    <li><a href="#">o</a></li>
-    <li><a href="#">p</a></li>
-    <li><a href="#">q</a></li>
-    <li><a href="#">r</a></li>
-    <li><a href="#">s</a></li>
-    <li><a href="#">t</a></li>
-    <li><a href="#">u</a></li>
-    <li><a href="#">v</a></li>
-    <li><a href="#">w</a></li>
-    <li><a href="#">x</a></li>
-    <li><a href="#">y</a></li>
-    <li><a href="#">z</a></li>
+    <li><a onclick="load_admins_by_letter('A')" style="cursor: pointer">a</a></li>
+    <li><a onclick="load_admins_by_letter('B')" style="cursor: pointer">b</a></li>
+    <li><a onclick="load_admins_by_letter('C')" style="cursor: pointer">c</a></li>
+    <li><a onclick="load_admins_by_letter('D')" style="cursor: pointer">d</a></li>
+    <li><a onclick="load_admins_by_letter('E')" style="cursor: pointer">e</a></li>
+    <li><a onclick="load_admins_by_letter('F')" style="cursor: pointer">f</a></li>
+    <li><a onclick="load_admins_by_letter('G')" style="cursor: pointer">g</a></li>
+    <li><a onclick="load_admins_by_letter('H')" style="cursor: pointer">h</a></li>
+    <li><a onclick="load_admins_by_letter('I')" style="cursor: pointer">i</a></li>
+    <li><a onclick="load_admins_by_letter('J')" style="cursor: pointer">j</a></li>
+    <li><a onclick="load_admins_by_letter('K')" style="cursor: pointer">k</a></li>
+    <li><a onclick="load_admins_by_letter('L')" style="cursor: pointer">l</a></li>
+    <li><a onclick="load_admins_by_letter('M')" style="cursor: pointer">m</a></li>
+    <li><a onclick="load_admins_by_letter('N')" style="cursor: pointer">n</a></li>
+    <li><a onclick="load_admins_by_letter('O')" style="cursor: pointer">o</a></li>
+    <li><a onclick="load_admins_by_letter('P')" style="cursor: pointer">p</a></li>
+    <li><a onclick="load_admins_by_letter('Q')" style="cursor: pointer">q</a></li>
+    <li><a onclick="load_admins_by_letter('R')" style="cursor: pointer">r</a></li>
+    <li><a onclick="load_admins_by_letter('S')" style="cursor: pointer">s</a></li>
+    <li><a onclick="load_admins_by_letter('T')" style="cursor: pointer">t</a></li>
+    <li><a onclick="load_admins_by_letter('U')" style="cursor: pointer">u</a></li>
+    <li><a onclick="load_admins_by_letter('V')" style="cursor: pointer">v</a></li>
+    <li><a onclick="load_admins_by_letter('W')" style="cursor: pointer">w</a></li>
+    <li><a onclick="load_admins_by_letter('X')" style="cursor: pointer">x</a></li>
+    <li><a onclick="load_admins_by_letter('Y')" style="cursor: pointer">y</a></li>
+    <li><a onclick="load_admins_by_letter('Z')" style="cursor: pointer">z</a></li>
 </ul>
 <div class="directory-info-row">
-    <div class="row">
+    <div class="row" id="admin_filter_content">
 
         <?php
         $i = 0;
@@ -94,6 +94,9 @@
 <!-- page end-->
 
 <script type="text/javascript">
+    
+$('#user_menu').addClass('active');
+
 
     //change Online status of body types
     function change_online_status(user_id, value, element) {
@@ -123,10 +126,10 @@
         $.ajax({
             type: "POST",
             url: site_url + '/users/load_admins_by_letter',
-            data: "$myletter=" + letter,
+            data: "myletter=" + letter,
             success: function (msg)
             {
-                alert("success!");
+               $('#admin_filter_content').html(msg);
             }
         });
     }
