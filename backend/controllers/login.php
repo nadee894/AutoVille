@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 
     function load_login() {
         if ($this->session->userdata('USER_LOGGED_IN')) {
-           
+
             redirect(site_url() . '/dashboard');
             //$this->template->load('template/main_template');
         } else {
@@ -26,7 +26,7 @@ class Login extends CI_Controller {
     function authenticate_user() {
 
         $user_model = new User_model();
-        $user_service = new User_service();        
+        $user_service = new User_service();
 
         $user_model->set_user_name($this->input->post('login_username', TRUE));
         $user_model->set_password(md5($this->input->post('login_password', TRUE)));
@@ -41,8 +41,6 @@ class Login extends CI_Controller {
 
         if ($logged_user_result) {
 
-            $user_model->set_is_online('1');
-
             $this->session->set_userdata('USER_ID', $result_user->id);
             $this->session->set_userdata('USER_NAME', $result_user->name);
             $this->session->set_userdata('USER_TYPE', $result_user->user_type);
@@ -50,7 +48,11 @@ class Login extends CI_Controller {
             $this->session->set_userdata('USER_PROFILE_PIC', $result_user->profile_pic);
             $this->session->set_userdata('USER_ONLINE', 'Y');
             $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
-            
+
+            $user_model->set_id($this->session->userdata('USER_ID'));
+            $user_model->set_is_online('1');
+            //echo $user_service->update_user_online_status($user_model);
+
             echo 1;
         } else {
             echo 0;
@@ -64,6 +66,7 @@ class Login extends CI_Controller {
 
         $user_model->set_is_online('0');
         $user_model->set_id($this->session->userdata('USER_ID'));
+        //echo $user_service->update_user_online_status($user_model);
 
         $this->session->set_userdata('USER_ONLINE', 'N');
         $this->session->set_userdata('USER_LOGGED_IN', 'FALSE');

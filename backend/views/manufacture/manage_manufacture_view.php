@@ -168,7 +168,7 @@
                         if (value == 1) {
                             $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + manufacture_id + ', 1, this)" title="click to activate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
                         }
                     } else if (msg == 2) {
                         alert('Error !!!');

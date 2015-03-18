@@ -36,6 +36,7 @@ class Users extends CI_Controller {
 
         echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
     }
+
 //
 //    function load_admins_by_letter() {
 //        $user_model = new User_model();
@@ -48,13 +49,16 @@ class Users extends CI_Controller {
 //        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
 //    }
 
-    function load_admins_by_letter($letter) {
+    function load_admins_by_letter() {
         $user_service = new User_service();
 
+        $letter = $this->input->post('$myletter', TRUE);
         $user_type = $user_service->get_admin_by_name($letter);
+        
         $data['results'] = $user_type;
-
-        echo $this->load->view('users/manage_admin_view', $data, TRUE);
+        $parials = array('content' => 'users/manage_admin_view');
+        $this->template->load('template/main_template', $parials, $data);
+                                
     }
 
 }
