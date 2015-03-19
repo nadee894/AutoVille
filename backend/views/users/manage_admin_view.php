@@ -74,21 +74,24 @@
 
                                 <address>Address : <?php echo $result->address; ?><br>
                                     <abbr title="Phone">Tel:</abbr> <?php echo $result->contact_no_1; ?><br>
-                                    <!--<abbr title="Phone2">P2:</abbr> <?php echo $result->contact_no_2; ?></address>-->
+
                                     <email>E-mail : <?php echo $result->email; ?></email><br>
-                                    <br>
-                                    <br>
-                                    <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
-                                    
-                                    
+                                </address>
+                                <br>
+
+                                <div>
                                     <?php if ($result->is_published) { ?>
                                         <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check"></i></a>
                                     <?php } else { ?>
                                         <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>
                                     <?php } ?>
-                                        
-                                        
-                                    <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+                                </div>
+
+
+                                <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+
+                                <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
+
 
 
 
@@ -189,7 +192,7 @@
                 data: "id=" + user_id + "&value=" + value,
                 success: function (msg) {
                     if (msg == 1) {
-                         if (value == 1) {
+                        if (value == 1) {
                             $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
                         } else {
                             $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
