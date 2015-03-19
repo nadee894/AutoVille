@@ -84,5 +84,15 @@ class User_service extends CI_Model {
         $this->db->where('id', $user_model->get_id());
         return $this->db->update('user', $data);
     }
+    
+    /*
+     * Delete users from database     
+     */
+
+    function delete_users($user_id) {
+        $data = array('is_deleted' => '1');
+        $this->db->where('id', $user_id);
+        return $this->db->update('user', $data);
+    }
 
 }

@@ -80,7 +80,7 @@
                                     <br>
                                     <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
                                     <a class="btn btn-warning btn-xs" ><i class="fa fa-ban" title="Disable"></i></a>
-                                    <a class="btn btn-danger btn-xs" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+                                    <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
 
 
@@ -147,5 +147,27 @@
 
     }
 
+//load admins when deleted
+    function load_after_deleted(user_id) {
+        if (confirm('Are you sure want to delete this Body Type ?')) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/users/delete_users',
+                data: "user_id=" + user_id,
+                success: function (msg)
+                {
+                    if (msg == 1) {
+                        //document.getElementById(trid).style.display='none';
+                        $('#admin_'+user_id).hide();
+
+//                        $('#admin_filter_content').html(msg);
+                    }
+                    else if (msg == 2) {
+                        alert('Cannot be deleted as it is already assigned to others. !!');
+                    }
+                }
+            });
+        }
+    }
 
 </script>
