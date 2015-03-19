@@ -78,6 +78,7 @@
                         <label for="name">Enter Body Type</label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Body Type">
                     </div>
+                    <span id="rtn_msg"></span>
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
@@ -94,7 +95,7 @@
 <div class="modal fade "  id="body_type_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="body_type_edit_content">
-            
+
         </div>
     </div>
 </div>
@@ -119,13 +120,13 @@
                 $.post(site_url + '/body_type/add_body_type', $('#add_body_type_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
-
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         add_body_type_form.reset();
                         window.location = site_url + '/body_type/manage_body_types';
-                        
-                        
-                    } else {
 
+
+                    } else {
+                      $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                     }
                 });
 
@@ -198,7 +199,7 @@
             $('#body_type_edit_content').html(msg);
             $('#body_type_edit_div').modal('show');
         });
-        
+
 
     }
 
