@@ -71,4 +71,18 @@ class Users extends CI_Controller {
 //        $this->load->view('users/admin_filter_view', $data);
     }
 
+    /*
+     * Function to change publish status of a user
+     */
+
+    function change_publish_status() {
+        $user_model = new User_model();
+        $user_service = new User_service();
+
+        $user_model->set_id(trim($this->input->post('id', TRUE)));
+        $user_model->set_is_published(trim($this->input->post('value', TRUE)));
+
+        echo $user_service->publish_status_of_user($user_model);
+    }
+
 }

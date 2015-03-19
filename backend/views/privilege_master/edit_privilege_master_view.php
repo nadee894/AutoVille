@@ -9,14 +9,14 @@
             <label class="form-label">Master Privilege</label>
             <span style="color: red">*</span>
 
-            <input id="master_privilege" class="form-control" type="text" name="master_privilege" value="<?php echo $privilege_master->master_privilege; ?>" style="width: 50%">                                                           
+            <input id="master_privilege" class="form-control" type="text" name="master_privilege" value="<?php echo $privilege_master->master_privilege; ?>" >                                                           
         </div>
 
         <div class="form-group">
             <label class="form-label">Master Privilege Description</label>
             <span style="color: red">*</span>
 
-            <input id="master_privilege_desc" class="form-control" type="text" name="master_privilege_desc" value="<?php echo $privilege_master->master_privilege_description; ?>" style="width: 50%">                              
+            <input id="master_privilege_desc" class="form-control" type="text" name="master_privilege_desc" value="<?php echo $privilege_master->master_privilege_description; ?>" >                              
         </div>
 
 
