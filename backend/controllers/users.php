@@ -82,7 +82,7 @@ class Users extends CI_Controller {
         $user_model->set_id(trim($this->input->post('id', TRUE)));
         $user_model->set_is_published(trim($this->input->post('value', TRUE)));
 
-        echo $user_service->publish_body_types($user_model);
+        echo $user_service->publish_status_of_user($user_model);
     }
 
 }
