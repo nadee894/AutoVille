@@ -194,7 +194,29 @@
 
 
                 </section>
+
+                <section>
+                    <h3>Vehicle Description</h3>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <textarea id="vehicle-description-field" class="form-control" name="description" rows="7"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>    
+
                 <!--Vehicle details -->
+
+                <section>
+                    <h3>Features</h3>
+                    <ul class="list-unstyled checkboxes">
+                        <?php foreach ($equipments as $equipment) { ?>
+                        <li><div class="checkbox"><label><input type="checkbox" name="equipment[]" value="<?php echo $equipment->id;?>"><?php echo $equipment->name;?></label></div></li>
+                        <?php } ?>
+                    </ul>
+                </section>
+
 
                 <section>
                     <h3>Address & Contact</h3>
@@ -262,26 +284,8 @@
                     <h3>Map</h3>
                     <div id="map-simple" class="map-submit"></div>
                 </section>
-                <section>
-                    <h3>Features</h3>
-                    <ul class="list-unstyled checkboxes">
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="1">Free Parking</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="2">Cards Accepted</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="3">Wi-Fi</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="4">Air Condition</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="5">Reservations</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Team-buildings</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="7">Places to seat</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="8">Winery</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="9">Draft Beer</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="10">LCD</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="11">Saloon</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="12">Free Access</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="13">Terrace</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="14">Minigolf</label></div></li>
-                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="15">Night Bar</label></div></li>
-                    </ul>
-                </section>
+
+
                 <!--Menu-->
                 <section>
                     <h3>Menu & Wine List</h3>
