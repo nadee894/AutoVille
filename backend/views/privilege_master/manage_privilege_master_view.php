@@ -39,7 +39,7 @@
                                     <td><?php echo $privilege_master->master_privilege; ?></td>
                                     <td><?php echo $privilege_master->master_privilege_description; ?></td>
                                     <td>
-                                        <?php echo $privilege_master->system; ?> 
+                                        <?php echo $privilege_master->system_code; ?> 
 
                                     </td>
                                     <td>
