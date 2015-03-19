@@ -6,40 +6,28 @@
                 <div class="input-row">
                     <div class="form-group">
                         <label for="manufacturer">Manufacturer</label>
-                        <select name="manufacturer" id="manufacturer" multiple title="Manufacturer" data-live-search="true">
-                            <option value="1">Audi</option>
-                            <option value="2">BMW</option>
-                            <option value="3">Jeep</option>
-                            <option value="4">Ford</option>
-                            <option value="5">Mazda</option>
-                            <option value="6">Opel</option>
-                            <option value="7">Toyota</option>
+                        <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true">
+                            <?php foreach ($manufactures as $manufacture) { ?>
+                                <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="model">Model</label>
-                        <select name="model" id="model" multiple title="Model" data-live-search="true">
-                            <option value="1">C-Max</option>
-                            <option value="2">Escort</option>
-                            <option value="3">Mondeo</option>
-                            <option value="4">Focus</option>
-                            <option value="5">Mustang</option>
-                            <option value="6">Ranger</option>
-                            <option value="7">Transit</option>
+                        <select name="model" id="model" title="Model" data-live-search="true">
+                            <?php foreach ($models as $model) { ?>
+                                <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>        
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label for="model">Body Type</label>
-                        <select name="model" id="model" multiple title="Model" data-live-search="true">
-                            <option value="1">C-Max</option>
-                            <option value="2">Escort</option>
-                            <option value="3">Mondeo</option>
-                            <option value="4">Focus</option>
-                            <option value="5">Mustang</option>
-                            <option value="6">Ranger</option>
-                            <option value="7">Transit</option>
+                        <label for="body_type">Body Type</label>
+                        <select name="body_type" id="body_type" title="Body Type" data-live-search="true">
+                            <?php foreach ($body_types as $body_type) { ?>
+                                <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>        
                     <!-- /.form-group -->
@@ -59,28 +47,33 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="fuel">Fuel</label>
-                        <select name="manufacturer" id="fuel" multiple title="Any">
-                            <option value="1">Gasoline</option>
-                            <option value="2">Diesel</option>
-                            <option value="3">Electric</option>
-                            <option value="4">Hybrid</option>
-                            <option value="5">Gas</option>
+                        <select name="fuel_type" id="fuel_type" title="Fuel">
+                            <?php foreach ($fuel_types as $fuel_type) { ?>
+                                <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label for="type">Sale Type</label>
-                        <select name="type" id="type" multiple title="Any">
+                        <label for="sale_type">Sale Type</label>
+                        <select name="sale_type" id="sale_type" title="Sale Type">
                             <option value="1">New</option>
                             <option value="2">Used</option>
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label for="type">Color</label>
-                        <select name="type" id="type" multiple title="Any">
-                            <option value="1">New</option>
-                            <option value="2">Used</option>
+                        <label for="color">Color</label>
+                        <select name="color" id="color" title="Color">
+                            <option value="1">Blue</option>
+                            <option value="2">Yellow</option>
+                            <option value="3">Purple</option>
+                            <option value="4">Pink</option>
+                            <option value="5">Red</option>
+                            <option value="6">Green</option>
+                            <option value="7">White</option>
+                            <option value="8">Black</option>
+                            <option value="9">Silver</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -98,26 +91,28 @@
                 <div class="input-row">
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label for="type">Transmission</label>
-                        <select name="type" id="type" multiple title="Any">
-                            <option value="1">New</option>
-                            <option value="2">Used</option>
+                        <label for="transmission">Transmission</label>
+                        <select name="transmission" id="transmission" title="Transmission">
+                            <?php foreach ($transmissions as $transmission) { ?>
+                                <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label for="type">Kilometers</label>
-                        <select name="type" id="type" multiple title="Any">
-                            <option value="1">New</option>
-                            <option value="2">Used</option>
+                        <label for="kilometers">Kilometers</label>
+                        <select name="kilometers" id="kilometers" title="Kilometers">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label for="type">Location</label>
-                        <select name="type" id="type" multiple title="Any">
-                            <option value="1">New</option>
-                            <option value="2">Used</option>
+                        <label for="location">Location</label>
+                        <select name="location" id="location" title="Location">
+                            <?php foreach ($locations as $location) { ?>
+                                <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <!-- /.form-group -->
