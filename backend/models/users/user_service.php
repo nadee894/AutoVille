@@ -95,5 +95,16 @@ class User_service extends CI_Model {
         $this->db->where('id', $user_id);
         return $this->db->update('user', $data);
     }
+    
+    
+    /*
+     * Change disable status of a user   
+     */
+
+    public function publish_status_of_user($user_model) {
+        $data = array('is_published' => $user_model->get_is_published());
+        $this->db->update('user', $data, array('id' => $user_model->get_id()));
+        return $this->db->affected_rows();
+    }
 
 }

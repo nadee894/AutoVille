@@ -61,8 +61,8 @@
                                     <h4><i class="fa  fa-circle  text-success"></i>
                                         <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                                     <?php } else { ?>
-<!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>-->
+        <!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                    <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>-->
 
                                 <?php } ?>
                                 <!--                                <ul class="social-links">
@@ -79,7 +79,11 @@
                                     <br>
                                     <br>
                                     <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
-                                    <a class="btn btn-warning btn-xs" ><i class="fa fa-ban" title="Disable"></i></a>
+                                    <?php if ($result->is_published) { ?>
+                                        <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check" title="Click to disable user"></i></a>
+                                    <?php } else { ?>
+                                        <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-ban" title="Click to enable user"></i></a>
+                                    <?php } ?>
                                     <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
 
@@ -99,8 +103,6 @@
 <script type="text/javascript">
 
     $('#user_menu').addClass('active');
-
-
     //change Online status of body types
     function change_online_status(user_id, value, element) {
 
@@ -143,8 +145,6 @@
         var address = $('#address');
         var contact_no_01 = $('#contact_no_1');
         var contact_no_02 = $('#contact_no_2');
-
-
     }
 
 //load admins when deleted
@@ -158,8 +158,7 @@
                 {
                     if (msg == 1) {
                         //document.getElementById(trid).style.display='none';
-                        $('#admin_'+user_id).hide();
-
+                        $('#admin_' + user_id).hide();
 //                        $('#admin_filter_content').html(msg);
                     }
                     else if (msg == 2) {
@@ -169,5 +168,36 @@
             });
         }
     }
+
+
+    //change publish status of a user
+    function change_publish_status(user_id, value, element) {
+
+        var condition = 'Do you want to enable this user ?';
+        if (value == 0) {
+            condition = 'Do you want to disable this user?';
+        }
+
+        if (confirm(condition)) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/users/change_publish_status',
+                data: "id=" + user_id + "&value=" + value,
+                success: function (msg) {
+                    if (msg == 1) {
+                        if (value == 1) {
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ', 0, this)" title="click to disable user"><i class="fa fa-check" title="Click to disable user"></i></a>');
+                        } else {
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ', 1, this)" title="click to enable user"><i class="fa fa-ban" title="Click to enable user"></i></a>');
+                        }
+
+                    } else if (msg == 2) {
+                        alert('Error !!');
+                    }
+                }
+            });
+        }
+    }
+
 
 </script>
