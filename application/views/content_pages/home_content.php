@@ -1,6 +1,6 @@
 <!--Hero Image-->
 <section class="hero-image search-filter-bottom">
-    <?php echo $this->load->view('vehicle_adds/search_advertisement'); ?>
+    <?php echo $this->load->view('vehicle_adds/load_vehicle_sepecs_for_search'); ?>
 </section>
 <!--end Hero Image-->
 
