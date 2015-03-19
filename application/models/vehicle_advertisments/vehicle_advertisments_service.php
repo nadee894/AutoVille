@@ -53,13 +53,5 @@ class Vehicle_advertisments_service extends CI_Model {
         return $query->result();
     }
 
-    /*
-     * This service function is to delete a advertisements
-     */
-    function delete_advertisement($advertisement_id) {
-        $data = array('is_deleted' => '1');
-        $this->db->where('id', $advertisement_id);
-        return $this->db->update('vehicle_advertisements', $data);
-    }
 
 }
