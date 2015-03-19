@@ -126,7 +126,7 @@
 
 
 <script type="text/javascript">
-    $('#settings_parent_menu').addClass('active open');
+    $('#settings_menu').addClass('active');
 
 
     $(document).ready(function() {

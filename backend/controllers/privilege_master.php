@@ -76,12 +76,11 @@ class Privilege_master extends CI_Controller {
 //        if ($perm) {
 
         $privilege_master_service = new Privilege_master_service();
-        $system_service = new System_service();
 
         $data['heading'] = "Edit Master Privilege";
 
         $data['privilege_master'] = $privilege_master_service->get_master_privilege_by_id(trim($this->input->post('master_privilege_id', TRUE)));
-        $data['systems'] = $system_service->get_all_systems();
+
 
         echo $this->load->view('privilege_master/edit_privilege_master_view',$data);
 
