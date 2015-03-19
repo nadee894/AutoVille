@@ -34,7 +34,7 @@
                             foreach ($results as $result) {
                                 ?>
                                 <tr id="vehicle_news_<?php echo $result->id; ?>">
-                                    <td><?php echo ++$i; ?></td>
+                                    <td><?php echo++$i; ?></td>
                                     <td><?php echo $result->title; ?></td>
                                     <td><?php echo $result->content ?></td>
 
@@ -79,20 +79,14 @@
                         <label for="name">Title</label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
                     </div>
-                    <label for="content">Content</label>
-                    <section class="panel">
-                        <header class="panel-heading">
-                            <?php echo $inner_title; ?>
-                            <span class="tools pull-right">
-                                <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                <a href="javascript:;" class="fa fa-times"></a>
-                            </span>
-                        </header>
+
+                    <div class="form-group">
+                        <label for="name">Content</label>
                         <textarea class="wysihtml5 form-control" id="content_text" name="content_text" rows="20">
-                            <?php echo $content_data->content; ?>
-                
+                           
                         </textarea>
-                    </section>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
@@ -105,62 +99,65 @@
 </div>
 
 
-
+<script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript">
-    $('#comments_menu').addClass('active open');
+                                        $('#comments_menu').addClass('active open');
 
-    $(document).ready(function() {
-        $('#vehicle_news_table').dataTable();
-    });
+                                        $('.wysihtml5').wysihtml5();
 
-    //change published status of the vehicle news
+                                        $(document).ready(function() {
+                                            $('#vehicle_news_table').dataTable();
+                                        });
 
-    function change_publish_status(vehicle_news_id, value, element) {
-        var condition = 'Do you want to activate this vehicle news?';
-        if (value == 0) {
-            condition = 'Do you want to deactivate this vehicle news?';
-        }
+                                        //change published status of the vehicle news
 
-        if (confirm(condition)) {
-            $.ajax({type: "POST",
-                url: site_url + '/vehicle_news/change_publish_status',
-                data: "id=" + vehicle_news_id + "&value=" + value,
-                success: function(msg) {
+                                        function change_publish_status(vehicle_news_id, value, element) {
+                                            var condition = 'Do you want to activate this vehicle news?';
+                                            if (value == 0) {
+                                                condition = 'Do you want to deactivate this vehicle news?';
+                                            }
 
-                    if (msg == 1) {
+                                            if (confirm(condition)) {
+                                                $.ajax({type: "POST",
+                                                    url: site_url + '/vehicle_news/change_publish_status',
+                                                    data: "id=" + vehicle_news_id + "&value=" + value,
+                                                    success: function(msg) {
 
-                        if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 0, this)" title="click to deactivate vehicle news"><i class="fa fa-check"></i></a> ');
-                        } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 1, this)" title="click to activate vehicle news"><i class="fa fa-exclamation-circle"></i></a> ');
-                        }
-                    } else if (msg == 2) {
+                                                        if (msg == 1) {
 
-                    }
+                                                            if (value == 1) {
+                                                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 0, this)" title="click to deactivate vehicle news"><i class="fa fa-check"></i></a> ');
+                                                            } else {
+                                                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 1, this)" title="click to activate vehicle news"><i class="fa fa-exclamation-circle"></i></a> ');
+                                                            }
+                                                        } else if (msg == 2) {
 
-                }
-            });
-        }
-    }
+                                                        }
 
-    //delete the vehicle news
-    function delete_vehicle_news(id) {
-        if (confirm('Are you sure want ot delete this comment ?')) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/vehicle_news/delete_vehicle_news',
-                data: "id=" + id,
-                success: function(msg) {
-                    if (msg == 1) {
-                        $('#vehicle_news_' + id).hide();
-                    }
-                    else if (msg == 2) {
-                        alert('Cannot be deleted as it is already assigned to others. !!');
-                    }
+                                                    }
+                                                });
+                                            }
+                                        }
 
-                }
-            });
-        }
-    }
+                                        //delete the vehicle news
+                                        function delete_vehicle_news(id) {
+                                            if (confirm('Are you sure want ot delete this comment ?')) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/vehicle_news/delete_vehicle_news',
+                                                    data: "id=" + id,
+                                                    success: function(msg) {
+                                                        if (msg == 1) {
+                                                            $('#vehicle_news_' + id).hide();
+                                                        }
+                                                        else if (msg == 2) {
+                                                            alert('Cannot be deleted as it is already assigned to others. !!');
+                                                        }
+
+                                                    }
+                                                });
+                                            }
+                                        }
 </script>
 

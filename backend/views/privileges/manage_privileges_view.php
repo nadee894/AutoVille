@@ -31,22 +31,23 @@
                         </thead>
                         <tbody>
                             <?php
+                            $i=0;
                             foreach ($privileges as $privilege) {
                                 ?> 
                                 <tr  id="privileges_<?php echo $privilege->privilege_code; ?>">
-                                    <td><?php echo $privilege->privilege_code; ?></td>
+                                    <td><?php echo ++$i; ?></td>
                                     <td><?php echo $privilege->master_privilege; ?></td>
                                     <td><?php echo $privilege->privilege; ?></td>
                                     <td><?php echo $privilege->priviledge_code_HF; ?></td>
                                     <td>
                                         <?php if ($this->config->item('SUPERADMIN') == $privilege->assign_for) { ?> 
-                                            <span class="label label-important">Super Administrator</span>
+                                            <span class="label label-success">Super Administrator</span>
                                         <?php } else if ($this->config->item('ADMIN') == $privilege->assign_for) { ?>
-                                            <span class="label label-important">Administrator</span>
+                                            <span class="label label-primary">Administrator</span>
                                         <?php } else if ($this->config->item('REGISTERED') == $privilege->assign_for) { ?>
-                                            <span class="label label-important">Registered User</span>
+                                            <span class="label label-warning">Registered User</span>
                                         <?php } else { ?>
-                                            <span class="label label-important">All</span>
+                                            <span class="label label-info">All</span>
                                         <?php } ?>
                                     </td>
                                     <td>
