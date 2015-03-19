@@ -51,6 +51,7 @@
         </a> 
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/comments/manage_comments">Website Reviews</a></li>
+            <li><a  href="<?php echo site_url(); ?>/vehicle_news/manage_vehicle_news">Vehicle News</a></li>
         </ul>
     </li>
 
