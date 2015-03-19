@@ -23,8 +23,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-<!--                                    <th>Added By</th>
-                                <th>Added Date</th>-->
+                                <th>Logo</th>
                                 <th>Active Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -37,6 +36,7 @@
                                 <tr id="manufacture_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
+                                    <td><?php echo $result->logo; ?></td>
     <!--                                        <td><?php echo $result->added_by_user; ?></td>-->
     <!--                                        <td><?php echo $result->added_date; ?></td>-->
                                     <td align="center">
@@ -78,6 +78,11 @@
                     <div class="form-group">
                         <label for="name">Title</label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
+                        <div id="upload">
+                                <button type="button" class="btn btn-primary btn-small" id="browse"><i class="fa fa-camera"></i></button>
+
+                            </div>
+                            <div id="sta"><span id="status" ></span></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -94,7 +99,7 @@
 <div class="modal fade "  id="manufacture_edit_div" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="manufacture_edit_content">
-            
+
         </div>
     </div>
 </div>
@@ -168,10 +173,10 @@
                         if (value == 1) {
                             $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + manufacture_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + manufacture_id + ', 1, this)" title="click to activate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
                         }
                     } else if (msg == 2) {
-                        alert('Error !!!');
+
                     }
                 }
             });
@@ -180,14 +185,14 @@
 
     //edit Manufacure
     function display_edit_manufacture_pop_up(manufacture_id) {
-    
+
         $.post(site_url + '/manufacture/load_edit_manufacture_content', {manufacture_id: manufacture_id}, function(msg) {
-            
+
             $('#manufacture_edit_content').html('');
             $('#manufacture_edit_content').html(msg);
             $('#manufacture_edit_div').modal('show');
         });
-        
+
     }
 
 </script>
