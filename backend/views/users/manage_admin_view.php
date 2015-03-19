@@ -79,11 +79,15 @@
                                     <br>
                                     <br>
                                     <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
+                                    
+                                    
                                     <?php if ($result->is_published) { ?>
-                                        <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check" title="Click to disable user"></i></a>
+                                        <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check"></i></a>
                                     <?php } else { ?>
-                                        <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-ban" title="Click to enable user"></i></a>
+                                        <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>
                                     <?php } ?>
+                                        
+                                        
                                     <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
 
@@ -185,10 +189,10 @@
                 data: "id=" + user_id + "&value=" + value,
                 success: function (msg) {
                     if (msg == 1) {
-                        if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ', 0, this)" title="click to disable user"><i class="fa fa-check" title="Click to disable user"></i></a>');
+                         if (value == 1) {
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ', 1, this)" title="click to enable user"><i class="fa fa-ban" title="Click to enable user"></i></a>');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
                         }
 
                     } else if (msg == 2) {
