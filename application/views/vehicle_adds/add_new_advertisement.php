@@ -3,7 +3,7 @@
         <!--Content-->
         <div class="col-md-9">
             <header>
-                <h1 class="page-title"><?php echo $heading;?></h1>
+                <h1 class="page-title"><?php echo $heading; ?></h1>
             </header>
             <form id="form-submit" role="form" method="post" action="submit.html-.htm" enctype="multipart/form-data">
                 <section>
@@ -12,6 +12,106 @@
                         <input type="text" class="form-control" id="title" name="title">
                     </div>
                 </section>
+
+                <!--Vehicle details -->
+                <section>
+                    <h3>About Vehicle</h3>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
+                                <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true">
+                                    <?php foreach ($manufactures as $manufacture) { ?>
+                                        <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <!--/.col-md-4-->
+                        <div class="col-md-4 col-sm-4">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="form-group">
+                                        <label for="model">Model<span class="mandatory">*</span></label>
+                                        <select name="model" id="model" title="Model" data-live-search="true">
+                                            <?php foreach ($models as $model) { ?>
+                                                <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <label for="fabrication">Fabrication<span class="mandatory">*</span></label>
+                                        <select name="fabrication" id="fabrication" title="Fabrication" data-live-search="true">
+                                            <option value="1990">1990</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1999">1999</option>
+                                            <option value="2000">2000</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2015">2015</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.col-md-4-->
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="street">Street</label>
+                                <input type="text" class="form-control" id="street" name="street">
+                            </div>
+                        </div>
+                        <!--/.col-md-4-->
+                    </div>
+                    <!--/.row-->
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="phone-number">Phone Number</label>
+                                <input type="text" class="form-control" id="phone-number" name="phone-number" pattern="\d*">
+                            </div>
+                        </div>
+                        <!--/.col-md-4-->
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                        </div>
+                        <!--/.col-md-4-->
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="website">Website</label>
+                                <input type="text" class="form-control" id="website" name="website">
+                            </div>
+                        </div>
+                        <!--/.col-md-4-->
+                    </div>
+                    <!--/.row-->
+                </section>
+                <!--Vehicle details -->
+
                 <section>
                     <h3>Address & Contact</h3>
                     <div class="row">
@@ -353,32 +453,32 @@
         </div>
         <!--/.col-md-9-->
         <!--Sidebar-->
-        <div class="col-md-3">
-            <aside id="sidebar">
-                <div class="sidebar-box">
-                    <h3>Payment</h3>
-                    <div class="form-group">
-                        <label for="package">Your Package</label>
-                        <select name="package" id="package" class="framed">
-                            <option value="">Select your package</option>
-                            <option value="1">Free</option>
-                            <option value="2">Silver</option>
-                            <option value="3">Gold</option>
-                            <option value="4">Platinum</option>
-                        </select>
-                    </div>
-                    <!-- /.form-group -->
-                    <h4>This package includes</h4>
-                    <ul class="bullets">
-                        <li>1 Property</li>
-                        <li>1 Agent Profile</li>
-                        <li class="disabled">Agency Profile</li>
-                        <li class="disabled">Featured Properties</li>
-                    </ul>
-                </div>
-            </aside>
-            <!-- /#sidebar-->
-        </div>
+        <!--        <div class="col-md-3">
+                    <aside id="sidebar">
+                        <div class="sidebar-box">
+                            <h3>Payment</h3>
+                            <div class="form-group">
+                                <label for="package">Your Package</label>
+                                <select name="package" id="package" class="framed">
+                                    <option value="">Select your package</option>
+                                    <option value="1">Free</option>
+                                    <option value="2">Silver</option>
+                                    <option value="3">Gold</option>
+                                    <option value="4">Platinum</option>
+                                </select>
+                            </div>
+                             /.form-group 
+                            <h4>This package includes</h4>
+                            <ul class="bullets">
+                                <li>1 Property</li>
+                                <li>1 Agent Profile</li>
+                                <li class="disabled">Agency Profile</li>
+                                <li class="disabled">Featured Properties</li>
+                            </ul>
+                        </div>
+                    </aside>
+                     /#sidebar
+                </div>-->
         <!-- /.col-md-3-->
         <!--end Sidebar-->
     </div>

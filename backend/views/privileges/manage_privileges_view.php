@@ -138,4 +138,44 @@
 
 <script type="text/javascript">
     $('#settings_menu').addClass('active');
+
+    $(document).ready(function() {
+
+        $('#privilege_table').dataTable();
+
+//add Privilege Form
+        $('#add_privilege_form').validate({
+            rules: {
+                master_privilege_code: {
+                    required: true
+                },
+                privilege: {
+                    required: true
+                },
+                privilege_desc: {
+                    required: true
+                },
+                privilege_hf: {
+                    required: true
+                },
+                assign_for: {
+                    required: true
+                }
+            }, submitHandler: function(form)
+            {
+                $.post(site_url + '/privilege/add_new_privilege', $('#add_privilege_form').serialize(), function(msg)
+                {
+                    if (msg == 1) {
+                        $('#add_privilege_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        add_privilege_form.reset();
+                        location.reload();
+                    } else {
+                        $('#add_privilege_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+                    }
+                });
+
+
+            }
+        });
+    });
 </script>

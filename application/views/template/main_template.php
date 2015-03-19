@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/bootstrap/css/bootstrap.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/bootstrap-select.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/owl.carousel.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/dropzone.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.ui.timepicker.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.nouislider.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
         <!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">-->
@@ -38,7 +41,7 @@
                                     <li><a href="sign-in.html">Sign In</a></li>
                                     <li><a href="register.html"><strong>Register</strong></a></li>
                                 </ul>
-                                <a href="<?php echo site_url();?>vehicle_advertisements/post_new_advertisement" class="submit-item">
+                                <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
                                     <div class="content"><span>Submit Your Advertisement</span></div>
                                     <div class="icon">
                                         <i class="fa fa-plus"></i>
@@ -208,12 +211,17 @@
 
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/richmarker-compiled.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/bootstrap-select.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/icheck.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.hotkeys.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/dropzone.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
