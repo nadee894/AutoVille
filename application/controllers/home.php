@@ -38,9 +38,9 @@ class Home extends CI_Controller {
         
         $data['manufactures']=$manufacture_service->get_all_active_manufactures();
         $data['models']=$vehicle_model_service->get_all_active_vehicle_models();
-        $data['body_types'] = $body_type_service->get_all_body_types();
-        $data['fuel_types'] = $fuel_type_service->get_all_fuel_types();
-        $data['transmissions'] = $transmission_service->get_all_transmissions();
+        $data['body_types'] = $body_type_service->get_all_active_body_types();
+        $data['fuel_types'] = $fuel_type_service->get_all_active_fuel_types();
+        $data['transmissions'] = $transmission_service->get_all_active_transmissions();
         $data['locations'] = $district_service->get_all_districts();
 
         $parials = array('content' => 'content_pages/home_content','vehicle_search_content'=>'vehicle_adds/load_vehicle_sepecs_for_search');
