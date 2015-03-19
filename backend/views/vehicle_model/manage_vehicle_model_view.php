@@ -77,10 +77,11 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input id="name" name="name" class="form-control" type="text" placeholder="Enter Title">
+                        <label for="name">Vehicle Model</label>
+                        <input id="name" name="name" class="form-control" type="text" placeholder="Enter Vehicle Model">
                     </div>
 
+                    <span id="rtn_msg"></span>
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
@@ -120,11 +121,11 @@
                 $.post(site_url + '/vehicle_model/add_new_vehicle_model', $('#vehicle_model_add_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
-
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         vehicle_model_add_form.reset();
                         window.location = site_url + '/vehicle_model/manage_models';
                     } else {
-                        alert("error occured");
+                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                     }
                 });
 
@@ -193,8 +194,8 @@
             $('#vehicle_model_edit_content').html(msg);
             $('#vehicle_model_edit_div').modal('show');
         });
-        
-        
+
+
     }
 </script>
 

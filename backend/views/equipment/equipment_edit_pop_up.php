@@ -6,10 +6,11 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Title</label>
+            <label for="name">Vehicle Equipment</label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $equipment->name; ?>">
             <input id="equipment_id"  name="equipment_id" type="hidden" value="<?php echo $equipment->id; ?>">
         </div>
+        <span id="rtn_msg_edit"></span>
     </div>
     <div class="modal-footer">
         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>        
@@ -18,25 +19,26 @@
 </form>
 
 <script type="text/javascript">
-    
+
     $("#edit_equipment_form").validate({
-        rules :{
+        rules: {
             name: "required"
         },
         messages: {
             name: "Please enter a title"
-        }, submitHandler : function (form){
-            
-            $.post(site_url + '/equipment/edit_equipment', $('#edit_equipment_form').serialize(), function(msg)
+        }, submitHandler: function (form) {
+
+            $.post(site_url + '/equipment/edit_equipment', $('#edit_equipment_form').serialize(), function (msg)
             {
                 if (msg == 1) {
+                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                     window.location = site_url + '/equipment/manage_equipment';
                 } else {
-                    alert("error occured");
+                    $('#rtn_msg_edit').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                 }
             });
         }
-                
+
     });
 
 </script>

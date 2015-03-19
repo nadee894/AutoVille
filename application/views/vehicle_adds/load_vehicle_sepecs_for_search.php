@@ -135,3 +135,8 @@
 <div class="background">
     <img src="<?php echo base_url(); ?>application_resources/assets/img/cars-bg.jpg" alt="">
 </div>
+
+
+<script type="text/javascript">
+
+</script>
