@@ -35,7 +35,7 @@
                             foreach ($privilege_masters as $privilege_master) {
                                 ?> 
                                 <tr  id="privilege_master_<?php echo $privilege_master->privilege_master_code; ?>">
-                                    <td><?php echo $i++; ?></td>
+                                    <td><?php echo ++$i; ?></td>
                                     <td><?php echo $privilege_master->master_privilege; ?></td>
                                     <td><?php echo $privilege_master->master_privilege_description; ?></td>
                                     <td>

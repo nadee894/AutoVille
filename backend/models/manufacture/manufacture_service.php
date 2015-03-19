@@ -72,5 +72,15 @@ class Manufacture_service extends CI_Model {
         $query = $this->db->get_where('manufacture', array('id' => $manufacture_model->get_id(), 'is_deleted' => '0'));
         return $query->row();
     }
+    
+    /*
+     * update the manufacture logo
+     */
+     function update_manufacture_logo($manufacture_model) {
+        $data = array('logo' => $manufacture_model->get_logo());
+        $this->db->where('id', $manufacture_model->get_id());
+        return $this->db->update('manufacture', $data);
+    }
+    
 
 }

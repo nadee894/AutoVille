@@ -100,5 +100,9 @@ class Manufacture extends CI_Controller {
         echo $manufacure_service->update_manufacure($manufacure_model);
 
     }
-
+    
+     /*
+     * This function is to upload profile pic to employee
+     */
+    
 }

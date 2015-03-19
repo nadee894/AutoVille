@@ -59,25 +59,28 @@
 
                                 <?php if ($result->is_online) { ?>
                                     <h4><i class="fa  fa-circle  text-success"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+                                        <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                                     <?php } else { ?>
-                                    <h4><i class="fa  fa-circle  text-danger"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+<!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>-->
 
                                 <?php } ?>
-                                <ul class="social-links">
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                </ul>
+                                <!--                                <ul class="social-links">
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                                                </ul>-->
 
-                                <address>
-                                    <strong>Address : <?php echo $result->address; ?></strong><br>
-                                    <abbr title="Phone">P1:</abbr> <?php echo $result->contact_no_1; ?><br>
-                                    <abbr title="Phone2">P2:</abbr> <?php echo $result->contact_no_2; ?></address>
-                                <email>E-mail : <?php echo $result->email; ?></email>
-
+                                <address>Address : <?php echo $result->address; ?><br>
+                                    <abbr title="Phone">Tel:</abbr> <?php echo $result->contact_no_1; ?><br>
+                                    <!--<abbr title="Phone2">P2:</abbr> <?php echo $result->contact_no_2; ?></address>-->
+                                    <email>E-mail : <?php echo $result->email; ?></email><br>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
+                                    <a class="btn btn-warning btn-xs" ><i class="fa fa-ban" title="Disable"></i></a>
+                                    <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
 
 
@@ -94,8 +97,8 @@
 <!-- page end-->
 
 <script type="text/javascript">
-    
-$('#user_menu').addClass('active');
+
+    $('#user_menu').addClass('active');
 
 
     //change Online status of body types
@@ -129,7 +132,7 @@ $('#user_menu').addClass('active');
             data: "myletter=" + letter,
             success: function (msg)
             {
-               $('#admin_filter_content').html(msg);
+                $('#admin_filter_content').html(msg);
             }
         });
     }
@@ -144,5 +147,27 @@ $('#user_menu').addClass('active');
 
     }
 
+//load admins when deleted
+    function load_after_deleted(user_id) {
+        if (confirm('Are you sure want to delete this user ?')) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/users/delete_users',
+                data: "user_id=" + user_id,
+                success: function (msg)
+                {
+                    if (msg == 1) {
+                        //document.getElementById(trid).style.display='none';
+                        $('#admin_'+user_id).hide();
+
+//                        $('#admin_filter_content').html(msg);
+                    }
+                    else if (msg == 2) {
+                        alert('Error in Deleting. !!');
+                    }
+                }
+            });
+        }
+    }
 
 </script>

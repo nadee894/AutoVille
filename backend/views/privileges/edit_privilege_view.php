@@ -18,7 +18,7 @@
         <div class="form-group">
             <label class="form-label">Privilege</label>
             <span style="color: red">*</span>
-            <input id="privilege" class="form-control" type="text" name="privilege" value="<?php echo $privilege->privilege; ?>" onkeyup="auto_write_human_friendly_code()" style="width: 50%">                              
+            <input id="privilege_edit" class="form-control" type="text" name="privilege" value="<?php echo $privilege->privilege; ?>" onkeyup="auto_write_human_friendly_code()" >                              
         </div>
 
 
@@ -26,14 +26,14 @@
             <label class="form-label">Privilege Description</label>
             <span style="color: red">*</span>
 
-            <input id="privilege_desc" class="form-control" type="text" name="privilege_desc" value="<?php echo $privilege->privilege_description; ?>" style="width: 50%">                              
+            <input id="privilege_desc" class="form-control" type="text" name="privilege_desc" value="<?php echo $privilege->privilege_description; ?>" >                              
         </div>
 
         <div class="form-group">
             <label class="form-label">Human Friendly Privilege Code</label>
             <span style="color: red">*</span>
 
-            <input id="privilege_hf" class="form-control" type="text" name="privilege_hf" value="<?php echo $privilege->priviledge_code_HF; ?>" style="width: 50%" readonly="true">                              
+            <input id="privilege_hf_edit" class="form-control" type="text" name="privilege_hf" value="<?php echo $privilege->priviledge_code_HF; ?>" readonly="true">                              
         </div>
 
         <div class="form-group">
@@ -97,12 +97,14 @@
     //this is to autofill the Privilege Human Code	
     function auto_write_human_friendly_code() {
 
-        var privilege_text = $("#privilege").val();
+        var privilege_text = $("#privilege_edit").val();
 
         //replace spaces with _
         var replaced_text = privilege_text.replace(/ /g, "_");
 
         //convert to upper case
-        $('#privilege_hf').val(replaced_text.toUpperCase());
+
+        $('#privilege_hf_edit').val(replaced_text.toUpperCase());
+
     }
 </script>

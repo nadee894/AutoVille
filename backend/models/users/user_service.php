@@ -12,6 +12,7 @@ class User_service extends CI_Model {
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
         $this->db->where('user_type.id in (2,1)');
+        $this->db->where('is_deleted', '0');
         $this->db->order_by("user.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
@@ -82,6 +83,16 @@ class User_service extends CI_Model {
         
         $data = array('is_online' => $user_model->get_is_online());
         $this->db->where('id', $user_model->get_id());
+        return $this->db->update('user', $data);
+    }
+    
+    /*
+     * Delete users from database     
+     */
+
+    function delete_users($user_id) {
+        $data = array('is_deleted' => '1');
+        $this->db->where('id', $user_id);
         return $this->db->update('user', $data);
     }
 
