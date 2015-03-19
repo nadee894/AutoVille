@@ -1,4 +1,4 @@
- <?php
+  <?php
         $i = 0;
         $n = 0;
         foreach ($results as $result) {
@@ -18,10 +18,10 @@
 
                                 <?php if ($result->is_online) { ?>
                                     <h4><i class="fa  fa-circle  text-success"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
+                                        <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                                     <?php } else { ?>
-                                    <h4><i class="fa  fa-circle  text-danger"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+<!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>-->
 
                                 <?php } ?>
                                 <!--                                <ul class="social-links">
@@ -39,7 +39,7 @@
                                     <br>
                                     <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
                                     <a class="btn btn-warning btn-xs" ><i class="fa fa-ban" title="Disable"></i></a>
-                                    <a class="btn btn-danger btn-xs" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+                                    <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
 
 
@@ -49,4 +49,3 @@
                 </div>
             </div>
         <?php } ?>
-
