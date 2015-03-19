@@ -2,7 +2,7 @@
     <div class="container">
         <h1>Find Your Dream Car</h1>
         <div class="search-bar horizontal">
-            <form class="main-search border-less-inputs background-color-grey-dark dark-inputs" role="form" method="post" action="index-cars.html-.htm">
+            <form class="main-search border-less-inputs background-color-grey-dark dark-inputs" role="form" method="post" >
                 <div class="input-row">
                     <div class="form-group">
                         <label for="manufacturer">Manufacturer</label>
@@ -35,8 +35,8 @@
                         <label>Year</label>
                         <div class="ui-slider" id="year-slider" data-value-min="1920" data-value-max="2015" data-step="1">
                             <div class="values clearfix">
-                                <input class="value-min" name="value-min[]" readonly>
-                                <input class="value-max" name="value-max[]" readonly>
+                                <input class="value-min" id="minyear" name="value-min[]" readonly>
+                                <input class="value-max" id="maxyear" name="value-max[]" readonly>
                             </div>
                             <div class="element"></div>
                         </div>
@@ -47,7 +47,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="fuel">Fuel</label>
-                        <select name="fuel_type" id="fuel_type" title="Fuel">
+                        <select name="fuel_type" id="fuel_type" title="Fuel" data-live-search="true">
                             <?php foreach ($fuel_types as $fuel_type) { ?>
                                 <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
                             <?php } ?>
@@ -56,7 +56,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="sale_type">Sale Type</label>
-                        <select name="sale_type" id="sale_type" title="Sale Type">
+                        <select name="sale_type" id="sale_type" title="Sale Type" data-live-search="true">
                             <option value="1">New</option>
                             <option value="2">Used</option>
                         </select>
@@ -64,7 +64,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="color">Color</label>
-                        <select name="color" id="color" title="Color">
+                        <select name="color" id="color" title="Color" data-live-search="true">
                             <option value="1">Blue</option>
                             <option value="2">Yellow</option>
                             <option value="3">Purple</option>
@@ -80,8 +80,8 @@
                         <label>Price</label>
                         <div class="ui-slider" id="price-slider" data-value-min="100" data-value-max="40000" data-value-type="price" data-currency="$" data-currency-placement="before" data-step="10">
                             <div class="values clearfix">
-                                <input class="value-min" name="value-min[]" readonly>
-                                <input class="value-max" name="value-max[]" readonly>
+                                <input class="value-min" id="minprice" name="value-min[]" readonly>
+                                <input class="value-max" id="maxprice" name="value-max[]" readonly>
                             </div>
                             <div class="element"></div>
                         </div>
@@ -92,7 +92,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="transmission">Transmission</label>
-                        <select name="transmission" id="transmission" title="Transmission">
+                        <select name="transmission" id="transmission" title="Transmission" data-live-search="true">
                             <?php foreach ($transmissions as $transmission) { ?>
                                 <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
                             <?php } ?>
@@ -101,7 +101,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="kilometers">Kilometers</label>
-                        <select name="kilometers" id="kilometers" title="Kilometers">
+                        <select name="kilometers" id="kilometers" title="Kilometers" data-live-search="true">
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
@@ -109,7 +109,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <select name="location" id="location" title="Location">
+                        <select name="location" id="location" title="Location" data-live-search="true">
                             <?php foreach ($locations as $location) { ?>
                                 <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                             <?php } ?>
@@ -122,7 +122,7 @@
                     </div>  
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        <button type="submit" class="btn btn-default" onclick="search_vehicle()"><i class="fa fa-search"></i></button>
                     </div>
                     <!-- /.form-group -->
                 </div>
@@ -139,4 +139,37 @@
 
 <script type="text/javascript">
 
+    function search_vehicle() {
+        alert('searched pressed');
+        var manufacture = $('#manufacturer').val();
+        var model = $('#model').val();
+        var body_type = $('#body_type').val();
+        var maxyear = $('#maxyear').val();
+        var minyear = $('#minyear').val();
+        var fuel_type = $('#fuel_type').val();
+        var sale_type = $('#sale_type').val();
+        var color = $('#color').val();
+        var maxprice = $('#maxprice').val();
+        var minprice = $('#minprice').val();
+        var transmission = $('#transmission').val();
+        var kilometers = $('#kilometers').val();
+        var location = $('#location').val();
+        var keyword = $('#keyword').val();
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/vehicle_search/search_advertisements',
+            data: "manufacture=" + manufacture + "&model=" + model + "&body_type=" + body_type + "&maxyear=" + maxyear +
+                    "&minyear=" + minyear + "&fuel_type=" + fuel_type + "&sale_type=" + sale_type + "&color=" + color +
+                    "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
+                    "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword,
+            success: function (msg) {
+                if (msg == 1) {
+                    alert('one results');
+                } else {
+                    alert('Many results!');
+                }
+            }
+        });
+    }
 </script>

@@ -170,6 +170,12 @@
 </section>
 <!--end Categories-->
 
+<!--Search Result-->
+<section id="search-result" class="block equal-height">
+     <?php echo $searched_results; ?>
+</section>
+<!--end Search Result-->
+
 <!--Price Drop-->
 <section id="price-drop" class="block equal-height">
     <div class="container">
