@@ -11,13 +11,13 @@ class Body_type_service extends CI_Model {
      * Load All body type Details from database     
      */
 
-    public function get_all_body_types() {
+    public function get_all_active_body_types() {
 
-        $this->db->select('body_type.*,user.name as added_by_user');
+        $this->db->select('body_type.*');
         $this->db->from('body_type');
-        $this->db->join('user', 'user.id =body_type.added_by');
         $this->db->where('body_type.is_deleted', '0');
-        $this->db->order_by("body_type.added_date", "desc");
+        $this->db->where('body_type.is_published', '1');
+        $this->db->order_by("body_type.name", "asc");
         $query = $this->db->get();
         return $query->result();
     }

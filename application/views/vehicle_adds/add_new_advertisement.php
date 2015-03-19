@@ -78,8 +78,12 @@
                         <!--/.col-md-4-->
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label for="street">Street</label>
-                                <input type="text" class="form-control" id="street" name="street">
+                                <label for="body_type">Body Type<span class="mandatory">*</span></label>
+                                <select name="body_type" id="body_type" title="Body Type" data-live-search="true">
+                                    <?php foreach ($body_types as $body_type) { ?>
+                                        <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <!--/.col-md-4-->
@@ -88,15 +92,23 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label for="phone-number">Phone Number</label>
-                                <input type="text" class="form-control" id="phone-number" name="phone-number" pattern="\d*">
+                                <label for="fuel_type">Fuel Type<span class="mandatory">*</span></label>
+                                <select name="fuel_type" id="fuel_type" title="Fuel Type" data-live-search="true">
+                                    <?php foreach ($fuel_types as $fuel_type) { ?>
+                                        <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <!--/.col-md-4-->
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                               <label for="transmission">Transmission<span class="mandatory">*</span></label>
+                                <select name="transmission" id="transmission" title="Transmission" data-live-search="true">
+                                    <?php foreach ($models as $model) { ?>
+                                        <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <!--/.col-md-4-->
