@@ -27,6 +27,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_model_service = new Vehicle_model_service();
         $body_type_service     = new Body_type_service();
         $fuel_type_service     = new Fuel_Type_service();
+        $transmission_service = new Transmission_service();
 
         $data['heading'] = "Sell your vehicle";
 
@@ -34,6 +35,7 @@ class Vehicle_advertisements extends CI_Controller {
         $data['models']       = $vehicle_model_service->get_all_active_vehicle_models();
         $data['body_types']   = $body_type_service->get_all_active_body_types();
         $data['fuel_types']   = $fuel_type_service->get_all_active_fuel_types();
+        $data['transmissions']   = $transmission_service->get_all_active_transmissions();
 
         $parials = array('content' => 'vehicle_adds/add_new_advertisement');
         $this->template->load('template/main_template', $parials, $data);

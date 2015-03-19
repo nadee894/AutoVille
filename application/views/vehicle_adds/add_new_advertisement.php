@@ -105,8 +105,8 @@
                             <div class="form-group">
                                <label for="transmission">Transmission<span class="mandatory">*</span></label>
                                 <select name="transmission" id="transmission" title="Transmission" data-live-search="true">
-                                    <?php foreach ($models as $model) { ?>
-                                        <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
+                                    <?php foreach ($transmissions as $transmission) { ?>
+                                        <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

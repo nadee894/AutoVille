@@ -11,13 +11,13 @@ class Transmission_service extends CI_Model {
      * This is the service function to get all transmissions
      */
 
-    public function get_all_transmissions() {
+    public function get_all_active_transmissions() {
 
-        $this->db->select('transmission.*,user.name as added_by_user');
+        $this->db->select('transmission.*');
         $this->db->from('transmission');
-        $this->db->join('user', 'user.id = transmission.added_by');
         $this->db->where('transmission.is_deleted', '0');
-        $this->db->order_by("transmission.added_date", "desc");
+        $this->db->where('transmission.is_published', '1');
+        $this->db->order_by("transmission.name", "asc");
         $query = $this->db->get();
         return $query->result();
     }
