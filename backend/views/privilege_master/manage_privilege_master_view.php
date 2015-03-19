@@ -12,7 +12,7 @@
                 <div class="adv-table">
                     <div class="clearfix">
                         <div class="btn-group">
-                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#add_privilege_modal" data-toggle="modal">
+                            <a id="editable-sample_new" class="btn btn-shadow btn-primary" href="#add_privilege_master_modal" data-toggle="modal">
                                 Add New
                                 <i class="fa fa-plus"></i>
                             </a>
