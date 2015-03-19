@@ -29,7 +29,7 @@ class Vehicle_advertisments_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
+
     /*
      * This is the service function to search all advertisements
      */
@@ -53,5 +53,58 @@ class Vehicle_advertisments_service extends CI_Model {
         return $query->result();
     }
 
+    /**
+     * This is the service function to search all vehicles by 
+     * vehicle specifications
+     */
+    public function search_vehicle($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type
+    , $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword) {
+
+        $this->db->select('vehicle_advertisements.*,vehicle_images.*');
+        $this->db->from('vehicle_advertisements');
+        $this->db->join('user', 'user.id = vehicle_advertisements.added_by');
+        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
+        $this->db->where('vehicle_advertisements.is_deleted', '0');
+
+        if (!empty($manufacture)) {
+            $this->db->where('vehicle_advertisements.manufacture_id', $manufacture);
+        }
+        if (!empty($model)) {
+            $this->db->where('vehicle_advertisements.model_id', $model);
+        }
+        if (!empty($body_type)) {
+            $this->db->where('vehicle_advertisements.body_type_id', $body_type);
+        }
+        if (!empty($fuel_type)) {
+            $this->db->where('vehicle_advertisements.fuel_type_id', $fuel_type);
+        }
+        if (!empty($transmission)) {
+            $this->db->where('vehicle_advertisements.transmission_id', $transmission);
+        }
+        if (!empty($maxyear)) {
+            $this->db->where('vehicle_advertisements.year <=', $maxyear);
+            $this->db->where('vehicle_advertisements.year >=', $minyear);
+        }
+        if (!empty($sale_type)) {
+            $this->db->where('vehicle_advertisements.sale_type', $sale_type);
+        }
+        if (!empty($color)) {
+            $this->db->where('vehicle_advertisements.colour', $color);
+        }
+        if (!empty($maxprice)) {
+            $this->db->where('vehicle_advertisements.year <=', $maxprice);
+            $this->db->where('vehicle_advertisements.year >=', $minprice);
+        }
+        if (!empty($kilometers)) {
+            $this->db->where('vehicle_advertisements.kilometers', $kilometers);
+        }
+        if (!empty($location)) {
+            $this->db->like('user.address', $location);
+        }
+
+        $this->db->order_by("vehicle_advertisements.added_date", "desc");
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }
