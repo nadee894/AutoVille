@@ -54,11 +54,21 @@ class Users extends CI_Controller {
 
         $letter = $this->input->post('myletter', TRUE);
         $user_type = $user_service->get_admin_by_name($letter);
-        
+
         $data['results'] = $user_type;
-        
-        $this->load->view('users/admin_filter_view',$data);
-                                
+
+        $this->load->view('users/admin_filter_view', $data);
+    }
+
+    /*
+     * Function to delete user
+     */
+
+    function delete_users() {
+        $user_service = new User_service();
+        echo $user_service->delete_users(trim($this->input->post('id', TRUE)));
+
+//        $this->load->view('users/admin_filter_view', $data);
     }
 
 }
