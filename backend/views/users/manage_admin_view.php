@@ -59,10 +59,10 @@
 
                                 <?php if ($result->is_online) { ?>
                                     <h4><i class="fa  fa-circle  text-success"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
+                                        <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                                     <?php } else { ?>
-                                    <h4><i class="fa  fa-circle  text-danger"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+<!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>-->
 
                                 <?php } ?>
                                 <!--                                <ul class="social-links">
@@ -149,7 +149,7 @@
 
 //load admins when deleted
     function load_after_deleted(user_id) {
-        if (confirm('Are you sure want to delete this Body Type ?')) {
+        if (confirm('Are you sure want to delete this user ?')) {
             $.ajax({
                 type: "POST",
                 url: site_url + '/users/delete_users',
@@ -163,7 +163,7 @@
 //                        $('#admin_filter_content').html(msg);
                     }
                     else if (msg == 2) {
-                        alert('Cannot be deleted as it is already assigned to others. !!');
+                        alert('Error in Deleting. !!');
                     }
                 }
             });

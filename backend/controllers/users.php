@@ -66,7 +66,7 @@ class Users extends CI_Controller {
 
     function delete_users() {
         $user_service = new User_service();
-        echo $user_service->delete_users(trim($this->input->post('id', TRUE)));
+        echo $user_service->delete_users(trim($this->input->post('user_id', TRUE)));
 
 //        $this->load->view('users/admin_filter_view', $data);
     }
