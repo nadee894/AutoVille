@@ -8,15 +8,15 @@ class Privilege_master extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        if (!$this->session->userdata('EMPLOYEE_LOGGED_IN')) {
-            redirect(site_url() . '/login/login_controller');
-        } else {
+//        if (!$this->session->userdata('EMPLOYEE_LOGGED_IN')) {
+//            redirect(site_url() . '/login/load_login');
+//        } else {
             $this->load->model('privilege_master/privilege_master_model');
             $this->load->model('privilege_master/privilege_master_service');
 
 //
 //            $this->load->model('Systems/Systemsservice');
-        }
+//        }
     }
 
     function manage_privilege_masters() {
@@ -25,12 +25,12 @@ class Privilege_master extends CI_Controller {
 //        if ($perm) {
 
         $privilege_master_service = new Privilege_master_service();
-        $system_service = new System_service();
+
 
         $data['heading'] = "Manage Master Privileges";
 
         $data['privilege_masters'] = $privilege_master_service->get_all_master_privileges();
-        $data['systems'] = $system_service->get_all_systems();
+
 
         $partials = array('content' => 'privilege_master/manage_privilege_master_view');
         $this->template->load('template/main_template', $partials, $data);

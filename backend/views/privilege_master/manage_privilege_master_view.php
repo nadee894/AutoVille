@@ -21,20 +21,21 @@
                     <table class="display table table-bordered table-striped" id="privilege_master_table" >
                         <thead>
                             <tr>
-                                <th>Master Privilege ID</th>
+                                <th>#</th>
                                 <th>Master Privilege</th>
                                 <th>Description</th>
                                 <th>System</th>
-                                <th>Options</th>
+                                <th>Actions</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            $i=0;
                             foreach ($privilege_masters as $privilege_master) {
                                 ?> 
                                 <tr  id="privilege_master_<?php echo $privilege_master->privilege_master_code; ?>">
-                                    <td><?php echo $privilege_master->privilege_master_code; ?></td>
+                                    <td><?php echo $i++; ?></td>
                                     <td><?php echo $privilege_master->master_privilege; ?></td>
                                     <td><?php echo $privilege_master->master_privilege_description; ?></td>
                                     <td>

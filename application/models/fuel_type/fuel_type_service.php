@@ -12,13 +12,13 @@ class Fuel_Type_service extends CI_Model {
      * This is the service function to get all fuel types
      */
 
-    public function get_all_fuel_types() {
+    public function get_all_active_fuel_types() {
 
-        $this->db->select('fuel_type.*,user.name as added_by_user');
+        $this->db->select('fuel_type.*');
         $this->db->from('fuel_type');
-        $this->db->join('user', 'user.id = fuel_type.added_by');
         $this->db->where('fuel_type.is_deleted', '0');
-        $this->db->order_by("fuel_type.added_date", "desc");
+        $this->db->where('fuel_type.is_published', '1');
+        $this->db->order_by("fuel_type.name", "asc");
         $query = $this->db->get();
         return $query->result();
     }

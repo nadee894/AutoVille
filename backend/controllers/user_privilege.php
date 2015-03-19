@@ -54,8 +54,8 @@ class User_privilege extends CI_Controller {
         $user_privilege_model->set_user_code($this->input->post('emp_code', TRUE));
         $user_privilege_model->set_privilege_code($this->input->post('pri_code', TRUE));
         //adding the user piviledges based on the template
-        $user_privilege_service->add_new_user_privilege($user_privilege_model);
-        echo 1;
+        echo $user_privilege_service->add_new_user_privilege($user_privilege_model);
+
     }
 
     function employee_privileges_add_all() {
