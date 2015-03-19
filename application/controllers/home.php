@@ -13,7 +13,7 @@ class Home extends CI_Controller {
 
         $data['heading'] = "Manage Transmissions";
 
-        $parials = array('content' => 'content_pages/home_content');
+        $parials = array('content' => 'content_pages/home_content','vehicle_search_content'=>'vehicle_adds/search_advertisement');
         $this->template->load('template/main_template',$parials, $data);
     }
 
