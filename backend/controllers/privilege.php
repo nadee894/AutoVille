@@ -63,19 +63,18 @@ class Privilege extends CI_Controller {
 //        }
     }
 
-    function edit_privileges_view($id) {
+    function load_edit_privilege_content() {
 //        $perm = Access_controllerservice :: checkAccess('EDIT_PRIVILEGES');
 //        if ($perm) {
 
         $privilege_service        = new Privilege_service();
         $privilege_master_service = new Privilege_master_service();
 
-        $data['heading']           = "Edit Privilege";
-        $data['privilege']         = $privilege_service->get_privilege_by_id($id);
+        $data['privilege']         = $privilege_service->get_privilege_by_id(trim($this->input->post('privilege_id', TRUE)));
         $data['master_privileges'] = $privilege_master_service->get_all_master_privileges();
 
-        $partials = array('content' => 'privileges/edit_privilege_view');
-        $this->template->load('template/main_template', $partials, $data);
+        echo $this->load->view('privileges/edit_privilege_view',$data);
+
 //        } else {
 //            $this->template->load('template/access_denied_page');
 //        }

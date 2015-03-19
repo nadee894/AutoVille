@@ -41,11 +41,10 @@
             <span style="color: red">*</span>
 
             <select name="assign_for" id="assign_for" class="select2 form-control" style="width: 50%" >
-                <option value="1" <?php if ($this->config->item('ADMIN') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Admin</option>
-                <option value="2" <?php if ($this->config->item('COMPANY_OWNER') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Company Owner</option>
-                <option value="3" <?php if ($this->config->item('EMPLOYEE') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Employee</option>
-                <option value="4" <?php if ($this->config->item('ALL') == $privilege->assign_for) { ?> selected="true" <?php } ?>>All</option>
-
+                <option value="1" <?php if ($this->config->item('SUPERADMIN') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Admin</option>
+                <option value="2" <?php if ($this->config->item('ADMIN') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Company Owner</option>
+                <option value="3" <?php if ($this->config->item('REGISTERED') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Employee</option>
+                
             </select>                               
         </div>
         <div id="rtn_msg_edit" class="form-row"> </div>
@@ -93,4 +92,17 @@
             });
         }
     });
+
+
+    //this is to autofill the Privilege Human Code	
+    function auto_write_human_friendly_code() {
+
+        var privilege_text = $("#privilege").val();
+
+        //replace spaces with _
+        var replaced_text = privilege_text.replace(/ /g, "_");
+
+        //convert to upper case
+        $('#privilege_hf').val(replaced_text.toUpperCase());
+    }
 </script>
