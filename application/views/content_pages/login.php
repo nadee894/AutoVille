@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">
 
-        <title>Spotter - Universal Directory Listing HTML Template</title>
+        <title>Autoville</title>
 
     </head>
 
@@ -63,30 +63,7 @@
                     </nav>
                     <!--end Off Canvas Navigation-->
 
-                    <!--Sub Header-->
-                    <section class="sub-header">
-                        <div class="search-bar horizontal collapse" id="redefine-search-form"></div>
-                        <!-- /.search-bar -->
-                        <div class="breadcrumb-wrapper">
-                            <div class="container">
-                                <div class="redefine-search">
-                                    <a href="index.htm#redefine-search-form" class="inner" data-toggle="collapse" aria-expanded="false" aria-controls="redefine-search-form">
-                                        <span class="icon"></span>
-                                        <span>Redefine Search</span>
-                                    </a>
-                                </div>
-                                <ol class="breadcrumb">
-                                    <li><a href="index-directory.html"><i class="fa fa-home"></i></a></li>
-                                    <li><a href="index.htm#">Page</a></li>
-                                    <li class="active">Detail</li>
-                                </ol>
-                                <!-- /.breadcrumb-->
-                            </div>
-                            <!-- /.container-->
-                        </div>
-                        <!-- /.breadcrumb-wrapper-->
-                    </section>
-                    <!--end Sub Header-->
+
 
                     <!--Page Content-->
                     <div id="page-content">
@@ -101,11 +78,11 @@
                                         <form role="form" id="login_form" method="post">
                                             <div class="form-group">
                                                 <label for="form-sign-in-Username">Username:</label>
-                                                <input type="text" class="form-control" id="txtusername" name="txtusername" required>
+                                                <input id="txtusername" name="txtusername" type="text" class="form-control" placeholder="Username" autofocus>
                                             </div><!-- /.form-group -->
                                             <div class="form-group">
                                                 <label for="form-sign-in-password">Password:</label>
-                                                <input type="password" class="form-control" id="txtpassword" name="txtpassword" required>
+                                                <input id="txtpassword" name="txtpassword" type="password" class="form-control" placeholder="Password">
                                             </div><!-- /.form-group -->
                                             <div class="form-group clearfix">
                                                 <button type="submit" onclick="login()" class="btn pull-right btn-default" id="account-submit">Sign In</button>
@@ -147,12 +124,13 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/bootstrap-select.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.hotkeys.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
         <!--[if lte IE 9]>
         <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
         <![endif]-->
     </body>
 </html>
+
 
 
 <script type="text/javascript">
@@ -177,9 +155,9 @@
                                                     function login() {
                                                         var login_username = $('#txtusername').val();
                                                         var login_password = $('#txtpassword').val();
-
+                                                        alert("login");
                                                         if ($('#login_form').valid()) {
-
+                                                            alert("vald");
                                                             $.ajax({
                                                                 type: "POST",
                                                                 url: site_url + '/login/authenticate_user',
@@ -187,7 +165,7 @@
                                                                 success: function (msg) {
 
                                                                     if (msg == 1) {
-                                                                        alert("login success");
+                                                                        alert("Login success");
                                                                         setTimeout("location.href = site_url+'/login/load_login';", 100);
                                                                     } else {
                                                                         alert("Invalid login details...");
@@ -198,3 +176,4 @@
                                                     }
 
 </script>
+

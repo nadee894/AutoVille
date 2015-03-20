@@ -14,12 +14,8 @@ class Login extends CI_Controller {
 
     function load_login() {
         if ($this->session->userdata('USER_LOGGED_IN')) {
-            echo "user logged";
             redirect(site_url() . '/home/index');
-            redirect(base_url());
-            //$this->template->load('home/index');
         } else {
-            echo "not logged";
             $this->template->load('content_pages/login');
         }
     }
