@@ -7,6 +7,7 @@
                     <div class="form-group">
                         <label for="manufacturer">Manufacturer</label>
                         <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true">
+                            <option value="">Select Manufacturer</option>
                             <?php foreach ($manufactures as $manufacture) { ?>
                                 <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
                             <?php } ?>
@@ -16,6 +17,7 @@
                     <div class="form-group">
                         <label for="model">Model</label>
                         <select name="model" id="model" title="Model" data-live-search="true">
+                            <option value="">Select Model</option>
                             <?php foreach ($models as $model) { ?>
                                 <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
                             <?php } ?>
@@ -25,6 +27,7 @@
                     <div class="form-group">
                         <label for="body_type">Body Type</label>
                         <select name="body_type" id="body_type" title="Body Type" data-live-search="true">
+                            <option value="">Select Body Type</option>
                             <?php foreach ($body_types as $body_type) { ?>
                                 <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
                             <?php } ?>
@@ -48,6 +51,7 @@
                     <div class="form-group">
                         <label for="fuel">Fuel</label>
                         <select name="fuel_type" id="fuel_type" title="Fuel" data-live-search="true">
+                            <option value="">Select Fuel Type</option>
                             <?php foreach ($fuel_types as $fuel_type) { ?>
                                 <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
                             <?php } ?>
@@ -57,14 +61,16 @@
                     <div class="form-group">
                         <label for="sale_type">Sale Type</label>
                         <select name="sale_type" id="sale_type" title="Sale Type" data-live-search="true">
-                            <option value="1">New</option>
-                            <option value="2">Used</option>
+                            <option value="">Select Sale Type</option>
+                            <option value="0">New</option>
+                            <option value="1">Used</option>
                         </select>
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="color">Color</label>
                         <select name="color" id="color" title="Color" data-live-search="true">
+                            <option value="">Select Color</option>
                             <option value="1">Blue</option>
                             <option value="2">Yellow</option>
                             <option value="3">Purple</option>
@@ -77,8 +83,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Price</label>
-                        <div class="ui-slider" id="price-slider" data-value-min="100" data-value-max="40000" data-value-type="price" data-currency="$" data-currency-placement="before" data-step="10">
+                        <label>Price Rs.</label>
+                        <div class="ui-slider" id="price-slider" data-value-min="10000" data-value-max="1000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
                             <div class="values clearfix">
                                 <input class="value-min" id="minprice" name="value-min[]" readonly>
                                 <input class="value-max" id="maxprice" name="value-max[]" readonly>
@@ -93,6 +99,7 @@
                     <div class="form-group">
                         <label for="transmission">Transmission</label>
                         <select name="transmission" id="transmission" title="Transmission" data-live-search="true">
+                            <option value="">Select Transmission</option>
                             <?php foreach ($transmissions as $transmission) { ?>
                                 <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
                             <?php } ?>
@@ -102,6 +109,7 @@
                     <div class="form-group">
                         <label for="kilometers">Kilometers</label>
                         <select name="kilometers" id="kilometers" title="Kilometers" data-live-search="true">
+                            <option value="">Select Kilometers</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
@@ -109,7 +117,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <select name="location" id="location" title="Location" data-live-search="true">
+                        <select name="location" id="location" title="Location" data-live-search="true">                            
                             <?php foreach ($locations as $location) { ?>
                                 <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                             <?php } ?>
@@ -140,20 +148,29 @@
 <script type="text/javascript">
 
     function search_vehicle() {
-        alert('searched pressed');
+
         var manufacture = $('#manufacturer').val();
         var model = $('#model').val();
         var body_type = $('#body_type').val();
         var maxyear = $('#maxyear').val();
         var minyear = $('#minyear').val();
         var fuel_type = $('#fuel_type').val();
-        var sale_type = $('#sale_type').val();
-        var color = $('#color').val();
+        var sale_type = $('#sale_type option:selected').text();
+        if (sale_type == "Select Sale Type") {
+            sale_type = '';
+        }
+        var color = $('#color option:selected').text();
+        if (color == "Select Color") {
+            color = '';
+        }
         var maxprice = $('#maxprice').val();
         var minprice = $('#minprice').val();
         var transmission = $('#transmission').val();
         var kilometers = $('#kilometers').val();
-        var location = $('#location').val();
+        var location = $('#location option:selected').text();
+        if (location == "All") {
+            location = '';
+        }
         var keyword = $('#keyword').val();
 
         $.ajax({
