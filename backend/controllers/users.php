@@ -85,4 +85,17 @@ class Users extends CI_Controller {
         echo $user_service->publish_status_of_user($user_model);
     }
 
+    /*
+     * Function to load the profile of a single user
+     */
+
+    function load_profile_of_user() {
+
+        $user_service = new User_service();
+        $user_type = $user_service->get_admin_by_id(get_current_user());
+        $data['results'] = $user_type;
+
+        $this->load->view('users/manage_admin_profile_view', $data);
+    }
+
 }
