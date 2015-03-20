@@ -1,6 +1,5 @@
   <?php
-        $i = 0;
-        $n = 0;
+        
         foreach ($results as $result) {
             ?>
             <div class="col-md-6 col-sm-6"id="admin_<?php echo $result->id; ?>" >
