@@ -44,7 +44,7 @@
         </section>
         <section class="panel">
             <div class="bio-graph-heading">
-
+                Hi Good Morning!Have a Great Day!!
             </div>
             <div class="panel-body bio-graph-info">
                 <h1>Bio Graph</h1>
@@ -57,7 +57,7 @@
                         <p><span>User Name </span>: <?php echo $results->user_name; ?></p>
                     </div>
                     <div class="bio-row">
-                        <p><span>User Type</span>: <?php echo $results->user_type; ?></p>
+                        <p><span>User Type</span>: <?php echo $results->type; ?></p>
                     </div>
                     <div class="bio-row">
                         <p><span>Email </span>: <?php echo $results->email; ?></p>
