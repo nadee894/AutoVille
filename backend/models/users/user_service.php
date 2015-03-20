@@ -55,9 +55,14 @@ class User_service extends CI_Model {
 
     function get_admin_by_id($user_model) {
 
-        $data = array('id' => $user_model->get_id(), 'is_deleted' => '0');
-        $query = $this->db->get_where('user', $data);
-        
+        $this->db->select('user.*, user_type.type');
+        $this->db->from('user');
+        $this->db->join('user_type', 'user.user_type= user_type.id');
+        $this->db->where('user_type.id in (2,1)');
+        $this->db->where('user.is_deleted', '0');
+        $this->db->where('user.id', $user_model->get_id());
+        $query = $this->db->get();
+
         return $query->row();
     }
 
@@ -67,7 +72,7 @@ class User_service extends CI_Model {
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
         $this->db->where('user_type.id in (2,1)');
-        $this->db->where('user.name like "'.$letter.'%"');
+        $this->db->where('user.name like "' . $letter . '%"');
 //        echo $letter;
         $this->db->where('user.is_deleted', '0');
         $this->db->order_by("user.added_date", "desc");
@@ -81,12 +86,12 @@ class User_service extends CI_Model {
      */
 
     function update_user_online_status($user_model) {
-        
+
         $data = array('is_online' => $user_model->get_is_online());
         $this->db->where('id', $user_model->get_id());
         return $this->db->update('user', $data);
     }
-    
+
     /*
      * Delete users from database     
      */
@@ -96,8 +101,7 @@ class User_service extends CI_Model {
         $this->db->where('id', $user_id);
         return $this->db->update('user', $data);
     }
-    
-    
+
     /*
      * Change disable status of a user   
      */
