@@ -1,88 +1,77 @@
-<div class="page-title">	
-    <h3><?php echo $heading; ?></h3>		
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Privilege Master Quick Edit</h4>
 </div>
+<form id="edit_privilege_master_form" name="edit_privilege_master_form">
+    <div class="modal-body">
 
-<div class="row-fluid">
-    <div class="span12">
-        <div class="grid simple ">
-            <div class="grid-title">
-                <h4>Advance <span class="semi-bold">Options</span></h4>
-                <div class="tools"> <a href="javascript:;" class="collapse"></a>  <a href="javascript:;" class="reload"></a>  </div>
-            </div>
-            <div class="grid-body ">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <form id="edit_privilege_master_form" name="edit_privilege_master_form">
+        <div class="form-group">
+            <label class="form-label">Master Privilege</label>
+            <span style="color: red">*</span>
 
-                            <div class="row form-row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label class="form-label">Master Privilege</label>
-                                        <span style="color: red">*</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        <input id="master_privilege" class="form-control" type="text" name="master_privilege" value="<?php echo $privilege_master->master_privilege; ?>" style="width: 50%">                              
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label class="form-label">Master Privilege Description</label>
-                                        <span style="color: red">*</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        <input id="master_privilege_desc" class="form-control" type="text" name="master_privilege_desc" value="<?php echo $privilege_master->master_privilege_description; ?>" style="width: 50%">                              
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row form-row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label class="form-label">System</label>
-                                        <span style="color: red">*</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-with-icon  right">                                       
-                                        <i class=""></i>
-                                        <select name="system_code" id="system_code" class="select2 form-control"  style="width: 50%">
-                                            <?php foreach ($systems as $system) { ?>
-                                                <option value="<?php echo $system->system_code; ?>" <?php if ($system->system_code == $privilege_master->system_code) { ?> selected="true" <?php } ?>><?php echo $system->system; ?></option>
-                                            <?php } ?>
-                                        </select>                                  
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="edit_privilege_master_msg" class="form-row"> </div>
-
-                            <input type="hidden" id="privilege_master_code" name="privilege_master_code" value="<?php echo $privilege_master->privilege_master_code; ?>"/>
-
-                            <div class="modal-footer">
-                                <button class="btn btn-primary btn-cons" type="submit">
-                                    <i class="icon-ok"></i>
-                                    Save
-                                </button>
-                                <button class="btn btn-white btn-cons" type="button">Cancel</button>
-
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <input id="master_privilege" class="form-control" type="text" name="master_privilege" value="<?php echo $privilege_master->master_privilege; ?>" >                                                           
         </div>
+
+        <div class="form-group">
+            <label class="form-label">Master Privilege Description</label>
+            <span style="color: red">*</span>
+
+            <input id="master_privilege_desc" class="form-control" type="text" name="master_privilege_desc" value="<?php echo $privilege_master->master_privilege_description; ?>" >                              
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label">System</label>
+            <span style="color: red">*</span>
+
+            <select name="system_code" id="system_code" class="select2 form-control"  style="width: 50%">
+                <?php 
+                $systems=$this->config->item('SYSTEMS');
+                foreach ($systems as $system) { ?>
+                    <option value="<?php echo $system; ?>" <?php if ($system == $privilege_master->system_code) { ?> selected="true" <?php } ?>><?php echo $system; ?></option>
+                <?php } ?>
+            </select>                                   
+        </div>
+
+        <div id="edit_privilege_master_msg" class="form-row"> </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <input type="hidden" id="privilege_master_code" name="privilege_master_code" value="<?php echo $privilege_master->privilege_master_code; ?>"/>
+
+        <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+        <button class="btn btn-success" type="submit">Save changes</button>
+    </div>
+</form>
 
 <script type="text/javascript">
     $('#settings_parent_menu').addClass('active open');
+
+
+    //edit Master Privilege Form
+    $('#edit_privilege_master_form').validate({
+        rules: {
+            master_privilege: {
+                required: true
+            },
+            master_privilege_desc: {
+                required: true
+            },
+            system_code: {
+                required: true
+            }
+        }, submitHandler: function(form)
+        {
+            $.post(site_url + '/privilege_master/edit_master_privilege', $('#edit_privilege_master_form').serialize(), function(msg)
+            {
+                if (msg == 1) {
+
+                    $('#edit_privilege_master_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                    window.location = site_url + '/privilege_master/manage_privilege_masters';
+                } else {
+                    $('#edit_privilege_master_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+                }
+            });
+        }
+    });
+
 </script>

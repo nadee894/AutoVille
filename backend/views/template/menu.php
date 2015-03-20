@@ -51,6 +51,7 @@
         </a> 
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/comments/manage_comments">Website Reviews</a></li>
+            <li><a  href="<?php echo site_url(); ?>/vehicle_news/manage_vehicle_news">Vehicle News</a></li>
         </ul>
     </li>
 
@@ -71,11 +72,11 @@
     
     <li class="sub-menu">
         <a href="javascript:;" id="settings_menu">
-            <i class="fa fa-cogs"></i>
+            <i class="fa  fa-wrench"></i>
             <span>Settings</span>
         </a>
         <ul class="sub">
-            <li><a  href="<?php echo site_url(); ?>/transmission/manage_transmissions">Manage Master Privileges</a></li>
+            <li><a  href="<?php echo site_url(); ?>/privilege_master/manage_privilege_masters">Manage Master Privileges</a></li>
             <li><a  href="<?php echo site_url(); ?>/privilege/manage_privileges">Manage Privileges</a></li>
            
         </ul>        

@@ -5,6 +5,7 @@ class Manufacture_model extends CI_Model {
     var $id;
     var $name;
     var $description;
+    var $logo;
     var $is_published;
     var $is_deleted;
     var $added_date;
@@ -22,6 +23,10 @@ class Manufacture_model extends CI_Model {
 
     public function get_description() {
         return $this->description;
+    }
+
+    public function get_logo() {
+        return $this->logo;
     }
 
     public function get_is_published() {
@@ -70,6 +75,10 @@ class Manufacture_model extends CI_Model {
 
     public function set_added_date($added_date) {
         $this->added_date = $added_date;
+    }
+
+    public function set_logo($logo) {
+        $this->logo = $logo;
     }
 
     public function set_added_by($added_by) {

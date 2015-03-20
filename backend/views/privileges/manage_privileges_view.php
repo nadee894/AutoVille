@@ -31,26 +31,27 @@
                         </thead>
                         <tbody>
                             <?php
+                            $i=0;
                             foreach ($privileges as $privilege) {
                                 ?> 
                                 <tr  id="privileges_<?php echo $privilege->privilege_code; ?>">
-                                    <td><?php echo $privilege->privilege_code; ?></td>
+                                    <td><?php echo ++$i; ?></td>
                                     <td><?php echo $privilege->master_privilege; ?></td>
                                     <td><?php echo $privilege->privilege; ?></td>
                                     <td><?php echo $privilege->priviledge_code_HF; ?></td>
                                     <td>
-                                        <?php if ($this->config->item('ADMIN') == $privilege->assign_for) { ?> 
-                                            <span class="label label-important">Admin</span>
-                                        <?php } else if ($this->config->item('COMPANY_OWNER') == $privilege->assign_for) { ?>
-                                            <span class="label label-important">Company Owner</span>
-                                        <?php } else if ($this->config->item('EMPLOYEE') == $privilege->assign_for) { ?>
-                                            <span class="label label-important">Employee</span>
+                                        <?php if ($this->config->item('SUPERADMIN') == $privilege->assign_for) { ?> 
+                                            <span class="label label-success">Super Administrator</span>
+                                        <?php } else if ($this->config->item('ADMIN') == $privilege->assign_for) { ?>
+                                            <span class="label label-primary">Administrator</span>
+                                        <?php } else if ($this->config->item('REGISTERED') == $privilege->assign_for) { ?>
+                                            <span class="label label-warning">Registered User</span>
                                         <?php } else { ?>
-                                            <span class="label label-important">All</span>
+                                            <span class="label label-info">All</span>
                                         <?php } ?>
                                     </td>
                                     <td>
-                                        <a class="btn btn-primary btn-xs" href="<?php echo site_url(); ?>/settings/privilege_controller/edit_privileges_view/<?php echo $privilege->privilege_code; ?>">
+                                        <a class="btn btn-primary btn-xs" onclick="display_edit_privilege_pop_up(<?php echo $privilege->privilege_code; ?>)">
                                             <i class="fa fa-pencil"  title="Update"></i>
                                         </a>
                                         <a class="btn btn-danger btn-xs"   title="Delete this Privilege" onclick="delete_privilege(<?php echo $privilege->privilege_code; ?>)">
@@ -115,10 +116,9 @@
                         <span style="color: red">*</span>
 
                         <select name="assign_for" id="assign_for" class="select2 form-control"  >
-                            <option value="1">Admin</option>
-                            <option value="2">Company Owner</option>
-                            <option value="3">Employee</option>
-                            <option value="4">All</option>
+                            <option value="1">Super Administrator</option>
+                            <option value="2">Administrator</option>
+                            <option value="3">Registered User</option>
 
                         </select>                              
                     </div>
@@ -136,6 +136,106 @@
 </div>
 <!-- /.modal -->
 
+
+<!--Privileges Edit Modal -->
+<div  class="modal fade "   id="privilege_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="privilege_edit_content">
+
+        </div>
+    </div>
+</div>
+
+
+
 <script type="text/javascript">
     $('#settings_menu').addClass('active');
+
+    $(document).ready(function() {
+
+        $('#privilege_table').dataTable();
+
+//add Privilege Form
+        $('#add_privilege_form').validate({
+            rules: {
+                master_privilege_code: {
+                    required: true
+                },
+                privilege: {
+                    required: true
+                },
+                privilege_desc: {
+                    required: true
+                },
+                privilege_hf: {
+                    required: true
+                },
+                assign_for: {
+                    required: true
+                }
+            }, submitHandler: function(form)
+            {
+                $.post(site_url + '/privilege/add_new_privilege', $('#add_privilege_form').serialize(), function(msg)
+                {
+                    if (msg == 1) {
+                        $('#add_privilege_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        add_privilege_form.reset();
+                        location.reload();
+                    } else {
+                        $('#add_privilege_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+                    }
+                });
+
+
+            }
+        });
+    });
+
+
+    //delete privileges
+    function delete_privilege(id) {
+
+        if (confirm('Are you sure want to delete this Privilege ?')) {
+
+            $.ajax({
+                type: "POST",
+                url: site_url + '/privilege/delete_privilege',
+                data: "id=" + id,
+                success: function(msg) {
+                    //alert(msg);
+                    if (msg == 1) {
+                        //document.getElementById(trid).style.display='none';
+                        $('#privileges_' + id).hide();
+                    }
+                    else if (msg == 2) {
+                        alert('Cannot be deleted as it is already assigned to Privilege');
+                    }
+                }
+            });
+        }
+    }
+
+    //this is to autofill the Privilege Human Code	
+    function auto_write_human_friendly_code() {
+
+        var privilege_text = $("#privilege").val();
+
+        //replace spaces with _
+        var replaced_text = privilege_text.replace(/ /g, "_");
+
+        //convert to upper case
+        $('#privilege_hf').val(replaced_text.toUpperCase());
+    }
+
+
+    //Edit Privileges
+    function  display_edit_privilege_pop_up(privilege_id) {
+
+        $.post(site_url + '/privilege/load_edit_privilege_content', {privilege_id: privilege_id}, function(msg) {
+
+            $('#privilege_edit_content').html('');
+            $('#privilege_edit_content').html(msg);
+            $('#privilege_edit_div').modal('show');
+        });
+    }
 </script>
