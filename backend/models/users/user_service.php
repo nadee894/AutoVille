@@ -57,6 +57,7 @@ class User_service extends CI_Model {
 
         $data = array('id' => $user_model->get_id(), 'is_deleted' => '0');
         $query = $this->db->get_where('user', $data);
+        
         return $query->row();
     }
 
