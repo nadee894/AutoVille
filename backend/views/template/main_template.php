@@ -501,7 +501,8 @@
         <!--dynamic table initialization -->
         <script src="<?php echo base_url(); ?>backend_resources/js/dynamic_table_init.js"></script>
 
-
+      
+        
         <!--common script for all pages-->
         <script src="<?php echo base_url(); ?>backend_resources/js/common-scripts.js"></script>
 
