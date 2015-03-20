@@ -122,5 +122,16 @@ class Vehicle_advertisments_service extends CI_Model {
         //die;        
         return $query->result();
     }
+    
+    
+    function get_last_advertisement_id(){
+        $this->db->select('id');
+        $this->db->from('vehicle_advertisements');
+        $this->db->order_by("id", "desc");
+        $this->db->limit(1);
+        $query = $this->db->get();
+
+        return $query->row();
+    }
 
 }
