@@ -36,11 +36,11 @@
         </a> 
         <ul class="sub">
             <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/ABOUTUS">About Us</a></li>
-            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/DESTINATIONS">Destinations</a></li>
+            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/DESTINATIONS">FAQs</a></li>
             <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/RIGHTSIDESNIPPET">Rightside Snippet</a></li>
             <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/WELCOMEHOMEPAGE">Welcomer Message Home Page</a></li>
-            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/WELCOMEINNERPAGE">Welcomer Message Read Mor</a></li>
-            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/FOOTERROGHT">Footer Right</a></li>
+            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/WELCOMEINNERPAGE">Welcomer Message </a></li>
+            <li><a href="<?php echo site_url(); ?>/contents/load_contents_by_hcode/FOOTERROGHT">Footer Statement</a></li>
         </ul>
     </li>
 
@@ -51,6 +51,7 @@
         </a> 
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/comments/manage_comments">Website Reviews</a></li>
+            <li><a  href="<?php echo site_url(); ?>/vehicle_news/manage_vehicle_news">Vehicle News</a></li>
         </ul>
     </li>
 
@@ -66,10 +67,19 @@
             <li><a  href="<?php echo site_url(); ?>/body_type/manage_body_types">Manage Vehicle Body Types</a></li>
             <li><a  href="<?php echo site_url(); ?>/fuel_type/manage_fuel_types">Manage Fuel Types</a></li>
             <li><a  href="<?php echo site_url(); ?>/equipment/manage_equipment">Manage Equipments</a></li>
-        </ul>
+        </ul>        
+    </li>
+    
+    <li class="sub-menu">
+        <a href="javascript:;" id="settings_menu">
+            <i class="fa  fa-wrench"></i>
+            <span>Settings</span>
+        </a>
         <ul class="sub">
-            <li><a  href="<?php echo site_url(); ?>/users/manage_registered_users">Manage Registered Users</a></li>
-        </ul>
+            <li><a  href="<?php echo site_url(); ?>/privilege_master/manage_privilege_masters">Manage Master Privileges</a></li>
+            <li><a  href="<?php echo site_url(); ?>/privilege/manage_privileges">Manage Privileges</a></li>
+           
+        </ul>        
     </li>
 
 

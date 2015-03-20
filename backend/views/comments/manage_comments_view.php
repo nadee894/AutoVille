@@ -18,7 +18,7 @@
                                                     </a>
                                                 </div>-->
                     </div>
-                    <table  class="display table table-bordered table-striped" id="manufacture_table">
+                    <table  class="display table table-bordered table-striped" id="comment_table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -62,6 +62,12 @@
 </div>
 
 <script type="text/javascript">
+    
+     $('#comments_menu').addClass('active open');
+     
+    $(document).ready(function () {
+        $('#comment_table').dataTable();        
+    });
     //delete comment
     function delete_comment(id) {
         if (confirm('Are you sure want ot delete this comment ?')) {
@@ -97,12 +103,12 @@
                 success: function(msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate comment"><i class="fa fa-check"></i></a> ');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate manufacture"><i class="fa fa-exclamation-circle"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + comment_id + ', 1, this)" title="click to activate comment"><i class="fa fa-exclamation-circle"></i></a> ');
                         }
                     } else if (msg == 2) {
-                        alert('Error !!!');
+                        
                     }
                 }
             });

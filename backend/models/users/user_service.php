@@ -12,6 +12,7 @@ class User_service extends CI_Model {
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
         $this->db->where('user_type.id in (2,1)');
+        $this->db->where('is_deleted', '0');
         $this->db->order_by("user.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
@@ -65,7 +66,7 @@ class User_service extends CI_Model {
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
         $this->db->where('user_type.id in (2,1)');
-        $this->db->where('user.name like "A%"');
+        $this->db->where('user.name like "'.$letter.'%"');
 //        echo $letter;
         $this->db->where('user.is_deleted', '0');
         $this->db->order_by("user.added_date", "desc");
@@ -74,119 +75,36 @@ class User_service extends CI_Model {
         return $query->result();
     }
 
+    /*
+     * update online status of the user 
+     */
+
+    function update_user_online_status($user_model) {
+        
+        $data = array('is_online' => $user_model->get_is_online());
+        $this->db->where('id', $user_model->get_id());
+        return $this->db->update('user', $data);
+    }
+    
+    /*
+     * Delete users from database     
+     */
+
+    function delete_users($user_id) {
+        $data = array('is_deleted' => '1');
+        $this->db->where('id', $user_id);
+        return $this->db->update('user', $data);
+    }
+    
+    
+    /*
+     * Change disable status of a user   
+     */
+
+    public function publish_status_of_user($user_model) {
+        $data = array('is_published' => $user_model->get_is_published());
+        $this->db->update('user', $data, array('id' => $user_model->get_id()));
+        return $this->db->affected_rows();
+    }
+
 }
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

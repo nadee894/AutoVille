@@ -2,13 +2,13 @@
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading">
+<!--            <header class="panel-heading">
                 <?php echo $inner_title; ?>
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-times"></a>
                 </span>
-            </header>
+            </header>-->
 
 
             <div class="panel-body">

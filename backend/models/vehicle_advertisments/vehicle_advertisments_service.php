@@ -62,24 +62,4 @@ class Vehicle_advertisments_service extends CI_Model {
         return $this->db->update('vehicle_advertisements', $data);
     }
 
-    /*
-     * This service function is to update publish status of a transmission
-     */
-    public function publish_transmission($transmission_model) {
-        $data = array('is_published' => $transmission_model->get_is_published());
-        $this->db->update('transmission', $data, array('id' => $transmission_model->get_id()));
-        return $this->db->affected_rows();
-    }
-
-    /*
-     * This is the service function to get company by company_id passing the 
-     * company_code as a parameter
-     */
-
-    function get_company_by_id($company_code) {
-
-        $query = $this->db->get_where('company', array('company_code' => $company_code, 'del_ind' => '1'));
-        return $query->row();
-    }
-
 }

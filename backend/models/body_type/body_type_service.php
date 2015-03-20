@@ -74,6 +74,8 @@ class Body_type_service extends CI_Model {
         $query = $this->db->get_where('body_type', $data);
         return $query->row();
     }
+    
+    
 
 }
 

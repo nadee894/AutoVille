@@ -9,35 +9,35 @@
 </header>
 <!-- page start-->
 <ul class="directory-list">
-    <li><a href="<?php echo site_url(); ?>/users/load_admins_by_letter/A">a</a></li>
-    <li><a href="#">b</a></li>
-    <li><a href="#">c</a></li>
-    <li><a href="#">d</a></li>
-    <li><a href="#">e</a></li>
-    <li><a href="#">f</a></li>
-    <li><a href="#">g</a></li>
-    <li><a href="#">h</a></li>
-    <li><a href="#">i</a></li>
-    <li><a href="#">j</a></li>
-    <li><a href="#">k</a></li>
-    <li><a href="#">l</a></li>
-    <li><a href="#">m</a></li>
-    <li><a href="#">n</a></li>
-    <li><a href="#">o</a></li>
-    <li><a href="#">p</a></li>
-    <li><a href="#">q</a></li>
-    <li><a href="#">r</a></li>
-    <li><a href="#">s</a></li>
-    <li><a href="#">t</a></li>
-    <li><a href="#">u</a></li>
-    <li><a href="#">v</a></li>
-    <li><a href="#">w</a></li>
-    <li><a href="#">x</a></li>
-    <li><a href="#">y</a></li>
-    <li><a href="#">z</a></li>
+    <li><a onclick="load_admins_by_letter('A')" style="cursor: pointer">a</a></li>
+    <li><a onclick="load_admins_by_letter('B')" style="cursor: pointer">b</a></li>
+    <li><a onclick="load_admins_by_letter('C')" style="cursor: pointer">c</a></li>
+    <li><a onclick="load_admins_by_letter('D')" style="cursor: pointer">d</a></li>
+    <li><a onclick="load_admins_by_letter('E')" style="cursor: pointer">e</a></li>
+    <li><a onclick="load_admins_by_letter('F')" style="cursor: pointer">f</a></li>
+    <li><a onclick="load_admins_by_letter('G')" style="cursor: pointer">g</a></li>
+    <li><a onclick="load_admins_by_letter('H')" style="cursor: pointer">h</a></li>
+    <li><a onclick="load_admins_by_letter('I')" style="cursor: pointer">i</a></li>
+    <li><a onclick="load_admins_by_letter('J')" style="cursor: pointer">j</a></li>
+    <li><a onclick="load_admins_by_letter('K')" style="cursor: pointer">k</a></li>
+    <li><a onclick="load_admins_by_letter('L')" style="cursor: pointer">l</a></li>
+    <li><a onclick="load_admins_by_letter('M')" style="cursor: pointer">m</a></li>
+    <li><a onclick="load_admins_by_letter('N')" style="cursor: pointer">n</a></li>
+    <li><a onclick="load_admins_by_letter('O')" style="cursor: pointer">o</a></li>
+    <li><a onclick="load_admins_by_letter('P')" style="cursor: pointer">p</a></li>
+    <li><a onclick="load_admins_by_letter('Q')" style="cursor: pointer">q</a></li>
+    <li><a onclick="load_admins_by_letter('R')" style="cursor: pointer">r</a></li>
+    <li><a onclick="load_admins_by_letter('S')" style="cursor: pointer">s</a></li>
+    <li><a onclick="load_admins_by_letter('T')" style="cursor: pointer">t</a></li>
+    <li><a onclick="load_admins_by_letter('U')" style="cursor: pointer">u</a></li>
+    <li><a onclick="load_admins_by_letter('V')" style="cursor: pointer">v</a></li>
+    <li><a onclick="load_admins_by_letter('W')" style="cursor: pointer">w</a></li>
+    <li><a onclick="load_admins_by_letter('X')" style="cursor: pointer">x</a></li>
+    <li><a onclick="load_admins_by_letter('Y')" style="cursor: pointer">y</a></li>
+    <li><a onclick="load_admins_by_letter('Z')" style="cursor: pointer">z</a></li>
 </ul>
 <div class="directory-info-row">
-    <div class="row">
+    <div class="row" id="admin_filter_content">
 
         <?php
         $i = 0;
@@ -59,24 +59,38 @@
 
                                 <?php if ($result->is_online) { ?>
                                     <h4><i class="fa  fa-circle  text-success"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+                                        <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                                     <?php } else { ?>
-                                    <h4><i class="fa  fa-circle  text-danger"></i>
-                                        <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>
+        <!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                    <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>-->
 
                                 <?php } ?>
-                                <ul class="social-links">
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                                </ul>
+                                <!--                                <ul class="social-links">
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                                                    <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                                                </ul>-->
 
-                                <address>
-                                    <strong>Address : <?php echo $result->address; ?></strong><br>
-                                    <abbr title="Phone">P1:</abbr> <?php echo $result->contact_no_1; ?><br>
-                                    <abbr title="Phone2">P2:</abbr> <?php echo $result->contact_no_2; ?></address>
-                                <email>E-mail : <?php echo $result->email; ?></email>
+                                <address>Address : <?php echo $result->address; ?><br>
+                                    <abbr title="Phone">Tel:</abbr> <?php echo $result->contact_no_1; ?><br>
+
+                                    <email>E-mail : <?php echo $result->email; ?></email><br>
+                                </address>
+                                <br>
+
+                                <div>
+                                    <?php if ($result->is_published) { ?>
+                                        <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check"></i></a>
+                                    <?php } else { ?>
+                                        <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>
+                                    <?php } ?>
+                                </div>
+
+
+                                <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+
+                                <a class="btn btn-info btn-xs" href="<?php echo site_url(); ?>/user_privilege/manage_user_privileges/<?php echo $result->id; ?>">Assign Privileges</a>
 
 
 
@@ -95,6 +109,7 @@
 
 <script type="text/javascript">
 
+    $('#user_menu').addClass('active');
     //change Online status of body types
     function change_online_status(user_id, value, element) {
 
@@ -120,19 +135,76 @@
 
     //load admins by letter
     function load_admins_by_letter(letter) {
-
-
         $.ajax({
             type: "POST",
             url: site_url + '/users/load_admins_by_letter',
-            data: "$myletter=" + letter,
+            data: "myletter=" + letter,
             success: function (msg)
             {
-                alert("success!");
+                $('#admin_filter_content').html(msg);
             }
         });
     }
 
+    //load admins by letter
+    function load_all_admins() {
+
+        var address = $('#address');
+        var contact_no_01 = $('#contact_no_1');
+        var contact_no_02 = $('#contact_no_2');
+    }
+
+//load admins when deleted
+    function load_after_deleted(user_id) {
+        if (confirm('Are you sure want to delete this user ?')) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/users/delete_users',
+                data: "user_id=" + user_id,
+                success: function (msg)
+                {
+                    if (msg == 1) {
+                        //document.getElementById(trid).style.display='none';
+                        $('#admin_' + user_id).hide();
+//                        $('#admin_filter_content').html(msg);
+                    }
+                    else if (msg == 2) {
+                        alert('Error in Deleting. !!');
+                    }
+                }
+            });
+        }
+    }
+
+
+    //change publish status of a user
+    function change_publish_status(user_id, value, element) {
+
+        var condition = 'Do you want to enable this user ?';
+        if (value == 0) {
+            condition = 'Do you want to disable this user?';
+        }
+
+        if (confirm(condition)) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/users/change_publish_status',
+                data: "id=" + user_id + "&value=" + value,
+                success: function (msg) {
+                    if (msg == 1) {
+                        if (value == 1) {
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
+                        } else {
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
+                        }
+
+                    } else if (msg == 2) {
+                        alert('Error !!');
+                    }
+                }
+            });
+        }
+    }
 
 
 </script>

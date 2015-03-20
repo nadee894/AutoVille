@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.5
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 17, 2015 at 04:38 PM
--- Server version: 5.1.63-0ubuntu0.10.04.1-log
--- PHP Version: 5.3.2-1ubuntu4.17
+-- Host: 127.0.0.1
+-- Generation Time: Mar 19, 2015 at 04:16 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -55,7 +55,6 @@ INSERT INTO `body_type` (`id`, `name`, `is_published`, `is_deleted`, `added_date
 
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vehicle_id` int(11) NOT NULL,
   `title` varchar(300) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
@@ -371,6 +370,50 @@ INSERT INTO `country` (`id`, `country`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `district`
+--
+
+CREATE TABLE IF NOT EXISTS `district` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `district`
+--
+
+INSERT INTO `district` (`id`, `name`) VALUES
+(0, 'All'),
+(1, 'Ampara'),
+(2, 'Anuradhapura'),
+(3, 'Badulla'),
+(4, 'Batticaloa'),
+(5, 'Colombo'),
+(6, 'Galle'),
+(7, 'Gampaha'),
+(8, 'Hambantota'),
+(9, 'Jaffna'),
+(10, 'Kalutara'),
+(11, 'Kandy'),
+(12, 'Kegalle'),
+(13, 'Kilinochchi'),
+(14, 'Kurunegala'),
+(15, 'Mannar'),
+(16, 'Matale'),
+(17, 'Matara'),
+(18, 'Moneragala'),
+(19, 'Mullaitivu'),
+(20, 'Nuwara Eliya'),
+(21, 'Polonnaruwa'),
+(22, 'Puttalam'),
+(23, 'Ratnapura'),
+(24, 'Trincomalee'),
+(25, 'Vavuniya');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `equipment`
 --
 
@@ -504,6 +547,52 @@ INSERT INTO `model` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `
 (4, 'Honda', '1', '0', '2015-03-13 03:46:10', 2, NULL, 2),
 (5, 'Jaguar', '1', '1', '2015-03-13 03:46:28', 2, NULL, 2),
 (6, 'Chrysler', '1', '0', '2015-03-11 18:30:00', 2, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `privilege`
+--
+
+CREATE TABLE IF NOT EXISTS `privilege` (
+  `privilege_code` int(11) NOT NULL AUTO_INCREMENT,
+  `privilege_master_code` int(11) NOT NULL,
+  `privilege` varchar(100) NOT NULL,
+  `privilege_description` varchar(1000) NOT NULL,
+  `priviledge_code_HF` varchar(100) NOT NULL COMMENT 'Human Friendly Priviledge Code',
+  `assign_for` enum('1','2','3','4') NOT NULL,
+  PRIMARY KEY (`privilege_code`),
+  KEY `lcs_privilege_ibfk_1` (`privilege_master_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `privilege`
+--
+
+INSERT INTO `privilege` (`privilege_code`, `privilege_master_code`, `privilege`, `privilege_description`, `priviledge_code_HF`, `assign_for`) VALUES
+(9, 5, 'Manage Master Privileges', 'Manage Master Privileges', 'MANAGE_MASTER_PRIVILEGES', '1'),
+(10, 5, 'Add New Master Privilege', 'Add New Master Privilege', 'ADD_NEW_MASTER_PRIVILEGE', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `privilege_master`
+--
+
+CREATE TABLE IF NOT EXISTS `privilege_master` (
+  `privilege_master_code` int(11) NOT NULL AUTO_INCREMENT,
+  `master_privilege` varchar(100) NOT NULL,
+  `master_privilege_description` varchar(1000) NOT NULL,
+  `system_code` int(11) NOT NULL,
+  PRIMARY KEY (`privilege_master_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `privilege_master`
+--
+
+INSERT INTO `privilege_master` (`privilege_master_code`, `master_privilege`, `master_privilege_description`, `system_code`) VALUES
+(5, 'Manage Master Privileges', 'Manage Master Privileges', 4);
 
 -- --------------------------------------------------------
 
@@ -650,6 +739,33 @@ INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_privileges`
+--
+
+CREATE TABLE IF NOT EXISTS `user_privileges` (
+  `user_privilege_code` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `privilege_code` int(11) NOT NULL,
+  `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_privilege_code`),
+  UNIQUE KEY `Employeeuser_Priviledge_Code` (`user_privilege_code`),
+  KEY `Employee_Code` (`user_id`),
+  KEY `Privilege_Code` (`privilege_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+
+--
+-- Dumping data for table `user_privileges`
+--
+
+INSERT INTO `user_privileges` (`user_privilege_code`, `user_id`, `privilege_code`, `added_date`) VALUES
+(24, 12, 10, '2014-07-07 11:19:19'),
+(25, 12, 9, '2014-07-07 11:20:45'),
+(27, 2, 9, '2014-07-09 05:54:32'),
+(28, 2, 10, '2014-07-09 05:54:32');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_type`
 --
 
@@ -688,6 +804,8 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `description` text,
   `chassis_no` varchar(200) NOT NULL,
   `price` decimal(20,2) NOT NULL,
+  `kilometers` int(10) DEFAULT NULL,
+  `sale_type` enum('used','new') NOT NULL DEFAULT 'new',
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
@@ -701,8 +819,8 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
 -- Dumping data for table `vehicle_advertisements`
 --
 
-INSERT INTO `vehicle_advertisements` (`id`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 1, 32434, 1, 1, 1, 1, 1, 1, 'sdfdf', NULL, '535235', '0.00', '1', '0', '0000-00-00 00:00:00', 1, NULL, NULL);
+INSERT INTO `vehicle_advertisements` (`id`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `kilometers`, `sale_type`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 1, 32434, 1, 1, 1, 1, 1, 1, 'sdfdf', NULL, '535235', '0.00', NULL, 'new', '1', '0', '0000-00-00 00:00:00', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -737,6 +855,44 @@ CREATE TABLE IF NOT EXISTS `vehicle_images` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_news`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicle_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(300) NOT NULL,
+  `content` text NOT NULL,
+  `is_published` enum('1','0') NOT NULL DEFAULT '1',
+  `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
+  `is_latest` enum('1','0') NOT NULL DEFAULT '0',
+  `added_date` timestamp NULL DEFAULT NULL,
+  `added_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_date` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `privilege`
+--
+ALTER TABLE `privilege`
+  ADD CONSTRAINT `privilege_ibfk_1` FOREIGN KEY (`privilege_master_code`) REFERENCES `privilege_master` (`privilege_master_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user_privileges`
+--
+ALTER TABLE `user_privileges`
+  ADD CONSTRAINT `user_privileges_ibfk_1` FOREIGN KEY (`privilege_code`) REFERENCES `privilege` (`privilege_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+ALTER TABLE `manufacture` ADD `logo` VARCHAR(1000) NOT NULL AFTER `description`;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

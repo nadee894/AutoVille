@@ -455,6 +455,10 @@ ul.bullets li a:hover {
   text-align: center !important;
 }
 
+.mandatory{
+    color: red;
+    padding: 2px;
+}
 .color-default {
   color: #ff513f;
 }

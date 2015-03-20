@@ -76,7 +76,7 @@
                         <label for="name">Title</label>
                         <input id="name" name="name" class="form-control" type="text" placeholder="Enter Title">
                     </div>
-
+                    <span id="rtn_msg"></span>
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
@@ -89,7 +89,7 @@
 <!-- modal -->
 
 <!--Equipment Edit Modal -->
-<div  id="equipment_edit_div" >
+<div class="modal fade "  id="equipment_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="equipment_edit_content">
 
@@ -116,10 +116,11 @@
                 $.post(site_url + '/equipment/add_new_equipment', $('#equipment_add_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         equipment_add_form.reset();
                         window.location = site_url + '/equipment/manage_equipment';
                     } else {
-                        alert("error occured");
+                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                     }
                 });
             }
@@ -181,17 +182,10 @@
 
             $('#equipment_edit_content').html('');
             $('#equipment_edit_content').html(msg);
-
+            $('#equipment_edit_div').modal('show');
         });
 
-        $("#equipment_edit_div").dialog({
-            autoOpen: false,
-            title: "Equipment Quick Edit",
-            modal: true,
-            width: "650"
 
-        });
-        $("#equipment_edit_div").dialog("option", {modal: true}).dialog("open");
     }
 </script>
 
