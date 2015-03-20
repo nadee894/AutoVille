@@ -49,7 +49,7 @@ class Reg_Users extends CI_Controller {
         
         $data['results']=$user_type;
         
-        $this->load->view('reg_users/reg_users_filter_view', $data);
+        $this->load->view('reg_users/reg_user_filter_view', $data);
     }
     /*
      * Function to delete registered users
