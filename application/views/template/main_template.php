@@ -32,7 +32,7 @@
                 <div class="header">
                     <div class="wrapper">
                         <div class="brand">
-                            <a href="index-real-estate.html"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo-cars.png" alt="logo"></a>
+                            <a href="index-real-estate.html"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
                         </div>
                         <nav class="navigation-items">
                             <div class="wrapper">
@@ -75,13 +75,13 @@
                 </div>
                 <!-- end Page Canvas-->
                 <!--Page Footer-->
-                <footer id="page-footer">
+<!--                <footer id="page-footer">
                     <div class="inner">
                         <div class="footer-top">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4">
-                                        <!--New Items-->
+                                        New Items
                                         <section>
                                             <h2>New Items</h2>
                                             <a href="car-item-detail.html" class="item-horizontal small">
@@ -98,7 +98,7 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                            <!--/.item-horizontal small-->
+                                            /.item-horizontal small
                                             <a href="car-item-detail.html" class="item-horizontal small">
                                                 <h3>Blue Chilli</h3>
                                                 <figure>2476 Whispering Pines Circle</figure>
@@ -113,12 +113,12 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                            <!--/.item-horizontal small-->
+                                            /.item-horizontal small
                                         </section>
-                                        <!--end New Items-->
+                                        end New Items
                                     </div>
                                     <div class="col-md-4 col-sm-4">
-                                        <!--Recent Reviews-->
+                                        Recent Reviews
                                         <section>
                                             <h2>Recent Reviews</h2>
                                             <a href="car-item-detail.html#reviews" class="review small">
@@ -134,7 +134,7 @@
                                                 <p>
                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non suscipit felis, sed sagittis tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ac placerat mauris.
                                                 </p>
-                                            </a><!--/.review-->
+                                            </a>/.review
                                             <a href="car-item-detail.html#reviews" class="review small">
                                                 <h3>Saguaro Tavern</h3>
                                                 <figure>2476 Whispering Pines Circle</figure>
@@ -149,9 +149,9 @@
                                                     Pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis curabitur
                                                 </p>
                                             </a>
-                                            <!--/.review-->
+                                            /.review
                                         </section>
-                                        <!--end Recent Reviews-->
+                                        end Recent Reviews
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <section>
@@ -184,13 +184,13 @@
                                             <a href="contact.html" class="btn framed icon">Contact Us<i class="fa fa-angle-right"></i></a>
                                         </section>
                                     </div>
-                                    <!--/.col-md-4-->
+                                    /.col-md-4
                                 </div>
-                                <!--/.row-->
+                                /.row
                             </div>
-                            <!--/.container-->
+                            /.container
                         </div>
-                        <!--/.footer-top-->
+                        /.footer-top
                         <div class="footer-bottom">
                             <div class="container">
                                 <span class="left">(C) AutoVille, All rights reserved</span>
@@ -199,9 +199,9 @@
                                 </span>
                             </div>
                         </div>
-                        <!--/.footer-bottom-->
+                        /.footer-bottom
                     </div>
-                </footer>
+                </footer>-->
                 <!--end Page Footer-->
             </div>
             <!-- end Inner Wrapper -->
