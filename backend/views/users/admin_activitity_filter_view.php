@@ -1,65 +1,149 @@
            <div class="panel-body profile-activity">
-                              <h5 class="pull-right">12 August 2013</h5>
-                              <div class="activity terques">
-                                  <span>
-                                      <i class="fa fa-shopping-cart"></i>
-                                  </span>
-                                  <div class="activity-desk">
-                                      <div class="panel">
-                                          <div class="panel-body">
-                                              <div class="arrow"></div>
-                                              <i class=" fa fa-time"></i>
-                                              <h4>10:45 AM</h4>
-                                              <p>Purchased new equipments for zonal office setup and stationaries.</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="activity alt purple">
-                                  <span>
-                                      <i class="fa fa-rocket"></i>
-                                  </span>
-                                  <div class="activity-desk">
-                                      <div class="panel">
-                                          <div class="panel-body">
-                                              <div class="arrow-alt"></div>
-                                              <i class=" fa fa-time"></i>
-                                              <h4>12:30 AM</h4>
-                                              <p>Lorem ipsum dolor sit amet consiquest dio</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="activity blue">
-                                  <span>
-                                      <i class="fa fa-bullhorn"></i>
-                                  </span>
-                                  <div class="activity-desk">
-                                      <div class="panel">
-                                          <div class="panel-body">
-                                              <div class="arrow"></div>
-                                              <i class=" fa fa-time"></i>
-                                              <h4>10:45 AM</h4>
-                                              <p>Please note which location you will consider, or both. Reporting to the VP <br> of Compliance and CSR, you will be responsible for managing.. </p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+                             <table class="table table-hover file-search">
+                          <thead>
+                          <tr>
+                              <th>File Name &amp; Location</th>
+                              <th class="hidden-phone">Created</th>
+                              <th class="hidden-phone">Last Modify</th>
+                              <th>Size</th>
+                              <th class="hidden-phone">Type</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/doc.png">
+                                  <strong>Linux Manual for dummies.doc</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/ppt.png">
+                                  <strong>User Documentation.ppt</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/xls.png">
+                                  <strong>Price chart Table.xls</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/jpg.png">
+                                  <strong>Linux Wallpaper.jpg</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/zip.png">
+                                  <strong>All Main files.zip</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/pdf.png">
+                                  <strong>Metro Lab User Manual and Help fiule.pdf</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/ai.png">
+                                  <strong>Vector Lab Logo and Other stuff.ai</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/psd.png">
+                                  <strong>Vectorlab wallpaper.psd</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/rss.png">
+                                  <strong>themeforest feed.rss</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/email.png">
+                                  <strong>Order and Contact.eml</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <img alt="" src="img/file-search/eps.png">
+                                  <strong>Metro Lab.eps</strong>
+                                  <span>C:\Users\Murat\Documents\My Dropbox</span>
+                              </td>
+                              <td class="hidden-phone">01.01.2012	</td>
+                              <td class="hidden-phone">12.05.2013</td>
+                              <td>193 KB</td>
+                              <td class="hidden-phone">File</td>
+                          </tr>
 
-                              <div class="activity alt green">
-                                  <span>
-                                      <i class="fa fa-beer"></i>
-                                  </span>
-                                  <div class="activity-desk">
-                                      <div class="panel">
-                                          <div class="panel-body">
-                                              <div class="arrow-alt"></div>
-                                              <i class=" fa fa-time"></i>
-                                              <h4>12:30 AM</h4>
-                                              <p>Please note which location you will consider, or both.</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+                          </tbody>
+                      </table>
 
+                      <div class="text-center">
+                          <ul class="pagination">
+                              <li><a href="#">«</a></li>
+                              <li><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#">3</a></li>
+                              <li><a href="#">4</a></li>
+                              <li><a href="#">5</a></li>
+                              <li><a href="#">»</a></li>
+                          </ul>
+                      </div>
                           </div>
