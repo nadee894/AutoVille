@@ -26,16 +26,16 @@ class Users extends CI_Controller {
      * Function to load admin profile, edit and sen
      */
 
-    function load_admin_profile() {
-        $user_model = new User_model();
-        $user_service = new User_service();
-
-        $user_model->set_id(trim($this->input->post('user_id', TRUE)));
-        $user_type = $user_service->get_admin_by_id($user_model);
-        $data['user'] = $user_type;
-
-        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
-    }
+//    function load_admin_profile() {
+//        $user_model = new User_model();
+//        $user_service = new User_service();
+//
+//        $user_model->set_id(trim($this->input->post('user_id', TRUE)));
+//        $user_type = $user_service->get_admin_by_id($user_model);
+//        $data['user'] = $user_type;
+//
+//        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
+//    }
 
 //
 //    function load_admins_by_letter() {
@@ -83,6 +83,21 @@ class Users extends CI_Controller {
         $user_model->set_is_published(trim($this->input->post('value', TRUE)));
 
         echo $user_service->publish_status_of_user($user_model);
+    }
+
+    /*
+     * Function to load the profile of a single user
+     */
+
+    function load_profile_of_user() {
+        $user_model = new User_model();
+        $user_service = new User_service();
+        $user_model->set_id($this->session->userdata('USER_ID'));
+        $user_type = $user_service->get_admin_by_id($user_model);
+        $data['results'] = $user_type;
+
+        $parials = array('content' => 'users/manage_admin_profile_view');
+        $this->template->load('template/main_template', $parials, $data);
     }
 
 }
