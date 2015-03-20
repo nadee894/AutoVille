@@ -37,14 +37,27 @@
                 <div class="header">
                     <div class="wrapper">
                         <div class="brand">
-                            <a href="<?php echo site_url();?>/home"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
+                            <a href="<?php echo site_url(); ?>/home"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
                         </div>
                         <nav class="navigation-items">
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">
-                                    <li><a href="sign-in.html">Sign In</a></li>
-                                    <li><a href="register.html"><strong>Register</strong></a></li>
+                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
+
+                                        <div class="dealer-login">
+                                            <a href="<?php echo site_url(); ?>/login/load_login" class="dealer-name"><i class="fa fa-unlock-alt"></i>  Sign In</a>
+                                            <a href="" class="sign-out"><i class="fa fa-user"></i> Register</a>
+                                        </div>
+
+                                    <?php } else { ?>
+
+                                        <div class="dealer-login">
+                                            <a href="" class="dealer-name"><i class="fa fa-user"></i> <?php echo $this->session->userdata('USER_NAME'); ?></a>
+                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>
+                                        </div>
+
+                                    <?php } ?>
                                 </ul>
                                 <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
                                     <div class="content"><span>Submit Your Advertisement</span></div>
@@ -237,6 +250,6 @@
         </script>
         <!--[if lte IE 9]>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/ie-scripts.js"></script>
-        <![endif]-->
+    <![endif]-->
     </body>
 </html>

@@ -32,16 +32,9 @@
                         <nav class="navigation-items">
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
-                                <ul class="user-area">
-                                    <li><a href="sign-in.html">Sign In</a></li>
-                                    <li><a href="register.html"><strong>Register</strong></a></li>
-                                </ul>
-                                <a href="submit.html" class="submit-item">
-                                    <div class="content"><span>Submit Your Item</span></div>
-                                    <div class="icon">
-                                        <i class="fa fa-plus"></i>
-                                    </div>
-                                </a>
+                                <ul class="user-area">                                    
+                                    <li><a href=""><i class="fa fa-user"></i> Register</a></li>
+                                </ul>                                
                                 <div class="toggle-navigation">
                                     <div class="icon">
                                         <div class="line"></div>
@@ -75,7 +68,7 @@
                                             <h1 class="page-title">Sign In</h1>
                                         </header>
                                         <hr>
-                                        <form role="form" id="login_form" method="post">
+                                        <form role="form" id="login_form" name="login_form" method="post">
                                             <div class="form-group">
                                                 <label for="form-sign-in-Username">Username:</label>
                                                 <input id="txtusername" name="txtusername" type="text" class="form-control" placeholder="Username" autofocus>
@@ -155,9 +148,9 @@
                                                     function login() {
                                                         var login_username = $('#txtusername').val();
                                                         var login_password = $('#txtpassword').val();
-                                                        
+
                                                         if ($('#login_form').valid()) {
-                                                            
+
                                                             $.ajax({
                                                                 type: "POST",
                                                                 url: site_url + '/login/authenticate_user',
@@ -165,10 +158,10 @@
                                                                 success: function (msg) {
 
                                                                     if (msg == 1) {
-                                                                        alert("Login success");
                                                                         setTimeout("location.href = site_url+'/login/load_login';", 100);
                                                                     } else {
-                                                                        alert("Invalid login details...");
+                                                                        login_form.reset();
+                                                                        alert("Invalid Login details...");
                                                                     }
                                                                 }
                                                             });
