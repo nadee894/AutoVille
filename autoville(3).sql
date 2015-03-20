@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2015 at 04:16 PM
+-- Generation Time: Mar 20, 2015 at 01:49 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -497,6 +497,7 @@ CREATE TABLE IF NOT EXISTS `manufacture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `description` varchar(500) NOT NULL,
+  `logo` varchar(1000) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
@@ -510,13 +511,13 @@ CREATE TABLE IF NOT EXISTS `manufacture` (
 -- Dumping data for table `manufacture`
 --
 
-INSERT INTO `manufacture` (`id`, `name`, `description`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 'Toyota', '', '1', '0', '2015-03-13 03:37:10', 5, NULL, 1),
-(2, 'Nissan', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(3, 'Honda', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(4, 'Suzuki', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(5, 'Ford', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(6, 'sdsads', '0', '1', '0', '2015-03-14 04:46:26', 1, NULL, 1);
+INSERT INTO `manufacture` (`id`, `name`, `description`, `logo`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 'Toyota', '', '', '1', '0', '2015-03-13 03:37:10', 5, NULL, 1),
+(2, 'Nissan', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
+(3, 'Honda', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
+(4, 'Suzuki', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
+(5, 'Ford', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
+(6, 'sdsadstestrrrrrrrr', '0', '', '1', '0', '2015-03-14 04:46:26', 1, '2015-03-20 05:11:42', 1);
 
 -- --------------------------------------------------------
 
@@ -563,15 +564,16 @@ CREATE TABLE IF NOT EXISTS `privilege` (
   `assign_for` enum('1','2','3','4') NOT NULL,
   PRIMARY KEY (`privilege_code`),
   KEY `lcs_privilege_ibfk_1` (`privilege_master_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `privilege`
 --
 
 INSERT INTO `privilege` (`privilege_code`, `privilege_master_code`, `privilege`, `privilege_description`, `priviledge_code_HF`, `assign_for`) VALUES
-(9, 5, 'Manage Master Privileges', 'Manage Master Privileges', 'MANAGE_MASTER_PRIVILEGES', '1'),
-(10, 5, 'Add New Master Privilege', 'Add New Master Privilege', 'ADD_NEW_MASTER_PRIVILEGE', '1');
+(11, 8, 'Add Advertisement', 'Add Advertisement', 'ADD_ADVERTISEMENT', '1'),
+(12, 8, 'Edit Advertisement', 'Edit Advertisement', 'EDIT_ADVERTISEMENT', '1'),
+(13, 8, 'Delete Advertisement', 'Delete Advertisement', 'DELETE_ADVERTISEMENT', '1');
 
 -- --------------------------------------------------------
 
@@ -583,16 +585,16 @@ CREATE TABLE IF NOT EXISTS `privilege_master` (
   `privilege_master_code` int(11) NOT NULL AUTO_INCREMENT,
   `master_privilege` varchar(100) NOT NULL,
   `master_privilege_description` varchar(1000) NOT NULL,
-  `system_code` int(11) NOT NULL,
+  `system_code` varchar(400) NOT NULL,
   PRIMARY KEY (`privilege_master_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `privilege_master`
 --
 
 INSERT INTO `privilege_master` (`privilege_master_code`, `master_privilege`, `master_privilege_description`, `system_code`) VALUES
-(5, 'Manage Master Privileges', 'Manage Master Privileges', 4);
+(8, 'Manage Advertisements', 'Manage Advertisements', 'ADVERTISEMENT');
 
 -- --------------------------------------------------------
 
@@ -668,7 +670,7 @@ CREATE TABLE IF NOT EXISTS `transmission` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `transmission`
@@ -694,7 +696,12 @@ INSERT INTO `transmission` (`id`, `name`, `is_published`, `is_deleted`, `added_d
 (17, 'asdasd', '1', '0', '2015-03-14 06:20:25', 1, NULL, 1),
 (18, '0', '1', '0', '2015-03-17 04:40:06', 1, NULL, NULL),
 (19, '0', '1', '1', '2015-03-17 04:53:46', 1, NULL, NULL),
-(20, '0', '1', '1', '2015-03-17 05:07:40', 1, NULL, NULL);
+(20, '0', '1', '1', '2015-03-17 05:07:40', 1, NULL, NULL),
+(21, 'dsdsd', '1', '0', '2015-03-20 07:01:20', 0, NULL, NULL),
+(22, 'fdsf', '1', '0', '2015-03-20 07:11:00', 0, NULL, NULL),
+(23, 'fdsf', '1', '0', '2015-03-20 07:13:05', 0, NULL, NULL),
+(24, 'fdsf', '1', '0', '2015-03-20 07:15:14', 0, NULL, NULL),
+(25, 'fdsf', '1', '0', '2015-03-20 07:16:13', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -751,17 +758,14 @@ CREATE TABLE IF NOT EXISTS `user_privileges` (
   UNIQUE KEY `Employeeuser_Priviledge_Code` (`user_privilege_code`),
   KEY `Employee_Code` (`user_id`),
   KEY `Privilege_Code` (`privilege_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
 
 --
 -- Dumping data for table `user_privileges`
 --
 
 INSERT INTO `user_privileges` (`user_privilege_code`, `user_id`, `privilege_code`, `added_date`) VALUES
-(24, 12, 10, '2014-07-07 11:19:19'),
-(25, 12, 9, '2014-07-07 11:20:45'),
-(27, 2, 9, '2014-07-09 05:54:32'),
-(28, 2, 10, '2014-07-09 05:54:32');
+(101, 1, 11, '2015-03-20 06:52:01');
 
 -- --------------------------------------------------------
 
@@ -891,8 +895,6 @@ ALTER TABLE `privilege`
 ALTER TABLE `user_privileges`
   ADD CONSTRAINT `user_privileges_ibfk_1` FOREIGN KEY (`privilege_code`) REFERENCES `privilege` (`privilege_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-
-ALTER TABLE `manufacture` ADD `logo` VARCHAR(1000) NOT NULL AFTER `description`;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

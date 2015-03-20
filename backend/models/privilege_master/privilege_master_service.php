@@ -21,6 +21,7 @@ class Privilege_master_service extends CI_Model {
         $this->db->from('privilege_master');
         $this->db->where('system_code',$system_code );
         $query = $this->db->get();
+
         return  $query->result();
     }
 

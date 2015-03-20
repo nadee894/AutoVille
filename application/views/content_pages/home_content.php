@@ -160,9 +160,15 @@
             /.col-sm-4
         </div>
     </div>-->
-<?php echo ''; ?>
 </section>
 <!--end Featured-->
+
+<!--Search Result-->
+<section id="search_result" class="block equal-height">
+ 
+</section>
+<!--end Search Result-->
+
 
 <!--Categories-->
 <section id="categories" class="block background-color-white">
@@ -170,11 +176,7 @@
 </section>
 <!--end Categories-->
 
-<!--Search Result-->
-<section id="search-result" class="block equal-height">
-     <?php echo $searched_results; ?>
-</section>
-<!--end Search Result-->
+
 
 <!--Price Drop-->
 <section id="price-drop" class="block equal-height">

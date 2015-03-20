@@ -8,30 +8,34 @@ class User_privilege extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        if (!$this->session->userdata('USER_LOGGED_IN')) {
-            redirect(site_url() . '/login/load_login');
-        } else {
+//        if (!$this->session->userdata('USER_LOGGED_IN')) {
+//            redirect(site_url() . '/login/load_login');
+//        } else {
 
-            $this->load->model('user_privileges/user_privileges_model');
-            $this->load->model('user_privileges/user_privileges_service');
+        $this->load->model('user_privileges/user_privileges_model');
+        $this->load->model('user_privileges/user_privileges_service');
 
-            $this->load->model('privilege_master/privilege_master_model');
-            $this->load->model('privilege_master/privilege_master_service');
+        $this->load->model('privilege_master/privilege_master_model');
+        $this->load->model('privilege_master/privilege_master_service');
 
-            $this->load->model('privilege/privilege_model');
-            $this->load->model('privilege/privilege_service');
+        $this->load->model('privilege/privilege_model');
+        $this->load->model('privilege/privilege_service');
 
-            $this->load->model('users/user_model');
-            $this->load->model('users/user_service');
-        }
+        $this->load->model('users/user_model');
+        $this->load->model('users/user_service');
+//        }
     }
 
     function manage_user_privileges($id) {
 
         $user_service           = new User_service();
         $user_privilege_service = new User_privileges_service();
+        $user_model             = new User_model();
 
-        $data['user_detail'] = $user_service->get_admin_by_id($id);
+
+        $user_model->set_id($id);
+
+        $data['user_detail'] = $user_service->get_admin_by_id($user_model);
 
         $current_assigned_privileges = $user_privilege_service->get_assigned_privileges_by_user_id($id);
         $privileges                  = array();
@@ -51,7 +55,7 @@ class User_privilege extends CI_Controller {
         $user_privilege_model   = new User_privileges_model();
         $user_privilege_service = new User_privileges_service();
         //setting the user id
-        $user_privilege_model->set_user_code($this->input->post('emp_code', TRUE));
+        $user_privilege_model->set_user_id($this->input->post('user_id', TRUE));
         $user_privilege_model->set_privilege_code($this->input->post('pri_code', TRUE));
         //adding the user piviledges based on the template
         echo $user_privilege_service->add_new_user_privilege($user_privilege_model);
@@ -70,7 +74,7 @@ class User_privilege extends CI_Controller {
 
         //setting the user id
         $user = $user_service->get_admin_by_id($user_model);
-        $user_privilege_model->set_user_code($this->input->post('user_id', TRUE));
+        $user_privilege_model->set_user_id($this->input->post('user_id', TRUE));
 
         $master_privileges = $privilege_master_service->get_privilege_master_by_system_code($this->input->post('system_code', TRUE));
 
@@ -79,7 +83,7 @@ class User_privilege extends CI_Controller {
             foreach ($privileges as $privilege) {
                 $user_privilege_model->set_privilege_code($privilege->privilege_code);
 
-                $user_privilege_service->add_new_employee_privilege_system($user_privilege_model);
+                $user_privilege_service->add_new_user_privilege_system($user_privilege_model);
             }
         }
         //adding the user piviledges based on the template
@@ -99,7 +103,7 @@ class User_privilege extends CI_Controller {
 
         //setting the user id
         $user = $user_service->get_admin_by_id($user_model);
-        $user_privilege_model->set_user_code($this->input->post('user_id', TRUE));
+        $user_privilege_model->set_user_id($this->input->post('user_id', TRUE));
 
         $master_privileges = $privilege_master_service->get_privilege_master_by_system_code($this->input->post('system_code', TRUE));
 
@@ -108,7 +112,7 @@ class User_privilege extends CI_Controller {
             foreach ($privileges as $privilege) {
                 $user_privilege_model->set_privilege_code($privilege->privilege_code);
 
-                $user_privilege_service->delete_new_employee_privilege_system($user_privilege_model);
+                $user_privilege_service->delete_new_user_privilege_system($user_privilege_model);
             }
         }
 

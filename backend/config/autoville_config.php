@@ -2,8 +2,8 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-//Custon configuration file.
-// function employeeservices->getEmployeeswithdep() ->  // designation 23 -> is managing director   not get report
+//Custom configuration file.
+
 //This is to set the site title
 $config['APPLICATION_MAIN_TITLE'] = "AutoVille ";
 $config['LOGIN_OPTION']           = 1;
@@ -13,4 +13,8 @@ $config['LOGIN_OPTION']           = 1;
 $config['SUPERADMIN'] = 1;
 $config['ADMIN']      = 2;
 $config['REGISTERED'] = 3;
+
+//Systems
+$systems= array('ADVERTISEMENT','USERS','PAGES','REVIEWS','VEHICLE SPECS','SETTINGS');
+$config['SYSTEMS']=$systems;
 

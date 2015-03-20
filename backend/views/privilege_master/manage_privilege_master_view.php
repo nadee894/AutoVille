@@ -93,8 +93,10 @@
                         <span style="color: red">*</span>
 
                         <select name="system_code" id="system_code" class="select2 form-control"  >
-                            <?php foreach ($systems as $system) { ?>
-                                <option value="<?php echo $system->system_code; ?>" ><?php echo $system->system; ?></option>
+                            <?php
+                            $systems=$this->config->item('SYSTEMS');
+                            foreach ($systems as $system) { ?>
+                                <option value="<?php echo $system; ?>" ><?php echo $system; ?></option>
                             <?php } ?>
                         </select>                              
                     </div>
