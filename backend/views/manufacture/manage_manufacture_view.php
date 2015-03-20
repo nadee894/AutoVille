@@ -23,7 +23,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Logo</th>
+<!--                                <th>Logo</th>-->
                                 <th>Active Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -36,7 +36,7 @@
                                 <tr id="manufacture_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
-                                    <td><?php echo $result->logo; ?></td>
+    <!--                                    <td><?php echo $result->logo; ?></td>-->
     <!--                                        <td><?php echo $result->added_by_user; ?></td>-->
     <!--                                        <td><?php echo $result->added_date; ?></td>-->
                                     <td align="center">
@@ -79,10 +79,10 @@
                         <label for="name">Title</label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
                         <div id="upload">
-                                <button type="button" class="btn btn-primary btn-small" id="browse"><i class="fa fa-camera"></i></button>
+                            <button type="button" class="btn btn-primary btn-small" id="browse"><i class="fa fa-camera"></i></button>
 
-                            </div>
-                            <div id="sta"><span id="status" ></span></div>
+                        </div>
+                        <div id="sta"><span id="status" ></span></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -194,6 +194,54 @@
         });
 
     }
+
+    //upload manufacture logo
+
+    $(function() {
+        var btnUpload = $('#upload');
+        var status = $('#status');
+        new AjaxUpload(btnUpload, {
+            action: '<?PHP echo site_url(); ?>/manufacture/upload_manufacture_logo',
+            name: 'uploadfile',
+            onSubmit: function(file, ext) {
+                if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
+                    // extension is not allowed 
+                    status.text('Only JPG, PNG or GIF files are allowed');
+                    return false;
+                }
+                //status.text('Uploading...Please wait');
+//                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
+
+            },
+            onComplete: function(file, response) {
+                //On completion clear the status
+                //status.text('');
+                $("#files").html("");
+                $("#sta").html("");
+                //Add uploaded file to list
+                if (response != "error") {
+
+                    //save new pic in database and session
+                    $.post(site_url + '/manufacture/upload_manufacture_logo', {manufacture_logo: response, manufacture_id: $('#manufacture_id').val()}, function(msg)
+                    {
+
+                    });
+
+                    $('#files').html("");
+                    $('<div></div>').appendTo('#files').html('<img src="<?PHP echo base_url(); ?>uploads/manufacture_logo/' + response + '"   style="width: 100%;" /><br />');
+                    picFileName = response;
+                    document.getElementById('logo').value = file;
+//                    document.getElementById('cover_image').value = response;
+                } else {
+                    $('<div></div>').appendTo('#files').text(file).addClass('error');
+                }
+            }
+        });
+
+    });
+
+
+
 
 </script>
 

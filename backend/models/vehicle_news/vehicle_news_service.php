@@ -47,13 +47,19 @@ class Vehicle_news_service extends CI_Model {
             'updated_by' => $vehicle_news_model->get_updated_date()
         );
         
-        $this->db->where('id',$vehicle_news_model->get_id);
+        $this->db->where('id',$vehicle_news_model->get_id());
         $this->db->update('vehicle_news',$data);
     }
     
     public function get_vehicle_news_by_id($vehicle_news_model){
         $query=  $this->db->get_where('vehicle_news',array('id'=>$vehicle_news_model->get_id(),'is_deleted'=>'0'));
         return $query->row();
+    }
+    
+    public function update_vehicle_image($vehicle_news_model) {
+        $data = array('employee_avatar' => $employee_model->get_employee_avatar());
+        $this->db->where('employee_code', $employee_model->get_employee_code());
+        return $this->db->update('employee', $data);
     }
 
 }

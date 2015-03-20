@@ -34,7 +34,7 @@
                             foreach ($results as $result) {
                                 ?>
                                 <tr id="vehicle_news_<?php echo $result->id; ?>">
-                                    <td><?php echo++$i; ?></td>
+                                    <td><?php echo ++$i; ?></td>
                                     <td><?php echo $result->title; ?></td>
                                     <td><?php echo $result->content ?></td>
 
@@ -97,67 +97,103 @@
         </div>
     </div>
 </div>
+<!--vehicle news edit modal-->
+<div class="modal fade "  id="vehicle_news_edit_div" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="vehicle_news_edit_content">
 
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript">
-                                        $('#comments_menu').addClass('active open');
+                                            $('#comments_menu').addClass('active open');
 
-                                        $('.wysihtml5').wysihtml5();
+                                            $('.wysihtml5').wysihtml5();
 
-                                        $(document).ready(function() {
-                                            $('#vehicle_news_table').dataTable();
-                                        });
+                                            $(document).ready(function() {
+                                                $('#vehicle_news_table').dataTable();
 
-                                        //change published status of the vehicle news
-
-                                        function change_publish_status(vehicle_news_id, value, element) {
-                                            var condition = 'Do you want to activate this vehicle news?';
-                                            if (value == 0) {
-                                                condition = 'Do you want to deactivate this vehicle news?';
-                                            }
-
-                                            if (confirm(condition)) {
-                                                $.ajax({type: "POST",
-                                                    url: site_url + '/vehicle_news/change_publish_status',
-                                                    data: "id=" + vehicle_news_id + "&value=" + value,
-                                                    success: function(msg) {
-
-                                                        if (msg == 1) {
-
-                                                            if (value == 1) {
-                                                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 0, this)" title="click to deactivate vehicle news"><i class="fa fa-check"></i></a> ');
+                                                $("#add_vehicle_news_form").validate({
+                                                    rules: {
+                                                        name: "required"
+                                                    },
+                                                    message: {
+                                                        name: "Please enter a title"
+                                                    }, submitHandler: function(form) {
+                                                        $.post(site_url + '/vehicle_news/add_vehicle_news', $('#add_vehicle_news_form').serialize(), function(msg) {
+                                                            if (msg == 1) {
+                                                                add_vehicle_news_form.reset
+                                                                window.location = site_url + '/vehicle_news/manage_vehicle_news';
                                                             } else {
-                                                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 1, this)" title="click to activate vehicle news"><i class="fa fa-exclamation-circle"></i></a> ');
+
                                                             }
-                                                        } else if (msg == 2) {
-
-                                                        }
-
+                                                        });
                                                     }
                                                 });
+                                            });
+
+                                            //change published status of the vehicle news
+
+                                            function change_publish_status(vehicle_news_id, value, element) {
+                                                var condition = 'Do you want to activate this vehicle news?';
+                                                if (value == 0) {
+                                                    condition = 'Do you want to deactivate this vehicle news?';
+                                                }
+
+                                                if (confirm(condition)) {
+                                                    $.ajax({type: "POST",
+                                                        url: site_url + '/vehicle_news/change_publish_status',
+                                                        data: "id=" + vehicle_news_id + "&value=" + value,
+                                                        success: function(msg) {
+
+                                                            if (msg == 1) {
+
+                                                                if (value == 1) {
+                                                                    $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 0, this)" title="click to deactivate vehicle news"><i class="fa fa-check"></i></a> ');
+                                                                } else {
+                                                                    $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + vehicle_news_id + ', 1, this)" title="click to activate vehicle news"><i class="fa fa-exclamation-circle"></i></a> ');
+                                                                }
+                                                            } else if (msg == 2) {
+
+                                                            }
+
+                                                        }
+                                                    });
+                                                }
                                             }
-                                        }
 
-                                        //delete the vehicle news
-                                        function delete_vehicle_news(id) {
-                                            if (confirm('Are you sure want ot delete this comment ?')) {
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: site_url + '/vehicle_news/delete_vehicle_news',
-                                                    data: "id=" + id,
-                                                    success: function(msg) {
-                                                        if (msg == 1) {
-                                                            $('#vehicle_news_' + id).hide();
-                                                        }
-                                                        else if (msg == 2) {
-                                                            alert('Cannot be deleted as it is already assigned to others. !!');
-                                                        }
+                                            //delete the vehicle news
+                                            function delete_vehicle_news(id) {
+                                                if (confirm('Are you sure want ot delete this comment ?')) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/vehicle_news/delete_vehicle_news',
+                                                        data: "id=" + id,
+                                                        success: function(msg) {
+                                                            if (msg == 1) {
+                                                                $('#vehicle_news_' + id).hide();
+                                                            }
+                                                            else if (msg == 2) {
+                                                                alert('Cannot be deleted as it is already assigned to others. !!');
+                                                            }
 
-                                                    }
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+
+                                            //edit vehicle news
+                                            function display_edit_vehicle_news_pop_up(vehicle_news_id) {
+                                                $.post(site_url + '/vehicle_news/load_edit_vehicle_news_content', {vehicle_news_id: vehicle_news_id}, function(msg) {
+                                                    $('#vehicle_news_edit_content').html('');
+                                                    $('#vehicle_news_edit_content').html(msg);
+                                                    $('#vehicle_news_edit_div').modal('show');
                                                 });
                                             }
-                                        }
+
 </script>
 

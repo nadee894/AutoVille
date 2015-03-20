@@ -5,7 +5,7 @@
             <header>
                 <h1 class="page-title"><?php echo $heading; ?></h1>
             </header>
-            <form id="form-submit" role="form" method="post" action="submit.html-.htm" enctype="multipart/form-data">
+            <form id="form-submit" name="form-submit" role="form" method="post" enctype="multipart/form-data">
 
                 <!--Vehicle details -->
                 <section>
@@ -15,6 +15,7 @@
                             <div class="form-group">
                                 <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
                                 <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true">
+                                    <option value="0">Select Manufacturer</option>
                                     <?php foreach ($manufactures as $manufacture) { ?>
                                         <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
                                     <?php } ?>
@@ -27,6 +28,7 @@
                             <div class="form-group">
                                 <label for="model">Model<span class="mandatory">*</span></label>
                                 <select name="model" id="model" title="Model" data-live-search="true">
+                                    <option value="0">Select Model</option>
                                     <?php foreach ($models as $model) { ?>
                                         <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
                                     <?php } ?>
@@ -37,6 +39,7 @@
                             <div class="form-group">
                                 <label for="fabrication">Fabrication<span class="mandatory">*</span></label>
                                 <select name="fabrication" id="fabrication" title="Fabrication" data-live-search="true">
+                                    <option value="0">Select Fabrication</option>
                                     <option value="1990">1990</option>
                                     <option value="1991">1991</option>
                                     <option value="1992">1992</option>
@@ -73,6 +76,7 @@
                             <div class="form-group">
                                 <label for="fuel_type">Fuel Type<span class="mandatory">*</span></label>
                                 <select name="fuel_type" id="fuel_type" title="Fuel Type" data-live-search="true">
+                                    <option value="0">Select Fuel Type</option>
                                     <?php foreach ($fuel_types as $fuel_type) { ?>
                                         <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
                                     <?php } ?>
@@ -84,6 +88,7 @@
                             <div class="form-group">
                                 <label for="transmission">Transmission<span class="mandatory">*</span></label>
                                 <select name="transmission" id="transmission" title="Transmission" data-live-search="true">
+                                    <option value="0">Select Transmission</option>
                                     <?php foreach ($transmissions as $transmission) { ?>
                                         <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
                                     <?php } ?>
@@ -95,6 +100,7 @@
                             <div class="form-group">
                                 <label for="body_type">Body Type<span class="mandatory">*</span></label>
                                 <select name="body_type" id="body_type" title="Body Type" data-live-search="true">
+                                    <option value="0">Select Body Type</option>
                                     <?php foreach ($body_types as $body_type) { ?>
                                         <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
                                     <?php } ?>
@@ -111,6 +117,7 @@
                             <div class="form-group">
                                 <label for="doors">Doors<span class="mandatory">*</span></label>
                                 <select name="doors" id="doors" title="Doors" data-live-search="true">
+                                    <option value="0">Select Doors</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
@@ -124,6 +131,7 @@
                             <div class="form-group">
                                 <label for="location">Location<span class="mandatory">*</span></label>
                                 <select name="location" id="location" title="Location" data-live-search="true">
+                                    <option value="0">Select Location</option>
                                     <?php foreach ($locations as $location) { ?>
                                         <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                                     <?php } ?>
@@ -135,6 +143,7 @@
                             <div class="form-group">
                                 <label for="colour">Colour<span class="mandatory">*</span></label>
                                 <select name="colour" id="colour" title="Colour" data-live-search="true">
+                                    <option value="0">Select Colour</option>
                                     <option value="Blue">Blue</option>
                                     <option value="Yellow">Yellow</option>
                                     <option value="Purple">Purple</option>
@@ -157,6 +166,7 @@
                             <div class="form-group">
                                 <label for="sale_type">Sale Type<span class="mandatory">*</span></label>
                                 <select name="sale_type" id="sale_type" title="Sale Type">
+                                    <option value="0">Select Sale Type</option>
                                     <option value="new">New</option>
                                     <option value="used">Used</option>
                                 </select>
@@ -212,7 +222,7 @@
                     <h3>Features</h3>
                     <ul class="list-unstyled checkboxes">
                         <?php foreach ($equipments as $equipment) { ?>
-                        <li><div class="checkbox"><label><input type="checkbox" name="equipment[]" value="<?php echo $equipment->id;?>"><?php echo $equipment->name;?></label></div></li>
+                            <li><div class="checkbox"><label><input type="checkbox" name="equipment[]" value="<?php echo $equipment->id; ?>"><?php echo $equipment->name; ?></label></div></li>
                         <?php } ?>
                     </ul>
                 </section>
@@ -290,7 +300,7 @@
                     </div>
                 </section>
                 <!--end Gallery-->
-                
+
                 <hr>
                 <section>
                     <figure class="pull-left margin-top-15">
@@ -336,3 +346,27 @@
         <!--end Sidebar-->
     </div>
 </section>
+
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    $.validator.addMethod('selectmanufacture', function(value) {
+        return (value != '0');
+    }, "");
+
+    $(document).ready(function() {
+
+        $("form#form-submit").validate({
+            rules: {
+                manufacturer: {
+                    selectmanufacture: true
+                },
+                price: 'required',
+                chassis_no: 'required',
+                kilo_meters: 'required'
+
+            }
+        });
+    });
+
+</script>

@@ -102,7 +102,20 @@ class Manufacture extends CI_Controller {
     }
     
      /*
-     * This function is to upload profile pic to employee
+     * This function is to upload manufacture logo
      */
-    
+    function upload_manufacture_logo() {
+
+        $uploaddir = './uploads/manufacture_logo/';
+        $unique_tag = 'manufacture_logo';
+
+        $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile2']['name']); //this is the file name
+        $file = $uploaddir . $filename; // this is the full path of the uploaded file
+
+        if (move_uploaded_file($_FILES['uploadfile2']['tmp_name'], $file)) {
+            echo $filename;
+        } else {
+            echo "error";
+        }
+    }
 }

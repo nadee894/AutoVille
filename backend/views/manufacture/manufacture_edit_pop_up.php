@@ -32,7 +32,7 @@
                 if (msg == 1) {
                     window.location = site_url + '/manufacture/manage_manufactures';
                 } else {
-                    alert("wrong");
+                    
                 }
             });
         }
