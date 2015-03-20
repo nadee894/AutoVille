@@ -72,7 +72,7 @@
     
     <li class="sub-menu">
         <a href="javascript:;" id="settings_menu">
-            <i class="fa fa-cogs"></i>
+            <i class="fa  fa-wrench"></i>
             <span>Settings</span>
         </a>
         <ul class="sub">

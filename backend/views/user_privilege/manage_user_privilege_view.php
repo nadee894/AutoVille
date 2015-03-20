@@ -1,5 +1,5 @@
 <div class="page-title">	
-    <h3><?php echo $heading . ' - ' . ucfirst($user_detail->name) ?></h3>		
+    <h3><?php echo 'Assign Privileges For ' . ' - ' . ucfirst($user_detail->name); ?></h3>		
 </div>
 
 
@@ -9,12 +9,14 @@
         $privilege_master_service = new Privilege_master_service();
         $privilege_service        = new Privilege_service();
 
+        $systems = $this->config->item('SYSTEMS');
+
         $a = 0;
         foreach ($systems as $system) {
             ++$a;
             ?>
             <li <?php if ($a == 1) { ?>class="active" <?php } ?>>
-                <a href="#tabs-<?php echo $a; ?>"><span class="semi-bold"><?php echo $system->system; ?></span></a>
+                <a href="#tabs-<?php echo $a; ?>"><span class="semi-bold"><?php echo $system; ?></span></a>
             </li>
         <?php } ?>
     </ul>
@@ -30,16 +32,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <?php
-                        $privilege_masters = $privilege_master_service->get_privilege_master_by_system_code($system->system_code);
+                        $privilege_masters = $privilege_master_service->get_privilege_master_by_system_code($system);
                         if (count($privilege_masters) != 0) {
                             ?> 
                             <div class="divcls" >
                                 <div class="row-fluid">
                                     <div class="checkbox check-primary">
-                                        <div id="msgsystem<?php echo $system->system_code; ?>" class="msgsystem"></div>
-                                        <div id="loader_ajax_check_all_hrm<?php echo $system->system_code; ?>" class="loader_ajax_check_all_hrm"> </div>
-                                        <input type="checkbox" value="<?php echo $system->system_code; ?>" onclick="save_privileges_from_system(<?php echo $system->system_code; ?>,<?php echo $employee_detail->employee_code; ?>)" name="privilegessystem[]" id="privilegesystem<?php echo $system->system_code; ?>" class="checkbox msgsystemchk<?php echo $system->system_code; ?>">
-                                        <label for="privilegesystem<?php echo $system->system_code; ?>">Select All - <?php echo $system->system; ?> </label>
+                                        <div id="msgsystem<?php echo $system ?>" class="msgsystem"></div>
+                                        <div id="loader_ajax_check_all_hrm<?php echo $system; ?>" class="loader_ajax_check_all_hrm"> </div>
+                                        <input type="checkbox" value="<?php echo $system; ?>" onclick="save_privileges_from_system(<?php echo $system; ?>,<?php echo $employee_detail->employee_code; ?>)" name="privilegessystem[]" id="privilegesystem<?php echo $system; ?>" class="checkbox msgsystemchk<?php echo $system; ?>">
+                                        <label for="privilegesystem<?php echo $system; ?>">Select All - <?php echo $system; ?> </label>
 
                                     </div>
                                 </div>
@@ -64,7 +66,7 @@
                                                     if (in_array($privilege->privilege_code, $assigned_privileges)) {
                                                         echo 'checked="checked"';
                                                     }
-                                                    ?>  type="checkbox" value="<?php echo $privilege->privilege_code; ?>" onclick="save_privileges_from_user(<?php echo $privilege->privilege_code; ?>,<?php echo $employee_code; ?>)" name="privileges[]" id="privilege<?php echo $privilege->privilege_code; ?>" class="checkbox chkbox<?php echo $system->system_code; ?>">
+                                                    ?>  type="checkbox" value="<?php echo $privilege->privilege_code; ?>" onclick="save_privileges_from_user(<?php echo $privilege->privilege_code; ?>,<?php echo $employee_code; ?>)" name="privileges[]" id="privilege<?php echo $privilege->privilege_code; ?>" class="checkbox chkbox<?php echo $system; ?>">
                                                     <label for="privilege<?php echo $privilege->privilege_code; ?>"><?php echo $privilege->privilege; ?></label>
                                                     <div id="msg<?php echo $privilege->privilege_code; ?>" class="msgdisplay"></div>
                                                 </div>

@@ -122,7 +122,7 @@
                     </div>  
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default" onclick="search_vehicle()"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn btn-default" onclick="search_vehicle()"><i class="fa fa-search"></i></button>
                     </div>
                     <!-- /.form-group -->
                 </div>
@@ -164,11 +164,7 @@
                     "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
                     "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword,
             success: function (msg) {
-                if (msg == 1) {
-                    alert('one results');
-                } else {
-                    alert('Many results!');
-                }
+                $('#search_result').html(msg);
             }
         });
     }

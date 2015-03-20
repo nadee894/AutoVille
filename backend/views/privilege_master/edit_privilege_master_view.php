@@ -2,7 +2,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h4 class="modal-title">Privilege Master Quick Edit</h4>
 </div>
-<form id="edit_privilege_form" name="edit_privilege_form">
+<form id="edit_privilege_master_form" name="edit_privilege_master_form">
     <div class="modal-body">
 
         <div class="form-group">
@@ -25,8 +25,10 @@
             <span style="color: red">*</span>
 
             <select name="system_code" id="system_code" class="select2 form-control"  style="width: 50%">
-                <?php foreach ($systems as $system) { ?>
-                    <option value="<?php echo $system->system_code; ?>" <?php if ($system->system_code == $privilege_master->system_code) { ?> selected="true" <?php } ?>><?php echo $system->system; ?></option>
+                <?php 
+                $systems=$this->config->item('SYSTEMS');
+                foreach ($systems as $system) { ?>
+                    <option value="<?php echo $system; ?>" <?php if ($system == $privilege_master->system_code) { ?> selected="true" <?php } ?>><?php echo $system; ?></option>
                 <?php } ?>
             </select>                                   
         </div>
@@ -62,6 +64,7 @@
             $.post(site_url + '/privilege_master/edit_master_privilege', $('#edit_privilege_master_form').serialize(), function(msg)
             {
                 if (msg == 1) {
+
                     $('#edit_privilege_master_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                     window.location = site_url + '/privilege_master/manage_privilege_masters';
                 } else {
