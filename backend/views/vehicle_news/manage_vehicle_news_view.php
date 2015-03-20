@@ -82,8 +82,7 @@
 
                     <div class="form-group">
                         <label for="name">Content</label>
-                        <textarea class="wysihtml5 form-control" id="content_text" name="content_text" rows="20">
-                           
+                        <textarea class="wysihtml5 form-control" id="content_text" name="content_text" rows="20">                       
                         </textarea>
                     </div>
 
