@@ -2,8 +2,8 @@
         
         foreach ($results as $result) {
             ?>
-            <div class="col-md-6 col-sm-6"id="admin_<?php echo $result->id; ?>" >
-                <?php ++$i; ?>
+            <div class="col-md-6 col-sm-6"id="reg_user<?php echo $result->id; ?>" >
+                
                 <div class="panel" >
 
                     <div class="panel-body">
@@ -36,7 +36,7 @@
                                     <email>E-mail : <?php echo $result->email; ?></email><br>
                                     <br>
                                     <br>
-                                    <button class="btn btn-info btn-xs" type="button">Assign Privileges</button>
+                                    
                                     <a class="btn btn-warning btn-xs" ><i class="fa fa-ban" title="Disable"></i></a>
                                     <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
