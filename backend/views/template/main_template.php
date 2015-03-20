@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,11 +33,11 @@
         <link href="<?php echo base_url(); ?>backend_resources/css/style.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>backend_resources/css/style-responsive.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>backend_resources/assets/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
-        
+
 
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
-       
+
 
 
 
@@ -276,7 +276,7 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <img alt="" height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg">
-                                <span class="username"><?php echo $this->session->userdata('USER_NAME');?></span>
+                                <span class="username"><?php echo $this->session->userdata('USER_NAME'); ?></span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
@@ -476,11 +476,15 @@
         </script>
         <!-- js placed at the end of the document so the pages load faster -->
 
-        
-        <script src="<?php echo base_url(); ?>backend_resources/assets/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+
+
+        <script src="<?php echo base_url(); ?>backend_resources/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
         <script class="include" type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.dcjqaccordion.2.7.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.scrollTo.min.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+        <!--custom checkbox & radio-->
+        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/ga.js"></script>
 
         <script type="text/javascript" language="javascript" src="<?php echo base_url(); ?>backend_resources/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/assets/data-tables/DT_bootstrap.js"></script>
@@ -497,18 +501,20 @@
         <!--dynamic table initialization -->
         <script src="<?php echo base_url(); ?>backend_resources/js/dynamic_table_init.js"></script>
 
-
+      
+        
         <!--common script for all pages-->
         <script src="<?php echo base_url(); ?>backend_resources/js/common-scripts.js"></script>
 
         <!--script for this page-->
         <script src="<?php echo base_url(); ?>backend_resources/js/form-validation-script.js"></script>
 
-       
+
         <!--script for this page-->
         <script src="<?php echo base_url(); ?>backend_resources/js/sparkline-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/count.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/form-component.js"></script>
 
 
         <script>

@@ -108,7 +108,8 @@
 
 
 <!-- active selected menu -->
-
+  <!--toastr-->
+        <script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
     $('#vehicle_spec_menu').addClass('active');
 
@@ -129,10 +130,13 @@
                 $.post(site_url + '/transmission/add_transmission', $('#add_transmission_form').serialize(), function(msg)
                 {
                     if (msg == 1) {
-                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
-
+//                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+toastr.success("Successfully saved!!. ", "AutoVille");
                         add_transmission_form.reset();
                         window.location = site_url + '/transmission/manage_transmissions';
+                        
+                        toastr[success]("Successfully saved!!. ", "AutoVille")
+              
                     } else {
                         $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
 
