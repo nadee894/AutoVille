@@ -1,19 +1,14 @@
-         
-<?php
-$i = 0;
-$n = 0;
-foreach ($results as $result) {
-    ?>
+
     <!-- page start-->
-    <div class="row" id="admin_"<?php echo $result->id; ?>>
+    <div class="row" >
         <aside class="profile-nav col-lg-3">
             <section class="panel">
                 <div class="user-heading round">
                     <a href="#">
-                        <img src="img/profile-avatar.jpg" alt="">
+                        <img src="<?php echo base_url(); ?>/uploads/4.jpg" alt="">
                     </a>
-                    <h1>Jonathan Smith</h1>
-                    <p>jsmith@flatlab.com</p>
+                    <h1><?php echo $results->title; ?><?php echo " "; ?> <?php echo $results->name; ?></h1>
+                    <p><?php echo $results->email; ?></p>
                 </div>
 
                 <ul class="nav nav-pills nav-stacked">
@@ -144,5 +139,4 @@ foreach ($results as $result) {
         </aside>
     </div>
 
-<?php } ?>
 <!-- page end-->
