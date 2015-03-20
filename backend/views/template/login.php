@@ -111,16 +111,16 @@
                             var login_username = $('#txtusername').val();
                             var login_password = $('#txtpassword').val();
 
-                            if ($('#login_form').valid()) {                                
+                            if ($('#login_form').valid()) {
 
                                 $.ajax({
                                     type: "POST",
                                     url: site_url + '/login/authenticate_user',
                                     data: "login_username=" + login_username + "&login_password=" + login_password,
-                                    success: function (msg) {                                        
+                                    success: function (msg) {
 
                                         if (msg == 1) {
-                                            alert("login success");
+                                            alert("Login success");
                                             setTimeout("location.href = site_url+'/login/load_login';", 100);
                                         } else {
                                             alert("Invalid login details...");
