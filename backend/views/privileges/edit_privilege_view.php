@@ -41,9 +41,9 @@
             <span style="color: red">*</span>
 
             <select name="assign_for" id="assign_for" class="select2 form-control" style="width: 50%" >
-                <option value="1" <?php if ($this->config->item('SUPERADMIN') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Admin</option>
-                <option value="2" <?php if ($this->config->item('ADMIN') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Company Owner</option>
-                <option value="3" <?php if ($this->config->item('REGISTERED') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Employee</option>
+                <option value="1" <?php if ($this->config->item('SUPERADMIN') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Super Administrator</option>
+                <option value="2" <?php if ($this->config->item('ADMIN') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Administrator</option>
+                <option value="3" <?php if ($this->config->item('REGISTERED') == $privilege->assign_for) { ?> selected="true" <?php } ?>>Registered User</option>
                 
             </select>                               
         </div>
