@@ -61,8 +61,8 @@
                                     <h4><i class="fa  fa-circle  text-success"></i>
                                         <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                                     <?php } else { ?>
-                                            <h4><i class="fa  fa-circle  text-danger"></i>
-                                    <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
+                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
 
                                 <?php } ?>
                                 <!--                                <ul class="social-links">
@@ -79,19 +79,21 @@
                                 </address>
                                 <br>
 
-                                <div>
-                                    <?php if ($result->is_published) { ?>
-                                        <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check"></i></a>
-                                    <?php } else { ?>
-                                        <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>
-                                    <?php } ?>
-                                </div>
+                                <span class="p-team">
+                                    <span>
+                                        <?php if ($result->is_published) { ?>
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check"></i></a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>
+                                        <?php } ?>
+                                    </span>
 
 
-                                <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
-                                <a class="btn btn-info btn-xs" href="<?php echo site_url(); ?>/user_privilege/manage_user_privileges/<?php echo $result->id; ?>">Assign Privileges</a>
+                                    <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
 
+                                    <a class="btn btn-info btn-xs" href="<?php echo site_url(); ?>/user_privilege/manage_user_privileges/<?php echo $result->id; ?>">Assign Privileges</a>
+                                </span>
 
 
 
@@ -109,93 +111,21 @@
 
 <script type="text/javascript">
 
-    $('#user_menu').addClass('active');
-    //change Online status of body types
-    function change_online_status(user_id, value, element) {
+        $('#user_menu').addClass('active');
+        //change Online status of body types
+        function change_online_status(user_id, value, element) {
 
 
-        $.ajax({
-            type: "POST",
-            url: site_url + '/users/change_online_status',
-            data: "id=" + user_id + "&value=" + value,
-            success: function (msg) {
-                if (msg == 1) {
-                    if (value == 1) {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
-                    } else {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
-                    }
-
-                } else if (msg == 2) {
-                    alert('Error !!');
-                }
-            }
-        });
-    }
-
-    //load admins by letter
-    function load_admins_by_letter(letter) {
-        $.ajax({
-            type: "POST",
-            url: site_url + '/users/load_admins_by_letter',
-            data: "myletter=" + letter,
-            success: function (msg)
-            {
-                $('#admin_filter_content').html(msg);
-            }
-        });
-    }
-
-    //load admins by letter
-    function load_all_admins() {
-
-        var address = $('#address');
-        var contact_no_01 = $('#contact_no_1');
-        var contact_no_02 = $('#contact_no_2');
-    }
-
-//load admins when deleted
-    function load_after_deleted(user_id) {
-        if (confirm('Are you sure want to delete this user ?')) {
             $.ajax({
                 type: "POST",
-                url: site_url + '/users/delete_users',
-                data: "user_id=" + user_id,
-                success: function (msg)
-                {
-                    if (msg == 1) {
-                        //document.getElementById(trid).style.display='none';
-                        $('#admin_' + user_id).hide();
-//                        $('#admin_filter_content').html(msg);
-                    }
-                    else if (msg == 2) {
-                        alert('Error in Deleting. !!');
-                    }
-                }
-            });
-        }
-    }
-
-
-    //change publish status of a user
-    function change_publish_status(user_id, value, element) {
-
-        var condition = 'Do you want to enable this user ?';
-        if (value == 0) {
-            condition = 'Do you want to disable this user?';
-        }
-
-        if (confirm(condition)) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/users/change_publish_status',
+                url: site_url + '/users/change_online_status',
                 data: "id=" + user_id + "&value=" + value,
-                success: function (msg) {
+                success: function(msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
+                            $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
+                            $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
                         }
 
                     } else if (msg == 2) {
@@ -204,7 +134,79 @@
                 }
             });
         }
-    }
+
+        //load admins by letter
+        function load_admins_by_letter(letter) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/users/load_admins_by_letter',
+                data: "myletter=" + letter,
+                success: function(msg)
+                {
+                    $('#admin_filter_content').html(msg);
+                }
+            });
+        }
+
+        //load admins by letter
+        function load_all_admins() {
+
+            var address = $('#address');
+            var contact_no_01 = $('#contact_no_1');
+            var contact_no_02 = $('#contact_no_2');
+        }
+
+//load admins when deleted
+        function load_after_deleted(user_id) {
+            if (confirm('Are you sure want to delete this user ?')) {
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/users/delete_users',
+                    data: "user_id=" + user_id,
+                    success: function(msg)
+                    {
+                        if (msg == 1) {
+                            //document.getElementById(trid).style.display='none';
+                            $('#admin_' + user_id).hide();
+//                        $('#admin_filter_content').html(msg);
+                        }
+                        else if (msg == 2) {
+                            alert('Error in Deleting. !!');
+                        }
+                    }
+                });
+            }
+        }
+
+
+        //change publish status of a user
+        function change_publish_status(user_id, value, element) {
+
+            var condition = 'Do you want to enable this user ?';
+            if (value == 0) {
+                condition = 'Do you want to disable this user?';
+            }
+
+            if (confirm(condition)) {
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/users/change_publish_status',
+                    data: "id=" + user_id + "&value=" + value,
+                    success: function(msg) {
+                        if (msg == 1) {
+                            if (value == 1) {
+                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
+                            } else {
+                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
+                            }
+
+                        } else if (msg == 2) {
+                            alert('Error !!');
+                        }
+                    }
+                });
+            }
+        }
 
 
 </script>

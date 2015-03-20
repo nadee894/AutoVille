@@ -28,6 +28,9 @@
         <!--right slidebar-->
         <link href="<?php echo base_url(); ?>backend_resources/css/slidebars.css" rel="stylesheet">
 
+        <!--toastr-->
+        <link href="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
+
         <!-- Custom styles for this template -->
 
         <link href="<?php echo base_url(); ?>backend_resources/css/style.css" rel="stylesheet">
@@ -478,7 +481,7 @@
 
 
 
-        <script src="<?php echo base_url(); ?>backend_resources/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="<?php echo base_url(); ?>backend_resources/js/jquery-ui-1.9.2.custom.min.js"></script>
         <script class="include" type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.dcjqaccordion.2.7.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.scrollTo.min.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -501,8 +504,8 @@
         <!--dynamic table initialization -->
         <script src="<?php echo base_url(); ?>backend_resources/js/dynamic_table_init.js"></script>
 
-      
-        
+
+
         <!--common script for all pages-->
         <script src="<?php echo base_url(); ?>backend_resources/js/common-scripts.js"></script>
 
@@ -514,7 +517,7 @@
         <script src="<?php echo base_url(); ?>backend_resources/js/sparkline-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/count.js"></script>
-        <script src="<?php echo base_url(); ?>backend_resources/js/form-component.js"></script>
+<!--        <script src="<?php echo base_url(); ?>backend_resources/js/form-component.js"></script>-->
 
 
         <script>
