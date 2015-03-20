@@ -123,6 +123,13 @@ class Vehicle_advertisments_service extends CI_Model {
         return $query->result();
     }
     
+    /*
+     * Add new Vehicle Addvertisement
+     */
+     function add_new_advertisements($vehicle_advertisement_model) {
+        $this->db->insert('vehicle_advertisements', $vehicle_advertisement_model);
+        return $this->db->insert_id();
+    }
     
     function get_last_advertisement_id(){
         $this->db->select('id');

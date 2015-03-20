@@ -31,6 +31,10 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('vehicle_images_temp/vehicle_images_temp_model');
         $this->load->model('vehicle_images_temp/vehicle_images_temp_service');
+        
+        
+        $this->load->model('vehicle_images/vehicle_images_model');
+        $this->load->model('vehicle_images/vehicle_images_service');
     }
 
     function post_new_advertisement() {
@@ -42,6 +46,7 @@ class Vehicle_advertisements extends CI_Controller {
         $transmission_service          = new Transmission_service();
         $equipment_service             = new Equipment_service();
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
+        $vehicle_images_temp_service = new Vehicle_images_temp_service();
 
         $data['heading'] = "Sell your vehicle";
 
@@ -52,6 +57,8 @@ class Vehicle_advertisements extends CI_Controller {
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();
         $data['equipments']    = $equipment_service->get_all_active_equipment();
 
+        $vehicle_images_temp_service->truncate_temp_images();
+        
         $result  = $vehicle_advertisement_service->get_last_advertisement_id();
         $last_id = '';
         if (!empty($result)) {
@@ -96,36 +103,44 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model = new Vehicle_advertisments_model();
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
         $vehicle_images_temp_service = new Vehicle_images_temp_service();
-        $vehicle_images_service = new Project_stuff_service();
-        $vehicle_images_model = new Project_stuff_model();
+        $vehicle_images_service = new Vehicle_images_service();
+        $vehicle_images_model = new Vehicle_images_model();
 
-        $project_temp_stuff = $project_stuff_temp_service->get_all_project_stuff_temp_for_company($this->session->userdata('EMPLOYEE_COMPANY_CODE'));
+        $temp_images = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
 
-        $project_model->set_project_name($this->input->post('project_name', TRUE));
-        $project_model->set_project_vendor($this->input->post('project_vendor', TRUE));
-        $project_model->set_project_start_date($this->input->post('project_start_date', TRUE));
-        $project_model->set_project_end_date($this->input->post('project_end_date', TRUE));
-        $project_model->set_project_description($this->input->post('project_description', TRUE));
-        $project_model->set_project_logo($this->input->post('project_logo', TRUE));
-        $project_model->set_company_code($this->session->userdata('EMPLOYEE_COMPANY_CODE'));
-        $project_model->set_del_ind('1');
-        $project_model->set_added_date(date("Y-m-d H:i:s"));
-        $project_model->set_added_by($this->session->userdata('EMPLOYEE_CODE'));
+        $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
+        $vehicle_advertisement_model->set_manufacture_id($this->input->post('manufacturer', TRUE));
+        $vehicle_advertisement_model->set_description($this->input->post('description', TRUE));
+        $vehicle_advertisement_model->set_fuel_type_id($this->input->post('fuel_type', TRUE));
+        $vehicle_advertisement_model->set_year($this->input->post('fabrication', TRUE));
+        $vehicle_advertisement_model->set_transmission_id($this->input->post('transmission', TRUE));
+        $vehicle_advertisement_model->set_body_type_id($this->input->post('body_type', TRUE));
+        $vehicle_advertisement_model->set_doors($this->session->userdata('doors'));
+        $vehicle_advertisement_model->set_location_id($this->session->userdata('location'));
+        $vehicle_advertisement_model->set_colour($this->session->userdata('colour'));
+        $vehicle_advertisement_model->set_sale_type($this->session->userdata('sale_type'));
+        $vehicle_advertisement_model->set_chassis_no($this->session->userdata('chassis_no'));
+        $vehicle_advertisement_model->set_kilometers($this->session->userdata('kilo_meters'));
+        $vehicle_advertisement_model->set_price($this->session->userdata('price'));
+        $vehicle_advertisement_model->set_is_deleted('0');
+        $vehicle_advertisement_model->set_is_published('1');
+        $vehicle_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
+        $vehicle_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
 
 
 
-        $project_id = $project_service->add_new_project($project_model);
+        $advertisement_id = $vehicle_advertisement_service->add_new_advertisements($vehicle_advertisement_model);
         $msg = 1;
 
-        foreach ($project_temp_stuff as $stuff) {
-            $project_stuff_model->set_stuff_name($stuff->stuff_name);
-            $project_stuff_model->set_company_code($stuff->company_code);
-            $project_stuff_model->set_project_id($project_id);
-            $project_stuff_model->set_del_ind('1');
-            $project_stuff_model->set_added_date(date("Y-m-d H:i:s"));
-            $project_stuff_model->set_added_by($this->session->userdata('EMPLOYEE_CODE'));
+        foreach ($temp_images as $image) {
+            $vehicle_images_model->set_image_path($image->image_path);
+            $vehicle_images_model->set_vehicle_id($advertisement_id);
+            $vehicle_images_model->set_is_published('1');
+            $vehicle_images_model->set_is_deleted('0');
+            $vehicle_images_model->set_added_date(date("Y-m-d H:i:s"));
+            $vehicle_images_model->set_added_by($this->session->userdata('USER_ID'));
 
-            $msg = $project_stuff_service->add_new_project_stuff($project_stuff_model);
+            $msg = $vehicle_images_service->add_new_images($vehicle_images_model);
         }
 
         echo $msg;

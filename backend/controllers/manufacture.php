@@ -36,6 +36,7 @@ class Manufacture extends CI_Controller {
         $manufacture_service = new Manufacture_service();
 
         $manufacture_model->set_name($this->input->post('name', TRUE));
+        $manufacture_model->set_logo($this->input->post('logo', TRUE));
         $manufacture_model->set_description($this->input->post('description', TRUE));
         $manufacture_model->set_added_by(1);
         $manufacture_model->set_added_date(date("Y-m-d H:i:s"));
@@ -109,10 +110,10 @@ class Manufacture extends CI_Controller {
         $uploaddir = './uploads/manufacture_logo/';
         $unique_tag = 'manufacture_logo';
 
-        $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile2']['name']); //this is the file name
+        $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
         $file = $uploaddir . $filename; // this is the full path of the uploaded file
 
-        if (move_uploaded_file($_FILES['uploadfile2']['tmp_name'], $file)) {
+        if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) {
             echo $filename;
         } else {
             echo "error";

@@ -1,3 +1,5 @@
+<!--toastr-->
+<link href="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
 <section class="container">
     <div class="row">
         <!--Content-->
@@ -466,16 +468,17 @@
     </div>
 </section>
 
-
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
+
 <script type="text/javascript">
 
-// add project sumbit btn action
-$(document).on('click', '#add_addvertisement_btn', function() {
+    // add project sumbit btn action
+    $(document).on('click', '#add_addvertisement_btn', function() {
     if ($('#form-submit').valid()) {
-        $('#form-submit').submit();
+    $('#form-submit').submit();
     }
-});
+    });
 
     $.validator.addMethod('selectmanufacture', function(value) {
     return (value != '0');
@@ -497,9 +500,8 @@ $(document).on('click', '#add_addvertisement_btn', function() {
     $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
     {
     if (msg == 1) {
-    $("#add_project_msg").html('<div class="alert alert-success"><button class="close" data-dismiss="alert"></button>Success: The <a class="link" >project </a>has been added.</div>');
-    form-submit.reset();
-    window.location = site_url + '/project/project_controller/manage_projects';
+    toastr.success("Successfully submited your advertisement !!", "AutoVille");
+
     } else {
     $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
     }

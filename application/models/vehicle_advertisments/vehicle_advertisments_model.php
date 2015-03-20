@@ -15,6 +15,9 @@ class Vehicle_advertisments_model extends CI_Model {
     var $description;
     var $chassis_no;
     var $price;
+    var $kilometers;
+    var $sale_type;
+    var $location_id;
     var $is_published;
     var $is_deleted;
     var $added_date;
@@ -48,14 +51,6 @@ class Vehicle_advertisments_model extends CI_Model {
 
     public function set_year($year) {
         $this->year = $year;
-    }
-
-    public function get_model() {
-        return $this->model;
-    }
-
-    public function set_model($model) {
-        $this->model = $model;
     }
 
     public function get_fuel_type_id() {
@@ -136,6 +131,30 @@ class Vehicle_advertisments_model extends CI_Model {
 
     public function set_price($price) {
         $this->price = $price;
+    }
+
+    public function get_kilometers() {
+        return $this->kilometers;
+    }
+
+    public function set_kilometers($kilometers) {
+        $this->kilometers = $kilometers;
+    }
+
+    public function get_sale_type() {
+        return $this->sale_type;
+    }
+
+    public function set_sale_type($sale_type) {
+        $this->sale_type = $sale_type;
+    }
+
+    public function get_location_id() {
+        return $this->location_id;
+    }
+
+    public function set_location_id($location_id) {
+        $this->location_id = $location_id;
     }
 
     public function get_is_published() {
