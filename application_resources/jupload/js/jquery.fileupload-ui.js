@@ -348,7 +348,7 @@ var image_array = [];
                 $.ajax(
                         {
                            type: "POST",
-                            url: site_url + '/project/project_controller/add_temp_project_stuff/',
+                            url: site_url + '/vehicle_advertisements/add_temp_vehicle_images/',
                             data: {file_name: image_array},
                             async: false,
                             success: function(msg)

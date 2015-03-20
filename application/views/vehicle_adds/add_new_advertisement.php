@@ -1,7 +1,3 @@
-
-
-
-
 <section class="container">
     <div class="row">
         <!--Content-->
@@ -335,9 +331,9 @@
                                 </div>
                             </div>
                             <!-- The loading indicator is shown during file processing -->
-                            <label><em>Attach project materials.</em></label>
+                            <label><em>Attach vehicle images.</em></label>
                             <br>
-                            <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id;?>" name="last_vehicle_id"/>
+                            <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
                             <!-- The table listing the files available for upload/download -->
                             <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
                         </div>   
@@ -430,7 +426,7 @@
                         <p>By clicking “Submit“ button you agree with <a href="terms-conditions.html" class="link">Terms & Conditions</a></p>
                     </figure>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default pull-right" id="submit">Submit</button>
+                        <button type="button" class="btn btn-default pull-right" id="add_addvertisement_btn">Submit</button>
                     </div>
                     <!-- /.form-group -->
                 </section>
@@ -474,9 +470,12 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
-    var settings = $.data($('#form-submit')[0], 'validator').settings;
-    settings.ignore += ':not(.live_select)';
-
+// add project sumbit btn action
+$(document).on('click', '#add_addvertisement_btn', function() {
+    if ($('#form-submit').valid()) {
+        $('#form-submit').submit();
+    }
+});
 
     $.validator.addMethod('selectmanufacture', function(value) {
     return (value != '0');
@@ -493,8 +492,24 @@
     chassis_no: 'required',
     kilo_meters: 'required'
 
+    }, submitHandler: function(form)
+    {
+    $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
+    {
+    if (msg == 1) {
+    $("#add_project_msg").html('<div class="alert alert-success"><button class="close" data-dismiss="alert"></button>Success: The <a class="link" >project </a>has been added.</div>');
+    form-submit.reset();
+    window.location = site_url + '/project/project_controller/manage_projects';
+    } else {
+    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
     }
     });
+
+
+    }
+    });
+
+
     });
 
 </script>
