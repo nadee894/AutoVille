@@ -15,6 +15,7 @@ class Reg_Users extends CI_Controller {
     function manage_registered_users() {
         $reg_user_service = new Reg_User_service();
         $reg_user_model = new Reg_User_model();
+        
         $data['heading'] = "Manage Registered Users";
         $data['results'] = $reg_user_service->get_reg_user_details();
 
@@ -36,6 +37,46 @@ class Reg_Users extends CI_Controller {
 
         echo $this->load->view('reg_users/manage_reg_user_profile_view', $data, TRUE);
     }
+    /*
+     * Function to filtr the registered users based on the first letter of their name
+     */
+    
+    function load_reg_users_by_letter(){
+        $reg_user_service=new Reg_User_Service();
+        
+        $letter=$this->input->post('myletter', TRUE);
+        $user_type=$reg_user_service->get_reg_user_by_name($letter);
+        
+        $data['results']=$user_type;
+        
+        $this->load->view('reg_users/reg_users_filter_view', $data);
+    }
+    /*
+     * Function to delete registered users
+     */
+    function delete_reg_users(){
+        $reg_user_service=new Reg_User_Service();
+        echo $reg_user_service->delete_reg_users(trim($this->input->post('user_id', TRUE)));
+    }
+    /*
+     * Function to change the publish status of a registered user
+     */
+    
+    function change_publish_status(){
+        $reg_user_model=new Reg_User_model();
+        $reg_user_service=new Reg_User_Service();
+        
+        $reg_user_model->set_id(trim($this->input->post('id', TRUE)));
+        $reg_user_model->set_is_published(trim($this->input->post('value', TRUE)));
+        
+        echo $reg_user_service->pubish_status_of_reg_user($reg_user_model);
+    }
+    
+    
+ 
+    
+    
+  
 
 }
 
