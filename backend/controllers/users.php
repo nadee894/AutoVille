@@ -99,5 +99,9 @@ class Users extends CI_Controller {
         $parials = array('content' => 'users/manage_admin_profile_view');
         $this->template->load('template/main_template', $parials, $data);
     }
+    
+    function load_user_activities(){
+        $this->load->view('users/admin_activitity_filter_view');
+    }
 
 }
