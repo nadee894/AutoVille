@@ -155,9 +155,9 @@
                                                     function login() {
                                                         var login_username = $('#txtusername').val();
                                                         var login_password = $('#txtpassword').val();
-                                                        alert("login");
+                                                        
                                                         if ($('#login_form').valid()) {
-                                                            alert("vald");
+                                                            
                                                             $.ajax({
                                                                 type: "POST",
                                                                 url: site_url + '/login/authenticate_user',
