@@ -1,5 +1,5 @@
 <h1> Profile Info</h1>
-<form id="user_details" class="form-horizontal" role="form">
+<form id="user_details" class="form-horizontal" role="form" method="POST" name="user_details">
     <div class="form-group">
         <label  class="col-lg-2 control-label">About Me</label>
         <div class="col-lg-10">
@@ -57,7 +57,7 @@
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button type="submit" onclick="update_user_profile()" class="btn btn-success">Save</button>
+            <button type="submit"  class="btn btn-success">Save</button>
             <button type="button" class="btn btn-default">Cancel</button>
         </div>
     </div>
@@ -106,8 +106,9 @@
 
 <script type="text/javascript">
 
-    function update_user_profile() {
-        $("user_details").validate({
+   $(document).ready(function () {
+    
+        $("#user_details").validate({
             rules: {
                 title: "required",
                 name: "required",
@@ -131,7 +132,7 @@
                 $.post(site_url + '/user/update_user', $('#user_details').serialize(), function (msg)
                 {
                     if (msg == 1) {
-                        window.location = site_url + '/user/manage_admins';
+//                        window.location = site_url + '/user/manage_admins';
                     } else {
 
                     }
@@ -139,6 +140,6 @@
 
 
             }
-        })
-    }
+        });
+    });
 </script>

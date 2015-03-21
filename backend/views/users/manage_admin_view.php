@@ -189,7 +189,7 @@
                             <label class="col-lg-3 control-label">Profile Picture</label>
                             <div class="col-lg-8">
                                 <button type="button" class="btn btn-info" id="browse">Browse</button>
-                                <input type="text" id="logo" name="logo" style="visibility: hidden" value=""/>
+                                <input type="text" id="logo" name="profile_pic" style="visibility: hidden" value=""/>
                             </div>
                         </div>
                     </div>
@@ -386,12 +386,12 @@
                 name: "Error"
             }, submitHandler: function (form)
             {
-                $.post(site_url + '/user/add_body_type', $('#add_user_type_form').serialize(), function (msg)
+                $.post(site_url + '/user/add_admin', $('#add_user_type_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
 //                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         add_user_type_form.reset();
-                        window.location = site_url + '/body_type/manage_body_types';
+                        window.location = site_url + '/user/add_admin';
 
 
                     } else {
