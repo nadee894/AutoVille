@@ -72,6 +72,8 @@ class Vehicle_advertisements extends CI_Controller {
         $last_id = '';
         if (!empty($result)) {
             $last_id = $result->id + 1;
+        }else{
+            $last_id=1;
         }
 
         $data['last_id'] = $last_id;
@@ -134,7 +136,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model->set_kilometers($this->input->post('kilo_meters'));
         $vehicle_advertisement_model->set_price($this->input->post('price'));
         $vehicle_advertisement_model->set_is_deleted('0');
-        $vehicle_advertisement_model->set_is_published('1');
+        $vehicle_advertisement_model->set_is_published('0');
         $vehicle_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
 
