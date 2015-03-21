@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2015 at 01:49 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- Generation Time: Mar 21, 2015 at 09:53 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -36,16 +36,7 @@ CREATE TABLE IF NOT EXISTS `body_type` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `body_type`
---
-
-INSERT INTO `body_type` (`id`, `name`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 'czxcxcxc', '1', '1', '0000-00-00 00:00:00', 3, NULL, 0),
-(2, 'ggf', '1', '0', '2015-03-13 12:15:45', 3, '2015-03-13 12:15:45', 1),
-(3, 'fsdfsdfdfd', '1', '1', '2015-03-14 04:46:10', 3, '2015-03-14 04:46:10', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -505,19 +496,14 @@ CREATE TABLE IF NOT EXISTS `manufacture` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `manufacture`
 --
 
 INSERT INTO `manufacture` (`id`, `name`, `description`, `logo`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 'Toyota', '', '', '1', '0', '2015-03-13 03:37:10', 5, NULL, 1),
-(2, 'Nissan', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(3, 'Honda', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(4, 'Suzuki', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(5, 'Ford', '', '', '1', '0', '2015-03-12 18:30:00', 5, NULL, 0),
-(6, 'sdsadstestrrrrrrrr', '0', '', '1', '0', '2015-03-14 04:46:26', 1, '2015-03-20 05:11:42', 1);
+(1, 'Toyota', '0', 'manufacture_logo1426912546-aaa.jpg', '1', '0', '2015-03-21 00:05:49', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -564,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `privilege` (
   `assign_for` enum('1','2','3','4') NOT NULL,
   PRIMARY KEY (`privilege_code`),
   KEY `lcs_privilege_ibfk_1` (`privilege_master_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `privilege`
@@ -573,7 +559,17 @@ CREATE TABLE IF NOT EXISTS `privilege` (
 INSERT INTO `privilege` (`privilege_code`, `privilege_master_code`, `privilege`, `privilege_description`, `priviledge_code_HF`, `assign_for`) VALUES
 (11, 8, 'Add Advertisement', 'Add Advertisement', 'ADD_ADVERTISEMENT', '1'),
 (12, 8, 'Edit Advertisement', 'Edit Advertisement', 'EDIT_ADVERTISEMENT', '1'),
-(13, 8, 'Delete Advertisement', 'Delete Advertisement', 'DELETE_ADVERTISEMENT', '1');
+(13, 8, 'Delete Advertisement', 'Delete Advertisement', 'DELETE_ADVERTISEMENT', '1'),
+(15, 9, 'Edit Pages', 'Edit Pages', 'EDIT_PAGES', '1'),
+(16, 9, 'View Pages', 'View Pages', 'VIEW_PAGES', '1'),
+(18, 11, 'View Master Privileges', 'View Master Privileges', 'VIEW_MASTER_PRIVILEGES', '1'),
+(19, 11, 'Add Master Privileges', 'Add Master Privileges', 'ADD_MASTER_PRIVILEGES', '1'),
+(20, 11, 'Edit Master Privileges', 'Edit Master Privileges', 'EDIT_MASTER_PRIVILEGES', '1'),
+(21, 11, 'Delete Master Privileges', 'Delete Master Privileges', 'DELETE_MASTER_PRIVILEGES', '1'),
+(22, 11, 'View Privileges', 'View Privileges', 'VIEW_PRIVILEGES', '1'),
+(23, 11, 'Add Privileges', 'Add Privileges', 'ADD_PRIVILEGES', '1'),
+(24, 11, 'Edit Privileges', 'Edit Privileges', 'EDIT_PRIVILEGES', '1'),
+(25, 11, 'Delete Privileges', 'Delete Privileges', 'DELETE_PRIVILEGES', '1');
 
 -- --------------------------------------------------------
 
@@ -587,14 +583,17 @@ CREATE TABLE IF NOT EXISTS `privilege_master` (
   `master_privilege_description` varchar(1000) NOT NULL,
   `system_code` varchar(400) NOT NULL,
   PRIMARY KEY (`privilege_master_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `privilege_master`
 --
 
 INSERT INTO `privilege_master` (`privilege_master_code`, `master_privilege`, `master_privilege_description`, `system_code`) VALUES
-(8, 'Manage Advertisements', 'Manage Advertisements', 'ADVERTISEMENT');
+(8, 'Manage Advertisements', 'Manage Advertisements', 'ADVERTISEMENT'),
+(9, 'Manage Pages', 'Manage Pages', 'PAGES'),
+(11, 'Manage Privileges', 'Manage Privileges', 'SETTINGS'),
+(12, 'Manage Reviews', 'Manage Reviews', 'REVIEWS');
 
 -- --------------------------------------------------------
 
@@ -670,7 +669,7 @@ CREATE TABLE IF NOT EXISTS `transmission` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `transmission`
@@ -681,27 +680,17 @@ INSERT INTO `transmission` (`id`, `name`, `is_published`, `is_deleted`, `added_d
 (2, 'Manual', '1', '0', '2015-03-13 02:54:55', 1, NULL, 1),
 (3, 'Automated Manual', '1', '0', '2015-03-13 02:55:06', 1, NULL, 1),
 (4, 'Continuously Variable', '1', '0', '2015-03-13 02:55:21', 1, NULL, 1),
-(5, 'fdfdf', '1', '1', '2015-03-13 03:19:47', 1, NULL, 1),
-(6, '0', '1', '1', '2015-03-13 03:27:02', 1, NULL, 1),
-(7, 'sdsf', '0', '1', '2015-03-13 03:43:49', 1, NULL, 1),
-(8, 'rewrwe', '1', '0', '2015-03-14 06:18:40', 1, NULL, 1),
-(9, 'werer', '1', '0', '2015-03-14 06:18:45', 1, NULL, 1),
-(10, 'rwere', '1', '0', '2015-03-14 06:18:49', 1, NULL, 1),
-(11, 'rwerwer', '1', '0', '2015-03-14 06:18:53', 1, NULL, 1),
-(12, 'adasd', '1', '0', '2015-03-14 06:19:50', 1, NULL, 1),
-(13, 'asdasds', '1', '0', '2015-03-14 06:19:56', 1, NULL, 1),
-(14, 'asdasadas', '1', '0', '2015-03-14 06:20:01', 1, NULL, 1),
-(15, 'asdasd', '1', '0', '2015-03-14 06:20:06', 1, NULL, 1),
-(16, 'adad', '1', '0', '2015-03-14 06:20:12', 1, NULL, 1),
-(17, 'asdasd', '1', '0', '2015-03-14 06:20:25', 1, NULL, 1),
-(18, '0', '1', '0', '2015-03-17 04:40:06', 1, NULL, NULL),
-(19, '0', '1', '1', '2015-03-17 04:53:46', 1, NULL, NULL),
-(20, '0', '1', '1', '2015-03-17 05:07:40', 1, NULL, NULL),
-(21, 'dsdsd', '1', '0', '2015-03-20 07:01:20', 0, NULL, NULL),
-(22, 'fdsf', '1', '0', '2015-03-20 07:11:00', 0, NULL, NULL),
-(23, 'fdsf', '1', '0', '2015-03-20 07:13:05', 0, NULL, NULL),
-(24, 'fdsf', '1', '0', '2015-03-20 07:15:14', 0, NULL, NULL),
-(25, 'fdsf', '1', '0', '2015-03-20 07:16:13', 0, NULL, NULL);
+(43, 'gsdgdg', '1', '1', '2015-03-20 06:47:18', 1, NULL, NULL),
+(44, 'gfhfhh', '1', '0', '2015-03-20 06:49:12', 0, NULL, NULL),
+(45, 'asdsd', '1', '0', '2015-03-20 06:50:11', 0, NULL, NULL),
+(46, 'dasds', '1', '0', '2015-03-20 06:50:38', 0, NULL, NULL),
+(47, 'xzxz', '1', '0', '2015-03-20 06:51:29', 0, NULL, NULL),
+(48, 'xzxz', '1', '0', '2015-03-20 06:51:29', 0, NULL, NULL),
+(49, 'czxcx', '1', '0', '2015-03-20 06:52:02', 0, NULL, NULL),
+(50, 'czxcx', '1', '0', '2015-03-20 06:52:29', 0, NULL, NULL),
+(51, 'czxcx', '1', '0', '2015-03-20 06:52:29', 0, NULL, NULL),
+(52, 'dfsdfd', '1', '0', '2015-03-20 06:53:15', 0, NULL, NULL),
+(53, 'dfsdfd', '1', '0', '2015-03-20 06:53:15', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -737,11 +726,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `address`, `contact_no_1`, `contact_no_2`, `profile_pic`, `password`, `account_activation_code`, `is_online`, `is_published`, `is_deleted`, `added_by`, `added_date`, `updated_date`, `updated_by`) VALUES
-(1, 'Ms', 'Gayathma', 'gayathma@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(2, 'Ms', 'Heshani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(3, 'Ms', 'Nadeesha', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(4, 'Ms', 'Ashani', 'heshani@gmail.com', 3, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
-(5, 'Ms', 'Ishani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, NULL, '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0);
+(1, 'Ms', 'Gayathma', 'gayathma', 1, '', NULL, NULL, NULL, 'avatar.png', 'e10adc3949ba59abbe56e057f20f883e', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(2, 'Ms', 'Heshani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, 'avatar.png', '', '', '1', '1', '1', 0, '0000-00-00 00:00:00', NULL, 0),
+(3, 'Ms', 'Nadeesha', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, 'avatar.png', '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(4, 'Ms', 'Ashani', 'heshani@gmail.com', 3, '', NULL, NULL, NULL, 'avatar.png', '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0),
+(5, 'Ms', 'Ishani', 'heshani@gmail.com', 1, '', NULL, NULL, NULL, 'avatar.png', '', '', '1', '1', '0', 0, '0000-00-00 00:00:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -758,14 +747,22 @@ CREATE TABLE IF NOT EXISTS `user_privileges` (
   UNIQUE KEY `Employeeuser_Priviledge_Code` (`user_privilege_code`),
   KEY `Employee_Code` (`user_id`),
   KEY `Privilege_Code` (`privilege_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `user_privileges`
 --
 
 INSERT INTO `user_privileges` (`user_privilege_code`, `user_id`, `privilege_code`, `added_date`) VALUES
-(101, 1, 11, '2015-03-20 06:52:01');
+(36, 1, 11, '2015-03-20 18:25:41'),
+(37, 1, 12, '2015-03-20 18:25:41'),
+(38, 1, 13, '2015-03-20 18:25:41'),
+(39, 1, 15, '2015-03-20 18:25:41'),
+(40, 1, 16, '2015-03-20 18:25:41'),
+(41, 1, 18, '2015-03-20 18:25:41'),
+(42, 1, 19, '2015-03-20 18:25:41'),
+(43, 1, 20, '2015-03-20 18:25:41'),
+(44, 1, 21, '2015-03-20 18:25:41');
 
 -- --------------------------------------------------------
 
@@ -803,13 +800,14 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `model_id` int(11) NOT NULL,
   `body_type_id` int(11) NOT NULL,
   `doors` int(11) NOT NULL,
-  `cilindrics` int(11) NOT NULL,
+  `cilindrics` int(11) DEFAULT NULL,
   `colour` varchar(100) NOT NULL,
   `description` text,
   `chassis_no` varchar(200) NOT NULL,
   `price` decimal(20,2) NOT NULL,
   `kilometers` int(10) DEFAULT NULL,
   `sale_type` enum('used','new') NOT NULL DEFAULT 'new',
+  `location_id` int(11) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
@@ -817,14 +815,21 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `vehicle_advertisements`
 --
 
-INSERT INTO `vehicle_advertisements` (`id`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `kilometers`, `sale_type`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(1, 1, 32434, 1, 1, 1, 1, 1, 1, 'sdfdf', NULL, '535235', '0.00', NULL, 'new', '1', '0', '0000-00-00 00:00:00', 1, NULL, NULL);
+INSERT INTO `vehicle_advertisements` (`id`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `kilometers`, `sale_type`, `location_id`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 1, 32434, 1, 1, 1, 1, 1, 1, 'sdfdf', NULL, '535235', 0.00, NULL, 'new', 0, '1', '0', '0000-00-00 00:00:00', 1, NULL, NULL),
+(2, 3, 1991, 1, 5, 2, 2, 0, NULL, '0', NULL, '0', 0.00, 0, '', 0, '1', '0', '2015-03-20 12:44:30', 1, NULL, NULL),
+(3, 3, 1991, 1, 5, 2, 2, 0, NULL, '0', NULL, '0', 0.00, 0, '', 0, '1', '0', '2015-03-20 12:45:13', 1, NULL, NULL),
+(4, 3, 1991, 1, 5, 2, 2, 0, NULL, '0', NULL, '0', 0.00, 0, '', 0, '1', '0', '2015-03-20 12:45:13', 1, NULL, NULL),
+(5, 3, 1991, 1, 5, 2, 2, 0, NULL, '0', 'fdfsfdfdf', '0', 0.00, 0, '', 0, '1', '0', '2015-03-20 12:51:16', 1, NULL, NULL),
+(6, 3, 1991, 1, 5, 2, 2, 0, NULL, '0', 'fdfsfdfdf', '0', 0.00, 0, '', 0, '1', '0', '2015-03-20 12:51:16', 1, NULL, NULL),
+(7, 3, 1991, 1, 5, 2, 2, 0, NULL, '0', 'fdfsfdfdf', '0', 0.00, 0, '', 0, '1', '0', '2015-03-20 12:51:44', 1, NULL, NULL),
+(8, 3, 1991, 1, 5, 2, 2, 0, NULL, '0', 'fdfsfdfdf', '0', 0.00, 0, '', 0, '1', '0', '2015-03-20 12:53:58', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -848,14 +853,39 @@ CREATE TABLE IF NOT EXISTS `vehicle_equipment` (
 CREATE TABLE IF NOT EXISTS `vehicle_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_id` int(11) NOT NULL,
-  `caption` varchar(500) NOT NULL,
+  `caption` varchar(500) DEFAULT NULL,
   `image_path` varchar(500) NOT NULL,
   `is_published` enum('1','0') DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) NOT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `vehicle_images`
+--
+
+INSERT INTO `vehicle_images` (`id`, `vehicle_id`, `caption`, `image_path`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 3, NULL, 'front (1).jpg', '1', '0', '2015-03-20 12:45:13', 0, NULL, NULL),
+(2, 4, NULL, 'front (1).jpg', '1', '0', '2015-03-20 12:45:13', 0, NULL, NULL),
+(3, 3, NULL, 'ghpnewletterhead.jpg', '1', '0', '2015-03-20 12:45:13', 0, NULL, NULL),
+(4, 4, NULL, 'ghpnewletterhead.jpg', '1', '0', '2015-03-20 12:45:13', 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_images_temp`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicle_images_temp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_path` varchar(500) NOT NULL,
+  `is_published` enum('1','0') DEFAULT '1',
+  `added_date` timestamp NULL DEFAULT NULL,
+  `added_by` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
