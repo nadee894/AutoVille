@@ -154,5 +154,24 @@ class Users extends CI_Controller {
 
         echo $user_service->update_user($user_model);
     }
+    
+     /*
+     * This function is to upload user avatar
+     */
+    function upload_user_avatar() {
+
+        $uploaddir = './uploads/user_avatars/';
+        $unique_tag = 'user_avatar';
+
+        $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
+        $file = $uploaddir . $filename; // this is the full path of the uploaded file
+
+        if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) {
+            echo $filename;
+        } else {
+            echo "error";
+        }
+   }
+            
 
 }

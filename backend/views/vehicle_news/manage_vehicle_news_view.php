@@ -76,8 +76,8 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
+                        <label for="name">Vehicle News</label>
+                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Vehicle News">
                     </div>
 
                     <div class="form-group">
@@ -85,6 +85,7 @@
                         <textarea class="wysihtml5 form-control" id="content_text" name="content_text" rows="20">                       
                         </textarea>
                     </div>
+                    <span id="rtn_msg_edit"></span>
 
                 </div>
                 <div class="modal-footer">
@@ -124,9 +125,11 @@
                                                     }, submitHandler: function(form) {
                                                         $.post(site_url + '/vehicle_news/add_vehicle_news', $('#add_vehicle_news_form').serialize(), function(msg) {
                                                             if (msg == 1) {
+                                                                $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                                                                 add_vehicle_news_form.reset
                                                                 window.location = site_url + '/vehicle_news/manage_vehicle_news';
                                                             } else {
+                                                                $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
                                                             }
                                                         });

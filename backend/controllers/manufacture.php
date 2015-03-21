@@ -38,7 +38,7 @@ class Manufacture extends CI_Controller {
         $manufacture_model->set_name($this->input->post('name', TRUE));
         $manufacture_model->set_logo($this->input->post('logo', TRUE));
         $manufacture_model->set_description($this->input->post('description', TRUE));
-        $manufacture_model->set_added_by(1);
+        $manufacture_model->set_added_by($this->session->userdata('USER_ID'));
         $manufacture_model->set_added_date(date("Y-m-d H:i:s"));
         $manufacture_model->set_updated_by(1);
         $manufacture_model->set_is_published('1');
@@ -95,7 +95,7 @@ class Manufacture extends CI_Controller {
 
         $manufacure_model->set_id($this->input->post('manufacture_id', TRUE));
         $manufacure_model->set_name($this->input->post('name', TRUE));
-        $manufacure_model->set_updated_by(1);
+        $manufacure_model->set_updated_by($this->session->userdata('USER_ID'));
         $manufacure_model->set_updated_date(date("Y-m-d H:i:s"));
 
         echo $manufacure_service->update_manufacure($manufacure_model);
