@@ -130,43 +130,43 @@
                 <div class="modal-body">
                     <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
                     <script>
-                                        //upload user avatar
+                                    //upload user avatar
 
-                                        $(function () {
-                                            var btnUpload = $('#upload');
-                                            var status = $('#status');
-                                            new AjaxUpload(btnUpload, {
-                                                action: '<?php echo site_url(); ?>/user/upload_user_avatar',
-                                                name: 'uploadfile',
-                                                onSubmit: function (file, ext) {
-                                                    if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
-                                                        // extension is not allowed 
-                                                        status.text('Only JPG, PNG or GIF files are allowed');
-                                                        return false;
-                                                    }
-                                                    //status.text('Uploading...Please wait');
-                                                    //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
-
-                                                },
-                                                onComplete: function (file, response) {
-                                                    //On completion clear the status
-                                                    //status.text('');
-                                                    $("#files").html("");
-                                                    $("#sta").html("");
-                                                    //Add uploaded file to list
-                                                    if (response != "error") {
-                                                        $('#files').html("");
-                                                        $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/user_avatars/' + response + '"   width="100px" height="68px" /><br />');
-                                                        picFileName = response;
-                                                        document.getElementById('profile_pic').value = response;
-                                                        //                    document.getElementById('cover_image').value = response;
-                                                    } else {
-                                                        $('<div></div>').appendTo('#files').text(file).addClass('error');
-                                                    }
+                                    $(function () {
+                                        var btnUpload = $('#upload');
+                                        var status = $('#status');
+                                        new AjaxUpload(btnUpload, {
+                                            action: '<?php echo site_url(); ?>/user/upload_user_avatar',
+                                            name: 'uploadfile',
+                                            onSubmit: function (file, ext) {
+                                                if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
+                                                    // extension is not allowed 
+                                                    status.text('Only JPG, PNG or GIF files are allowed');
+                                                    return false;
                                                 }
-                                            });
+                                                //status.text('Uploading...Please wait');
+                                                //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
 
+                                            },
+                                            onComplete: function (file, response) {
+                                                //On completion clear the status
+                                                //status.text('');
+                                                $("#files").html("");
+                                                $("#sta").html("");
+                                                //Add uploaded file to list
+                                                if (response != "error") {
+                                                    $('#files').html("");
+                                                    $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/user_avatars/' + response + '"   width="100px" height="68px" /><br />');
+                                                    picFileName = response;
+                                                    document.getElementById('profile_pic').value = response;
+                                                    //                    document.getElementById('cover_image').value = response;
+                                                } else {
+                                                    $('<div></div>').appendTo('#files').text(file).addClass('error');
+                                                }
+                                            }
                                         });
+
+                                    });
                     </script>
 
                     <div class="form-group">
@@ -407,13 +407,12 @@
                 re_pasword: "Retype the Password"
             }, submitHandler: function (form)
             {
-                $.post(site_url + '/user/add_admin', $('#add_user_type_form').serialize(), function (msg)
+                $.post(site_url + '/users/add_admin', $('#add_user_type_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         add_user_type_form.reset();
-                        window.location = site_url + '/user/manage_admins';
-
+                        window.location = site_url + '/users/manage_admins'
 
                     } else {
 //                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
