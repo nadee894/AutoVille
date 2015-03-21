@@ -12,8 +12,8 @@
             </div>
 
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="<?php echo site_url(); ?>/users/load_user_activities"> <i class="fa fa-user"></i> Profile</a></li>
-                <li><a href="profile-activity.html"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li>
+                <li class="active" ><a > <i class="fa fa-user"></i> Profile</a></li>
+                <li><a onclick="load_admin_activities()"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li>
                 <li><a href="profile-edit.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
             </ul>
 
@@ -46,13 +46,13 @@
             <div class="bio-graph-heading">
                 Hi Good Morning!Have a Great Day!!
             </div>
-            <div class="panel-body bio-graph-info">
+            <div class="panel-body bio-graph-info" id="admin_activities_filter_content">
                 <h1>Bio Graph</h1>
                 <div class="row">
                     <div class="bio-row">
                         <p><span>Name </span>: <?php echo $results->title; ?><?php echo " "; ?><?php echo $results->name; ?></p>
                     </div>
-                 
+
                     <div class="bio-row">
                         <p><span>User Name </span>: <?php echo $results->user_name; ?></p>
                     </div>
@@ -138,3 +138,19 @@
 </div>
 
 <!-- page end-->
+<script type="text/javascript">
+    //load admins by letter
+    function load_admin_activities() {
+       
+        $.ajax({
+            type: "POST",
+            url: site_url + '/users/load_user_activities',
+            
+//            data: "myletter=" + letter,
+            success: function (msg)
+            {
+                $('#admin_activities_filter_content').html(msg);
+            }
+        });
+    }
+</script>
