@@ -2286,6 +2286,10 @@ ul.inbox-pagination li {
     color: #fff;
 }
 
+.error{
+    color: red;
+}
+
 .error-wrapper {
     text-align: center;
     margin-top: 10%;
