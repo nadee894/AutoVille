@@ -45,6 +45,8 @@ function add_new_user(){
     //$register_users_model->set_updated_date($this->input->post('updated_date', TRUE));
     //$register_users_model->set_updated_by($this->input->post('updated_by', TRUE));
     
+    
+    
 }
 
 function validate_user_name(){

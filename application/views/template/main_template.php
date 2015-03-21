@@ -47,7 +47,7 @@
 
                                         <div class="dealer-login">
                                             <a href="<?php echo site_url(); ?>/login/load_login" class="dealer-name"><i class="fa fa-unlock-alt"></i>  Sign In</a>
-                                            <a href="" class="sign-out"><i class="fa fa-user"></i> Register</a>
+                                            <a href="<?php echo site_url(); ?>/register_users/load_registration" class="sign-out"><i class="fa fa-user"></i> Register</a>
                                         </div>
 
                                     <?php } else { ?>
