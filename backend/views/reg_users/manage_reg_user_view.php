@@ -32,7 +32,7 @@
     <li><a onclick="load_reg_users_by_letter('W')" style="cursor: pointer">x</a></li>
     <li><a onclick="load_reg_users_by_letter('X')" style="cursor: pointer">y</a></li>
     <li><a onclick="load_reg_users_by_letter('Y')" style="cursor: pointer">z</a></li>
- </ul>
+</ul>
 
 <div class="directory-info-row">
     <div class="row" id="reg_user_filter_content">
@@ -49,8 +49,13 @@
                     <div class="panel-body">
                         <div class="media" >
 
+
                             <a class="pull-left" href="#">
-                                <img alt="" class="thumb media-object" height="120" width="100" src="<?php echo base_url(); ?>/uploads/4.jpg" >
+                                <?php if (empty($result->profile_pic)) { ?>
+                                    <img alt="" class="thumb media-object" height="120" width="100" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg" >
+                                <?php } else { ?>
+                                    <img alt="" class="thumb media-object" height="120" width="100" src="<?php echo base_url(); ?>/uploads/user_avatars/<?php echo $result->profile_pic; ?>" >
+                                <?php } ?>
                             </a>
 
                             <div class="media-body" >
@@ -76,18 +81,20 @@
                                     <email>E-mail : <?php echo $result->email; ?></email><br>
                                 </address>
                                 <br>
+                                <span class="p-team">
+                                    <span>
+                                        <?php if ($result->is_published) { ?>
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check"></i></a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>
+                                        <?php } ?>
+                                    </span>
 
-                                <div>
-                                    <?php if ($result->is_published) { ?>
-                                        <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to disable user"><i class="fa fa-check"></i></a>
-                                    <?php } else { ?>
-                                        <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>
-                                    <?php } ?>
-                                </div>
 
 
-                                <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
-
+                                    <a class="btn btn-danger btn-xs" onclick="load_after_deleted(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" title="Remove"></i></a>
+                                    <a class="btn btn-info btn-xs" href="<?php echo site_url(); ?>/user_privilege/manage_user_privileges/<?php echo $result->id; ?>">Assign Privileges</a>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -101,87 +108,89 @@
 <!-- page end-->
 
 <script type="text/javascript">
-    
-        function change_online_status(user_id, value, element){
-        
-        $.ajax({
-            type: "POST",
-            url: site_url + '/reg_users/change_online_status',
-            data: "id=" + user_id + "&value=" +value,
-            success: function(msg){
-                if(msg==1){
-                    if(value==1){
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>');
-                    } else {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>');
-                    }               
-                }
-                else if(msg==2){
+
+        $('#user_menu').addClass('active');
+
+        function change_online_status(user_id, value, element) {
+
+            $.ajax({
+                type: "POST",
+                url: site_url + '/reg_users/change_online_status',
+                data: "id=" + user_id + "&value=" + value,
+                success: function(msg) {
+                    if (msg == 1) {
+                        if (value == 1) {
+                            $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>');
+                        } else {
+                            $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - Registered User</span></h4>');
+                        }
+                    }
+                    else if (msg == 2) {
                         alert("Error!!");
                     }
-            }
-        });
-        
+                }
+            });
+
         }
         //load registered users by letter
         function load_reg_users_by_letter(letter) {
-        $.ajax({
-            type: "POST",
-            url: site_url + '/reg_users/load_reg_users_by_letter',
-            data: "myletter=" + letter,
-            success: function (msg)
-            {
-                $('#reg_user_filter_content').html(msg);
-            }
-        });
-    }
+            $.ajax({
+                type: "POST",
+                url: site_url + '/reg_users/load_reg_users_by_letter',
+                data: "myletter=" + letter,
+                success: function(msg)
+                {
+                    $('#reg_user_filter_content').html(msg);
+                }
+            });
+        }
 
         function change_publish_status(user_id, value, element) {
 
-        var condition = 'Do you want to enable this user ?';
-        if (value == 0) {
-            condition = 'Do you want to disable this user?';
-        }
+            var condition = 'Do you want to enable this user ?';
+            if (value == 0) {
+                condition = 'Do you want to disable this user?';
+            }
 
-        if (confirm(condition)) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/reg_users/change_publish_status',
-                data: "id=" + user_id + "&value=" + value,
-                success: function (msg) {
-                    if (msg == 1) {
-                        if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
-                        } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
+            if (confirm(condition)) {
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/reg_users/change_publish_status',
+                    data: "id=" + user_id + "&value=" + value,
+                    success: function(msg) {
+                        if (msg == 1) {
+                            if (value == 1) {
+                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
+                            } else {
+                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
+                            }
+
+                        } else if (msg == 2) {
+                            alert('Error!!');
                         }
+                    }
+                });
+            }
+        }
 
-                    } else if (msg == 2) {
-                        alert('Error!!');
+        function load_after_deleted(user_id) {
+            if (confirm('Are you sure want to delete this user?')) {
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/reg_users/delete_reg_users',
+                    data: "user_id=" + user_id,
+                    success: function(msg)
+                    {
+                        if (msg == 1) {
+                            $('#reg_user' + user_id).hide();
+                        }
+                        else if (msg == 2) {
+                            alert('Error!!');
+                        }
                     }
-                }
-            });
+                });
+            }
         }
-    }
-    
-    function load_after_deleted(user_id) {
-        if (confirm('Are you sure want to delete this user?')) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/reg_users/delete_reg_users',
-                data: "user_id=" + user_id,
-                success: function (msg)
-                {
-                    if (msg == 1) {
-                        $('#reg_user' + user_id).hide();                      
-                    }
-                    else if (msg == 2) {
-                        alert('Error!!');
-                    }
-                }
-            });
-        }
-    }
- 
+
 </script>
 

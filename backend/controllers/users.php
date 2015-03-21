@@ -36,7 +36,6 @@ class Users extends CI_Controller {
 //
 //        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
 //    }
-
 //
 //    function load_admins_by_letter() {
 //        $user_model = new User_model();
@@ -99,11 +98,61 @@ class Users extends CI_Controller {
         $parials = array('content' => 'users/manage_admin_profile_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
-    function load_user_activities(){
-        echo  $this->load->view('users/admin_activitity_filter_view');
-        
-        
+
+    /*
+     * Function to load the recent activities of a profile
+     */
+
+    function load_user_activities() {
+        echo $this->load->view('users/admin_activitity_filter_view');
+    }
+
+    /*
+     * Function to load the admin edit profile
+     */
+
+    function load_Edit_user_profile() {
+        echo $this->load->view('users/admin_profile_edit_view');
+    }
+
+    /*
+     * Function to update user details
+     */
+
+    function update_user() {
+        $user_model = new User_model();
+        $user_service = new User_service();
+
+        $user_model->set_id($this->session->userdata('USER_ID'));
+        $user_model->set_title($this->input->post('title', TRUE));
+        $user_model->set_name($this->input->post('name', TRUE));
+        $user_model->set_user_name($this->input->post('user_name', TRUE));
+        $user_model->set_user_type($this->input->post('user_type', TRUE));
+        $user_model->set_email($this->input->post('email', TRUE));
+        $user_model->set_address($this->input->post('address', TRUE));
+        $user_model->set_contact_no_1($this->input->post('contact_no_1', TRUE));
+        $user_model->set_contact_no_2($this->input->post('contact_no_2', TRUE));
+        $user_model->set_password($this->input->post('profile_pic', TRUE));
+        $user_model->set_profile_pic($this->input->post('pasword', TRUE));
+        $user_model->set_updated_by($this->session->userdata('USER_ID'));
+        $user_model->set_updated_date(date("Y-m-d H:i:s"));
+
+        echo $user_service->update_user($user_model);
+    }
+
+    /*
+     * Function to update user password and avatar
+     */
+
+    function reset_password_and_avatar() {
+        $user_model = new User_model();
+        $user_service = new User_service();
+        $user_model->set_password($this->input->post('profile_pic', TRUE));
+        $user_model->set_profile_pic($this->input->post('pasword', TRUE));
+        $user_model->set_updated_by($this->session->userdata('USER_ID'));
+        $user_model->set_updated_date(date("Y-m-d H:i:s"));
+
+        echo $user_service->update_user($user_model);
     }
 
 }

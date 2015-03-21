@@ -14,7 +14,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active" ><a > <i class="fa fa-user"></i> Profile</a></li>
                 <li><a onclick="load_admin_activities()"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li>
-                <li><a href="profile-edit.html"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                <li><a onclick="load_admin_edit_profile()"> <i class="fa fa-edit"></i> Edit profile</a></li>
             </ul>
 
         </section>
@@ -50,7 +50,11 @@
                 <h1>Bio Graph</h1>
                 <div class="row">
                     <div class="bio-row">
-                        <p><span>Name </span>: <?php echo $results->title; ?><?php echo " "; ?><?php echo $results->name; ?></p>
+                        <p><span>Title </span>: <?php echo $results->title; ?></p>
+                    </div>
+
+                    <div class="bio-row">
+                        <p><span>Name </span>: <?php echo $results->name; ?></p>
                     </div>
 
                     <div class="bio-row">
@@ -139,14 +143,26 @@
 
 <!-- page end-->
 <script type="text/javascript">
-    //load admins by letter
+    //load recent admin activities
     function load_admin_activities() {
-       
+
         $.ajax({
             type: "POST",
             url: site_url + '/users/load_user_activities',
-            
 //            data: "myletter=" + letter,
+            success: function (msg)
+            {
+                $('#admin_activities_filter_content').html(msg);
+            }
+        });
+    }
+
+    //load admins edit profile
+    function load_admin_edit_profile() {
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/users/load_Edit_user_profile',
             success: function (msg)
             {
                 $('#admin_activities_filter_content').html(msg);

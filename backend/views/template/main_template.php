@@ -278,6 +278,11 @@
                         <!-- user login dropdown start-->
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                 <?php if (($this->session->userdata('USER_PROFILE_PIC') == '')) { ?>
+                                   <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg" >
+                                <?php } else { ?>
+                                    <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/<?php echo $this->session->userdata('USER_PROFILE_PIC'); ?>" >
+                                <?php } ?> 
                                 <img alt="" height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg">
                                 <span class="username"><?php echo $this->session->userdata('USER_NAME'); ?></span>
                                 <b class="caret"></b>
@@ -317,7 +322,7 @@
             <!--main content end-->
 
             <!-- Right Slidebar start -->
-            <div class="sb-slidebar sb-right sb-style-overlay">
+<!--            <div class="sb-slidebar sb-right sb-style-overlay">
                 <h5 class="side-title">Online Customers</h5>
                 <ul class="quick-chat-list">
                     <li class="online">
@@ -329,7 +334,7 @@
                                 <strong>John Doe</strong>
                                 <small>Dream Land, AU</small>
                             </div>
-                        </div><!-- media -->
+                        </div> media 
                     </li>
                     <li class="online">
                         <div class="media">
@@ -343,7 +348,7 @@
                                 <strong>Jonathan Smith</strong>
                                 <small>United States</small>
                             </div>
-                        </div><!-- media -->
+                        </div> media 
                     </li>
 
                     <li class="online">
@@ -358,7 +363,7 @@
                                 <strong>Jane Doe</strong>
                                 <small>ABC, USA</small>
                             </div>
-                        </div><!-- media -->
+                        </div> media 
                     </li>
                     <li class="online">
                         <div class="media">
@@ -369,7 +374,7 @@
                                 <strong>Anjelina Joli</strong>
                                 <small>Fockland, UK</small>
                             </div>
-                        </div><!-- media -->
+                        </div> media 
                     </li>
                     <li class="online">
                         <div class="media">
@@ -383,7 +388,7 @@
                                 <strong>Mr Tasi</strong>
                                 <small>Dream Land, USA</small>
                             </div>
-                        </div><!-- media -->
+                        </div> media 
                     </li>
                 </ul>
                 <h5 class="side-title"> pending Task</h5>
@@ -458,7 +463,7 @@
                         <a href="#">See All Tasks</a>
                     </li>
                 </ul>
-            </div>
+            </div>-->
             <!-- Right Slidebar end -->
 
             <!--footer start-->

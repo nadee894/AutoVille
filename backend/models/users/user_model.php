@@ -1,15 +1,16 @@
 <?php
 
 class User_model extends CI_Model {
-    
-    
 
     var $id;
     var $title;
     var $name;
     var $user_name;
     var $email;
+    var $address;
     var $user_type;
+    var $contact_no_1;
+    var $contact_no_2;
     var $profile_pic;
     var $password;
     var $account_activation_code;
@@ -20,11 +21,11 @@ class User_model extends CI_Model {
     var $added_date;
     var $updated_date;
     var $updated_by;
-    
+
     function __construct() {
         parent::__construct();
     }
-            
+
     function get_id() {
         return $this->id;
     }
@@ -85,6 +86,26 @@ class User_model extends CI_Model {
         return $this->updated_by;
     }
 
+    function get_address() {
+        return $this->address;
+    }
+
+    function get_contact_no_1() {
+        return $this->contact_no_1;
+    }
+
+    function get_contact_no_2() {
+        return $this->contact_no_2;
+    }
+
+    function set_contact_no_1($contact_no_1) {
+        $this->contact_no_1 = $contact_no_1;
+    }
+
+    function set_contact_no_2($contact_no_2) {
+        $this->contact_no_2 = $contact_no_2;
+    }
+
     function set_id($id) {
         $this->id = $id;
     }
@@ -93,7 +114,15 @@ class User_model extends CI_Model {
         $this->title = $title;
     }
 
-    function set_name($name) {
+    function set_email($email) {
+        $this->email = $email;
+    }
+
+    function set_address($address) {
+        $this->address = $address;
+    }
+
+        function set_name($name) {
         $this->name = $name;
     }
 
@@ -147,10 +176,15 @@ class User_model extends CI_Model {
 
     function get_email() {
         return $this->email;
-    }
 
-    function set_email($email) {
-        $this->email = $email;
+        function set_email($email) {
+            $this->email = $email;
+        }
+
+        function set_address($address) {
+            $this->address = $address;
+        }
+
     }
 
 }
