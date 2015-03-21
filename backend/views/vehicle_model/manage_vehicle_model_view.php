@@ -77,7 +77,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Vehicle Model</label>
+                        <label for="name">Vehicle Model<span class="mandatory">*</span></label>
                         <input id="name" name="name" class="form-control" type="text" placeholder="Enter Vehicle Model">
                     </div>
 
@@ -115,7 +115,7 @@
                 name: "required"
             },
             messages: {
-                name: "Please enter a title"
+                name: "Please enter a Vehicle Model"
             }, submitHandler: function (form)
             {
                 $.post(site_url + '/vehicle_model/add_new_vehicle_model', $('#vehicle_model_add_form').serialize(), function (msg)

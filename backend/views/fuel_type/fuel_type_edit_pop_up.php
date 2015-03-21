@@ -6,7 +6,7 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Fuel Type</label>
+            <label for="name">Fuel Type<span class="mandatory">*</span></label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $fuel_type->name; ?>">
             <input id="fuel_type_id"  name="fuel_type_id" type="hidden" value="<?php echo $fuel_type->id; ?>">
         </div>

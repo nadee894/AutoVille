@@ -6,7 +6,7 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Body Type</label>
+            <label for="name">Body Type<span class="mandatory">*</span></label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $body_type->name; ?>">
             <input id="body_type_id"  name="body_type_id" type="hidden" value="<?php echo $body_type->id; ?>">
         </div>
