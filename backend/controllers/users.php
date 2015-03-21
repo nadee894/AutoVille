@@ -36,7 +36,6 @@ class Users extends CI_Controller {
 //
 //        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
 //    }
-
 //
 //    function load_admins_by_letter() {
 //        $user_model = new User_model();
@@ -99,11 +98,21 @@ class Users extends CI_Controller {
         $parials = array('content' => 'users/manage_admin_profile_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
-    function load_user_activities(){
-        echo  $this->load->view('users/admin_activitity_filter_view');
-        
-        
+
+    /*
+     * Function to load the recent activities of a profile
+     */
+
+    function load_user_activities() {
+        echo $this->load->view('users/admin_activitity_filter_view');
+    }
+
+    /*
+     * Function to load the admin edit profile
+     */
+
+    function load_Edit_user_profile() {
+        echo $this->load->view('users/admin_profile_edit_view');
     }
 
 }
