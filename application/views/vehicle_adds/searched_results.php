@@ -25,7 +25,7 @@
                                 <div class="item-specific">
                                     <span><?php echo $result->sale_type; ?></span>
                                 </div>                            
-                                <img src="<?php echo base_url(); ?>'/uploads/vehicle_images/vh_'<?php echo $result->id; ?>'/'<?php echo $result->image_path; ?>" alt=""/>
+                                <img src="<?php echo base_url().'/uploads/vehicle_images/vh_'.$result->id.'/'.$result->image_path; ?>" alt=""/>
                             </a>
                         </div>
                         <div class="wrapper">
