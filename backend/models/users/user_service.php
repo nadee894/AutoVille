@@ -115,23 +115,35 @@ class User_service extends CI_Model {
     /*
      * update details of an user   
      */
+
     function update_user($user_model) {
-        $data = array('title'=>$user_model->get_title(),
+        $data = array('title' => $user_model->get_title(),
             'name' => $user_model->get_name(),
             'user_name' => $user_model->get_user_name(),
             'user_type' => $user_model->get_user_type(),
             'email' => $user_model->get_email(),
             'address' => $user_model->get_address(),
-            'name' => $user_model->get_name(),
-            'name' => $user_model->get_name(),
-            'name' => $user_model->get_name(),
-            'name' => $user_model->get_name(),
-            'name' => $user_model->get_name(),
-            'updated_date' => $body_type_model->get_updated_date(),
-            'updated_by' => $body_type_model->get_updated_by());
-
-
-        $this->db->where('id', $body_type_model->get_id());
-        return $this->db->update('body_type', $data);
+            'contact_no_1' => $user_model->get_contact_no_1(),
+            'contact_no_2' => $user_model->get_contact_no_2(),
+            'password' => $user_model->get_password(),
+            'profile_pic' => $user_model->get_profile_pic(),
+            'updated_by' => $user_model->get_updated_by(),
+            'updated_date' => $user_model->get_updated_date());
+        $this->db->where('id', $user_model->get_id());
+        return $this->db->update('user', $data);
     }
+
+    /*
+     * update password and avatar of an user   
+     */
+
+    function update_password_and_avatar($user_model) {
+        $data = array('password' => $user_model->get_password(),
+            'profile_pic' => $user_model->get_profile_pic(),
+            'updated_by' => $user_model->get_updated_by(),
+            'updated_date' => $user_model->get_updated_date());
+        $this->db->where('id', $user_model->get_id());
+        return $this->db->update('user', $data);
+    }
+
 }
