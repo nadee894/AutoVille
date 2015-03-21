@@ -8,13 +8,17 @@ class Contents extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->load->model('contents/content_model');
-        $this->load->model('contents/content_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('contents/content_model');
+            $this->load->model('contents/content_service');
+        }
     }
 
     function load_contents_by_hcode($hcode) {
 
-        $content_model   = new Content_model();
+        $content_model = new Content_model();
         $content_service = new Content_service();
 
         $content_model->set_content_hcode($hcode);
@@ -30,7 +34,7 @@ class Contents extends CI_Controller {
 
     function update_content() {
 
-        $content_model   = new Content_model();
+        $content_model = new Content_model();
         $content_service = new Content_service();
 
 

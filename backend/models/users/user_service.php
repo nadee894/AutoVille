@@ -65,6 +65,22 @@ class User_service extends CI_Model {
 
         return $query->row();
     }
+    
+    /*
+     * To get user details by passing id as a parameter
+     */
+
+    function get_user_by_id($user_model) {
+
+        $this->db->select('user.*, user_type.type');
+        $this->db->from('user');
+        $this->db->join('user_type', 'user.user_type= user_type.id');
+        $this->db->where('user.is_deleted', '0');
+        $this->db->where('user.id', $user_model->get_id());
+        $query = $this->db->get();
+
+        return $query->row();
+    }
 
     function get_admin_by_name($letter) {
 

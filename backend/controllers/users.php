@@ -8,8 +8,12 @@ class Users extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->load->model('users/user_model');
-        $this->load->model('users/user_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('users/user_model');
+            $this->load->model('users/user_service');
+        }
     }
 
     function manage_admins() {
@@ -23,30 +27,33 @@ class Users extends CI_Controller {
     }
 
     /*
-     * Function to load admin profile, edit and sen
+     * Function to add administrator
      */
 
-//    function load_admin_profile() {
-//        $user_model = new User_model();
-//        $user_service = new User_service();
-//
-//        $user_model->set_id(trim($this->input->post('user_id', TRUE)));
-//        $user_type = $user_service->get_admin_by_id($user_model);
-//        $data['user'] = $user_type;
-//
-//        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
-//    }
-//
-//    function load_admins_by_letter() {
-//        $user_model = new User_model();
-//        $user_service = new User_service();
-//
-//        $user_model->set_id(trim($this->input->post('user_id', TRUE)));
-//        $user_type = $user_service->get_admin_by_name($user_model);
-//        $data['user'] = $user_type;
-//
-//        echo $this->load->view('users/manage_admin_profile_view', $data, TRUE);
-//    }
+    function add_admin() {
+
+        $user_model = new User_model();
+        $user_service = new User_service();
+
+        $user_model->set_title($this->input->post('title', TRUE));
+        $user_model->set_name($this->input->post('name', TRUE));
+        $user_model->set_profile_pic($this->input->post('profile_pic', TRUE));
+        $user_model->set_user_name($this->input->post('user_name', TRUE));
+        $user_model->set_user_type($this->input->post('user_type', TRUE));
+        $user_model->set_email($this->input->post('email', TRUE));
+        $user_model->set_address($this->input->post('address', TRUE));
+        $user_model->set_contact_no_1($this->input->post('contact_no_1', TRUE));
+        $user_model->set_contact_no_2($this->input->post('contact_no_2', TRUE));
+        $user_model->set_password($this->input->post('password', TRUE));
+        $user_model->set_added_by($this->session->userdata('USER_ID'));
+        $user_model->set_added_date(date("Y-m-d H:i:s"));
+//        $body_type_model->set_updated_date(date("Y-m-d H:i:s"));
+//        $body_type_model->set_updated_by(1);
+        $user_model->set_is_published('1');
+        $user_model->set_is_deleted('0');
+
+        echo $body_type_service->add_new_body_type($body_type_model);
+    }
 
     function load_admins_by_letter() {
         $user_service = new User_service();
@@ -154,10 +161,11 @@ class Users extends CI_Controller {
 
         echo $user_service->update_user($user_model);
     }
-    
-     /*
+
+    /*
      * This function is to upload user avatar
      */
+
     function upload_user_avatar() {
 
         $uploaddir = './uploads/user_avatars/';
@@ -171,7 +179,6 @@ class Users extends CI_Controller {
         } else {
             echo "error";
         }
-   }
-            
+    }
 
 }

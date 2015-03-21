@@ -16,8 +16,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
-                                <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true" class="live_select">
-                                    <option value="0">Select Manufacturer</option>
+                                <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true" class="live_select" >
+                                    <option value="" selected>Select Manufacturer</option>
                                     <?php foreach ($manufactures as $manufacture) { ?>
                                         <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
                                     <?php } ?>
@@ -458,12 +458,14 @@
                                     }, "");
 
                                     $(document).ready(function() {
+$('.form#form-submit select').on('change', function(e) {
+    $('.form#form-submit').validate().element($(this));
+});
 
                                         $("form#form-submit").validate({
+                                           ignore:"hidden:not(.live_select)",
                                             rules: {
-                                                manufacturer: {
-                                                    selectmanufacture: true
-                                                },
+                                                manufacturer: 'required',
                                                 price: 'required',
                                                 chassis_no: 'required',
                                                 kilo_meters: 'required'
@@ -481,7 +483,12 @@
                                                 });
 
 
-                                            }
+                                            },
+                                                     //put error message behind each form element
+       
+    
+
+   
                                         });
 
 
