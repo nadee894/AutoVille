@@ -16,7 +16,7 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
-                                <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true" class="live_select">
+                                <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true" class="live_select" >
                                     <option value="" selected>Select Manufacturer</option>
                                     <?php foreach ($manufactures as $manufacture) { ?>
                                         <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
@@ -458,9 +458,12 @@
                                     }, "");
 
                                     $(document).ready(function() {
+$('.form#form-submit select').on('change', function(e) {
+    $('.form#form-submit').validate().element($(this));
+});
 
                                         $("form#form-submit").validate({
-                                           ignore: ".ignore, .select2-input",
+                                           ignore:"hidden:not(.live_select)",
                                             rules: {
                                                 manufacturer: 'required',
                                                 price: 'required',
@@ -480,7 +483,12 @@
                                                 });
 
 
-                                            }
+                                            },
+                                                     //put error message behind each form element
+       
+    
+
+   
                                         });
 
 

@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -7,12 +8,15 @@ class Vehicle_advertisements extends CI_Controller {
     function __construct() {
         parent::__construct();
 
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+            $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
 
-        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
-        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
-        
-        $this->load->model('users/user_model');
-        $this->load->model('users/user_service');
+            $this->load->model('users/user_model');
+            $this->load->model('users/user_service');
+        }
     }
 
     /* manage_advertisements function
@@ -22,18 +26,18 @@ class Vehicle_advertisements extends CI_Controller {
     function manage_advertisements() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        $user_service= new User_service();
+        $user_service = new User_service();
 
         $data['heading'] = "Advertisements";
         $data['results'] = $vehicle_advertisments_service->get_all_advertisements();
-        $data['reg_users']=$user_service->get_all_active_registered_users();
+        $data['reg_users'] = $user_service->get_all_active_registered_users();
 
         $parials = array('content' => 'vehicle_advertisements/manage_advertisements_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
-     /*
-      *  This function is to search advertisements
+
+    /*
+     *  This function is to search advertisements
      */
 
     function search_advertisements() {
@@ -48,10 +52,12 @@ class Vehicle_advertisements extends CI_Controller {
     /*
      * This is to delete a advertisement
      */
+
     function delete_advertisement() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
         echo $vehicle_advertisments_service->delete_advertisement(trim($this->input->post('id', TRUE)));
     }
+
 }

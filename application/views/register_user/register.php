@@ -5,7 +5,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        
+
         <link href="<?php echo base_url(); ?>application_resources/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
         <link href='../../../fonts.googleapis.com/css-family=Montserrat-400,700.htm' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/bootstrap/css/bootstrap.css" type="text/css">
@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
         <link href="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
-        
+
         <title>Spotter - Universal Directory Listing HTML Template</title>
 
     </head>
@@ -29,17 +29,30 @@
                 <div class="header">
                     <div class="wrapper">
                         <div class="brand">
-                            <a href="index-directory.html"><img src="assets/img/logo.png" alt="logo"></a>
+                            <a href="<?php echo site_url(); ?>/home"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
                         </div>
                         <nav class="navigation-items">
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">
-                                    <li><a href="sign-in.html">Sign In</a></li>
-                                    <li><a href="register.html"><strong>Register</strong></a></li>
+                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
+
+                                        <div class="dealer-login">
+                                            <a href="<?php echo site_url(); ?>/login/load_login" class="dealer-name"><i class="fa fa-unlock-alt"></i>  Sign In</a>
+
+                                        </div>
+
+                                    <?php } else { ?>
+
+                                        <div class="dealer-login">
+                                            <a href="" class="dealer-name"><i class="fa fa-user"></i> <?php echo $this->session->userdata('USER_NAME'); ?></a>
+                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>
+                                        </div>
+
+                                    <?php } ?>
                                 </ul>
-                                <a href="submit.html" class="submit-item">
-                                    <div class="content"><span>Submit Your Item</span></div>
+                                <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
+                                    <div class="content"><span>Submit Your Advertisement</span></div>
                                     <div class="icon">
                                         <i class="fa fa-plus"></i>
                                     </div>
@@ -114,7 +127,7 @@
 
                                             <div class="form-group">
                                                 <label for="form-register-password">Password:</label>
-                                                <input type="password" class="form-control" id="form-register-password" name="form_register_password" >
+                                                <input type="password" class="form-control" id="form_register_password" name="form_register_password" >
                                             </div><!-- /.form-group -->
                                             <div class="form-group">
                                                 <label for="form-register-confirm-password">Confirm Password:</label>
@@ -167,7 +180,11 @@
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 
+<script>
+            var base_url = "<?php echo base_url(); ?>";
+            var site_url = "<?php echo site_url(); ?>";
 
+        </script>
 <script type="text/javascript">
 
     $(document).ready(function() {
@@ -182,28 +199,39 @@
                 form_register_contact: {
                     required: true,
                     digits: true,
-                    minlength: 10, maxlength: 10
+                    minlength: 10, 
+                    maxlength: 10
                 },
                 form_register_address: "required",
                 form_register_user_name: "required",
                 form_register_password: "required",
-                form_register_confirm_password: "required"
+                form_register_confirm_password:{
+                    required:true,
+                    equalTo:"#form_register_password"
+                }
             },
             messages: {
                 form_register_full_name: "Please enter your full name",
-                form_register_email: "Please enter your email",
+                form_register_email: {
+                    required: "Please enter your email",
+                    email: "Incorrect email address"
+
+                },
                 form_register_contact: "Please enter your telephone number",
                 form_register_address: "Please enter your address",
                 form_register_user_name: "Please enter a valid user name",
                 form_register_password: "Please enter a password",
-                form_register_confirm_password: "Confirm the password"
+                form_register_confirm_password:{
+                    required:"Confirm the password",
+                    equalTo:"Mismatch"
+                }
             }, submitHandler: function(form)
             {
                 $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
                 {
                     alert(msg);
                     if (msg == 1) {
-                        
+
                         //form-register.reset();
                         toastr.success("Successfully Registered", "AutoVille");
                     } else {

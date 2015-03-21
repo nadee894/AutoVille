@@ -8,8 +8,12 @@ class Body_type extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->load->model('body_type/body_type_model');
-        $this->load->model('body_type/body_type_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('body_type/body_type_model');
+            $this->load->model('body_type/body_type_service');
+        }
     }
 
     /*
@@ -100,5 +104,4 @@ class Body_type extends CI_Controller {
         echo $body_type_service->update_body_type($body_type_model);
     }
 
-     
 }
