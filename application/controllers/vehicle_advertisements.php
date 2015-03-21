@@ -38,6 +38,10 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('district/district_model');
         $this->load->model('district/district_service');
+        
+        
+        $this->load->model('vehicle_equipment/vehicle_equipment_model');
+        $this->load->model('vehicle_equipment/vehicle_equipment_service');
     }
 
     function post_new_advertisement() {
@@ -110,9 +114,11 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_images_temp_service   = new Vehicle_images_temp_service();
         $vehicle_images_service        = new Vehicle_images_service();
         $vehicle_images_model          = new Vehicle_images_model();
+        $vehicle_equipment_model = new Vehicle_equipment_model();
+        $vehicle_equipment_service = new Vehicle_equipment_service();
 
         $temp_images = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
-
+        
         $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
         $vehicle_advertisement_model->set_manufacture_id($this->input->post('manufacturer', TRUE));
         $vehicle_advertisement_model->set_description($this->input->post('description', TRUE));
@@ -140,8 +146,11 @@ class Vehicle_advertisements extends CI_Controller {
         $equipments = $this->input->post('equipment', TRUE);
 
         if (!empty($equipments)) {
-            foreach ($equipments as $$equipment) {
-                
+            foreach ($equipments as $equipment) {
+
+                $vehicle_equipment_model->set_equipment_id($equipment);
+                $vehicle_equipment_model->set_vehicle_id($advertisement_id);
+                $vehicle_equipment_service->add_new_vehicle_equipment($vehicle_equipment_model);
             }
         }
 
