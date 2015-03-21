@@ -65,7 +65,7 @@ class User_service extends CI_Model {
 
         return $query->row();
     }
-    
+
     /*
      * To get user details by passing id as a parameter
      */
@@ -160,6 +160,14 @@ class User_service extends CI_Model {
             'updated_date' => $user_model->get_updated_date());
         $this->db->where('id', $user_model->get_id());
         return $this->db->update('user', $data);
+    }
+
+    /*
+     * Add user to the database  
+     */
+
+    function add_user($user_model) {
+         return $this->db->insert('user', $user_model);
     }
 
 }

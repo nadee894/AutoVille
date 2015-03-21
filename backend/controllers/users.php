@@ -8,8 +8,12 @@ class Users extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->load->model('users/user_model');
-        $this->load->model('users/user_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('users/user_model');
+            $this->load->model('users/user_service');
+        }
     }
 
     function manage_admins() {
@@ -48,7 +52,7 @@ class Users extends CI_Controller {
         $user_model->set_is_published('1');
         $user_model->set_is_deleted('0');
 
-        echo $body_type_service->add_new_body_type($body_type_model);
+        echo $body_type_service->add_user($body_type_model);
     }
 
     function load_admins_by_letter() {

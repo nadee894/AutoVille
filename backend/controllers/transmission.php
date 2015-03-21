@@ -8,9 +8,12 @@ class Transmission extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-
-        $this->load->model('transmission/transmission_model');
-        $this->load->model('transmission/transmission_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('transmission/transmission_model');
+            $this->load->model('transmission/transmission_service');
+        }
     }
 
     /* manage_companies function
@@ -30,7 +33,7 @@ class Transmission extends CI_Controller {
 
     function add_transmission() {
 
-        $transmission_model   = new Transmission_model();
+        $transmission_model = new Transmission_model();
         $transmission_service = new Transmission_service();
 
         $transmission_model->set_name($this->input->post('name', TRUE));
@@ -58,7 +61,7 @@ class Transmission extends CI_Controller {
      */
 
     function change_publish_status() {
-        $transmission_model   = new Transmission_model();
+        $transmission_model = new Transmission_model();
         $transmission_service = new Transmission_service();
 
         $transmission_model->set_id(trim($this->input->post('id', TRUE)));
@@ -72,11 +75,11 @@ class Transmission extends CI_Controller {
      */
 
     function load_edit_transmission_content() {
-        $transmission_model   = new Transmission_model();
+        $transmission_model = new Transmission_model();
         $transmission_service = new Transmission_service();
 
         $transmission_model->set_id(trim($this->input->post('transmission_id', TRUE)));
-        $transmission         = $transmission_service->get_transmission_by_id($transmission_model);
+        $transmission = $transmission_service->get_transmission_by_id($transmission_model);
         $data['transmission'] = $transmission;
 
 
@@ -89,7 +92,7 @@ class Transmission extends CI_Controller {
 
     function edit_transmission() {
 
-        $transmission_model   = new Transmission_model();
+        $transmission_model = new Transmission_model();
         $transmission_service = new Transmission_service();
 
         $transmission_model->set_id($this->input->post('transmission_id', TRUE));

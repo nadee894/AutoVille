@@ -8,8 +8,12 @@ class Vehicle_Model extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->load->model('vehicle_model/vehicle_model_model');
-        $this->load->model('vehicle_model/vehicle_model_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('vehicle_model/vehicle_model_model');
+            $this->load->model('vehicle_model/vehicle_model_service');
+        }
     }
 
     /*
@@ -41,7 +45,7 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_model->set_is_published('1');
         $vehicle_model_model->set_is_deleted('0');
         $vehicle_model_model->set_added_date(date("Y-m-d H:i:s"));
-        $vehicle_model_model->set_added_by($this->session->userdata('USER_ID'));        
+        $vehicle_model_model->set_added_by($this->session->userdata('USER_ID'));
 
         echo $vehicle_model_service->add_new_vehicle_model($vehicle_model_model);
     }
@@ -97,9 +101,9 @@ class Vehicle_Model extends CI_Controller {
 
         $vehicle_model_model->set_id(trim($this->input->post('vehicle_model_id', TRUE)));
         $vehicle_model = $vehicle_model_service->get_vehicle_model_by_id($vehicle_model_model);
-        $data['vehicle_model']=$vehicle_model;
-        
+        $data['vehicle_model'] = $vehicle_model;
+
         echo $this->load->view('vehicle_model/vehicle_model_edit_pop_up', $data, TRUE);
-    }    
+    }
 
 }

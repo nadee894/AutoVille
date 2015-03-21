@@ -8,8 +8,12 @@ class Fuel_Type extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->load->model('fuel_type/fuel_type_model');
-        $this->load->model('fuel_type/fuel_type_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('fuel_type/fuel_type_model');
+            $this->load->model('fuel_type/fuel_type_service');
+        }
     }
 
     /*
@@ -33,7 +37,7 @@ class Fuel_Type extends CI_Controller {
 
     function add_fuel_type() {
 
-        $fuel_type_model   = new Fuel_Type_model();
+        $fuel_type_model = new Fuel_Type_model();
         $fuel_type_service = new Fuel_Type_service();
 
         $fuel_type_model->set_name($this->input->post('name', TRUE));
@@ -60,8 +64,8 @@ class Fuel_Type extends CI_Controller {
      */
 
     function change_publish_status() {
-        
-        $fuel_type_model   = new Fuel_Type_model();
+
+        $fuel_type_model = new Fuel_Type_model();
         $fuel_type_service = new Fuel_Type_service();
 
         $fuel_type_model->set_id(trim($this->input->post('id', TRUE)));
@@ -75,7 +79,7 @@ class Fuel_Type extends CI_Controller {
      */
 
     function load_edit_fuel_type_content() {
-        $fuel_type_model   = new Fuel_Type_model();
+        $fuel_type_model = new Fuel_Type_model();
         $fuel_type_service = new Fuel_Type_service();
 
         $fuel_type_model->set_id(trim($this->input->post('fuel_type_id', TRUE)));
@@ -86,13 +90,13 @@ class Fuel_Type extends CI_Controller {
         echo $this->load->view('fuel_type/fuel_type_edit_pop_up', $data, TRUE);
     }
 
-     /*
+    /*
      * This function is to update the fuel type details
      */
 
     function edit_fuel_type() {
 
-        $fuel_type_model   = new Fuel_Type_model();
+        $fuel_type_model = new Fuel_Type_model();
         $fuel_type_service = new Fuel_Type_service();
 
         $fuel_type_model->set_id($this->input->post('fuel_type_id', TRUE));
@@ -102,4 +106,5 @@ class Fuel_Type extends CI_Controller {
 
         echo $fuel_type_service->update_fuel_type($fuel_type_model);
     }
+
 }
