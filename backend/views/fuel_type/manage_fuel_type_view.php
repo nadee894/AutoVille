@@ -77,8 +77,8 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
+                        <label for="name">Fuel Type</label>
+                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Fuel Type">
                     </div>
                 </div>
                 <div class="modal-footer">

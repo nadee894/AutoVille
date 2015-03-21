@@ -6,7 +6,7 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Title</label>
+            <label for="name">Fuel Type</label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $fuel_type->name; ?>">
             <input id="fuel_type_id"  name="fuel_type_id" type="hidden" value="<?php echo $fuel_type->id; ?>">
         </div>
@@ -25,21 +25,21 @@
             name: "required"
         },
         messages: {
-            name: "Please enter a title"
-        }, submitHandler: function(form)
-        {
-            $.post(site_url + '/fuel_type/edit_fuel_type', $('#edit_fuel_type_form').serialize(), function(msg)
+            name: "Please enter a fuel type"
+        }, submitHandler: function (form) {
+
+            $.post(site_url + '/fuel_type/edit_fuel_type', $('#edit_fuel_type_form').serialize(), function (msg)
             {
                 if (msg == 1) {
-
+                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                     window.location = site_url + '/fuel_type/manage_fuel_types';
                 } else {
-
+                    $('#rtn_msg_edit').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                 }
             });
-
-
         }
+
     });
+
 </script>
 

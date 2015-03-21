@@ -7,16 +7,19 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Title</label>
+            <label for="name">Vehicle News</label>
             <input id="title" class="form-control" name="title" type="text" value="<?php echo $vehicle_news->title; ?>">
             <input id="vehicle_news_id"  name="vehicle_news_id" type="hidden" value="<?php echo $vehicle_news->id; ?>">
         </div>
+        
         <div class="form-group">
             <label for="name">Content</label>
-            <textarea class="wysihtml5 form-control" id="content_text" name="content_text" rows="20"value="<?php echo $vehicle_news->content; ?>" >
-<!--             <input id="vehicle_news_content"  name="vehicle_news_content" type="hidden" value="<?php echo $vehicle_news->content; ?>">              -->
+            <textarea class="wysihtml5 form-control" id="content_text" name="content_text" rows="20">
+                <?php echo $vehicle_news->content; ?>
+<!--             <input id="vehicle_news_content"  name="vehicle_news_content" type="hidden" value="<?php echo $vehicle_news->content; ?>              -->
             </textarea>
         </div>
+        <span id="rtn_msg_edit"></span>
     </div>
     <div class="modal-footer">
         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
@@ -40,9 +43,11 @@
         }, submitHandler: function(form) {
             $.post(site_url + '/vehicle_news/edit_vehicle_news', $('#edit_vehicle_news_form').serialize(), function(msg) {
                 if (msg == 1) {
+                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                     window.location = site_url + '/vehicle_news/manage_vehicle_news';
                 }
                 else {
+                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
                 }
             });

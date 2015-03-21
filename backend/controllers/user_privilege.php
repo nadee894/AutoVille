@@ -35,7 +35,7 @@ class User_privilege extends CI_Controller {
 
         $user_model->set_id($id);
 
-        $data['user_detail'] = $user_service->get_admin_by_id($user_model);
+        $data['user_detail'] = $user_service->get_user_by_id($user_model);
 
         $current_assigned_privileges = $user_privilege_service->get_assigned_privileges_by_user_id($id);
         $privileges                  = array();

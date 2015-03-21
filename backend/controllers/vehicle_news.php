@@ -31,12 +31,12 @@ class Vehicle_news extends CI_Controller {
      */
 
     function add_vehicle_news() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
-        $vehicle_news_model->set_title($this->input->post('title', TRUE));
-        $vehicle_news_model->set_content($this->input->post('content', TRUE));
-        $vehicle_news_model->set_added_by(1);
+        $vehicle_news_model->set_title($this->input->post('name', TRUE));
+        $vehicle_news_model->set_content($this->input->post('content_text', TRUE));
+        $vehicle_news_model->set_added_by($this->session->userdata('USER_ID'));
         $vehicle_news_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_news_model->set_is_published('1');
         $vehicle_news_model->set_is_deleted('0');
@@ -59,7 +59,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function change_publish_status() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('id', TRUE)));
@@ -73,11 +73,11 @@ class Vehicle_news extends CI_Controller {
      */
 
     function load_edit_vehicle_news_content() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
-        $vehicle_news_model -> set_id(trim($this->input->post('vehicle_news_id', TRUE)));
-        $vehicle_news = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
+        $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
+        $vehicle_news         = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
         $data['vehicle_news'] = $vehicle_news;
 
         echo $this->load->view('vehicle_news/vehicle_news_edit_pop_up', $data, TRUE);
@@ -88,15 +88,15 @@ class Vehicle_news extends CI_Controller {
      */
 
     function edit_vehicle_news() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
-        
-        $vehicle_news_model->set_id($this->input->post('vehicle_news_id', TRUE));
-        $vehicle_news_model->set_title($this->input->post('title',TRUE));
-        $vehicle_news_model->set_content($this->input->post('content',TRUE));
-        $vehicle_news_model->set_updated_by(1);
+
+        $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
+        $vehicle_news_model->set_title($this->input->post('title', TRUE));
+        $vehicle_news_model->set_content($this->input->post('content_text', TRUE));
+        $vehicle_news_model->set_updated_by($this->session->userdata('USER_ID'));
         $vehicle_news_model->set_updated_date(date("Y-m-d H:i:s"));
-        
+
         echo $vehicle_news_service->update_vehicle_news($vehicle_news_model);
     }
 

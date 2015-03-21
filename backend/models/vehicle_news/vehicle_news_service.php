@@ -48,7 +48,7 @@ class Vehicle_news_service extends CI_Model {
         );
         
         $this->db->where('id',$vehicle_news_model->get_id());
-        $this->db->update('vehicle_news',$data);
+        return $this->db->update('vehicle_news',$data);
     }
     
     public function get_vehicle_news_by_id($vehicle_news_model){

@@ -40,9 +40,11 @@ class Login extends CI_Controller {
         if ($logged_user_result) {
 
             $this->session->set_userdata('USER_ID', $result_user->id);
-            $this->session->set_userdata('USER_NAME', $result_user->name);
+            $this->session->set_userdata('USER_FULLNAME', $result_user->name);
+            $this->session->set_userdata('USER_NAME', $result_user->user_name);
             $this->session->set_userdata('USER_TYPE', $result_user->user_type);
             $this->session->set_userdata('USER_EMAIL', $result_user->email);
+            $this->session->set_userdata('USER_PHONE', $result_user->contact_no_1);
             $this->session->set_userdata('USER_PROFILE_PIC', $result_user->profile_pic);
             $this->session->set_userdata('USER_ONLINE', 'Y');
             $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
