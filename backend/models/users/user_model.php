@@ -9,6 +9,7 @@ class User_model extends CI_Model {
     var $name;
     var $user_name;
     var $email;
+    var $address;
     var $user_type;
     var $profile_pic;
     var $password;
@@ -152,5 +153,14 @@ class User_model extends CI_Model {
     function set_email($email) {
         $this->email = $email;
     }
+
+    function get_address() {
+        return $this->address;
+    }
+
+    function set_address($address) {
+        $this->address = $address;
+    }
+
 
 }

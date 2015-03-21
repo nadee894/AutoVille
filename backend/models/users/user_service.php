@@ -112,4 +112,26 @@ class User_service extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    /*
+     * update details of an user   
+     */
+    function update_user($user_model) {
+        $data = array('title'=>$user_model->get_title(),
+            'name' => $user_model->get_name(),
+            'user_name' => $user_model->get_user_name(),
+            'user_type' => $user_model->get_user_type(),
+            'email' => $user_model->get_email(),
+            'address' => $user_model->get_address(),
+            'name' => $user_model->get_name(),
+            'name' => $user_model->get_name(),
+            'name' => $user_model->get_name(),
+            'name' => $user_model->get_name(),
+            'name' => $user_model->get_name(),
+            'updated_date' => $body_type_model->get_updated_date(),
+            'updated_by' => $body_type_model->get_updated_by());
+
+
+        $this->db->where('id', $body_type_model->get_id());
+        return $this->db->update('body_type', $data);
+    }
 }
