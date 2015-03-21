@@ -8,8 +8,12 @@ class Vehicle_news extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        $this->load->model('vehicle_news/vehicle_news_model');
-        $this->load->model('vehicle_news/vehicle_news_service');
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
+            $this->load->model('vehicle_news/vehicle_news_model');
+            $this->load->model('vehicle_news/vehicle_news_service');
+        }
     }
 
     /*
@@ -31,7 +35,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function add_vehicle_news() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_title($this->input->post('name', TRUE));
@@ -59,7 +63,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function change_publish_status() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('id', TRUE)));
@@ -73,11 +77,11 @@ class Vehicle_news extends CI_Controller {
      */
 
     function load_edit_vehicle_news_content() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
-        $vehicle_news         = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
+        $vehicle_news = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
         $data['vehicle_news'] = $vehicle_news;
 
         echo $this->load->view('vehicle_news/vehicle_news_edit_pop_up', $data, TRUE);
@@ -88,7 +92,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function edit_vehicle_news() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
