@@ -517,7 +517,7 @@
         <script src="<?php echo base_url(); ?>backend_resources/js/sparkline-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/count.js"></script>
-<!--        <script src="<?php echo base_url(); ?>backend_resources/js/form-component.js"></script>-->
+        <script src="<?php echo base_url(); ?>backend_resources/js/form-component.js"></script>
 
 
         <script>

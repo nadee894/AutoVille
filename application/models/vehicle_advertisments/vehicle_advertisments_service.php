@@ -59,16 +59,8 @@ class Vehicle_advertisments_service extends CI_Model {
      */
     public function search_vehicle($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type
     , $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword) {
-//vehicle_images.*,
 
-        /* $this->db->select('vehicle_images.*');
-          $this->db->from('vehicle_images');
-          $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
-          $this->db->where('vehicle_images.vehicle_id','');
-         */
-
-
-        $this->db->select('vehicle_advertisements.*,user.name as added_by_user,'
+        $this->db->select('vehicle_advertisements.*,vehicle_images.*,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
                 . 'transmission.name as transmission,fuel_type.name as fuel_type,'
                 . 'body_type.name as body_type');
@@ -79,8 +71,10 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->join('fuel_type', 'fuel_type.id = vehicle_advertisements.fuel_type_id');
         $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');
         $this->db->join('user', 'user.id = vehicle_advertisements.added_by');
-        //$this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
+        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
         $this->db->where('vehicle_advertisements.is_deleted', '0');
+        $this->db->where('vehicle_advertisements.is_published', '1');
+        $this->db->group_by('vehicle_advertisements.id');
 
         if (!empty($manufacture) && !is_null($manufacture)) {
             $this->db->where('vehicle_advertisements.manufacture_id', $manufacture);
@@ -122,10 +116,29 @@ class Vehicle_advertisments_service extends CI_Model {
         }
 
         $this->db->order_by("vehicle_advertisements.added_date", "desc");
+
         $query = $this->db->get();
         //echo $this->db->last_query();
-        //die;
+        //die;        
         return $query->result();
+    }
+    
+    /*
+     * Add new Vehicle Addvertisement
+     */
+     function add_new_advertisements($vehicle_advertisement_model) {
+        $this->db->insert('vehicle_advertisements', $vehicle_advertisement_model);
+        return $this->db->insert_id();
+    }
+    
+    function get_last_advertisement_id(){
+        $this->db->select('id');
+        $this->db->from('vehicle_advertisements');
+        $this->db->order_by("id", "desc");
+        $this->db->limit(1);
+        $query = $this->db->get();
+
+        return $query->row();
     }
 
 }

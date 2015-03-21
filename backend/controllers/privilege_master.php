@@ -13,16 +13,17 @@ class Privilege_master extends CI_Controller {
 //        } else {
             $this->load->model('privilege_master/privilege_master_model');
             $this->load->model('privilege_master/privilege_master_service');
+            
+            $this->load->model('access_controll/access_controll_service');
 
-//
-//            $this->load->model('Systems/Systemsservice');
+
 //        }
     }
 
     function manage_privilege_masters() {
 
-//        $perm = Access_controllerservice :: checkAccess('MANAGE_MASTER_PRIVILEGES');
-//        if ($perm) {
+        $perm = Access_controll_service::check_access('VIEW_MASTER_PRIVILEGES');
+        if ($perm) {
 
         $privilege_master_service = new Privilege_master_service();
 
@@ -34,9 +35,9 @@ class Privilege_master extends CI_Controller {
 
         $partials = array('content' => 'privilege_master/manage_privilege_master_view');
         $this->template->load('template/main_template', $partials, $data);
-//        } else {
-//            $this->template->load('template/access_denied_page');
-//        }
+        } else {
+            $this->template->load('template/access_denied_page');
+        }
     }
 
     function add_new_privilege_master() {

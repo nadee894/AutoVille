@@ -36,19 +36,12 @@
                     <input id="txtusername" name="txtusername" type="text" class="form-control" placeholder="Username" autofocus>
                     <input id="txtpassword" name="txtpassword" type="password" class="form-control" placeholder="Password">
                     <label class="checkbox">
-                        <input type="checkbox" value="remember-me"> Remember me
+                        <!--<input type="checkbox" value="remember-me"> Remember me
                         <span class="pull-right">
                             <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-                        </span>
+                        </span>-->
                     </label>
-                    <button onclick="login()" class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
-
-                    <div class="registration">
-                        Don't have an account yet?
-                        <a class="" href="registration.html">
-                            Create an account
-                        </a>
-                    </div>
+                    <button onclick="login()" class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>                   
 
                 </div>
             </form>
@@ -111,19 +104,19 @@
                             var login_username = $('#txtusername').val();
                             var login_password = $('#txtpassword').val();
 
-                            if ($('#login_form').valid()) {                                
+                            if ($('#login_form').valid()) {
 
                                 $.ajax({
                                     type: "POST",
                                     url: site_url + '/login/authenticate_user',
                                     data: "login_username=" + login_username + "&login_password=" + login_password,
-                                    success: function (msg) {                                        
+                                    success: function (msg) {
 
                                         if (msg == 1) {
-                                            alert("login success");
                                             setTimeout("location.href = site_url+'/login/load_login';", 100);
                                         } else {
-                                            alert("Invalid login details...");
+                                            login_form.reset();
+                                            alert("Invalid Login details...");
                                         }
                                     }
                                 });

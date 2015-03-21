@@ -8,15 +8,15 @@ class Privilege extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-//        if (!$this->session->userdata('USER_LOGGED_IN')) {
-//            redirect(site_url() . '/login/load_login');
-//        } else {
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
             $this->load->model('privilege/privilege_model');
             $this->load->model('privilege/privilege_service');
 
             $this->load->model('privilege_master/privilege_master_model');
             $this->load->model('privilege_master/privilege_master_service');
-//        }
+        }
     }
 
     function manage_privileges() {
