@@ -3,7 +3,7 @@
     <h4 class="modal-title">Manufacture Quick edit</h4>
 </div>
 
-<form id="add_manufacture_form" name="add_manufacture_form">
+<form id="add_manufacture_form" name="add_manufacture_form" method="post">
     <div class="modal-body">
         <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
         <script>
@@ -48,7 +48,7 @@
 
         </script>
         <div class="form-group">
-            <label for="name">Manufacture</label>
+            <label for="name">Manufacture<span class="mandatory">*</span></label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $manufacture->name; ?>">
             <input id="manufacture_id"  name="manufacture_id" type="hidden" value="<?php echo $manufacture->id; ?>">
 <!--            <input id="name" class="form-control" name="name" type="text" placeholder="Enter Manufacture">-->
@@ -99,7 +99,7 @@
             name: "required"
         },
         message: {
-            name: "Please enter a title"
+            name: "Please enter a Manufacturer"
         }, submitHandler: function(form)
         {
             $.post(site_url + '/manufacture/edit_manufacture', $('#edit_manufacture_form').serialize(), function(msg)

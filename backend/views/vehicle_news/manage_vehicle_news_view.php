@@ -76,7 +76,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Vehicle News</label>
+                        <label for="name">Vehicle News<span class="mandatory">*</span></label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Vehicle News">
                     </div>
 

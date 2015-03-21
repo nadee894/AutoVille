@@ -7,7 +7,7 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Vehicle News</label>
+            <label for="name">Vehicle News<span class="mandatory">*</span></label>
             <input id="title" class="form-control" name="title" type="text" value="<?php echo $vehicle_news->title; ?>">
             <input id="vehicle_news_id"  name="vehicle_news_id" type="hidden" value="<?php echo $vehicle_news->id; ?>">
         </div>

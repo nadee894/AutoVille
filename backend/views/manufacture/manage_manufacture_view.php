@@ -117,7 +117,7 @@
 
                     </script>
                     <div class="form-group">
-                        <label for="name">Manufacture</label>
+                        <label for="name">Manufacture<span class="mandatory">*</span></label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Manufacture">
                     </div>
                     <div class="form-group">
@@ -167,7 +167,7 @@
                 name: "required"
             },
             messages: {
-                name: "Please enter a title"
+                name: "Please enter a Manufacturer"
             }, submitHandler: function(form)
             {
                 $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)

@@ -6,7 +6,7 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Vehicle Model</label>
+            <label for="name">Vehicle Model<span class="mandatory">*</span></label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $vehicle_model->name; ?>">
             <input id="vehicle_model_id"  name="vehicle_model_id" type="hidden" value="<?php echo $vehicle_model->id; ?>">
         </div>
@@ -25,7 +25,7 @@
             name: "required"
         },
         messages: {
-            name: "Please enter a title"
+            name: "Please enter a Vehicle Model"
         }, submitHandler: function (form) {
 
             $.post(site_url + '/vehicle_model/edit_vehicle_model', $('#edit_vehicle_model_form').serialize(), function (msg)

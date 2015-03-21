@@ -73,8 +73,8 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input id="name" name="name" class="form-control" type="text" placeholder="Enter Title">
+                        <label for="name">Equipment<span class="mandatory">*</span></label>
+                        <input id="name" name="name" class="form-control" type="text" placeholder="Enter Equipment">
                     </div>
                     <span id="rtn_msg"></span>
                 </div>
@@ -110,7 +110,7 @@
                 name: "required"
             },
             messages: {
-                name: "Please enter a title"
+                name: "Please enter a Equipment"
             }, submitHandler: function (form)
             {
                 $.post(site_url + '/equipment/add_new_equipment', $('#equipment_add_form').serialize(), function (msg)

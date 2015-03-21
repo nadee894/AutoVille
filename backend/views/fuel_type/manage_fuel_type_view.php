@@ -77,7 +77,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Fuel Type</label>
+                        <label for="name">Fuel Type<span class="mandatory">*</span></label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Fuel Type">
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                 name: "required"
             },
             messages: {
-                name: "Please enter a title"
+                name: "Please enter a Fuel Type"
             }, submitHandler: function(form)
             {
                 $.post(site_url + '/fuel_type/add_fuel_type', $('#add_fuel_type_form').serialize(), function(msg)
