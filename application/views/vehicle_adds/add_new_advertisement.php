@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
                                 <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true" class="live_select">
-                                    <option value="0">Select Manufacturer</option>
+                                    <option value="" selected>Select Manufacturer</option>
                                     <?php foreach ($manufactures as $manufacture) { ?>
                                         <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
                                     <?php } ?>
@@ -460,10 +460,9 @@
                                     $(document).ready(function() {
 
                                         $("form#form-submit").validate({
+                                           ignore: ".ignore, .select2-input",
                                             rules: {
-                                                manufacturer: {
-                                                    selectmanufacture: true
-                                                },
+                                                manufacturer: 'required',
                                                 price: 'required',
                                                 chassis_no: 'required',
                                                 kilo_meters: 'required'
