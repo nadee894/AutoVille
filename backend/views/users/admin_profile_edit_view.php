@@ -9,49 +9,49 @@
     <div class="form-group">
         <label  class="col-lg-2 control-label">Title</label>
         <div class="col-lg-6">
-            <input type="text" class="form-control" id="title" placeholder=" ">
+            <input name="" type="text" class="form-control" id="title" placeholder=" ">
         </div>
     </div>
     <div class="form-group">
         <label  class="col-lg-2 control-label">Name</label>
         <div class="col-lg-6">
-            <input type="text" class="form-control" id="name" placeholder=" ">
+            <input name="" type="text" class="form-control" id="name" placeholder=" ">
         </div>
     </div>
     <div class="form-group">
         <label  class="col-lg-2 control-label">User Name</label>
         <div class="col-lg-6">
-            <input type="text" class="form-control" id="username" placeholder=" ">
+            <input name="" type="text" class="form-control" id="username" placeholder=" ">
         </div>
     </div>
     <div class="form-group">
         <label  class="col-lg-2 control-label">User Type</label>
         <div class="col-lg-6">
-            <input type="text" class="form-control" id="type" placeholder=" ">
+            <input name="" type="text" class="form-control" id="type" placeholder=" ">
         </div>
     </div>
     <div class="form-group">
         <label  class="col-lg-2 control-label">E-mail</label>
          <div class="col-lg-6">
-            <input type="text" class="form-control" id="email" placeholder=" ">
+            <input name="" type="text" class="form-control" id="email" placeholder=" ">
         </div>
     </div>
     <div class="form-group">
         <label  class="col-lg-2 control-label">Address</label>
         <div class="col-lg-6">
-            <input type="text" class="form-control" id="address" placeholder=" ">
+            <input name="" type="text" class="form-control" id="address" placeholder=" ">
         </div>
     </div>
     <div class="form-group">
         <label  class="col-lg-2 control-label">Contact No 01</label>
         <div class="col-lg-6">
-            <input type="text" class="form-control" id="mobile1" placeholder=" ">
+            <input name="" type="text" class="form-control" id="mobile1" placeholder=" ">
         </div>
     </div>
     <div class="form-group">
         <label  class="col-lg-2 control-label">Contact No 02</label>
         <div class="col-lg-6">
-            <input type="text" class="form-control" id="mobile2" placeholder=" ">
+            <input name="" type="text" class="form-control" id="mobile2" placeholder=" ">
         </div>
     </div>
 

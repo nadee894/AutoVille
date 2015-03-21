@@ -116,7 +116,7 @@ class Users extends CI_Controller {
     }
 
     /*
-     * Function to update user
+     * Function to update user details
      */
 
     function update_user() {
@@ -132,6 +132,21 @@ class Users extends CI_Controller {
         $user_model->set_address($this->input->post('address', TRUE));
         $user_model->set_contact_no_1($this->input->post('contact_no_1', TRUE));
         $user_model->set_contact_no_2($this->input->post('contact_no_2', TRUE));
+        $user_model->set_password($this->input->post('profile_pic', TRUE));
+        $user_model->set_profile_pic($this->input->post('pasword', TRUE));
+        $user_model->set_updated_by($this->session->userdata('USER_ID'));
+        $user_model->set_updated_date(date("Y-m-d H:i:s"));
+
+        echo $user_service->update_user($user_model);
+    }
+
+    /*
+     * Function to update user password and avatar
+     */
+
+    function reset_password_and_avatar() {
+        $user_model = new User_model();
+        $user_service = new User_service();
         $user_model->set_password($this->input->post('profile_pic', TRUE));
         $user_model->set_profile_pic($this->input->post('pasword', TRUE));
         $user_model->set_updated_by($this->session->userdata('USER_ID'));
