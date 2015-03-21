@@ -101,7 +101,9 @@ class Users extends CI_Controller {
     }
     
     function load_user_activities(){
-        $this->load->view('users/admin_activitity_filter_view');
+        echo  $this->load->view('users/admin_activitity_filter_view');
+        
+        
     }
 
 }
