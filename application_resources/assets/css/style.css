@@ -1379,6 +1379,13 @@ ul.bullets li a:hover {
 .dropzone .dz-preview .dz-details .dz-size {
   font-size: 12px;
 }
+
+.error{
+    color: red;
+    font-weight: normal;
+}
+
+
 .dropzone .dz-preview .dz-error-mark, .dropzone .dz-preview .dz-success-mark {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
