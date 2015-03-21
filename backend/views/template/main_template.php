@@ -40,6 +40,7 @@
 
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.validate.min.js"></script>
 
 
 
@@ -500,7 +501,6 @@
         <script src="<?php echo base_url(); ?>backend_resources/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/owl.carousel.js" ></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.customSelect.min.js" ></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>backend_resources/js/jquery.validate.min.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/respond.min.js" ></script>
 
         <!--right slidebar-->
