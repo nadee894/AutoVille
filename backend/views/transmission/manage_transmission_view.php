@@ -77,7 +77,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Transmission</label>
+                        <label for="name">Transmission<span class="mandatory">*</span></label>
                         <input id="name" class="form-control" name="name" type="text" placeholder="Enter Transmission">
                     </div>
 

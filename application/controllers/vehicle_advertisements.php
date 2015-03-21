@@ -31,10 +31,13 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('vehicle_images_temp/vehicle_images_temp_model');
         $this->load->model('vehicle_images_temp/vehicle_images_temp_service');
-        
-        
+
+
         $this->load->model('vehicle_images/vehicle_images_model');
         $this->load->model('vehicle_images/vehicle_images_service');
+
+        $this->load->model('district/district_model');
+        $this->load->model('district/district_service');
     }
 
     function post_new_advertisement() {
@@ -46,7 +49,8 @@ class Vehicle_advertisements extends CI_Controller {
         $transmission_service          = new Transmission_service();
         $equipment_service             = new Equipment_service();
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
-        $vehicle_images_temp_service = new Vehicle_images_temp_service();
+        $vehicle_images_temp_service   = new Vehicle_images_temp_service();
+        $district_service              = new District_service();
 
         $data['heading'] = "Sell your vehicle";
 
@@ -56,9 +60,10 @@ class Vehicle_advertisements extends CI_Controller {
         $data['fuel_types']    = $fuel_type_service->get_all_active_fuel_types();
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();
         $data['equipments']    = $equipment_service->get_all_active_equipment();
+        $data['locations']    = $district_service->get_all_districts();
 
         $vehicle_images_temp_service->truncate_temp_images();
-        
+
         $result  = $vehicle_advertisement_service->get_last_advertisement_id();
         $last_id = '';
         if (!empty($result)) {
@@ -73,11 +78,11 @@ class Vehicle_advertisements extends CI_Controller {
 
     function add_temp_vehicle_images() {
 
-        $vehicle_images_temp_model  = new Vehicle_images_temp_model();
+        $vehicle_images_temp_model   = new Vehicle_images_temp_model();
         $vehicle_images_temp_service = new Vehicle_images_temp_service();
 
         $files = $this->input->post('file_name', TRUE);
-        
+
 //        $files = explode(',', $files);
 
         foreach ($files as $file) {
@@ -91,20 +96,20 @@ class Vehicle_advertisements extends CI_Controller {
             echo $vehicle_images_temp_service->add_new_temp_images($vehicle_images_temp_model);
         }
     }
-    
+
     /*
      * Add new vehicle advertisements
      */
-    
-     function add_new_advertisement() {
+
+    function add_new_advertisement() {
 //        $perm = Access_controllerservice :: checkAccess('ADD_PRIVILEGES');
 //        if ($perm) {
 
-        $vehicle_advertisement_model = new Vehicle_advertisments_model();
+        $vehicle_advertisement_model   = new Vehicle_advertisments_model();
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
-        $vehicle_images_temp_service = new Vehicle_images_temp_service();
-        $vehicle_images_service = new Vehicle_images_service();
-        $vehicle_images_model = new Vehicle_images_model();
+        $vehicle_images_temp_service   = new Vehicle_images_temp_service();
+        $vehicle_images_service        = new Vehicle_images_service();
+        $vehicle_images_model          = new Vehicle_images_model();
 
         $temp_images = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
 
@@ -130,11 +135,11 @@ class Vehicle_advertisements extends CI_Controller {
 
 
         $advertisement_id = $vehicle_advertisement_service->add_new_advertisements($vehicle_advertisement_model);
-        $msg = 1;
-        
-        $equipments=$this->input->post('equipment', TRUE);
-        
-        if(!empty($equipments)){
+        $msg              = 1;
+
+        $equipments = $this->input->post('equipment', TRUE);
+
+        if (!empty($equipments)) {
             foreach ($equipments as $$equipment) {
                 
             }

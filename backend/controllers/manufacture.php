@@ -32,7 +32,7 @@ class Manufacture extends CI_Controller {
      */
 
     function add_manufacture() {
-        $manufacture_model = new Manufacture_model();
+        $manufacture_model   = new Manufacture_model();
         $manufacture_service = new Manufacture_service();
 
         $manufacture_model->set_name($this->input->post('name', TRUE));
@@ -61,7 +61,7 @@ class Manufacture extends CI_Controller {
      */
 
     function change_publish_status() {
-        $manufacture_model = new Manufacture_model();
+        $manufacture_model   = new Manufacture_model();
         $manufacture_service = new Manufacture_service();
 
         $manufacture_model->set_id(trim($this->input->post('id', TRUE)));
@@ -75,11 +75,11 @@ class Manufacture extends CI_Controller {
      */
 
     function load_edit_manufacture_content() {
-        $manufacure_model = new Manufacture_model();
+        $manufacure_model   = new Manufacture_model();
         $manufacure_service = new Manufacture_service();
 
         $manufacure_model->set_id(trim($this->input->post('manufacture_id', TRUE)));
-        $manufacure = $manufacure_service->get_manufacure_by_id($manufacure_model);
+        $manufacure          = $manufacure_service->get_manufacure_by_id($manufacure_model);
         $data['manufacture'] = $manufacure;
 
         echo $this->load->view('manufacture/manufacture_edit_pop_up', $data, TRUE);
@@ -90,28 +90,28 @@ class Manufacture extends CI_Controller {
      */
 
     function edit_manufacture() {
-        $manufacure_model = new Manufacture_model();
+        $manufacure_model   = new Manufacture_model();
         $manufacure_service = new Manufacture_service();
-        
+
         $manufacure_model->set_id($this->input->post('manufacture_id', TRUE));
-        $manufacure_model->set_name($this->input->post('name',TRUE));
+        $manufacure_model->set_name($this->input->post('name', TRUE));
         $manufacure_model->set_updated_by(1);
         $manufacure_model->set_updated_date(date("Y-m-d H:i:s"));
-        
-        echo $manufacure_service->update_manufacure($manufacure_model);
 
+        echo $manufacure_service->update_manufacure($manufacure_model);
     }
-    
-     /*
+
+    /*
      * This function is to upload manufacture logo
      */
+
     function upload_manufacture_logo() {
 
-        $uploaddir = './uploads/manufacture_logo/';
+        $uploaddir  = './uploads/manufacture_logo/';
         $unique_tag = 'manufacture_logo';
 
         $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
-        $file = $uploaddir . $filename; // this is the full path of the uploaded file
+        $file     = $uploaddir . $filename; // this is the full path of the uploaded file
 
         if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) {
             echo $filename;
@@ -119,4 +119,5 @@ class Manufacture extends CI_Controller {
             echo "error";
         }
     }
+
 }

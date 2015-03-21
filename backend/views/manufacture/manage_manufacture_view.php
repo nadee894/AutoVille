@@ -36,7 +36,7 @@
                                 <tr id="manufacture_<?php echo $result->id; ?>">
                                     <td><?php echo++$i; ?></td>
                                     <td><?php echo $result->name; ?></td>
-                                    <td align="center"><img src="<?php echo base_url();?>uploads/manufacture_logo/<?php echo $result->logo; ?>" width="60px" /></td>
+                                    <td align="center"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/<?php echo $result->logo; ?>" width="60px" /></td>
     <!--                                        <td><?php echo $result->added_by_user; ?></td>-->
     <!--                                        <td><?php echo $result->added_date; ?></td>-->
                                     <td align="center">
@@ -76,43 +76,43 @@
                 <div class="modal-body">
                     <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
                     <script>
-                                        //upload manufacture logo
+                                                //upload manufacture logo
 
-                                        $(function() {
-                                            var btnUpload = $('#upload');
-                                            var status = $('#status');
-                                            new AjaxUpload(btnUpload, {
-                                                action: '<?php echo site_url(); ?>/manufacture/upload_manufacture_logo',
-                                                name: 'uploadfile',
-                                                onSubmit: function(file, ext) {
-                                                    if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
-                                                        // extension is not allowed 
-                                                        status.text('Only JPG, PNG or GIF files are allowed');
-                                                        return false;
-                                                    }
-                                                    //status.text('Uploading...Please wait');
-                                                    //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
+                                                $(function() {
+                                                    var btnUpload = $('#upload');
+                                                    var status = $('#status');
+                                                    new AjaxUpload(btnUpload, {
+                                                        action: '<?php echo site_url(); ?>/manufacture/upload_manufacture_logo',
+                                                        name: 'uploadfile',
+                                                        onSubmit: function(file, ext) {
+                                                            if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
+                                                                // extension is not allowed 
+                                                                status.text('Only JPG, PNG or GIF files are allowed');
+                                                                return false;
+                                                            }
+                                                            //status.text('Uploading...Please wait');
+                                                            //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
 
-                                                },
-                                                onComplete: function(file, response) {
-                                                    //On completion clear the status
-                                                    //status.text('');
-                                                    $("#files").html("");
-                                                    $("#sta").html("");
-                                                    //Add uploaded file to list
-                                                    if (response != "error") {
-                                                        $('#files').html("");
-                                                        $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/manufacture_logo/' + response + '"   width="100px" height="68px" /><br />');
-                                                        picFileName = response;
-                                                        document.getElementById('logo').value = response;
-                                                        //                    document.getElementById('cover_image').value = response;
-                                                    } else {
-                                                        $('<div></div>').appendTo('#files').text(file).addClass('error');
-                                                    }
-                                                }
-                                            });
+                                                        },
+                                                        onComplete: function(file, response) {
+                                                            //On completion clear the status
+                                                            //status.text('');
+                                                            $("#files").html("");
+                                                            $("#sta").html("");
+                                                            //Add uploaded file to list
+                                                            if (response != "error") {
+                                                                $('#files').html("");
+                                                                $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/manufacture_logo/' + response + '"   width="100px" height="68px" /><br />');
+                                                                picFileName = response;
+                                                                document.getElementById('logo').value = response;
+                                                                //                    document.getElementById('cover_image').value = response;
+                                                            } else {
+                                                                $('<div></div>').appendTo('#files').text(file).addClass('error');
+                                                            }
+                                                        }
+                                                    });
 
-                                        });
+                                                });
 
 
                     </script>

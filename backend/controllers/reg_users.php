@@ -69,7 +69,7 @@ class Reg_Users extends CI_Controller {
         $reg_user_model->set_id(trim($this->input->post('id', TRUE)));
         $reg_user_model->set_is_published(trim($this->input->post('value', TRUE)));
         
-        echo $reg_user_service->pubish_status_of_reg_user($reg_user_model);
+        echo $reg_user_service->publish_status_of_reg_user($reg_user_model);
     }
     
     

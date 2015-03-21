@@ -49,6 +49,11 @@ a, a:hover, a:focus {
     background-color: #f1f2f7;
 }
 
+.mandatory {
+    color: red;
+    padding: 2px;
+}
+
 .form-signin {
     max-width: 330px;
     margin: 100px auto 0;
