@@ -100,21 +100,5 @@ class Body_type extends CI_Controller {
         echo $body_type_service->update_body_type($body_type_model);
     }
 
-      /*
-     * This function is to upload body type logo
-     */
-//    function upload_body_type_logo() {
-//
-//        $uploaddir = './uploads/body_type_logo/';
-//        $unique_tag = 'body_type_logo';
-//
-//        $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
-//        $file = $uploaddir . $filename; // this is the full path of the uploaded file
-//
-//        if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) {
-//            echo $filename;
-//        } else {
-//            echo "error";
-//        }
-//   }
+     
 }
