@@ -131,6 +131,14 @@ class Vehicle_advertisements extends CI_Controller {
 
         $advertisement_id = $vehicle_advertisement_service->add_new_advertisements($vehicle_advertisement_model);
         $msg = 1;
+        
+        $equipments=$this->input->post('equipment', TRUE);
+        
+        if(!empty($equipments)){
+            foreach ($equipments as $$equipment) {
+                
+            }
+        }
 
         foreach ($temp_images as $image) {
             $vehicle_images_model->set_image_path($image->image_path);
