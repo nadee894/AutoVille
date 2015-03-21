@@ -270,14 +270,14 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="phone-number">Phone Number</label>
-                                <input type="text" class="form-control" id="phone-number" name="phone-number" pattern="\d*">
+                                <input type="text" class="form-control" id="phone-number" name="phone-number" pattern="\d*" >
                             </div>
                         </div>
                         <!--/.col-md-4-->
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="email">E-mail</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $this->session->userdata('USER_EMAIL');?>">
                             </div>
                         </div>
                         <!--/.col-md-4-->
