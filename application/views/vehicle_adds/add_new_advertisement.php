@@ -232,64 +232,37 @@
 
                 <section>
                     <h3>Address & Contact</h3>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="state">State</label>
-                                <input type="text" class="form-control" id="state" name="state">
-                            </div>
-                        </div>
-                        <!--/.col-md-4-->
-                        <div class="col-md-4 col-sm-4">
-                            <div class="row">
-                                <div class="col-md-8 col-sm-8">
-                                    <div class="form-group">
-                                        <label for="city">City</label>
-                                        <input type="text" class="form-control" id="city" name="city">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="form-group">
-                                        <label for="zip">ZIP</label>
-                                        <input type="text" class="form-control" id="zip" name="zip" pattern="\d*">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/.col-md-4-->
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="street">Street</label>
-                                <input type="text" class="form-control" id="street" name="street">
-                            </div>
-                        </div>
-                        <!--/.col-md-4-->
-                    </div>
+
                     <!--/.row-->
                     <div class="row">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label for="phone-number">Phone Number</label>
-                                <input type="text" class="form-control" id="phone-number" name="phone-number" pattern="\d*">
+                                <input type="text" readonly="true" class="form-control" id="phone-number" name="phone-number" pattern="\d*" value="<?php echo $this->session->userdata('USER_PHONE'); ?>">
                             </div>
                         </div>
                         <!--/.col-md-4-->
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label for="email">E-mail</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" readonly="true" class="form-control" id="email" name="email" value="<?php echo $this->session->userdata('USER_EMAIL'); ?>">
                             </div>
                         </div>
-                        <!--/.col-md-4-->
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="text" class="form-control" id="website" name="website">
-                            </div>
-                        </div>
-                        <!--/.col-md-4-->
                     </div>
                     <!--/.row-->
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="state">Address</label>
+                                <textarea readonly="true" class="form-control" id="address" name="address">
+                                    <?php echo $this->session->userdata('USER_ADDRESS'); ?>
+                                </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </section>
                 <!--/#address-contact-->
             </form>

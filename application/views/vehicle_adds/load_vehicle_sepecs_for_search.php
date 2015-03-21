@@ -84,7 +84,7 @@
                     </div>
                     <div class="form-group">
                         <label>Price Rs.</label>
-                        <div class="ui-slider" id="price-slider" data-value-min="10000" data-value-max="1000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
+                        <div class="ui-slider" id="price-slider" data-value-min="100000" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
                             <div class="values clearfix">
                                 <input class="value-min" id="minprice" name="value-min[]" readonly>
                                 <input class="value-max" id="maxprice" name="value-max[]" readonly>
