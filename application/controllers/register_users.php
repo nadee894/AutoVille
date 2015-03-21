@@ -33,7 +33,7 @@ function add_new_user(){
     $register_users_model->set_address($this->input->post('form_register_address', TRUE));
     $register_users_model->set_contact1($this->input->post('form_register_contact', TRUE));
     //$register_users_model->set_contact2($this->input->post('contact_no_2', TRUE));
-    //$register_users_model->set_profile_pic($this->input->post('profile_pic', TRUE));
+    $register_users_model->set_profile_pic('avatar.png');
     $register_users_model->set_password(md5($this->input->post('form_register_password', TRUE)));
     //$register_users_model->set_account_activation_code($this->input->post('account_activation_code', TRUE));
     $register_users_model->set_is_online('0');

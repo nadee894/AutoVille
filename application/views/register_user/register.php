@@ -204,7 +204,11 @@
                     maxlength: 10
                 },
                 form_register_address: "required",
-                form_register_user_name: "required",
+                form_register_user_name: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 30
+                },
                 form_register_password: "required",
                 form_register_confirm_password: {
                     required: true,
