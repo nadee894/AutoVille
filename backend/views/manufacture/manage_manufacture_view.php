@@ -117,8 +117,8 @@
 
                     </script>
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
+                        <label for="name">Manufacture</label>
+                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Manufacture">
                     </div>
                     <div class="form-group">
                         <div id="upload">
@@ -135,6 +135,7 @@
                         </div>
                     </div>
                 </div>
+                <span id="rtn_msg_edit"></span>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
                     <button class="btn btn-success" type="submit">Save changes</button>
@@ -172,10 +173,12 @@
                 $.post(site_url + '/manufacture/add_manufacture', $('#add_manufacture_form').serialize(), function(msg)
                 {
                     if (msg == 1) {
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
                         add_manufacture_form.reset();
                         window.location = site_url + '/manufacture/manage_manufactures';
                     } else {
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
                     }
                 });
