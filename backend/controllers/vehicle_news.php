@@ -38,10 +38,9 @@ class Vehicle_news extends CI_Controller {
         $vehicle_news_model->set_content($this->input->post('content', TRUE));
         $vehicle_news_model->set_added_by(1);
         $vehicle_news_model->set_added_date(date("Y-m-d H:i:s"));
-        $vehicle_news_model->set_updated_by(1);
         $vehicle_news_model->set_is_published('1');
         $vehicle_news_model->set_is_deleted('0');
-        //$vehicle_news_model->set_is_latest();
+        $vehicle_news_model->set_is_latest('0');
 
         echo $vehicle_news_service->add_new_vehicle_news($vehicle_news_model);
     }

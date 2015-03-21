@@ -77,8 +77,8 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Title</label>
-                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Title">
+                        <label for="name">Transmission</label>
+                        <input id="name" class="form-control" name="name" type="text" placeholder="Enter Transmission">
                     </div>
 
                     <span id="rtn_msg"></span>
@@ -126,7 +126,7 @@
                                                             name: "required"
                                                         },
                                                         messages: {
-                                                            name: "Please enter a title"
+                                                            name: "Please enter a transmission"
                                                         }, submitHandler: function(form)
                                                         {
                                                             $.post(site_url + '/transmission/add_transmission', $('#add_transmission_form').serialize(), function(msg)

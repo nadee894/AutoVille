@@ -6,7 +6,7 @@
     <div class="modal-body">
 
         <div class="form-group">
-            <label for="name">Title</label>
+            <label for="name">Transmission</label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $transmission->name; ?>">
             <input id="transmission_id"  name="transmission_id" type="hidden" value="<?php echo $transmission->id; ?>">
         </div>
@@ -26,7 +26,7 @@
             name: "required"
         },
         messages: {
-            name: "Please enter a title"
+            name: "Please enter a transmission"
         }, submitHandler: function(form)
         {
             $.post(site_url + '/transmission/edit_transmission', $('#edit_transmission_form').serialize(), function(msg)
