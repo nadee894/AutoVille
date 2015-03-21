@@ -178,7 +178,7 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="price">Price<span class="mandatory">*</span></label>
-                                <input id="price" class="form-control" type="text" name="price">
+                                <input id="price" class="form-control" type="text" name="price" onkeypress="numbersonly(this, '.');">
                             </div>
                         </div>
                         <!--/.col-md-4-->
@@ -473,46 +473,46 @@
 
 <script type="text/javascript">
 
-    // add project sumbit btn action
-    $(document).on('click', '#add_addvertisement_btn', function() {
-    if ($('#form-submit').valid()) {
-    $('#form-submit').submit();
-    }
-    });
+                                    // add project sumbit btn action
+                                    $(document).on('click', '#add_addvertisement_btn', function() {
+                                        if ($('#form-submit').valid()) {
+                                            $('#form-submit').submit();
+                                        }
+                                    });
 
-    $.validator.addMethod('selectmanufacture', function(value) {
-    return (value != '0');
-    }, "");
+                                    $.validator.addMethod('selectmanufacture', function(value) {
+                                        return (value != '0');
+                                    }, "");
 
-    $(document).ready(function() {
+                                    $(document).ready(function() {
 
-    $("form#form-submit").validate({
-    rules: {
-    manufacturer: {
-    selectmanufacture: true
-    },
-    price: 'required',
-    chassis_no: 'required',
-    kilo_meters: 'required'
+                                        $("form#form-submit").validate({
+                                            rules: {
+                                                manufacturer: {
+                                                    selectmanufacture: true
+                                                },
+                                                price: 'required',
+                                                chassis_no: 'required',
+                                                kilo_meters: 'required'
 
-    }, submitHandler: function(form)
-    {
-    $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
-    {
-    if (msg == 1) {
-    toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                                            }, submitHandler: function(form)
+                                            {
+                                                $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
+                                                {
+                                                    if (msg == 1) {
+                                                        toastr.success("Successfully submited your advertisement !!", "AutoVille");
 
-    } else {
-    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
-    }
-    });
-
-
-    }
-    });
+                                                    } else {
+                                                        $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
+                                                    }
+                                                });
 
 
-    });
+                                            }
+                                        });
+
+
+                                    });
 
 </script>
 <script src="<?php echo base_url(); ?>application_resources/jupload/js/tmpl.min.js"></script>

@@ -100,4 +100,5 @@ class Body_type extends CI_Controller {
         echo $body_type_service->update_body_type($body_type_model);
     }
 
+     
 }
