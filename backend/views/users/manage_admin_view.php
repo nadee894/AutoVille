@@ -412,7 +412,7 @@
                     if (msg == 1) {
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         add_user_type_form.reset();
-                        window.location = site_url + '/user/add_admin';
+                        window.location = site_url + '/user/manage_admins';
 
 
                     } else {

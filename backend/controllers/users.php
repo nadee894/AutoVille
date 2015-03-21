@@ -52,7 +52,7 @@ class Users extends CI_Controller {
         $user_model->set_is_published('1');
         $user_model->set_is_deleted('0');
 
-        echo $body_type_service->add_user($body_type_model);
+        echo $body_type_service->add_user($user_model);
     }
 
     function load_admins_by_letter() {
