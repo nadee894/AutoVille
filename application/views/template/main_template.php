@@ -53,18 +53,20 @@
                                     <?php } else { ?>
 
                                         <div class="dealer-login">
-                                            <a href="" class="dealer-name"><i class="fa fa-user"></i> <?php echo $this->session->userdata('USER_NAME'); ?></a>
+                                            <a href="" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_NAME')); ?></a>
                                             <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>
                                         </div>
 
                                     <?php } ?>
                                 </ul>
+                                <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                                 <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
                                     <div class="content"><span>Submit Your Advertisement</span></div>
                                     <div class="icon">
                                         <i class="fa fa-plus"></i>
                                     </div>
                                 </a>
+                                <?php } ?>
                                 <div class="toggle-navigation">
                                     <div class="icon">
                                         <div class="line"></div>

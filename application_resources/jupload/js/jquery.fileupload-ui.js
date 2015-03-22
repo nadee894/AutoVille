@@ -331,8 +331,8 @@ var image_array = [];
                         deferred = that._addFinishedDeferreds();
                 $.when.apply($, that._getFinishedDeferreds())
                         .done(function() {
-                            that._trigger('stopped', e);
-                        });
+                    that._trigger('stopped', e);
+                });
                 that._transition($(this).find('.fileupload-progress')).done(
                         function() {
                             $(this).find('.progress')
@@ -347,14 +347,16 @@ var image_array = [];
 
                 $.ajax(
                         {
-                           type: "POST",
+                            type: "POST",
                             url: site_url + '/vehicle_advertisements/add_temp_vehicle_images/',
                             data: {file_name: image_array},
                             async: false,
                             success: function(msg)
 
                             {
-                              
+                                var count = parseInt($('#image_count').val())+1;
+                                $('#image_count').val(count);
+
                                 $.unblockUI;
 
                             }
@@ -382,13 +384,13 @@ var image_array = [];
                 var that = $(this).data('blueimp-fileupload') ||
                         $(this).data('fileupload'),
                         removeNode = function() {
-                            that._transition(data.context).done(
-                                    function() {
-                                        $(this).remove();
-                                        that._trigger('destroyed', e, data);
-                                    }
-                            );
-                        };
+                    that._transition(data.context).done(
+                            function() {
+                                $(this).remove();
+                                that._trigger('destroyed', e, data);
+                            }
+                    );
+                };
                 if (data.url) {
                     data.dataType = data.dataType || that.options.dataType;
                     $.ajax(data).done(removeNode).fail(function() {
@@ -471,11 +473,11 @@ var image_array = [];
         _renderExtendedProgress: function(data) {
             return this._formatBitrate(data.bitrate) + ' | ' +
                     this._formatTime(
-                            (data.total - data.loaded) * 8 / data.bitrate
-                            ) + ' | ' +
+                    (data.total - data.loaded) * 8 / data.bitrate
+                    ) + ' | ' +
                     this._formatPercentage(
-                            data.loaded / data.total
-                            ) + ' | ' +
+                    data.loaded / data.total
+                    ) + ' | ' +
                     this._formatFileSize(data.loaded) + ' / ' +
                     this._formatFileSize(data.total);
         },

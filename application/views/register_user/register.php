@@ -7,11 +7,10 @@
 
 
         <link href="<?php echo base_url(); ?>application_resources/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
-        <link href='../../../fonts.googleapis.com/css-family=Montserrat-400,700.htm' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/bootstrap/css/bootstrap.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/bootstrap-select.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
         <link href="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
 
@@ -19,7 +18,7 @@
 
     </head>
 
-    <body onunload="" class="page-subpage page-register navigation-top-header" id="page-top">
+    <body onunload="" class="page-subpage page-sign-in navigation-off-canvas" id="page-top">
 
         <!-- Outer Wrapper-->
         <div id="outer-wrapper">
@@ -51,12 +50,6 @@
 
                                     <?php } ?>
                                 </ul>
-                                <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
-                                    <div class="content"><span>Submit Your Advertisement</span></div>
-                                    <div class="icon">
-                                        <i class="fa fa-plus"></i>
-                                    </div>
-                                </a>
                                 <div class="toggle-navigation">
                                     <div class="icon">
                                         <div class="line"></div>

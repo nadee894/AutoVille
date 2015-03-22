@@ -24,13 +24,29 @@ class Dashboard extends CI_Controller {
 
         parent::__construct();
 
+
+        $this->load->model('reg_users/reg_user_model');
+        $this->load->model('reg_users/reg_user_service');
+
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
+
+        $this->load->model('comments/comments_model');
+        $this->load->model('comments/comments_service');
     }
 
     function index() {
 
+        $reg_user_service               = new Reg_User_Service();
+        $vehicle_advertisements_service = new Vehicle_advertisments_service();
+        $comments_service               = new Comments_service();
 
-        $data['heading'] = 'Dashboard';
-        
+        $data['heading']        = 'Dashboard';
+        $data['reg_user_count'] = count($reg_user_service->get_reg_user_details());
+        $data['approved_count'] = count($vehicle_advertisements_service->get_approved_advertisements());
+        $data['pending_count']  = count($vehicle_advertisements_service->get_pending_advertisements());
+        $data['reviews_count']  = count($comments_service->get_all_comments());
+
 
         $partials = array('content' => 'dashboard/dashboard_view');
         $this->template->load('template/main_template', $partials, $data);
