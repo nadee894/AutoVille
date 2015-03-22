@@ -13,6 +13,7 @@ class Fuel_Type extends CI_Controller {
         } else {
             $this->load->model('fuel_type/fuel_type_model');
             $this->load->model('fuel_type/fuel_type_service');
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 

@@ -62,11 +62,11 @@
 </div>
 
 <script type="text/javascript">
-    
-     $('#comments_menu').addClass('active open');
-     
+
+    $('#comments_menu').addClass('active open');
+
     $(document).ready(function () {
-        $('#comment_table').dataTable();        
+        $('#comment_table').dataTable();
     });
     //delete comment
     function delete_comment(id) {
@@ -75,9 +75,10 @@
                 type: "POST",
                 url: site_url + '/comments/delete_comments',
                 data: "id=" + id,
-                success: function(msg) {
+                success: function (msg) {
                     if (msg == 1) {
                         $('#comments_' + id).hide();
+                        toastr.success("Successfully deleted !!", "AutoVille");
                     }
                     else if (msg == 2) {
                         alert('Cannot be deleted as it is already assigned to others. !!');
@@ -100,7 +101,7 @@
                 type: "POST",
                 url: site_url + '/comments/change_publish_status',
                 data: "id=" + comment_id + "&value=" + value,
-                success: function(msg) {
+                success: function (msg) {
                     if (msg == 1) {
                         if (value == 1) {
                             $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate comment"><i class="fa fa-check"></i></a> ');
@@ -108,7 +109,7 @@
                             $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + comment_id + ', 1, this)" title="click to activate comment"><i class="fa fa-exclamation-circle"></i></a> ');
                         }
                     } else if (msg == 2) {
-                        
+
                     }
                 }
             });

@@ -13,6 +13,8 @@ class Vehicle_news extends CI_Controller {
         } else {
             $this->load->model('vehicle_news/vehicle_news_model');
             $this->load->model('vehicle_news/vehicle_news_service');
+
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 

@@ -47,6 +47,8 @@ class Home extends CI_Controller {
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();
         $data['locations']     = $district_service->get_all_districts();
         $data['why_us']        = $content_service->get_content_by_hcodes('WHYUS');
+        
+        $data['logos'] = $manufacture_service->get_manufacture_logo();
 
         $parials = array('content' => 'content_pages/home_content', 'vehicle_search_content' => 'vehicle_adds/load_vehicle_sepecs_for_search');
         $this->template->load('template/main_template', $parials, $data);

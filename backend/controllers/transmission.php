@@ -13,6 +13,8 @@ class Transmission extends CI_Controller {
         } else {
             $this->load->model('transmission/transmission_model');
             $this->load->model('transmission/transmission_service');
+
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 

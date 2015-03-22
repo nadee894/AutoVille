@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
         <link href="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
 
-        <title>Spotter - Universal Directory Listing HTML Template</title>
+        <title>Autoville Registration</title>
 
     </head>
 
@@ -93,37 +93,37 @@
                                             <h1 class="page-title">Register</h1>
                                         </header>
                                         <hr>
-                                        <form role="form" id="form-register" method="post" >
+                                        <form role="form" id="form-register" name="form-register" method="post" >
                                             <div class="form-group">
-                                                <label for="form-register-full-name">Full Name:</label>
+                                                <label for="form-register-full-name">Full Name:<span class="mandatory">*</span></label>
                                                 <input type="text" class="form-control" id="form-register-full-name" name="form_register_full_name" >
                                             </div><!-- /.form-group -->
                                             <div class="form-group">
-                                                <label for="form-register-email">Email:</label>
+                                                <label for="form-register-email">Email:<span class="mandatory">*</span></label>
                                                 <input type="email" class="form-control" id="form-register-email" name="form_register_email" >
                                             </div><!-- /.form-group -->
 
                                             <div class="form-group">
-                                                <label for="form-register-contact">Telephone:</label>
+                                                <label for="form-register-contact">Telephone:<span class="mandatory">*</span></label>
                                                 <input type="text" class="form-control" id="form-register-contact" name="form_register_contact" >
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="form-register-address">Address:</label>
+                                                <label for="form-register-address">Address:<span class="mandatory">*</span></label>
                                                 <input type="text" class="form-control" id="form-register-address" name="form_register_address" >
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="form-register-user_name">Username:</label>
+                                                <label for="form-register-user_name">Username:<span class="mandatory">*</span></label>
                                                 <input type="text" class="form-control" id="form-register-user_name" name="form_register_user_name" >
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="form-register-password">Password:</label>
+                                                <label for="form-register-password">Password:<span class="mandatory">*</span></label>
                                                 <input type="password" class="form-control" id="form_register_password" name="form_register_password" >
                                             </div><!-- /.form-group -->
                                             <div class="form-group">
-                                                <label for="form-register-confirm-password">Confirm Password:</label>
+                                                <label for="form-register-confirm-password">Confirm Password:<span class="mandatory">*</span></label>
                                                 <input type="password" class="form-control" id="form-register-confirm-password" name="form_register_confirm_password" >
                                             </div><!-- /.form-group -->
 
@@ -174,17 +174,25 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 
 <script>
-            var base_url = "<?php echo base_url(); ?>";
-            var site_url = "<?php echo site_url(); ?>";
+    var base_url = "<?php echo base_url(); ?>";
+    var site_url = "<?php echo site_url(); ?>";
 
-        </script>
+</script>
 <script type="text/javascript">
 
     $(document).ready(function() {
 
+        $('#account-submit').click(function() {
+            var validator = $("#form-register").validate();
+            validator.resetForm();
+
+        });
+
         $("#form-register").validate({
             rules: {
-                form_register_full_name: "required",
+                form_register_full_name: {
+                    required: true
+                },
                 form_register_email: {
                     required: true,
                     email: true
@@ -192,15 +200,19 @@
                 form_register_contact: {
                     required: true,
                     digits: true,
-                    minlength: 10, 
+                    minlength: 10,
                     maxlength: 10
                 },
                 form_register_address: "required",
-                form_register_user_name: "required",
+                form_register_user_name: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 30
+                },
                 form_register_password: "required",
-                form_register_confirm_password:{
-                    required:true,
-                    equalTo:"#form_register_password"
+                form_register_confirm_password: {
+                    required: true,
+                    equalTo: "#form_register_password"
                 }
             },
             messages: {
@@ -214,19 +226,18 @@
                 form_register_address: "Please enter your address",
                 form_register_user_name: "Please enter a valid user name",
                 form_register_password: "Please enter a password",
-                form_register_confirm_password:{
-                    required:"Confirm the password",
-                    equalTo:"Passwords do not match"
+                form_register_confirm_password: {
+                    required: "Confirm the password",
+                    equalTo: "Passwords do not match"
                 }
             }, submitHandler: function(form)
             {
                 $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
                 {
-                    alert(msg);
+                    //alert(msg);
                     if (msg == 1) {
-
-                        //form-register.reset();
                         toastr.success("Successfully Registered", "AutoVille");
+                        window.location = site_url + '/home';
                     } else {
                         toastr.error("Error in registration", "AutoVille");
 

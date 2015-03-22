@@ -23,14 +23,16 @@ class User_privilege extends CI_Controller {
 
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
+
+        $this->load->model('access_controll/access_controll_service');
 //        }
     }
 
     function manage_user_privileges($id) {
 
-        $user_service           = new User_service();
+        $user_service = new User_service();
         $user_privilege_service = new User_privileges_service();
-        $user_model             = new User_model();
+        $user_model = new User_model();
 
 
         $user_model->set_id($id);
@@ -38,13 +40,13 @@ class User_privilege extends CI_Controller {
         $data['user_detail'] = $user_service->get_user_by_id($user_model);
 
         $current_assigned_privileges = $user_privilege_service->get_assigned_privileges_by_user_id($id);
-        $privileges                  = array();
+        $privileges = array();
         foreach ($current_assigned_privileges as $current_assigned_privilege) {
             array_push($privileges, $current_assigned_privilege->privilege_code);
         }
 
         $data['assigned_privileges'] = $privileges;
-        $data['user_id']             = $id;
+        $data['user_id'] = $id;
 
         $partials = array('content' => 'user_privilege/manage_user_privilege_view');
         $this->template->load('template/main_template', $partials, $data);
@@ -52,7 +54,7 @@ class User_privilege extends CI_Controller {
 
     function add_user_privileges() {
 
-        $user_privilege_model   = new User_privileges_model();
+        $user_privilege_model = new User_privileges_model();
         $user_privilege_service = new User_privileges_service();
         //setting the user id
         $user_privilege_model->set_user_id($this->input->post('user_id', TRUE));
@@ -63,12 +65,12 @@ class User_privilege extends CI_Controller {
 
     function user_privileges_add_all() {
 
-        $user_privilege_model     = new User_privileges_model();
-        $user_privilege_service   = new User_privileges_service();
-        $privilege_service        = new Privilege_service();
+        $user_privilege_model = new User_privileges_model();
+        $user_privilege_service = new User_privileges_service();
+        $privilege_service = new Privilege_service();
         $privilege_master_service = new Privilege_master_service();
-        $user_service             = new User_service();
-        $user_model               = new User_model();
+        $user_service = new User_service();
+        $user_model = new User_model();
 
         $user_model->set_id($this->input->post('user_id', TRUE));
 
@@ -92,12 +94,12 @@ class User_privilege extends CI_Controller {
 
     function user_privileges_delete_all() {
 
-        $user_privilege_model     = new User_privileges_model();
-        $user_privilege_service   = new User_privileges_service();
-        $privilege_service        = new Privilege_service();
+        $user_privilege_model = new User_privileges_model();
+        $user_privilege_service = new User_privileges_service();
+        $privilege_service = new Privilege_service();
         $privilege_master_service = new Privilege_master_service();
-        $user_service             = new User_service();
-        $user_model               = new User_model();
+        $user_service = new User_service();
+        $user_model = new User_model();
 
         $user_model->set_id($this->input->post('user_id', TRUE));
 

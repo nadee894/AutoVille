@@ -7,14 +7,12 @@ class Manufacture extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-
+        
         if (!$this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/login/load_login');
         } else {
             $this->load->model('manufacture/manufacture_model');
             $this->load->model('manufacture/manufacture_service');
-            
-            $this->load->model('access_controll/access_controll_service');
         }
     }
 
@@ -32,7 +30,7 @@ class Manufacture extends CI_Controller {
         $parials = array('content' => 'manufacture/manage_manufacture_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-
+    
     /*
      * adding a manufacture
      */
@@ -103,7 +101,7 @@ class Manufacture extends CI_Controller {
         $manufacure_model->set_name($this->input->post('name', TRUE));
         $manufacure_model->set_updated_by($this->session->userdata('USER_ID'));
         $manufacure_model->set_updated_date(date("Y-m-d H:i:s"));
-   
+
         echo $manufacure_service->update_manufacure($manufacure_model);
     }
 

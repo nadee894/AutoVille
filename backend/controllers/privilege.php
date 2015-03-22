@@ -16,13 +16,14 @@ class Privilege extends CI_Controller {
 
             $this->load->model('privilege_master/privilege_master_model');
             $this->load->model('privilege_master/privilege_master_service');
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 
     function manage_privileges() {
-        $privilege_service        = new Privilege_service();
+        $privilege_service = new Privilege_service();
         $privilege_master_service = new Privilege_master_service();
-        $data['heading']          = "Manage Privileges";
+        $data['heading'] = "Manage Privileges";
 
         $data['privileges'] = $privilege_service->get_all_privileges();
 
@@ -36,7 +37,7 @@ class Privilege extends CI_Controller {
 //        $perm = Access_controllerservice :: checkAccess('ADD_PRIVILEGES');
 //        if ($perm) {
 
-        $privilege_model   = new Privilege_model();
+        $privilege_model = new Privilege_model();
         $privilege_service = new Privilege_service();
 
         $privilege_model->set_privilege_master_code($this->input->post('master_privilege_code', TRUE));
@@ -67,13 +68,13 @@ class Privilege extends CI_Controller {
 //        $perm = Access_controllerservice :: checkAccess('EDIT_PRIVILEGES');
 //        if ($perm) {
 
-        $privilege_service        = new Privilege_service();
+        $privilege_service = new Privilege_service();
         $privilege_master_service = new Privilege_master_service();
 
-        $data['privilege']         = $privilege_service->get_privilege_by_id(trim($this->input->post('privilege_id', TRUE)));
+        $data['privilege'] = $privilege_service->get_privilege_by_id(trim($this->input->post('privilege_id', TRUE)));
         $data['master_privileges'] = $privilege_master_service->get_all_master_privileges();
 
-        echo $this->load->view('privileges/edit_privilege_view',$data);
+        echo $this->load->view('privileges/edit_privilege_view', $data);
 
 //        } else {
 //            $this->template->load('template/access_denied_page');
@@ -85,7 +86,7 @@ class Privilege extends CI_Controller {
 //        $perm = Access_controllerservice :: checkAccess('EDIT_PRIVILEGES');
 //        if ($perm) {
 
-        $privileges_model  = new Privilege_model();
+        $privileges_model = new Privilege_model();
         $privilege_service = new Privilege_service();
 
         $privileges_model->set_privilege_master_code($this->input->post('master_privilege_code', TRUE));
@@ -118,7 +119,7 @@ class Privilege extends CI_Controller {
 
             Priviledgesmodel :: setPrivilege_Code($priv_code);
             $data['title_priv'] = $privilegeservice->getPriviledgebyid();
-            $data['title']      = "Employees with privileges";
+            $data['title'] = "Employees with privileges";
 
             $partials = array('content' => 'Priviledges/employees_per_priv');
             $this->template->load('template/main_template', $partials, $data);

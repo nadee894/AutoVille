@@ -136,7 +136,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model->set_kilometers($this->input->post('kilo_meters'));
         $vehicle_advertisement_model->set_price($this->input->post('price'));
         $vehicle_advertisement_model->set_is_deleted('0');
-        $vehicle_advertisement_model->set_is_published('0');
+        $vehicle_advertisement_model->set_is_published('1');
         $vehicle_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
 
