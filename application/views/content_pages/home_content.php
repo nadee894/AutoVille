@@ -171,15 +171,15 @@
 
 
 <!--Categories-->
-<section id="categories" class="block background-color-white">
-    <?php echo $this->load->view('manufacturers/manufacture_list_view'); ?>
-</section>
+<!--<section id="categories" class="block background-color-white">
+    <?php //echo $this->load->view('manufacturers/manufacture_list_view'); ?>
+</section>-->
 <!--end Categories-->
 
 
 
 <!--Price Drop-->
-<section id="price-drop" class="block equal-height">
+<!--<section id="price-drop" class="block equal-height">
     <div class="container">
         <header><h2>Price Drop</h2></header>
         <div class="row">
@@ -221,9 +221,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.item-->
+                 /.item
             </div>
-            <!--/.col-sm-4-->
+            /.col-sm-4
             <div class="col-md-3 col-sm-3">
                 <div class="item">
                     <div class="image">
@@ -256,9 +256,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.item-->
+                 /.item
             </div>
-            <!--/.col-sm-4-->
+            /.col-sm-4
             <div class="col-md-3 col-sm-3">
                 <div class="item">
                     <div class="image">
@@ -291,9 +291,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.item-->
+                 /.item
             </div>
-            <!--/.col-sm-4-->
+            /.col-sm-4
             <div class="col-md-3 col-sm-3">
                 <div class="item">
                     <div class="image">
@@ -329,18 +329,18 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.item-->
+                 /.item
             </div>
-            <!--/.col-sm-4-->
+            /.col-sm-4
         </div>
-        <!--/.row-->
+        /.row
     </div>
-</section>
+</section>-->
 <!--end Price Drop-->
 
 <!--Recent-->
 <section id="recent" class="block">
-    <?php echo $this->load->view('vehicle_adds/recent_adds'); ?>
+    <?php //echo $this->load->view('vehicle_adds/recent_adds'); ?>
 </section>
 <!--end Recent-->
 
