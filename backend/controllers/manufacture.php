@@ -103,7 +103,7 @@ class Manufacture extends CI_Controller {
         $manufacure_model->set_name($this->input->post('name', TRUE));
         $manufacure_model->set_updated_by($this->session->userdata('USER_ID'));
         $manufacure_model->set_updated_date(date("Y-m-d H:i:s"));
-
+        print_r($manufacure_model);die;
         echo $manufacure_service->update_manufacure($manufacure_model);
     }
 
