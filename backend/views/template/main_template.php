@@ -36,7 +36,7 @@
         <link href="<?php echo base_url(); ?>backend_resources/css/style.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>backend_resources/css/style-responsive.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>backend_resources/assets/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
-
+        <link href="<?php echo base_url(); ?>backend_resources/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet">
 
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>

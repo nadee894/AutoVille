@@ -11,7 +11,7 @@
             <input id="title" class="form-control" name="title" type="text" value="<?php echo $vehicle_news->title; ?>">
             <input id="vehicle_news_id"  name="vehicle_news_id" type="hidden" value="<?php echo $vehicle_news->id; ?>">
         </div>
-        
+
         <div class="form-group">
             <label for="name">Content</label>
             <textarea class="wysihtml5 form-control" id="content_text" name="content_text" rows="20">
@@ -32,7 +32,19 @@
 <script type="text/javascript">
     //edit vehicle news form validation
 
-    $('.wysihtml5').wysihtml5();
+    $('.wysihtml5').wysihtml5({
+        "font-styles": true, //Font styling, e.g. h1, h2, etc
+        "color": true, //Button to change color of font
+        "emphasis": true, //Italics, bold, etc
+        "textAlign": true, //Text align (left, right, center, justify)
+        "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers
+        "blockquote": true, //Button to insert quote
+        "link": true, //Button to insert a link
+        "table": true, //Button to insert a table
+        "image": true, //Button to insert an image
+        "video": true, //Button to insert video
+        "html": true //Button which allows you to edit the generated HTML
+    });
 
     $("#edit_vehicle_news_form").validate({
         rules: {
