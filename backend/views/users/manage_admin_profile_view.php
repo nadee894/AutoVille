@@ -5,7 +5,7 @@
         <section class="panel">
             <div class="user-heading round">
                 <a href="#">
-                    <img src="<?php echo base_url(); ?>/uploads/4.jpg" alt="">
+                    <img src="<?php echo base_url(); ?>/uploads/user_avatars/<?php echo $results->profile_pic; ?>" alt="">
                 </a>
                 <h1><?php echo $results->title; ?><?php echo " "; ?> <?php echo $results->name; ?></h1>
                 <p><?php echo $results->email; ?></p>

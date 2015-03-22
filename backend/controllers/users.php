@@ -44,7 +44,7 @@ class Users extends CI_Controller {
         $user_model->set_address($this->input->post('address', TRUE));
         $user_model->set_contact_no_1($this->input->post('contact_no_1', TRUE));
         $user_model->set_contact_no_2($this->input->post('contact_no_2', TRUE));
-        $user_model->set_password($this->input->post('password', TRUE));
+        $user_model->set_password(md5($this->input->post('password', TRUE)));
         $user_model->set_added_by($this->session->userdata('USER_ID'));
         $user_model->set_added_date(date("Y-m-d H:i:s"));
         $user_model->set_account_activation_code('code');
@@ -171,7 +171,7 @@ class Users extends CI_Controller {
     function upload_user_avatar() {
 
         $uploaddir = './uploads/user_avatars/';
-        $unique_tag = 'user_avatar';
+        $unique_tag = 'user_avatars';
 
         $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
         $file = $uploaddir . $filename; // this is the full path of the uploaded file
