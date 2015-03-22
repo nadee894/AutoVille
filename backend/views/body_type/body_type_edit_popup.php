@@ -29,6 +29,7 @@
             name: "Please enter a body type"
         }, submitHandler: function (form)
         {
+            alert("Nadee");
             $.post(site_url + '/body_type/update_body_types', $('#edit_body_type_form').serialize(), function (msg)
             {
                 if (msg == 1) {

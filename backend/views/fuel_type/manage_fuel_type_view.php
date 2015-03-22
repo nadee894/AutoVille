@@ -96,7 +96,7 @@
 <div class="modal fade "  id="fuel_type_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="fuel_type_edit_content">
-            
+
         </div>
     </div>
 </div>
@@ -106,104 +106,108 @@
 
 <!-- active selected menu -->
 
+<!--toastr-->
+<script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
-    $('#vehicle_spec_menu').addClass('active');
+                                            $('#vehicle_spec_menu').addClass('active');
 
 
-    $(document).ready(function() {
+                                            $(document).ready(function () {
 
-        $('#fuel_type_table').dataTable();
+                                                $('#fuel_type_table').dataTable();
 
-        //add fuel_type form validation
-        $("#add_fuel_type_form").validate({
-            rules: {
-                name: "required"
-            },
-            messages: {
-                name: "Please enter a Fuel Type"
-            }, submitHandler: function(form)
-            {
-                $.post(site_url + '/fuel_type/add_fuel_type', $('#add_fuel_type_form').serialize(), function(msg)
-                {
-                    if (msg == 1) {
+                                                //add fuel_type form validation
+                                                $("#add_fuel_type_form").validate({
+                                                    rules: {
+                                                        name: "required"
+                                                    },
+                                                    messages: {
+                                                        name: "Please enter a Fuel Type"
+                                                    }, submitHandler: function (form)
+                                                    {
+                                                        $.post(site_url + '/fuel_type/add_fuel_type', $('#add_fuel_type_form').serialize(), function (msg)
+                                                        {
+                                                            if (msg == 1) {
 
-                        add_fuel_type_form.reset();
-                        window.location = site_url + '/fuel_type/manage_fuel_types';
-                    } else {
+                                                                add_fuel_type_form.reset();
+                                                                window.location = site_url + '/fuel_type/manage_fuel_types';
+                                                            } else {
 
-                    }
-                });
-            }
-        });
-        
-    });
+                                                            }
+                                                        });
+                                                    }
+                                                });
 
-
-
-    //delete fuel_types
-    function delete_fuel_type(id) {
-
-        if (confirm('Are you sure want to delete this Fuel Type?')) {
-
-            $.ajax({
-                type: "POST",
-                url: site_url + '/fuel_type/delete_fuel_type',
-                data: "id=" + id,
-                success: function(msg) {
-                    //alert(msg);
-                    if (msg == 1) {
-                        //document.getElementById(trid).style.display='none';
-                        $('#fuel_type_' + id).hide();
-                    }
-                    else if (msg == 2) {
-                        alert('Cannot be deleted!!');
-                    }
-                }
-            });
-        }
-    }
+                                            });
 
 
-    //change publish status of fuel_type
-    function change_publish_status(fuel_type_id, value, element) {
 
-        var condition = 'Do you want to activate this fuel_type ?';
-        if (value == 0) {
-            condition = 'Do you want to deactivate this fuel_type?';
-        }
+                                            //delete fuel_types
+                                            function delete_fuel_type(id) {
 
-        if (confirm(condition)) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/fuel_type/change_publish_status',
-                data: "id=" + fuel_type_id + "&value=" + value,
-                success: function(msg) {
-                    if (msg == 1) {
-                        if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + fuel_type_id + ',0,this)" title="click to deactivate fuel_type"><i class="fa fa-check"></i></a>');
-                        } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + fuel_type_id + ',1,this)" title="click to activate fuel_type"><i class="fa fa-exclamation-circle"></i></a>');
-                        }
+                                                if (confirm('Are you sure want to delete this Fuel Type?')) {
 
-                    } else if (msg == 2) {
-                        alert('Error !!');
-                    }
-                }
-            });
-        }
-    }
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/fuel_type/delete_fuel_type',
+                                                        data: "id=" + id,
+                                                        success: function (msg) {
+                                                            //alert(msg);
+                                                            if (msg == 1) {
+                                                                //document.getElementById(trid).style.display='none';
+                                                                $('#fuel_type_' + id).hide();
+                                                                toastr.success("Successfully deleted !!", "AutoVille");
+
+                                                            }
+                                                            else if (msg == 2) {
+                                                                alert('Cannot be deleted!!');
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
 
 
-    //Edit Fuel Type
-    function  display_edit_fuel_type_pop_up(fuel_type_id) {
+                                            //change publish status of fuel_type
+                                            function change_publish_status(fuel_type_id, value, element) {
 
-        $.post(site_url + '/fuel_type/load_edit_fuel_type_content', {fuel_type_id: fuel_type_id}, function(msg) {
+                                                var condition = 'Do you want to activate this fuel_type ?';
+                                                if (value == 0) {
+                                                    condition = 'Do you want to deactivate this fuel_type?';
+                                                }
 
-            $('#fuel_type_edit_content').html('');
-            $('#fuel_type_edit_content').html(msg);
-            $('#fuel_type_edit_div').modal('show');
-        });
-        
+                                                if (confirm(condition)) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: site_url + '/fuel_type/change_publish_status',
+                                                        data: "id=" + fuel_type_id + "&value=" + value,
+                                                        success: function (msg) {
+                                                            if (msg == 1) {
+                                                                if (value == 1) {
+                                                                    $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + fuel_type_id + ',0,this)" title="click to deactivate fuel_type"><i class="fa fa-check"></i></a>');
+                                                                } else {
+                                                                    $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + fuel_type_id + ',1,this)" title="click to activate fuel_type"><i class="fa fa-exclamation-circle"></i></a>');
+                                                                }
 
-    }
+                                                            } else if (msg == 2) {
+                                                                alert('Error !!');
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+
+                                            //Edit Fuel Type
+                                            function  display_edit_fuel_type_pop_up(fuel_type_id) {
+
+                                                $.post(site_url + '/fuel_type/load_edit_fuel_type_content', {fuel_type_id: fuel_type_id}, function (msg) {
+
+                                                    $('#fuel_type_edit_content').html('');
+                                                    $('#fuel_type_edit_content').html(msg);
+                                                    $('#fuel_type_edit_div').modal('show');
+                                                });
+
+
+                                            }
 </script>
