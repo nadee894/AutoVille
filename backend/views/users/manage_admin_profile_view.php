@@ -144,6 +144,8 @@
 <!-- page end-->
 <script type="text/javascript">
     //load recent admin activities
+    
+       
     function load_admin_activities() {
 
         $.ajax({
