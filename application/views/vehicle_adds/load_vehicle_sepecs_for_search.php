@@ -107,12 +107,8 @@
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
-                        <label for="kilometers">Kilometers</label>
-                        <select name="kilometers" id="kilometers" title="Kilometers" data-live-search="true">
-                            <option value="">Select Kilometers</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
+                        <label for="kilometers">Kilometers</label>                                                
+                        <input type="text" class="form-control" id="kilometers" placeholder="Enter Keyword">
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
