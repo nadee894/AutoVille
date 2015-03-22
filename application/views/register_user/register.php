@@ -216,7 +216,7 @@
                 form_register_password: "Please enter a password",
                 form_register_confirm_password:{
                     required:"Confirm the password",
-                    equalTo:"Mismatch"
+                    equalTo:"Passwords do not match"
                 }
             }, submitHandler: function(form)
             {
