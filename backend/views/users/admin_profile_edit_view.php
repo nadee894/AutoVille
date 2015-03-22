@@ -106,6 +106,7 @@
 
 <script type="text/javascript">
 
+    $('#user_menu').addClass('active open');
     $(document).ready(function () {
         $("#edit_user_form").validate({
             rules: {
@@ -134,17 +135,19 @@
                 re_pasword: "Retype the Password"
             }, submitHandler: function (form)
             {
-                $.post(site_url + '/user/update_user', $('#edit_user_form').serialize(), function (msg)
+                $.post(site_url + '/users/update_user', $('#edit_user_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
-                        alert("Nadee");
-//                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        toastr.success("Profile Successfully updated !!", "AutoVille");
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         edit_user_form.reset();
-//                        window.location = site_url + '/user/manage_admins';
+
+                        window.location = site_url + '/users/load_profile_of_user'
+
 
 
                     } else {
-//                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                     }
                 });
 
@@ -153,5 +156,4 @@
         });
 
     });
-
 </script>

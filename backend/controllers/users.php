@@ -34,10 +34,14 @@ class Users extends CI_Controller {
 
         $user_model = new User_model();
         $user_service = new User_service();
-
+        $avatar = $this->input->post('profile_pic', TRUE);
         $user_model->set_title($this->input->post('title', TRUE));
         $user_model->set_name($this->input->post('name', TRUE));
-        $user_model->set_profile_pic($this->input->post('profile_pic', TRUE));
+        if ($avatar == '') {
+            $user_model->set_profile_pic('avatar.png');
+        } else {
+            $user_model->set_profile_pic($avatar);
+        }
         $user_model->set_user_name($this->input->post('user_name', TRUE));
         $user_model->set_user_type($this->input->post('user_type', TRUE));
         $user_model->set_email($this->input->post('email', TRUE));
@@ -141,8 +145,8 @@ class Users extends CI_Controller {
         $user_model->set_address($this->input->post('address', TRUE));
         $user_model->set_contact_no_1($this->input->post('contact_no_1', TRUE));
         $user_model->set_contact_no_2($this->input->post('contact_no_2', TRUE));
-        $user_model->set_password($this->input->post('profile_pic', TRUE));
-        $user_model->set_profile_pic($this->input->post('pasword', TRUE));
+//        $user_model->set_password($this->input->post('profile_pic', TRUE));
+//        $user_model->set_profile_pic($this->input->post('pasword', TRUE));
         $user_model->set_updated_by($this->session->userdata('USER_ID'));
         $user_model->set_updated_date(date("Y-m-d H:i:s"));
 
