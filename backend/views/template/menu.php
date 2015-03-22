@@ -18,16 +18,20 @@
         </ul>
     </li>
 
-
-    <li class="sub-menu">
-        <a href="javascript:;" id="advertisements_menu">
-            <i class="fa fa-film"></i>
-            <span>Advertisements</span>
-        </a>
-        <ul class="sub">
-            <li><a  href="<?php echo site_url(); ?>/vehicle_advertisements/manage_advertisements">Vehicle Advertisements</a></li>
-        </ul>
-    </li>
+    <?php
+    $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
+    if ($perm) {
+        ?>
+        <li class="sub-menu">
+            <a href="javascript:;" id="advertisements_menu">
+                <i class="fa fa-film"></i>
+                <span>Advertisements</span>
+            </a>
+            <ul class="sub">
+                <li><a  href="<?php echo site_url(); ?>/vehicle_advertisements/manage_advertisements">Vehicle Advertisements</a></li>
+            </ul>
+        </li>
+    <?php } ?>
 
     <li class="sub-menu">
         <a href="javascript:;" id="pages_menu">
@@ -69,7 +73,7 @@
             <li><a  href="<?php echo site_url(); ?>/equipment/manage_equipment">Manage Equipments</a></li>
         </ul>        
     </li>
-    
+
     <li class="sub-menu">
         <a href="javascript:;" id="settings_menu">
             <i class="fa  fa-wrench"></i>
@@ -78,7 +82,7 @@
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/privilege_master/manage_privilege_masters">Manage Master Privileges</a></li>
             <li><a  href="<?php echo site_url(); ?>/privilege/manage_privileges">Manage Privileges</a></li>
-           
+
         </ul>        
     </li>
 

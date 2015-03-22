@@ -13,6 +13,7 @@ class Equipment extends CI_Controller {
         } else {
             $this->load->model('equipment/equipment_model');
             $this->load->model('equipment/equipment_service');
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 

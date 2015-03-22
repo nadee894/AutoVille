@@ -10,6 +10,7 @@ class Login extends CI_Controller {
 
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
+        $this->load->model('access_controll/access_controll_service');
     }
 
     function load_login() {

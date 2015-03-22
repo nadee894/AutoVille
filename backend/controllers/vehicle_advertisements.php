@@ -25,15 +25,18 @@ class Vehicle_advertisements extends CI_Controller {
 
     function manage_advertisements() {
 
-        $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        $user_service = new User_service();
+        $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
+        if ($perm) {
+            $vehicle_advertisments_service = new Vehicle_advertisments_service();
+            $user_service = new User_service();
 
-        $data['heading'] = "Advertisements";
-        $data['results'] = $vehicle_advertisments_service->get_all_advertisements();
-        $data['reg_users'] = $user_service->get_all_active_registered_users();
+            $data['heading'] = "Advertisements";
+            $data['results'] = $vehicle_advertisments_service->get_all_advertisements();
+            $data['reg_users'] = $user_service->get_all_active_registered_users();
 
-        $parials = array('content' => 'vehicle_advertisements/manage_advertisements_view');
-        $this->template->load('template/main_template', $parials, $data);
+            $parials = array('content' => 'vehicle_advertisements/manage_advertisements_view');
+            $this->template->load('template/main_template', $parials, $data);
+        }
     }
 
     /*

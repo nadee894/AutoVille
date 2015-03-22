@@ -13,6 +13,8 @@ class Reg_Users extends CI_Controller {
         } else {
             $this->load->model('reg_users/reg_user_model');
             $this->load->model('reg_users/reg_user_service');
+
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 

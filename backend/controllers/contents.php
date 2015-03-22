@@ -13,6 +13,7 @@ class Contents extends CI_Controller {
         } else {
             $this->load->model('contents/content_model');
             $this->load->model('contents/content_service');
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 
