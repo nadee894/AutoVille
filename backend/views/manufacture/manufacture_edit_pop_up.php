@@ -10,7 +10,7 @@
             <label for="name">Manufacture<span class="mandatory">*</span></label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $manufacture->name; ?>">
             <input id="manufacture_id"  name="manufacture_id" type="hidden" value="<?php echo $manufacture->id; ?>">
-<!--            <input id="name" class="form-control" name="name" type="text" placeholder="Enter Manufacture">-->
+
         </div>
         <div class="form-group">
             <div id="upload">
@@ -39,16 +39,14 @@
 <script type="text/javascript">
     $(document).ready(function() {
         //edit manufacture form validation
+
         $("#edit_manufacture_form").validate({
             rules: {
-                name: "required"
-            },
-            message: {
-                name: "Please enter a Manufacturer"
-            }, submitHandler: function(form)
-            {
-                $.post(site_url + '/manufacture/edit_manufacture', $('#edit_manufacture_form').serialize(), function(msg)
-                {
+                name: {
+                    required: true
+                }
+            }, submitHandler: function(form) {
+                $.post('<?php echo site_url();?>/manufacture/edit_manufacture', $('#edit_manufacture_form').serialize(), function(msg) {
                     if (msg == 1) {
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         window.location = site_url + '/manufacture/manage_manufactures';
