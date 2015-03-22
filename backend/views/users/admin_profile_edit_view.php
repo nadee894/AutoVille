@@ -1,5 +1,5 @@
 <h1> Profile Info</h1>
-<form id="user_details" class="form-horizontal" role="form" method="POST" name="user_details">
+<form id="edit_user_form" class="form-horizontal" role="form" method="POST" name="edit_user_form">
     <div class="form-group">
         <label  class="col-lg-2 control-label">About Me</label>
         <div class="col-lg-10">
@@ -106,9 +106,8 @@
 
 <script type="text/javascript">
 
-   $(document).ready(function () {
-    
-        $("#user_details").validate({
+    $(document).ready(function () {
+        $("#edit_user_form").validate({
             rules: {
                 title: "required",
                 name: "required",
@@ -117,8 +116,12 @@
                 email: "required",
                 address: "required",
                 contact_no_1: "required",
-                contact_no_2: "required"
-            }, messages: {
+                contact_no_2: "required",
+                password: "required",
+                re_pasword: "required"
+
+            },
+            messages: {
                 title: "Please enter a title",
                 name: "Please enter a name",
                 user_name: "Please enter a user name",
@@ -126,20 +129,29 @@
                 email: "Please enter a email",
                 address: "Please enter a address",
                 contact_no_1: "Please enter a contact number",
-                contact_no_2: "Please enter a contact number"
+                contact_no_2: "Please enter a contact number",
+                password: "Please enter a password",
+                re_pasword: "Retype the Password"
             }, submitHandler: function (form)
             {
-                $.post(site_url + '/user/update_user', $('#user_details').serialize(), function (msg)
+                $.post(site_url + '/user/update_user', $('#edit_user_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
+                        alert("Nadee");
+//                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        edit_user_form.reset();
 //                        window.location = site_url + '/user/manage_admins';
-                    } else {
 
+
+                    } else {
+//                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                     }
                 });
 
 
             }
         });
+
     });
+
 </script>

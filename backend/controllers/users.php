@@ -47,12 +47,14 @@ class Users extends CI_Controller {
         $user_model->set_password($this->input->post('password', TRUE));
         $user_model->set_added_by($this->session->userdata('USER_ID'));
         $user_model->set_added_date(date("Y-m-d H:i:s"));
+        $user_model->set_account_activation_code('code');
+        $user_model->set_is_online('0');
 //        $body_type_model->set_updated_date(date("Y-m-d H:i:s"));
 //        $body_type_model->set_updated_by(1);
         $user_model->set_is_published('1');
         $user_model->set_is_deleted('0');
 
-        echo $body_type_service->add_user($body_type_model);
+        echo $user_service->add_user($user_model);
     }
 
     function load_admins_by_letter() {

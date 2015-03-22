@@ -156,7 +156,8 @@
 </div>
 
 
-
+<!--toastr-->
+<script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
 
     $('#vehicle_spec_menu').addClass('active open');
@@ -205,6 +206,7 @@
                     if (msg == 1) {
                         //document.getElementById(trid).style.display='none';
                         $('#body_type_' + id).hide();
+                         toastr.success("Successfully deleted !!", "AutoVille");
                     }
                     else if (msg == 2) {
                         alert('Cannot be deleted as it is already assigned to others. !!');

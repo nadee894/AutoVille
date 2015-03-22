@@ -136,7 +136,7 @@
                                         var btnUpload = $('#upload');
                                         var status = $('#status');
                                         new AjaxUpload(btnUpload, {
-                                            action: '<?php echo site_url(); ?>/body_type/upload_user_avatar',
+                                            action: '<?php echo site_url(); ?>/users/upload_user_avatar',
                                             name: 'uploadfile',
                                             onSubmit: function (file, ext) {
                                                 if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
@@ -158,7 +158,7 @@
                                                     $('#files').html("");
                                                     $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/user_avatars/' + response + '"   width="100px" height="68px" /><br />');
                                                     picFileName = response;
-                                                    document.getElementById('logo').value = response;
+                                                    document.getElementById('profile_pic').value = response;
                                                     //                    document.getElementById('cover_image').value = response;
                                                 } else {
                                                     $('<div></div>').appendTo('#files').text(file).addClass('error');
@@ -189,8 +189,13 @@
                             <label class="col-lg-3 control-label">Profile Picture</label>
                             <div class="col-lg-8">
                                 <button type="button" class="btn btn-info" id="browse">Browse</button>
-                                <input type="text" id="logo" name="profile_pic" style="visibility: hidden" value=""/>
+                                <input type="text" id="profile_pic" name="profile_pic" style="visibility: hidden" value=""/>
                             </div>
+                        </div>
+                            <div id="sta"><span id="status" ></span></div>
+                    </div>
+                    <div class="form-group">
+                        <div id="files" class="project-logo">
                         </div>
                     </div>
 
@@ -230,38 +235,35 @@
                             <input name="contact_no_2" type="text" class="form-control" id="mobile2" placeholder=" ">
                         </div>
                     </div>
-                    
-                     <div class="form-group">
-                    <label  class="col-lg-3 control-label">Password</label>
-                    <div class="col-lg-8">
-                        <input name="" type="password" class="form-control" id="n-pwd" placeholder=" ">
+
+                    <div class="form-group">
+                        <label  class="col-lg-3 control-label">Password</label>
+                        <div class="col-lg-8">
+                            <input name="password" type="password" class="form-control" id="n-pwd" placeholder=" ">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label  class="col-lg-3 control-label">Re-type Password</label>
-                    <div class="col-lg-8">
-                        <input name="n_pasword" type="password" class="form-control" id="rt-pwd" placeholder=" ">
+                    <div class="form-group">
+                        <label  class="col-lg-3 control-label">Re-type Password</label>
+                        <div class="col-lg-8">
+                            <input name="re_pasword" type="password" class="form-control" id="rt-pwd" placeholder=" ">
+                        </div>
                     </div>
-                </div>
+                    <br>
                     <div class="modal-footer">
                         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                        <button class="btn btn-success" type="submit">Save</button>
+                        <button class="btn btn-success" onclick="" type="submit">Save</button>
                     </div>
                 </div>
                 <div id="sta"><span id="status" ></span></div>
-        </div>
-        <div class="form-group">
-            <div id="files" class="project-logo">
-            </div>
-        </div>
 
 
-        <span id="rtn_msg"></span>
+
+                <span id="rtn_msg"></span>
+        </div>
+
+        </form>
+
     </div>
-
-</form>
-
-</div>
 </div>
 </div>
 
@@ -375,24 +377,42 @@
         }
     }
 
-
-
+//Add a new administrator
+    $('#user_menu').addClass('active open');
     $(document).ready(function () {
         $("#add_user_type_form").validate({
             rules: {
-                name: "required"
+                title: "required",
+                name: "required",
+                user_name: "required",
+                user_type: "required",
+                email: "required",
+                address: "required",
+                contact_no_1: "required",
+                contact_no_2: "required",
+                password: "required",
+                re_pasword: "required"
+
             },
             messages: {
-                name: "Error"
+                title: "Please enter a title",
+                name: "Please enter a name",
+                user_name: "Please enter a user name",
+                user_type: "Please enter a user type",
+                email: "Please enter a email",
+                address: "Please enter a address",
+                contact_no_1: "Please enter a contact number",
+                contact_no_2: "Please enter a contact number",
+                password: "Please enter a password",
+                re_pasword: "Retype the Password"
             }, submitHandler: function (form)
             {
-                $.post(site_url + '/user/add_admin', $('#add_user_type_form').serialize(), function (msg)
+                $.post(site_url + '/users/add_admin', $('#add_user_type_form').serialize(), function (msg)
                 {
                     if (msg == 1) {
-//                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         add_user_type_form.reset();
-                        window.location = site_url + '/user/add_admin';
-
+                        window.location = site_url + '/users/manage_admins'
 
                     } else {
 //                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');

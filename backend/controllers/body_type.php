@@ -94,6 +94,7 @@ class Body_type extends CI_Controller {
      */
 
     function update_body_types() {
+        
         $body_type_model = new Body_type_model();
         $body_type_service = new Body_type_service();
 
