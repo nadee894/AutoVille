@@ -355,11 +355,11 @@
     <div class="container">
         <header><h2>Partners</h2></header>
         <div class="logos">
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo-partner-01.png" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo-partner-02.png" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo-partner-03.png" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo-partner-04.png" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo-partner-05.png" alt=""></a></div>
+            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426961987-180px-BMW_Logo_svg.png" width="76" alt=""></a></div>
+            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426999736-toyota.png" width="76" alt=""></a></div>
+            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426962013-xnissan.png.pagespeed.ic.cp4O0hyPysHCzK4xP0M4.png" width="76" alt=""></a></div>
+            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426962027-audi.png" width="76" alt=""></a></div>
+            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426999767-honda-logo-transparent.png" width="76" alt=""></a></div>
         </div>
     </div>
     <!--/.container-->
