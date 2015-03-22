@@ -136,7 +136,7 @@
                                         var btnUpload = $('#upload');
                                         var status = $('#status');
                                         new AjaxUpload(btnUpload, {
-                                            action: '<?php echo site_url(); ?>/user/upload_user_avatar',
+                                            action: '<?php echo site_url(); ?>/users/upload_user_avatar',
                                             name: 'uploadfile',
                                             onSubmit: function (file, ext) {
                                                 if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
@@ -189,10 +189,10 @@
                             <label class="col-lg-3 control-label">Profile Picture</label>
                             <div class="col-lg-8">
                                 <button type="button" class="btn btn-info" id="browse">Browse</button>
-                                <input type="text" id="logo" name="profile_pic" style="visibility: hidden" value=""/>
+                                <input type="text" id="profile_pic" name="profile_pic" style="visibility: hidden" value=""/>
                             </div>
-                            <div id="sta"><span id="status" ></span></div>
                         </div>
+                            <div id="sta"><span id="status" ></span></div>
                     </div>
                     <div class="form-group">
                         <div id="files" class="project-logo">
