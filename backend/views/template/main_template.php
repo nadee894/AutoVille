@@ -280,12 +280,11 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                  <?php if (($this->session->userdata('USER_PROFILE_PIC') == '')) { ?>
-                                   <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg" >
+                                   <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.png" >
                                 <?php } else { ?>
                                     <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/<?php echo $this->session->userdata('USER_PROFILE_PIC'); ?>" >
                                 <?php } ?> 
-                                <img alt="" height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg">
-                                <span class="username"><?php echo $this->session->userdata('USER_NAME'); ?></span>
+                                <span class="username"><?php echo ucfirst($this->session->userdata('USER_NAME')); ?></span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">

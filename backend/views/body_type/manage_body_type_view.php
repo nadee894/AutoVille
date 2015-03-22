@@ -144,7 +144,9 @@
         </div>
     </div>
 </div>
-
+         </div>
+</div>
+        
 
 <!--Transmission Edit Modal -->
 <div class="modal fade "  id="body_type_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
@@ -156,7 +158,8 @@
 </div>
 
 
-
+<!--toastr-->
+<script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
 
     $('#vehicle_spec_menu').addClass('active open');
@@ -205,6 +208,7 @@
                     if (msg == 1) {
                         //document.getElementById(trid).style.display='none';
                         $('#body_type_' + id).hide();
+                         toastr.success("Successfully deleted !!", "AutoVille");
                     }
                     else if (msg == 2) {
                         alert('Cannot be deleted as it is already assigned to others. !!');

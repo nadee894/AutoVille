@@ -130,43 +130,43 @@
                 <div class="modal-body">
                     <script src="<?php echo base_url(); ?>backend_resources/file_upload_plugin/ajaxupload.3.5.js" type="text/javascript"></script>
                     <script>
-                                    //upload user avatar
+                                        //upload user avatar
 
-                                    $(function () {
-                                        var btnUpload = $('#upload');
-                                        var status = $('#status');
-                                        new AjaxUpload(btnUpload, {
-                                            action: '<?php echo site_url(); ?>/user/upload_user_avatar',
-                                            name: 'uploadfile',
-                                            onSubmit: function (file, ext) {
-                                                if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
-                                                    // extension is not allowed 
-                                                    status.text('Only JPG, PNG or GIF files are allowed');
-                                                    return false;
-                                                }
-                                                //status.text('Uploading...Please wait');
-                                                //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
+                                        $(function () {
+                                            var btnUpload = $('#upload');
+                                            var status = $('#status');
+                                            new AjaxUpload(btnUpload, {
+                                                action: '<?php echo site_url(); ?>/users/upload_user_avatar',
+                                                name: 'uploadfile',
+                                                onSubmit: function (file, ext) {
+                                                    if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
+                                                        // extension is not allowed 
+                                                        status.text('Only JPG, PNG or GIF files are allowed');
+                                                        return false;
+                                                    }
+                                                    //status.text('Uploading...Please wait');
+                                                    //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
 
-                                            },
-                                            onComplete: function (file, response) {
-                                                //On completion clear the status
-                                                //status.text('');
-                                                $("#files").html("");
-                                                $("#sta").html("");
-                                                //Add uploaded file to list
-                                                if (response != "error") {
-                                                    $('#files').html("");
-                                                    $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/user_avatars/' + response + '"   width="100px" height="68px" /><br />');
-                                                    picFileName = response;
-                                                    document.getElementById('profile_pic').value = response;
-                                                    //                    document.getElementById('cover_image').value = response;
-                                                } else {
-                                                    $('<div></div>').appendTo('#files').text(file).addClass('error');
+                                                },
+                                                onComplete: function (file, response) {
+                                                    //On completion clear the status
+                                                    //status.text('');
+                                                    $("#files").html("");
+                                                    $("#sta").html("");
+                                                    //Add uploaded file to list
+                                                    if (response != "error") {
+                                                        $('#files').html("");
+                                                        $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>/uploads/user_avatars/' + response + '" height="120px" width="100px" /><br />');
+                                                        picFileName = response;
+                                                        document.getElementById('profile_pic').value = response;
+                                                        //                    document.getElementById('cover_image').value = response;
+                                                    } else {
+                                                        $('<div></div>').appendTo('#files').text(file).addClass('error');
+                                                    }
                                                 }
-                                            }
+                                            });
+
                                         });
-
-                                    });
                     </script>
 
                     <div class="form-group">
@@ -187,13 +187,12 @@
                         <div id="upload">
 
                             <label class="col-lg-3 control-label">Profile Picture</label>
-                            <div class="col-lg-8">
-                                <button type="button" class="btn btn-info" id="browse">Browse</button>
-                                <input type="text" id="logo" name="profile_pic" style="visibility: hidden" value=""/>
-                            </div>
-                            <div id="sta"><span id="status" ></span></div>
+                            <button type="button" class="btn btn-info" id="browse">Browse</button>
+                            <input type="text" id="profile_pic" name="profile_pic" style="visibility: hidden" value=""/>
                         </div>
+                        <div id="sta"><span id="status" ></span></div>
                     </div>
+
                     <div class="form-group">
                         <div id="files" class="project-logo">
                         </div>
@@ -277,153 +276,156 @@
     </div>
 </div>
 <!-- page end-->
-
+<!--toastr-->
+<script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
 
-    $('#user_menu').addClass('active');
-    //change Online status of body types
-    function change_online_status(user_id, value, element) {
+                                        $('#user_menu').addClass('active');
+                                        //change Online status of body types
+                                        function change_online_status(user_id, value, element) {
 
 
-        $.ajax({
-            type: "POST",
-            url: site_url + '/users/change_online_status',
-            data: "id=" + user_id + "&value=" + value,
-            success: function (msg) {
-                if (msg == 1) {
-                    if (value == 1) {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
-                    } else {
-                        $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
-                    }
+                                            $.ajax({
+                                                type: "POST",
+                                                url: site_url + '/users/change_online_status',
+                                                data: "id=" + user_id + "&value=" + value,
+                                                success: function (msg) {
+                                                    if (msg == 1) {
+                                                        if (value == 1) {
+                                                            $(element).parent().html('<h4><i class="fa  fa-circle  text-success"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
+                                                        } else {
+                                                            $(element).parent().html('<h4><i class="fa  fa-circle  text-danger"></i><?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>');
+                                                        }
 
-                } else if (msg == 2) {
-                    alert('Error !!');
-                }
-            }
-        });
-    }
+                                                    } else if (msg == 2) {
+                                                        alert('Error !!');
+                                                    }
+                                                }
+                                            });
+                                        }
 
-    //load admins by letter
-    function load_admins_by_letter(letter) {
-        $.ajax({
-            type: "POST",
-            url: site_url + '/users/load_admins_by_letter',
-            data: "myletter=" + letter,
-            success: function (msg)
-            {
-                $('#admin_filter_content').html(msg);
-            }
-        });
-    }
+                                        //load admins by letter
+                                        function load_admins_by_letter(letter) {
+                                            $.ajax({
+                                                type: "POST",
+                                                url: site_url + '/users/load_admins_by_letter',
+                                                data: "myletter=" + letter,
+                                                success: function (msg)
+                                                {
+                                                    $('#admin_filter_content').html(msg);
+                                                }
+                                            });
+                                        }
 
-    //load admins by letter
-    function load_all_admins() {
+                                        //load admins by letter
+                                        function load_all_admins() {
 
-        var address = $('#address');
-        var contact_no_01 = $('#contact_no_1');
-        var contact_no_02 = $('#contact_no_2');
-    }
+                                            var address = $('#address');
+                                            var contact_no_01 = $('#contact_no_1');
+                                            var contact_no_02 = $('#contact_no_2');
+                                        }
 
-//load admins when deleted
-    function load_after_deleted(user_id) {
-        if (confirm('Are you sure want to delete this user ?')) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/users/delete_users',
-                data: "user_id=" + user_id,
-                success: function (msg)
-                {
-                    if (msg == 1) {
-                        //document.getElementById(trid).style.display='none';
-                        $('#admin_' + user_id).hide();
-//                        $('#admin_filter_content').html(msg);
-                    }
-                    else if (msg == 2) {
-                        alert('Error in Deleting. !!');
-                    }
-                }
-            });
-        }
-    }
+                                        //load admins when deleted
+                                        function load_after_deleted(user_id) {
+                                            if (confirm('Are you sure want to delete this user ?')) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/users/delete_users',
+                                                    data: "user_id=" + user_id,
+                                                    success: function (msg)
+                                                    {
+                                                        if (msg == 1) {
+                                                            //document.getElementById(trid).style.display='none';
+                                                            $('#admin_' + user_id).hide();
+                                                            toastr.success("Successfully deleted !!", "AutoVille");
+
+                //                        $('#admin_filter_content').html(msg);
+                                                        }
+                                                        else if (msg == 2) {
+                                                            alert('Error in Deleting. !!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
 
 
-    //change publish status of a user
-    function change_publish_status(user_id, value, element) {
+                                        //change publish status of a user
+                                        function change_publish_status(user_id, value, element) {
 
-        var condition = 'Do you want to enable this user ?';
-        if (value == 0) {
-            condition = 'Do you want to disable this user?';
-        }
+                                            var condition = 'Do you want to enable this user ?';
+                                            if (value == 0) {
+                                                condition = 'Do you want to disable this user?';
+                                            }
 
-        if (confirm(condition)) {
-            $.ajax({
-                type: "POST",
-                url: site_url + '/users/change_publish_status',
-                data: "id=" + user_id + "&value=" + value,
-                success: function (msg) {
-                    if (msg == 1) {
-                        if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
-                        } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
-                        }
+                                            if (confirm(condition)) {
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: site_url + '/users/change_publish_status',
+                                                    data: "id=" + user_id + "&value=" + value,
+                                                    success: function (msg) {
+                                                        if (msg == 1) {
+                                                            if (value == 1) {
+                                                                $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + user_id + ',0,this)" title="click to disable user"><i class="fa fa-check"></i></a>');
+                                                            } else {
+                                                                $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + user_id + ',1,this)" title="click to enable user"><i class="fa fa-exclamation-circle"></i></a>');
+                                                            }
 
-                    } else if (msg == 2) {
-                        alert('Error !!');
-                    }
-                }
-            });
-        }
-    }
+                                                        } else if (msg == 2) {
+                                                            alert('Error !!');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
 
 //Add a new administrator
-    $('#user_menu').addClass('active open');
-    $(document).ready(function () {
-        $("#add_user_type_form").validate({
-            rules: {
-                title: "required",
-                name: "required",
-                user_name: "required",
-                user_type: "required",
-                email: "required",
-                address: "required",
-                contact_no_1: "required",
-                contact_no_2: "required",
-                password: "required",
-                re_pasword: "required"
+                                        $('#user_menu').addClass('active open');
+                                        $(document).ready(function () {
+                                            $("#add_user_type_form").validate({
+                                                rules: {
+                                                    title: "required",
+                                                    name: "required",
+                                                    user_name: "required",
+                                                    user_type: "required",
+                                                    email: "required",
+                                                    address: "required",
+                                                    contact_no_1: "required",
+                                                    contact_no_2: "required",
+                                                    password: "required",
+                                                    re_pasword: "required"
 
-            },
-            messages: {
-                title: "Please enter a title",
-                name: "Please enter a name",
-                user_name: "Please enter a user name",
-                user_type: "Please enter a user type",
-                email: "Please enter a email",
-                address: "Please enter a address",
-                contact_no_1: "Please enter a contact number",
-                contact_no_2: "Please enter a contact number",
-                password: "Please enter a password",
-                re_pasword: "Retype the Password"
-            }, submitHandler: function (form)
-            {
-                $.post(site_url + '/users/add_admin', $('#add_user_type_form').serialize(), function (msg)
-                {
-                    if (msg == 1) {
-                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
-                        add_user_type_form.reset();
-                        window.location = site_url + '/users/manage_admins'
+                                                },
+                                                messages: {
+                                                    title: "Please enter a title",
+                                                    name: "Please enter a name",
+                                                    user_name: "Please enter a user name",
+                                                    user_type: "Please enter a user type",
+                                                    email: "Please enter a email",
+                                                    address: "Please enter a address",
+                                                    contact_no_1: "Please enter a contact number",
+                                                    contact_no_2: "Please enter a contact number",
+                                                    password: "Please enter a password",
+                                                    re_pasword: "Retype the Password"
+                                                }, submitHandler: function (form)
+                                                {
+                                                    $.post(site_url + '/users/add_admin', $('#add_user_type_form').serialize(), function (msg)
+                                                    {
+                                                        if (msg == 1) {
+                                                            $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                                                            add_user_type_form.reset();
+                                                            window.location = site_url + '/users/manage_admins'
 
-                    } else {
-//                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
-                    }
-                });
+                                                        } else {
+                                                            $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+                                                        }
+                                                    });
 
 
-            }
-        });
+                                                }
+                                            });
 
-    });
+                                        });
 
 
 </script>
