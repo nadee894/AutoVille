@@ -29,11 +29,10 @@
             name: "Please enter a body type"
         }, submitHandler: function (form)
         {
-            alert("Nadee");
             $.post(site_url + '/body_type/update_body_types', $('#edit_body_type_form').serialize(), function (msg)
             {
                 if (msg == 1) {
-                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully Updated!!.</strong></div>');
 
                     window.location = site_url + '/body_type/manage_body_types';
                 } else {

@@ -144,7 +144,9 @@
         </div>
     </div>
 </div>
-
+         </div>
+</div>
+        
 
 <!--Transmission Edit Modal -->
 <div class="modal fade "  id="body_type_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
