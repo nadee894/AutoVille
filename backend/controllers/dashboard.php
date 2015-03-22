@@ -33,6 +33,8 @@ class Dashboard extends CI_Controller {
 
         $this->load->model('comments/comments_model');
         $this->load->model('comments/comments_service');
+        
+        $this->load->model('access_controll/access_controll_service');
     }
 
     function index() {

@@ -165,14 +165,14 @@
 
 <!--Search Result-->
 <section id="search_result" class="block equal-height">
- 
+
 </section>
 <!--end Search Result-->
 
 
 <!--Categories-->
 <!--<section id="categories" class="block background-color-white">
-    <?php //echo $this->load->view('manufacturers/manufacture_list_view'); ?>
+<?php //echo $this->load->view('manufacturers/manufacture_list_view'); ?>
 </section>-->
 <!--end Categories-->
 
@@ -355,13 +355,18 @@
     <div class="container">
         <header><h2>Partners</h2></header>
         <div class="logos">
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426961987-180px-BMW_Logo_svg.png" width="76" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426999736-toyota.png" width="76" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426962013-xnissan.png.pagespeed.ic.cp4O0hyPysHCzK4xP0M4.png" width="76" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426962027-audi.png" width="76" alt=""></a></div>
-            <div class="logo"><a href="index.htm#"><img src="<?php echo base_url(); ?>uploads/manufacture_logo/manufacture_logo1426999767-honda-logo-transparent.png" width="76" alt=""></a></div>
+            <?php foreach ($logos as $logo) { ?>
+                <div class="logo"><a href=""><img src="<?php echo base_url() . 'uploads/manufacture_logo/' . $logo->logo; ?>" width="76" alt=""></a></div>                
+                    <?php } ?>
         </div>
     </div>
     <!--/.container-->
 </section>
 <!--end Partners-->
+
+<script>
+    $(document).ready(function () {
+        search_vehicle();
+    });
+
+</script>

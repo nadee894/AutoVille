@@ -8,16 +8,15 @@ class Privilege_master extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-//        if (!$this->session->userdata('EMPLOYEE_LOGGED_IN')) {
-//            redirect(site_url() . '/login/load_login');
-//        } else {
+        if (!$this->session->userdata('USER_LOGGED_IN')) {
+            redirect(site_url() . '/login/load_login');
+        } else {
             $this->load->model('privilege_master/privilege_master_model');
             $this->load->model('privilege_master/privilege_master_service');
             
             $this->load->model('access_controll/access_controll_service');
 
-
-//        }
+        }
     }
 
     function manage_privilege_masters() {
@@ -25,7 +24,7 @@ class Privilege_master extends CI_Controller {
         $perm = Access_controll_service::check_access('VIEW_MASTER_PRIVILEGES');
         if ($perm) {
 
-        $privilege_master_service = new Privilege_master_service();
+            $privilege_master_service = new Privilege_master_service();
 
 
         $data['heading'] = "Manage Master Privileges";

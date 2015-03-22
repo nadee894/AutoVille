@@ -13,6 +13,8 @@ class Body_type extends CI_Controller {
         } else {
             $this->load->model('body_type/body_type_model');
             $this->load->model('body_type/body_type_service');
+            
+             $this->load->model('access_controll/access_controll_service');
         }
     }
 

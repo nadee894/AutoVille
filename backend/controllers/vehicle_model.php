@@ -13,6 +13,8 @@ class Vehicle_Model extends CI_Controller {
         } else {
             $this->load->model('vehicle_model/vehicle_model_model');
             $this->load->model('vehicle_model/vehicle_model_service');
+
+            $this->load->model('access_controll/access_controll_service');
         }
     }
 
