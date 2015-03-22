@@ -86,20 +86,17 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button type="submit"  class="btn btn-success">Save</button>
+                <button type="button" id="saveBtn" class="btn btn-success">Save</button>
                 <button type="button" class="btn btn-default">Cancel</button>
             </div>
         </div>
     </form>
-</div>
-
-
-<script type="text/javascript">
+    <script type="text/javascript">
 
     $('#user_menu').addClass('active open');
-
-    $(document).ready(function () {
-        $("#edit_user_form").validate({
+  
+ $(document).delegate('#saveBtn' , 'click', function(e){
+           $("#edit_user_form").validate({
             rules: {
                 title: {
                     required: true
@@ -194,7 +191,18 @@
 
 
             }
+        }); 
+           
+              if ($('#edit_user_form').valid()) {
+            alert('form is valid - not submitted');
+        } else {
+            alert('form is not valid');
+        }
+            console.log('sd');
+            
         });
-
-    });
+   
 </script>
+</div>
+
+
