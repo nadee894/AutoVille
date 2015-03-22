@@ -37,25 +37,24 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        //edit manufacture form validation
 
-        $("#edit_manufacture_form").validate({
-            rules: {
-                name: {
-                    required: true
+    $("#edit_manufacture_form").validate({
+        rules: {
+            name: "required"
+        },
+        message: {
+            name: "Please enter a Manufacturer"
+        }, submitHandler: function (form) {
+            $.post('<?php echo site_url(); ?>/manufacture/edit_manufacture', $('#edit_manufacture_form').serialize(), function (msg) {
+                if (msg == 1) {
+                    $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                    window.location = site_url + '/manufacture/manage_manufactures';
+                } else {
+                    $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                 }
-            }, submitHandler: function(form) {
-                $.post('<?php echo site_url();?>/manufacture/edit_manufacture', $('#edit_manufacture_form').serialize(), function(msg) {
-                    if (msg == 1) {
-                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
-                        window.location = site_url + '/manufacture/manage_manufactures';
-                    } else {
-                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
-                    }
-                });
-            }
-        });
+            });
+        }
     });
+
 </script>
 
