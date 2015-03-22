@@ -46,7 +46,21 @@
 <script type="text/javascript">
     $('#pages_menu').addClass('active');
 
-   $('.wysihtml5').wysihtml5();
+//   $('.wysihtml5').wysihtml5();
+   $('.wysihtml5').wysihtml5({
+    "font-styles":  true, //Font styling, e.g. h1, h2, etc
+    "color":        true, //Button to change color of font
+    "emphasis":     true, //Italics, bold, etc
+    "textAlign":    true, //Text align (left, right, center, justify)
+    "lists":        true, //(Un)ordered lists, e.g. Bullets, Numbers
+    "blockquote":   true, //Button to insert quote
+    "link":         true, //Button to insert a link
+    "table":        true, //Button to insert a table
+    "image":        true, //Button to insert an image
+    "video":        true, //Button to insert video
+    "html":         true //Button which allows you to edit the generated HTML
+});
+        
 
     function update_content() {
 

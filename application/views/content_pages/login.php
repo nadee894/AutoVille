@@ -34,7 +34,7 @@
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">                                    
-                                    <li><a href=""><i class="fa fa-user"></i> Register</a></li>
+                                    <li> <a href="<?php echo site_url(); ?>/register_users/load_registration" class="sign-out"><i class="fa fa-user"></i> Register</a></li>
                                 </ul>                                
                                 <div class="toggle-navigation">
                                     <div class="icon">

@@ -36,7 +36,7 @@
         <link href="<?php echo base_url(); ?>backend_resources/css/style.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>backend_resources/css/style-responsive.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>backend_resources/assets/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
-
+        <link href="<?php echo base_url(); ?>backend_resources/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet">
 
         <script src="<?php echo base_url(); ?>backend_resources/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>backend_resources/js/bootstrap.min.js"></script>
@@ -280,12 +280,11 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                  <?php if (($this->session->userdata('USER_PROFILE_PIC') == '')) { ?>
-                                   <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg" >
+                                   <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.png" >
                                 <?php } else { ?>
                                     <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/<?php echo $this->session->userdata('USER_PROFILE_PIC'); ?>" >
                                 <?php } ?> 
-                                <img alt="" height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/avatar.jpg">
-                                <span class="username"><?php echo $this->session->userdata('USER_NAME'); ?></span>
+                                <span class="username"><?php echo ucfirst($this->session->userdata('USER_NAME')); ?></span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">

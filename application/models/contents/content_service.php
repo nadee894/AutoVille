@@ -12,6 +12,13 @@ class Content_service extends CI_Model {
         ));
         return $query->row();
     }
+    
+    function get_content_by_hcodes($hcode) {
+        $query = $this->db->get_where('contents', array(
+            'content_hcode' => $hcode
+        ));
+        return $query->row();
+    }
 
 
 }

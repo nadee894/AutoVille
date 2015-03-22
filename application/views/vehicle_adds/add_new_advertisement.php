@@ -16,7 +16,7 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
-                                <select name="manufacturer" id="manufacturer" title="Manufacturer" data-live-search="true" class="live_select" >
+                                <select name="manufacturer" id="manufacturer" title="This field is required." data-live-search="true" class="live_select" >
                                     <option value="" selected>Select Manufacturer</option>
                                     <?php foreach ($manufactures as $manufacture) { ?>
                                         <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
@@ -29,8 +29,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="model">Model<span class="mandatory">*</span></label>
-                                <select name="model" id="model" title="Model" data-live-search="true">
-                                    <option value="0">Select Model</option>
+                                <select name="model" id="model" title="This field is required." data-live-search="true">
+                                    <option value="">Select Model</option>
                                     <?php foreach ($models as $model) { ?>
                                         <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
                                     <?php } ?>
@@ -40,8 +40,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="fabrication">Fabrication<span class="mandatory">*</span></label>
-                                <select name="fabrication" id="fabrication" title="Fabrication" data-live-search="true">
-                                    <option value="0">Select Fabrication</option>
+                                <select name="fabrication" id="fabrication" title="This field is required."  data-live-search="true">
+                                    <option value="">Select Fabrication</option>
                                     <option value="1990">1990</option>
                                     <option value="1991">1991</option>
                                     <option value="1992">1992</option>
@@ -77,8 +77,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="fuel_type">Fuel Type<span class="mandatory">*</span></label>
-                                <select name="fuel_type" id="fuel_type" title="Fuel Type" data-live-search="true">
-                                    <option value="0">Select Fuel Type</option>
+                                <select name="fuel_type" id="fuel_type" title="This field is required." data-live-search="true">
+                                    <option value="">Select Fuel Type</option>
                                     <?php foreach ($fuel_types as $fuel_type) { ?>
                                         <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
                                     <?php } ?>
@@ -89,8 +89,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="transmission">Transmission<span class="mandatory">*</span></label>
-                                <select name="transmission" id="transmission" title="Transmission" data-live-search="true">
-                                    <option value="0">Select Transmission</option>
+                                <select name="transmission" id="transmission" title="This field is required." data-live-search="true">
+                                    <option value="">Select Transmission</option>
                                     <?php foreach ($transmissions as $transmission) { ?>
                                         <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
                                     <?php } ?>
@@ -101,8 +101,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="body_type">Body Type<span class="mandatory">*</span></label>
-                                <select name="body_type" id="body_type" title="Body Type" data-live-search="true">
-                                    <option value="0">Select Body Type</option>
+                                <select name="body_type" id="body_type" title="This field is required." data-live-search="true">
+                                    <option value="">Select Body Type</option>
                                     <?php foreach ($body_types as $body_type) { ?>
                                         <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
                                     <?php } ?>
@@ -118,8 +118,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="doors">Doors<span class="mandatory">*</span></label>
-                                <select name="doors" id="doors" title="Doors" data-live-search="true">
-                                    <option value="0">Select Doors</option>
+                                <select name="doors" id="doors" title="This field is required." data-live-search="true">
+                                    <option value="">Select Doors</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
@@ -132,8 +132,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="location">Location<span class="mandatory">*</span></label>
-                                <select name="location" id="location" title="Location" data-live-search="true">
-                                    <option value="0">Select Location</option>
+                                <select name="location" id="location" title="This field is required." data-live-search="true">
+                                    <option value="">Select Location</option>
                                     <?php foreach ($locations as $location) { ?>
                                         <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                                     <?php } ?>
@@ -144,8 +144,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="colour">Colour<span class="mandatory">*</span></label>
-                                <select name="colour" id="colour" title="Colour" data-live-search="true">
-                                    <option value="0">Select Colour</option>
+                                <select name="colour" id="colour" title="This field is required." data-live-search="true">
+                                    <option value="">Select Colour</option>
                                     <option value="Blue">Blue</option>
                                     <option value="Yellow">Yellow</option>
                                     <option value="Purple">Purple</option>
@@ -167,8 +167,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="sale_type">Sale Type<span class="mandatory">*</span></label>
-                                <select name="sale_type" id="sale_type" title="Sale Type">
-                                    <option value="0">Select Sale Type</option>
+                                <select name="sale_type" id="sale_type" title="This field is required.">
+                                    <option value="">Select Sale Type</option>
                                     <option value="new">New</option>
                                     <option value="used">Used</option>
                                 </select>
@@ -178,7 +178,7 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="price">Price<span class="mandatory">*</span></label>
-                                <input id="price" class="form-control" type="text" name="price" onkeypress="numbersonly(this, '.');">
+                                <input id="price" class="form-control" type="text" name="price" onkeypress="return numbersonly(this, event, '.')">
                             </div>
                         </div>
                         <!--/.col-md-4-->
@@ -195,7 +195,7 @@
 
                                     <div class="form-group">
                                         <label for="kilo_meters">Hp / Kw <span class="mandatory">*</span></label>
-                                        <input id="kilo_meters" class="form-control" type="text" name="kilo_meters">
+                                        <input id="kilo_meters" class="form-control" type="text" name="kilo_meters" onkeypress="return numbersonly(this, event, '.')">
                                     </div>
                                 </div>
                             </div>
@@ -309,6 +309,8 @@
                             <label><em>Attach vehicle images.</em></label>
                             <br>
                             <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
+                            <input type="hidden" id="image_count" value="0" name="image_count"/>
+                            <span id="image_msg"></span>
                             <!-- The table listing the files available for upload/download -->
                             <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
                         </div>   
@@ -453,46 +455,92 @@
                                         }
                                     });
 
+//custom validator for drop down
                                     $.validator.addMethod('selectmanufacture', function(value) {
                                         return (value != '0');
                                     }, "");
 
                                     $(document).ready(function() {
-$('.form#form-submit select').on('change', function(e) {
-    $('.form#form-submit').validate().element($(this));
-});
+                                        $('.form#form-submit select').on('change', function(e) {
+                                            $('.form#form-submit').validate().element($(this));
+                                        });
 
+
+                                        //Add advertisement form validate function
                                         $("form#form-submit").validate({
-                                           ignore:"hidden:not(.live_select)",
+                                            ignore: "hidden:not(.live_select)",
                                             rules: {
                                                 manufacturer: 'required',
+                                                model: 'required',
+                                                fabrication: 'required',
+                                                fuel_type: 'required',
+                                                transmission: 'required',
+                                                body_type: 'required',
+                                                doors: 'required',
+                                                location: 'required',
+                                                colour: 'required',
+                                                sale_type: 'required',
                                                 price: 'required',
                                                 chassis_no: 'required',
                                                 kilo_meters: 'required'
 
                                             }, submitHandler: function(form)
                                             {
-                                                $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
-                                                {
-                                                    if (msg == 1) {
-                                                        toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                                                if ($('#image_count').val() != '0') {
+                                                    $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
+                                                    {
+                                                        if (msg == 1) {
+                                                            toastr.success("Successfully submited your advertisement !!", "AutoVille");
 
-                                                    } else {
-                                                        $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
-                                                    }
-                                                });
-
+                                                        } else {
+                                                            $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
+                                                        }
+                                                    });
+                                                } else {
+                                                    $("#image_msg").html('<label class="error">Please upload atleast one image.</label>');
+                                                }
 
                                             },
-                                                     //put error message behind each form element
-       
-    
+                                            //put error message behind each form element
 
-   
+
+
+
                                         });
 
 
                                     });
+
+                                    function numbersonly(myfield, e, dec) {
+                                        var key;
+                                        var keychar;
+
+                                        if (window.event)
+                                            key = window.event.keyCode;
+                                        else if (e)
+                                            key = e.which;
+                                        else
+                                            return true;
+                                        keychar = String.fromCharCode(key);
+
+// control keys
+                                        if ((key == null) || (key == 0) || (key == 8) ||
+                                                (key == 9) || (key == 13) || (key == 27))
+                                            return true;
+
+// numbers
+                                        else if ((("0123456789").indexOf(keychar) > -1))
+                                            return true;
+
+// decimal point jump
+                                        else if (dec && (keychar == ".")) {
+                                            myfield.form.elements[dec].focus();
+                                            return false;
+                                        }
+                                        else
+                                            return false;
+                                    }
+
 
 </script>
 <script src="<?php echo base_url(); ?>application_resources/jupload/js/tmpl.min.js"></script>
