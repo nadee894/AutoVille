@@ -38,42 +38,42 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('district/district_model');
         $this->load->model('district/district_service');
-        
-        
+
+
         $this->load->model('vehicle_equipment/vehicle_equipment_model');
         $this->load->model('vehicle_equipment/vehicle_equipment_service');
     }
 
     function post_new_advertisement() {
 
-        $manufacture_service           = new Manufacture_service();
-        $vehicle_model_service         = new Vehicle_model_service();
-        $body_type_service             = new Body_type_service();
-        $fuel_type_service             = new Fuel_Type_service();
-        $transmission_service          = new Transmission_service();
-        $equipment_service             = new Equipment_service();
+        $manufacture_service = new Manufacture_service();
+        $vehicle_model_service = new Vehicle_model_service();
+        $body_type_service = new Body_type_service();
+        $fuel_type_service = new Fuel_Type_service();
+        $transmission_service = new Transmission_service();
+        $equipment_service = new Equipment_service();
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
-        $vehicle_images_temp_service   = new Vehicle_images_temp_service();
-        $district_service              = new District_service();
+        $vehicle_images_temp_service = new Vehicle_images_temp_service();
+        $district_service = new District_service();
 
         $data['heading'] = "Sell your vehicle";
 
-        $data['manufactures']  = $manufacture_service->get_all_active_manufactures();
-        $data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
-        $data['body_types']    = $body_type_service->get_all_active_body_types();
-        $data['fuel_types']    = $fuel_type_service->get_all_active_fuel_types();
+        $data['manufactures'] = $manufacture_service->get_all_active_manufactures();
+        $data['models'] = $vehicle_model_service->get_all_active_vehicle_models();
+        $data['body_types'] = $body_type_service->get_all_active_body_types();
+        $data['fuel_types'] = $fuel_type_service->get_all_active_fuel_types();
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();
-        $data['equipments']    = $equipment_service->get_all_active_equipment();
-        $data['locations']    = $district_service->get_all_districts();
+        $data['equipments'] = $equipment_service->get_all_active_equipment();
+        $data['locations'] = $district_service->get_all_districts();
 
         $vehicle_images_temp_service->truncate_temp_images();
 
-        $result  = $vehicle_advertisement_service->get_last_advertisement_id();
+        $result = $vehicle_advertisement_service->get_last_advertisement_id();
         $last_id = '';
         if (!empty($result)) {
             $last_id = $result->id + 1;
-        }else{
-            $last_id=1;
+        } else {
+            $last_id = 1;
         }
 
         $data['last_id'] = $last_id;
@@ -84,7 +84,7 @@ class Vehicle_advertisements extends CI_Controller {
 
     function add_temp_vehicle_images() {
 
-        $vehicle_images_temp_model   = new Vehicle_images_temp_model();
+        $vehicle_images_temp_model = new Vehicle_images_temp_model();
         $vehicle_images_temp_service = new Vehicle_images_temp_service();
 
         $files = $this->input->post('file_name', TRUE);
@@ -111,16 +111,16 @@ class Vehicle_advertisements extends CI_Controller {
 //        $perm = Access_controllerservice :: checkAccess('ADD_PRIVILEGES');
 //        if ($perm) {
 
-        $vehicle_advertisement_model   = new Vehicle_advertisments_model();
+        $vehicle_advertisement_model = new Vehicle_advertisments_model();
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
-        $vehicle_images_temp_service   = new Vehicle_images_temp_service();
-        $vehicle_images_service        = new Vehicle_images_service();
-        $vehicle_images_model          = new Vehicle_images_model();
+        $vehicle_images_temp_service = new Vehicle_images_temp_service();
+        $vehicle_images_service = new Vehicle_images_service();
+        $vehicle_images_model = new Vehicle_images_model();
         $vehicle_equipment_model = new Vehicle_equipment_model();
         $vehicle_equipment_service = new Vehicle_equipment_service();
 
         $temp_images = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
-        
+
         $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
         $vehicle_advertisement_model->set_manufacture_id($this->input->post('manufacturer', TRUE));
         $vehicle_advertisement_model->set_description($this->input->post('description', TRUE));
@@ -143,7 +143,7 @@ class Vehicle_advertisements extends CI_Controller {
 
 
         $advertisement_id = $vehicle_advertisement_service->add_new_advertisements($vehicle_advertisement_model);
-        $msg              = 1;
+        $msg = 1;
 
         $equipments = $this->input->post('equipment', TRUE);
 
@@ -174,6 +174,14 @@ class Vehicle_advertisements extends CI_Controller {
 //        } else {
 //            $this->template->load('template/access_denied_page');
 //        }
+    }
+
+    public function load_recent_vehicles() {
+        $vehicle_advertisments_model = new Vehicle_advertisments_model();
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        $data['results'] = $vehicle_advertisments_service->get_recently_viewed_vehicles($this->session->userdata('USER_ID'));
+        echo $this->load->view('vehicle_adds/recent_adds', $data);
     }
 
 }

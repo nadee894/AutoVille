@@ -364,3 +364,13 @@
 </section>
 <!--end Partners-->
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //loading recently viewed vehicles
+        $.post(site_url + '/vehicle_advertisements/load_recent_vehicles', function (msg)
+        {
+            $('#recent').html(msg);
+        });
+    });
+</script>
