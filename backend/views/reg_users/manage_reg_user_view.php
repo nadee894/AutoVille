@@ -59,13 +59,12 @@
                             </a>
 
                             <div class="media-body" >
-
                                 <?php if ($result->is_online) { ?>
                                     <h4><i class="fa  fa-circle  text-success"></i>
                                         <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                                     <?php } else { ?>
-        <!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
-                                    <?php echo $result->name; ?> 
+                                    <h4><i class="fa  fa-circle  text-danger"></i>
+                                        <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
 
                                 <?php } ?>
                                 <!--                                <ul class="social-links">

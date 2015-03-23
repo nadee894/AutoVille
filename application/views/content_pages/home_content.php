@@ -364,9 +364,13 @@
 </section>
 <!--end Partners-->
 
-<script>
-    $(document).ready(function () {
-        search_vehicle();
-    });
+<script type="text/javascript">
 
+    $(document).ready(function () {
+        //loading recently viewed vehicles
+        $.post(site_url + '/vehicle_advertisements/load_recent_vehicles', function (msg)
+        {
+            $('#recent').html(msg);
+        });
+    });
 </script>

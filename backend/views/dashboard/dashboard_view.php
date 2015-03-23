@@ -86,5 +86,5 @@
     countUp3(<?php echo $approved_count; ?>);
 
     //Comments count
-    countUp4(<?php echo $approved_count; ?>);
+    countUp4(<?php echo $reviews_count; ?>);
 </script>

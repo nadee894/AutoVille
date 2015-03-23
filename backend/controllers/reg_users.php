@@ -23,7 +23,7 @@ class Reg_Users extends CI_Controller {
         $reg_user_model = new Reg_User_model();
 
         $data['heading'] = "Manage Registered Users";
-        $data['results'] = $reg_user_service->get_reg_user_details();
+        $data['results'] = $reg_user_service->get_reg_user_details();        
 
         $parials = array('content' => 'reg_users/manage_reg_user_view');
         $this->template->load('template/main_template', $parials, $data);

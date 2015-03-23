@@ -83,7 +83,7 @@
             </div>
         </div>
 
-
+        <span id="rtn_msg"></span>
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
@@ -174,7 +174,7 @@
             {
                 $.post(site_url + '/users/update_user', $('#edit_user_form').serialize(), function (msg)
                 {
-                    alert(msg)
+                    
                     if (msg == 1) {
 
                         toastr.success("Profile Successfully updated !!", "AutoVille");
@@ -195,12 +195,24 @@
         }); 
            
               if ($('#edit_user_form').valid()) {
-            alert('form is valid - not submitted');
-        } else {
-            alert('form is not valid');
+             $.post(site_url + '/users/update_user', $('#edit_user_form').serialize(), function (msg)
+                {
+                    
+                    if (msg == 1) {
+
+                        //toastr.success("Profile Successfully updated !!", "AutoVille");
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        edit_user_form.reset();
+
+                        window.location = site_url + '/users/load_profile_of_user'
+
+
+
+                    } else {
+                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+                    }
+                });
         }
-            console.log('sd');
-            
         });
    
 </script>
