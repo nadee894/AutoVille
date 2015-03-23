@@ -433,13 +433,13 @@
                                                     },
                                                     address: "Please enter a address",
                                                     contact_no_1: {
-                                                        required: "Please enter a email",
+                                                        required: "Please enter a phone no",
                                                         digits: "Enter numbers only",
                                                         maxlength: "Phone number is too long",
                                                         minlength: "Phone number is too short"
                                                     },
                                                     contact_no_2: {
-                                                        required: "Please enter a email",
+                                                        required: "Please enter a phone no",
                                                         digits: "Enter numbers only",
                                                         maxlength: "Phone number is too long",
                                                         minlength: "Phone number is too short"

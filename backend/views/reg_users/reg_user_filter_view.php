@@ -22,8 +22,8 @@ foreach ($results as $result) {
                             <h4><i class="fa  fa-circle  text-success"></i>
                                 <?php echo $result->title; ?> <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
                             <?php } else { ?>
-        <!--                                    <h4><i class="fa  fa-circle  text-danger"></i>
-                            <?php echo $result->name; ?> <span class="text-muted small"> - UI Engineer</span></h4>-->
+                            <h4><i class="fa  fa-circle  text-danger"></i>
+                                <?php echo $result->name; ?> <span class="text-muted small"> - <?php echo $result->type; ?></span></h4>
 
                         <?php } ?>
                         <!--                                <ul class="social-links">

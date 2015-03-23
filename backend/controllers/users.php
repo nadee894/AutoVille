@@ -137,6 +137,13 @@ class Users extends CI_Controller {
     function update_user() {
         $user_model = new User_model();
         $user_service = new User_service();
+        
+        $avatar = $this->input->post('profile_pic', TRUE);
+        if ($avatar == '') {
+            $user_model->set_profile_pic('avatar.png');
+        } else {
+            $user_model->set_profile_pic($avatar);
+        }
 
         $user_model->set_id($this->session->userdata('USER_ID'));
         $user_model->set_title($this->input->post('title', TRUE));
