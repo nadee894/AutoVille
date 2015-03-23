@@ -3,12 +3,12 @@
 
         <!--Recent Vehicles-->
         <?php
-        $resultcount = count($results);
+        $resultcount = count($vehicle_results);
         if (!$resultcount == 0) {
             ?>
             <div class="col-md-9 col-sm-9">
                 <header><h2>Recent Vehicles</h2></header>
-                <?php foreach ($results as $result) { ?>
+                <?php foreach ($vehicle_results as $result) { ?>
                     <div class="item list">
                         <div class="image">
                             <div class="quick-view"><i class="fa fa-eye"></i><span>Quick View</span></div>

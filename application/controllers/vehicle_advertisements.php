@@ -180,7 +180,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisments_model = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
-        $data['results'] = $vehicle_advertisments_service->get_recently_viewed_vehicles($this->session->userdata('USER_ID'));
+        $data['vehicle_results'] = $vehicle_advertisments_service->get_recently_viewed_vehicles($this->session->userdata('USER_ID'));
         echo $this->load->view('vehicle_adds/recent_adds', $data);
     }
 
