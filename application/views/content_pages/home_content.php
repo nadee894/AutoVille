@@ -364,9 +364,3 @@
 </section>
 <!--end Partners-->
 
-<script>
-    $(document).ready(function () {
-        search_vehicle();
-    });
-
-</script>
