@@ -127,7 +127,14 @@ class Users extends CI_Controller {
      */
 
     function load_Edit_user_profile() {
-        echo $this->load->view('users/admin_profile_edit_view');
+        $user_service = new User_service();
+        $user_model = new User_model();
+//        $privilege_master_service = new Privilege_master_service();
+        $user_model->set_id($this->session->userdata('USER_ID'));
+        $data['user'] = $user_service->get_admin_by_id($user_model);
+//        $data['master_privileges'] = $privilege_master_service->get_all_master_privileges();
+
+        echo $this->load->view('users/admin_profile_edit_view', $data);
     }
 
     /*
