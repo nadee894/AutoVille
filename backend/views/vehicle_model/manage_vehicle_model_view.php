@@ -23,9 +23,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Added By</th>
-                                <!--<th>Added Date</th>
-                                <th>Active Status</th>-->
+                                <!--<th>Added By</th>-->
+                                <!--<th>Added Date</th>-->
+                                <th>Active Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
