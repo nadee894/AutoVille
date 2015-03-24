@@ -16,14 +16,15 @@ class Login extends CI_Controller {
         if ($this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/home/index');
         } else {
-            $this->template->load('content_pages/login');
+            $parials = array('content' => 'content_pages/login');
+            $this->template->load('template/main_template',$parials);
         }
     }
 
     //Login details checking function 
     function authenticate_user() {
 
-        $user_model = new User_model();
+        $user_model   = new User_model();
         $user_service = new User_service();
 
         $user_model->set_user_name($this->input->post('login_username', TRUE));
@@ -62,7 +63,7 @@ class Login extends CI_Controller {
 
     function logout() {
 
-        $user_model = new User_model();
+        $user_model   = new User_model();
         $user_service = new User_service();
 
         $user_model->set_is_online('0');
