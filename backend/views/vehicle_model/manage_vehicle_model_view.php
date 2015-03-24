@@ -23,7 +23,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Manufacturer</th>
-                                <th>Name</th>                                
+                                <th>Model Name</th>                                
                                 <!--<th>Added Date</th>-->
                                 <th>Active Status</th>
                                 <th>Actions</th>
