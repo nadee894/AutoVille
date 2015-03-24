@@ -54,9 +54,9 @@
             // against either file type or file name:
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,//custom edit for validate image files only
             // The maximum allowed file size in bytes:
-           /*  maxFileSize: 10000000, // 10 MB
+            maxFileSize: 2048000, // 10 MB
             // The minimum allowed file size in bytes:
-            minFileSize: undefined, // No minimal file size */
+            /*minFileSize: undefined, // No minimal file size */
             // The limit of files to be uploaded:
             maxNumberOfFiles: 5,
            
