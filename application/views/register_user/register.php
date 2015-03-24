@@ -1,251 +1,136 @@
-<!DOCTYPE html>
 
-<html lang="en-US">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--Page Content-->
+<div id="page-content">
+    <section class="container">
+        <div class="block">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                    <header>
+                        <h1 class="page-title">Register</h1>
+                    </header>
+                    <hr>
+                    <form role="form" id="form-register" name="form-register" method="post" >
+                        <div class="form-group">
+                            <label for="form-register-full-name">Full Name:<span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" id="form-register-full-name" name="form_register_full_name" >
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label for="form-register-email">Email:<span class="mandatory">*</span></label>
+                            <input type="email" class="form-control" id="form-register-email" name="form_register_email" >
+                        </div><!-- /.form-group -->
 
-
-        <link href="<?php echo base_url(); ?>application_resources/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
-        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/bootstrap/css/bootstrap.css" type="text/css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/bootstrap-select.min.css" type="text/css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/style.css" type="text/css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
-        <link href="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
-
-        <title>Autoville Registration</title>
-
-    </head>
-
-    <body onunload="" class="page-subpage page-sign-in navigation-off-canvas" id="page-top">
-
-        <!-- Outer Wrapper-->
-        <div id="outer-wrapper">
-            <!-- Inner Wrapper -->
-            <div id="inner-wrapper">
-                <!-- Navigation-->
-                <div class="header">
-                    <div class="wrapper">
-                        <div class="brand">
-                            <a href="<?php echo site_url(); ?>/home"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
+                        <div class="form-group">
+                            <label for="form-register-contact">Telephone:<span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" id="form-register-contact" name="form_register_contact" >
                         </div>
-                        <nav class="navigation-items">
-                            <div class="wrapper">
-                                <ul class="main-navigation navigation-top-header"></ul>
-                                <ul class="user-area">
-                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
 
-                                        <div class="dealer-login">
-                                            <a href="<?php echo site_url(); ?>/login/load_login" class="dealer-name"><i class="fa fa-unlock-alt"></i>  Sign In</a>
+                        <div class="form-group">
+                            <label for="form-register-address">Address:<span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" id="form-register-address" name="form_register_address" >
+                        </div>
 
-                                        </div>
+                        <div class="form-group">
+                            <label for="form-register-user_name">Username:<span class="mandatory">*</span></label>
+                            <input type="text"  class="form-control" id="form-register-user_name" name="form_register_user_name" >
+                        </div>
 
-                                    <?php } else { ?>
+                        <div class="form-group">
+                            <label for="form-register-password">Password:<span class="mandatory">*</span></label>
+                            <input type="password" class="form-control" id="form_register_password" name="form_register_password" >
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label for="form-register-confirm-password">Confirm Password:<span class="mandatory">*</span></label>
+                            <input type="password" class="form-control" id="form-register-confirm-password" name="form_register_confirm_password" >
+                        </div><!-- /.form-group -->
 
-                                        <div class="dealer-login">
-                                            <a href="" class="dealer-name"><i class="fa fa-user"></i> <?php echo $this->session->userdata('USER_NAME'); ?></a>
-                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>
-                                        </div>
-
-                                    <?php } ?>
-                                </ul>
-                                <div class="toggle-navigation">
-                                    <div class="icon">
-                                        <div class="line"></div>
-                                        <div class="line"></div>
-                                        <div class="line"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
+                        <div class="form-group clearfix">
+                            <button type="submit" class="btn pull-right btn-default" id="account-submit">Create an Account</button>
+                        </div><!-- /.form-group -->
+                    </form>
+                    <hr>
+                    <div class="center">
+                        <figure class="note">By clicking the “Create an Account” button you agree with our <a href="terms-conditions.html" class="link">Terms and conditions</a></figure>
                     </div>
                 </div>
-                <!-- end Navigation-->
-                <!-- Page Canvas-->
-                <div id="page-canvas">
-                    <!--Off Canvas Navigation-->
-                    <nav class="off-canvas-navigation">
-                        <header>Navigation</header>
-                        <div class="main-navigation navigation-off-canvas"></div>
-                    </nav>
-                    <!--end Off Canvas Navigation-->
-
-                    <!--Sub Header-->
-                    <section class="sub-header">
-                        <div class="search-bar horizontal collapse" id="redefine-search-form"></div>
-                        <!-- /.search-bar -->
-                        <div class="breadcrumb-wrapper">
-
-                            <!-- /.container-->
-                        </div>
-                        <!-- /.breadcrumb-wrapper-->
-                    </section>
-                    <!--end Sub Header-->
-
-                    <!--Page Content-->
-                    <div id="page-content">
-                        <section class="container">
-                            <div class="block">
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                                        <header>
-                                            <h1 class="page-title">Register</h1>
-                                        </header>
-                                        <hr>
-                                        <form role="form" id="form-register" name="form-register" method="post" >
-                                            <div class="form-group">
-                                                <label for="form-register-full-name">Full Name:<span class="mandatory">*</span></label>
-                                                <input type="text" class="form-control" id="form-register-full-name" name="form_register_full_name" >
-                                            </div><!-- /.form-group -->
-                                            <div class="form-group">
-                                                <label for="form-register-email">Email:<span class="mandatory">*</span></label>
-                                                <input type="email" class="form-control" id="form-register-email" name="form_register_email" >
-                                            </div><!-- /.form-group -->
-
-                                            <div class="form-group">
-                                                <label for="form-register-contact">Telephone:<span class="mandatory">*</span></label>
-                                                <input type="text" class="form-control" id="form-register-contact" name="form_register_contact" >
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="form-register-address">Address:<span class="mandatory">*</span></label>
-                                                <input type="text" class="form-control" id="form-register-address" name="form_register_address" >
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="form-register-user_name">Username:<span class="mandatory">*</span></label>
-                                                <input type="text" class="form-control" id="form-register-user_name" name="form_register_user_name" >
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="form-register-password">Password:<span class="mandatory">*</span></label>
-                                                <input type="password" class="form-control" id="form_register_password" name="form_register_password" >
-                                            </div><!-- /.form-group -->
-                                            <div class="form-group">
-                                                <label for="form-register-confirm-password">Confirm Password:<span class="mandatory">*</span></label>
-                                                <input type="password" class="form-control" id="form-register-confirm-password" name="form_register_confirm_password" >
-                                            </div><!-- /.form-group -->
-
-                                            <div class="form-group clearfix">
-                                                <button type="submit" class="btn pull-right btn-default" id="account-submit">Create an Account</button>
-                                            </div><!-- /.form-group -->
-                                        </form>
-                                        <hr>
-                                        <div class="center">
-                                            <figure class="note">By clicking the “Create an Account” button you agree with our <a href="terms-conditions.html" class="link">Terms and conditions</a></figure>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- /.block-->
-                    </div>
-                    <!-- end Page Content-->
-                </div>
-                <!-- end Page Canvas-->
-                <!--Page Footer-->
-                <footer id="page-footer">
-
-                </footer>
-                <!--end Page Footer-->
             </div>
-            <!-- end Inner Wrapper -->
         </div>
-        <!-- end Outer Wrapper-->
+    </section>
+    <!-- /.block-->
+</div>
+<!-- end Page Content-->
 
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/bootstrap-select.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.hotkeys.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/icheck.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-
-        <!--[if lte IE 9]>
-        <script type="text/javascript" src="assets/js/ie-scripts.js"></script>
-        <![endif]-->
-    </body>
-</html>
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 
-<script>
-    var base_url = "<?php echo base_url(); ?>";
-    var site_url = "<?php echo site_url(); ?>";
-
-</script>
 <script type="text/javascript">
 
     $(document).ready(function() {
 
-        $('#account-submit').click(function() {
-            var validator = $("#form-register").validate();
-            validator.resetForm();
+    $('#account-submit').click(function() {
+    var validator = $("#form-register").validate();
+    validator.resetForm();
 
-        });
+    });
 
-        $("#form-register").validate({
-            rules: {
-                form_register_full_name: {
-                    required: true
-                },
-                form_register_email: {
-                    required: true,
-                    email: true
-                },
-                form_register_contact: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-                form_register_address: "required",
-                form_register_user_name: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 30
-                },
-                form_register_password: "required",
-                form_register_confirm_password: {
-                    required: true,
-                    equalTo: "#form_register_password"
-                }
-            },
-            messages: {
-                form_register_full_name: "Please enter your full name",
-                form_register_email: {
-                    required: "Please enter your email",
-                    email: "Incorrect email address"
+    $("#form-register").validate({
+    rules: {
+    form_register_full_name: {
+    required: true
+    },
+    form_register_email: {
+    required: true,
+    email: true
+    },
+    form_register_contact: {
+    required: true,
+    digits: true,
+    minlength: 10,
+    maxlength: 10
+    },
+    form_register_address: "required",
+    form_register_user_name: {
+    required: true,
+    minlength: 3,
+    maxlength: 30
+    },
+    form_register_password: "required",
+    form_register_confirm_password: {
+    required: true,
+    equalTo: "#form_register_password"
+    }
+    },
+    messages: {
+    form_register_full_name: "Please enter your full name",
+    form_register_email: {
+    required: "Please enter your email",
+    email: "Incorrect email address"
 
-                },
-                form_register_contact: "Please enter your telephone number",
-                form_register_address: "Please enter your address",
-                form_register_user_name: "Please enter a valid user name",
-                form_register_password: "Please enter a password",
-                form_register_confirm_password: {
-                    required: "Confirm the password",
-                    equalTo: "Passwords do not match"
-                }
-            }, submitHandler: function(form)
-            {
-                $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
-                {
-                    //alert(msg);
-                    if (msg == 1) {
-                        toastr.success("Successfully Registered", "AutoVille");
-                        window.location = site_url + '/home';
-                    } else {
-                        toastr.error("Error in registration", "AutoVille");
+    },
+    form_register_contact: "Please enter your telephone number",
+    form_register_address: "Please enter your address",
+    form_register_user_name: "Please enter a valid user name",
+    form_register_password: "Please enter a password",
+    form_register_confirm_password: {
+    required: "Confirm the password",
+    equalTo: "Passwords do not match"
+    }
+    }, submitHandler: function(form)
+    {
+    $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
+    {
+    //alert(msg);
+    if (msg == 1) {
+    toastr.success("Successfully Registered", "AutoVille");
+    window.location = site_url + '/home';
+    } else {
+    toastr.error("Error in registration", "AutoVille");
 
-                    }
-                });
-            }
+    }
+    });
+    }
 
-        });
+    });
     });
 
 

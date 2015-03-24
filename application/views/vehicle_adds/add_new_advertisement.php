@@ -166,11 +166,12 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
-                                <label for="sale_type">Sale Type<span class="mandatory">*</span></label>
+                                <label for="sale_type">Condition <span class="mandatory">*</span></label>
                                 <select name="sale_type" id="sale_type" title="This field is required.">
-                                    <option value="">Select Sale Type</option>
+                                    <option value="">Select Condition</option>
                                     <option value="new">New</option>
                                     <option value="used">Used</option>
+                                    <option value="used">Reconditioned</option>
                                 </select>
                             </div>
                         </div>
