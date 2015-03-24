@@ -18,3 +18,9 @@ $config['REGISTERED'] = 3;
 $systems= array('ADVERTISEMENT','USERS','PAGES','REVIEWS','VEHICLE SPECS','SETTINGS');
 $config['SYSTEMS']=$systems;
 
+
+//Vehicle Types
+$config['CARS']       = 1;
+$config['BIKES']      = 2;
+$config['COMMERCIAL'] = 3;
+

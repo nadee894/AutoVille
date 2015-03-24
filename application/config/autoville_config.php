@@ -14,3 +14,9 @@ $config['SUPERADMIN'] = 1;
 $config['ADMIN']      = 2;
 $config['REGISTERED'] = 3;
 
+
+//Vehicle Types
+$config['CARS']       = 1;
+$config['BIKES']      = 2;
+$config['COMMERCIAL'] = 3;
+
