@@ -53,7 +53,7 @@
                                     <?php } else { ?>
 
                                         <div class="dealer-login">
-                                            <a href="" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_NAME')); ?></a>
+                                            <a href="<?php echo site_url(); ?>/dashboard" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_NAME')); ?></a>
                                             <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>
                                         </div>
 
