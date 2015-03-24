@@ -126,8 +126,10 @@
                         <input type="text" class="form-control" id="keyword" placeholder="Enter Keyword">
                     </div>  
                     <!-- /.form-group -->
-                    <div class="form-group">
-                        <button type="button" class="btn btn-default" onclick="search_vehicle()"><i class="fa fa-search"></i></button>
+                    <div class="form-group">                   
+                        <a href="<?php echo site_url(); ?>/vehicle_search/search_advertisements" class="submit-item">
+                            <button type="button" class="btn btn-default" onclick="search_vehicle()"><i class="fa fa-search"></i></button>
+                        </a>
                     </div>
                     <!-- /.form-group -->
                 </div>
