@@ -3,6 +3,7 @@
 class Vehicle_model_model extends CI_Model {
 
     var $id;
+    var $manufacturer_id;
     var $name;
     var $is_published;
     var $is_deleted;
@@ -10,13 +11,21 @@ class Vehicle_model_model extends CI_Model {
     var $added_by;
     var $updated_date;
     var $updated_by;
-    
+
     function __construct() {
         parent::__construct();
     }
 
     function get_id() {
         return $this->id;
+    }
+
+    function get_manufacturer_id() {
+        return $this->manufacturer_id;
+    }
+
+    function set_manufacturer_id($manufacturer_id) {
+        $this->manufacturer_id = $manufacturer_id;
     }
 
     function get_name() {
@@ -78,6 +87,5 @@ class Vehicle_model_model extends CI_Model {
     function set_updated_by($updated_by) {
         $this->updated_by = $updated_by;
     }
-
 
 }

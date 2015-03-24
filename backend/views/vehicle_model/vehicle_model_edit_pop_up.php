@@ -6,6 +6,20 @@
     <div class="modal-body">
 
         <div class="form-group">
+            <label for="manufacturer">Manufacturer<span class="mandatory">*</span></label>
+            <select name="manufacturer" id="manufacture" title="manufacturer" data-live-search="true">
+                <!--<option value="<?php echo $vehicle_model->manufacturer_id; ?>"><?php echo $manufacturer->name; ?></option>  -->
+                <?php foreach ($manufacturer_results as $manufacturer_result) { ?>
+                    <option value="<?php echo $manufacturer_result->id; ?>"><?php
+                        if ($manufacturer_result->id == $vehicle_model->manufacturer_id) {
+                            echo 'selected="selected"';
+                        }
+                        ?> 
+                        <?php echo $manufacturer_result->name; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="name">Vehicle Model<span class="mandatory">*</span></label>
             <input id="name" class="form-control" name="name" type="text" value="<?php echo $vehicle_model->name; ?>">
             <input id="vehicle_model_id"  name="vehicle_model_id" type="hidden" value="<?php echo $vehicle_model->id; ?>">

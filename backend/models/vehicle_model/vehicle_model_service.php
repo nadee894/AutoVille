@@ -21,9 +21,10 @@ class Vehicle_model_service extends CI_Model {
 
     public function get_all_vehicle_models() {
 
-        $this->db->select('model.*,user.name as added_by_user');
+        $this->db->select('model.*,user.name as added_by_user,manufacture.id as manufacture_id,manufacture.name as manufacturer');
         $this->db->from('model');
         $this->db->join('user', 'user.id = model.added_by');
+        $this->db->join('manufacture', 'manufacture.id=model.manufacturer_id');
         $this->db->where('model.is_deleted', '0');
         $this->db->order_by("model.added_date", "desc");
         $query = $this->db->get();
@@ -67,7 +68,8 @@ class Vehicle_model_service extends CI_Model {
 
     function update_vehicle_model($vehicle_model_model) {
 
-        $data = array('name' => $vehicle_model_model->get_name(),            
+        $data = array('name' => $vehicle_model_model->get_name(),
+            'manufacturer_id' => $vehicle_model_model->get_manufacturer_id(),
             'updated_date' => $vehicle_model_model->get_updated_date(),
             'updated_by' => $vehicle_model_model->get_updated_by()
         );

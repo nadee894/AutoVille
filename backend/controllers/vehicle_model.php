@@ -14,6 +14,9 @@ class Vehicle_Model extends CI_Controller {
             $this->load->model('vehicle_model/vehicle_model_model');
             $this->load->model('vehicle_model/vehicle_model_service');
 
+            $this->load->model('manufacture/manufacture_model');
+            $this->load->model('manufacture/manufacture_service');
+
             $this->load->model('access_controll/access_controll_service');
         }
     }
@@ -25,9 +28,11 @@ class Vehicle_Model extends CI_Controller {
     function manage_models() {
 
         $vehicle_model_service = new Vehicle_model_service();
+        $manufacture_service = new Manufacture_service();
 
         $data['heading'] = "Manage Vehicle Models";
         $data['results'] = $vehicle_model_service->get_all_vehicle_models();
+        $data['manufacturer_results'] = $manufacture_service->get_all_manufactures();
 
         $parials = array('content' => 'vehicle_model/manage_vehicle_model_view');
         $this->template->load('template/main_template', $parials, $data);
@@ -43,6 +48,7 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_model = new Vehicle_model_model();
         $vehicle_model_service = new Vehicle_model_service();
 
+        $vehicle_model_model->set_manufacturer_id(trim($this->input->post('manufacturer', TRUE)));
         $vehicle_model_model->set_name($this->input->post('name', TRUE));
         $vehicle_model_model->set_is_published('1');
         $vehicle_model_model->set_is_deleted('0');
@@ -89,6 +95,7 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_service = new Vehicle_model_service();
 
         $vehicle_model_model->set_id($this->input->post('vehicle_model_id', TRUE));
+        $vehicle_model_model->set_manufacturer_id(trim($this->input->post('manufacturer', TRUE)));
         $vehicle_model_model->set_name($this->input->post('name', TRUE));
         $vehicle_model_model->set_updated_date(date("Y-m-d H:i:s"));
         $vehicle_model_model->set_updated_by($this->session->userdata('USER_ID'));
@@ -101,9 +108,18 @@ class Vehicle_Model extends CI_Controller {
         $vehicle_model_model = new Vehicle_model_model();
         $vehicle_model_service = new Vehicle_model_service();
 
+        $manufacure_model = new Manufacture_model();
+        $manufacture_service = new Manufacture_service();
+
         $vehicle_model_model->set_id(trim($this->input->post('vehicle_model_id', TRUE)));
         $vehicle_model = $vehicle_model_service->get_vehicle_model_by_id($vehicle_model_model);
         $data['vehicle_model'] = $vehicle_model;
+
+        $manufacure_model->set_id($vehicle_model->manufacturer_id);
+        $manufacturer = $manufacture_service->get_manufacure_by_id($manufacure_model);
+        $data['manufacturer'] = $manufacturer;
+
+        $data['manufacturer_results'] = $manufacture_service->get_all_manufactures();
 
         echo $this->load->view('vehicle_model/vehicle_model_edit_pop_up', $data, TRUE);
     }
