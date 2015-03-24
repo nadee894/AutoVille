@@ -1,6 +1,6 @@
 <div class="inner">
     <div class="container">
-        <h1>Find Your Dream Car</h1>
+        <h1>Find Your Dream Vehicle</h1>
         <div class="search-bar horizontal">
             <form class="main-search border-less-inputs background-color-grey-dark dark-inputs" role="form" method="post" >
                 <div class="input-row">
@@ -64,6 +64,7 @@
                             <option value="">Select Sale Type</option>
                             <option value="0">New</option>
                             <option value="1">Used</option>
+                            <option value="1">Reconditioned</option>
                         </select>
                     </div>
                     <!-- /.form-group -->
