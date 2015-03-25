@@ -9,7 +9,7 @@
             <div class="full-width">
 
                 <div class="one-half col-241 search-area">
-                    <form id="search-filters" action="#">
+                    <form id="search-filters"  method="post" action="<?php echo site_url(); ?>/vehicle_search/search_advertisements">
                         <!--Search Filter-->
                         <fieldset class="grey-corner-box">
                             <legend><span class="bold">Search</span> filters</legend>
@@ -45,15 +45,15 @@
                                                 <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
                                             <?php } ?>
                                         </select>
-                                    </div>        
+                                    </div>          
                                 </li>
                                 <li>
                                     <div class="form-group">
                                         <label>Year</label>
                                         <div class="ui-slider" id="year-slider" data-value-min="1920" data-value-max="2015" data-step="1">
                                             <div class="values clearfix">
-                                                <input class="value-min" id="minyear" name="value-min[]" readonly>
-                                                <input class="value-max" id="maxyear" name="value-max[]" readonly>
+                                                <input class="value-min" id="minyear" name="minyear" readonly>
+                                                <input class="value-max" id="maxyear" name="maxyear" readonly>
                                             </div>
                                             <div class="element"></div>
                                         </div>
@@ -75,9 +75,9 @@
                                         <label for="sale_type">Sale Type</label>
                                         <select name="sale_type" id="sale_type" title="Sale Type" data-live-search="true">
                                             <option value="">Select Sale Type</option>
-                                            <option value="0">New</option>
-                                            <option value="1">Used</option>
-                                            <option value="1">Reconditioned</option>
+                                            <option value="New">New</option>
+                                            <option value="Used">Used</option>
+                                            <option value="Reconditioned">Reconditioned</option>
                                         </select>
                                     </div>
                                 </li>
@@ -86,15 +86,15 @@
                                         <label for="color">Color</label>
                                         <select name="color" id="color" title="Color" data-live-search="true">
                                             <option value="">Select Color</option>
-                                            <option value="1">Blue</option>
-                                            <option value="2">Yellow</option>
-                                            <option value="3">Purple</option>
-                                            <option value="4">Pink</option>
-                                            <option value="5">Red</option>
-                                            <option value="6">Green</option>
-                                            <option value="7">White</option>
-                                            <option value="8">Black</option>
-                                            <option value="9">Silver</option>
+                                            <option value="Blue">Blue</option>
+                                            <option value="Yellow">Yellow</option>
+                                            <option value="Purple">Purple</option>
+                                            <option value="Pink">Pink</option>
+                                            <option value="Red">Red</option>
+                                            <option value="Green">Green</option>
+                                            <option value="White">White</option>
+                                            <option value="Black">Black</option>
+                                            <option value="Silver">Silver</option>
                                         </select>
                                     </div>
                                 </li>
@@ -103,8 +103,8 @@
                                         <label>Price Rs.</label>
                                         <div class="ui-slider" id="price-slider" data-value-min="100000" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
                                             <div class="values clearfix">
-                                                <input class="value-min" id="minprice" name="value-min[]" readonly>
-                                                <input class="value-max" id="maxprice" name="value-max[]" readonly>
+                                                <input class="value-min" id="minprice" name="minprice" readonly>
+                                                <input class="value-max" id="maxprice" name="maxprice" readonly>
                                             </div>
                                             <div class="element"></div>
                                         </div>
@@ -124,7 +124,7 @@
                                 <li>
                                     <div class="form-group">
                                         <label for="kilometers">Kilometers</label>                                                
-                                        <input type="text" class="form-control" id="kilometers" placeholder="Enter Keyword">
+                                        <input type="text" class="form-control" id="kilometers" name="kilometers" placeholder="Enter Kilometers">
                                     </div>
                                 </li>
                                 <li>
@@ -140,8 +140,8 @@
                                 <li>
                                     <div class="form-group">
                                         <label for="keyword">Keyword</label>
-                                        <input type="text" class="form-control" id="keyword" placeholder="Enter Keyword">
-                                    </div> 
+                                        <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Enter Keyword">
+                                    </div>  
                                 </li>
                                 <li>
                                     <!-- add this to general styles -->
@@ -223,12 +223,21 @@
                             if ($resultcount == 0) {
                                 ?>
                                 <h4>No Result Found</h4>
-                            <?php } else { ?>
+                                <?php
+                            } else {
+                                if ($resultcount == 3 || $resultcount > 3) {
+                                    $class_no = 4;
+                                } else if ($resultcount == 2) {
+                                    $class_no = 5;
+                                } else if ($resultcount == 1) {
+                                    $class_no = 8;
+                                }
+                                ?>
                                 <div class="row">
                                     <?php foreach ($results as $result) { ?>
                                         <!--one result-->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="item">
+                                        <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
+                                            <div class="item" >
                                                 <div class="image">
                                                     <div class="quick-view"><i class="fa fa-eye"></i><span>Quick View</span></div>
                                                     <a href="">

@@ -38,8 +38,8 @@
                         <label>Year</label>
                         <div class="ui-slider" id="year-slider" data-value-min="1920" data-value-max="2015" data-step="1">
                             <div class="values clearfix">
-                                <input class="value-min" id="minyear" name="value-min[]" readonly>
-                                <input class="value-max" id="maxyear" name="value-max[]" readonly>
+                                <input class="value-min" id="minyear" name="minyear" readonly>
+                                <input class="value-max" id="maxyear" name="maxyear" readonly>
                             </div>
                             <div class="element"></div>
                         </div>
@@ -62,9 +62,9 @@
                         <label for="sale_type">Sale Type</label>
                         <select name="sale_type" id="sale_type" title="Sale Type" data-live-search="true">
                             <option value="">Select Sale Type</option>
-                            <option value="0">New</option>
-                            <option value="1">Used</option>
-                            <option value="1">Reconditioned</option>
+                            <option value="New">New</option>
+                            <option value="Used">Used</option>
+                            <option value="Reconditioned">Reconditioned</option>
                         </select>
                     </div>
                     <!-- /.form-group -->
@@ -72,23 +72,23 @@
                         <label for="color">Color</label>
                         <select name="color" id="color" title="Color" data-live-search="true">
                             <option value="">Select Color</option>
-                            <option value="1">Blue</option>
-                            <option value="2">Yellow</option>
-                            <option value="3">Purple</option>
-                            <option value="4">Pink</option>
-                            <option value="5">Red</option>
-                            <option value="6">Green</option>
-                            <option value="7">White</option>
-                            <option value="8">Black</option>
-                            <option value="9">Silver</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Purple">Purple</option>
+                            <option value="Pink">Pink</option>
+                            <option value="Red">Red</option>
+                            <option value="Green">Green</option>
+                            <option value="White">White</option>
+                            <option value="Black">Black</option>
+                            <option value="Silver">Silver</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Price Rs.</label>
                         <div class="ui-slider" id="price-slider" data-value-min="100000" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
                             <div class="values clearfix">
-                                <input class="value-min" id="minprice" name="value-min[]" readonly>
-                                <input class="value-max" id="maxprice" name="value-max[]" readonly>
+                                <input class="value-min" id="minprice" name="minprice" readonly>
+                                <input class="value-max" id="maxprice" name="maxprice" readonly>
                             </div>
                             <div class="element"></div>
                         </div>
@@ -109,7 +109,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="kilometers">Kilometers</label>                                                
-                        <input type="text" class="form-control" id="kilometers" placeholder="Enter Keyword">
+                        <input type="text" class="form-control" id="kilometers" name="kilometers" placeholder="Enter Kilometers">
                     </div>
                     <!-- /.form-group -->
                     <div class="form-group">
@@ -123,7 +123,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label for="keyword">Keyword</label>
-                        <input type="text" class="form-control" id="keyword" placeholder="Enter Keyword">
+                        <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Enter Keyword">
                     </div>  
                     <!-- /.form-group -->
                     <div class="form-group">                   
@@ -143,46 +143,3 @@
 <div class="background">
     <img src="<?php echo base_url(); ?>application_resources/assets/img/cars-bg.jpg" alt="">
 </div>
-
-
-<script type="text/javascript">
-
-    function search_vehicle() {
-
-        var manufacture = $('#manufacturer').val();
-        var model = $('#model').val();
-        var body_type = $('#body_type').val();
-        var maxyear = $('#maxyear').val();
-        var minyear = $('#minyear').val();
-        var fuel_type = $('#fuel_type').val();
-        var sale_type = $('#sale_type option:selected').text();
-        if (sale_type == "Select Sale Type") {
-            sale_type = '';
-        }
-        var color = $('#color option:selected').text();
-        if (color == "Select Color") {
-            color = '';
-        }
-        var maxprice = $('#maxprice').val();
-        var minprice = $('#minprice').val();
-        var transmission = $('#transmission').val();
-        var kilometers = $('#kilometers').val();
-        var location = $('#location option:selected').text();
-        if (location == "All") {
-            location = '';
-        }
-        var keyword = $('#keyword').val();
-
-        $.ajax({
-            type: "POST",
-            url: site_url + '/vehicle_search/search_advertisements',
-            data: "manufacture=" + manufacture + "&model=" + model + "&body_type=" + body_type + "&maxyear=" + maxyear +
-                    "&minyear=" + minyear + "&fuel_type=" + fuel_type + "&sale_type=" + sale_type + "&color=" + color +
-                    "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
-                    "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword,
-            success: function (msg) {
-                window.location.href = site_url + '/vehicle_search/load_view';                
-            }
-        });
-    }
-</script>

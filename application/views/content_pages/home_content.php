@@ -163,12 +163,6 @@
 </section>
 <!--end Featured-->
 
-<!--Search Result-->
-<!--<section id="search_result" class="block equal-height">
-
-</section>  -->
-<!--end Search Result-->
-
 
 <!--Featured Vehicles-->
 <!--Featured-->

@@ -54,7 +54,7 @@ class Vehicle_search extends CI_Controller {
         $vehicle_advertisments_model = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
-        $manufacture = trim($this->input->post('manufacture', TRUE));
+        $manufacture = trim($this->input->post('manufacturer', TRUE));
         $model = trim($this->input->post('model', TRUE));
         $body_type = trim($this->input->post('body_type', TRUE));
         $maxyear = trim($this->input->post('maxyear', TRUE));
@@ -73,10 +73,6 @@ class Vehicle_search extends CI_Controller {
         $parials = array('content' => 'vehicle_adds/search_advertisement');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
-    function load_view($data){
-        $parials = array('content' => 'vehicle_adds/search_advertisement');
-        $this->template->load('template/main_template', $parials, $data);
-    }
+ 
 
 }
