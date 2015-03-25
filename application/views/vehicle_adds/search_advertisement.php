@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/main.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/uniform.default.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/prettyPhoto.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/blue.css">
+<!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/uniform.default.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/prettyPhoto.css">-->
 
 <script src="<?php echo base_url(); ?>application_resources/blue/js/vendor/modernizr-2.6.2.min.js"></script>
 <script src="<?php echo base_url(); ?>application_resources/blue/js/vendor/jquery-1.8.2.min.js"></script>

@@ -121,5 +121,11 @@ class Vehicle_advertisments_service extends CI_Model {
         return $this->db->affected_rows();
     }
     
+    function get_advertisement_by_id($id) {
+
+        $query = $this->db->get_where('vehicle_advertisements', array('id' => $id));
+        return $query->row();
+    }
+    
 
 }

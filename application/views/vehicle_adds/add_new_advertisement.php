@@ -449,6 +449,18 @@
 
 <script type="text/javascript">
 
+
+                                            //Manufacturer on change 
+                                            $('#manufacturer').on('change', function(e) {
+
+                                                var manufacturer = $(this).val();
+
+                                                $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
+                                                {
+                                                    $('#model_wrapper').html(msg);
+                                                });
+                                            });
+
                                             // add project sumbit btn action
                                             $(document).on('click', '#add_addvertisement_btn', function() {
                                                 if ($('#form-submit').valid()) {
@@ -462,6 +474,9 @@
                                             }, "");
 
                                             $(document).ready(function() {
+
+
+
                                                 $('.form#form-submit select').on('change', function(e) {
                                                     $('.form#form-submit').validate().element($(this));
                                                 });
@@ -542,16 +557,6 @@
                                                     return false;
                                             }
 
-                                            //Manufacturer on change 
-                                            $('#manufacturer').change(function() {
-
-                                                var manufacturer = $('#manufacturer').val();
-
-                                                $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
-                                                {
-                                                    $('#model_wrapper').html(msg);
-                                                });
-                                            });
 
 
 </script>
