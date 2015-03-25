@@ -325,9 +325,9 @@
 
 
 <!--Categories-->
-<!--<section id="categories" class="block background-color-white">
-<?php //echo $this->load->view('manufacturers/manufacture_list_view'); ?>
-</section>-->
+<section id="manufacturer_list" class="block background-color-white">
+
+</section>
 <!--end Categories-->
 
 
@@ -525,6 +525,12 @@
         $.post(site_url + '/vehicle_advertisements/load_recent_vehicles', function (msg)
         {
             $('#recent').html(msg);
+        });
+        
+        //load manufacturers
+        $.post(site_url + '/manufacturers/load_manufacturers', function (msg)
+        {
+            $('#manufacturer_list').html(msg);
         });
     });
 </script>

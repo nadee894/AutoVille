@@ -124,4 +124,11 @@ class Manufacture extends CI_Controller {
         }
     }
 
+     public function load_manufacturers() {        
+        $manufacure_service = new Manufacture_service();
+
+        $data['names']= $manufacure_service->get_manufacture_name();
+                
+        echo $this->load->view('manufacturers/manufacture_list_view', $data);
+    }
 }

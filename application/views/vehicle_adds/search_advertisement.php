@@ -1,22 +1,6 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/main.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/blue.css">
-<!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/uniform.default.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/prettyPhoto.css">-->
-
-<script src="<?php echo base_url(); ?>application_resources/blue/js/vendor/modernizr-2.6.2.min.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/vendor/jquery-1.8.2.min.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/vendor/selectivizr.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/vendor/PIE.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/plugins/jquery.placeholder.min.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/plugins/jquery.uniform.min.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/plugins/jquery.flexslider-min.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/plugins/jquery.carouFredSel-6.1.0-packed.js"></script>
-<!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
-<script src="<?php echo base_url(); ?>application_resources/blue/js/plugins/jquery.prettyPhoto.js"></script>
-<script src="<?php echo base_url(); ?>application_resources/blue/js/plugins/jquery.countdown.js"></script>
-
-<script src="<?php echo base_url(); ?>application_resources/blue/js/plugins.js"></script>
-<!--<script src="<?php echo base_url(); ?>application_resources/blue/js/main.js"></script>-->
+<!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/uniform.default.css">-->
+<!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/prettyPhoto.css">-->
 
 <div id="page-content">
 
@@ -221,7 +205,6 @@
 
                 <div class="results-list one-half col-701">
                     <div class="sort-view layer-one">                        		
-
                         <div class="pagination">
                             <a href="#" class="current-item"><span>1</span></a>
                             <a href="#"><span>2</span></a>
@@ -235,37 +218,16 @@
                     <div class="layer-two">
 
                         <div id="cars-list" class="grid-view list-content">
-                            <ul class="offer-small">
-                                <?php
-                                $resultcount = count($results);
-                                if ($resultcount == 0) {
-                                    ?>
-                                    <h4>No Result Found</h4>
-                                <?php } else { ?>
+                            <?php
+                            $resultcount = count($results);
+                            if ($resultcount == 0) {
+                                ?>
+                                <h4>No Result Found</h4>
+                            <?php } else { ?>
+                                <div class="row">
                                     <?php foreach ($results as $result) { ?>
-                                        <!-- Car post -->
-                                        <li>
-                                            <!--<a href="car-details.html" class="item-link">
-                                                <img src="<?php echo base_url(); ?>application_resources/blue/images/mercedes-thumb.jpg" alt="offer car" />
-                                                <div class="entry-label">
-                                                    <h4 class="car-title">Mercedes-Benz CLS</h4>
-                                                    <span class="price-tag">54980 Euro</span>
-                                                    <span class="location-car">Location: Berlin, Germany</span>
-                                                </div>
-
-                                                <div class="entry-overlay">
-                                                    <ul class="car-list-details item-specs">
-                                                        <li>Registration 2002</li>
-                                                        <li>3.0 Diesel</li>
-                                                        <li>230 HP</li>
-                                                        <li>Body Coupe</li>
-                                                        <li>120.000 KM</li>
-                                                    </ul>
-                                                </div>
-                                            </a>-->
-
-
-
+                                        <!--one result-->
+                                        <div class="col-md-4 col-sm-4">
                                             <div class="item">
                                                 <div class="image">
                                                     <div class="quick-view"><i class="fa fa-eye"></i><span>Quick View</span></div>
@@ -285,7 +247,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="wrapper">
-                                                    <a href=""><h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
+                                                    <!--<a href="car-item-detail.html">--><h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
                                                     <figure><?php echo $result->body_type; ?></figure>
                                                     <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
                                                     <div class="info">
@@ -307,13 +269,12 @@
                                                         </dl>
                                                     </div>
                                                 </div>
-                                            </div> 
-
-                                        </li>
-                                        <!--/Car post -->
+                                            </div>                
+                                        </div>
+                                        <!--end one result-->
                                     <?php } ?>
-                                <?php } ?>
-                            </ul>					
+                                </div>
+                            <?php } ?>				
                         </div>
 
                     </div><!--.layer-two-->

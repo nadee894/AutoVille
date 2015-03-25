@@ -43,7 +43,7 @@ class Manufacture_service extends CI_Model {
     }
 
     function get_manufacture_name() {
-        $this->db->select('manufacture.*,model.name');
+        $this->db->select('manufacture.*,model.name as modelname');
         //$this->db->select('manufacture.*');
         $this->db->from('manufacture');
         $this->db->join('model', 'manufacture.id = model.manufacturer_id');
@@ -52,6 +52,8 @@ class Manufacture_service extends CI_Model {
         $this->db->order_by("manufacture.name", "asc");
         $this->db->limit(12);
         $query = $this->db->get();
+        echo $this->db->last_query();
+        die;
         return $query->result();
     }
 

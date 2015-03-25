@@ -127,9 +127,10 @@
                     </div>  
                     <!-- /.form-group -->
                     <div class="form-group">                   
-                        <a href="<?php echo site_url(); ?>/vehicle_search/search_advertisements" onclick="javascript:search_vehicle()" class="submit-item">
+                        <!--<a href="<?php echo site_url(); ?>/vehicle_search/search_advertisements" onclick="javascript:search_vehicle()" class="submit-item">
                             <button type="button" class="btn btn-default" ><i class="fa fa-search"></i></button>
-                        </a>                        
+                        </a>-->                        
+                        <button type="button" class="btn btn-default" onclick="search_vehicle()"><i class="fa fa-search"></i></button>
                     </div>
                     <!-- /.form-group -->
                 </div>
@@ -180,7 +181,7 @@
                     "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
                     "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword,
             success: function (msg) {
-                
+                window.location.href = site_url + '/vehicle_search/load_view';                
             }
         });
     }
