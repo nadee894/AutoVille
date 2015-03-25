@@ -49,9 +49,7 @@ class Vehicle_search extends CI_Controller {
         $data['fuel_types'] = $fuel_type_service->get_all_active_fuel_types();
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();
         $data['locations'] = $district_service->get_all_districts();
-        
-                
-        
+                               
 
         $vehicle_advertisments_model = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();

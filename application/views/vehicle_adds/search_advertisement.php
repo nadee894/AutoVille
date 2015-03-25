@@ -336,3 +336,12 @@
 
 </div><!--#page-content-->
 
+<?php
+
+function CurrencyFormat($number) {
+    $decimalplaces = 2;
+    $decimalcharacter = '.';
+    $thousandseparater = ',';
+    return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
+}
+?>
