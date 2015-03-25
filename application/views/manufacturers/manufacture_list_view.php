@@ -11,7 +11,8 @@
                                                 <li><a href="index.htm#">Spider</a></li>
                                             </ul>/.sub-category-->
                     </li>
-                <?php } ?>            
+                <?php } ?>
+
             </ul>
             <!--/.categories-->
         </div>

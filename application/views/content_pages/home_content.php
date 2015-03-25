@@ -528,7 +528,7 @@
         });
         
         //load manufacturers
-        $.post(site_url + '/manufacturers/load_manufacturers', function (msg)
+        $.post(site_url + '/manufacture/load_manufacturers', function (msg)
         {
             $('#manufacturer_list').html(msg);
         });

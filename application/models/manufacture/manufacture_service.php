@@ -52,8 +52,8 @@ class Manufacture_service extends CI_Model {
         $this->db->order_by("manufacture.name", "asc");
         $this->db->limit(12);
         $query = $this->db->get();
-        echo $this->db->last_query();
-        die;
+        //       echo $this->db->last_query();
+        //       die;
         return $query->result();
     }
 
