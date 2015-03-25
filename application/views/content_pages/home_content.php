@@ -164,9 +164,9 @@
 <!--end Featured-->
 
 <!--Search Result-->
-<section id="search_result" class="block equal-height">
+<!--<section id="search_result" class="block equal-height">
 
-</section>
+</section>  -->
 <!--end Search Result-->
 
 
