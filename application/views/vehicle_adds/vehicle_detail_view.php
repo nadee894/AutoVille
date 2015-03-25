@@ -84,7 +84,7 @@
                         </li>
                         <li>
                             <span class="label">Fabrication:</span>
-                            <span class="value">2010</span>
+                            <span class="value"><?php echo $vehicle_detail->year;?></span>
                         </li>
                         <li>
                             <span class="label">Fuel:</span>

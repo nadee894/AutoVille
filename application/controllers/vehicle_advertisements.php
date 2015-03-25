@@ -176,13 +176,7 @@ class Vehicle_advertisements extends CI_Controller {
 //        }
     }
 
-    public function load_recent_vehicles() {
-        $vehicle_advertisments_model   = new Vehicle_advertisments_model();
-        $vehicle_advertisments_service = new Vehicle_advertisments_service();
-
-        $data['vehicle_results'] = $vehicle_advertisments_service->get_recently_viewed_vehicles($this->session->userdata('USER_ID'));
-        echo $this->load->view('vehicle_adds/recent_adds', $data);
-    }
+ 
 
     public function get_models_for_manufacturer() {
         $vehicle_model_service = new Vehicle_model_service();
@@ -202,10 +196,9 @@ class Vehicle_advertisements extends CI_Controller {
     public function vehicle_advertisement_detail_view($id) {
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
         $vehicle_images_service        = new Vehicle_images_service();
-        $vehicle_images_model          = new Vehicle_images_model();
 
         $data['vehicle_detail'] = $vehicle_advertisments_service->get_advertisement_by_id($id);
-        //$vehicle_images_service->
+        $data['images']         = $vehicle_images_service->get_images_for_advertisement($id);
 
         $parials = array('content' => 'vehicle_adds/vehicle_detail_view');
         $this->template->load('template/main_template', $parials, $data);
