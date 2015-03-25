@@ -23,5 +23,16 @@ class Vehicle_images_service extends CI_Model {
 
         return $query->row();
     }
+    
+    function get_images_for_advertisement($advertisement_id) {
+        $this->db->select('*');
+        $this->db->from('vehicle_images');
+        $this->db->where("vehicle_id", $advertisement_id);
+        $this->db->where("is_published", "1");
+        $this->db->where("is_deleted", "0");
+        $query = $this->db->get();
+
+        return $query->result();
+    }
 
 }
