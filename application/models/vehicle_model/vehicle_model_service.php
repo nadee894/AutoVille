@@ -7,7 +7,6 @@ class Vehicle_model_service extends CI_Model {
         $this->load->model('vehicle_model/vehicle_model_model');
     }
 
-
     /*
      * This is the service function to get all vehicle models
      */
@@ -23,7 +22,6 @@ class Vehicle_model_service extends CI_Model {
         return $query->result();
     }
 
-
     /*
      * This is the service function to get vehicle model by model id passing the 
      * id as a parameter
@@ -35,6 +33,15 @@ class Vehicle_model_service extends CI_Model {
         return $query->row();
     }
 
- 
+    /*
+     * This is the service function to get vehicle model by manufacture id passing the 
+     * manufacture id as a parameter
+     */
+
+    function get_vehicle_model_by_manufacture($manufacture_id) {
+
+        $query = $this->db->get_where('model', array('manufacturer_id' => $manufacture_id, 'is_deleted' => '0','is_published' => '1'));
+        return $query->result();
+    }
 
 }

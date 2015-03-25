@@ -29,12 +29,12 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="model">Model<span class="mandatory">*</span></label>
-                                <select name="model" id="model" title="This field is required." data-live-search="true">
-                                    <option value="">Select Model</option>
-                                    <?php foreach ($models as $model) { ?>
-                                        <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
-                                    <?php } ?>
-                                </select>
+                                <div id="model_wrapper">
+                                    <select name="model" id="model" title="This field is required." data-live-search="true" disabled="true">
+                                        <option value="">Select Model</option>
+
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
@@ -449,98 +449,109 @@
 
 <script type="text/javascript">
 
-                                    // add project sumbit btn action
-                                    $(document).on('click', '#add_addvertisement_btn', function() {
-                                        if ($('#form-submit').valid()) {
-                                            $('#form-submit').submit();
-                                        }
-                                    });
+                                            // add project sumbit btn action
+                                            $(document).on('click', '#add_addvertisement_btn', function() {
+                                                if ($('#form-submit').valid()) {
+                                                    $('#form-submit').submit();
+                                                }
+                                            });
 
 //custom validator for drop down
-                                    $.validator.addMethod('selectmanufacture', function(value) {
-                                        return (value != '0');
-                                    }, "");
+                                            $.validator.addMethod('selectmanufacture', function(value) {
+                                                return (value != '0');
+                                            }, "");
 
-                                    $(document).ready(function() {
-                                        $('.form#form-submit select').on('change', function(e) {
-                                            $('.form#form-submit').validate().element($(this));
-                                        });
+                                            $(document).ready(function() {
+                                                $('.form#form-submit select').on('change', function(e) {
+                                                    $('.form#form-submit').validate().element($(this));
+                                                });
 
 
-                                        //Add advertisement form validate function
-                                        $("form#form-submit").validate({
-                                            ignore: "hidden:not(.live_select)",
-                                            rules: {
-                                                manufacturer: 'required',
-                                                model: 'required',
-                                                fabrication: 'required',
-                                                fuel_type: 'required',
-                                                transmission: 'required',
-                                                body_type: 'required',
-                                                doors: 'required',
-                                                location: 'required',
-                                                colour: 'required',
-                                                sale_type: 'required',
-                                                price: 'required',
-                                                chassis_no: 'required',
-                                                kilo_meters: 'required'
+                                                //Add advertisement form validate function
+                                                $("form#form-submit").validate({
+                                                    ignore: "hidden:not(.live_select)",
+                                                    rules: {
+                                                        manufacturer: 'required',
+                                                        model: 'required',
+                                                        fabrication: 'required',
+                                                        fuel_type: 'required',
+                                                        transmission: 'required',
+                                                        body_type: 'required',
+                                                        doors: 'required',
+                                                        location: 'required',
+                                                        colour: 'required',
+                                                        sale_type: 'required',
+                                                        price: 'required',
+                                                        chassis_no: 'required',
+                                                        kilo_meters: 'required'
 
-                                            }, submitHandler: function(form)
-                                            {
-                                                if ($('#image_count').val() != '0') {
-                                                    $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
+                                                    }, submitHandler: function(form)
                                                     {
-                                                        if (msg == 1) {
-                                                            toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                                                        if ($('#image_count').val() != '0') {
+                                                            $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
+                                                            {
+                                                                if (msg == 1) {
+                                                                    toastr.success("Successfully submited your advertisement !!", "AutoVille");
 
+                                                                } else {
+                                                                    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
+                                                                }
+                                                            });
                                                         } else {
-                                                            $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
+                                                            $("#image_msg").html('<label class="error">Please upload atleast one image.</label>');
                                                         }
-                                                    });
-                                                } else {
-                                                    $("#image_msg").html('<label class="error">Please upload atleast one image.</label>');
-                                                }
 
-                                            },
-                                            //put error message behind each form element
+                                                    },
+                                                    //put error message behind each form element
 
 
 
 
-                                        });
+                                                });
 
 
-                                    });
+                                            });
 
-                                    function numbersonly(myfield, e, dec) {
-                                        var key;
-                                        var keychar;
+                                            function numbersonly(myfield, e, dec) {
+                                                var key;
+                                                var keychar;
 
-                                        if (window.event)
-                                            key = window.event.keyCode;
-                                        else if (e)
-                                            key = e.which;
-                                        else
-                                            return true;
-                                        keychar = String.fromCharCode(key);
+                                                if (window.event)
+                                                    key = window.event.keyCode;
+                                                else if (e)
+                                                    key = e.which;
+                                                else
+                                                    return true;
+                                                keychar = String.fromCharCode(key);
 
 // control keys
-                                        if ((key == null) || (key == 0) || (key == 8) ||
-                                                (key == 9) || (key == 13) || (key == 27))
-                                            return true;
+                                                if ((key == null) || (key == 0) || (key == 8) ||
+                                                        (key == 9) || (key == 13) || (key == 27))
+                                                    return true;
 
 // numbers
-                                        else if ((("0123456789").indexOf(keychar) > -1))
-                                            return true;
+                                                else if ((("0123456789").indexOf(keychar) > -1))
+                                                    return true;
 
 // decimal point jump
-                                        else if (dec && (keychar == ".")) {
-                                            myfield.form.elements[dec].focus();
-                                            return false;
-                                        }
-                                        else
-                                            return false;
-                                    }
+                                                else if (dec && (keychar == ".")) {
+                                                    myfield.form.elements[dec].focus();
+                                                    return false;
+                                                }
+                                                else
+                                                    return false;
+                                            }
+
+                                            //Manufacturer on change 
+                                            $('#manufacturer').change(function() {
+
+                                                var manufacturer = $('#manufacturer').val();
+
+                                                $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
+                                                {
+                                                    $('#model_wrapper').html(msg);
+                                                });
+                                            });
 
 
 </script>

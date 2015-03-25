@@ -76,11 +76,15 @@
                         <td>
                             <?php if ($result->is_published == '1') { ?>
                                 <span class="label label-primary">Active</span>
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> 
                             <?php } elseif ($result->is_published == '0') { ?>
-                                <span class="label label-default">Pending</span>  
+                                <span class="label label-default">Pending</span> 
+                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 1, this);"><i class="fa fa-arrow-up " title="Approve Advertisement"></i></a> 
                             <?php } else { ?>
                                 <span class="label label-danger">Rejected</span>  
                             <?php } ?>
+
+
                         </td>
                         <td>
                             <a class="btn btn-danger btn-xs"  onclick="delete_advertisement(<?php echo $result->id; ?>);"><i class="fa fa-trash-o " title="Remove"></i></a>
@@ -100,39 +104,67 @@
 
 
 <script type="text/javascript">
-                //delete advertisement
-                function delete_advertisement(id) {
+    //delete advertisement
+    function delete_advertisement(id) {
 
-                    if (confirm('Are you sure want to delete this Vehicle Advertisement ?')) {
+        if (confirm('Are you sure want to delete this Vehicle Advertisement ?')) {
 
-                        $.ajax({
-                            type: "POST",
-                            url: site_url + '/vehicle_advertisements/delete_advertisement',
-                            data: "id=" + id,
-                            success: function(msg) {
-                                //alert(msg);
-                                if (msg == 1) {
-                                    //document.getElementById(trid).style.display='none';
-                                    $('#advertisement_' + id).hide();
-                                }
-                                else if (msg == 2) {
-                                    alert('Cannot be deleted as it is already assigned to others. !!');
-                                }
-                            }
-                        });
+            $.ajax({
+                type: "POST",
+                url: site_url + '/vehicle_advertisements/delete_advertisement',
+                data: "id=" + id,
+                success: function(msg) {
+                    //alert(msg);
+                    if (msg == 1) {
+                        //document.getElementById(trid).style.display='none';
+                        $('#advertisement_' + id).hide();
+                    }
+                    else if (msg == 2) {
+                        alert('Cannot be deleted as it is already assigned to others. !!');
                     }
                 }
+            });
+        }
+    }
 
-                //Reloading advertisements
-                function reload_advertisements() {
-                    $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
-                    var x = $('.load-anim').show().delay(5000);
-                    $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function(msg) {
-                        $('#advertisement_div').html('');
-                        $('#advertisement_div').html(msg);
-                        x.fadeOut('slow');
-                    });
+    function change_advertisement_status(advertisement_id, value, element) {
+
+        var condition = 'Do you want to approve this advertisement ?';
+        if (value == 2) {
+            condition = 'Do you want to reject this advertisement?';
+        }
+
+        if (confirm(condition)) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/vehicle_advertisement/change_publish_status',
+                data: "id=" + advertisement_id + "&value=" + value,
+                success: function(msg) {
+                    if (msg == 1) {
+                        if (value == 1) {
+                            $(element).parent().html('<span class="label label-primary">Active</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status('+advertisement_id+', 2, this);"><i class="fa fa-arrow-up " title="Reject Advertisement"></i></a> ');
+                        } else {
+                            $(element).parent().html('<span class="label label-danger">Rejected</span> ');
+                        }
+
+                    } else if (msg == 2) {
+                        alert('Error !!');
+                    }
                 }
+            });
+        }
+    }
+
+    //Reloading advertisements
+    function reload_advertisements() {
+        $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
+        var x = $('.load-anim').show().delay(5000);
+        $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function(msg) {
+            $('#advertisement_div').html('');
+            $('#advertisement_div').html(msg);
+            x.fadeOut('slow');
+        });
+    }
 
 </script>
 
