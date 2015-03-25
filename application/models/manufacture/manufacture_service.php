@@ -56,5 +56,18 @@ class Manufacture_service extends CI_Model {
         //       die;
         return $query->result();
     }
+    
+//    function get_vehicle_models(){
+//        $this->db->select('model.name as modelname');
+//        $this->db->from('model');
+//        $this->db->join('manufacture', 'manufacture.id = model.manufacturer_id');
+//        $this->db->where('model.is_deleted', '0');
+//        $this->db->where('model.is_published', '1');
+//        $this->db->order_by("model.name", "asc");
+//        $this->db->limit(3);
+//        $query = $this->db->get();
+//        return $query->result();
+//    }
+    
 
 }

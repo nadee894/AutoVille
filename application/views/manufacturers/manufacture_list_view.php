@@ -4,16 +4,13 @@
             <header><h2>Manufacturers</h2></header>
             <?php foreach ($names as $name) { ?>
                 <ul class="categories">
-                    <li><a href=""><?php echo $name->name ?></a>
-                        <!--                    <ul class="sub-category">
-                                                <li><a href="index.htm#">33</a></li>
-                                                <li><a href="index.htm#">Brera</a></li>
-                                                <li><a href="index.htm#">Spider</a></li>
-                                            </ul>/.sub-category-->
+                    <li><a href=""><?php echo $name->name ?></a>                         
+                        <ul class="sub-category">                            
+                            <li><a href=""><?php echo $name->modelname ?></a></li>                            
+                        </ul>
                     </li>
-                <?php } ?>
-
-            </ul>
+                </ul>
+            <?php } ?>
             <!--/.categories-->
         </div>
         <div class="col-md-3 col-sm-3">
