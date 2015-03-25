@@ -30,16 +30,29 @@ class Manufacture_service extends CI_Model {
         $query = $this->db->get_where('manufacture', array('id' => $manufacture_model->get_id(), 'is_deleted' => '0'));
         return $query->row();
     }
-    
-    function get_manufacture_logo(){
-       $this->db->select('manufacture.*');
+
+    function get_manufacture_logo() {
+        $this->db->select('manufacture.*');
         $this->db->from('manufacture');
         $this->db->where('manufacture.is_deleted', '0');
         $this->db->where('manufacture.is_published', '1');
         $this->db->order_by("manufacture.name", "asc");
         $this->db->limit(5);
         $query = $this->db->get();
-        return $query->result(); 
+        return $query->result();
+    }
+
+    function get_manufacture_name() {
+        $this->db->select('manufacture.*,model.name');
+        //$this->db->select('manufacture.*');
+        $this->db->from('manufacture');
+        $this->db->join('model', 'manufacture.id = model.manufacture_id');
+        $this->db->where('manufacture.is_deleted', '0');
+        $this->db->where('manufacture.is_published', '1');
+        $this->db->order_by("manufacture.name", "asc");
+        $this->db->limit(12);
+        $query = $this->db->get();
+        return $query->result();
     }
 
 }

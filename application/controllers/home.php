@@ -49,6 +49,7 @@ class Home extends CI_Controller {
         $data['why_us']        = $content_service->get_content_by_hcodes('WHYUS');
         
         $data['logos'] = $manufacture_service->get_manufacture_logo();
+        $data['names']= $manufacture_service->get_manufacture_name();
 
         $parials = array('content' => 'content_pages/home_content', 'vehicle_search_content' => 'vehicle_adds/load_vehicle_sepecs_for_search');
         $this->template->load('template/main_template', $parials, $data);
