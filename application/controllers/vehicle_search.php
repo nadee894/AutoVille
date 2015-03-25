@@ -33,8 +33,10 @@ class Vehicle_search extends CI_Controller {
         $keyword = trim($this->input->post('keyword', TRUE));
 
         $data['results'] = $vehicle_advertisments_service->search_vehicle($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword);
-        echo $this->load->view('vehicle_adds/searched_results', $data);
+        //echo $this->load->view('vehicle_adds/searched_results', $data);
 
+        $parials = array('content' => 'vehicle_adds/search_advertisement');
+        $this->template->load('template/main_template', $parials, $data);
     }
 
 }
