@@ -19,70 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-8">
-                    <h2>Manage Ads</h2>
-                    <div class="dashboard-block">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-responsive dashboard-tables saved-cars-table">
-                                <thead>
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>Description</td>
-                                        <td>Price/Status</td>
-                                        <td>Timestamp</td>
-                                        <td>Payment</td>
-                                        <td>Actions</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td valign="middle"><input type="checkbox"></td>
-                                        <td>
-                                            <!-- Result -->
-                                            <a href="vehicle-details.html" class="car-image"><img src="images/car2.jpg" alt=""></a>
-                                            <div class="search-find-results">
-                                                <h5><a href="vehicle-details.html">2010 BMW 125i E82 Coupe 2dr Auto 6sp 3.0i [MY10]</a></h5>
-                                                <ul class="inline">
-                                                    <li>2 door Coupe</li>
-                                                    <li>6 cyl, 3.0 L Petrol</li>
-                                                    <li>6 speed Automatic</li>
-                                                    <li>Rear Wheel Drive</li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                        <td><span class="price">$40,990</span></td>
-                                        <td><span class="text-success">Created on</span> 09/12/14 @ 12:09am</td>
-                                        <td align="center"><span class="label label-warning">Pending payment</span></td>
-                                        <td align="center">
-                                            <button class="text-default" title="Archive"><i class="fa fa-archive"></i></button>                                                <button class="text-danger" title="Delete"><i class="fa fa-times"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="middle"><input type="checkbox"></td>
-                                        <td>
-                                            <!-- Result -->
-                                            <a href="vehicle-details.html" class="car-image"><img src="images/car2.jpg" alt=""></a>
-                                            <div class="search-find-results">
-                                                <h5><a href="vehicle-details.html">2010 BMW 125i E82 Coupe 2dr Auto 6sp 3.0i [MY10]</a></h5>
-                                                <ul class="inline">
-                                                    <li>2 door Coupe</li>
-                                                    <li>6 cyl, 3.0 L Petrol</li>
-                                                    <li>6 speed Automatic</li>
-                                                    <li>Rear Wheel Drive</li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                        <td><span class="price">$40,990</span></td>
-                                        <td><span class="text-success">Created on</span> 09/12/14 @ 12:09am</td>
-                                        <td align="center"><span class="label label-success">Active</span></td>
-                                        <td align="center">
-                                            <button class="text-default" title="Activate"><i class="fa fa-refresh"></i></button>                                                <button class="text-danger" title="Delete"><i class="fa fa-times"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <button class="btn btn-default btn-sm disabled">Delete Selected</button>
-                    </div>
+                    <?php echo $this->load->view('my_dashboard/my_advertisements');?>
                 </div>
             </div>
         </div>
