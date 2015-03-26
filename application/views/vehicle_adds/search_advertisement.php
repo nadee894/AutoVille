@@ -9,7 +9,7 @@
             <div class="full-width">
 
                 <div class="one-half col-241 search-area">
-                    <form id="search-filters"  method="post" action="<?php echo site_url(); ?>/vehicle_search/search_advertisements">
+                    <form id="search-filters"  method="post">
                         <!--Search Filter-->
                         <fieldset class="grey-corner-box">
                             <legend><span class="bold">Search</span> filters</legend>
@@ -28,12 +28,12 @@
                                 <li>
                                     <div class="form-group">
                                         <label for="model">Model</label>
-                                        <select name="model" id="model" title="Model" data-live-search="true">
-                                            <option value="">Select Model</option>
-                                            <?php foreach ($models as $model) { ?>
-                                                <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
-                                            <?php } ?>
-                                        </select>
+                                        <div id="model_wrapper">
+                                            <select name="model" id="model" data-live-search="true" disabled="true">
+                                                <option value="">Select Model</option>
+
+                                            </select>
+                                        </div>
                                     </div> 
                                 </li>                                
                                 <li>
@@ -145,8 +145,8 @@
                                 </li>
                                 <li>
                                     <!-- add this to general styles -->
-                                    <div class="search-button">
-                                        <input type="submit" value="Search" />
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-default" onclick="search_vehicle()"><i class="fa fa-search"></i></button>
                                     </div>
                                 </li>
                             </ul>
@@ -203,97 +203,10 @@
                     </form>
                 </div>
 
-                <div class="results-list one-half col-701">
-                    <div class="sort-view layer-one">                        		
-                        <div class="pagination">
-                           <?php echo $links; ?>
-                            <!--<a href="<?php echo site_url();?>/vehicle_search/selectFixedAssertItems" class="current-item"><span><?php echo $links; ?></span></a>-->
-                            <!--<a href="#"><span>2</span></a>
-                            <a href="#"><span>3</span></a>
-                            <span class="space-between">...</span>
-                            <a href="#"><span>8</span></a>
-                            <a href="#" class="last-button">Next</a>-->
-                        </div>
-                    </div>
+                <div class="results-list one-half col-701" id="search_result">
 
-                    <div class="layer-two">
+                    <?php echo $this->load->view('vehicle_adds/search_result'); ?>
 
-                        <div id="cars-list" class="grid-view list-content">
-                            <?php
-                            $resultcount = count($results);
-                            if ($resultcount == 0) {
-                                ?>
-                                <h4>No Result Found</h4>
-                                <?php
-                            } else {
-                                if ($resultcount == 3 || $resultcount > 3) {
-                                    $class_no = 4;
-                                } else if ($resultcount == 2) {
-                                    $class_no = 5;
-                                } else if ($resultcount == 1) {
-                                    $class_no = 8;
-                                }
-                                ?>
-                                <div class="row">
-                                    <?php foreach ($results as $result) { ?>
-                                        <!--one result-->
-                                        <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
-                                            <div class="item" >
-                                                <div class="image">
-                                                    <div class="quick-view"><i class="fa fa-eye"></i><span>Quick View</span></div>
-                                                    <a href="<?php echo site_url()?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id;?>">
-                                                        <div class="overlay">
-                                                            <div class="inner">
-                                                                <div class="content">
-                                                                    <h4>Description</h4>
-                                                                    <p><?php echo $result->description; ?></p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-specific">
-                                                            <span><?php echo $result->sale_type; ?></span>
-                                                        </div>                                                            
-                                                        <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/' . $result->image_path; ?>" height="180" width="260" alt=""/>
-                                                    </a>
-                                                </div>
-                                                <div class="wrapper">
-                                                    <!--<a href="car-item-detail.html">--><h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
-                                                    <figure><?php echo $result->body_type; ?></figure>
-                                                    <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
-                                                    <div class="info">
-                                                        <dl>
-                                                            <?php if (!is_null($result->fuel_type)) { ?>
-                                                                <dt>Engine</dt>
-                                                                <dd><?php echo $result->fuel_type; ?></dd>
-                                                            <?php } ?>
-
-                                                            <?php if (!is_null($result->kilometers)) { ?>
-                                                                <dt>Kilometers</dt>
-                                                                <dd><?php echo $result->kilometers; ?></dd>
-                                                            <?php } ?>
-
-                                                            <?php if (!is_null($result->year)) { ?>
-                                                                <dt>Year</dt>
-                                                                <dd><?php echo $result->year; ?></dd>
-                                                            <?php } ?>
-                                                        </dl>
-                                                    </div>
-                                                </div>
-                                            </div>                
-                                        </div>
-                                        <!--end one result-->
-                                    <?php } ?>
-                                </div>
-                            <?php } ?>				
-                        </div>
-
-                    </div><!--.layer-two-->
-
-                    <div class="layer-three">
-                        <div class="pagination">
-                            <?php echo $links; ?>
-                        </div>											
-                    </div>
                 </div>
 
 
@@ -303,12 +216,47 @@
 
 </div><!--#page-content-->
 
-<?php
+<script type="text/javascript">
 
-function CurrencyFormat($number) {
-    $decimalplaces = 2;
-    $decimalcharacter = '.';
-    $thousandseparater = ',';
-    return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
-}
-?>
+
+    $('#manufacturer').on('change', function (e) {
+
+        var manufacturer = $(this).val();
+
+        $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function (msg)
+        {
+            $('#model_wrapper').html(msg);
+        });
+    });
+
+    function search_vehicle() {
+
+        var manufacturer = $('#manufacturer').val();
+        var model = $('#model').val();
+        var body_type = $('#body_type').val();
+        var maxyear = $('#maxyear').val();
+        var minyear = $('#minyear').val();
+        var fuel_type = $('#fuel_type').val();
+        var sale_type = $('#sale_type').val();
+        var color = $('#color').val();
+        var maxprice = $('#maxprice').val();
+        var minprice = $('#minprice').val();
+        var transmission = $('#transmission').val();
+        var kilometers = $('#kilometers').val();
+        var location = $('#location').val();
+        var keyword = $('#keyword').val();
+        var view_no = 1;
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/vehicle_search/search_advertisements',
+            data: "manufacturer=" + manufacturer + "&model=" + model + "&body_type=" + body_type + "&maxyear=" + maxyear +
+                    "&minyear=" + minyear + "&fuel_type=" + fuel_type + "&sale_type=" + sale_type + "&color=" + color +
+                    "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
+                    "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword + "&view_no=" + view_no,
+            success: function (msg) {
+                $('#search_result').html(msg);
+            }
+        });
+    }
+</script>

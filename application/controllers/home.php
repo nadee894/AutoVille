@@ -46,7 +46,7 @@ class Home extends CI_Controller {
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
         $data['manufactures']  = $manufacture_service->get_all_active_manufactures();
-        $data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
+        //$data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
         $data['body_types']    = $body_type_service->get_all_active_body_types();
         $data['fuel_types']    = $fuel_type_service->get_all_active_fuel_types();
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();

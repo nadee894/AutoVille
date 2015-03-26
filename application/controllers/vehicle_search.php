@@ -5,8 +5,12 @@ if (!defined('BASEPATH'))
 
 class Vehicle_search extends CI_Controller {
 
+    private $is_first_time;
+
     function __construct() {
         parent::__construct();
+
+        $this->is_first_time = TRUE;
 
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
@@ -32,10 +36,10 @@ class Vehicle_search extends CI_Controller {
         $this->load->model('contents/content_model');
         $this->load->model('contents/content_service');
 
-        $this->load->library("pagination");
+        $this->load->library('pagination');
     }
 
-    function search_advertisements() {
+    function load_data() {
 
         $manufacture_service = new Manufacture_service();
         $vehicle_model_service = new Vehicle_model_service();
@@ -52,42 +56,26 @@ class Vehicle_search extends CI_Controller {
         $data['transmissions'] = $transmission_service->get_all_active_transmissions();
         $data['locations'] = $district_service->get_all_districts();
 
-
-        $vehicle_advertisments_model = new Vehicle_advertisments_model();
-        $vehicle_advertisments_service = new Vehicle_advertisments_service();
-
-        $manufacture = trim($this->input->post('manufacturer', TRUE));
-        $model = trim($this->input->post('model', TRUE));
-        $body_type = trim($this->input->post('body_type', TRUE));
-        $maxyear = trim($this->input->post('maxyear', TRUE));
-        $minyear = trim($this->input->post('minyear', TRUE));
-        $fuel_type = trim($this->input->post('fuel_type', TRUE));
-        $sale_type = trim($this->input->post('sale_type', TRUE));
-        $color = trim($this->input->post('color', TRUE));
-        $maxprice = trim($this->input->post('maxprice', TRUE));
-        $minprice = trim($this->input->post('minprice', TRUE));
-        $transmission = trim($this->input->post('transmission', TRUE));
-        $kilometers = trim($this->input->post('kilometers', TRUE));
-        $location = trim($this->input->post('location', TRUE));
-        $keyword = trim($this->input->post('keyword', TRUE));
-
-        $data['results'] = $vehicle_advertisments_service->search_vehicle($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword);
-        $parials = array('content' => 'vehicle_adds/search_advertisement');
-        $this->template->load('template/main_template', $parials, $data);
+        return $data;
     }
 
-    public function selectFixedAssertItems($start = 0) {
+    public function search_advertisements($start = 0) {
+
+        if ($this->is_first_time) {
+            $data = $this->load_data();
+            $this->is_first_time = FALSE;
+        }
 
         $vehicle_advertisments_model = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
         $config = array();
 
-        $config["base_url"] = site_url() . "/vehicle_search/selectFixedAssertItems/";
+        $config["base_url"] = site_url() . "/vehicle_search/search_advertisements/";
         $config["per_page"] = 12;
         $config["uri_segment"] = 4;
         $config["num_links"] = 4;
-                
+
 
         $manufacture = trim($this->input->post('manufacturer', TRUE));
         $model = trim($this->input->post('model', TRUE));
@@ -104,16 +92,22 @@ class Vehicle_search extends CI_Controller {
         $location = trim($this->input->post('location', TRUE));
         $keyword = trim($this->input->post('keyword', TRUE));
 
-        $data['results'] = $vehicle_advertisments_service->search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $config["per_page"], $start,'half');
-        
-        $config["total_rows"] = count($vehicle_advertisments_service->search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $config["per_page"], 0,'all'));
+        $view_no = trim($this->input->post('view_no', TRUE));
+
+        $data['results'] = $vehicle_advertisments_service->search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $config["per_page"], $start, 'half');
+
+        $config["total_rows"] = count($vehicle_advertisments_service->search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $config["per_page"], 0, 'all'));
 
         $this->pagination->initialize($config);
 
         $data["links"] = $this->pagination->create_links();
 
-        $parials = array('content' => 'vehicle_adds/search_advertisement');
-        $this->template->load('template/main_template', $parials, $data);
+        if ($view_no == 1) {
+            echo $this->load->view('vehicle_adds/search_result', $data);
+        } else {
+            $parials = array('content' => 'vehicle_adds/search_advertisement');
+            $this->template->load('template/main_template', $parials, $data);
+        }
     }
 
 }

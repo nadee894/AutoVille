@@ -2,7 +2,7 @@
     <div class="container">
         <h1>Find Your Dream Vehicle</h1>
         <div class="search-bar horizontal">
-            <form class="main-search border-less-inputs background-color-grey-dark dark-inputs" role="form" method="post" action="<?php echo site_url();?>/vehicle_search/selectFixedAssertItems">
+            <form class="main-search border-less-inputs background-color-grey-dark dark-inputs" role="form" method="post" action="<?php echo site_url(); ?>/vehicle_search/search_advertisements">
                 <div class="input-row">
                     <div class="form-group">
                         <label for="manufacturer">Manufacturer</label>
@@ -14,14 +14,14 @@
                         </select>
                     </div>
                     <!-- /.form-group -->
-                    <div class="form-group">
+                    <div class="form-group">                        
                         <label for="model">Model</label>
-                        <select name="model" id="model" title="Model" data-live-search="true">
-                            <option value="">Select Model</option>
-                            <?php foreach ($models as $model) { ?>
-                                <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
-                            <?php } ?>
-                        </select>
+                        <div id="model_wrapper">
+                            <select name="model" id="model" data-live-search="true" disabled="true">
+                                <option value="">Select Model</option>
+
+                            </select>
+                        </div>
                     </div>        
                     <!-- /.form-group -->
                     <div class="form-group">
@@ -143,3 +143,19 @@
 <div class="background">
     <img src="<?php echo base_url(); ?>application_resources/assets/img/cars-bg.jpg" alt="">
 </div>
+
+
+<script type="text/javascript">
+
+
+    //Manufacturer on change 
+    $('#manufacturer').on('change', function (e) {
+
+        var manufacturer = $(this).val();
+
+        $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function (msg)
+        {
+            $('#model_wrapper').html(msg);
+        });
+    });
+</script>    
