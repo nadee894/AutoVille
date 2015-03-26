@@ -4,16 +4,7 @@
         <div class="content-holder">
             <div class="page-main-heading extra-space">
                 <div class="heading-location">
-                    <h2><span class="bold">Mercedes-Benz</span> CLS 320</h2>
-                    <p class="page-location">
-                        <a href="index-2.html">Home </a>
-                        <span class="greater-than">&gt;&gt;</span>
-                        <a href="car-list.html">Cars</a>
-                        <span class="greater-than">&gt;&gt;</span>
-                        <a href="#">Mercedes-Benz</a>
-                        <span class="greater-than">&gt;&gt;</span>
-                        <a href="#">Mercedes-Benz CLS 320</a>
-                    </p>
+                    <h2><span class="bold"><?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model; ?></span> <?php echo $vehicle_detail->year; ?></h2>
                 </div>
 
                 <div class="extra-info">
@@ -58,23 +49,25 @@
                 <div class="car-full-image one-half col-480">
                     <div class="main-image">
                         <a href="#">
-                            <img src="images/mercedes_full.jpg" alt="Full Picture" />
+                            <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $images[0]->image_path; ?>" alt="Full Picture" />
                             <span class="magnifying-glass">Magnifying Glass</span>
                         </a>
                     </div>
                     <ul class="images-navigation">
-                        <li><a href="images/mercedes_full.jpg"><img src="images/mercedes_thumb_list_item.jpg" alt="Thumb Car" /></a></li>
-                        <li><a href="images/mercedes_full1.jpg"><img src="images/mercedes_thumb_list_item1.jpg" alt="Thumb Car" /></a></li>
-                        <li><a href="images/mercedes_full2.jpg"><img src="images/mercedes_thumb_list_item2.jpg" alt="Thumb Car" /></a></li>
-                        <li><a href="images/mercedes_full3.jpg"><img src="images/mercedes_thumb_list_item3.jpg" alt="Thumb Car" /></a></li>
-                        <li><a href="images/mercedes_full4.jpg"><img src="images/mercedes_thumb_list_item4.jpg" alt="Thumb Car" /></a></li>
+                        <?php foreach ($images as $image) {?>
+                        <li>
+                            <a href="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
+                                <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
+                            </a>
+                        </li>
+                        <?php } ?>
                     </ul>
                     <div id="preloader"></div>
                 </div>
 
                 <div class="car-full-specs one-half col-460">
                     <div class="price-car">
-                        <span class="price-tag">54.980 EURO</span>
+                        <span class="price-tag">Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></span>
                         <span class="small-note">* Price negotiable</span>
                     </div>
                     <ul class="car-specs-list">
@@ -84,7 +77,7 @@
                         </li>
                         <li>
                             <span class="label">Fabrication:</span>
-                            <span class="value"><?php echo $vehicle_detail->year;?></span>
+                            <span class="value"><?php echo $vehicle_detail->year; ?></span>
                         </li>
                         <li>
                             <span class="label">Fuel:</span>
