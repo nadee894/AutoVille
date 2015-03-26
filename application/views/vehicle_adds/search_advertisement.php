@@ -206,8 +206,8 @@
                 <div class="results-list one-half col-701">
                     <div class="sort-view layer-one">                        		
                         <div class="pagination">
-                            
-                            <a href="<?php echo site_url();?>/vehicle_search/selectFixedAssertItems" class="current-item"><span><?php echo $links; ?></span></a>
+                           <?php echo $links; ?>
+                            <!--<a href="<?php echo site_url();?>/vehicle_search/selectFixedAssertItems" class="current-item"><span><?php echo $links; ?></span></a>-->
                             <!--<a href="#"><span>2</span></a>
                             <a href="#"><span>3</span></a>
                             <span class="space-between">...</span>
@@ -291,12 +291,7 @@
 
                     <div class="layer-three">
                         <div class="pagination">
-                            <a href="#" class="current-item"><span>1</span></a>
-                            <a href="#"><span>2</span></a>
-                            <a href="#"><span>3</span></a>
-                            <span class="space-between">...</span>
-                            <a href="#"><span>8</span></a>
-                            <a href="#" class="last-button">Next</a>
+                            <?php echo $links; ?>
                         </div>											
                     </div>
                 </div>

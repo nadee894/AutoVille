@@ -76,12 +76,12 @@
                             <span class="value">Mercedes-Benz CLS 320, Coupe</span>
                         </li>
                         <li>
-                            <span class="label">Fabrication:</span>
+                            <span class="label">Year:</span>
                             <span class="value"><?php echo $vehicle_detail->year; ?></span>
                         </li>
                         <li>
                             <span class="label">Fuel:</span>
-                            <span class="value">Diesel</span>
+                            <span class="value"><?php echo $vehicle_detail->fuel_type; ?></span>
                         </li>
                         <li>
                             <span class="label">Engine:</span>
@@ -89,15 +89,15 @@
                         </li>
                         <li>
                             <span class="label">Transmision:</span>
-                            <span class="value">Automatic</span>
+                            <span class="value"><?php echo $vehicle_detail->transmission; ?></span>
                         </li>
                         <li>
                             <span class="label">Color:</span>
-                            <span class="value">Black</span>
+                            <span class="value"><?php echo $vehicle_detail->colour; ?></span>
                         </li>
                         <li>
                             <span class="label">Doors:</span>
-                            <span class="value">4/5</span>
+                            <span class="value"><?php echo $vehicle_detail->doors; ?></span>
                         </li>
                         <li>
                             <span class="label">CO2-Emissions combined:</span>

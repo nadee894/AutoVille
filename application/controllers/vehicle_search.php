@@ -87,6 +87,7 @@ class Vehicle_search extends CI_Controller {
         $config["per_page"] = 12;
         $config["uri_segment"] = 4;
         $config["num_links"] = 4;
+                
 
         $manufacture = trim($this->input->post('manufacturer', TRUE));
         $model = trim($this->input->post('model', TRUE));
@@ -103,9 +104,9 @@ class Vehicle_search extends CI_Controller {
         $location = trim($this->input->post('location', TRUE));
         $keyword = trim($this->input->post('keyword', TRUE));
 
-        $data['results'] = $vehicle_advertisments_service->search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $config["per_page"], $start);
+        $data['results'] = $vehicle_advertisments_service->search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $config["per_page"], $start,'half');
         
-        $config["total_rows"] = count($data['results']);
+        $config["total_rows"] = count($vehicle_advertisments_service->search_vehicle_limit($manufacture, $model, $body_type, $maxyear, $minyear, $fuel_type, $sale_type, $color, $maxprice, $minprice, $transmission, $kilometers, $location, $keyword, $config["per_page"], 0,'all'));
 
         $this->pagination->initialize($config);
 
