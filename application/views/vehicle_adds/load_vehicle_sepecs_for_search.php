@@ -2,7 +2,7 @@
     <div class="container">
         <h1>Find Your Dream Vehicle</h1>
         <div class="search-bar horizontal">
-            <form class="main-search border-less-inputs background-color-grey-dark dark-inputs" role="form" method="post" action="<?php echo site_url();?>/vehicle_search/search_advertisements">
+            <form class="main-search border-less-inputs background-color-grey-dark dark-inputs" role="form" method="post" action="<?php echo site_url();?>/vehicle_search/selectFixedAssertItems">
                 <div class="input-row">
                     <div class="form-group">
                         <label for="manufacturer">Manufacturer</label>
