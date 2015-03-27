@@ -16,67 +16,39 @@
     <?php
     foreach ($my_advertisements as $my_advertisement) {
         ?>
-        <div class="item list">
+    <div class="item list" id="list_<?php echo $my_advertisement->id; ?>">
             <div class="image">
                 <div class="quick-view">
                     <i class="fa fa-eye"></i>
                     <span>Quick View</span>
                 </div>
-                <a href="item-detail.html">
+                <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $my_advertisement->id; ?>">
                     <div class="overlay">
                         <div class="inner">
                             <div class="content">
                                 <h4>Description</h4>
-                                <p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa</p>
+                                <p><?php echo $my_advertisement->description; ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="item-specific">
-                        <span title="Bedrooms">
-                            <img alt="" src="assets/img/bedrooms.png">
-                            2
-                        </span>
-                        <span title="Bathrooms">
-                            <img alt="" src="assets/img/bathrooms.png">
-                            2
-                        </span>
-                        <span title="Area">
-                            <img alt="" src="assets/img/area.png">
-                            240m
-                            <sup>2</sup>
-                        </span>
-                        <span title="Garages">
-                            <img alt="" src="assets/img/garages.png">
-                            1
-                        </span>
+                        <span><?php echo $my_advertisement->sale_type; ?></span>
                     </div>
                     <div class="icon">
                         <i class="fa fa-thumbs-up"></i>
                     </div>
-                    <img alt="" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/thumbnail/' . $my_advertisement->image_path; ?>">
+                    <img alt="" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/' . $my_advertisement->image_path; ?>">
                 </a>
             </div>
             <div class="wrapper">
-                <a href="item-detail.html">
-                    <h3>Cash Cow Restaurante</h3>
+                <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $my_advertisement->id; ?>">
+                    <h3><?php echo $my_advertisement->manufacture . " " . $my_advertisement->model . " " . $my_advertisement->year; ?></h3>
                 </a>
-                <figure>63 Birch Street</figure>
-                <div class="info">
-                    <div class="type">
-                        <i>
-                            <img alt="" src="assets/icons/restaurants-bars/restaurants/restaurant.png">
-                        </i>
-                        <span>Restaurant</span>
-                    </div>
-                    <div class="rating" data-rating="4">
-                        <span class="stars">
-                            <i class="fa fa-star s1 active" data-score="1"></i>
-                            <i class="fa fa-star s2 active" data-score="2"></i>
-                            <i class="fa fa-star s3 active" data-score="3"></i>
-                            <i class="fa fa-star s4 active" data-score="4"></i>
-                            <i class="fa fa-star s5" data-score="5"></i>
-                        </span>
-                    </div>
+                <figure><?php echo $my_advertisement->body_type; ?></figure>
+                <div class="price"><?php echo "Rs. " . number_format($my_advertisement->price, 2, '.', ','); ?></div>
+                <div>
+                    <a onclick="delete_advertisement(<?php echo $my_advertisement->id; ?>)" title="Remove this advertisement"> <i class="fa fa-trash-o"></i></a>
+
                 </div>
             </div>
         </div>
@@ -84,3 +56,28 @@
     }
     ?>
 </section>
+
+
+<script>
+//delete advertisement
+    function delete_advertisement(id) {
+
+        if (confirm('Are you sure want to remove this advertisement from your garage ?')) {
+
+            $.ajax({
+                type: "POST",
+                url: '<?php echo site_url() ?>/vehicle_advertisements/delete_advertisement',
+                data: "id=" + id,
+                success: function(msg) {
+                    if (msg == 1) {
+                        $('#list_' + id).hide();
+                        toastr.success("Successfully removed from your garage !!", "AutoVille");
+                    }
+                    else if (msg == 2) {
+                        toastr.danger('Error occured. !!', "AutoVille");
+                    }
+                }
+            });
+        }
+    }
+</script>
