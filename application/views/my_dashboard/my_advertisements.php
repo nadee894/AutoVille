@@ -47,6 +47,7 @@
                 <figure><?php echo $my_advertisement->body_type; ?></figure>
                 <div class="price"><?php echo "Rs. " . number_format($my_advertisement->price, 2, '.', ','); ?></div>
                 <div>
+                    <a href="<?php echo site_url(); ?>/vehicle_advertisements/edit_new_advertisement/<?php echo $my_advertisement->id; ?>" title="Edit this advertisement"> <i class="fa fa-pencil"></i></a>
                     <a onclick="delete_advertisement(<?php echo $my_advertisement->id; ?>)" title="Remove this advertisement"> <i class="fa fa-trash-o"></i></a>
 
                 </div>
@@ -57,7 +58,7 @@
     ?>
 </section>
 
-
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script>
 //delete advertisement
     function delete_advertisement(id) {
@@ -66,14 +67,13 @@
 
             $.ajax({
                 type: "POST",
-                url: '<?php echo site_url() ?>/vehicle_advertisements/delete_advertisement',
+                url: '<?php echo site_url(); ?>/vehicle_advertisements/delete_advertisement',
                 data: "id=" + id,
                 success: function(msg) {
                     if (msg == 1) {
                         $('#list_' + id).hide();
                         toastr.success("Successfully removed from your garage !!", "AutoVille");
-                    }
-                    else if (msg == 2) {
+                    }else if (msg == 2) {
                         toastr.danger('Error occured. !!', "AutoVille");
                     }
                 }
