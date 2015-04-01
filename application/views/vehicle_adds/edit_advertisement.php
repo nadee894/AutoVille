@@ -311,7 +311,7 @@
                             <!-- The loading indicator is shown during file processing -->
                             <label><em>Attach vehicle images.</em></label>
                             <br>
-                            <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
+                            <input type="hidden" id="last_vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="last_vehicle_id"/>
                             <input type="hidden" id="image_count" value="0" name="image_count"/>
                             <span id="image_msg"></span>
                             <!-- The table listing the files available for upload/download -->
@@ -357,7 +357,7 @@
                 <!-- The template to display files available for download -->
                 <script id="template-download" type="text/x-tmpl">
                     {% for (var i=0, file; file=o.files[i]; i++) { %}
-                    <tr class="template-download fade" style="display:none">
+                    <tr class="template-download fade">
                     <td>
                     <span class="preview">
                     {% if (file.thumbnailUrl) { %}

@@ -83,6 +83,9 @@ class Vehicle_advertisements extends CI_Controller {
 
     function edit_new_advertisement($advertisement_id) {
 
+
+        $_POST['last_vehicle_id'] = $advertisement_id;
+
         $manufacture_service           = new Manufacture_service();
         $vehicle_model_service         = new Vehicle_model_service();
         $body_type_service             = new Body_type_service();
@@ -104,6 +107,8 @@ class Vehicle_advertisements extends CI_Controller {
         $data['vehicle_advertisement'] = $vehicle_advertisement_service->get_advertisement_by_id($advertisement_id);
         $vehicle_equipments            = $vehicle_equipment_service->get_equipments_by_vehicle_id($advertisement_id);
         $equipment_array               = array();
+
+
         foreach ($vehicle_equipments as $value) {
             $equipment_array[] = $value->equipment_id;
         }
