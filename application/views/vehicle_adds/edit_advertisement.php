@@ -19,7 +19,7 @@
                                 <select name="manufacturer" id="manufacturer" title="This field is required." data-live-search="true" class="live_select" >
                                     <option value="" selected>Select Manufacturer</option>
                                     <?php foreach ($manufactures as $manufacture) { ?>
-                                        <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
+                                        <option value="<?php echo $manufacture->id; ?>" <?php if ($manufacture->id == $vehicle_advertisement->manufacture_id) { ?> selected="true" <?php } ?>><?php echo $manufacture->name; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -32,7 +32,9 @@
                                 <div id="model_wrapper">
                                     <select name="model" id="model" title="This field is required." data-live-search="true" disabled="true">
                                         <option value="">Select Model</option>
-
+                                        <?php foreach ($models as $model) { ?>
+                                            <option value="<?php echo $model->id; ?>" <?php if ($model->id == $vehicle_advertisement->model_id) { ?> selected="true" <?php } ?>><?php echo $model->name; ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -42,32 +44,32 @@
                                 <label for="fabrication">Fabrication<span class="mandatory">*</span></label>
                                 <select name="fabrication" id="fabrication" title="This field is required."  data-live-search="true">
                                     <option value="">Select Fabrication</option>
-                                    <option value="1990">1990</option>
-                                    <option value="1991">1991</option>
-                                    <option value="1992">1992</option>
-                                    <option value="1993">1993</option>
-                                    <option value="1994">1994</option>
-                                    <option value="1995">1995</option>
-                                    <option value="1996">1996</option>
-                                    <option value="1997">1997</option>
-                                    <option value="1998">1998</option>
-                                    <option value="1999">1999</option>
-                                    <option value="2000">2000</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2005">2005</option>
-                                    <option value="2006">2006</option>
-                                    <option value="2007">2007</option>
-                                    <option value="2008">2008</option>
-                                    <option value="2009">2009</option>
-                                    <option value="2010">2010</option>
-                                    <option value="2011">2011</option>
-                                    <option value="2012">2012</option>
-                                    <option value="2013">2013</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2015">2015</option>
+                                    <option value="1990" <?php if($vehicle_advertisement->year == '1990'){?> selected="true" <?php } ?>>1990</option>
+                                    <option value="1991" <?php if($vehicle_advertisement->year == '1991'){?> selected="true" <?php } ?>>1991</option>
+                                    <option value="1992" <?php if($vehicle_advertisement->year == '1992'){?> selected="true" <?php } ?>>1992</option>
+                                    <option value="1993" <?php if($vehicle_advertisement->year == '1993'){?> selected="true" <?php } ?>>1993</option>
+                                    <option value="1994" <?php if($vehicle_advertisement->year == '1994'){?> selected="true" <?php } ?>>1994</option>
+                                    <option value="1995" <?php if($vehicle_advertisement->year == '1995'){?> selected="true" <?php } ?>>1995</option>
+                                    <option value="1996" <?php if($vehicle_advertisement->year == '1996'){?> selected="true" <?php } ?>>1996</option>
+                                    <option value="1997" <?php if($vehicle_advertisement->year == '1997'){?> selected="true" <?php } ?>>1997</option>
+                                    <option value="1998" <?php if($vehicle_advertisement->year == '1998'){?> selected="true" <?php } ?>>1998</option>
+                                    <option value="1999" <?php if($vehicle_advertisement->year == '1999'){?> selected="true" <?php } ?>>1999</option>
+                                    <option value="2000" <?php if($vehicle_advertisement->year == '2000'){?> selected="true" <?php } ?>>2000</option>
+                                    <option value="2001" <?php if($vehicle_advertisement->year == '2001'){?> selected="true" <?php } ?>>2001</option>
+                                    <option value="2002" <?php if($vehicle_advertisement->year == '2002'){?> selected="true" <?php } ?>>2002</option>
+                                    <option value="2003" <?php if($vehicle_advertisement->year == '2003'){?> selected="true" <?php } ?>>2003</option>
+                                    <option value="2004" <?php if($vehicle_advertisement->year == '2004'){?> selected="true" <?php } ?>>2004</option>
+                                    <option value="2005" <?php if($vehicle_advertisement->year == '2005'){?> selected="true" <?php } ?>>2005</option>
+                                    <option value="2006" <?php if($vehicle_advertisement->year == '2006'){?> selected="true" <?php } ?>>2006</option>
+                                    <option value="2007" <?php if($vehicle_advertisement->year == '2007'){?> selected="true" <?php } ?>>2007</option>
+                                    <option value="2008" <?php if($vehicle_advertisement->year == '2008'){?> selected="true" <?php } ?>>2008</option>
+                                    <option value="2009" <?php if($vehicle_advertisement->year == '2009'){?> selected="true" <?php } ?>>2009</option>
+                                    <option value="2010" <?php if($vehicle_advertisement->year == '2010'){?> selected="true" <?php } ?>>2010</option>
+                                    <option value="2011" <?php if($vehicle_advertisement->year == '2011'){?> selected="true" <?php } ?>>2011</option>
+                                    <option value="2012" <?php if($vehicle_advertisement->year == '2012'){?> selected="true" <?php } ?>>2012</option>
+                                    <option value="2013" <?php if($vehicle_advertisement->year == '2013'){?> selected="true" <?php } ?>>2013</option>
+                                    <option value="2014" <?php if($vehicle_advertisement->year == '2014'){?> selected="true" <?php } ?>>2014</option>
+                                    <option value="2015" <?php if($vehicle_advertisement->year == '2015'){?> selected="true" <?php } ?>>2015</option>
                                 </select>
                             </div>
                         </div>
@@ -80,7 +82,7 @@
                                 <select name="fuel_type" id="fuel_type" title="This field is required." data-live-search="true">
                                     <option value="">Select Fuel Type</option>
                                     <?php foreach ($fuel_types as $fuel_type) { ?>
-                                        <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
+                                        <option value="<?php echo $fuel_type->id; ?>" <?php if ($fuel_type->id == $vehicle_advertisement->fuel_type_id) { ?> selected="true" <?php } ?>><?php echo $fuel_type->name; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -92,7 +94,7 @@
                                 <select name="transmission" id="transmission" title="This field is required." data-live-search="true">
                                     <option value="">Select Transmission</option>
                                     <?php foreach ($transmissions as $transmission) { ?>
-                                        <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
+                                        <option value="<?php echo $transmission->id; ?>" <?php if ($transmission->id == $vehicle_advertisement->transmission_id) { ?> selected="true" <?php } ?>><?php echo $transmission->name; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -104,7 +106,7 @@
                                 <select name="body_type" id="body_type" title="This field is required." data-live-search="true">
                                     <option value="">Select Body Type</option>
                                     <?php foreach ($body_types as $body_type) { ?>
-                                        <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
+                                        <option value="<?php echo $body_type->id; ?>" <?php if ($body_type->id == $vehicle_advertisement->body_type_id) { ?> selected="true" <?php } ?>><?php echo $body_type->name; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -135,7 +137,7 @@
                                 <select name="location" id="location" title="This field is required." data-live-search="true">
                                     <option value="">Select Location</option>
                                     <?php foreach ($locations as $location) { ?>
-                                        <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                                        <option value="<?php echo $location->id; ?>" <?php if ($location->id == $vehicle_advertisement->location_id) { ?> selected="true" <?php } ?>><?php echo $location->name; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -179,7 +181,7 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="price">Price<span class="mandatory">*</span></label>
-                                <input id="price" class="form-control" type="text" name="price" onkeypress="return numbersonly(this, event, '.')">
+                                <input id="price" class="form-control" type="text" name="price" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->price;?>">
                             </div>
                         </div>
                         <!--/.col-md-4-->
@@ -189,14 +191,14 @@
 
                                     <div class="form-group">
                                         <label for="chassis_no">VIN / Chassis Number<span class="mandatory">*</span></label>
-                                        <input id="chassis_no" class="form-control" type="text" name="chassis_no">
+                                        <input id="chassis_no" class="form-control" type="text" name="chassis_no" value="<?php echo $vehicle_advertisement->chassis_no;?>">
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-sm-5">
 
                                     <div class="form-group">
                                         <label for="kilo_meters">Hp / Kw <span class="mandatory">*</span></label>
-                                        <input id="kilo_meters" class="form-control" type="text" name="kilo_meters" onkeypress="return numbersonly(this, event, '.')">
+                                        <input id="kilo_meters" class="form-control" type="text" name="kilo_meters" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->kilometers;?>">
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +215,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
-                                <textarea id="vehicle-description-field" class="form-control" name="description" rows="7"></textarea>
+                                <textarea id="vehicle-description-field" class="form-control" name="description" rows="7"><?php echo $vehicle_advertisement->description;?></textarea>
                             </div>
                         </div>
                     </div>
@@ -225,7 +227,7 @@
                     <h3>Features</h3>
                     <ul class="list-unstyled checkboxes">
                         <?php foreach ($equipments as $equipment) { ?>
-                            <li><div class="checkbox"><label><input type="checkbox" name="equipment[]" value="<?php echo $equipment->id; ?>"><?php echo $equipment->name; ?></label></div></li>
+                        <li><div class="checkbox"><label><input <?php if(in_array($equipment->id, $vehicle_equipments)){?> checked="true" <?php } ?> type="checkbox" name="equipment[]" value="<?php echo $equipment->id; ?>"><?php echo $equipment->name; ?></label></div></li>
                         <?php } ?>
                     </ul>
                 </section>
@@ -309,7 +311,7 @@
                             <!-- The loading indicator is shown during file processing -->
                             <label><em>Attach vehicle images.</em></label>
                             <br>
-                            <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
+                            <input type="hidden" id="last_vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="last_vehicle_id"/>
                             <input type="hidden" id="image_count" value="0" name="image_count"/>
                             <span id="image_msg"></span>
                             <!-- The table listing the files available for upload/download -->
@@ -355,7 +357,7 @@
                 <!-- The template to display files available for download -->
                 <script id="template-download" type="text/x-tmpl">
                     {% for (var i=0, file; file=o.files[i]; i++) { %}
-                    <tr class="template-download fade" style="display:none">
+                    <tr class="template-download fade">
                     <td>
                     <span class="preview">
                     {% if (file.thumbnailUrl) { %}

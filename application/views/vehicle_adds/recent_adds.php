@@ -27,7 +27,7 @@
                         <div class="wrapper">
                             <a href=""><h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
                             <figure><?php echo $result->body_type; ?></figure>
-                            <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
+                            <div class="price"><?php //echo "Rs. " . CurrencyFormat($result->price); ?></div>
                         </div>
                         <div class="description">
                             <div class="info">
@@ -108,15 +108,3 @@
     <!-- /.row-->
 </div>
 <!-- /.container-->
-
-
-<?php
-
-function CurrencyFormat($number) {
-    $decimalplaces = 2;
-    $decimalcharacter = '.';
-    $thousandseparater = ',';
-    return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
-}
-?>
-

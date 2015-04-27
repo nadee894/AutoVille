@@ -112,5 +112,20 @@ class Vehicle_advertisments_service extends CI_Model {
         return $query->result();
     }
     
+     /*
+     * This service function is to update publish status of a advertisement
+     */
+    public function publish_advertisement($vehicle_advertisments_model) {
+        $data = array('is_published' => $vehicle_advertisments_model->get_is_published());
+        $this->db->update('vehicle_advertisements', $data, array('id' => $vehicle_advertisments_model->get_id()));
+        return $this->db->affected_rows();
+    }
+    
+    function get_advertisement_by_id($id) {
+
+        $query = $this->db->get_where('vehicle_advertisements', array('id' => $id));
+        return $query->row();
+    }
+    
 
 }

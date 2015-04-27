@@ -10,6 +10,7 @@ $config['LOGIN_OPTION']           = 1;
 
 
 //User Types
+$config['ALL'] = 0;
 $config['SUPERADMIN'] = 1;
 $config['ADMIN']      = 2;
 $config['REGISTERED'] = 3;

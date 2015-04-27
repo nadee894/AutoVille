@@ -41,7 +41,7 @@ class UploadHandler
     protected $image_objects = array();
 
     function __construct($options = null, $initialize = true, $error_messages = null) {
-        
+
         $this->options = array(
             'script_url' => $this->get_full_url().'/uploads/vehicle_images/vh_'.$_POST['last_vehicle_id'],
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/uploads/vehicle_images/vh_'.$_POST['last_vehicle_id'].'/',

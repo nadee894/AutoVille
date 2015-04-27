@@ -163,12 +163,6 @@
 </section>
 <!--end Featured-->
 
-<!--Search Result-->
-<!--<section id="search_result" class="block equal-height">
-
-</section>  -->
-<!--end Search Result-->
-
 
 <!--Featured Vehicles-->
 <!--Featured-->
@@ -325,9 +319,9 @@
 
 
 <!--Categories-->
-<!--<section id="categories" class="block background-color-white">
-<?php //echo $this->load->view('manufacturers/manufacture_list_view'); ?>
-</section>-->
+<section id="manufacturer_list" class="block background-color-white">
+<?php echo $this->load->view('manufacturers/manufacture_list_view'); ?>
+</section>
 <!--end Categories-->
 
 
@@ -494,7 +488,7 @@
 
 <!--Recent-->
 <section id="recent" class="block">
-    <?php //echo $this->load->view('vehicle_adds/recent_adds'); ?>
+    <?php echo $this->load->view('vehicle_adds/recent_adds'); ?>
 </section>
 <!--end Recent-->
 
@@ -517,14 +511,3 @@
     <!--/.container-->
 </section>
 <!--end Partners-->
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        //loading recently viewed vehicles
-        $.post(site_url + '/vehicle_advertisements/load_recent_vehicles', function (msg)
-        {
-            $('#recent').html(msg);
-        });
-    });
-</script>

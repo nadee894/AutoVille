@@ -16,7 +16,7 @@ class Fileupload extends CI_Controller {
     }
 
     function custom_init($folder) {
-        $_POST['last_project_id'] = $folder;
+        $_POST['last_vehicle_id'] = $folder;
         error_reporting(E_ALL | E_STRICT);
         $this->load->library("UploadHandler");
     }
