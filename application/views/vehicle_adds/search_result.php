@@ -29,7 +29,7 @@
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
-                                <div class="quick-view"><i class="fa fa-eye"></i><span>Quick View</span></div>
+                                <div class="quick-view"><i class="fa fa-plus"></i><span>Park & Compare</span></div>
                                 <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
                                     <div class="overlay">
                                         <div class="inner">

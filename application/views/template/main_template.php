@@ -56,7 +56,7 @@
 
                                             <!--cart-->
                                             <div class="btn-group">                                                
-                                                <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> My Cart
+                                                <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">  
