@@ -50,9 +50,30 @@
                                             <a href="<?php echo site_url(); ?>/register_users/load_registration" class="sign-out"><i class="fa fa-user"></i> Register</a>
                                         </div>
 
-                                    <?php } else { ?>
+                                    <?php } else { ?>                                                                                                                
 
                                         <div class="dealer-login">
+
+                                            <!--cart-->
+                                            <div class="btn-group">                                                
+                                                <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">  
+                                                    <!--One car-->
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="photo"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" height="35" width="35" alt=""></span>
+                                                            <span class="subject"> Lambogini</span>
+                                                        </a>
+                                                    </li>     
+                                                    <!--End One car-->                                                    
+                                                    <li><button>Compare</button></li>
+                                                </ul>
+                                            </div>
+                                            <!--End cart-->
+
+
                                             <a href="<?php echo site_url(); ?>/dashboard" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_NAME')); ?></a>
                                             <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>
                                         </div>
@@ -60,12 +81,12 @@
                                     <?php } ?>
                                 </ul>
                                 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-                                <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
-                                    <div class="content"><span>Submit Your Advertisement</span></div>
-                                    <div class="icon">
-                                        <i class="fa fa-plus"></i>
-                                    </div>
-                                </a>
+                                    <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
+                                        <div class="content"><span>Submit Your Advertisement</span></div>
+                                        <div class="icon">
+                                            <i class="fa fa-plus"></i>
+                                        </div>
+                                    </a>
                                 <?php } ?>
                                 <div class="toggle-navigation">
                                     <div class="icon">
