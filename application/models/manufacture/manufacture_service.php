@@ -44,12 +44,12 @@ class Manufacture_service extends CI_Model {
 
     function get_manufacture_name() {
         $this->db->select('manufacture.*,model.name as modelname');
-        //$this->db->select('manufacture.*');
         $this->db->from('manufacture');
         $this->db->join('model', 'manufacture.id = model.manufacturer_id');
         $this->db->where('manufacture.is_deleted', '0');
         $this->db->where('manufacture.is_published', '1');
         $this->db->order_by("manufacture.name", "asc");
+        $this->db->group_by('manufacture.name');
         $this->db->limit(12);
         $query = $this->db->get();
         //       echo $this->db->last_query();
