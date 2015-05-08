@@ -37,7 +37,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function add_vehicle_news() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_title($this->input->post('name', TRUE));
@@ -65,7 +65,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function change_publish_status() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('id', TRUE)));
@@ -79,11 +79,11 @@ class Vehicle_news extends CI_Controller {
      */
 
     function load_edit_vehicle_news_content() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
-        $vehicle_news = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
+        $vehicle_news         = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
         $data['vehicle_news'] = $vehicle_news;
 
         echo $this->load->view('vehicle_news/vehicle_news_edit_pop_up', $data, TRUE);
@@ -94,7 +94,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function edit_vehicle_news() {
-        $vehicle_news_model = new Vehicle_news_model();
+        $vehicle_news_model   = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
@@ -105,14 +105,15 @@ class Vehicle_news extends CI_Controller {
 
         echo $vehicle_news_service->update_vehicle_news($vehicle_news_model);
     }
-    
+
     /*
      * Front end news
      */
 
-    public function load_latest_vehicle_news(){
+    public function load_latest_vehicle_news() {
         $vehicle_news_service = new Vehicle_news_service();
-        $data['vehicle_news']=$vehicle_news_service->get_latest_vehicle_news();
+        $data['results']      = $vehicle_news_service->get_vehicle_news();
         echo $this->load->view('manufacturers/manufacture_list_view', $data);
     }
+
 }

@@ -7,7 +7,7 @@ class Manufacture extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
+
         if (!$this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/login/load_login');
         } else {
@@ -30,13 +30,13 @@ class Manufacture extends CI_Controller {
         $parials = array('content' => 'manufacture/manage_manufacture_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
+
     /*
      * adding a manufacture
      */
 
     function add_manufacture() {
-        $manufacture_model = new Manufacture_model();
+        $manufacture_model   = new Manufacture_model();
         $manufacture_service = new Manufacture_service();
 
         $manufacture_model->set_name($this->input->post('name', TRUE));
@@ -65,7 +65,7 @@ class Manufacture extends CI_Controller {
      */
 
     function change_publish_status() {
-        $manufacture_model = new Manufacture_model();
+        $manufacture_model   = new Manufacture_model();
         $manufacture_service = new Manufacture_service();
 
         $manufacture_model->set_id(trim($this->input->post('id', TRUE)));
@@ -79,11 +79,11 @@ class Manufacture extends CI_Controller {
      */
 
     function load_edit_manufacture_content() {
-        $manufacure_model = new Manufacture_model();
+        $manufacure_model   = new Manufacture_model();
         $manufacure_service = new Manufacture_service();
 
         $manufacure_model->set_id(trim($this->input->post('manufacture_id', TRUE)));
-        $manufacure = $manufacure_service->get_manufacure_by_id($manufacure_model);
+        $manufacure          = $manufacure_service->get_manufacure_by_id($manufacure_model);
         $data['manufacture'] = $manufacure;
 
         echo $this->load->view('manufacture/manufacture_edit_pop_up', $data, TRUE);
@@ -94,7 +94,7 @@ class Manufacture extends CI_Controller {
      */
 
     function edit_manufacture() {
-        $manufacure_model = new Manufacture_model();
+        $manufacure_model   = new Manufacture_model();
         $manufacure_service = new Manufacture_service();
 
         $manufacure_model->set_id($this->input->post('manufacture_id', TRUE));
@@ -111,11 +111,11 @@ class Manufacture extends CI_Controller {
 
     function upload_manufacture_logo() {
 
-        $uploaddir = './uploads/manufacture_logo/';
+        $uploaddir  = './uploads/manufacture_logo/';
         $unique_tag = 'manufacture_logo';
 
         $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
-        $file = $uploaddir . $filename; // this is the full path of the uploaded file
+        $file     = $uploaddir . $filename; // this is the full path of the uploaded file
 
         if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) {
             echo $filename;
@@ -124,14 +124,18 @@ class Manufacture extends CI_Controller {
         }
     }
 
-     public function load_manufacturers() {        
-        $manufacure_service = new Manufacture_service();
-
-        $data['names']= $manufacure_service->get_manufacture_name();
-                
+    public function load_manufacturers() {
+        $manufacture_service = new Manufacture_service();
+        $data['names']       = $manufacture_service->get_manufacture_name();
         echo $this->load->view('manufacturers/manufacture_list_view', $data);
     }
-    
+
+//    public function load_vehicle_news() {
+//        $manufacture_service = new Manufacture_service();
+//        $data['results']     = $manufacture_service->get_vehicle_news();
+//        echo $this->load->view('manufacturers/manufacture_list_view', $data);
+//    }
+
 //    public function load_vehicle_models(){
 //        $manufacure_service=new Manufacture_service();
 //        $data['models']=$manufacure_service->get_vehicle_models();
