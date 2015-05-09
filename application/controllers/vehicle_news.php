@@ -8,14 +8,12 @@ class Vehicle_news extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        if (!$this->session->userdata('USER_LOGGED_IN')) {
-            redirect(site_url() . '/login/load_login');
-        } else {
+        
             $this->load->model('vehicle_news/vehicle_news_model');
             $this->load->model('vehicle_news/vehicle_news_service');
 
-            $this->load->model('access_controll/access_controll_service');
-        }
+         
+        
     }
 
     /*
@@ -30,6 +28,15 @@ class Vehicle_news extends CI_Controller {
 
         $parials = array('content' => 'vehicle_news/manage_vehicle_news_view');
         $this->template->load('template/main_template', $parials, $data);
+    }
+    
+    function list_vehicle_news(){
+        $vehicle_news_service = new Vehicle_news_service();
+         $data['vehicle_news_list']=$vehicle_news_service->get_vehicle_news_list();
+        $parials = array('content' => 'vehicle_news/vehicle_news_list_view');
+        $this->template->load('template/main_template',$parials,$data);
+        
+       
     }
 
     /*
