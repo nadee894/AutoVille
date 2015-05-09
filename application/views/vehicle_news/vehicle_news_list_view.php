@@ -23,7 +23,7 @@
                             <?php foreach ($vehicle_news_list as $value) { ?>                             
                             <article class="blog-post">
                                 <header><a href="blog-detail.html"><h2><?php echo $value->title; ?></h2></a></header>
-                                <a href="blog-detail.html"><img src="assets/img/blog-1.jpg" alt=""></a>
+                                <a href="blog-detail.html"></a>
                                 
                                 <p><?php echo $value->content; ?></p>
                                 
