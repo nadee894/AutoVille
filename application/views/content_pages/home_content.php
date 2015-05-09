@@ -320,7 +320,7 @@
 
 <!--Categories-->
 <section id="manufacturer_list" class="block background-color-white">
-<?php echo $this->load->view('manufacturers/manufacture_list_view'); ?>
+    <?php echo $this->load->view('manufacturers/manufacture_list_view'); ?>
 </section>
 <!--end Categories-->
 
