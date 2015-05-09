@@ -37,7 +37,7 @@
                     <div class="icon">
                         <i class="fa fa-thumbs-up"></i>
                     </div>
-                    <img alt="" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/' . $my_advertisement->image_path; ?>">
+                    <img  class="lazy" data-original="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/' . $my_advertisement->image_path; ?>">
                 </a>
             </div>
             <div class="wrapper">

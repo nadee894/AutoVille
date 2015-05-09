@@ -15,8 +15,15 @@
         </div>
         <div class="col-md-3 col-sm-3">
             <header><h2>Vehicle News</h2></header>
-                     
-                        
+              <?php foreach ($results as $result) { ?>
+                 <ul class="categories">
+                     <li><a href=""><?php echo $result->title ?></a>                         
+                         <ul class="sub-category">                            
+                            <li><a href=""><?php echo $result->content ?></a></li>                            
+                        </ul>
+                     </li>
+                 </ul>
+              <?php } ?>                       
         </div>
     </div>
 
