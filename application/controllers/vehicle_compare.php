@@ -10,6 +10,9 @@ class Vehicle_compare extends CI_Controller {
 
         $this->load->model('vehicle_compare/vehicle_compare_model');
         $this->load->model('vehicle_compare/vehicle_compare_service');
+        
+        $this->load->model('equipment/equipment_model');
+        $this->load->model('equipment/equipment_service');
     }
 
     function add_vehicle_to_compare() {
@@ -51,6 +54,17 @@ class Vehicle_compare extends CI_Controller {
         }
 
         echo '</ul>';
+    }
+
+    function load_compare_vehicles() {
+
+        $vehicle_compare_service = new Vehicle_compare_service();
+        $equipment_service = new Equipment_service();
+
+        $data['vehicle_list'] = $vehicle_compare_service->get_vehicle_to_compare_for_user($this->session->userdata('USER_ID'));
+        $data['equipments'] = $equipment_service->get_all_active_equipment();
+
+        echo $this->load->view('my_dashboard/compare_vehicles', $data);
     }
 
 }

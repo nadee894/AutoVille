@@ -18,7 +18,7 @@
                         <ul class="list-group">
                             <li class="list-group-item"> <span class="badge">5</span> <a class="dashboard_link" href="#"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li class="list-group-item"> <span class="badge">5</span> <a id="searched_view" href="#"><i class="fa fa-star-o"></i> Saved Searches</a></li>
-                            <li class="list-group-item"> <span class="badge">12</span> <a href="user-dashboard-saved-cars.html"><i class="fa fa-folder-o"></i> Saved Cars</a></li>
+                            <li class="list-group-item"> <span class="badge"></span> <a id="compare_vehicle_view" href="#"><i class="fa fa-folder-o"></i> Compare Vehicles</a></li>
                             <li class="list-group-item"> <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement"><i class="fa fa-plus-square-o"></i> Create new Advertisement</a></li>
                             <li class="list-group-item active"> <span class="badge">2</span> <a class="dashboard_link" href="#"><i class="fa fa-edit"></i> My Advertisements</a></li>
                             <li class="list-group-item"> <a id="profile_link" href="#" ><i class="fa fa-user"></i> My Profile</a></li>
@@ -60,6 +60,15 @@
     $('#searched_view').on('click', function(e) {
 
         $.post('<?php echo site_url(); ?>/dashboard/load_saved_searches', {}, function(msg)
+        {
+            $('#dashboard_right_content').html(msg);
+        });
+    });
+    
+    //load compare vehicle view
+    $('#compare_vehicle_view').on('click', function(e) {
+
+        $.post('<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles', {}, function(msg)
         {
             $('#dashboard_right_content').html(msg);
         });
