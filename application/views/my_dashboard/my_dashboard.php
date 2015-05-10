@@ -38,7 +38,7 @@
 
 <script>
     $(window).load(function(){
-      $("#sticker").sticky({ topSpacing: 100 });
+//      $("#sticker").sticky({ topSpacing: 100 });
     });
 
     //load profile view
