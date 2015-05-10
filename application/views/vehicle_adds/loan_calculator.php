@@ -70,7 +70,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-    $('#price-slider').change(function () {
+   $('#price-slider').on('change', function(){
 
         var maxprice = 0;
         var carPrice = number_format($vehicle_detail->price, 2, '.', ',');
@@ -78,7 +78,7 @@
 //        var maxrate = $('#maxrate').val();
         
         function changeValue() {
-            var installment = (carPrice - $("#slider").slider(".value"));
+            var installment = (carPrice - $("#price-slider").slider(".value"));
 //                    + (($vehicle_detail - > price) * maxrate) / 100.0;
             $("#monthly-payment").val(installment);
         }
