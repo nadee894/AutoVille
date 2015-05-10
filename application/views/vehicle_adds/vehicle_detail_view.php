@@ -106,7 +106,7 @@
                         </li>
                         <li>
                             <span class="label">Engine:</span>
-                            <span class="value">3200 cm³ (373 kW / 507 CP)</span>
+                            <span class="value">3200 cmÂ³ (373 kW / 507 CP)</span>
                         </li>
                         <li>
                             <span class="label">Transmision:</span>
@@ -173,55 +173,11 @@
 
 
                 <div class="one-half col-241 search-area">
-                    <form id="search-filters">
+
                         <fieldset id="loan-calculator" class="grey-corner-box">
-                            <legend><span class="bold">Loan</span> calculator</legend>
-                            <ul>
-                                <li>
-                                    <label for="loan-amount">Loan Amount:</label>
-                                    <select id="loan-amount">
-                                        <option value="0" selected="selected">0.00 Euro</option>
-                                        <option value="1000">1000.00 Euro</option>
-                                        <option value="5000">5000.00 Euro</option>
-                                        <option value="10000">10000.00 Euro</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="down-payment">Down Payment:</label>
-                                    <select id="down-payment">
-                                        <option value="0" selected="selected">0.00 Euro</option>
-                                        <option value="1000">1000.00 Euro</option>
-                                        <option value="5000">5000.00 Euro</option>
-                                        <option value="10000">10000.00 Euro</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="annual-rate">Annual Rate:</label>
-                                    <select id="annual-rate">
-                                        <option value="0" selected="selected">0.00 %</option>
-                                        <option value="0.1">10.00 %</option>
-                                        <option value="0.2">20.00 %</option>
-                                        <option value="0.3">30.00 %</option>
-                                    </select>							
-                                </li>
-                                <li>
-                                    <label for="loan-period">Loan Period:</label>
-                                    <select id="loan-period">
-                                        <option value="3" selected="selected">3 Years</option>
-                                        <option value="1">1 Year</option>
-                                        <option value="2">2 Years</option>
-                                        <option value="3">4 Years</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    <div class="submit-button"><input type="submit" value="calculate" /></div>
-                                </li>
-                                <li class="rate-value">
-                                    <p>Rate value: <span class="amount-value">0,00</span></p>
-                                </li>
-                            </ul>
+                             <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
                         </fieldset>
-                    </form>
+
 
                     <div class="grey-corner-box">
                         <a href="#"><img src="images/image_ads_here.gif" alt="Advertisement" /></a>
@@ -232,89 +188,7 @@
             </div>
 
             <div class="full-width standard-text-content">
-                <h3><span class="bold">Similar</span> offers</h3>
-
-                <ul class="offer-small list-content">
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                            <span class="v-sign">V</span>
-                            <span class='dealer-data'>Vehicle Dealer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                            <span class="v-sign">V</span>
-                            <span class='dealer-data'>Vehicle Dealer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="car-details.html">
-                            <img src="images/mercedes-thumb.jpg" alt="offer car" />
-                            <div class="entry-label">
-                                <h4>Mercedes-Benz CLS</h4>
-                                <span class="price-tag">54980 Euro</span>
-                            </div>
-                            <div class="entry-overlay">
-                                <ul class="car-list-details">
-                                    <li>Registration 2002</li>
-                                    <li>3.0 Diesel</li>
-                                    <li>230 HP</li>
-                                    <li>Body Coupe</li>
-                                    <li>120.000 KM</li>							
-                                </ul>
-                            </div>
-                            <span class="v-sign">V</span>
-                            <span class='dealer-data'>Vehicle Dealer</span>
-                        </a>
-                    </li>
-
-                </ul>
+                <?php echo $this->load->view('vehicle_adds/vehicle_reviews_view'); ?>
             </div>
 
 
