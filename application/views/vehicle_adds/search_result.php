@@ -29,7 +29,13 @@
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
-                                <div class="quick-view"><i class="fa fa-plus" onclick="add_to_compare(<?php echo $result->id; ?>)"></i><span>Park & Compare</span></div>
+                                <div class="quick-view"><i class="fa fa-plus" 
+                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
+                                                               onclick="save_in_browser()"
+                                                           <?php } else { ?>                                                               
+                                                               onclick="add_to_compare(<?php echo $result->id; ?>)"
+                                                           <?php } ?>
+                                                           ></i><span>Park & Compare</span></div>
                                 <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
                                     <div class="overlay">
                                         <div class="inner">
@@ -95,21 +101,27 @@ function CurrencyFormat($number) {
 }
 ?>
 
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 
 <script type="text/javascript">
 
-    function add_to_compare(id) {
+                                                       function add_to_compare(id) {
 
-        $.ajax({
-            type: "POST",
-            url: site_url + '/vehicle_compare/add_vehicle_to_compare',
-            data: "id=" + id,
-            success: function (msg) {
-                $('#compare_vehicle_list').html(msg);
-            }
-        });
+                                                           $.ajax({
+                                                               type: "POST",
+                                                               url: site_url + '/vehicle_compare/add_vehicle_to_compare',
+                                                               data: "id=" + id,
+                                                               success: function (msg) {
+                                                                   toastr.success("Vehicle Added to Compare!!", "AutoVille");
+                                                                   $('#compare_vehicle_list').html(msg);
+                                                               }
+                                                           });
 
-    }
+                                                       }
+
+                                                       function save_in_browser() {
+                                                           alert('not loged in');
+                                                       }
 
 </script>
 
