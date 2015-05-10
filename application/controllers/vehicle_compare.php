@@ -26,7 +26,7 @@ class Vehicle_compare extends CI_Controller {
         if ($msg == 1) {
             $this->load_vehicle_popup();
         } else {
-            echo 3;
+            echo 0;
         }
     }
 
@@ -43,7 +43,7 @@ class Vehicle_compare extends CI_Controller {
         if ($resCount != 0) {
             foreach ($compare_vehicles as $result) {
                 echo '<li> <span class="photo"><img src="' . base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/thumbnail/' . $result->image_path . '" alt="Thumb Car" height="30" width="50" /></span>';
-                echo '<span class="subject">' . $result->manufacture . " " . $result->model . '</span> </li>';
+                echo '<span class="subject"><h4>' . $result->manufacture . " " . $result->model . '</h4></span> </li>';
             }
             echo '<li><button>Compare</button></li>';
         } else {
