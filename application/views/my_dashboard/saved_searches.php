@@ -1,7 +1,7 @@
 <h2>Saved Searches</h2>
 <div>
     <div class="dashboard-block">
-        <div class="table-responsive">
+        <div class="">
             <table class="table table-bordered table-striped  dashboard-tables saved-cars-table">
                 <thead>
                     <tr>
@@ -20,24 +20,24 @@
                                 <a class="car-image" href="<?php echo site_url().'vehicle_advertisements/vehicle_advertisement_detail_view/'.$my_advertisement->id;?>">
                                      <img  class="lazy" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/thumbnail/' . $my_advertisement->image_path; ?>">
                                 </a>
-                                <div class="search-find-results">
+                  
                                     <h5>
                                         <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $my_advertisement->id; ?>"><?php echo $my_advertisement->manufacture . " " . $my_advertisement->model . " " . $my_advertisement->year; ?></a>
                                     </h5>
-                                    <ul class="inline te">
+                                    <ul class="inline list-unstyled">
                                         <li>
                                             <i class="fa fa-caret-right"></i>
                                             <?php echo $my_advertisement->body_type; ?>
                                         </li>
                                         
                                     </ul>
-                                </div>
+                       
                             </td>
                             <td>
                                 <div class="price"> <?php echo "Rs. " . number_format($my_advertisement->price, 2, '.', ','); ?></div>
                             </td>
                             <td><span class="text-success">Saved on </span></td>
-                            <td>
+                            <td align="center">
                                 <a href="#" onclick="delete_advertisement(<?php echo $my_advertisement->search_id; ?>)" title="Remove"> <i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
