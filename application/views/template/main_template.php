@@ -43,36 +43,34 @@
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">
-                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
-
-                                        <div class="dealer-login">
-                                            <a href="<?php echo site_url(); ?>/login/load_login" class="dealer-name"><i class="fa fa-unlock-alt"></i>  Sign In</a>
-                                            <a href="<?php echo site_url(); ?>/register_users/load_registration" class="sign-out"><i class="fa fa-user"></i> Register</a>
+                                    <div class="dealer-login">   
+                                        
+                                        <!--cart-->
+                                        <div class="btn-group" id="compare_vehicle_list">                                                
+                                            <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">  
+                                                <!--One car-->
+                                                <li>Add Vehicle</li>                                                                                                   
+                                                <!--End One car-->                                                                                                        
+                                            </ul>
                                         </div>
+                                        <!--End cart-->
 
-                                    <?php } else { ?>                                                                                                                
+                                        <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
 
-                                        <div class="dealer-login">
+                                            <a href="<?php echo site_url(); ?>/login/load_login" class="dealer-name"><i class="fa fa-unlock-alt"></i>  Sign In</a>
+                                            <a href="<?php echo site_url(); ?>/register_users/load_registration" class="sign-out"><i class="fa fa-user"></i> Register</a>                                        
 
-                                            <!--cart-->
-                                            <div class="btn-group" id="compare_vehicle_list">                                                
-                                                <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">  
-                                                    <!--One car-->
-                                                                                                                                                                     
-                                                    <!--End One car-->                                                                                                        
-                                                </ul>
-                                            </div>
-                                            <!--End cart-->
-
+                                        <?php } else { ?>                                                                                                                
 
                                             <a href="<?php echo site_url(); ?>/dashboard" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_NAME')); ?></a>
-                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>
-                                        </div>
+                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>                                        
 
-                                    <?php } ?>
+                                        <?php } ?>
+                                            
+                                    </div>
                                 </ul>
                                 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                                     <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
