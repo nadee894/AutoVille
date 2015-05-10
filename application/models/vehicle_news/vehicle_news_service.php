@@ -32,7 +32,7 @@ class Vehicle_news_service extends CI_Model {
         $this->db->from('vehicle_news');
         $this->db->where('vehicle_news.is_deleted', '0');
         $this->db->where('vehicle_news.is_published', '1');
-        $this->db->where('vehicle_news.is_latest', '1');
+        $this->db->where('vehicle_news.is_latest', '0');
         $this->db->order_by("vehicle_news.title", "asc");
         $this->db->limit(1);
         $query = $this->db->get();       
@@ -44,7 +44,7 @@ class Vehicle_news_service extends CI_Model {
         $this->db->from('vehicle_news');
         $this->db->where('vehicle_news.is_deleted', '0');
         $this->db->where('vehicle_news.is_published', '1');
-        $this->db->order_by("vehicle_news.title", "desc");
+        $this->db->order_by("vehicle_news.title", "asc");
         $query = $this->db->get();       
         return $query->result();
     }
