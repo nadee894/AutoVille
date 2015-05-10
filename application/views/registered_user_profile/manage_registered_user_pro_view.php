@@ -20,31 +20,32 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Name*</label>
-                                        <input name="name" type="text" class="form-control" id="name" placeholder=" " value="<?php echo $user->name; ?>">
+                                        <input class="form-control" type="text" required="" placeholder="">
+                                        <!--<input name="name" type="text" class="form-control" id="name" placeholder=" " value="<?php echo $user->name; ?>">-->
                                     </div>
                                     <div class="col-md-6">
                                         <label>Username</label>
-                                        <input name="user_name" type="text" class="form-control" id="username" placeholder=" " value="<?php echo $user->user_name; ?>">
+                                        <input class="form-control" type="text" required="" placeholder="">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Email*</label>
-                                        <input name="email" type="text" class="form-control" id="email" placeholder=" " value="<?php echo $user->email; ?>">
+                                        <input class="form-control" type="text" required="" placeholder="">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Address</label>
-                                        <input name="address" type="text" class="form-control" id="address" placeholder=" "value="<?php echo $user->address; ?>">
+                                        <input class="form-control" type="text" required="" placeholder="">
                                     </div>
                                 </div>                                                                
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Contact number 1</label>
-                                        <input name="contact_no_1" type="text" class="form-control" id="mobile1" placeholder=" " value="<?php echo $user->contact_no_1; ?>">
+                                        <input class="form-control" type="text" required="" placeholder="">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Contact number 2</label>
-                                        <input name="contact_no_2" type="text" class="form-control" id="mobile2" placeholder=" " value="<?php echo $user->contact_no_2; ?>">
+                                        <input class="form-control" type="text" required="" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -57,17 +58,17 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Current Password</label>
-                                        <input name="current_password" type="password" class="form-control" id="current_pwd" placeholder=" " >
+                                        <input class="form-control" type="password" placeholder="">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>New password</label>
-                                        <input name="new_password" type="password" class="form-control" id="new_pwd" placeholder=" ">
+                                        <input class="form-control" type="password" placeholder="">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Confirm new password</label>
-                                        <input name="confirm_new_password" type="password" class="form-control" id="confirm_new_pwd" placeholder=" ">
+                                        <input class="form-control" type="password" placeholder="">
                                     </div>
                                 </div>
                             </div>
