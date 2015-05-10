@@ -23,4 +23,9 @@ class Equipment_service extends CI_Model {
         return $query->row();
     }
 
+    function get_equiments_in_vehicle($vehicle_id){
+        
+        $this->db->select('vehicle_advertisements.*,');
+        $this->db->from('vehicle_advertisements');
+    }
 }
