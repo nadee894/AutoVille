@@ -1,9 +1,10 @@
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/jquery.sticky.js"></script>
 <div id="content" class="content full dashboard-pages">
     <div class="container">
         <div class="dashboard-wrapper">
             <br>
             <div class="row">
-                <div class="col-md-3 col-sm-4">
+                <div id="sticker" class="col-md-3 col-sm-4">
                     <!--                    <div>
                                             <img class="img-responsive img-circle" src="<?php echo base_url() . 'uploads/user_avatars/avatar.png'; ?>"/>
                                             <div id="upload">
@@ -36,6 +37,9 @@
 </div>
 
 <script>
+    $(window).load(function(){
+      $("#sticker").sticky({ topSpacing: 100 });
+    });
 
     //load profile view
     $('#profile_link').on('click', function(e) {
@@ -54,8 +58,8 @@
             $('#dashboard_right_content').html(msg);
         });
     });
-    
-    
+
+
     //load saved searches view
     $('#searched_view').on('click', function(e) {
 
@@ -64,7 +68,7 @@
             $('#dashboard_right_content').html(msg);
         });
     });
-    
+
     //load compare vehicle view
     $('#compare_vehicle_view').on('click', function(e) {
 

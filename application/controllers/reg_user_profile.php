@@ -69,7 +69,7 @@ class Reg_User_Profile extends CI_Controller {
         
         $reg_user_profile_model->set_id($this->session->userdata('USER_ID'));
         $user_type=$reg_user_profile_service->get_reg_user_by_id($reg_user_profile_model);
-        $data['results']=$user_type;
+        $data['user']=$user_type;
         
 
         
