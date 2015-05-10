@@ -173,7 +173,7 @@
 
 
                 <div class="one-half col-241 search-area">
-<!--                    <form id="search-filters">
+                    <form id="search-filters">
                         <fieldset id="loan-calculator" class="grey-corner-box">
                             <legend><span class="bold">Loan</span> calculator</legend>
                             <ul>
@@ -221,7 +221,7 @@
                                 </li>
                             </ul>
                         </fieldset>
-                    </form>-->
+                    </form>
 
                     <div class="grey-corner-box">
                         <a href="#"><img src="images/image_ads_here.gif" alt="Advertisement" /></a>
