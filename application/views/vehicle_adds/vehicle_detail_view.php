@@ -174,9 +174,9 @@
 
                 <div class="one-half col-241 search-area">
 
-                        <fieldset id="loan-calculator" class="grey-corner-box">
+                    <div id="loan-calculator" class="grey-corner-box">
                              <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
-                        </fieldset>
+                    </div>
 
 
                     <div class="grey-corner-box">
