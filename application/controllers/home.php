@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
+
         $this->load->model('manufacture/manufacture_model');
         $this->load->model('manufacture/manufacture_service');
 
@@ -60,14 +60,16 @@ class Home extends CI_Controller {
             $vehicle_results = $vehicle_advertisments_service->get_recently_viewed_vehicles($this->session->userdata('USER_ID'));
         }
         $data['vehicle_results'] = $vehicle_results;
+
         $data['names'] = $manufacture_service->get_manufacture_name();
         $data['logos'] = $manufacture_service->get_manufacture_logo();
-                
-        $data['vehicle_news_results']      = $vehicle_news_service->get_vehicle_news();
 
-        $parials = array('content' => 'content_pages/home_content', 'vehicle_search_content' => 'vehicle_adds/load_vehicle_sepecs_for_search', 'recent_adds' => 'vehicle_adds/recent_adds', 'manu_list' => 'manufacturers/manufacture_list_view');
+
+        $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();
+        $data['featured_vehicles'] = $vehicle_advertisments_service->get_featured_advertisements(4);
+
+        $parials = array('content' => 'content_pages/home_content', 'vehicle_search_content' => 'vehicle_adds/load_vehicle_sepecs_for_search', 'recent_adds' => 'vehicle_adds/recent_adds', 'manu_list' => 'manufacturers/manufacture_list_view', 'featured_vehicles' => 'vehicle_adds/featured_vehicles');
         $this->template->load('template/main_template', $parials, $data);
     }
-
 
 }
