@@ -112,8 +112,12 @@ function CurrencyFormat($number) {
                                                                url: site_url + '/vehicle_compare/add_vehicle_to_compare',
                                                                data: "id=" + id,
                                                                success: function (msg) {
-                                                                   toastr.success("Vehicle Added to Compare!!", "AutoVille");
-                                                                   $('#compare_vehicle_list').html(msg);
+                                                                   if (msg != 0) {
+                                                                       toastr.success("Vehicle Added to Compare!!", "AutoVille");
+                                                                       $('#compare_vehicle_list').html(msg);
+                                                                   } else {
+                                                                       alert('Error loading vehicles');
+                                                                   }
                                                                }
                                                            });
 

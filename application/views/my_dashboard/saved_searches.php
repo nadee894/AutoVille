@@ -36,7 +36,11 @@
                             <td>
                                 <div class="price"> <?php echo "Rs. " . number_format($my_advertisement->price, 2, '.', ','); ?></div>
                             </td>
+
+                            <td><span class="text-success"><?php echo strtotime(date('"Y-m-d H:i a',$my_advertisement->date));?></span></td>
+
                             <td><span class="text-success"><?php echo date('"Y-m-d H:i a',$my_advertisement->date);?></span></td>
+
                             <td align="center">
                                 <a href="#" onclick="delete_advertisement(<?php echo $my_advertisement->search_id; ?>)" title="Remove"> <i class="fa fa-trash-o"></i></a>
                             </td>
