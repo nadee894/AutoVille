@@ -10,6 +10,10 @@ class Dashboard extends CI_Controller {
 
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
+        
+        $this->load->model('searched_vehicles/searched_vehicles_model');
+        $this->load->model('searched_vehicles/searched_vehicles_service');
+        
         $this->load->library('pagination');
     }
 
@@ -45,7 +49,7 @@ class Dashboard extends CI_Controller {
         $config = array();
 
         $config["base_url"]        = site_url() . "/dashboard/load_my_advertisements/";
-        $config["per_page"]        = 2;
+        $config["per_page"]        = 8;
         $config["uri_segment"]     = 4;
         $config["num_links"]       = 4;
         $config["total_rows"]      = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
@@ -56,6 +60,29 @@ class Dashboard extends CI_Controller {
         $data["links"] = $this->pagination->create_links();
 
         echo $this->load->view('my_dashboard/my_advertisements',  $data);
+
+    }
+    
+    function load_saved_searches($start = 0){
+
+
+        $searched_vehicles_service = new Searched_vehicles_service();
+
+
+        $config = array();
+
+        $config["base_url"]        = site_url() . "/dashboard/load_saved_searches/";
+        $config["per_page"]        = 8;
+        $config["uri_segment"]     = 4;
+        $config["num_links"]       = 4;
+        $config["total_rows"]      = count($searched_vehicles_service->get_searched_vehicles_for_user('', '', $this->session->userdata('USER_ID')));
+        
+        $this->pagination->initialize($config);
+        
+        $data['my_advertisements'] = $searched_vehicles_service->get_searched_vehicles_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
+        $data["links"] = $this->pagination->create_links();
+
+        echo $this->load->view('my_dashboard/saved_searches',  $data);
 
     }
 

@@ -239,7 +239,7 @@ class Vehicle_advertisements extends CI_Controller {
             $searched_vehicles_model->set_user_id($this->session->userdata('USER_ID'));
             $searched_vehicles_model->set_date(date("Y-m-d H:i:s"));
 
-//            $searched_vehicles_service->add_search_record($searched_vehicles_model);
+            $searched_vehicles_service->add_search_record($searched_vehicles_model);
         }
 
         $data['vehicle_detail'] = $vehicle_advertisments_service->get_advertisement_by_id($id);
