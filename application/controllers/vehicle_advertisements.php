@@ -45,6 +45,9 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('searched_vehicles/searched_vehicles_model');
         $this->load->model('searched_vehicles/searched_vehicles_service');
+
+        $this->load->model('vehicle_reviews/vehicle_reviews_model');
+        $this->load->model('vehicle_reviews/vehicle_reviews_service');
     }
 
     function post_new_advertisement() {
@@ -58,15 +61,19 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
         $vehicle_images_temp_service   = new Vehicle_images_temp_service();
         $district_service              = new District_service();
+        
 
-        $data['heading']       = "Sell your vehicle";
-        $data['manufactures']  = $manufacture_service->get_all_active_manufactures();
-        $data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
-        $data['body_types']    = $body_type_service->get_all_active_body_types();
-        $data['fuel_types']    = $fuel_type_service->get_all_active_fuel_types();
-        $data['transmissions'] = $transmission_service->get_all_active_transmissions();
-        $data['equipments']    = $equipment_service->get_all_active_equipment();
-        $data['locations']     = $district_service->get_all_districts();
+
+        $data['heading']         = "Sell your vehicle";
+        $data['manufactures']    = $manufacture_service->get_all_active_manufactures();
+        $data['models']          = $vehicle_model_service->get_all_active_vehicle_models();
+        $data['body_types']      = $body_type_service->get_all_active_body_types();
+        $data['fuel_types']      = $fuel_type_service->get_all_active_fuel_types();
+        $data['transmissions']   = $transmission_service->get_all_active_transmissions();
+        $data['equipments']      = $equipment_service->get_all_active_equipment();
+        $data['locations']       = $district_service->get_all_districts();
+        
+
 
         $vehicle_images_temp_service->truncate_temp_images();
 
@@ -233,6 +240,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_images_service        = new Vehicle_images_service();
         $searched_vehicles_model       = new Searched_vehicles_model();
         $searched_vehicles_service     = new Searched_vehicles_service();
+        $vehicle_reviews_service       = new Vehicle_reviews_service();
 
         if ($this->session->userdata('USER_ID') != '') {
             $searched_vehicles_model->set_vehicle_id($id);
@@ -244,6 +252,7 @@ class Vehicle_advertisements extends CI_Controller {
 
         $data['vehicle_detail'] = $vehicle_advertisments_service->get_advertisement_by_id($id);
         $data['images']         = $vehicle_images_service->get_images_for_advertisement($id);
+        $data['vehicle_reviews'] = $vehicle_reviews_service->get_all_vehicle_reviews();
 
 
 
