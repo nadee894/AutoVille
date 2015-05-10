@@ -235,5 +235,16 @@ class Vehicle_advertisements extends CI_Controller {
         $parials = array('content' => 'vehicle_adds/vehicle_detail_view');
         $this->template->load('template/main_template', $parials, $data);
     }
+    
+    /*
+     * This is to delete a advertisement by the user
+     */
+
+    function delete_advertisement() {
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        echo $vehicle_advertisments_service->delete_advertisement(trim($this->input->post('id', TRUE)));
+    }
 
 }

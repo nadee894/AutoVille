@@ -1,11 +1,20 @@
 <div id="content" class="content full dashboard-pages">
     <div class="container">
         <div class="dashboard-wrapper">
+            <br>
             <div class="row">
                 <div class="col-md-3 col-sm-4">
+<!--                    <div>
+                        <img class="img-responsive img-circle" src="<?php echo base_url() . 'uploads/user_avatars/avatar.png';?>"/>
+                        <div id="upload">
+                            <button type="button" class="btn btn-primary btn-small" id="browse"><i class="fa fa-camera"></i></button>
+
+                        </div>
+                        <div id="sta"><span id="status" ></span></div>
+                    </div>-->
+
                     <!-- SIDEBAR -->
                     <div class="users-sidebar tbssticky">
-                        <a href="user-dashboard.html" class="btn btn-block btn-primary add-listing-btn"></a>
                         <ul class="list-group">
                             <li class="list-group-item"> <span class="badge">5</span> <a href="user-dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
                             <li class="list-group-item"> <span class="badge">5</span> <a href="user-dashboard-saved-searches.html"><i class="fa fa-folder-o"></i> Saved Searches</a></li>
@@ -19,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-8">
-                    <?php echo $this->load->view('my_dashboard/my_advertisements');?>
+                    <?php echo $this->load->view('my_dashboard/my_advertisements'); ?>
                 </div>
             </div>
         </div>

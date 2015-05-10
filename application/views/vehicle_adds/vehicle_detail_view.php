@@ -1,4 +1,8 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/main.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application_resources/elasti/demo.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application_resources/elasti/elastislide.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application_resources/elasti/custom.css" />
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/elasti/modernizr.custom.17475.js"></script>
 <div id="page-content">
     <section id="car-pagination">
         <div class="content-holder">
@@ -46,24 +50,41 @@
 
             <div class="full-width vehicle-description">
 
-                <div class="car-full-image one-half col-480">
-                    <div class="main-image">
-                        <a href="#">
-                            <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $images[0]->image_path; ?>" alt="Full Picture" />
-                            <span class="magnifying-glass">Magnifying Glass</span>
-                        </a>
+                <div class="one-half col-480">
+                    <div class="gallery">
+                        <!-- Elastislide Carousel -->
+                        <ul id="carousel" class="elastislide-list">
+                            <?php foreach ($images as $image) { ?>
+                                <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"><a href="#"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" /></a></li>
+<li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"><a href="#"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" /></a></li>
+                            <?php } ?><li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"><a href="#"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" /></a></li>
+                        </ul>
+                        <!-- End Elastislide Carousel -->
+
+                        <div class="image-preview">
+                            <img id="preview" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $images[0]->image_path; ?>" />
+                        </div>
                     </div>
-                    <ul class="images-navigation">
-                        <?php foreach ($images as $image) {?>
-                        <li>
-                            <a href="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
-                                <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
-                            </a>
-                        </li>
-                        <?php } ?>
-                    </ul>
-                    <div id="preloader"></div>
                 </div>
+
+                <!--                <div class="gallery one-half col-480">
+                                   
+                                    <ul id="carousel" class="elastislide-list">
+                <?php foreach ($images as $image) { ?>
+                                                <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
+                                                    <a href="">
+                                                        <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
+                                                    </a>
+                                                </li>
+                <?php } ?>
+                                    </ul>
+                                     <div class="image-preview">
+                                        <img id="preview" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $images[0]->image_path; ?>" />
+                                    </div>
+                                </div>-->
+
+
+
 
                 <div class="car-full-specs one-half col-460">
                     <div class="price-car">
@@ -297,7 +318,47 @@
             </div>
 
 
+
+
+
         </div><!--.content-holder-->
     </section><!--#search-list-->
 
 </div><!--#page-content-->
+
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/elasti/jquerypp.custom.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/elasti/jquery.elastislide.js"></script>
+<script type="text/javascript">
+
+    // example how to integrate with a previewer
+
+    var current = 0,
+            $preview = $('#preview'),
+            $carouselEl = $('#carousel'),
+            $carouselItems = $carouselEl.children(),
+            carousel = $carouselEl.elastislide({
+        current: current,
+        minItems: 4,
+        onClick: function(el, pos, evt) {
+
+            changeImage(el, pos);
+            evt.preventDefault();
+
+        },
+        onReady: function() {
+
+            changeImage($carouselItems.eq(current), current);
+
+        }
+    });
+console.log("sds");
+    function changeImage(el, pos) {
+
+        $preview.attr('src', el.data('preview'));
+        $carouselItems.removeClass('current-img');
+        el.addClass('current-img');
+        carousel.setCurrent(pos);
+
+    }
+
+</script>
