@@ -46,11 +46,48 @@ class Register_Users extends CI_Controller {
         //$register_users_model->set_updated_by($this->input->post('updated_by', TRUE));
 
         echo $register_users_service->add_new_user_registration($register_users_model);
-    }
-
-    function validate_user_name() {
         
+        $token = $this->generate_random_string(); //generate account activation token
+        $register_users_model->set_account_activation_code(md5($token));
+        
+        $link=base_url()."index.php/register_users/register_users_controller/account_activation/".urlencode($user_id)."/".md5($token);
+        
+        if($user_id){
+            
+            $data['name'] = $name;
+            $data['link'] = $link;
+            $data['pasword'] = $this->input->post('form_register_password', TRUE);
+            $data['user_name'] = $this->input->post('form_register_email', TRUE);
+            
+            $email_subject = "Autoville : Activate Your New Account";
+
+
+            $msg = $this->load->view('template/mail_template/body', $data, TRUE);
+
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: Autoville <autoville@gmail.com>' . "\r\n";
+            $headers .= 'Cc: ashanidiaz@gmail.com' . "\r\n";
+            
+             if (mail($email, $email_subject, $msg, $headers)){
+                 echo "1";
+             }else {
+                echo "0";
+            }    
+        }else {
+            echo "0";
+        }
+    }
+    
+    public function generate_random_string($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $random_string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $random_string .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $random_string;
     }
 
 }
-
+            
+          
