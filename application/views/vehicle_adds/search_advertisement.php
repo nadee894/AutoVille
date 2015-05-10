@@ -153,9 +153,9 @@
                         </fieldset>
                         <!--End Search Filter-->
 
-                        <fieldset id="loan-calculator" class="grey-corner-box">
+<!--                        <fieldset id="loan-calculator" class="grey-corner-box">
                             <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
-                        </fieldset>
+                        </fieldset>-->
                     </form>
                 </div>
 
