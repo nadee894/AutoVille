@@ -29,7 +29,7 @@
                     <div class="col-md-<?php echo $class_no; ?> col-sm-<?php echo $class_no; ?>">
                         <div class="item" >
                             <div class="image">
-                                <div class="quick-view"><i class="fa fa-plus"></i><span>Park & Compare</span></div>
+                                <div class="quick-view"><i class="fa fa-plus" onclick="add_to_compare(<?php echo $result->id; ?>)"></i><span>Park & Compare</span></div>
                                 <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
                                     <div class="overlay">
                                         <div class="inner">
@@ -94,5 +94,23 @@ function CurrencyFormat($number) {
     return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
 }
 ?>
+
+
+<script type="text/javascript">
+
+    function add_to_compare(id) {
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/vehicle_compare/add_vehicle_to_compare',
+            data: "id=" + id,
+            success: function (msg) {
+                $('#compare_vehicle_list').html(msg);
+            }
+        });
+
+    }
+
+</script>
 
 

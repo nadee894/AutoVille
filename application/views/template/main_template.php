@@ -55,20 +55,14 @@
                                         <div class="dealer-login">
 
                                             <!--cart-->
-                                            <div class="btn-group">                                                
+                                            <div class="btn-group" id="compare_vehicle_list">                                                
                                                 <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">  
                                                     <!--One car-->
-                                                    <li>
-                                                        <a href="#">
-                                                            <span class="photo"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" height="35" width="35" alt=""></span>
-                                                            <span class="subject"> Lambogini</span>
-                                                        </a>
-                                                    </li>     
-                                                    <!--End One car-->                                                    
-                                                    <li><button>Compare</button></li>
+                                                                                                                                                                     
+                                                    <!--End One car-->                                                                                                        
                                                 </ul>
                                             </div>
                                             <!--End cart-->
@@ -271,9 +265,9 @@
 
         <script>
             autoComplete();
-            $(function() {
+            $(function () {
                 $("img.lazy").lazyload({
-                      effect : "fadeIn"
+                    effect: "fadeIn"
                 });
             });
         </script>
