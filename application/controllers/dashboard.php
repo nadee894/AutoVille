@@ -85,5 +85,12 @@ class Dashboard extends CI_Controller {
         echo $this->load->view('my_dashboard/saved_searches',  $data);
 
     }
+    
+    function delete_saved_search(){
+        
+        $searched_vehicles_service = new Searched_vehicles_service();
+
+        echo $searched_vehicles_service->delete_serached_record(trim($this->input->post('id', TRUE)));
+    }
 
 }
