@@ -35,7 +35,7 @@
                             </a>
                         </div>
                         <div class="wrapper">
-                            <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
+                            <a href="">
                                 <h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
                             <figure>63 Birch Street</figure>
                             <div class="info">
