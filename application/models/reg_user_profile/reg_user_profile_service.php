@@ -42,7 +42,7 @@ class Reg_User_Profile_service extends CI_Model {
         $this->db->select('user.*, user_type.type');
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
-        $this->db->where('user_type.id in (3)');
+//        $this->db->where('user_type.id in (3)');
         $this->db->where('user.is_deleted', '0');
         $this->db->where('user.id', $reg_user_profile_model->get_id());
         $query = $this->db->get();

@@ -35,5 +35,28 @@ class Dashboard extends CI_Controller {
         $parials = array('content' => 'my_dashboard/my_dashboard');
         $this->template->load('template/main_template', $parials, $data);
     }
+    
+    function load_my_advertisements($start = 0){
+
+
+        $vehicle_advertisements_service = new Vehicle_advertisments_service();
+
+
+        $config = array();
+
+        $config["base_url"]        = site_url() . "/dashboard/load_my_advertisements/";
+        $config["per_page"]        = 2;
+        $config["uri_segment"]     = 4;
+        $config["num_links"]       = 4;
+        $config["total_rows"]      = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
+        
+        $this->pagination->initialize($config);
+        
+        $data['my_advertisements'] = $vehicle_advertisements_service->get_advertisements_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
+        $data["links"] = $this->pagination->create_links();
+
+        echo $this->load->view('my_dashboard/my_advertisements',  $data);
+
+    }
 
 }

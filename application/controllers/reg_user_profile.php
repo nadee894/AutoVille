@@ -71,8 +71,8 @@ class Reg_User_Profile extends CI_Controller {
         $user_type=$reg_user_profile_service->get_reg_user_by_id($reg_user_profile_model);
         $data['results']=$user_type;
         
-        $parials=array('content'=>'reg_user_profile/manage_reg_user_profile_view');
-        $this->template->load('template/main_template', $parials, $data);
+        
+        echo $this->load->view('reg_user_profile/manage_reg_user_profile_view',  $data);
     }
 
     /*
