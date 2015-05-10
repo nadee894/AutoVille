@@ -153,7 +153,7 @@
                         </fieldset>
                         <!--End Search Filter-->
 
-                        <fieldset id="loan-calculator" class="grey-corner-box">
+<!--                        <fieldset id="loan-calculator" class="grey-corner-box">
                             <legend><span class="bold">Loan</span> calculator</legend>
                             <ul>
                                 <li>
@@ -199,7 +199,7 @@
                                     <p>Rate value: <span class="amount-value">0,00</span></p>
                                 </li>
                             </ul>							
-                        </fieldset>
+                        </fieldset>-->
                     </form>
                 </div>
 
