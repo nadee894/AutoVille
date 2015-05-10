@@ -113,7 +113,7 @@ function CurrencyFormat($number) {
                                                                data: "id=" + id,
                                                                success: function (msg) {
                                                                    if (msg != 0) {
-                                                                       toastr.success("Vehicle Added to Compare!!", "AutoVille");
+                                                                       toastr.success("Successfully parked in Garage!!", "AutoVille");
                                                                        $('#compare_vehicle_list').html(msg);
                                                                    } else {
                                                                        alert('Error loading vehicles');

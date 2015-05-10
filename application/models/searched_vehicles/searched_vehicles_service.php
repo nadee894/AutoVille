@@ -30,13 +30,18 @@ class Searched_vehicles_service extends CI_Model {
         $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
         $this->db->where('vehicle_advertisements.is_deleted', '0');
         $this->db->where('searched_vehicles.user_id', $user_id);
-        $this->db->group_by('vehicle_advertisements.id');
+//        $this->db->group_by('vehicle_images.vehicle_id');
+
         if ($limit != '' && $start !='') {
             $this->db->limit($limit, $start);
         }
 
         $query = $this->db->get();
         return $query->result();
+    }
+    
+    function delete_serached_record($id){
+       return $this->db->delete('searched_vehicles', array('id' => $id)); 
     }
 
 }
