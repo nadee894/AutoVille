@@ -82,7 +82,7 @@
                         <form name="form1">
                             <input type="text" name="title" placeholder="Title..."/></br><br>
                             <textarea name="comments" placeholder="Leave Comments Here..." style="width:360px; height:50px;"></textarea></br></br>
-                            <a  type="button" onClick="commentSubmit()" class="btn pull-right btn-default">Post</a></br>style
+                            <a  type="button" onClick="commentSubmit()" class="btn pull-right btn-default">Post</a></br>
                         </form>
                     </div>
 
