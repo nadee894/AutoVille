@@ -373,5 +373,37 @@ class Vehicle_advertisements extends CI_Controller {
 
         echo $vehicle_advertisments_service->delete_advertisement(trim($this->input->post('id', TRUE)));
     }
+    
+    /*
+     * This is to send emails to sellers by users
+     * author - nadeesha
+     */
+    
+    function  send_email_to_sellers(){
+         $email_subject = "Workgram : Activate Your New Account";
+            $email         = "New Advertisement submitted!!";
+
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
+            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+
+            if (mail($email, $email_subject, $msg, $headers)) {
+                echo "1";
+            } else {
+                echo "0";
+            }
+
+
+            //sms to admins
+            $message = "New Advertisement has submitted. \n ";
+//            $message .= 'Driver:' . $driver_details->Employee_Name . ' ' . $driver_details->last_name . ' \n ';
+//            $message .= 'Start Time:' . $basic_request_details->required_date . ' \n ';
+//            $message .= 'Location(s):';
+//
+//            $message .= $location_messages;
+
+            $this->sms_handler->sendSMS(0765514269, $message); //correct one
+    }
 
 }
