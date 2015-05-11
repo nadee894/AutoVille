@@ -56,15 +56,22 @@ class Vehicle_compare extends CI_Controller {
         echo '</ul>';
     }
 
-    function load_compare_vehicles() {
+    function load_compare_vehicles() {        
 
         $vehicle_compare_service = new Vehicle_compare_service();
         $equipment_service = new Equipment_service();
 
         $data['vehicle_list'] = $vehicle_compare_service->get_vehicle_to_compare_for_user($this->session->userdata('USER_ID'));
         $data['equipments'] = $equipment_service->get_all_active_equipment();
+        
+        $data['vehicle_equipments']=array();
+        
+        foreach ($data['vehicle_list'] as $vehicle) {            
+            $data['equipment_arr'] = $equipment_service->get_equiments_in_vehicle($vehicle->id);                        
+            array_push($data['vehicle_equipments'], $data['equipment_arr']);                                 
+        }
 
         echo $this->load->view('my_dashboard/compare_vehicles', $data);
     }
-
+    
 }
