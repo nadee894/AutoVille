@@ -42,6 +42,9 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('vehicle_equipment/vehicle_equipment_model');
         $this->load->model('vehicle_equipment/vehicle_equipment_service');
+
+        $this->load->model('searched_vehicles/searched_vehicles_model');
+        $this->load->model('searched_vehicles/searched_vehicles_service');
     }
 
     function post_new_advertisement() {
@@ -228,14 +231,26 @@ class Vehicle_advertisements extends CI_Controller {
     public function vehicle_advertisement_detail_view($id) {
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
         $vehicle_images_service        = new Vehicle_images_service();
+        $searched_vehicles_model       = new Searched_vehicles_model();
+        $searched_vehicles_service     = new Searched_vehicles_service();
+
+        if ($this->session->userdata('USER_ID') != '') {
+            $searched_vehicles_model->set_vehicle_id($id);
+            $searched_vehicles_model->set_user_id($this->session->userdata('USER_ID'));
+            $searched_vehicles_model->set_date(date("Y-m-d H:i:s"));
+
+            $searched_vehicles_service->add_search_record($searched_vehicles_model);
+        }
 
         $data['vehicle_detail'] = $vehicle_advertisments_service->get_advertisement_by_id($id);
         $data['images']         = $vehicle_images_service->get_images_for_advertisement($id);
 
+
+
         $parials = array('content' => 'vehicle_adds/vehicle_detail_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
+
     /*
      * This is to delete a advertisement by the user
      */

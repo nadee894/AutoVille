@@ -7,7 +7,7 @@ class Home extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-
+        
         $this->load->model('manufacture/manufacture_model');
         $this->load->model('manufacture/manufacture_service');
 
@@ -68,5 +68,6 @@ class Home extends CI_Controller {
         $parials = array('content' => 'content_pages/home_content', 'vehicle_search_content' => 'vehicle_adds/load_vehicle_sepecs_for_search', 'recent_adds' => 'vehicle_adds/recent_adds', 'manu_list' => 'manufacturers/manufacture_list_view');
         $this->template->load('template/main_template', $parials, $data);
     }
+
 
 }

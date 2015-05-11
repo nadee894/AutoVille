@@ -36,14 +36,17 @@
                             <a href="<?php echo site_url(); ?>/vehicle_advertisements/edit_new_advertisement/<?php echo $my_advertisement->id; ?>" title="Edit this advertisement"> <i class="fa fa-pencil"></i></a>
                             <a href="#" onclick="delete_advertisement(<?php echo $my_advertisement->id; ?>)" title="Remove this advertisement"> <i class="fa fa-trash-o"></i></a>
                         </div>
-                        <div class="type">
 
-                            <?php if ($my_advertisement->is_published == '0') { ?>
+                        <?php if ($my_advertisement->is_published == '0') { ?>
+                            <div class="type label-warning label">
                                 <span>Processing Approval</span>
-                            <?php } else if ($my_advertisement->is_published == '2') { ?>
+                            </div>
+                        <?php } else if ($my_advertisement->is_published == '2') { ?>
+                            <div class="type label-danger label">
                                 <span>Rejected</span>
-                            <?php } ?>
-                        </div>
+                            </div>
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -53,7 +56,7 @@
     </section>
     <nav>
         <ul class="pagination pull-right">
-            <?php echo $links;?>
+            <?php echo $links; ?>
         </ul>
     </nav>
 </div>

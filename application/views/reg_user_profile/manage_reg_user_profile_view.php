@@ -1,6 +1,7 @@
 
 <!-- page start-->
-<div class="row" >
+<h2>My Profile</h2>
+<div class="row">
     <aside class="profile-nav col-lg-3">
         <section class="panel">
             <div class="user-heading round">
