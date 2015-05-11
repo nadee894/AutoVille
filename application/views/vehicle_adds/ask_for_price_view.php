@@ -11,9 +11,9 @@
         <i class="fa fa-user"></i>
         <input type="text" name="title" placeholder="Your Name"/>
         <i class="fa fa-envelope"></i>
-        <input type="text" name="title2" placeholder="Email"/>
+        <input type="text" name="title2" placeholder="Your Email"/>
         <i class="fa fa-phone"></i>
-        <input type="text" name="title3" placeholder="Phone"/>
+        <input type="text" name="title3" placeholder="Your Phone"/>
         <br>
         <br>
 
