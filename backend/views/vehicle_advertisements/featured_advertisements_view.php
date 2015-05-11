@@ -113,22 +113,22 @@
 
     function change_advertisement_status(advertisement_id, value, element) {
 
-        var condition = 'Do you want to approve this advertisement ?';
+        var condition = 'Do you want to make this advertisement Feaured ?';
         if (value == 2) {
-            condition = 'Do you want to reject this advertisement?';
+            condition = 'Do you want to make this advertisement Not Featured?';
         }
 
         if (confirm(condition)) {
             $.ajax({
                 type: "POST",
-                url: site_url + '/vehicle_advertisements/change_publish_status',
+                url: site_url + '/vehicle_advertisements/change_featured_status',
                 data: "id=" + advertisement_id + "&value=" + value,
                 success: function (msg) {
                     if (msg == 1) {
-                        if (value == 2) {
+                        if (value == 1) {
                             $(element).parent().html('<span class="label label-primary">Featured</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Remove Featured"></i></a> ');
                         } else {
-                            $(element).parent().html('<span class="label label-default">Disable</span> ');
+                            $(element).parent().html('<span class="label label-default">Pending</span> ');
                         }
 
                     } else if (msg == 2) {
