@@ -25,6 +25,7 @@ class Vehicle_advertisments_model extends CI_Model {
     var $updated_date;
     var $updated_by;
     var $is_featured;
+    var $is_price_drop;
 
     function __construct() {
         parent::__construct();
@@ -121,6 +122,10 @@ class Vehicle_advertisments_model extends CI_Model {
     public function get_is_featured() {
         return $this->is_featured;
     }
+    
+    public function get_is_price_drop() {
+        return $this->is_price_drop;
+    }
 
     public function set_id($id) {
         $this->id = $id;
@@ -212,6 +217,10 @@ class Vehicle_advertisments_model extends CI_Model {
 
     public function set_is_featured($is_featured) {
         $this->is_featured = $is_featured;
+    }
+    
+    public function set_is_price_drop($is_price_drop) {
+        $this->is_featured = $is_price_drop;
     }
 
 }

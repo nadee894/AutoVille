@@ -56,7 +56,7 @@
                         <ul id="carousel" class="elastislide-list">
                             <?php foreach ($images as $image) { ?>
                                 <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"><a href="#"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" /></a></li>
-<li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"><a href="#"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" /></a></li>
+                                <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"><a href="#"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" /></a></li>
                             <?php } ?><li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"><a href="#"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" /></a></li>
                         </ul>
                         <!-- End Elastislide Carousel -->
@@ -71,11 +71,11 @@
                                    
                                     <ul id="carousel" class="elastislide-list">
                 <?php foreach ($images as $image) { ?>
-                                                <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
-                                                    <a href="">
-                                                        <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
-                                                    </a>
-                                                </li>
+                                                    <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
+                                                        <a href="">
+                                                            <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
+                                                        </a>
+                                                    </li>
                 <?php } ?>
                                     </ul>
                                      <div class="image-preview">
@@ -175,7 +175,7 @@
                 <div class="one-half col-241 search-area">
 
                     <div id="loan-calculator" class="grey-corner-box">
-                             <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
+                        <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
                     </div>
 
 
@@ -211,21 +211,21 @@
             $carouselEl = $('#carousel'),
             $carouselItems = $carouselEl.children(),
             carousel = $carouselEl.elastislide({
-        current: current,
-        minItems: 4,
-        onClick: function(el, pos, evt) {
+                current: current,
+                minItems: 4,
+                onClick: function(el, pos, evt) {
 
-            changeImage(el, pos);
-            evt.preventDefault();
+                    changeImage(el, pos);
+                    evt.preventDefault();
 
-        },
-        onReady: function() {
+                },
+                onReady: function() {
 
-            changeImage($carouselItems.eq(current), current);
+                    changeImage($carouselItems.eq(current), current);
 
-        }
-    });
-console.log("sds");
+                }
+            });
+    console.log("sds");
     function changeImage(el, pos) {
 
         $preview.attr('src', el.data('preview'));

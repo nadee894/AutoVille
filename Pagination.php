@@ -8,9 +8,8 @@ if (!defined('BASEPATH'))
  * An open source application development framework for PHP 5.1.6 or newer
  *
  * @package		CodeIgniter
- * @author		EllisLab Dev Team
- * @copyright		Copyright (c) 2008 - 2014, EllisLab, Inc.
- * @copyright		Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc.
  * @license		http://codeigniter.com/user_guide/license.html
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -24,7 +23,7 @@ if (!defined('BASEPATH'))
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Pagination
- * @author		EllisLab Dev Team
+ * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/libraries/pagination.html
  */
 class CI_Pagination {
@@ -33,29 +32,29 @@ class CI_Pagination {
     var $prefix               = ''; // A custom prefix added to the path.
     var $suffix               = ''; // A custom suffix added to the path.
     var $total_rows           = 0; // Total number of items (database results)
-    var $per_page             = 12; // Max number of items you want shown per page
+    var $per_page             = 10; // Max number of items you want shown per page
     var $num_links            = 2; // Number of "digit" links to show before/after the currently viewed page
     var $cur_page             = 0; // The current page being viewed
     var $use_page_numbers     = FALSE; // Use page number for segment instead of offset
-    var $first_link           = '1';
-    var $next_link            = '<i class="fa fa-angle-right"></i>';
-    var $prev_link            = '<i class="fa fa-angle-left"></i>';
-    var $last_link            = 'Last';
+    var $first_link           = '&lsaquo; First';
+    var $next_link            = '<i class="fa fa-chevron-right"></i>';
+    var $prev_link            = '<i class="fa fa-chevron-left"></i>';
+    var $last_link            = 'Last &rsaquo;';
     var $uri_segment          = 3;
     var $full_tag_open        = '';
     var $full_tag_close       = '';
-    var $first_tag_open       = '<span class="first paginate_button">';
-    var $first_tag_close      = '</span>';
-    var $last_tag_open        = '<span class="first paginate_button">';
-    var $last_tag_close       = '</span>';
+    var $first_tag_open       = '';
+    var $first_tag_close      = '&nbsp;';
+    var $last_tag_open        = '<li class="footable-page-arrow">';
+    var $last_tag_close       = '</a></li>';
     var $first_url            = ''; // Alternative URL for the First Page.
-    var $cur_tag_open         = '<li class="active"><a href="#">';
+    var $cur_tag_open         = '<li class="paginate_button active"><a>';
     var $cur_tag_close        = '</a></li>';
-    var $next_tag_open        = '<li>';
-    var $next_tag_close       = '</li>';
-    var $prev_tag_open        = '<li>';
-    var $prev_tag_close       = '</li>';
-    var $num_tag_open         = '<li>';
+    var $next_tag_open        = '<li class="paginate_button next">';
+    var $next_tag_close       = '</a></li>';
+    var $prev_tag_open        = '<li class="footable-page-arrow">';
+    var $prev_tag_close       = '</a></li>';
+    var $num_tag_open         = '<li class="paginate_button">';
     var $num_tag_close        = '</li>';
     var $page_query_string    = FALSE;
     var $query_string_segment = 'per_page';

@@ -2,7 +2,7 @@
 <div>
     <div class="dashboard-block">
         <div class="">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped">                
 
                 <tr>
                     <th>Vehicle</th>
@@ -30,11 +30,18 @@
                     <?php } ?>
                 </tr>
 
-            </table>
+                <tr>
+                    <th>Actions</th>    
+                    <?php foreach ($vehicle_list as $result) { ?>
+                        <td align="center"><i class="fa fa-trash-o" onclick="delete_compared_vehicle(<?php echo $result->id; ?>)"></i></td>      
+                    <?php } ?>
+                </tr>
 
-            <h2>Engine, Performance & Main Details</h2>
 
-            <table class="table table-bordered table-striped">
+                <!--Main Details-->
+                <tr><td style="border:0px solid black;"><h2>Main Details</h2></td></tr>
+
+
                 <tr>
                     <th>Manufacturer</th>
                     <?php foreach ($vehicle_list as $result) { ?>
@@ -112,27 +119,84 @@
                     <?php } ?>
                 </tr>
 
-            </table>
+                <!--Equipments-->
+                <tr><td style="border:0px solid black;"><h2>Equipments</h2></td></tr>
 
-            <h2>Equipment</h2>
+                <?php foreach ($equipments as $equipment) { ?>
+                    <tr>
+                        <th><?php echo $equipment->name; ?></th>
 
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <th>Air Condition</th>
-                    <?php foreach ($vehicle_list as $result) { ?>
-                        <td><?php echo $result->manufacture; ?></td>
-                    <?php } ?>
-                </tr>
-                <tr>
-                    <th>Air Condition</th>
-                    <?php foreach ($vehicle_list as $result) { ?>
-                        <td><?php echo $result->manufacture; ?></td>
-                    <?php } ?>
-                </tr>
+                        <?php
+                        foreach ($vehicle_equipments as $vehicle_equipment) {
+
+                            $is_contain = FALSE;
+                            foreach ($vehicle_equipment as $v => $value) {
+
+                                if (strcmp($equipment->name, $value->name) == 0) {
+                                    $is_contain = TRUE;
+                                }
+                            }
+
+                            if ($is_contain == TRUE) {
+                                ?>
+                                <td align="center"><i class="fa fa-check"></i></td>
+
+                            <?php } else { ?>
+                                <td align="center"><i class="fa fa-minus"></i></td>
+
+                                <?php
+                            }
+                        }
+                        ?>
+                    </tr>
+                <?php } ?>
+
+
             </table>
         </div>
     </div>
-    
+
 </div>
 
+
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
+
+<script>
+                            //delete vehicle added to compare
+                            function delete_compared_vehicle(id) {
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: '<?php echo site_url(); ?>/vehicle_compare/delete_compared_vehicles',
+                                    data: "vehicle_id=" + id,
+                                    success: function (msg) {
+
+                                        if (msg == 1) {
+
+                                            $.post('<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles', {}, function (msg)
+                                            {
+                                                $('#dashboard_right_content').html(msg);
+                                            });
+
+                                            $.ajax({
+                                                type: "POST",
+                                                url: site_url + '/vehicle_compare/load_vehicle_popup',
+                                                success: function (msg) {
+                                                    if (msg != 0) {
+                                                        toastr.success("Successfully parked in Garage!!", "AutoVille");
+                                                        $('#compare_vehicle_list').html(msg);
+                                                    } else {
+                                                        alert('Error loading vehicles');
+                                                    }
+                                                }
+                                            });
+
+                                            toastr.success("Successfully removed  !!", "AutoVille");
+
+                                        } else if (msg == 2) {
+                                            toastr.danger('Error occured. !!', "AutoVille");
+                                        }
+                                    }
+                                });
+                            }
+</script>
