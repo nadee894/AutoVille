@@ -33,7 +33,7 @@
                 <tr>
                     <th>Actions</th>    
                     <?php foreach ($vehicle_list as $result) { ?>
-                        <td align="center"><i class="fa fa-trash-o" onclick="delete_compared_vehicle(<?php echo $result->id; ?>)"></i></td>      
+                    <td align="center"><a href="#"><i class="fa fa-trash-o" onclick="delete_compared_vehicle(<?php echo $result->id; ?>)"></i></a></td>      
                     <?php } ?>
                 </tr>
 

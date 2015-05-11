@@ -171,7 +171,7 @@
                                     <option value="">Select Condition</option>
                                     <option value="new">New</option>
                                     <option value="used">Used</option>
-                                    <option value="used">Reconditioned</option>
+                                    <option value="Reconditioned">Reconditioned</option>
                                 </select>
                             </div>
                         </div>

@@ -107,6 +107,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
         $vehicle_equipment_service     = new Vehicle_equipment_service();
         $district_service              = new District_service();
+        $vehicle_images_service        = new Vehicle_images_service();
 
         $data['heading']               = "Sell your vehicle";
         $data['manufactures']          = $manufacture_service->get_all_active_manufactures();
@@ -119,6 +120,7 @@ class Vehicle_advertisements extends CI_Controller {
         $data['vehicle_advertisement'] = $vehicle_advertisement_service->get_advertisement_by_id($advertisement_id);
         $vehicle_equipments            = $vehicle_equipment_service->get_equipments_by_vehicle_id($advertisement_id);
         $equipment_array               = array();
+        $data['vehicle_images']        = $vehicle_images_service->get_images_for_advertisement($advertisement_id);
 
 
         foreach ($vehicle_equipments as $value) {
@@ -182,6 +184,8 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model->set_kilometers($this->input->post('kilo_meters'));
         $vehicle_advertisement_model->set_price($this->input->post('price'));
         $vehicle_advertisement_model->set_is_deleted('0');
+        $vehicle_advertisement_model->set_is_featured('0');
+        $vehicle_advertisement_model->set_is_price_drop('0');
         $vehicle_advertisement_model->set_is_published('0');
         $vehicle_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
@@ -223,11 +227,7 @@ class Vehicle_advertisements extends CI_Controller {
             $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
             $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
 
-            if (mail($email, $email_subject, $msg, $headers)) {
-                echo "1";
-            } else {
-                echo "0";
-            }
+            mail($email, $email_subject, $msg, $headers);
 
 
             //sms to admins
@@ -265,7 +265,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_equipment_model       = new Vehicle_equipment_model();
         $vehicle_equipment_service     = new Vehicle_equipment_service();
 
-        $advertisement_id = $this->input->post('last_vehicle_id', TRUE);
+        $advertisement_id = $this->input->post('vehicle_id', TRUE);
         $temp_images      = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
 
         $vehicle_advertisement_model->set_id($advertisement_id);
@@ -288,6 +288,7 @@ class Vehicle_advertisements extends CI_Controller {
         } else {
             $vehicle_advertisement_model->set_is_price_drop('0');
         }
+
         $vehicle_advertisement_model->set_updated_date(date("Y-m-d H:i:s"));
         $vehicle_advertisement_model->set_updated_by($this->session->userdata('USER_ID'));
 

@@ -31,7 +31,7 @@
                             <div class="image">
                                 <div class="quick-view"><i class="fa fa-plus" 
                                     <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
-                                                               onclick="save_in_browser()"
+                                                               onclick="save_in_browser(<?php echo $result->id; ?>)"
                                                            <?php } else { ?>                                                               
                                                                onclick="add_to_compare(<?php echo $result->id; ?>)"
                                                            <?php } ?>
@@ -52,9 +52,17 @@
                                 </a>
                             </div>
                             <div class="wrapper">
-                                <!--<a href="car-item-detail.html">--><h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
+                                <h3><?php echo $result->manufacture . " " . $result->model; ?></h3>
                                 <figure><?php echo $result->body_type; ?></figure>
                                 <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
+                                <br>
+                                
+                                <?php if ($result->is_featured == '2') { ?>
+                                    <div class="type label-success label">
+                                        <span>Featured</span>
+                                    </div>
+                                <?php } ?>
+
                                 <div class="info">
                                     <dl>
                                         <?php if (!is_null($result->fuel_type)) { ?>
@@ -103,6 +111,11 @@ function CurrencyFormat($number) {
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>
+
+
 <script type="text/javascript">
 
                                                        function add_to_compare(id) {
@@ -123,8 +136,25 @@ function CurrencyFormat($number) {
 
                                                        }
 
-                                                       function save_in_browser() {
+                                                       function save_in_browser(id) {
                                                            alert('not loged in');
+
+                                                           $.ajax({
+                                                               type: "POST",
+                                                               url: site_url + '/vehicle_compare/load_vehicle_popup_for_unregistered_user',
+                                                               data: "id=" + id,
+                                                               success: function (msg) {
+                                                                   if (msg != 0) {
+                                                                       toastr.success("Successfully parked in Garage!!", "AutoVille");
+                                                                       $('#compare_vehicle_list').html(msg);
+                                                                       $.jStorage.set("vehicle_" + id, id)
+                                                                   } else {
+                                                                       alert('Error loading vehicles');
+                                                                   }
+                                                               }
+                                                           });
+
+
                                                        }
 
 </script>

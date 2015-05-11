@@ -7,7 +7,7 @@
             <header>
                 <h1 class="page-title"><?php echo $heading; ?></h1>
             </header>
-            <form id="form-submit" name="form-submit" role="form" method="post" enctype="multipart/form-data">
+            <form id="edit_advertisement_form" name="edit_advertisement_form" role="form" method="post" enctype="multipart/form-data">
 
                 <!--Vehicle details -->
                 <section>
@@ -44,32 +44,32 @@
                                 <label for="fabrication">Fabrication<span class="mandatory">*</span></label>
                                 <select name="fabrication" id="fabrication" title="This field is required."  data-live-search="true">
                                     <option value="">Select Fabrication</option>
-                                    <option value="1990" <?php if($vehicle_advertisement->year == '1990'){?> selected="true" <?php } ?>>1990</option>
-                                    <option value="1991" <?php if($vehicle_advertisement->year == '1991'){?> selected="true" <?php } ?>>1991</option>
-                                    <option value="1992" <?php if($vehicle_advertisement->year == '1992'){?> selected="true" <?php } ?>>1992</option>
-                                    <option value="1993" <?php if($vehicle_advertisement->year == '1993'){?> selected="true" <?php } ?>>1993</option>
-                                    <option value="1994" <?php if($vehicle_advertisement->year == '1994'){?> selected="true" <?php } ?>>1994</option>
-                                    <option value="1995" <?php if($vehicle_advertisement->year == '1995'){?> selected="true" <?php } ?>>1995</option>
-                                    <option value="1996" <?php if($vehicle_advertisement->year == '1996'){?> selected="true" <?php } ?>>1996</option>
-                                    <option value="1997" <?php if($vehicle_advertisement->year == '1997'){?> selected="true" <?php } ?>>1997</option>
-                                    <option value="1998" <?php if($vehicle_advertisement->year == '1998'){?> selected="true" <?php } ?>>1998</option>
-                                    <option value="1999" <?php if($vehicle_advertisement->year == '1999'){?> selected="true" <?php } ?>>1999</option>
-                                    <option value="2000" <?php if($vehicle_advertisement->year == '2000'){?> selected="true" <?php } ?>>2000</option>
-                                    <option value="2001" <?php if($vehicle_advertisement->year == '2001'){?> selected="true" <?php } ?>>2001</option>
-                                    <option value="2002" <?php if($vehicle_advertisement->year == '2002'){?> selected="true" <?php } ?>>2002</option>
-                                    <option value="2003" <?php if($vehicle_advertisement->year == '2003'){?> selected="true" <?php } ?>>2003</option>
-                                    <option value="2004" <?php if($vehicle_advertisement->year == '2004'){?> selected="true" <?php } ?>>2004</option>
-                                    <option value="2005" <?php if($vehicle_advertisement->year == '2005'){?> selected="true" <?php } ?>>2005</option>
-                                    <option value="2006" <?php if($vehicle_advertisement->year == '2006'){?> selected="true" <?php } ?>>2006</option>
-                                    <option value="2007" <?php if($vehicle_advertisement->year == '2007'){?> selected="true" <?php } ?>>2007</option>
-                                    <option value="2008" <?php if($vehicle_advertisement->year == '2008'){?> selected="true" <?php } ?>>2008</option>
-                                    <option value="2009" <?php if($vehicle_advertisement->year == '2009'){?> selected="true" <?php } ?>>2009</option>
-                                    <option value="2010" <?php if($vehicle_advertisement->year == '2010'){?> selected="true" <?php } ?>>2010</option>
-                                    <option value="2011" <?php if($vehicle_advertisement->year == '2011'){?> selected="true" <?php } ?>>2011</option>
-                                    <option value="2012" <?php if($vehicle_advertisement->year == '2012'){?> selected="true" <?php } ?>>2012</option>
-                                    <option value="2013" <?php if($vehicle_advertisement->year == '2013'){?> selected="true" <?php } ?>>2013</option>
-                                    <option value="2014" <?php if($vehicle_advertisement->year == '2014'){?> selected="true" <?php } ?>>2014</option>
-                                    <option value="2015" <?php if($vehicle_advertisement->year == '2015'){?> selected="true" <?php } ?>>2015</option>
+                                    <option value="1990" <?php if ($vehicle_advertisement->year == '1990') { ?> selected="true" <?php } ?>>1990</option>
+                                    <option value="1991" <?php if ($vehicle_advertisement->year == '1991') { ?> selected="true" <?php } ?>>1991</option>
+                                    <option value="1992" <?php if ($vehicle_advertisement->year == '1992') { ?> selected="true" <?php } ?>>1992</option>
+                                    <option value="1993" <?php if ($vehicle_advertisement->year == '1993') { ?> selected="true" <?php } ?>>1993</option>
+                                    <option value="1994" <?php if ($vehicle_advertisement->year == '1994') { ?> selected="true" <?php } ?>>1994</option>
+                                    <option value="1995" <?php if ($vehicle_advertisement->year == '1995') { ?> selected="true" <?php } ?>>1995</option>
+                                    <option value="1996" <?php if ($vehicle_advertisement->year == '1996') { ?> selected="true" <?php } ?>>1996</option>
+                                    <option value="1997" <?php if ($vehicle_advertisement->year == '1997') { ?> selected="true" <?php } ?>>1997</option>
+                                    <option value="1998" <?php if ($vehicle_advertisement->year == '1998') { ?> selected="true" <?php } ?>>1998</option>
+                                    <option value="1999" <?php if ($vehicle_advertisement->year == '1999') { ?> selected="true" <?php } ?>>1999</option>
+                                    <option value="2000" <?php if ($vehicle_advertisement->year == '2000') { ?> selected="true" <?php } ?>>2000</option>
+                                    <option value="2001" <?php if ($vehicle_advertisement->year == '2001') { ?> selected="true" <?php } ?>>2001</option>
+                                    <option value="2002" <?php if ($vehicle_advertisement->year == '2002') { ?> selected="true" <?php } ?>>2002</option>
+                                    <option value="2003" <?php if ($vehicle_advertisement->year == '2003') { ?> selected="true" <?php } ?>>2003</option>
+                                    <option value="2004" <?php if ($vehicle_advertisement->year == '2004') { ?> selected="true" <?php } ?>>2004</option>
+                                    <option value="2005" <?php if ($vehicle_advertisement->year == '2005') { ?> selected="true" <?php } ?>>2005</option>
+                                    <option value="2006" <?php if ($vehicle_advertisement->year == '2006') { ?> selected="true" <?php } ?>>2006</option>
+                                    <option value="2007" <?php if ($vehicle_advertisement->year == '2007') { ?> selected="true" <?php } ?>>2007</option>
+                                    <option value="2008" <?php if ($vehicle_advertisement->year == '2008') { ?> selected="true" <?php } ?>>2008</option>
+                                    <option value="2009" <?php if ($vehicle_advertisement->year == '2009') { ?> selected="true" <?php } ?>>2009</option>
+                                    <option value="2010" <?php if ($vehicle_advertisement->year == '2010') { ?> selected="true" <?php } ?>>2010</option>
+                                    <option value="2011" <?php if ($vehicle_advertisement->year == '2011') { ?> selected="true" <?php } ?>>2011</option>
+                                    <option value="2012" <?php if ($vehicle_advertisement->year == '2012') { ?> selected="true" <?php } ?>>2012</option>
+                                    <option value="2013" <?php if ($vehicle_advertisement->year == '2013') { ?> selected="true" <?php } ?>>2013</option>
+                                    <option value="2014" <?php if ($vehicle_advertisement->year == '2014') { ?> selected="true" <?php } ?>>2014</option>
+                                    <option value="2015" <?php if ($vehicle_advertisement->year == '2015') { ?> selected="true" <?php } ?>>2015</option>
                                 </select>
                             </div>
                         </div>
@@ -122,10 +122,10 @@
                                 <label for="doors">Doors<span class="mandatory">*</span></label>
                                 <select name="doors" id="doors" title="This field is required." data-live-search="true">
                                     <option value="">Select Doors</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                    <option <?php if (2 == $vehicle_advertisement->doors) { ?> selected="true" <?php } ?> value="2">2</option>
+                                    <option <?php if (3 == $vehicle_advertisement->doors) { ?> selected="true" <?php } ?> value="3">3</option>
+                                    <option <?php if (4 == $vehicle_advertisement->doors) { ?> selected="true" <?php } ?> value="4">4</option>
+                                    <option <?php if (5 == $vehicle_advertisement->doors) { ?> selected="true" <?php } ?> value="5">5</option>
 
                                 </select>
                             </div>
@@ -148,15 +148,15 @@
                                 <label for="colour">Colour<span class="mandatory">*</span></label>
                                 <select name="colour" id="colour" title="This field is required." data-live-search="true">
                                     <option value="">Select Colour</option>
-                                    <option value="Blue">Blue</option>
-                                    <option value="Yellow">Yellow</option>
-                                    <option value="Purple">Purple</option>
-                                    <option value="Pink">Pink</option>
-                                    <option value="Red">Red</option>
-                                    <option value="Green">Green</option>
-                                    <option value="White">White</option>
-                                    <option value="Black">Black</option>
-                                    <option value="Silver">Silver</option>
+                                    <option <?php if ("Blue" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Blue">Blue</option>
+                                    <option <?php if ("Yellow" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Yellow">Yellow</option>
+                                    <option <?php if ("Purple" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Purple">Purple</option>
+                                    <option <?php if ("Pink" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Pink">Pink</option>
+                                    <option <?php if ("Red" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Red">Red</option>
+                                    <option <?php if ("Green" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Green">Green</option>
+                                    <option <?php if ("White" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="White">White</option>
+                                    <option <?php if ("Black" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Black">Black</option>
+                                    <option <?php if ("Silver" == $vehicle_advertisement->colour) { ?> selected="true" <?php } ?> value="Silver">Silver</option>
                                 </select>
                             </div>
                         </div>
@@ -171,9 +171,9 @@
                                 <label for="sale_type">Condition <span class="mandatory">*</span></label>
                                 <select name="sale_type" id="sale_type" title="This field is required.">
                                     <option value="">Select Condition</option>
-                                    <option value="new">New</option>
-                                    <option value="used">Used</option>
-                                    <option value="used">Reconditioned</option>
+                                    <option <?php if ("New" == $vehicle_advertisement->sale_type) { ?> selected="true" <?php } ?> value="new">New</option>
+                                    <option <?php if ("Used" == $vehicle_advertisement->sale_type) { ?> selected="true" <?php } ?> value="used">Used</option>
+                                    <option <?php if ("Reconditioned" == $vehicle_advertisement->sale_type) { ?> selected="true" <?php } ?> value="Reconditioned">Reconditioned</option>
                                 </select>
                             </div>
                         </div>
@@ -181,8 +181,8 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="price">Price<span class="mandatory">*</span></label>
-                                <input  type="hidden" name="price_old"  value="<?php echo $vehicle_advertisement->price;?>">
-                                <input id="price" class="form-control" type="text" name="price" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->price;?>">
+                                <input  type="hidden" name="price_old"  value="<?php echo $vehicle_advertisement->price; ?>">
+                                <input id="price" class="form-control" type="text" name="price" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->price; ?>">
                             </div>
                         </div>
                         <!--/.col-md-4-->
@@ -192,14 +192,14 @@
 
                                     <div class="form-group">
                                         <label for="chassis_no">VIN / Chassis Number<span class="mandatory">*</span></label>
-                                        <input id="chassis_no" class="form-control" type="text" name="chassis_no" value="<?php echo $vehicle_advertisement->chassis_no;?>">
+                                        <input id="chassis_no" class="form-control" type="text" name="chassis_no" value="<?php echo $vehicle_advertisement->chassis_no; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-sm-5">
 
                                     <div class="form-group">
                                         <label for="kilo_meters">Hp / Kw <span class="mandatory">*</span></label>
-                                        <input id="kilo_meters" class="form-control" type="text" name="kilo_meters" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->kilometers;?>">
+                                        <input id="kilo_meters" class="form-control" type="text" name="kilo_meters" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->kilometers; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
-                                <textarea id="vehicle-description-field" class="form-control" name="description" rows="7"><?php echo $vehicle_advertisement->description;?></textarea>
+                                <textarea id="vehicle-description-field" class="form-control" name="description" rows="7"><?php echo $vehicle_advertisement->description; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                     <h3>Features</h3>
                     <ul class="list-unstyled checkboxes">
                         <?php foreach ($equipments as $equipment) { ?>
-                        <li><div class="checkbox"><label><input <?php if(in_array($equipment->id, $vehicle_equipments)){?> checked="true" <?php } ?> type="checkbox" name="equipment[]" value="<?php echo $equipment->id; ?>"><?php echo $equipment->name; ?></label></div></li>
+                            <li><div class="checkbox"><label><input <?php if (in_array($equipment->id, $vehicle_equipments)) { ?> checked="true" <?php } ?> type="checkbox" name="equipment[]" value="<?php echo $equipment->id; ?>"><?php echo $equipment->name; ?></label></div></li>
                         <?php } ?>
                     </ul>
                 </section>
@@ -269,6 +269,7 @@
 
                 </section>
                 <!--/#address-contact-->
+                <input type="hidden" id="vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="vehicle_id"/>
             </form>
 
             <!--Gallery-->
@@ -312,8 +313,9 @@
                             <!-- The loading indicator is shown during file processing -->
                             <label><em>Attach vehicle images.</em></label>
                             <br>
+                            
                             <input type="hidden" id="last_vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="last_vehicle_id"/>
-                            <input type="hidden" id="image_count" value="0" name="image_count"/>
+                            <input type="hidden" id="image_count" value="<?php echo count($vehicle_images); ?>" name="image_count"/>
                             <span id="image_msg"></span>
                             <!-- The table listing the files available for upload/download -->
                             <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
@@ -407,12 +409,12 @@
                         <p>By clicking “Submit“ button you agree with <a href="terms-conditions.html" class="link">Terms & Conditions</a></p>
                     </figure>
                     <div class="form-group">
-                        <button type="button" class="btn btn-default pull-right" id="add_addvertisement_btn">Submit</button>
+                        <button type="button" class="btn btn-default pull-right" id="edit_addvertisement_btn">Submit</button>
                     </div>
                     <!-- /.form-group -->
                 </section>
             </form>
-            <!--/#form-submit-->
+            <!--/#edit_advertisement_form-->
         </div>
         <!--/.col-md-9-->
         <!--Sidebar-->
@@ -453,112 +455,112 @@
 <script type="text/javascript">
 
 
-                                            //Manufacturer on change 
-                                            $('#manufacturer').on('change', function(e) {
+                                    //Manufacturer on change 
+                                    $('#manufacturer').on('change', function(e) {
 
-                                                var manufacturer = $(this).val();
+                                        var manufacturer = $(this).val();
 
-                                                $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
-                                                {
-                                                    $('#model_wrapper').html(msg);
-                                                });
-                                            });
+                                        $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
+                                        {
+                                            $('#model_wrapper').html(msg);
+                                        });
+                                    });
 
-                                            // add project sumbit btn action
-                                            $(document).on('click', '#add_addvertisement_btn', function() {
-                                                if ($('#form-submit').valid()) {
-                                                    $('#form-submit').submit();
-                                                }
-                                            });
+                                    // add project sumbit btn action
+                                    $(document).on('click', '#edit_addvertisement_btn', function() {
+                                        if ($('#edit_advertisement_form').valid()) {
+                                            $('#edit_advertisement_form').submit();
+                                        }
+                                    });
 
 //custom validator for drop down
-                                            $.validator.addMethod('selectmanufacture', function(value) {
-                                                return (value != '0');
-                                            }, "");
+                                    $.validator.addMethod('selectmanufacture', function(value) {
+                                        return (value != '0');
+                                    }, "");
 
-                                            $(document).ready(function() {
-
-
-
-                                                $('.form#form-submit select').on('change', function(e) {
-                                                    $('.form#form-submit').validate().element($(this));
-                                                });
+                                    $(document).ready(function() {
 
 
-                                                //Add advertisement form validate function
-                                                $("form#form-submit").validate({
-                                                    ignore: "hidden:not(.live_select)",
-                                                    rules: {
-                                                        manufacturer: 'required',
-                                                        model: 'required',
-                                                        fabrication: 'required',
-                                                        fuel_type: 'required',
-                                                        transmission: 'required',
-                                                        body_type: 'required',
-                                                        doors: 'required',
-                                                        location: 'required',
-                                                        colour: 'required',
-                                                        sale_type: 'required',
-                                                        price: 'required',
-                                                        chassis_no: 'required',
-                                                        kilo_meters: 'required'
 
-                                                    }, submitHandler: function(form)
+                                        $('.form#edit_advertisement_form select').on('change', function(e) {
+                                            $('.form#edit_advertisement_form').validate().element($(this));
+                                        });
+
+
+                                        //Add advertisement form validate function
+                                        $("form#edit_advertisement_form").validate({
+                                            ignore: "hidden:not(.live_select)",
+                                            rules: {
+                                                manufacturer: 'required',
+                                                model: 'required',
+                                                fabrication: 'required',
+                                                fuel_type: 'required',
+                                                transmission: 'required',
+                                                body_type: 'required',
+                                                doors: 'required',
+                                                location: 'required',
+                                                colour: 'required',
+                                                sale_type: 'required',
+                                                price: 'required',
+                                                chassis_no: 'required',
+                                                kilo_meters: 'required'
+
+                                            }, submitHandler: function(form)
+                                            {
+                                                if ($('#image_count').val() != '0') {
+                                                    $.post(site_url + '/vehicle_advertisements/edit_advertisement', $('#edit_advertisement_form').serialize(), function(msg)
                                                     {
-                                                        if ($('#image_count').val() != '0') {
-                                                            $.post(site_url + '/vehicle_advertisements/edit_advertisement', $('#form-submit').serialize(), function(msg)
-                                                            {
-                                                                if (msg == 1) {
-                                                                    toastr.success("Successfully saved your advertisement !!", "AutoVille");
-
-                                                                } else {
-                                                                    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">advertisement </a>has failed.</div>');
-                                                                }
-                                                            });
+                                                        if (msg == 1) {
+                                                            toastr.success("Successfully updated your advertisement !!", "AutoVille");
+                                                            setTimeout("location.href = site_url+'/dashboard';", 100);
                                                         } else {
-                                                            $("#image_msg").html('<label class="error">Please upload atleast one image.</label>');
+                                                            $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">advertisement </a>has failed.</div>');
                                                         }
+                                                    });
+                                                } else {
+                                                    $("#image_msg").html('<label class="error">Please upload atleast one image.</label>');
+                                                }
 
-                                                    },
-                                                    //put error message behind each form element
+                                            },
+                                            //put error message behind each form element
 
 
 
 
-                                                });
+                                        });
 
 
-                                            });
+                                    });
 
-                                            function numbersonly(myfield, e, dec) {
-                                                var key;
-                                                var keychar;
+                                    function numbersonly(myfield, e, dec) {
+                                        var key;
+                                        var keychar;
 
-                                                if (window.event)
-                                                    key = window.event.keyCode;
-                                                else if (e)
-                                                    key = e.which;
-                                                else
-                                                    return true;
-                                                keychar = String.fromCharCode(key);
+                                        if (window.event)
+                                            key = window.event.keyCode;
+                                        else if (e)
+                                            key = e.which;
+                                        else
+                                            return true;
+                                        keychar = String.fromCharCode(key);
 
 // control keys
-                                                if ((key == null) || (key == 0) || (key == 8) ||
-                                                        (key == 9) || (key == 13) || (key == 27))
-                                                    return true;
+                                        if ((key == null) || (key == 0) || (key == 8) ||
+                                                (key == 9) || (key == 13) || (key == 27))
+                                            return true;
 
 // numbers
-                                                else if ((("0123456789").indexOf(keychar) > -1))
-                                                    return true;
+                                        else if ((("0123456789").indexOf(keychar) > -1))
+                                            return true;
 
 // decimal point jump
-                                                else if (dec && (keychar == ".")) {
-                                                    myfield.form.elements[dec].focus();
-                                                    return false;
-                                                }
-                                                else
-                                                    return false;
-                                            }
+                                        else if (dec && (keychar == ".")) {
+                                            myfield.form.elements[dec].focus();
+                                            return false;
+                                        }
+                                        else
+                                            return false;
+                                    }
 
 
 
