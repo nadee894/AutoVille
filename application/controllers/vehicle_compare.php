@@ -51,7 +51,10 @@ class Vehicle_compare extends CI_Controller {
                 echo '<li> <span class="photo"><img src="' . base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/thumbnail/' . $result->image_path . '" alt="Thumb Car" height="30" width="50" /></span>';
                 echo '<span class="subject"><h4>' . $result->manufacture . " " . $result->model . '</h4></span> </li>';
             }
-            echo '<li><a href="'.site_url().'/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
+            
+            if ($resCount >= 2) {
+                echo '<li><a href="' . site_url() . '/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
+            }
         } else {
             echo '<li>Add Vehicles</li>';
         }
@@ -77,14 +80,18 @@ class Vehicle_compare extends CI_Controller {
             array_push($data['vehicle_equipments'], $data['equipment_arr']);
         }
 
-        echo $this->load->view('my_dashboard/compare_vehicles', $data);
+        if (count($data['vehicle_list']) > 0) {
+            echo $this->load->view('my_dashboard/compare_vehicles', $data);
+        } else {
+            echo '<h4>Add Vehicles to Compare</h4>';
+        }
     }
-    
-    
+
     /**
      * this is the controller function to load compare vehicles section on dashboard directly
+     * compare button click event
      */
-     function load_compare_vehicles_dashboard() {
+    function load_compare_vehicles_dashboard() {
 
         $vehicle_compare_service = new Vehicle_compare_service();
         $equipment_service = new Equipment_service();
@@ -98,13 +105,13 @@ class Vehicle_compare extends CI_Controller {
             $data['equipment_arr'] = $equipment_service->get_equiments_in_vehicle($vehicle->id);
             array_push($data['vehicle_equipments'], $data['equipment_arr']);
         }
-        
-        $data['my_advertisements']=0;
-        
+
+        $data['my_advertisements'] = 0;
+
         $parials = array('content' => 'my_dashboard/my_dashboard');
         $this->template->load('template/main_template', $parials, $data);
     }
-           
+
     /**
      * this is the controller function to delete a vehicle record form vehicle_compare table
      */

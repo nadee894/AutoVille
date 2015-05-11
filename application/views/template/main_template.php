@@ -275,3 +275,22 @@
     </body>
 </html>
 
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: site_url + '/vehicle_compare/load_vehicle_popup',            
+            success: function (msg) {
+                if (msg != 0) {                    
+                    $('#compare_vehicle_list').html(msg);
+                } else {
+                    alert('Error loading vehicles');
+                }
+            }
+        });
+    });
+
+</script>

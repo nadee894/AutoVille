@@ -170,7 +170,7 @@
                                     url: '<?php echo site_url(); ?>/vehicle_compare/delete_compared_vehicles',
                                     data: "vehicle_id=" + id,
                                     success: function (msg) {
-                                        
+
                                         if (msg == 1) {
 
                                             $.post('<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles', {}, function (msg)
@@ -178,8 +178,21 @@
                                                 $('#dashboard_right_content').html(msg);
                                             });
 
+                                            $.ajax({
+                                                type: "POST",
+                                                url: site_url + '/vehicle_compare/load_vehicle_popup',
+                                                success: function (msg) {
+                                                    if (msg != 0) {
+                                                        toastr.success("Successfully parked in Garage!!", "AutoVille");
+                                                        $('#compare_vehicle_list').html(msg);
+                                                    } else {
+                                                        alert('Error loading vehicles');
+                                                    }
+                                                }
+                                            });
+
                                             toastr.success("Successfully removed  !!", "AutoVille");
-                                            
+
                                         } else if (msg == 2) {
                                             toastr.danger('Error occured. !!', "AutoVille");
                                         }

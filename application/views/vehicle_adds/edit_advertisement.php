@@ -181,6 +181,7 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="price">Price<span class="mandatory">*</span></label>
+                                <input  type="hidden" name="price_old"  value="<?php echo $vehicle_advertisement->price;?>">
                                 <input id="price" class="form-control" type="text" name="price" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->price;?>">
                             </div>
                         </div>
@@ -505,13 +506,13 @@
                                                     }, submitHandler: function(form)
                                                     {
                                                         if ($('#image_count').val() != '0') {
-                                                            $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
+                                                            $.post(site_url + '/vehicle_advertisements/edit_advertisement', $('#form-submit').serialize(), function(msg)
                                                             {
                                                                 if (msg == 1) {
-                                                                    toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                                                                    toastr.success("Successfully saved your advertisement !!", "AutoVille");
 
                                                                 } else {
-                                                                    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
+                                                                    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">advertisement </a>has failed.</div>');
                                                                 }
                                                             });
                                                         } else {
