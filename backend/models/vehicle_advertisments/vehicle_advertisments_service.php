@@ -149,6 +149,7 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->join('user', 'user.id = vehicle_advertisements.added_by');
         $this->db->where('vehicle_advertisements.is_deleted', '0');
         $this->db->where('vehicle_advertisements.is_published', '1');
+        $this->db->where('vehicle_advertisements.is_featured in (2,1)');
         $this->db->order_by("vehicle_advertisements.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
