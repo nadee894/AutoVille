@@ -39,6 +39,8 @@ class Vehicle_advertisements extends CI_Controller {
         $this->load->model('district/district_model');
         $this->load->model('district/district_service');
 
+        $this->load->model('users/user_model');
+        $this->load->model('users/user_service');
 
         $this->load->model('vehicle_equipment/vehicle_equipment_model');
         $this->load->model('vehicle_equipment/vehicle_equipment_service');
@@ -345,6 +347,9 @@ class Vehicle_advertisements extends CI_Controller {
         $searched_vehicles_model       = new Searched_vehicles_model();
         $searched_vehicles_service     = new Searched_vehicles_service();
         $vehicle_reviews_service       = new Vehicle_reviews_service();
+        $vehicle_equipment_service     = new Vehicle_equipment_service();
+        $equipment_service             = new Equipment_service();
+        $user_service                  = new User_service();
 
         if ($this->session->userdata('USER_ID') != '') {
             $searched_vehicles_model->set_vehicle_id($id);
@@ -354,10 +359,20 @@ class Vehicle_advertisements extends CI_Controller {
             $searched_vehicles_service->add_search_record($searched_vehicles_model);
         }
 
-        $data['vehicle_detail']  = $vehicle_advertisments_service->get_advertisement_by_id($id);
-        $data['images']          = $vehicle_images_service->get_images_for_advertisement($id);
-        $data['vehicle_reviews'] = $vehicle_reviews_service->get_all_vehicle_reviews();
+        
+        $data['equipments']         = $equipment_service->get_all_active_equipment();
+        $data['vehicle_detail']     = $vehicle_advertisments_service->get_advertisement_by_id($id);
+        $data['seller_add']         = $user_service->get_user($data['vehicle_detail']->added_by);
+        $data['images']             = $vehicle_images_service->get_images_for_advertisement($id);
+        $data['vehicle_reviews']    = $vehicle_reviews_service->get_all_vehicle_reviews();
+        $data['review_looks_count'] = count($searched_vehicles_service->get_view_count_for_advertisement($id));
+        $vehicle_equipments         = $vehicle_equipment_service->get_equipments_by_vehicle_id($id);
+        $equipment_array            = array();
+        foreach ($vehicle_equipments as $value) {
+            $equipment_array[] = $value->equipment_id;
+        }
 
+        $data['vehicle_equipments'] = $equipment_array;
 
 
         $parials = array('content' => 'vehicle_adds/vehicle_detail_view');
