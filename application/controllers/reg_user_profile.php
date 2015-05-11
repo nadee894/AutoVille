@@ -73,7 +73,7 @@ class Reg_User_Profile extends CI_Controller {
         
 
         
-        echo $this->load->view('reg_user_profile/manage_reg_user_profile_view',  $data);
+        echo $this->load->view('registered_user_profile/manage_registered_user_pro_view',  $data);
 
     }
 
