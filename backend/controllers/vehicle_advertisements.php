@@ -101,4 +101,20 @@ class Vehicle_advertisements extends CI_Controller {
             $this->template->load('template/main_template', $parials, $data);
         }
     }
+    
+    /*
+     * change featured status of an advertisment
+     * author - nadeesha
+     */
+    
+    function change_featured_status() {
+        $vehicle_advertisments_model = new Vehicle_advertisments_model();
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        $vehicle_advertisments_model->set_id(trim($this->input->post('id', TRUE)));
+        $vehicle_advertisments_model->set_is_featured(trim($this->input->post('value', TRUE)));
+
+        echo $vehicle_advertisments_service->feature_advertisement($vehicle_advertisments_model);
+    }
+
 }
