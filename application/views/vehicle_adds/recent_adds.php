@@ -78,13 +78,7 @@
                     <?php } ?>
                     <div><button  type="submit" class="btn btn-primary" style="width:100px; height:45px;"><a href="<?php echo site_url();?>/website_comments/list_website_comments">Read More </a></button></div><br>
 
-                    <div class="comment_input">
-                        <form name="form1">
-                            <input type="text" name="title" placeholder="Title..."/></br><br>
-                            <textarea name="comments" placeholder="Leave Comments Here..." style="width:360px; height:50px;"></textarea></br></br>
-                            <a  type="button" onClick="commentSubmit()" class="btn pull-right btn-default">Post</a></br>
-                        </form>
-                    </div>
+                    
 
                     <!--/.item-horizontal small-->
                     <!--                    <a href="blog-detail.html" class="item-horizontal small">

@@ -30,5 +30,9 @@ class Comments_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    function add_website_comments($website_comments_model) {
+        return $this->db->insert('comment', $website_comments_model);
+    }
 
 }
