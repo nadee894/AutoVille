@@ -276,9 +276,9 @@
 </html>
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>
+<script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>-->
 
 <script>
 
@@ -298,7 +298,7 @@
                     });
 
 <?php } else { ?>
-                    $.jStorage.flush();
+                    //$.jStorage.flush();
                     var jSindex = $.jStorage.index();
 
                     var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';

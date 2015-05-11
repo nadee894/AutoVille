@@ -121,36 +121,7 @@ class Vehicle_compare extends CI_Controller {
         echo $vehicle_compare_service->delete_compared_vehicle(trim($this->session->userdata('USER_ID')), trim($this->input->post('vehicle_id', TRUE)));
     }
 
-    /**
-     * this is the controller function to add vehicles to popup in
-     */
-    function load_vehicle_popup_for_unregistered_user() {
-
-        $vehicle_compare_service = new Vehicle_compare_service();
-        $compare_vehicles = $vehicle_compare_service->get_vehicles_to_compare_for_unregistered_user(trim($this->input->post('id', TRUE)));
-
-        $resCount = count($compare_vehicles);
-        echo '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' . $resCount . ')';
-        echo '<span class="caret"></span>';
-        echo '</button>';
-        echo '<ul class="dropdown-menu" id="compare_vehicle_list">';
-
-        if ($resCount != 0) {
-            foreach ($compare_vehicles as $result) {
-                echo '<li> <span class="photo"><img src="' . base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/thumbnail/' . $result->image_path . '" alt="Thumb Car" height="40" width="70" /></span>';
-                echo '<span class="subject"><h4>' . $result->manufacture . " " . $result->model . '</h4></span> </li>';
-            }
-
-            if ($resCount >= 2) {
-                echo '<li><a href="' . site_url() . '/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
-            }
-        } else {
-            echo '<li>Add Vehicles</li>';
-        }
-
-        echo '</ul>';
-    }
-
+    
     function load_li_tags() {
         $vehicle_compare_service = new Vehicle_compare_service();
         $compare_vehicles = $vehicle_compare_service->get_vehicles_to_compare_for_unregistered_user(trim($this->input->post('id', TRUE)));
