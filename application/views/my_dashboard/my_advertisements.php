@@ -47,6 +47,18 @@
                             </div>
                         <?php } ?>
 
+                        <?php if ($my_advertisement->is_featured == '0') { ?>
+                            <button class="btn btn-send">Make Featured </button>
+                        <?php } else if ($my_advertisement->is_featured == '1') { ?>
+                            <div class="type label-warning label">
+                                <span>Pending Featured Approval ..</span>
+                            </div>
+                        <?php } else if ($my_advertisement->is_featured == '2') { ?>
+                            <div class="type label-success label">
+                                <span>Featured</span>
+                            </div>
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -64,23 +76,23 @@
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script>
 //delete advertisement
-                            function delete_advertisement(id) {
+                                function delete_advertisement(id) {
 
-                                if (confirm('Are you sure want to remove this advertisement from your garage ?')) {
+                                    if (confirm('Are you sure want to remove this advertisement from your garage ?')) {
 
-                                    $.ajax({
-                                        type: "POST",
-                                        url: '<?php echo site_url(); ?>/vehicle_advertisements/delete_advertisement',
-                                        data: "id=" + id,
-                                        success: function(msg) {
-                                            if (msg == 1) {
-                                                $('#list_' + id).hide();
-                                                toastr.success("Successfully removed from your garage !!", "AutoVille");
-                                            } else if (msg == 2) {
-                                                toastr.danger('Error occured. !!', "AutoVille");
+                                        $.ajax({
+                                            type: "POST",
+                                            url: '<?php echo site_url(); ?>/vehicle_advertisements/delete_advertisement',
+                                            data: "id=" + id,
+                                            success: function(msg) {
+                                                if (msg == 1) {
+                                                    $('#list_' + id).hide();
+                                                    toastr.success("Successfully removed from your garage !!", "AutoVille");
+                                                } else if (msg == 2) {
+                                                    toastr.danger('Error occured. !!', "AutoVille");
+                                                }
                                             }
-                                        }
-                                    });
+                                        });
+                                    }
                                 }
-                            }
 </script>
