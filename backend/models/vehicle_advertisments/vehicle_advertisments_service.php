@@ -161,8 +161,9 @@ class Vehicle_advertisments_service extends CI_Model {
      */
     public function feature_advertisement($vehicle_advertisments_model) {
         $data = array('is_featured' => $vehicle_advertisments_model->get_is_featured());
-        $this->db->update('vehicle_advertisements', $data, array('id' => $vehicle_advertisments_model->get_id()));
-        return $this->db->affected_rows();
+       return $this->db->update('vehicle_advertisements', $data, array('id' => $vehicle_advertisments_model->get_id()));
+//        return $this->db->affected_rows();
+    
     }
 
 }
