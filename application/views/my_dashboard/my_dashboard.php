@@ -31,7 +31,13 @@
                     </div
                 </div>
                 <div class="col-md-9 col-sm-8" id="dashboard_right_content">
-                    <?php echo $this->load->view('my_dashboard/my_advertisements'); ?>
+                    <?php
+                    if ($my_advertisements != 0) {
+                        echo $this->load->view('my_dashboard/my_advertisements');
+                    } else {
+                        echo $this->load->view('my_dashboard/compare_vehicles');
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -39,23 +45,23 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#sticker").sticky({topSpacing: 100});
     });
 
     //load profile view
-    $('#profile_link').on('click', function(e) {
+    $('#profile_link').on('click', function (e) {
 
-        $.post('<?php echo site_url(); ?>/reg_user_profile/load_profile_of_reg_user', {}, function(msg)
+        $.post('<?php echo site_url(); ?>/reg_user_profile/load_profile_of_reg_user', {}, function (msg)
         {
             $('#dashboard_right_content').html(msg);
         });
     });
 
     //load dashboard view
-    $('.dashboard_link').on('click', function(e) {
+    $('.dashboard_link').on('click', function (e) {
 
-        $.post('<?php echo site_url(); ?>/dashboard/load_my_advertisements', {}, function(msg)
+        $.post('<?php echo site_url(); ?>/dashboard/load_my_advertisements', {}, function (msg)
         {
             $('#dashboard_right_content').html(msg);
         });
@@ -63,18 +69,18 @@
 
 
     //load saved searches view
-    $('#searched_view').on('click', function(e) {
+    $('#searched_view').on('click', function (e) {
 
-        $.post('<?php echo site_url(); ?>/dashboard/load_saved_searches', {}, function(msg)
+        $.post('<?php echo site_url(); ?>/dashboard/load_saved_searches', {}, function (msg)
         {
             $('#dashboard_right_content').html(msg);
         });
     });
 
     //load compare vehicle view
-    $('#compare_vehicle_view').on('click', function(e) {
+    $('#compare_vehicle_view').on('click', function (e) {
 
-        $.post('<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles', {}, function(msg)
+        $.post('<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles', {}, function (msg)
         {
             $('#dashboard_right_content').html(msg);
         });

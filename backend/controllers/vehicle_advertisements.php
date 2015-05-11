@@ -30,11 +30,12 @@ class Vehicle_advertisements extends CI_Controller {
         $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
         if ($perm) {
             $vehicle_advertisments_service = new Vehicle_advertisments_service();
-            $user_service                  = new User_service();
+            $user_service = new User_service();
 
-            $data['heading']   = "Advertisements";
-            $data['results']   = $vehicle_advertisments_service->get_all_advertisements();
+            $data['heading'] = "Advertisements";
+            $data['results'] = $vehicle_advertisments_service->get_all_advertisements();
             $data['reg_users'] = $user_service->get_all_active_registered_users();
+          
 
             $parials = array('content' => 'vehicle_advertisements/manage_advertisements_view');
             $this->template->load('template/main_template', $parials, $data);
@@ -70,13 +71,50 @@ class Vehicle_advertisements extends CI_Controller {
      */
 
     function change_publish_status() {
-        $vehicle_advertisments_model   = new Vehicle_advertisments_model();
+        $vehicle_advertisments_model = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
 
         $vehicle_advertisments_model->set_id(trim($this->input->post('id', TRUE)));
         $vehicle_advertisments_model->set_is_published(trim($this->input->post('value', TRUE)));
 
         echo $vehicle_advertisments_service->publish_advertisement($vehicle_advertisments_model);
+    }
+
+    /*
+     * Function to get approved advertisements for featured vehicles
+     * Author - nadeesha
+     */
+    
+     function get_Approved_advertisements() {
+
+        $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
+        if ($perm) {
+            $vehicle_advertisments_service = new Vehicle_advertisments_service();
+            $user_service = new User_service();
+
+            $data['heading'] = "Advertisements";           
+            $data['reg_users'] = $user_service->get_all_active_registered_users();
+            $data['approved_ads'] = $vehicle_advertisments_service->get_approved_advertisements_for_featured(4);
+            
+
+            $parials = array('content' =>'vehicle_advertisements/featured_advertisements_view');
+            $this->template->load('template/main_template', $parials, $data);
+        }
+    }
+    
+    /*
+     * change featured status of an advertisment
+     * author - nadeesha
+     */
+    
+    function change_featured_status() {
+        $vehicle_advertisments_model = new Vehicle_advertisments_model();
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        $vehicle_advertisments_model->set_id(trim($this->input->post('id', TRUE)));
+        $vehicle_advertisments_model->set_is_featured(trim($this->input->post('value', TRUE)));
+
+        echo $vehicle_advertisments_service->feature_advertisement($vehicle_advertisments_model);
     }
 
 }

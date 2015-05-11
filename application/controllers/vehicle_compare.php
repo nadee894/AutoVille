@@ -10,7 +10,7 @@ class Vehicle_compare extends CI_Controller {
 
         $this->load->model('vehicle_compare/vehicle_compare_model');
         $this->load->model('vehicle_compare/vehicle_compare_service');
-        
+
         $this->load->model('equipment/equipment_model');
         $this->load->model('equipment/equipment_service');
     }
@@ -33,6 +33,9 @@ class Vehicle_compare extends CI_Controller {
         }
     }
 
+    /**
+     * this is the controller function to add vehicles to popup in
+     */
     function load_vehicle_popup() {
         $vehicle_compare_service = new Vehicle_compare_service();
         $compare_vehicles = $vehicle_compare_service->get_vehicles_to_compare($this->session->userdata('USER_ID'));
@@ -48,7 +51,10 @@ class Vehicle_compare extends CI_Controller {
                 echo '<li> <span class="photo"><img src="' . base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/thumbnail/' . $result->image_path . '" alt="Thumb Car" height="30" width="50" /></span>';
                 echo '<span class="subject"><h4>' . $result->manufacture . " " . $result->model . '</h4></span> </li>';
             }
-            echo '<li><button>Compare</button></li>';
+            
+            if ($resCount >= 2) {
+                echo '<li><a href="' . site_url() . '/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
+            }
         } else {
             echo '<li>Add Vehicles</li>';
         }
@@ -56,22 +62,63 @@ class Vehicle_compare extends CI_Controller {
         echo '</ul>';
     }
 
-    function load_compare_vehicles() {        
+    /**
+     * this is the controller function to load added vehicles to compare on dashboard
+     */
+    function load_compare_vehicles() {
 
         $vehicle_compare_service = new Vehicle_compare_service();
         $equipment_service = new Equipment_service();
 
         $data['vehicle_list'] = $vehicle_compare_service->get_vehicle_to_compare_for_user($this->session->userdata('USER_ID'));
         $data['equipments'] = $equipment_service->get_all_active_equipment();
-        
-        $data['vehicle_equipments']=array();
-        
-        foreach ($data['vehicle_list'] as $vehicle) {            
-            $data['equipment_arr'] = $equipment_service->get_equiments_in_vehicle($vehicle->id);                        
-            array_push($data['vehicle_equipments'], $data['equipment_arr']);                                 
+
+        $data['vehicle_equipments'] = array();
+
+        foreach ($data['vehicle_list'] as $vehicle) {
+            $data['equipment_arr'] = $equipment_service->get_equiments_in_vehicle($vehicle->id);
+            array_push($data['vehicle_equipments'], $data['equipment_arr']);
         }
 
-        echo $this->load->view('my_dashboard/compare_vehicles', $data);
+        if (count($data['vehicle_list']) > 0) {
+            echo $this->load->view('my_dashboard/compare_vehicles', $data);
+        } else {
+            echo '<h4>Add Vehicles to Compare</h4>';
+        }
     }
-    
+
+    /**
+     * this is the controller function to load compare vehicles section on dashboard directly
+     * compare button click event
+     */
+    function load_compare_vehicles_dashboard() {
+
+        $vehicle_compare_service = new Vehicle_compare_service();
+        $equipment_service = new Equipment_service();
+
+        $data['vehicle_list'] = $vehicle_compare_service->get_vehicle_to_compare_for_user($this->session->userdata('USER_ID'));
+        $data['equipments'] = $equipment_service->get_all_active_equipment();
+
+        $data['vehicle_equipments'] = array();
+
+        foreach ($data['vehicle_list'] as $vehicle) {
+            $data['equipment_arr'] = $equipment_service->get_equiments_in_vehicle($vehicle->id);
+            array_push($data['vehicle_equipments'], $data['equipment_arr']);
+        }
+
+        $data['my_advertisements'] = 0;
+
+        $parials = array('content' => 'my_dashboard/my_dashboard');
+        $this->template->load('template/main_template', $parials, $data);
+    }
+
+    /**
+     * this is the controller function to delete a vehicle record form vehicle_compare table
+     */
+    function delete_compared_vehicles() {
+        $vehicle_compare_service = new Vehicle_compare_service();
+
+        echo $vehicle_compare_service->delete_compared_vehicle(trim($this->session->userdata('USER_ID')), trim($this->input->post('vehicle_id', TRUE)));
+    }
+
 }

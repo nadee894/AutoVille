@@ -33,7 +33,7 @@
                 <tr>
                     <th>Actions</th>    
                     <?php foreach ($vehicle_list as $result) { ?>
-                        <td align="center"><i class="fa fa-trash-o"></i></td>      
+                        <td align="center"><i class="fa fa-trash-o" onclick="delete_compared_vehicle(<?php echo $result->id; ?>)"></i></td>      
                     <?php } ?>
                 </tr>
 
@@ -159,4 +159,31 @@
 </div>
 
 
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 
+<script>
+                            //delete vehicle added to compare
+                            function delete_compared_vehicle(id) {
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: '<?php echo site_url(); ?>/vehicle_compare/delete_compared_vehicles',
+                                    data: "vehicle_id=" + id,
+                                    success: function (msg) {
+                                        
+                                        if (msg == 1) {
+
+                                            $.post('<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles', {}, function (msg)
+                                            {
+                                                $('#dashboard_right_content').html(msg);
+                                            });
+
+                                            toastr.success("Successfully removed  !!", "AutoVille");
+                                            
+                                        } else if (msg == 2) {
+                                            toastr.danger('Error occured. !!', "AutoVille");
+                                        }
+                                    }
+                                });
+                            }
+</script>

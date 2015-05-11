@@ -44,7 +44,7 @@
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">
                                     <div class="dealer-login">   
-                                        
+
                                         <!--cart-->
                                         <div class="btn-group" id="compare_vehicle_list">                                                
                                             <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
@@ -69,7 +69,7 @@
                                             <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>                                        
 
                                         <?php } ?>
-                                            
+
                                     </div>
                                 </ul>
                                 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
@@ -274,3 +274,4 @@
     <![endif]-->
     </body>
 </html>
+
