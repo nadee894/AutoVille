@@ -48,6 +48,8 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('vehicle_reviews/vehicle_reviews_model');
         $this->load->model('vehicle_reviews/vehicle_reviews_service');
+        $this->load->library('email');
+        $this->load->library('sms_handler');
     }
 
     function post_new_advertisement() {
@@ -211,6 +213,34 @@ class Vehicle_advertisements extends CI_Controller {
             $msg = $vehicle_images_service->add_new_images($vehicle_images_model);
         }
 
+        if ($msg == '1') {
+
+            $email_subject = "Workgram : Activate Your New Account";
+            $email         = "New Advertisement submitted!!";
+
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
+            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+
+            if (mail($email, $email_subject, $msg, $headers)) {
+                echo "1";
+            } else {
+                echo "0";
+            }
+
+
+            //sms to admins
+            $message = "New Advertisement has submitted. \n ";
+//            $message .= 'Driver:' . $driver_details->Employee_Name . ' ' . $driver_details->last_name . ' \n ';
+//            $message .= 'Start Time:' . $basic_request_details->required_date . ' \n ';
+//            $message .= 'Location(s):';
+//
+//            $message .= $location_messages;
+
+            $this->sms_handler->sendSMS(0756020115, $message); //correct one
+        }
+
         echo $msg;
 
 
@@ -253,9 +283,9 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model->set_chassis_no($this->input->post('chassis_no'));
         $vehicle_advertisement_model->set_kilometers($this->input->post('kilo_meters'));
         $vehicle_advertisement_model->set_price($this->input->post('price'));
-        if($this->input->post('price')<$this->input->post('price_old')){
-           $vehicle_advertisement_model->set_is_price_drop('1'); 
-        }else{
+        if ($this->input->post('price') < $this->input->post('price_old')) {
+            $vehicle_advertisement_model->set_is_price_drop('1');
+        } else {
             $vehicle_advertisement_model->set_is_price_drop('0');
         }
         $vehicle_advertisement_model->set_updated_date(date("Y-m-d H:i:s"));

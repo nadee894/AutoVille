@@ -506,13 +506,13 @@
                                                     }, submitHandler: function(form)
                                                     {
                                                         if ($('#image_count').val() != '0') {
-                                                            $.post(site_url + '/vehicle_advertisements/add_new_advertisement', $('#form-submit').serialize(), function(msg)
+                                                            $.post(site_url + '/vehicle_advertisements/edit_advertisement', $('#form-submit').serialize(), function(msg)
                                                             {
                                                                 if (msg == 1) {
-                                                                    toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                                                                    toastr.success("Successfully saved your advertisement !!", "AutoVille");
 
                                                                 } else {
-                                                                    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">project </a>has failed.</div>');
+                                                                    $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">advertisement </a>has failed.</div>');
                                                                 }
                                                             });
                                                         } else {
