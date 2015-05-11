@@ -67,70 +67,70 @@
 
     $(document).ready(function() {
 
-    $('#account-submit').click(function() {
-    var validator = $("#form-register").validate();
-    validator.resetForm();
+        $('#account-submit').click(function() {
+            var validator = $("#form-register").validate();
+            validator.resetForm();
 
-    });
+        });
 
-    $("#form-register").validate({
-    rules: {
-    form_register_full_name: {
-    required: true
-    },
-    form_register_email: {
-    required: true,
-    email: true
-    },
-    form_register_contact: {
-    required: true,
-    digits: true,
-    minlength: 10,
-    maxlength: 10
-    },
-    form_register_address: "required",
-    form_register_user_name: {
-    required: true,
-    minlength: 3,
-    maxlength: 30
-    },
-    form_register_password: "required",
-    form_register_confirm_password: {
-    required: true,
-    equalTo: "#form_register_password"
-    }
-    },
-    messages: {
-    form_register_full_name: "Please enter your full name",
-    form_register_email: {
-    required: "Please enter your email",
-    email: "Incorrect email address"
+        $("#form-register").validate({
+            rules: {
+                form_register_full_name: {
+                    required: true
+                },
+                form_register_email: {
+                    required: true,
+                    email: true
+                },
+                form_register_contact: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                form_register_address: "required",
+                form_register_user_name: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 30
+                },
+                form_register_password: "required",
+                form_register_confirm_password: {
+                    required: true,
+                    equalTo: "#form_register_password"
+                }
+            },
+            messages: {
+                form_register_full_name: "Please enter your full name",
+                form_register_email: {
+                    required: "Please enter your email",
+                    email: "Incorrect email address"
 
-    },
-    form_register_contact: "Please enter your telephone number",
-    form_register_address: "Please enter your address",
-    form_register_user_name: "Please enter a valid user name",
-    form_register_password: "Please enter a password",
-    form_register_confirm_password: {
-    required: "Confirm the password",
-    equalTo: "Passwords do not match"
-    }
-    }, submitHandler: function(form)
-    {
-    $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
-    {
-    //alert(msg);
-    if (msg == 1) {
-    toastr.success("Successfully Registered", "AutoVille");
-    window.location = site_url + '/home';
-    } else {
-    toastr.error("Error in registration", "AutoVille");
+                },
+                form_register_contact: "Please enter your telephone number",
+                form_register_address: "Please enter your address",
+                form_register_user_name: "Please enter a valid user name",
+                form_register_password: "Please enter a password",
+                form_register_confirm_password: {
+                    required: "Confirm the password",
+                    equalTo: "Passwords do not match"
+                }
+            }, submitHandler: function(form)
+            {
+                $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
+                {
+                    //alert(msg);
+                    if (msg == 1) {
+                        toastr.success("Successfully Registered", "AutoVille");
+                        window.location = site_url + '/home';
+                    } else {
+                        toastr.error("Error in registration", "AutoVille");
 
-    }
-    });
-    }
+                    }
+                });
+            }
 
-    });
+        });
     });
 
 
