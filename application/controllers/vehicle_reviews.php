@@ -1,5 +1,4 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -31,15 +30,43 @@ class Vehicle_reviews extends CI_Controller {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         $vehicle_reviews_model   = new Vehicle_reviews_model();
 
-        $vehicle_reviews_model->set_title($this->input->post('title', TRUE));
+
         $vehicle_reviews_model->set_description($this->input->post('description', TRUE));
         $vehicle_reviews_model->set_vehicle_id($this->input->post('vehicle_id', TRUE));
         $vehicle_reviews_model->set_added_date(date("Y-m-d H:i:s"));
-        $vehicle_reviews_model->set_updated_by(1);
+        $vehicle_reviews_model->set_added_by($this->session->userdata('USER_ID'));
         $vehicle_reviews_model->set_is_published('1');
         $vehicle_reviews_model->set_is_deleted('0');
 
-        echo $vehicle_reviews_service->add_vehicle_reviews($vehicle_reviews_model);
+        $vehicle_reviews_service->add_vehicle_reviews($vehicle_reviews_model);
+        $vehicle_reviews = $vehicle_reviews_service->get_all_vehicle_reviews();
+
+        foreach ($vehicle_reviews as $value) {
+            ?>
+            <li class="comment">
+                <figure>
+                    <div class="image">
+                        <?php if ($value->profile_pic == '') { ?>
+                            <img class="img-responsive img-circle" src="<?php echo base_url() . 'uploads/user_avatars/avatar.png'; ?>"/>
+                        <?php } else { ?>
+                            <img class="img-responsive img-circle" src="<?php echo base_url() . 'uploads/user_avatars/' . $value->profile_pic; ?>"/>
+                        <?php } ?>
+                    </div>
+                </figure>
+                <div class="comment-wrapper">
+                    <?php if ($value->added_by_user != '') { ?>
+                        <div class="name pull-left"><?php echo ucfirst($value->added_by_user); ?></div>
+                    <?php } ?>
+                    <span class="date pull-right">
+                        <span class="fa fa-calendar"></span>
+                        <?php echo date('Y.m.d', strtotime($value->added_date)); ?>
+                    </span>
+                    <p>
+                        <?php echo $value->description; ?>
+                </div>
+            </li>
+        <?php
+        }
     }
 
     function delete_manufactures() {

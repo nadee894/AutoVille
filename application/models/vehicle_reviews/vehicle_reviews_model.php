@@ -1,10 +1,10 @@
 <?php
 
-class Vehicle_reviews_model extends CI_Model{    
+class Vehicle_reviews_model extends CI_Model {
+
     var $id;
     var $user_id;
     var $vehicle_id;
-    var $title;
     var $description;
     var $is_published;
     var $is_deleted;
@@ -12,7 +12,7 @@ class Vehicle_reviews_model extends CI_Model{
     var $added_by;
     var $updated_date;
     var $updated_by;
-    
+
     public function get_id() {
         return $this->id;
     }
@@ -23,10 +23,6 @@ class Vehicle_reviews_model extends CI_Model{
 
     public function get_vehicle_id() {
         return $this->vehicle_id;
-    }
-
-    public function get_title() {
-        return $this->title;
     }
 
     public function get_description() {
@@ -69,10 +65,6 @@ class Vehicle_reviews_model extends CI_Model{
         $this->vehicle_id = $vehicle_id;
     }
 
-    public function set_title($title) {
-        $this->title = $title;
-    }
-
     public function set_description($description) {
         $this->description = $description;
     }
@@ -100,6 +92,5 @@ class Vehicle_reviews_model extends CI_Model{
     public function set_updated_by($updated_by) {
         $this->updated_by = $updated_by;
     }
-
 
 }
