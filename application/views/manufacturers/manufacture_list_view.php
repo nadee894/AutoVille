@@ -20,7 +20,7 @@
                  <ul class="categories">
                      <li><a><?php echo $result->title ?></a>                         
                          <ul class="sub-category" >                            
-                            <li><a><?php echo $result->content ?></a></li> 
+                             <li><a><?php echo $result->content ?></a></li><br><br>
                             <button  type="submit" class="btn btn-primary"><a href="<?php echo site_url();?>/vehicle_news/list_vehicle_news">Read More </a></button>
                         </ul>
                      </li>

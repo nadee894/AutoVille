@@ -6,7 +6,7 @@
         $resultcount = count($vehicle_results);
         if (!$resultcount == 0) {
             ?>
-            <div class="col-md-9 col-sm-9">
+            <div class="col-md-8 col-sm-9">
                 <header><h2>Recent Vehicles</h2></header>
                 <?php foreach ($vehicle_results as $result) { ?>
                     <div class="item list">
@@ -27,7 +27,7 @@
                         <div class="wrapper">
                             <a href=""><h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
                             <figure><?php echo $result->body_type; ?></figure>
-                            <div class="price"><?php //echo "Rs. " . CurrencyFormat($result->price); ?></div>
+                            <div class="price"><?php //echo "Rs. " . CurrencyFormat($result->price);  ?></div>
                         </div>
                         <div class="description">
                             <div class="info">
@@ -57,46 +57,59 @@
         <!-- /.col-md-9-->
         <!--end Recent Vehicles-->
 
-        <!--New Reviews-->
-        <div class="col-md-3 col-sm-3">
+        <!--Web site Comments-->
+        <div class="col-md-4 col-sm-4">
             <aside id="sidebar">
                 <section>
-                    <header><h2>New Reviews</h2></header>
-                    <a href="blog-detail.html" class="item-horizontal small">
-                        <h3>Opel Insignia TDi</h3>
-                        <figure>12.1.2015</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/1.jpg" alt=""></div>
-                            <div class="info">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                                <div class="rating" data-rating="4"></div>
+                    <header><h2>Website Reviews</h2></header>
+                    <?php foreach ($website_comments as $value) { ?>                              
+
+                        <a href="" class="item-horizontal small">
+                            <h3><?php echo $value->title; ?></h3>
+                            <!--                        <figure>12.1.2015</figure>-->
+                            <div class="wrapper">
+    <!--                            <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/1.jpg" alt=""></div>-->
+                                <div class="info">
+                                    <p><?php echo $value->description; ?></p>
+                                    <!--                                <div class="rating" data-rating="4"></div>-->
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    <?php } ?>
+                    <div><button  type="submit" class="btn btn-primary" style="width:100px; height:45px;"><a href="<?php echo site_url();?>/website_comments/list_website_comments">Read More </a></button></div><br>
+
+                    <div class="comment_input">
+                        <form name="form1">
+                            <input type="text" name="title" placeholder="Title..."/></br><br>
+                            <textarea name="comments" placeholder="Leave Comments Here..." style="width:360px; height:50px;"></textarea></br></br>
+                            <a  type="button" onClick="commentSubmit()" class="btn pull-right btn-default">Post</a></br>style
+                        </form>
+                    </div>
+
                     <!--/.item-horizontal small-->
-                    <a href="blog-detail.html" class="item-horizontal small">
-                        <h3>Subaru WRX 2.2 TDi</h3>
-                        <figure>03.1.2015</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/8.jpg" alt=""></div>
-                            <div class="info">
-                                <p>Pellentesque nulla ligula, pretium id viverra non</p>
-                                <div class="rating" data-rating="3"></div>
-                            </div>
-                        </div>
-                    </a>
+                    <!--                    <a href="blog-detail.html" class="item-horizontal small">
+                                            <h3>Subaru WRX 2.2 TDi</h3>
+                                            <figure>03.1.2015</figure>
+                                            <div class="wrapper">
+                                                <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/8.jpg" alt=""></div>
+                                                <div class="info">
+                                                    <p>Pellentesque nulla ligula, pretium id viverra non</p>
+                                                    <div class="rating" data-rating="3"></div>
+                                                </div>
+                                            </div>
+                                        </a>-->
                     <!--/.item-horizontal small-->
-                    <a href="blog-detail.html" class="item-horizontal small">
-                        <h3>Volkswagen Tiguan</h3>
-                        <figure>08.12.2014</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/12.jpg" alt=""></div>
-                            <div class="info">
-                                <p>Nulla condimentum at ipsum eget commodo.</p>
-                                <div class="rating" data-rating="5"></div>
-                            </div>
-                        </div>
-                    </a>
+                    <!--                    <a href="blog-detail.html" class="item-horizontal small">
+                                            <h3>Volkswagen Tiguan</h3>
+                                            <figure>08.12.2014</figure>
+                                            <div class="wrapper">
+                                                <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/12.jpg" alt=""></div>
+                                                <div class="info">
+                                                    <p>Nulla condimentum at ipsum eget commodo.</p>
+                                                    <div class="rating" data-rating="5"></div>
+                                                </div>
+                                            </div>
+                                        </a>-->
                     <!--/.item-horizontal small-->
                 </section>
             </aside>

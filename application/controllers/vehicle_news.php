@@ -34,8 +34,7 @@ class Vehicle_news extends CI_Controller {
         $vehicle_news_service = new Vehicle_news_service();
          $data['vehicle_news_list']=$vehicle_news_service->get_vehicle_news_list();
         $parials = array('content' => 'vehicle_news/vehicle_news_list_view');
-        $this->template->load('template/main_template',$parials,$data);
-        
+        $this->template->load('template/main_template',$parials,$data);    
        
     }
 
