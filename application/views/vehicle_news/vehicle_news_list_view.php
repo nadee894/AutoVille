@@ -19,14 +19,12 @@
             <div id="page-content">
                 <section class="container">
                     <div class="row">
-                        <div class="col-md-16">   
+                        <div class="col-md-16"><br>  
                             <?php foreach ($vehicle_news_list as $value) { ?>                             
                             <article class="blog-post">
-                                <header><a href="blog-detail.html"><h2><?php echo $value->title; ?></h2></a></header>
-                                <a href="blog-detail.html"></a>
-                                
-                                <p><?php echo $value->content; ?></p>
-                                
+                                <a href="blog-detail.html"><h3><u><?php echo $value->title; ?></h3></u></a>
+                                <a href="blog-detail.html"></a>                                
+                                <p><?php echo $value->content; ?></p>                                
                             </article>
                              <?php } ?>
                             <!--Pagination-->
