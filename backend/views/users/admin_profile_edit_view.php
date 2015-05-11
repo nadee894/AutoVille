@@ -62,17 +62,17 @@
                 <input name="c_password" type="password" class="form-control" id="c-pwd" placeholder=" " >
             </div>
         </div>
-        
+
         <div class="form-group">
             <label  class="col-lg-2 control-label">New Password</label>
             <div class="col-lg-6">
-                <input name="" type="password" class="form-control" id="n-pwd" placeholder=" ">
+                <input name="password" type="password" class="form-control" id="n-pwd" placeholder=" ">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-lg-2 control-label">Re-type New Password</label>
             <div class="col-lg-6">
-                <input name="n_pasword" type="password" class="form-control" id="rt-pwd" placeholder=" ">
+                <input name="re_pasword" type="password" class="form-control" id="rt-pwd" placeholder=" ">
             </div>
         </div>
 
@@ -92,98 +92,117 @@
             </div>
         </div>
     </form>
+    <!--toastr-->
+    <!--<script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>-->
     <script type="text/javascript">
 
-    $('#user_menu').addClass('active open');
-  
- $(document).delegate('#saveBtn' , 'click', function(e){
-           $("#edit_user_form").validate({
-            rules: {
-                title: {
-                    required: true
-                },
-                name: {
-                    required: true
-                },
-                user_name: "required",
-                user_type: {
-                    required: true,
-                    digits: true
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                address: "required",
-                contact_no_1: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-                contact_no_2: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-                password: "required",
-                re_pasword: {
-                    required: true,
-                    equalTo: '#password'
-                }
+        $('#user_menu').addClass('active open');
+
+        $(document).delegate('#saveBtn', 'click', function (e) {
+            $("#edit_user_form").validate({
+                rules: {
+                    title: {
+                        required: true
+                    },
+                    name: {
+                        required: true
+                    },
+                    user_name: "required",
+                    user_type: {
+                        required: true,
+                        digits: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    address: "required",
+                    contact_no_1: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    contact_no_2: {
+//                    required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    c_password: {
+                        required: true,
+                    },
+                    password: "required",
+                    re_pasword: {
+                        required: true,
+                        equalTo: '#password'
+                    }
 
 
-            },
-            messages: {
-                title: {
-                    required: "Please enter a title"
                 },
-                name: {
-                    required: "Please enter a name"
-                },
-                user_name: "Please enter a user name",
-                user_type: {
-                    required: "Please enter a user type",
-                    digits: "Invalid user type"
-                },
-                email: {
-                    required: "Please enter a email",
-                    email: "Invalid Email"
-                },
-                address: "Please enter a address",
-                contact_no_1: {
-                    required: "Please enter a email",
-                    digits: "Enter numbers only",
-                    maxlength: "Phone number is too long",
-                    minlength: "Phone number is too short"
-                },
-                contact_no_2: {
-                    required: "Please enter a email",
-                    digits: "Enter numbers only",
-                    maxlength: "Phone number is too long",
-                    minlength: "Phone number is too short"
-                },
-                password: "Please enter a password",
-                re_pasword:
-                        {
-                            required: "Retype the Password",
-                            equalTo: "Passwords are not matching"
-                        }
-            }, submitHandler: function (form)
-            {
-               
-
-            }
-        }); 
-           
-              if ($('#edit_user_form').valid()) {
-             $.post(site_url + '/users/update_user', $('#edit_user_form').serialize(), function (msg)
+                messages: {
+                    title: {
+                        required: "Please enter a title"
+                    },
+                    name: {
+                        required: "Please enter a name"
+                    },
+                    user_name: "Please enter a user name",
+                    user_type: {
+                        required: "Please enter a user type",
+                        digits: "Invalid user type"
+                    },
+                    email: {
+                        required: "Please enter a email",
+                        email: "Invalid Email"
+                    },
+                    address: "Please enter a address",
+                    contact_no_1: {
+                        required: "Please enter a email",
+                        digits: "Enter numbers only",
+                        maxlength: "Phone number is too long",
+                        minlength: "Phone number is too short"
+                    },
+                    contact_no_2: {
+                        required: "Please enter a email",
+                        digits: "Enter numbers only",
+                        maxlength: "Phone number is too long",
+                        minlength: "Phone number is too short"
+                    },
+                    password: "Please enter a password",
+                    re_pasword:
+                            {
+                                required: "Retype the Password",
+                                equalTo: "Passwords are not matching"
+                            }
+                }, submitHandler: function (form)
                 {
-                    
+
+
+                }
+            });
+            
+            $.ajax({
+                type: "POST",
+                url: site_url + '/users/check_old_password',
+                data: "old_password=" +   $('#c-pwd').val(),
+                success: function (msg) {
+                    if (msg == 1) {
+                       alert('Success !!');
+
+                    } else if (msg == 2) {
+                        alert('Error !!');
+                    }
+                }
+            });
+
+            if ($('#edit_user_form').valid()) {
+                $.post(site_url + '/users/update_user', $('#edit_user_form').serialize(), function (msg)
+                {
+
                     if (msg == 1) {
 
-                        toastr.success("Profile Successfully updated !!", "AutoVille");
+//                        toastr.success("Profile Successfully updated !!", "AutoVille");
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
                         edit_user_form.reset();
 
@@ -195,10 +214,10 @@
                         $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
                     }
                 });
-        }
+            }
         });
-   
-</script>
+
+    </script>
 </div>
 
 
