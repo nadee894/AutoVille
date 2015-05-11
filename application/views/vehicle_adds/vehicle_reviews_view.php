@@ -33,18 +33,19 @@
 <div id="container">
     <div class="comment_input">
         <form name="form1">
+            <div class="row">
             <input type="hidden" id="vehicle_id" name="vehicle_id" value="<?php echo $vehicle_detail->id; ?>"/></br></br>
             <textarea class="form-control" id="description" name="description" placeholder="Leave Comments Here..." style="width:635px; height:100px;"></textarea></br></br>
+            </div>
+            <div class="row">
             <button  type="button" onClick="commentSubmit()" class="btn pull-right btn-default">Post</button>
+            </div>
         </form>
     </div>
 </div>
 <script>
     function commentSubmit() {
-        //		if(form1.comments.value == ''){ //exit if one of the field is blank
-        //			alert('Enter your message !');
-        //			return;
-        //		}
+       console.log("dsa");
         var description = $('#description').html();
         if (description != '') {
             $.ajax({
