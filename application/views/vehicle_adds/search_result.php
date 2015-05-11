@@ -56,7 +56,7 @@
                                 <figure><?php echo $result->body_type; ?></figure>
                                 <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
                                 <br>
-                                
+
                                 <?php if ($result->is_featured == '2') { ?>
                                     <div class="type label-success label">
                                         <span>Featured</span>
@@ -141,20 +141,41 @@ function CurrencyFormat($number) {
 
                                                            $.ajax({
                                                                type: "POST",
-                                                               url: site_url + '/vehicle_compare/load_vehicle_popup_for_unregistered_user',
+                                                               url: site_url + '/vehicle_compare/load_li_tags',
                                                                data: "id=" + id,
                                                                success: function (msg) {
                                                                    if (msg != 0) {
-                                                                       toastr.success("Successfully parked in Garage!!", "AutoVille");
-                                                                       $('#compare_vehicle_list').html(msg);
-                                                                       $.jStorage.set("vehicle_" + id, id)
+
+                                                                       $.jStorage.set("vehicle" + id, msg);
+                                                                       jStorege_get_values();
+
                                                                    } else {
                                                                        alert('Error loading vehicles');
                                                                    }
                                                                }
                                                            });
 
+                                                       }
 
+
+                                                       function jStorege_get_values() {
+                                                           var jSindex = $.jStorage.index();
+                                                           console.log(jSindex);
+                                                           var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
+                                                           var li_list = "";
+
+                                                           if (jSindex.length == 0) {
+                                                               li_list = '<li>Add Vehicle</li>';
+                                                           }
+
+                                                           for (i = 0; i < jSindex.length; i++) {
+                                                               li_list += $.jStorage.get(jSindex[i]);
+                                                           }
+
+                                                           if (jSindex.length >= 2) {
+                                                               li_list += compareBtn;
+                                                           }
+                                                           $('#added_vehicle_list').html(li_list);
                                                        }
 
 </script>

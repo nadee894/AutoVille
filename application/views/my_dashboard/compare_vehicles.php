@@ -182,8 +182,7 @@
                                                 type: "POST",
                                                 url: site_url + '/vehicle_compare/load_vehicle_popup',
                                                 success: function (msg) {
-                                                    if (msg != 0) {
-                                                        toastr.success("Successfully parked in Garage!!", "AutoVille");
+                                                    if (msg != 0) {                                                        
                                                         $('#compare_vehicle_list').html(msg);
                                                     } else {
                                                         alert('Error loading vehicles');

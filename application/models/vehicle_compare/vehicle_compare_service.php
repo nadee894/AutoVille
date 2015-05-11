@@ -52,4 +52,16 @@ class Vehicle_compare_service extends CI_Model {
         return $this->db->delete('vehicle_compare', array('user_id' => $user_id,'vehicle_id'=>$vehicle_id)); 
     }
     
+    
+    function get_vehicles_to_compare_for_unregistered_user($vehicle_id) {
+        $this->db->select('vehicle_advertisements.*,manufacture.name as manufacture,model.name as model,vehicle_images.image_path');
+        $this->db->from('vehicle_advertisements');
+        $this->db->where('vehicle_advertisements.id',$vehicle_id);        
+        $this->db->join('manufacture', 'manufacture.id = vehicle_advertisements.manufacture_id');
+        $this->db->join('model', 'model.id = vehicle_advertisements.model_id');
+        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');        
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
 }
