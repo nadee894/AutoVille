@@ -188,9 +188,9 @@
                 data: "old_password=" +   $('#c-pwd').val(),
                 success: function (msg) {
                     if (msg == 1) {
-                       alert('Success !!');
+                       alert('valid old password !!');
 
-                    } else if (msg == 2) {
+                    } else {
                         alert('Error !!');
                     }
                 }

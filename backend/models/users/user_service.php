@@ -178,11 +178,11 @@ class User_service extends CI_Model {
      */
 
     function checkOldPass($user_model) {
-        $this->db->select('user.*, user_type.type');
+        $this->db->select('user.password');
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
 //        $this->db->where('id', $id);
-        $this->db->where('user.password', $user_model->get_password());
+        //$this->db->where('user.password', $user_model->get_password());
         $this->db->where('user.id', $user_model->get_id());
         return $this->db->affected_rows();
     }
