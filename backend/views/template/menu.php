@@ -19,8 +19,8 @@
     </li>
 
      <?php
-//    $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
-//   if ($perm) 
+    $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
+   if ($perm) 
    {        ?>
         <li class="sub-menu">
             <a href="javascript:;" id="advertisements_menu">
