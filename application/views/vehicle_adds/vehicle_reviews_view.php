@@ -1,10 +1,10 @@
 <section id="comments">
-    <header>
-        <h2 class="no-border">Comments</h2>
-    </header>
+<!--    <header>-->
+        <h3><span class="bold">Comments</span></h3>
+<!--    </header>-->
     <ul class="comments" id="review_list">
         <?php foreach ($vehicle_reviews as $value) { ?>
-            <li class="comment">
+        <li class="comment"><br>
                 <figure>
                     <div class="image">
                         <?php if ($value->profile_pic == '') { ?>
@@ -24,8 +24,8 @@
                     </span>
                     <p>
                         <?php echo $value->description; ?>
-                </div>
-            </li>
+                </div><br>
+        </li>
         <?php } ?> 
     </ul>
 </section>
