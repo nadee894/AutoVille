@@ -71,11 +71,11 @@
                                    
                                     <ul id="carousel" class="elastislide-list">
                 <?php foreach ($images as $image) { ?>
-                                                    <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
-                                                        <a href="">
-                                                            <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
-                                                        </a>
-                                                    </li>
+                                                                    <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
+                                                                        <a href="">
+                                                                            <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
+                                                                        </a>
+                                                                    </li>
                 <?php } ?>
                                     </ul>
                                      <div class="image-preview">
@@ -174,6 +174,11 @@
 
                 <div class="one-half col-241 search-area">
 
+
+                    <div id="loan-calculator" class="grey-corner-box">
+                        <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
+                    </div>
+
                     <div id="loan-calculator" class="grey-corner-box">
                         <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
                     </div>
@@ -213,13 +218,13 @@
             carousel = $carouselEl.elastislide({
                 current: current,
                 minItems: 4,
-                onClick: function(el, pos, evt) {
+                onClick: function (el, pos, evt) {
 
                     changeImage(el, pos);
                     evt.preventDefault();
 
                 },
-                onReady: function() {
+                onReady: function () {
 
                     changeImage($carouselItems.eq(current), current);
 

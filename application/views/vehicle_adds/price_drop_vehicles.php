@@ -15,9 +15,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item-specific">
+                        <!--<div class="item-specific">
                             <span>Used Car</span>
-                        </div>
+                        </div>-->
                         <div class="icon">
                             <i class="fa fa-thumbs-up"></i>
                         </div>

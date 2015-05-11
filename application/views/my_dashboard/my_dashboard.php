@@ -17,13 +17,12 @@
                     <!-- SIDEBAR -->
                     <div class="users-sidebar tbssticky">
                         <ul class="list-group">
-                            <li class="list-group-item"> <span class="badge">5</span> <a class="dashboard_link" href="#"><i class="fa fa-home"></i> Dashboard</a></li>
-                            <li class="list-group-item"> <span class="badge">5</span> <a id="searched_view" href="#"><i class="fa fa-star-o"></i> Saved Searches</a></li>
-                            <li class="list-group-item"> <span class="badge"></span> <a id="compare_vehicle_view" href="#"><i class="fa fa-folder-o"></i> Compare Vehicles</a></li>
+                            <li class="list-group-item">  <a class="dashboard_link" href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+                            <li class="list-group-item"> <a id="searched_view" href="#"><i class="fa fa-star-o"></i> Saved Searches</a></li>
+                            <li class="list-group-item">  <a id="compare_vehicle_view" href="#"><i class="fa fa-folder-o"></i> Compare Vehicles</a></li>
                             <li class="list-group-item"> <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement"><i class="fa fa-plus-square-o"></i> Create new Advertisement</a></li>
-                            <li class="list-group-item active"> <span class="badge">2</span> <a class="dashboard_link" href="#"><i class="fa fa-edit"></i> My Advertisements</a></li>
+                            <li class="list-group-item active">  <a class="dashboard_link" href="#"><i class="fa fa-edit"></i> My Advertisements</a></li>
                             <li class="list-group-item"> <a id="profile_link" href="#" ><i class="fa fa-user"></i> My Profile</a></li>
-                            <li class="list-group-item"> <a href="user-dashboard-settings.html"><i class="fa fa-cog"></i> Account Settings</a></li>
 
                         </ul>
                     </div>

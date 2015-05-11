@@ -73,7 +73,7 @@
    $('#price-slider').on('change', function(){
 
         var maxprice = 0;
-        var carPrice = number_format($vehicle_detail->price, 2, '.', ',');
+        var carPrice = number_format(<?php echo $vehicle_detail->price;?>, 2, '.', ',');
 //        var maxmonth = $('#maxmonth').val();
 //        var maxrate = $('#maxrate').val();
         
@@ -97,7 +97,7 @@
 
     });
 
-}
+});
 
 </script>
 

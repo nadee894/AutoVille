@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
         $config = array();
 
         $config["base_url"]        = site_url() . "/dashboard/index/";
-        $config["per_page"]        = 2;
+        $config["per_page"]        = 8;
         $config["uri_segment"]     = 4;
         $config["num_links"]       = 4;
         $config["total_rows"]      = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));

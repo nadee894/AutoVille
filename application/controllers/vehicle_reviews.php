@@ -33,6 +33,9 @@ class Vehicle_reviews extends CI_Controller {
 
         $vehicle_reviews_model->set_description($this->input->post('description', TRUE));
         $vehicle_reviews_model->set_vehicle_id($this->input->post('vehicle_id', TRUE));
+        if($this->session->userdata('USER_ID') !=''){
+            $vehicle_reviews_model->set_user_id($this->session->userdata('USER_ID'));
+        }
         $vehicle_reviews_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_reviews_model->set_added_by($this->session->userdata('USER_ID'));
         $vehicle_reviews_model->set_is_published('1');
