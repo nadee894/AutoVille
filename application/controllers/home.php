@@ -35,27 +35,32 @@ class Home extends CI_Controller {
 
         $this->load->model('vehicle_news/vehicle_news_model');
         $this->load->model('vehicle_news/vehicle_news_service');
+
+        $this->load->model('comments/comments_model');
+        $this->load->model('comments/comments_service');
     }
 
     function index() {
 
-        $manufacture_service = new Manufacture_service();
-        $vehicle_model_service = new Vehicle_model_service();
-        $body_type_service = new Body_type_service();
-        $fuel_type_service = new Fuel_Type_service();
-        $transmission_service = new Transmission_service();
-        $district_service = new District_service();
-        $content_service = new Content_service();
+        $manufacture_service           = new Manufacture_service();
+        $vehicle_model_service         = new Vehicle_model_service();
+        $body_type_service             = new Body_type_service();
+        $fuel_type_service             = new Fuel_Type_service();
+        $transmission_service          = new Transmission_service();
+        $district_service              = new District_service();
+        $content_service               = new Content_service();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        $vehicle_news_service = new Vehicle_news_service();
+        $vehicle_news_service          = new Vehicle_news_service();
+        $comment_service               = new Comments_service();
 
-        $data['manufactures'] = $manufacture_service->get_all_active_manufactures();
+        $data['website_comments'] = $comment_service->get_all_comments();
+        $data['manufactures']     = $manufacture_service->get_all_active_manufactures();
         //$data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
-        $data['body_types'] = $body_type_service->get_all_active_body_types();
-        $data['fuel_types'] = $fuel_type_service->get_all_active_fuel_types();
-        $data['transmissions'] = $transmission_service->get_all_active_transmissions();
-        $data['locations'] = $district_service->get_all_districts();
-        $data['why_us'] = $content_service->get_content_by_hcodes('WHYUS');
+        $data['body_types']       = $body_type_service->get_all_active_body_types();
+        $data['fuel_types']       = $fuel_type_service->get_all_active_fuel_types();
+        $data['transmissions']    = $transmission_service->get_all_active_transmissions();
+        $data['locations']        = $district_service->get_all_districts();
+        $data['why_us']           = $content_service->get_content_by_hcodes('WHYUS');
         if (isset($this->session)) {
             $vehicle_results = $vehicle_advertisments_service->get_recently_viewed_vehicles($this->session->userdata('USER_ID'));
         }
@@ -66,7 +71,7 @@ class Home extends CI_Controller {
 
 
         $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();
-        $data['featured_vehicles'] = $vehicle_advertisments_service->get_featured_advertisements(4);
+        $data['featured_vehicles']    = $vehicle_advertisments_service->get_featured_advertisements(4);
 
         $parials = array('content' => 'content_pages/home_content', 'vehicle_search_content' => 'vehicle_adds/load_vehicle_sepecs_for_search', 'recent_adds' => 'vehicle_adds/recent_adds', 'manu_list' => 'manufacturers/manufacture_list_view', 'featured_vehicles' => 'vehicle_adds/featured_vehicles');
         $this->template->load('template/main_template', $parials, $data);
