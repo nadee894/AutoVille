@@ -47,4 +47,9 @@ class Vehicle_compare_service extends CI_Model {
         return $query->result();
     }
 
+    
+    function delete_compared_vehicle($user_id,$vehicle_id){
+        return $this->db->delete('vehicle_compare', array('user_id' => $user_id,'vehicle_id'=>$vehicle_id)); 
+    }
+    
 }
