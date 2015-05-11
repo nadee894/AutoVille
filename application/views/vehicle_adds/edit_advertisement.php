@@ -181,6 +181,7 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
                                 <label for="price">Price<span class="mandatory">*</span></label>
+                                <input  type="hidden" name="price_old"  value="<?php echo $vehicle_advertisement->price;?>">
                                 <input id="price" class="form-control" type="text" name="price" onkeypress="return numbersonly(this, event, '.')" value="<?php echo $vehicle_advertisement->price;?>">
                             </div>
                         </div>
