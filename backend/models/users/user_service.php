@@ -142,8 +142,8 @@ class User_service extends CI_Model {
             'email' => $user_model->get_email(),
             'address' => $user_model->get_address(),
             'contact_no_1' => $user_model->get_contact_no_1(),
-            'contact_no_2' => $user_model->get_contact_no_2(),            
-//            'password' => $user_model->get_password(),
+            'contact_no_2' => $user_model->get_contact_no_2(),
+            'password' => $user_model->get_password(),
             'profile_pic' => $user_model->get_profile_pic(),
             'updated_by' => $user_model->get_updated_by(),
             'updated_date' => $user_model->get_updated_date());
@@ -172,18 +172,19 @@ class User_service extends CI_Model {
         return $this->db->insert('user', $user_model);
     }
 
-    function checkOldPass($old_password) {
-        $id = $this->session->userdata('USER_ID');
-//        $this->db->where('user_name', $this->session->userdata('username'));
-        $this->db->where('id', $id);
-        $this->db->where('password', $old_password);
-        $query = $this->db->get('users');
-        if ($query->num_rows() > 0)
-            return 1;
-        else
-            return 0;
+    /*
+     * This function to check old password when updating an admin or super admin
+     * author - nadeesha
+     */
+
+    function checkOldPass($user_model) {
+        $this->db->select('user.*, user_type.type');
+        $this->db->from('user');
+        $this->db->join('user_type', 'user.user_type= user_type.id');
+//        $this->db->where('id', $id);
+        $this->db->where('password', $user_model->get_password());
+        $this->db->where('id', $user_model->get_id());
+        return $this->db->affected_rows();
     }
-    
-    
 
 }

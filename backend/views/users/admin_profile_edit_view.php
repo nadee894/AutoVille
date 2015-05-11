@@ -184,11 +184,11 @@
             
             $.ajax({
                 type: "POST",
-                url: site_url + '/user_service/checkOldPass',
-                data: "old_password=" +  
+                url: site_url + '/users/check_old_password',
+                data: "old_password=" +   $('#c-pwd').val(),
                 success: function (msg) {
                     if (msg == 1) {
-                      
+                       alert('Success !!');
 
                     } else if (msg == 2) {
                         alert('Error !!');
