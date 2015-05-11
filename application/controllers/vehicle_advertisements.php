@@ -61,18 +61,18 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_service = new Vehicle_advertisments_service();
         $vehicle_images_temp_service   = new Vehicle_images_temp_service();
         $district_service              = new District_service();
-        
 
 
-        $data['heading']         = "Sell your vehicle";
-        $data['manufactures']    = $manufacture_service->get_all_active_manufactures();
-        $data['models']          = $vehicle_model_service->get_all_active_vehicle_models();
-        $data['body_types']      = $body_type_service->get_all_active_body_types();
-        $data['fuel_types']      = $fuel_type_service->get_all_active_fuel_types();
-        $data['transmissions']   = $transmission_service->get_all_active_transmissions();
-        $data['equipments']      = $equipment_service->get_all_active_equipment();
-        $data['locations']       = $district_service->get_all_districts();
-        
+
+        $data['heading']       = "Sell your vehicle";
+        $data['manufactures']  = $manufacture_service->get_all_active_manufactures();
+        $data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
+        $data['body_types']    = $body_type_service->get_all_active_body_types();
+        $data['fuel_types']    = $fuel_type_service->get_all_active_fuel_types();
+        $data['transmissions'] = $transmission_service->get_all_active_transmissions();
+        $data['equipments']    = $equipment_service->get_all_active_equipment();
+        $data['locations']     = $district_service->get_all_districts();
+
 
 
         $vehicle_images_temp_service->truncate_temp_images();
@@ -220,6 +220,79 @@ class Vehicle_advertisements extends CI_Controller {
 //        }
     }
 
+    /*
+     * Edit vehicle advertisements
+     */
+
+    function edit_advertisement() {
+
+
+        $vehicle_advertisement_model   = new Vehicle_advertisments_model();
+        $vehicle_advertisement_service = new Vehicle_advertisments_service();
+        $vehicle_images_temp_service   = new Vehicle_images_temp_service();
+        $vehicle_images_service        = new Vehicle_images_service();
+        $vehicle_images_model          = new Vehicle_images_model();
+        $vehicle_equipment_model       = new Vehicle_equipment_model();
+        $vehicle_equipment_service     = new Vehicle_equipment_service();
+
+        $advertisement_id = $this->input->post('last_vehicle_id', TRUE);
+        $temp_images      = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
+
+        $vehicle_advertisement_model->set_id($advertisement_id);
+        $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
+        $vehicle_advertisement_model->set_manufacture_id($this->input->post('manufacturer', TRUE));
+        $vehicle_advertisement_model->set_description($this->input->post('description', TRUE));
+        $vehicle_advertisement_model->set_fuel_type_id($this->input->post('fuel_type', TRUE));
+        $vehicle_advertisement_model->set_year($this->input->post('fabrication', TRUE));
+        $vehicle_advertisement_model->set_transmission_id($this->input->post('transmission', TRUE));
+        $vehicle_advertisement_model->set_body_type_id($this->input->post('body_type', TRUE));
+        $vehicle_advertisement_model->set_doors($this->input->post('doors'));
+        $vehicle_advertisement_model->set_location_id($this->input->post('location'));
+        $vehicle_advertisement_model->set_colour($this->input->post('colour'));
+        $vehicle_advertisement_model->set_sale_type($this->input->post('sale_type'));
+        $vehicle_advertisement_model->set_chassis_no($this->input->post('chassis_no'));
+        $vehicle_advertisement_model->set_kilometers($this->input->post('kilo_meters'));
+        $vehicle_advertisement_model->set_price($this->input->post('price'));
+        if($this->input->post('price')<$this->input->post('price_old')){
+           $vehicle_advertisement_model->set_is_price_drop('1'); 
+        }else{
+            $vehicle_advertisement_model->set_is_price_drop('0');
+        }
+        $vehicle_advertisement_model->set_updated_date(date("Y-m-d H:i:s"));
+        $vehicle_advertisement_model->set_updated_by($this->session->userdata('USER_ID'));
+
+
+
+        $msg = $vehicle_advertisement_service->update_vehicle_advertisement($vehicle_advertisement_model);
+
+        //remove exsisting equipments
+        $vehicle_equipment_service->remove_equipments_for_vehicle_add($advertisement_id);
+
+        $equipments = $this->input->post('equipment', TRUE);
+
+        if (!empty($equipments)) {
+            foreach ($equipments as $equipment) {
+
+                $vehicle_equipment_model->set_equipment_id($equipment);
+                $vehicle_equipment_model->set_vehicle_id($advertisement_id);
+                $vehicle_equipment_service->add_new_vehicle_equipment($vehicle_equipment_model);
+            }
+        }
+
+        foreach ($temp_images as $image) {
+            $vehicle_images_model->set_image_path($image->image_path);
+            $vehicle_images_model->set_vehicle_id($advertisement_id);
+            $vehicle_images_model->set_is_published('1');
+            $vehicle_images_model->set_is_deleted('0');
+            $vehicle_images_model->set_added_date(date("Y-m-d H:i:s"));
+            $vehicle_images_model->set_added_by($this->session->userdata('USER_ID'));
+
+            $msg = $vehicle_images_service->add_new_images($vehicle_images_model);
+        }
+
+        echo $msg;
+    }
+
     public function get_models_for_manufacturer() {
         $vehicle_model_service = new Vehicle_model_service();
 
@@ -250,8 +323,8 @@ class Vehicle_advertisements extends CI_Controller {
             $searched_vehicles_service->add_search_record($searched_vehicles_model);
         }
 
-        $data['vehicle_detail'] = $vehicle_advertisments_service->get_advertisement_by_id($id);
-        $data['images']         = $vehicle_images_service->get_images_for_advertisement($id);
+        $data['vehicle_detail']  = $vehicle_advertisments_service->get_advertisement_by_id($id);
+        $data['images']          = $vehicle_images_service->get_images_for_advertisement($id);
         $data['vehicle_reviews'] = $vehicle_reviews_service->get_all_vehicle_reviews();
 
 
