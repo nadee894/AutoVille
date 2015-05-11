@@ -134,6 +134,9 @@
                     </ul>
 
                 </div>
+                        <div id="loan-calculator" class="grey-corner-box">
+            <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
+        </div>
             </div>
 
             <div class="full-width grey-border-bottom">
@@ -195,9 +198,7 @@
 
 
         </div><!--.content-holder-->
-        <div id="loan-calculator" class="grey-corner-box">
-            <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
-        </div>
+
     </section><!--#search-list-->
 
 </div><!--#page-content-->
