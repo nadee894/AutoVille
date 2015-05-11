@@ -269,6 +269,7 @@
 
                 </section>
                 <!--/#address-contact-->
+                <input type="hidden" id="vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="vehicle_id"/>
             </form>
 
             <!--Gallery-->
@@ -312,7 +313,7 @@
                             <!-- The loading indicator is shown during file processing -->
                             <label><em>Attach vehicle images.</em></label>
                             <br>
-                            <input type="hidden" id="vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="vehicle_id"/>
+                            
                             <input type="hidden" id="last_vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="last_vehicle_id"/>
                             <input type="hidden" id="image_count" value="<?php echo count($vehicle_images); ?>" name="image_count"/>
                             <span id="image_msg"></span>
@@ -510,8 +511,8 @@
                                                     $.post(site_url + '/vehicle_advertisements/edit_advertisement', $('#edit_advertisement_form').serialize(), function(msg)
                                                     {
                                                         if (msg == 1) {
-//                                                            toastr.success("Successfully updated your advertisement !!", "AutoVille");
-//                                                            setTimeout("location.href = site_url+'/dashboard';", 100);
+                                                            toastr.success("Successfully updated your advertisement !!", "AutoVille");
+                                                            setTimeout("location.href = site_url+'/dashboard';", 100);
                                                         } else {
                                                             $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">advertisement </a>has failed.</div>');
                                                         }

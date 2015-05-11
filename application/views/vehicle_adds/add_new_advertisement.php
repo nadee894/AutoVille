@@ -266,7 +266,6 @@
 
                 </section>
                 <!--/#address-contact-->
-                <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
             </form>
 
             <!--Gallery-->
@@ -310,7 +309,7 @@
                             <!-- The loading indicator is shown during file processing -->
                             <label><em>Attach vehicle images.</em></label>
                             <br>
-                            
+                            <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
                             <input type="hidden" id="image_count" value="0" name="image_count"/>
                             <span id="image_msg"></span>
                             <!-- The table listing the files available for upload/download -->
