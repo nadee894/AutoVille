@@ -507,6 +507,7 @@
                                                             {
                                                                 if (msg == 1) {
                                                                     toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                                                                    setTimeout("location.href = site_url+'/dashboard';", 100);
 
                                                                 } else {
                                                                     $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">advertisement </a>has failed.</div>');
