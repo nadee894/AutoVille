@@ -2,18 +2,16 @@
 <div class="top-label">
     <h4>
         <i class="fa fa-"></i>
-        Ask about this car
+        Ask for price
     </h4>
-</div>
 
-<div class=" small-12 large-3 columns">
     <form name="form1">
         <i class="fa fa-user"></i>
-        <input type="text" name="title" placeholder="Your Name"/>
+        <input class="form-control" type="text" name="title" placeholder="Your Name"/>
         <i class="fa fa-envelope"></i>
-        <input type="text" name="title2" placeholder="Your Email"/>
+        <input class="form-control" type="text" name="title2" placeholder="Your Email"/>
         <i class="fa fa-phone"></i>
-        <input type="text" name="title3" placeholder="Your Phone"/>
+        <input class="form-control" type="text" name="title3" placeholder="Your Phone"/>
         <br>
         <br>
 
@@ -48,17 +46,16 @@
 
 <script type="text/javascript">
 
-    function send_email() {
+                function send_email() {
 
-        $.ajax({
-            type: "POST",
-            url: site_url + '/vehicle_advertisements/send_email_to_sellers',
-            data: ""
-            success: function (msg) {
-                $('#search_result').html(msg);
-            }
-        });
-    }
+                    $.ajax({
+                        type: "POST",
+                        url: '<?php echo site_url(); ?>/vehicle_advertisements/send_email_to_sellers',
+                        success: function(msg) {
+                            $('#search_result').html(msg);
+                        }
+                    });
+                }
 </script>
 
 
