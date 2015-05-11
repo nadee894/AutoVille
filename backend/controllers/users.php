@@ -212,8 +212,8 @@ class Users extends CI_Controller {
         $user_service = new User_service();
         $user_model = new User_model();
         $user_model->set_id($this->session->userdata('USER_ID'));
-        $user_model->set_password( $this->input->post('old_password', TRUE));
-        $user_service->checkOldPass($user_model);
+        $user_model->set_password($this->input->post('old_password', TRUE));
+        echo $user_service->checkOldPass($user_model);
     }
 
 }

@@ -182,8 +182,8 @@ class User_service extends CI_Model {
         $this->db->from('user');
         $this->db->join('user_type', 'user.user_type= user_type.id');
 //        $this->db->where('id', $id);
-        $this->db->where('password', $user_model->get_password());
-        $this->db->where('id', $user_model->get_id());
+        $this->db->where('user.password', $user_model->get_password());
+        $this->db->where('user.id', $user_model->get_id());
         return $this->db->affected_rows();
     }
 
