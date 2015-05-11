@@ -25,25 +25,41 @@
     </div>
 
     <div>
-<!--        <div class="field checkbox ">
-            <i class="cb-box icon-check"></i>
-            <div class="cb-label" data-layer-action="save"> Save as an alert </div>
-            <input id="ContactAgentForm_saveasalert" type="hidden" name="ContactAgentForm[save_as_alert]" value="1">
-        </div>
-
-        <div>
-            <i class="cb-box icon-check"></i>
-            <div class="cb-label" data-layer-action="subscribe"> Subscribe to our newsletter </div>
-            <input id="ContactAgentForm_acceptemailoffers" type="hidden" name="ContactAgentForm[accept_email_offers]" value="1">
-        </div>-->
+        <!--        <div class="field checkbox ">
+                    <i class="cb-box icon-check"></i>
+                    <div class="cb-label" data-layer-action="save"> Save as an alert </div>
+                    <input id="ContactAgentForm_saveasalert" type="hidden" name="ContactAgentForm[save_as_alert]" value="1">
+                </div>
+        
+                <div>
+                    <i class="cb-box icon-check"></i>
+                    <div class="cb-label" data-layer-action="subscribe"> Subscribe to our newsletter </div>
+                    <input id="ContactAgentForm_acceptemailoffers" type="hidden" name="ContactAgentForm[accept_email_offers]" value="1">
+                </div>-->
 
         <input type="hidden" value="SU092CA68QPZINTCARLK" name="sku">
         <div data-ajax-local-messages=""></div>
         <div class="confirm-btn">
-            <button id="lead-form-submit" class="btn btn-default" data-layer-label="SU092CA68QPZINTCARLK" data-layer-action="contact-seller"> Contact Seller </button>
+            <button id="lead-form-submit" onclick="send_email" class="btn btn-default" data-layer-label="SU092CA68QPZINTCARLK" data-layer-action="contact-seller"> Contact Seller </button>
         </div>
     </div>
     <!--</form>-->
 </div>
+
+<script type="text/javascript">
+
+    function send_email() {
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/vehicle_advertisements/send_email_to_sellers',
+            data: ""
+            success: function (msg) {
+                $('#search_result').html(msg);
+            }
+        });
+    }
+</script>
+
 
 

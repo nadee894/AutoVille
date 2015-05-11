@@ -142,8 +142,8 @@ class User_service extends CI_Model {
             'email' => $user_model->get_email(),
             'address' => $user_model->get_address(),
             'contact_no_1' => $user_model->get_contact_no_1(),
-            'contact_no_2' => $user_model->get_contact_no_2(),
-            'password' => $user_model->get_password(),
+            'contact_no_2' => $user_model->get_contact_no_2(),            
+//            'password' => $user_model->get_password(),
             'profile_pic' => $user_model->get_profile_pic(),
             'updated_by' => $user_model->get_updated_by(),
             'updated_date' => $user_model->get_updated_date());
@@ -171,5 +171,19 @@ class User_service extends CI_Model {
     function add_user($user_model) {
         return $this->db->insert('user', $user_model);
     }
+
+    function checkOldPass($old_password) {
+        $id = $this->session->userdata('USER_ID');
+//        $this->db->where('user_name', $this->session->userdata('username'));
+        $this->db->where('id', $id);
+        $this->db->where('password', $old_password);
+        $query = $this->db->get('users');
+        if ($query->num_rows() > 0)
+            return 1;
+        else
+            return 0;
+    }
+    
+    
 
 }
