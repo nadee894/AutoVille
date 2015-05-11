@@ -43,5 +43,16 @@ class Searched_vehicles_service extends CI_Model {
     function delete_serached_record($id){
        return $this->db->delete('searched_vehicles', array('id' => $id)); 
     }
+    
+    function get_view_count_for_advertisement($advertisement_id) {
+
+        $this->db->select('searched_vehicles.*');
+        $this->db->from('searched_vehicles');
+        $this->db->where('searched_vehicles.vehicle_id', $advertisement_id);
+
+
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }

@@ -35,5 +35,18 @@ class User_service extends CI_Model {
         $this->db->where('id', $user_model->get_id());
         return $this->db->update('user', $data);
     }
+    
+    
+    function get_user($id) {
+        
+        $this->db->select('user.*,user_type.type as user_type_name');
+        $this->db->from('user');
+        $this->db->join('user_type', 'user.user_type = user_type.id');
+        $this->db->where('user.id',$id);
+        $this->db->where('user.is_published','1');
+        $this->db->where('user.is_deleted','0');
+        $query = $this->db->get();
+        return $query->row();
+    }
 
 }
