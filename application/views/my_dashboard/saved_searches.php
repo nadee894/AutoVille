@@ -58,7 +58,7 @@
     </nav>
 </div>
 
-<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script>
                                 //delete advertisement
                                 function delete_advertisement(id) {

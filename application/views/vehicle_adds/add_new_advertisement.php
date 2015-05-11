@@ -171,7 +171,7 @@
                                     <option value="">Select Condition</option>
                                     <option value="new">New</option>
                                     <option value="used">Used</option>
-                                    <option value="used">Reconditioned</option>
+                                    <option value="Reconditioned">Reconditioned</option>
                                 </select>
                             </div>
                         </div>
@@ -266,6 +266,7 @@
 
                 </section>
                 <!--/#address-contact-->
+                <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
             </form>
 
             <!--Gallery-->
@@ -309,7 +310,7 @@
                             <!-- The loading indicator is shown during file processing -->
                             <label><em>Attach vehicle images.</em></label>
                             <br>
-                            <input type="hidden" id="last_vehicle_id" value="<?php echo $last_id; ?>" name="last_vehicle_id"/>
+                            
                             <input type="hidden" id="image_count" value="0" name="image_count"/>
                             <span id="image_msg"></span>
                             <!-- The table listing the files available for upload/download -->
@@ -507,6 +508,7 @@
                                                             {
                                                                 if (msg == 1) {
                                                                     toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                                                                    setTimeout("location.href = site_url+'/dashboard';", 100);
 
                                                                 } else {
                                                                     $("#add_project_msg").html('<div class="alert alert-error"><button class="close" data-dismiss="alert"></button>Error: The <a class="link" href="#">advertisement </a>has failed.</div>');
