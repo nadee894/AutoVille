@@ -80,10 +80,10 @@
                         <td>
                             <?php if ($result->is_featured == '2') { ?>
                                 <span class="label label-primary">Featured</span>
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Remove Featured"></i></a> 
+                                <a class="btn btn-success btn-xs"  onclick="change_featured_status(<?php echo $result->id; ?>, 1, this);"><i class="fa fa-arrow-up " title="Remove Featured"></i></a> 
                             <?php } elseif ($result->is_featured == '1') { ?>
                                 <span class="label label-default">Pending</span> 
-                                <a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 1, this);"><i class="fa fa-arrow-up " title="activate Featured"></i></a> 
+                                <a class="btn btn-success btn-xs"  onclick="change_featured_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="activate Featured"></i></a> 
                             <?php } else { ?>
                                 <span class="label label-danger">Disable</span>  
                             <?php } ?> 
@@ -111,7 +111,7 @@
 
 <script type="text/javascript">
 
-    function change_advertisement_status(advertisement_id, value, element) {
+    function change_featured_status(advertisement_id, value, element) {
 
         var condition = 'Do you want to make this advertisement Feaured ?';
         if (value == 2) {
@@ -126,9 +126,9 @@
                 success: function (msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<span class="label label-primary">Featured</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Remove Featured"></i></a> ');
+                            $(element).parent().html('<span class="label label-default">Pending</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 2, this);"><i class="fa fa-arrow-up " title="Remove Featured"></i></a> ');
                         } else {
-                            $(element).parent().html('<span class="label label-default">Pending</span> ');
+                            $(element).parent().html('<span class="label label-primary">Featured</span><a class="btn btn-success btn-xs"  onclick="change_advertisement_status(<?php echo $result->id; ?>, 1, this);"><i class="fa fa-arrow-up " title="activate Featured"></i></a>  ');
                         }
 
                     } else if (msg == 2) {
