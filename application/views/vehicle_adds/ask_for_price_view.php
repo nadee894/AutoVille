@@ -27,13 +27,13 @@
             <input type="hidden" value="SU092CA68QPZINTCARLK" name="sku">
             <div data-ajax-local-messages=""></div>
             <div class="confirm-btn">
-                <input type="hidden" name="user_email" id="user_email" value="<?php echo $vehicle_detail->user_email; ?>" />
+                <input type="hidden" name="sender_email" id="sender_email" value="<?php echo $vehicle_detail->user_email; ?>" />
                 <input type="button" id="lead-form-submit" onclick="send_email()" class="btn btn-default" value=" Contact Seller"> 
             </div>
         </div>
     </form>
 </div>
-
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
 
                 function send_email() {
@@ -43,7 +43,7 @@
                         url: '<?php echo site_url(); ?>/vehicle_advertisements/send_email_to_sellers',
                         data:$('#ask_form').serialize(),
                         success: function(msg) {
-                            $('#search_result').html(msg);
+                            toastr.success("Email successfully sent !!", "AutoVille");
                         }
                     });
                 }

@@ -40,7 +40,6 @@
                             <figure><?php echo $result->year;?></figure>
                             <div class="info">
                                 <div class="type">
-                                    <i><img src="assets/img/hotel-last-minute.jpg" alt=""></i>
                                     <figure><?php echo $result->sale_type;?></figure>
                                 </div>
                                 <!--<div class="rating" data-rating="4"></div>-->

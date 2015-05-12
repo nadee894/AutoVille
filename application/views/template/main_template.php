@@ -37,7 +37,7 @@
                 <div class="header">
                     <div class="wrapper">
                         <div class="brand">
-                            <a href="<?php echo site_url(); ?>/home"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
+                            <a class="lazy" href="<?php echo site_url(); ?>/home"><img src="<?php echo base_url(); ?>application_resources/assets/img/logo.png" alt="logo"></a>
                         </div>
                         <nav class="navigation-items">
                             <div class="wrapper">
