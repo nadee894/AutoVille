@@ -59,7 +59,7 @@
                                         data: "description=" + description + "&vehicle_id=" + $('#vehicle_id').val(),
                                         success: function(msg) {
                                             $('#review_list').html(msg);
-
+                                            $('#description').val('');
                                         }
                                     });
                                 }
