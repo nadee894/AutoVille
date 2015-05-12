@@ -37,13 +37,13 @@
                         <div class="wrapper">
                             <a href="">
                                 <h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
-                            <figure>63 Birch Street</figure>
+                            <figure><?php echo $result->year;?></figure>
                             <div class="info">
                                 <div class="type">
                                     <i><img src="assets/img/hotel-last-minute.jpg" alt=""></i>
-                                    <span>Restaurant</span>
+                                    <figure><?php echo $result->sale_type;?></figure>
                                 </div>
-                                <div class="rating" data-rating="4"></div>
+                                <!--<div class="rating" data-rating="4"></div>-->
                             </div>
                         </div>
                     </div>
