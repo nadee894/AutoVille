@@ -181,14 +181,14 @@
 
                 }
             });
-            
+
             $.ajax({
                 type: "POST",
                 url: site_url + '/users/check_old_password',
-                data: "old_password=" +   $('#c-pwd').val(),
+                data: "old_password=" + $('#c-pwd').val(),
                 success: function (msg) {
                     if (msg == 1) {
-                       alert('valid old password !!');
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully Updated!!.</strong></div>');
 
                     } else {
                         alert('Error !!');
@@ -203,7 +203,7 @@
                     if (msg == 1) {
 
 //                        toastr.success("Profile Successfully updated !!", "AutoVille");
-                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully Updated!!.</strong></div>');
                         edit_user_form.reset();
 
                         window.location = site_url + '/users/load_profile_of_user'
