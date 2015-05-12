@@ -248,7 +248,7 @@ class Vehicle_advertisments_service extends CI_Model {
 
     function get_advertisement_by_id($id) {
 
-        $this->db->select('vehicle_advertisements.*,user.name as added_by_user,'
+        $this->db->select('vehicle_advertisements.*,user.email as user_email,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
                 . 'transmission.name as transmission,fuel_type.name as fuel_type,'
                 . 'body_type.name as body_type');

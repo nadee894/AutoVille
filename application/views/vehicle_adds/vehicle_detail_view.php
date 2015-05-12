@@ -6,7 +6,7 @@
         width: 33%;
     }
 </style>
-<section class="container">
+<div class="container">
     <div id="page-content" class="row">
         <div class="col-md-12">
             <div id="car-pagination">
@@ -147,14 +147,13 @@
                                     <h3><span class="bold">Vehicle</span> information</h3>
                                     <div class="row">
                                         <?php foreach ($equipments as $equipment) { ?>
-                                            <div class="col-md-3">
+                                        <div class="col-md-3" style="padding-bottom: 12px;">
                                                 <?php echo $equipment->name; ?>
 
                                             </div>
-                                            <div class="col-md-3">
+                                        <div class="col-md-3" style="padding-bottom: 12px;">
                                                 <?php if (in_array($equipment->id, $vehicle_equipments)) { ?> Yes <?php } else { ?> No<?php } ?>
                                             </div>
-                                        <div class="clearfix"></div>
                                         <?php }
                                         ?>
                                     </div>
@@ -211,7 +210,7 @@
                 </div><!--#search-list-->
             </div>
         </div><!--#page-content-->
-</section>
+</div>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/bxslider/jquery.bxslider.js"></script>
 <script type="text/javascript">
 
