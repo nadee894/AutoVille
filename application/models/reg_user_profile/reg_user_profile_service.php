@@ -56,21 +56,9 @@ class Reg_User_Profile_service extends CI_Model {
         return $this->db->update('user', $data);
     }
     
-    function update_reg_user($reg_user_profile_model){
+    function update_reg_user($user,$data){
         
-        $data = array('title' => $reg_user_profile_model->get_title(),
-            'name' => $reg_user_profile_model->get_name(),
-            'user_name' => $reg_user_profile_model->get_user_name(),
-            'user_type' => $reg_user_profile_model->get_user_type(),
-            'email' => $reg_user_profile_model->get_email(),
-            'address' => $reg_user_profile_model->get_address(),
-            'contact_no_1' => $reg_user_profile_model->get_contact1(),
-            'contact_no_2' => $reg_user_profile_model->get_contact2(),
-            'password' => $reg_user_profile_model->get_password(),
-            'profile_pic' => $reg_user_profile_model->get_profile_pic(),
-            'updated_by' => $reg_user_profile_model->get_updated_by(),
-            'updated_date' => $reg_user_profile_model->get_updated_date());
-        $this->db->where('id', $reg_user_profile_model->get_id());
+        $this->db->where('user_name', $user);
         return $this->db->update('user', $data);
     }
 

@@ -12,7 +12,7 @@
                     <div class="item list">
                         <div class="image">
                             <div class="quick-view"><i class="fa fa-eye"></i><span>Quick View</span></div>
-                            <a href="">
+                            <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
                                 <div class="overlay">
                                     <div class="inner">
                                         <div class="content">
@@ -64,7 +64,7 @@
                     <header><h2>Website Reviews</h2></header>
                     <?php foreach ($website_comments as $value) { ?>                              
 
-                        <a href="" class="item-horizontal small">
+                        <a href="#" class="item-horizontal small">
                             <h3><?php echo $value->title; ?></h3>
                             <!--                        <figure>12.1.2015</figure>-->
                             <div class="wrapper">
@@ -76,7 +76,7 @@
                             </div>
                         </a>
                     <?php } ?>
-                    <div><button  type="submit" class="btn btn-primary" style="width:100px; height:45px;"><a href="<?php echo site_url();?>/website_comments/list_website_comments">Read More </a></button></div><br>
+                    <div><a class="btn btn-primary" href="<?php echo site_url();?>/website_comments/list_website_comments">Read More </a></div><br>
 
                     
 

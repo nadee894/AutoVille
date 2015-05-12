@@ -276,9 +276,8 @@
 </html>
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+<script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>
 
 <script>
 
@@ -301,11 +300,12 @@
                     //$.jStorage.flush();
                     var jSindex = $.jStorage.index();
 
-                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
-                    var li_list = "";
-                    
+                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+
+                    var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+
                     if (jSindex.length == 0) {
-                        li_list = '<li>Add Vehicle</li>';
+                        li_list += '<li>Add Vehicle</li>';
                     }
 
                     for (i = 0; i < jSindex.length; i++) {
@@ -315,7 +315,9 @@
                     if (jSindex.length >= 2) {
                         li_list += compareBtn;
                     }
-                    $('#added_vehicle_list').html(li_list);
+
+                    li_list += '</ul>';
+                    $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
             });
