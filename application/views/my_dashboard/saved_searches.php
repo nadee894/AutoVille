@@ -13,12 +13,14 @@
                 </thead>
                 <tbody>
                     <?php
+                    $vehicle_images_service = new Vehicle_images_service();
                     foreach ($my_advertisements as $my_advertisement) {
+                        $image=$vehicle_images_service->get_images_for_advertisement_one($my_advertisement->id);
                         ?>
                     <tr id="list_<?php echo $my_advertisement->search_id; ?>">
                             <td>
                                 <a class="car-image" href="<?php echo site_url() . '/vehicle_advertisements/vehicle_advertisement_detail_view/' . $my_advertisement->id; ?>">
-                                    <img  class="lazy" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/thumbnail/' . $my_advertisement->image_path; ?>">
+                                    <img  class="lazy" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/thumbnail/' . $image->image_path; ?>">
                                 </a>
 
                                 <h5>
