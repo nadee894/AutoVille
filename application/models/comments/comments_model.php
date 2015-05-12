@@ -3,7 +3,6 @@
 class Comments_model extends CI_Model {
 
     var $id;
-    var $vehicle_id;
     var $title;
     var $description;
     var $is_published;
@@ -17,9 +16,6 @@ class Comments_model extends CI_Model {
         return $this->id;
     }
 
-    public function get_vehicle_id() {
-        return $this->vehicle_id;
-    }
 
     public function get_title() {
         return $this->title;
@@ -57,9 +53,6 @@ class Comments_model extends CI_Model {
         $this->id = $id;
     }
 
-    public function set_vehicle_id($vehicle_id) {
-        $this->vehicle_id = $vehicle_id;
-    }
 
     public function set_title($title) {
         $this->title = $title;

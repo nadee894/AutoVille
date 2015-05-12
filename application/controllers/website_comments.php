@@ -37,7 +37,7 @@ class Website_comments extends CI_Controller {
         $comments_model->set_is_published('1');
         $comments_model->set_is_deleted('0');
 
-        $comments_service->add_website_comments($comments_service);
+        $comments_service->add_website_comments($comments_model);
         $website_comments = $comments_service->get_all_comments_list();
 
         foreach ($website_comments as $value) {
