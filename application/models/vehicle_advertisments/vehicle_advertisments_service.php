@@ -254,7 +254,7 @@ class Vehicle_advertisments_service extends CI_Model {
                 . 'body_type.name as body_type');
         $this->db->from('vehicle_advertisements');
         $this->db->join('manufacture', 'manufacture.id = vehicle_advertisements.manufacture_id');
-        $this->db->join('model', 'model.id = vehicle_advertisements.model_id');
+        $this->db->join('model', 'model.id = vehicle_advertisements.model_id','left');
         $this->db->join('transmission', 'transmission.id = vehicle_advertisements.transmission_id');
         $this->db->join('fuel_type', 'fuel_type.id = vehicle_advertisements.fuel_type_id');
         $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');
@@ -278,7 +278,7 @@ class Vehicle_advertisments_service extends CI_Model {
                 . 'body_type.name as body_type');
         $this->db->from('vehicle_advertisements');
         $this->db->join('manufacture', 'manufacture.id = vehicle_advertisements.manufacture_id');
-        $this->db->join('model', 'model.id = vehicle_advertisements.model_id');
+        $this->db->join('model', 'model.id = vehicle_advertisements.model_id','left');
         $this->db->join('transmission', 'transmission.id = vehicle_advertisements.transmission_id');
         $this->db->join('fuel_type', 'fuel_type.id = vehicle_advertisements.fuel_type_id');
         $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');

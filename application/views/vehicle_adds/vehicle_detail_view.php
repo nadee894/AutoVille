@@ -11,6 +11,7 @@
         <div class="content-holder">
             <div class="page-main-heading extra-space">
                 <div class="heading-location">
+                    <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $vehicle_detail->id; ?>" />
                     <h2><span class="bold"><?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model; ?></span> <?php echo $vehicle_detail->year; ?></h2>
                 </div>
 
@@ -78,11 +79,11 @@
                                    
                                     <ul id="carousel" class="elastislide-list">
                 <?php foreach ($images as $image) { ?>
-                                                                                                            <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
-                                                                                                                <a href="">
-                                                                                                                    <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
-                                                                                                                </a>
-                                                                                                            </li>
+                                                                                                                <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
+                                                                                                                    <a href="">
+                                                                                                                        <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
+                                                                                                                    </a>
+                                                                                                                </li>
                 <?php } ?>
                                     </ul>
                                      <div class="image-preview">
@@ -214,7 +215,8 @@
 
         $.ajax({
             type: "POST",
-            url: site_url + '/vehicle_compare/load_vehicle_popup',
+            url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
+            data: {vehicle_id: $('#vehicle_id').val()},
             success: function(msg) {
                 if (msg != 0) {
                     $('#compare_vehicle_list').html(msg);
