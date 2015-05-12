@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <div class="col-lg-2 col-sm-2">
                         <select class="form-control input-sm m-bot15">
-                            <?php foreach ($approved_ads as $result) { ?>
+                            <?php foreach ($reg_users as $result) { ?>
                                 <option id="<?php echo $result->id; ?>"><?php echo $result->name; ?></option>
                                 <?php
                             }
