@@ -432,4 +432,20 @@ class Vehicle_advertisements extends CI_Controller {
         $this->sms_handler->sendSMS(0765514269, $message); //correct one
     }
 
+    /*
+     * This is to update the is_featured status from 0 to 1- request featured
+     * author- Nadeesha
+     * 
+     */
+
+    function request_featured() {
+        $vehicle_advertisments_model = new Vehicle_advertisments_model();
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        $vehicle_advertisments_model->set_id(trim($this->input->post('id', TRUE)));
+        $vehicle_advertisments_model->set_is_published(trim($this->input->post('value', TRUE)));
+
+        echo $vehicle_advertisments_service->request_featured_advertisement($vehicle_advertisments_model);
+    }
+
 }

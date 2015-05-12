@@ -13,7 +13,7 @@
 
             <ul class="nav nav-pills nav-stacked">
                 <li class="active" ><a href="<?php echo site_url(); ?>/users/load_profile_of_user" > <i class="fa fa-user"></i> Profile</a></li>
-                <li><a onclick="load_admin_activities()"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li>
+                <!--<li><a onclick="load_admin_activities()"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li>-->
                 <li><a onclick="load_admin_edit_profile()"> <i class="fa fa-edit"></i> Edit profile</a></li>
             </ul>
 

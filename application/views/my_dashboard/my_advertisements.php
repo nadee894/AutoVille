@@ -45,19 +45,25 @@
                             <div class="type label-danger label">
                                 <span>Rejected</span>
                             </div>
+                        <?php } else if ($my_advertisement->is_published == '1') { ?>
+                            <div class="type label-primary label">
+                                <span>Approved</span>
+                            </div>
+
+                            <?php if ($my_advertisement->is_featured == '0') { ?>
+                        <span> <button class="btn btn-send" id="btn_<?php echo $my_advertisement->id ?>" onclick="update_request_featured(<?php echo $my_advertisement->id; ?>, 1, this)">Make Featured </button></span>
+                            <?php } else if ($my_advertisement->is_featured == '1') { ?>
+                                <div class="type label-warning label">
+                                    <span>Pending Featured Approval ..</span>
+                                </div>
+                            <?php } else if ($my_advertisement->is_featured == '2') { ?>
+                                <div class="type label-success label">
+                                    <span>Featured</span>
+                                </div>
+                            <?php } ?>
+
                         <?php } ?>
 
-                        <?php if ($my_advertisement->is_featured == '0') { ?>
-                            <button class="btn btn-send">Make Featured </button>
-                        <?php } else if ($my_advertisement->is_featured == '1') { ?>
-                            <div class="type label-warning label">
-                                <span>Pending Featured Approval ..</span>
-                            </div>
-                        <?php } else if ($my_advertisement->is_featured == '2') { ?>
-                            <div class="type label-success label">
-                                <span>Featured</span>
-                            </div>
-                        <?php } ?>
 
                     </div>
                 </div>
@@ -76,23 +82,52 @@
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script>
 //delete advertisement
-                                function delete_advertisement(id) {
+                        function delete_advertisement(id) {
 
-                                    if (confirm('Are you sure want to remove this advertisement from your garage ?')) {
+                            if (confirm('Are you sure want to remove this advertisement from your garage ?')) {
 
-                                        $.ajax({
-                                            type: "POST",
-                                            url: '<?php echo site_url(); ?>/vehicle_advertisements/delete_advertisement',
-                                            data: "id=" + id,
-                                            success: function(msg) {
-                                                if (msg == 1) {
-                                                    $('#list_' + id).hide();
-                                                    toastr.success("Successfully removed from your garage !!", "AutoVille");
-                                                } else if (msg == 2) {
-                                                    toastr.danger('Error occured. !!', "AutoVille");
-                                                }
-                                            }
-                                        });
+                                $.ajax({
+                                    type: "POST",
+                                    url: '<?php echo site_url(); ?>/vehicle_advertisements/delete_advertisement',
+                                    data: "id=" + id,
+                                    success: function (msg) {
+                                        if (msg == 1) {
+                                            $('#list_' + id).hide();
+                                            toastr.success("Successfully removed from your garage !!", "AutoVille");
+                                        } else if (msg == 2) {
+                                            toastr.danger('Error occured. !!', "AutoVille");
+                                        }
                                     }
-                                }
+                                });
+                            }
+                        }
+
+
+                        /*
+                         * This is to update the is_featured status from 0 to 1- request featured
+                         * author- Nadeesha
+                         * 
+                         */
+                        function update_request_featured(advertisement_id, value, element) {
+
+                            var condition = 'Do you want to Featured this Advertisement?';
+                            if (value == 0) {
+                                condition = 'Do you want to Remove featured from this Advertisement?';
+                            }
+
+                            if (confirm(condition)) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: '<?php echo site_url(); ?>/vehicle_advertisements/request_featured',
+                                    data: "id=" + advertisement_id + "&value=" + value,
+                                    success: function (msg) {
+                                        if (msg == 1) {
+                                                $(element).parent().html('<div class="type label-warning label"><span>Pending Featured Approval ..</span></div>');
+                                            toastr.success("Successfully Updated !!", "AutoVille");
+
+                                        }
+                                    }
+                                });
+                            }
+                        }
 </script>
