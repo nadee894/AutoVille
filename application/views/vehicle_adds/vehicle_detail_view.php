@@ -220,11 +220,7 @@
             url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
             data: {vehicle_id: $('#vehicle_id').val()},
             success: function(msg) {
-                if (msg != 0) {
-                    $('#compare_vehicle_list').html(msg);
-                } else {
-                    alert('Error loading vehicles');
-                }
+
             }
         });
 
