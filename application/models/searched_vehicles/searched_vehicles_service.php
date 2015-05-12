@@ -17,7 +17,7 @@ class Searched_vehicles_service extends CI_Model {
     
     function get_searched_vehicles_for_user($limit, $start,$user_id) {
 
-        $this->db->select('searched_vehicles.id as search_id,searched_vehicles.date,vehicle_advertisements.*,vehicle_images.image_path,'
+        $this->db->select('searched_vehicles.id as search_id,searched_vehicles.date,vehicle_advertisements.*,'
                 . 'manufacture.name as manufacture,model.name as model,'
                 . 'transmission.name as transmission,'
                 . 'body_type.name as body_type');
@@ -27,10 +27,9 @@ class Searched_vehicles_service extends CI_Model {
         $this->db->join('model', 'model.id = vehicle_advertisements.model_id');
         $this->db->join('transmission', 'transmission.id = vehicle_advertisements.transmission_id');
         $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');
-        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
         $this->db->where('vehicle_advertisements.is_deleted', '0');
         $this->db->where('searched_vehicles.user_id', $user_id);
-//        $this->db->group_by('vehicle_images.vehicle_id');
+        $this->db->group_by('vehicle_advertisements.id');
 
         if ($limit != '' && $start !='') {
             $this->db->limit($limit, $start);
