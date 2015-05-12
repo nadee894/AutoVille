@@ -50,7 +50,7 @@
                                             <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
                                                 <span class="caret"></span>
                                             </button>
-                                            <ul class="dropdown-menu">  
+                                            <ul class="dropdown-menu" id="added_vehicle_list">  
                                                 <!--One car-->
                                                 <li>Add Vehicle</li>                                                                                                   
                                                 <!--End One car-->                                                                                                        
@@ -276,21 +276,48 @@
 </html>
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>-->
 
 <script>
 
-    $(document).ready(function () {
-        $.ajax({
-            type: "POST",
-            url: site_url + '/vehicle_compare/load_vehicle_popup',            
-            success: function (msg) {
-                if (msg != 0) {                    
-                    $('#compare_vehicle_list').html(msg);
-                } else {
-                    alert('Error loading vehicles');
-                }
-            }
-        });
-    });
+            $(document).ready(function () {
+
+<?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
+                    $.ajax({
+                        type: "POST",
+                        url: site_url + '/vehicle_compare/load_vehicle_popup',
+                        success: function (msg) {
+                            if (msg != 0) {
+                                $('#compare_vehicle_list').html(msg);
+                            } else {
+                                alert('Error loading vehicles');
+                            }
+                        }
+                    });
+
+<?php } else { ?>
+                    //$.jStorage.flush();
+                    var jSindex = $.jStorage.index();
+
+                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
+                    var li_list = "";
+                    
+                    if (jSindex.length == 0) {
+                        li_list = '<li>Add Vehicle</li>';
+                    }
+
+                    for (i = 0; i < jSindex.length; i++) {
+                        li_list += $.jStorage.get(jSindex[i]);
+                    }
+
+                    if (jSindex.length >= 2) {
+                        li_list += compareBtn;
+                    }
+                    $('#added_vehicle_list').html(li_list);
+
+<?php } ?>
+            });
 
 </script>

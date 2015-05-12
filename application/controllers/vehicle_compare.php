@@ -48,10 +48,10 @@ class Vehicle_compare extends CI_Controller {
 
         if ($resCount != 0) {
             foreach ($compare_vehicles as $result) {
-                echo '<li> <span class="photo"><img src="' . base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/thumbnail/' . $result->image_path . '" alt="Thumb Car" height="30" width="50" /></span>';
+                echo '<li> <span class="photo"><img src="' . base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/thumbnail/' . $result->image_path . '" alt="Thumb Car" height="40" width="70" /></span>';
                 echo '<span class="subject"><h4>' . $result->manufacture . " " . $result->model . '</h4></span> </li>';
             }
-            
+
             if ($resCount >= 2) {
                 echo '<li><a href="' . site_url() . '/vehicle_compare/load_compare_vehicles_dashboard" class="dealer-name"><button>Compare</button></a></li>';
             }
@@ -119,6 +119,17 @@ class Vehicle_compare extends CI_Controller {
         $vehicle_compare_service = new Vehicle_compare_service();
 
         echo $vehicle_compare_service->delete_compared_vehicle(trim($this->session->userdata('USER_ID')), trim($this->input->post('vehicle_id', TRUE)));
+    }
+
+    
+    function load_li_tags() {
+        $vehicle_compare_service = new Vehicle_compare_service();
+        $compare_vehicles = $vehicle_compare_service->get_vehicles_to_compare_for_unregistered_user(trim($this->input->post('id', TRUE)));
+
+        foreach ($compare_vehicles as $result) {
+            echo '<li> <span class="photo"><img src="' . base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/thumbnail/' . $result->image_path . '" alt="Thumb Car" height="40" width="70" /></span>';
+            echo '<span class="subject"><h4>' . $result->manufacture . " " . $result->model . '</h4></span> </li>';
+        }
     }
 
 }
