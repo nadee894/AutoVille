@@ -99,28 +99,44 @@ class Reg_User_Profile extends CI_Controller {
         $reg_user_profile_model=new Reg_User_Profile_model();
         $reg_user_profile_service=new Reg_User_Profile_service();
         
-        $avatar = $this->input->post('profile_pic', TRUE);
-        if ($avatar == '') {
-            $reg_user_profile_model->set_profile_pic('avatar.png');
-        } else {
-            $reg_user_profile_model->set_profile_pic($avatar);
-        }
-
+        $data = array(
+            'title' => $this->input->post('title', TRUE),
+            'name' => $this->input->post('name', TRUE),
+            'email' => $this->input->post('email', TRUE),
+            'address' => $this->input->post('address', TRUE),
+            'contact_no_1' => $this->input->post('contact_no_1', TRUE),
+            'contact_no_2' => $this->input->post('contact_no_2', TRUE),
+            'updated_date' => date("Y-m-d H:i:s")
+        );
         $reg_user_profile_model->set_id($this->session->userdata('USER_ID'));
-        $reg_user_profile_model->set_title($this->input->post('title', TRUE));
-        $reg_user_profile_model->set_name($this->input->post('name', TRUE));
-        $reg_user_profile_model->set_user_name($this->input->post('user_name', TRUE));
-        $reg_user_profile_model->set_user_type($this->input->post('user_type', TRUE));
-        $reg_user_profile_model->set_email($this->input->post('email', TRUE));
-        $reg_user_profile_model->set_address($this->input->post('address', TRUE));
-        $reg_user_profile_model->set_contact1($this->input->post('contact_no_1', TRUE));
-        $reg_user_profile_model->set_contact2($this->input->post('contact_no_2', TRUE));
-        $reg_user_profile_model->set_password($this->input->post('password', TRUE));
-        $reg_user_profile_model->set_profile_pic($this->input->post('profile_pic', TRUE));
-        $reg_user_profile_model->set_updated_by($this->session->userdata('USER_ID'));
-        $reg_user_profile_model->set_updated_date(date("Y-m-d H:i:s"));
-
-        echo $reg_user_profile_service->update_reg_user($reg_user_profile_model);
+        $user=$reg_user_profile_service->get_reg_user_by_id($reg_user_profile_model);
+        //echo">>>" . $user->password . "<<<<";
+        //echo">>>" . md5($this->input->post('current_pwd', TRUE)) . "<<<<";
+        
+        $sts = 0;
+        if(isset($_POST['new_pwd'])){
+            if($_POST['new_pwd']!=''){
+                
+                if( strcmp($user->password,md5($this->input->post('current_pwd', TRUE)) )==0 ){
+                    $data['password'] = md5($this->input->post('new_pwd', TRUE));
+                }
+                else{
+                    $sts=-1;
+                }
+                
+            }
+        }
+        //$reg_user_profile_model->set_profile_pic($this->input->post('profile_pic', TRUE));
+        //$reg_user_profile_model->set_updated_by($this->session->userdata('USER_ID'));
+        
+        if($sts == 0)
+            if($reg_user_profile_service->update_reg_user($user->user_name, $data)!=1)
+                $sts = -1;
+        
+        if($sts==0)
+            echo"SUCCESS";
+        else
+            echo"ERROR";
     }
 
     /*
