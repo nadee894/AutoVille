@@ -41,7 +41,7 @@
         <input type="hidden" value="SU092CA68QPZINTCARLK" name="sku">
         <div data-ajax-local-messages=""></div>
         <div class="confirm-btn">
-            <button id="lead-form-submit" onclick="send_email" class="btn btn-default" data-layer-label="SU092CA68QPZINTCARLK" data-layer-action="contact-seller"> Contact Seller </button>
+            <button id="lead-form-submit" onclick="send_email()" class="btn btn-default" data-layer-label="SU092CA68QPZINTCARLK" data-layer-action="contact-seller"> Contact Seller </button>
         </div>
     </div>
     <!--</form>-->
