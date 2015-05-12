@@ -40,7 +40,7 @@ class CI_Pagination {
     var $first_link           = '1';
     var $next_link            = '<i class="fa fa-angle-right"></i>';
     var $prev_link            = '<i class="fa fa-angle-left"></i>';
-    var $last_link            = 'Last';
+    var $last_link            = '';
     var $uri_segment          = 3;
     var $full_tag_open        = '';
     var $full_tag_close       = '';

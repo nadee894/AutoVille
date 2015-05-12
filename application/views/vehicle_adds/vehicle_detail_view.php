@@ -78,11 +78,11 @@
                                    
                                     <ul id="carousel" class="elastislide-list">
                 <?php foreach ($images as $image) { ?>
-                                                                                                        <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
-                                                                                                            <a href="">
-                                                                                                                <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
-                                                                                                            </a>
-                                                                                                        </li>
+                                                                                                            <li data-preview="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>">
+                                                                                                                <a href="">
+                                                                                                                    <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" alt="Thumb Car" />
+                                                                                                                </a>
+                                                                                                            </li>
                 <?php } ?>
                                     </ul>
                                      <div class="image-preview">
@@ -134,9 +134,9 @@
                     </ul>
 
                 </div>
-                        <div id="loan-calculator" class="grey-corner-box">
-            <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
-        </div>
+                <div id="loan-calculator" class="grey-corner-box">
+                    <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
+                </div>
             </div>
 
             <div class="full-width grey-border-bottom">
@@ -163,9 +163,9 @@
                     <p class="heading-note">AutoVille does not store additional information about the seller except for those contained in the announcement.</p>
                     <br />
                     <ul class="icon-list">
-                        <li class="phone"><?php echo $seller_add->contact_no_1;?></li>
-                        <li class="address"><?php echo $seller_add->address;?></li>
-                        <li class="e-mail"><a href="#"><?php echo $seller_add->email;?></a>
+                        <li class="phone"><?php echo $seller_add->contact_no_1; ?></li>
+                        <li class="address"><?php echo $seller_add->address; ?></li>
+                        <li class="e-mail"><a href="#"><?php echo $seller_add->email; ?></a>
                         <li class="website"><a href="#"> http://www.autoville.lankapanel.biz</a>
                     </ul>
                 </div>
@@ -211,6 +211,19 @@
         $('.bxslider').bxSlider({
             pagerCustom: '#bx-pager'
         });
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/vehicle_compare/load_vehicle_popup',
+            success: function(msg) {
+                if (msg != 0) {
+                    $('#compare_vehicle_list').html(msg);
+                } else {
+                    alert('Error loading vehicles');
+                }
+            }
+        });
+
     });
 
 
