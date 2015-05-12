@@ -16,6 +16,7 @@ class Contents extends CI_Controller {
             $this->load->model('access_controll/access_controll_service');
         }
     }
+    
 
     function load_contents_by_hcode($hcode) {
 
