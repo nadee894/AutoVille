@@ -62,7 +62,7 @@ class Vehicle_compare_service extends CI_Model {
         return $query->result();
     }
 
-    function get_vehicle_to_compare_for_unregistered_user($id_arr=array()) {
+    function get_vehicle_to_compare_for_unregistered_user($id_arr) {
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,'
                 . 'manufacture.name as manufacture,model.name as model,'
                 . 'transmission.name as transmission,fuel_type.name as fuel_type,'
