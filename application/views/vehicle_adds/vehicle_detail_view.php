@@ -145,13 +145,19 @@
                                 <div class="one-half standard-text-content col-701">
 
                                     <h3><span class="bold">Vehicle</span> information</h3>
-                                    <ul class=" checkboxes">
+                                    <div class="row">
                                         <?php foreach ($equipments as $equipment) { ?>
+                                            <div class="col-md-3">
+                                                <?php echo $equipment->name; ?>
 
-                                            <li><strong><?php echo $equipment->name; ?> &nbsp;&nbsp; <?php if (in_array($equipment->id, $vehicle_equipments)) { ?> Yes <?php } else { ?> No<?php } ?> </strong></li>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <?php if (in_array($equipment->id, $vehicle_equipments)) { ?> Yes <?php } else { ?> No<?php } ?>
+                                            </div>
+                                        <div class="clearfix"></div>
                                         <?php }
                                         ?>
-                                    </ul>
+                                    </div>
 
                                     <hr />
 
