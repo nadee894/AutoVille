@@ -6,21 +6,24 @@
     </h4>
 
     <form name="form1">
-        <i class="fa fa-user"></i>
-        <input class="form-control" type="text" name="title" placeholder="Your Name"/>
-        <i class="fa fa-envelope"></i>
-        <input class="form-control" type="text" name="title2" placeholder="Your Email"/>
-        <i class="fa fa-phone"></i>
-        <input class="form-control" type="text" name="title3" placeholder="Your Phone"/>
-        <br>
-        <br>
+
+        <div class="form-group">
+            <input class="form-control" type="text" name="title" placeholder="Your Name"/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" name="title2" placeholder="Your Email"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="title3" placeholder="Your Phone"/>
+        </div>
+
+        <div class="form-group">
+            <textarea class="form-control" id="ContactAgentForm_comment" name="comments" rows="3">Hello, I found your listing on AutoVille. Please, send me more information about <?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model; ?><?php echo $vehicle_detail->year; ?>. Thank you</textarea>
+        </div>
 
     </form>
 
-    <div class="field-row">
-        <i class="icon-pencil"></i>
-        <textarea id="ContactAgentForm_comment" name="comments" style="width:250px; height:100px;">Hello, I found your listing on Carmudi. Please, send me more information about Perodua Elite Viva 2012. Thank you</textarea></br></br>
-    </div>
 
     <div>
         <!--        <div class="field checkbox ">
@@ -45,12 +48,9 @@
 </div>
 
 <?php
-
-if(isset($_POST['button_pressed']))
-{
+if (isset($_POST['button_pressed'])) {
     
 }
-
 ?>
 <script type="text/javascript">
 
