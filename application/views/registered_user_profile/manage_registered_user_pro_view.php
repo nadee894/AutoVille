@@ -10,7 +10,7 @@
                     <a role="tab" aria-controls="changepassword" href="#changepassword" data-toggle="tab" aria-expanded="false">Change Password</a>
                 </li>
             </ul>
-            <form id="edit_reg_user_profile_form" role="form" method="post" >
+            <form validateIt id="edit_reg_user_profile_form" role="form" method="post" >
                 <div class="tab-content">
 
 
@@ -20,32 +20,38 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Title</label>
-                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $user->title; ?>" id="title" name="title">
+                                        <input validateItRequiredMsg="Please enter the title." validateItRequired class="form-control" type="text" required="" placeholder="" value="<?php echo $user->title; ?>" id="title" name="title">
+                                        <label id="title_error" style="color:red;"></label>
                                         <!--<input name="name" type="text" class="form-control" id="name" placeholder=" " value="<?php echo $user->name; ?>">-->
                                     </div>
                                     <div class="col-md-6">
                                         <label>Name</label>
-                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $user->name; ?>" id="name" name="name">
+                                        <input validateItRequiredMsg="Please enter your name." validateItRequired class="form-control" type="text" required="" placeholder="" value="<?php echo $user->name; ?>" id="name" name="name">
+                                        <label id="name_error" style="color:red;"></label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Email</label>
-                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $user->email; ?>" id="email" name="email">
+                                        <input validateItRequiredMsg="Please enter your email." validateItRequired validateItEmail class="form-control" type="text" required="" placeholder="" value="<?php echo $user->email; ?>" id="email" name="email">
+                                        <label id="email_error" style="color:red;"></label>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Address</label>
-                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $user->address; ?>" id="address" name="address">
+                                        <input validateItRequiredMsg="Please enter your address." validateItRequired class="form-control" type="text" required="" placeholder="" value="<?php echo $user->address; ?>" id="address" name="address">
+                                        <label id="address_error" style="color:red;"></label>
                                     </div>
                                 </div>                                                                
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Contact number 1</label>
-                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $user->contact_no_1; ?>" id="contact_no_1" name="contact_no_1">
+                                        <input validateItRequiredMsg="Please enter your contact no." validateItRequired validateItRegExp='(^[0-9]{10}$)' class="form-control" type="text" required="" placeholder="" value="<?php echo $user->contact_no_1; ?>" id="contact_no_1" name="contact_no_1">
+                                        <label id="contact_no_1_error" style="color:red;"></label>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Contact number 2</label>
-                                        <input class="form-control" type="text" required="" placeholder="" value="<?php echo $user->contact_no_2; ?>" id="contact_no_2" name="contact_no_2">
+                                        <input   validateItRegExp='^$|(^[0-9]{10}$)' class="form-control" type="text" required="" placeholder="" value="<?php echo $user->contact_no_2; ?>" id="contact_no_2" name="contact_no_2">
+                                        <label id="contact_no_2_error" style="color:red;"></label>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +70,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>New password</label>
-                                        <input class="form-control" type="password" placeholder="" id="new_pwd" name="new_pwd">
+                                        <input validateItFieldDismatchMsg="Passwords mismatch!" validateItMatchWith="confirm_new_pwd" class="form-control" type="password" placeholder="" id="new_pwd" name="new_pwd">
+                                        <label id="new_pwd_error" style="color:red;"></label>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Confirm new password</label>
@@ -75,7 +82,7 @@
                         </div>
                     </div>
                 </div>                   
-                <button type="button" id="saveBtn" type="submit" class="btn btn-success">Update Details</button>
+                <input validateItSubmitBtn="noSubmit" validateItCallBack="submitForm" type="button" id="saveBtn" class="btn btn-success" value="Update Details" />
                 <button type="button" class="btn btn-default">Cancel</button>
             </form>
         </div>
@@ -84,6 +91,7 @@
 
     <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/validateIt.js"></script>
 
     <script type="text/javascript">
         function submitForm(){
@@ -109,7 +117,7 @@
                 },
                 error: function(jqXHR, textStatus, errorThrown) 
                 {
-                    //alert(">>" + errorThrown);
+                    
                     toastr.error("Error!!", "AutoVille");
                 }
             });
@@ -118,14 +126,7 @@
         
         $(document).ready(function() {
 
-            $('#saveBtn').click(function() {
-                //var validator = $("#edit_reg_user_profile_form").validate();
-                //validator.resetForm();
-                
-                
-                submitForm();
-                
-            });
+            
              /*   
         $("#edit_reg_user_profile_form").submit(function(e)
                 {
