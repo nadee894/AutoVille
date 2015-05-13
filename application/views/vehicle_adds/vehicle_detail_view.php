@@ -22,7 +22,7 @@
                             <p>The offer had <?php echo $review_looks_count; ?> Views</p>
 
                             <div class="price-car">
-                                <div class="price" style="color:blue>Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></div>
+                                <div class="price" style="color:blue">Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></div>
                                      <span class="small-note">* Price negotiable</span>
 
 
