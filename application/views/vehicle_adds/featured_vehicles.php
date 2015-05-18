@@ -37,10 +37,25 @@
                         <div class="wrapper">
                             <a href="">
                                 <h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
-                            <figure><?php echo $result->year;?></figure>
+                            <figure><?php echo $result->body_type; ?></figure>
                             <div class="info">
                                 <div class="type">
-                                    <figure><?php echo $result->sale_type;?></figure>
+                                    <dl>
+                                        <?php if (!is_null($result->fuel_type)) { ?>
+                                            <dt>Engine</dt>
+                                            <dd><?php echo $result->fuel_type; ?></dd>
+                                        <?php } ?>
+
+                                        <?php if (!is_null($result->kilometers)) { ?>
+                                            <dt>Kilometers</dt>
+                                            <dd><?php echo $result->kilometers; ?></dd>
+                                        <?php } ?>
+
+                                        <?php if (!is_null($result->year)) { ?>
+                                            <dt>Year</dt>
+                                            <dd><?php echo $result->year; ?></dd>
+                                        <?php } ?>
+                                    </dl>
                                 </div>
                                 <!--<div class="rating" data-rating="4"></div>-->
                             </div>

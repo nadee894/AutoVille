@@ -221,7 +221,7 @@ class Vehicle_advertisements extends CI_Controller {
 
         if ($msg == '1') {
             $email         = 'gayathma3@gmail.com';
-            $email_subject = "Workgram New Advertisement";
+            $email_subject = "AutoVille New Advertisement";
             $data['msg']   = "New Advertisement submitted!!";
             $msg           = $this->load->view('template/mail_template/body_ask', $data, TRUE);
 

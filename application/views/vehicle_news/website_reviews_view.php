@@ -41,8 +41,8 @@
                                     <span class="fa fa-calendar"></span>
                                     <?php echo date('Y.m.d', strtotime($value->added_date)); ?>
                                 </span>
-                                <p><header><a href="blog-detail.html"><h2><?php echo $value->title; ?></h2></a></header>
-                                <?php echo $value->description; ?></p>
+                                <header><a href="blog-detail.html"><h2><?php echo $value->title; ?></h2></a></header>
+                                <p><?php echo $value->description; ?>
                             </div>
                         </li>
 

@@ -76,7 +76,7 @@
         var carPrice = number_format(<?php echo $vehicle_detail->price;?>, 2, '.', ',');
 //        var maxmonth = $('#maxmonth').val();
 //        var maxrate = $('#maxrate').val();
-        
+        $('#monthly-payment').html('Rs.'+$('#maxprice').val());
         function changeValue() {
             var installment = (carPrice - $("#price-slider").slider(".value"));
 //                    + (($vehicle_detail - > price) * maxrate) / 100.0;

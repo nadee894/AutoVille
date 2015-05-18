@@ -297,7 +297,7 @@
                     });
 
 <?php } else { ?>
-                    //$.jStorage.flush();
+                    $.jStorage.flush();
                     var jSindex = $.jStorage.index();
 
                     var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';

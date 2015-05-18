@@ -119,7 +119,7 @@
             {
                 $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
                 {
-                    alert(msg);
+      
                     if (msg == "1") {
                         toastr.success("Successfully Registered", "AutoVille");
                         window.location = site_url + '/home';
