@@ -9,7 +9,8 @@ class Comments_service extends CI_Model {
 
     public function get_all_comments() {
 
-        $this->db->select('*');
+        $this->db->select('comment.title,'
+                . 'comment.description');
         $this->db->from('comment');
         $this->db->where('comment.is_deleted', '0');
         $this->db->where('comment.is_published', '1');

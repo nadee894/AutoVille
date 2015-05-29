@@ -43,7 +43,8 @@ class Manufacture_service extends CI_Model {
     }
 
     function get_manufacture_name() {
-        $this->db->select('manufacture.*,model.name as modelname');
+        $this->db->select('manufacture.name,'
+                . 'model.name as modelname');
         $this->db->from('manufacture');
         $this->db->join('model', 'manufacture.id = model.manufacturer_id');
         $this->db->where('manufacture.is_deleted', '0');

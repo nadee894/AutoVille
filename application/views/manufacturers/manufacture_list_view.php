@@ -14,20 +14,17 @@
             <!--/.categories-->
         </div>
         <div class="row">
-<!--        <div class="col-md-6 col-sm-3" >-->
             <header><h2>Vehicle News</h2></header>
-              <?php foreach ($vehicle_news_results as $result) { ?>
-                 <ul class="categories">
-                     <li><a><?php echo $result->title ?></a>                         
-                         <ul class="sub-category" >                            
-                             <li><a><?php echo $result->content ?></a></li><br><br>
-                            <a class="btn btn-primary" href="<?php echo site_url();?>/vehicle_news/list_vehicle_news">Read More </a>
+            <?php foreach ($vehicle_news_results as $result) { ?>
+                <ul class="categories">
+                    <li><a><?php echo $result->title ?></a>                         
+                        <ul class="sub-category" >                            
+                            <li><a><?php echo $result->content ?></a></li><br><br>
+                            <a class="btn btn-primary" href="<?php echo site_url(); ?>/vehicle_news/list_vehicle_news">Read More </a>
                         </ul>
-                     </li>
-                 </ul>
-              <?php } ?> 
-             
-<!--        </div>-->
+                    </li>
+                </ul>
+            <?php } ?> 
         </div>
     </div>
 

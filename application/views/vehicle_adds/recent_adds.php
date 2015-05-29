@@ -66,45 +66,14 @@
 
                         <a href="#" class="item-horizontal small">
                             <h3><?php echo $value->title; ?></h3>
-                            <!--                        <figure>12.1.2015</figure>-->
                             <div class="wrapper">
-    <!--                            <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/1.jpg" alt=""></div>-->
                                 <div class="info">
                                     <p><?php echo $value->description; ?></p>
-                                    <!--                                <div class="rating" data-rating="4"></div>-->
                                 </div>
                             </div>
                         </a>
                     <?php } ?>
                     <div><a class="btn btn-primary" href="<?php echo site_url();?>/website_comments/list_website_comments">Read More </a></div><br>
-
-                    
-
-                    <!--/.item-horizontal small-->
-                    <!--                    <a href="blog-detail.html" class="item-horizontal small">
-                                            <h3>Subaru WRX 2.2 TDi</h3>
-                                            <figure>03.1.2015</figure>
-                                            <div class="wrapper">
-                                                <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/8.jpg" alt=""></div>
-                                                <div class="info">
-                                                    <p>Pellentesque nulla ligula, pretium id viverra non</p>
-                                                    <div class="rating" data-rating="3"></div>
-                                                </div>
-                                            </div>
-                                        </a>-->
-                    <!--/.item-horizontal small-->
-                    <!--                    <a href="blog-detail.html" class="item-horizontal small">
-                                            <h3>Volkswagen Tiguan</h3>
-                                            <figure>08.12.2014</figure>
-                                            <div class="wrapper">
-                                                <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/cars/12.jpg" alt=""></div>
-                                                <div class="info">
-                                                    <p>Nulla condimentum at ipsum eget commodo.</p>
-                                                    <div class="rating" data-rating="5"></div>
-                                                </div>
-                                            </div>
-                                        </a>-->
-                    <!--/.item-horizontal small-->
                 </section>
             </aside>
             <!--/.sidebar-->
