@@ -10,9 +10,9 @@
                                                             <article class="blog-post">
                                                                 <div class="image">
                         <?php if ($value->profile_pic == '') { ?>
-                                                                                                <img class="img-responsive img-circle" style="width:100px; height:50px;" src="<?php echo base_url() . 'uploads/user_avatars/avatar.png'; ?>"/>
+                                                                                                    <img class="img-responsive img-circle" style="width:100px; height:50px;" src="<?php echo base_url() . 'uploads/user_avatars/avatar.png'; ?>"/>
                         <?php } else { ?>
-                                                                                                    <img class="img-responsive img-circle" style="width:100px; height:50px;" src="<?php echo base_url() . 'uploads/user_avatars/' . $value->profile_pic; ?>"/>
+                                                                                                        <img class="img-responsive img-circle" style="width:100px; height:50px;" src="<?php echo base_url() . 'uploads/user_avatars/' . $value->profile_pic; ?>"/>
                         <?php } ?>
                                                                 
                                                                 <br><header><a href="blog-detail.html"><h1><?php echo $value->title; ?></h1></a></header>
@@ -35,14 +35,14 @@
                             </figure>
                             <div class="comment-wrapper">
                                 <?php if ($value->added_by_user != '') { ?>
-                                    <div class="name pull-left"><?php echo ucfirst($value->added_by_user); ?></div>
+                                    <div class="name pull-left" style="margin-bottom: 5px;"><?php echo ucfirst($value->added_by_user); ?></div>
                                 <?php } ?>
                                 <span class="date pull-right"><br><br><br><br>
                                     <span class="fa fa-calendar"></span>
                                     <?php echo date('Y.m.d', strtotime($value->added_date)); ?>
                                 </span>
-                                <header><a href="blog-detail.html"><h2><?php echo $value->title; ?></h2></a></header>
-                                <p><?php echo $value->description; ?>
+                                    <header><h2><u><?php echo $value->title; ?></u></h2></header>
+                                <p style="width: 900px;"><?php echo $value->description; ?>
                             </div>
                         </li>
 
@@ -75,23 +75,23 @@
 
 
             <script>
-                                function commentadd() {
-                                    var description = $('#description').val();
-                                    var title = $('#title').val();
+                function commentadd() {
+                    var description = $('#description').val();
+                    var title = $('#title').val();
 
 
-                                    if (description != '' && title != '') {
+                    if (description != '' && title != '') {
 
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "<?php echo site_url(); ?>/website_comments/add_website_comments",
-                                            data: "description=" + description + "&title=" + title,
-                                            success: function(msg) {
-                                                $('#review_list').html(msg);
-                                                c_form.reset();
-                                            }
-                                        });
-                                    }
-                                }
+                        $.ajax({
+                            type: "POST",
+                            url: "<?php echo site_url(); ?>/website_comments/add_website_comments",
+                            data: "description=" + description + "&title=" + title,
+                            success: function(msg) {
+                                $('#review_list').html(msg);
+                                c_form.reset();
+                            }
+                        });
+                    }
+                }
             </script>
 
