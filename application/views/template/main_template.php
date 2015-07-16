@@ -276,8 +276,8 @@
 </html>
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
-<script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>
+<script src="<?php echo base_url(); ?>application_resources/jStorage/json2.js"></script>
+<script src="<?php echo base_url(); ?>application_resources/jStorage/jstorage.js"></script>
 
 <script>
 
