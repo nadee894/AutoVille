@@ -54,7 +54,7 @@ class Home extends CI_Controller {
         $comment_service               = new Comments_service();
 
         $data['website_comments'] = $comment_service->get_all_comments();
-        $data['manufactures']     = $manufacture_service->get_all_active_manufactures();
+        $data['manufactures']     = $manufacture_service->get_all_active_manufactures_for_home();
         //$data['models']        = $vehicle_model_service->get_all_active_vehicle_models();
         $data['body_types']       = $body_type_service->get_all_active_body_types();
         $data['fuel_types']       = $fuel_type_service->get_all_active_fuel_types();
@@ -67,7 +67,7 @@ class Home extends CI_Controller {
         $data['vehicle_results'] = $vehicle_results;
 
         $data['names'] = $manufacture_service->get_manufacture_name();
-        $data['logos'] = $manufacture_service->get_manufacture_logo();
+//        $data['logos'] = $manufacture_service->get_manufacture_logo();
 
         $data['price_drop_vehicles'] = $vehicle_advertisments_service->get_price_drop_vehicles(4);
         $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();

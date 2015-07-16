@@ -31,7 +31,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-9 col-sm-8" id="dashboard_right_content">
+                <div class="col-md-9 col-sm-8 item " id="dashboard_right_content">
                     <?php
                     if ($my_advertisements != 0) {
                         echo $this->load->view('my_dashboard/my_advertisements');

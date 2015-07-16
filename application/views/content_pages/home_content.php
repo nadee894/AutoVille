@@ -203,9 +203,13 @@
     <div class="container">
         <header><h2>Partners</h2></header>
         <div class="logos">
-            <?php foreach ($logos as $logo) { ?>
-                <div class="logo"><a href=""><img src="<?php echo base_url() . 'uploads/manufacture_logo/' . $logo->logo; ?>" width="76" alt=""></a></div>                
-                    <?php } ?>
+            <?php
+            for ($i = 0; $i <= 4; $i++) {
+                ?>
+                <div class="logo"><a href=""><img src="<?php echo base_url() . 'uploads/manufacture_logo/' . $names[$i]->logo; ?>" width="76" alt=""></a></div>                
+                        <?php
+                    }
+                    ?>
         </div>
     </div>
     <!--/.container-->

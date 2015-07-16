@@ -11,6 +11,22 @@ class Manufacture_service extends CI_Model {
      * service function to get all manufacure
      */
 
+    public function get_all_active_manufactures_for_home() {
+
+        $this->db->select('manufacture.name,
+            manufacture.id');
+        $this->db->from('manufacture');
+        $this->db->where('manufacture.is_deleted', '0');
+        $this->db->where('manufacture.is_published', '1');
+        $this->db->order_by("manufacture.name", "asc");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    /*
+     * service function to get all manufacure
+     */
+
     public function get_all_active_manufactures() {
 
         $this->db->select('manufacture.*');
@@ -27,24 +43,25 @@ class Manufacture_service extends CI_Model {
      */
 
     function get_manufacure_by_id($manufacture_model) {
-        $query = $this->db->get_where('manufacture', array('id' => $manufacture_model->get_id(), 'is_deleted' => '0'));
+        $query = $this->db->get_where('manufacture', array('id'         => $manufacture_model->get_id(), 'is_deleted' => '0'));
         return $query->row();
     }
 
-    function get_manufacture_logo() {
-        $this->db->select('manufacture.*');
-        $this->db->from('manufacture');
-        $this->db->where('manufacture.is_deleted', '0');
-        $this->db->where('manufacture.is_published', '1');
-        $this->db->order_by("manufacture.name", "asc");
-        $this->db->limit(5);
-        $query = $this->db->get();
-        return $query->result();
-    }
+//    function get_manufacture_logo() {
+//        $this->db->select('manufacture.*');
+//        $this->db->from('manufacture');
+//        $this->db->where('manufacture.is_deleted', '0');
+//        $this->db->where('manufacture.is_published', '1');
+//        $this->db->order_by("manufacture.name", "asc");
+//        $this->db->limit(5);
+//        $query = $this->db->get();
+//        return $query->result();
+//    }
 
     function get_manufacture_name() {
-        $this->db->select('manufacture.name,'
-                . 'model.name as modelname');
+        $this->db->select('manufacture.name,
+            manufacture.logo,
+            model.name as modelname');
         $this->db->from('manufacture');
         $this->db->join('model', 'manufacture.id = model.manufacturer_id');
         $this->db->where('manufacture.is_deleted', '0');
@@ -69,7 +86,6 @@ class Manufacture_service extends CI_Model {
 //        $query = $this->db->get();
 //        return $query->result();
 //    }
-
 //    function get_vehicle_models(){
 //        $this->db->select('model.name as modelname');
 //        $this->db->from('model');
