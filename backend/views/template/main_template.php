@@ -284,7 +284,7 @@
                                 <?php } else { ?>
                                     <img height="30" width="30" src="<?php echo base_url(); ?>/uploads/user_avatars/<?php echo $this->session->userdata('USER_PROFILE_PIC'); ?>" >
                                 <?php } ?> 
-                                <span class="username"><?php echo ucfirst($this->session->userdata('USER_NAME')); ?></span>
+                                <span class="username"><?php echo ucfirst($this->session->userdata('USER_FULLNAME')); ?></span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
