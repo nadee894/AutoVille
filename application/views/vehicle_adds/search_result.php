@@ -1,3 +1,18 @@
+<script src="<?php echo base_url(); ?>application_resources/raty/jquery.raty.js"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/raty/jquery.raty.css">
+
+<style>
+    /*    #stars_input_div > img{
+            max-height: 16px;
+            max-width: 16px !important;
+        }*/
+
+    .star_class > img{
+        max-height: 16px;
+        max-width: 16px !important;
+    }
+</style>
+
 <div class="sort-view layer-one">                        		
     <div class="pagination">
         <?php echo $links; ?>                            
@@ -52,7 +67,13 @@
                                 </a>
                             </div>
                             <div class="wrapper">
-                                <h3><?php echo $result->manufacture . " " . $result->model; ?></h3>
+                                <h3><?php echo $result->manufacture . " " . $result->model; ?>
+
+                                    <span class="star_class">
+                                        <!--stars insert here-->
+                                    </span> 
+                                </h3>
+
                                 <figure><?php echo $result->body_type; ?></figure>
                                 <div class="price"><?php echo "Rs. " . CurrencyFormat($result->price); ?></div>
                                 <br>
@@ -102,8 +123,8 @@
 <?php
 
 function CurrencyFormat($number) {
-    $decimalplaces = 2;
-    $decimalcharacter = '.';
+    $decimalplaces     = 2;
+    $decimalcharacter  = '.';
     $thousandseparater = ',';
     return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
 }
@@ -116,67 +137,75 @@ function CurrencyFormat($number) {
 
 <script type="text/javascript">
 
-                                                       function add_to_compare(id) {
+                                                                   $('.star_class').raty({
+                                                                       number: 1,
+                                                                       click: function(score, evt) {
+                                                                           alert('called');
+                                                                       }
+                                                                   });
 
-                                                           $.ajax({
-                                                               type: "POST",
-                                                               url: site_url + '/vehicle_compare/add_vehicle_to_compare',
-                                                               data: "id=" + id,
-                                                               success: function (msg) {
-                                                                   if (msg != 0) {
-                                                                       toastr.success("Successfully parked in Garage!!", "AutoVille");
-                                                                       $('#compare_vehicle_list').html(msg);
-                                                                   } else {
-                                                                       alert('Error loading vehicles');
+
+                                                                   function add_to_compare(id) {
+
+                                                                       $.ajax({
+                                                                           type: "POST",
+                                                                           url: site_url + '/vehicle_compare/add_vehicle_to_compare',
+                                                                           data: "id=" + id,
+                                                                           success: function(msg) {
+                                                                               if (msg != 0) {
+                                                                                   toastr.success("Successfully parked in Garage!!", "AutoVille");
+                                                                                   $('#compare_vehicle_list').html(msg);
+                                                                               } else {
+                                                                                   alert('Error loading vehicles');
+                                                                               }
+                                                                           }
+                                                                       });
+
                                                                    }
-                                                               }
-                                                           });
 
-                                                       }
+                                                                   function save_in_browser(id) {
 
-                                                       function save_in_browser(id) {
+                                                                       $.ajax({
+                                                                           type: "POST",
+                                                                           url: site_url + '/vehicle_compare/load_li_tags',
+                                                                           data: "id=" + id,
+                                                                           success: function(msg) {
+                                                                               if (msg != 0) {
 
-                                                           $.ajax({
-                                                               type: "POST",
-                                                               url: site_url + '/vehicle_compare/load_li_tags',
-                                                               data: "id=" + id,
-                                                               success: function (msg) {
-                                                                   if (msg != 0) {
+                                                                                   $.jStorage.set("vehicle" + id, msg);
+                                                                                   jStorege_get_values();
 
-                                                                       $.jStorage.set("vehicle" + id, msg);
-                                                                       jStorege_get_values();
+                                                                               } else {
+                                                                                   alert('Error loading vehicles');
+                                                                               }
+                                                                           }
+                                                                       });
 
-                                                                   } else {
-                                                                       alert('Error loading vehicles');
                                                                    }
-                                                               }
-                                                           });
-
-                                                       }
 
 
-                                                       function jStorege_get_values() {
-                                                           var jSindex = $.jStorage.index();
+                                                                   function jStorege_get_values() {
+                                                                       var jSindex = $.jStorage.index();
 
-                                                           var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+                                                                       var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-                                                           var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+                                                                       var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-                                                           if (jSindex.length == 0) {
-                                                               li_list = '<li>Add Vehicle</li>';
-                                                           }
+                                                                       if (jSindex.length == 0) {
+                                                                           li_list = '<li>Add Vehicle</li>';
+                                                                       }
 
-                                                           for (i = 0; i < jSindex.length; i++) {
-                                                               li_list += $.jStorage.get(jSindex[i]);
-                                                           }
+                                                                       for (i = 0; i < jSindex.length; i++) {
+                                                                           li_list += $.jStorage.get(jSindex[i]);
+                                                                       }
 
-                                                           if (jSindex.length >= 2) {
-                                                               li_list += compareBtn;
-                                                           }
+                                                                       if (jSindex.length >= 2) {
+                                                                           li_list += compareBtn;
+                                                                       }
 
-                                                           li_list += '</ul>';
-                                                           $('#compare_vehicle_list').html(li_list);
-                                                       }
+                                                                       li_list += '</ul>';
+                                                                       $('#compare_vehicle_list').html(li_list);
+                                                                   }
 
 </script>
 
