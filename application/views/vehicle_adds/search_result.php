@@ -155,6 +155,9 @@ function CurrencyFormat($number) {
                                                                                    }
                                                                                });
 
+                                                                           } else {
+                                                                               //$('#' + vehicle_id).html('<img alt="1" src="<?php echo base_url(); ?>application_resources/raty/images/star-off.png" title="Bookmark"></img><input type="hidden" name="score" value="1">')
+                                                                               alert($(this).(":first-child"));
                                                                            }
                                                                        }
                                                                    });
