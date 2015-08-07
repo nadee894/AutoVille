@@ -2,11 +2,6 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/raty/jquery.raty.css">
 
 <style>
-    /*    #stars_input_div > img{
-            max-height: 16px;
-            max-width: 16px !important;
-        }*/
-
     .star_class > img{
         max-height: 16px;
         max-width: 16px !important;
@@ -69,9 +64,11 @@
                             <div class="wrapper">
                                 <h3><?php echo $result->manufacture . " " . $result->model; ?>
 
-                                    <span class="star_class">
-                                        <!--stars insert here-->
-                                    </span> 
+                                    <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
+                                        <span class="star_class" id="<?php echo $result->id; ?>">
+                                            <!--bookmark star comes here-->
+                                        </span> 
+                                    <?php } ?>
                                 </h3>
 
                                 <figure><?php echo $result->body_type; ?></figure>
@@ -140,7 +137,25 @@ function CurrencyFormat($number) {
                                                                    $('.star_class').raty({
                                                                        number: 1,
                                                                        click: function(score, evt) {
-                                                                           alert('called');
+
+                                                                           var vehicle_id = $(this).attr('id');
+
+                                                                           if (confirm('Bookmark this Vehicle?')) {
+
+                                                                               $.ajax({
+                                                                                   type: "POST",
+                                                                                   url: site_url + '/bookmarked_vehicles/bookmark_vehicle',
+                                                                                   data: "vehicle_id=" + vehicle_id,
+                                                                                   success: function(msg) {
+                                                                                       if (msg != 0) {
+                                                                                           toastr.success("Successfully Bookmarked!!", "AutoVille");
+                                                                                       } else {
+                                                                                           alert('Error!');
+                                                                                       }
+                                                                                   }
+                                                                               });
+
+                                                                           }
                                                                        }
                                                                    });
 
