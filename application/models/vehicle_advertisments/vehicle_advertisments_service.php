@@ -226,6 +226,7 @@ class Vehicle_advertisments_service extends CI_Model {
                 . 'vehicle_advertisements.kilometers,'
                 . 'vehicle_advertisements.year,'
                 . 'vehicle_advertisements.description,'
+                . 'vehicle_advertisements.price,'
                 . 'vehicle_images.image_path,'
                 . 'manufacture.name as manufacture,'
                 . 'model.name as model,'
