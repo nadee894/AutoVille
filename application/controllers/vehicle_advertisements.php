@@ -351,15 +351,15 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_equipment_service     = new Vehicle_equipment_service();
         $equipment_service             = new Equipment_service();
         $user_service                  = new User_service();
-
-
+        
+        $vehicle_id=  $this->uri->segment(3);
 
 
         $data['equipments']         = $equipment_service->get_all_active_equipment();
         $data['vehicle_detail']     = $vehicle_advertisments_service->get_advertisement_by_id($id);
         $data['seller_add']         = $user_service->get_user($data['vehicle_detail']->added_by);
         $data['images']             = $vehicle_images_service->get_images_for_advertisement($id);
-        $data['vehicle_reviews']    = $vehicle_reviews_service->get_all_vehicle_reviews();
+        $data['vehicle_reviews']    = $vehicle_reviews_service->get_all_vehicle_reviews($vehicle_id);
         $data['review_looks_count'] = count($searched_vehicles_service->get_view_count_for_advertisement($id));
         $vehicle_equipments         = $vehicle_equipment_service->get_equipments_by_vehicle_id($id);
         $equipment_array            = array();

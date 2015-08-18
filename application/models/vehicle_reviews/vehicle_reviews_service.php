@@ -16,16 +16,17 @@ class Vehicle_reviews_service extends CI_Model {
     }
 
     /*
-     * Service function to get all vehicle reviews
+     * Service function to get all vehicle reviews according to the vehicle id
      */
 
-    function get_all_vehicle_reviews() {
+    function get_all_vehicle_reviews($vehicle_id) {
         $this->db->select('review.*,user.name as added_by_user,user.profile_pic');
         $this->db->from('review');
         $this->db->join('vehicle_advertisements', 'review.vehicle_id=vehicle_advertisements.id');
         $this->db->join('user', 'user.id = review.added_by','left');
         $this->db->where('review.is_deleted', '0');
         $this->db->where('review.is_published', '1');
+        $this->db->where('review.vehicle_id',$vehicle_id);
         $this->db->order_by("review.added_date", "asc");
         $query = $this->db->get();
         return $query->result();
