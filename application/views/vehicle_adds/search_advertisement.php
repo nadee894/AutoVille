@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/main.css">
-<!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/uniform.default.css">-->
-<!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/prettyPhoto.css">-->
 
 <div id="page-content">
 

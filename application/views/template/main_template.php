@@ -25,6 +25,12 @@
 
         <title>AutoVille</title>
 
+        <script type="text/javascript">
+            var base_url = "<?php echo base_url(); ?>";
+            var site_url = "<?php echo site_url(); ?>";
+
+        </script>
+
     </head>
 
     <body onunload="" class="map-fullscreen page-homepage navigation-off-canvas" id="page-top">
@@ -240,11 +246,6 @@
             <!-- end Inner Wrapper -->
         </div>
         <!-- end Outer Wrapper-->
-        <script>
-            var base_url = "<?php echo base_url(); ?>";
-            var site_url = "<?php echo site_url(); ?>";
-
-        </script>
 
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/richmarker-compiled.js"></script>
@@ -263,7 +264,7 @@
 
         <script>
             autoComplete();
-            $(function () {
+            $(function() {
                 $("img.lazy").lazyload({
                     effect: "fadeIn"
                 });
@@ -281,13 +282,13 @@
 
 <script>
 
-            $(document).ready(function () {
+            $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                     $.ajax({
                         type: "POST",
                         url: site_url + '/vehicle_compare/load_vehicle_popup',
-                        success: function (msg) {
+                        success: function(msg) {
                             if (msg != 0) {
                                 $('#compare_vehicle_list').html(msg);
                             } else {

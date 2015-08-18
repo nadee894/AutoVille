@@ -17,6 +17,8 @@ class Dashboard extends CI_Controller {
         $this->load->model('vehicle_images/vehicle_images_model');
         $this->load->model('vehicle_images/vehicle_images_service');
 
+        $this->load->model('bookmarked_vehicles/bookmarked_vehicles_service');
+
         $this->load->library('pagination');
     }
 
@@ -92,6 +94,26 @@ class Dashboard extends CI_Controller {
         $searched_vehicles_service = new Searched_vehicles_service();
 
         echo $searched_vehicles_service->delete_serached_record(trim($this->input->post('id', TRUE)));
+    }
+
+    function load_bookmarked_vehicles($start = 0) {
+
+        $bookmarked_vehicles_service = new Bookmarked_vehicles_service();
+
+        $config = array();
+
+        $config["base_url"]    = site_url() . "/dashboard/load_bookmarked_vehicles/";
+        $config["per_page"]    = 8;
+        $config["uri_segment"] = 4;
+        $config["num_links"]   = 4;
+        $config["total_rows"]  = count($bookmarked_vehicles_service->get_bookmarked_vehicles('', '', $this->session->userdata('USER_ID')));
+
+        $this->pagination->initialize($config);
+
+        $data['bookmarked_vehicles'] = $bookmarked_vehicles_service->get_bookmarked_vehicles($config["per_page"], $start, $this->session->userdata('USER_ID'));
+        $data["links"]             = $this->pagination->create_links();
+
+        echo $this->load->view('my_dashboard/bookmarked_vehicles', $data);
     }
 
 }

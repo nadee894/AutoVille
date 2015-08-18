@@ -131,7 +131,8 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->select('vehicle_advertisements.*,vehicle_images.image_path,user.name as added_by_user,'
                 . 'manufacture.name as manufacture,model.name as model,'
                 . 'transmission.name as transmission,fuel_type.name as fuel_type,'
-                . 'body_type.name as body_type');
+                . 'body_type.name as body_type,'
+                . 'bookmarked_vehicles.id as bookmarked_id');
         $this->db->from('vehicle_advertisements');
         $this->db->join('manufacture', 'manufacture.id = vehicle_advertisements.manufacture_id');
         $this->db->join('model', 'model.id = vehicle_advertisements.model_id');
@@ -139,7 +140,8 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->join('fuel_type', 'fuel_type.id = vehicle_advertisements.fuel_type_id');
         $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');
         $this->db->join('user', 'user.id = vehicle_advertisements.added_by');
-        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
+        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id', 'left');
+        $this->db->join('bookmarked_vehicles', 'bookmarked_vehicles.vehicle_id = vehicle_advertisements.id', 'left');
         //$this->db->join('district', 'district.id = vehicle_advertisements.location_id');
         $this->db->where('vehicle_advertisements.is_deleted', '0');
         $this->db->where('vehicle_advertisements.is_published', '1');
@@ -190,8 +192,8 @@ class Vehicle_advertisments_service extends CI_Model {
             $this->db->limit($limit, $start);
         }
         $query = $this->db->get();
-        //echo $this->db->last_query();
-        //die;
+//        echo $this->db->last_query();
+//        die;
         return $query->result();
     }
 
@@ -224,6 +226,7 @@ class Vehicle_advertisments_service extends CI_Model {
                 . 'vehicle_advertisements.kilometers,'
                 . 'vehicle_advertisements.year,'
                 . 'vehicle_advertisements.description,'
+                . 'vehicle_advertisements.price,'
                 . 'vehicle_images.image_path,'
                 . 'manufacture.name as manufacture,'
                 . 'model.name as model,'
