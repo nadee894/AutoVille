@@ -36,10 +36,10 @@
                     <input id="txtusername" name="txtusername" type="text" class="form-control" placeholder="Username" autofocus>
                     <input id="txtpassword" name="txtpassword" type="password" class="form-control" placeholder="Password">
                     <label class="checkbox">
-                        <!--<input type="checkbox" value="remember-me"> Remember me
+<!--                        <input type="checkbox" value="remember-me"> Remember me-->
                         <span class="pull-right">
                             <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-                        </span>-->
+                        </span>
                     </label>
                     <button onclick="login()" class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>                   
 
@@ -55,15 +55,16 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Forgot Password ?</h4>
                         </div>
-                        <div class="modal-body">
-                            <p>Enter your e-mail address below to reset your password.</p>
-                            <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                            <button class="btn btn-success" type="button">Submit</button>
-                        </div>
+                        <form id="reset_pw_form">
+                            <div class="modal-body">
+                                <p>Enter your e-mail address below to reset your password.</p>
+                                <input type="text" id="reset_pw_email" name="reset_pw_email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                                <button class="btn btn-success" type="submit">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -97,6 +98,35 @@
                                 }
                             });
 
+
+                            $("#reset_pw_form").validate({
+                                focusInvalid: false,
+                                ignore: "",
+                                rules: {
+                                    reset_pw_email: "required"
+                                }, submitHandler: function (form) {
+                                    
+                                    
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: site_url + '/login/reset_password',
+                                        data: $('#vehicle_model_add_form').serialize(),
+                                        success: function (msg) {
+
+                                            if (msg == 1) {
+                                                setTimeout("location.href = site_url+'/login/load_login';", 100);
+                                            } else {
+                                                login_form.reset();
+                                                alert("Invalid Login details...");
+                                            }
+                                        }
+                                    });
+
+                                }
+                            });
+
+
                         });
 
 
@@ -122,5 +152,7 @@
                                 });
                             }
                         }
+
+
 
 </script>

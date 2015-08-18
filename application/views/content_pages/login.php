@@ -18,6 +18,16 @@
                             <label for="form-sign-in-password">Password:</label>
                             <input id="txtpassword" name="txtpassword" type="password" class="form-control" placeholder="Password">
                         </div><!-- /.form-group -->
+
+                        <!--Forgot Password-->
+                        <label class="form-group">
+
+                            <span class="pull-left">
+                                <a data-toggle="modal" href="#myModal"> Forgot your Password?</a>
+                            </span>
+                        </label>
+                        <!--End Forgot Password-->
+
                         <div class="form-group clearfix">
                             <button type="submit" onclick="login()" class="btn pull-right btn-default" id="account-submit">Sign In</button>
                         </div><!-- /.form-group -->
@@ -29,6 +39,29 @@
     <!-- /.block-->
 </div>
 <!-- end Page Content-->
+
+
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Forgot Password ?</h4>
+            </div>
+            <div class="modal-body">
+                <p>Enter your e-mail address below to reset your password.</p>
+                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                <button class="btn btn-success" type="button">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
 
 
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>

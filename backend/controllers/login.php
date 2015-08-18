@@ -76,5 +76,13 @@ class Login extends CI_Controller {
         $this->session->sess_destroy();
         redirect(site_url() . '/login/load_login');
     }
+    
+    function reset_password(){
+        
+         $user_service = new User_service();
+         
+         $admin_list=$user_service->get_admin_details();
+         $email=$this->input->post('login_username', TRUE);
+    }
 
 }
