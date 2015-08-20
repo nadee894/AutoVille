@@ -87,14 +87,14 @@
                         var base_url = "<?php echo base_url(); ?>";
                         var site_url = "<?php echo site_url(); ?>";
 
-                        $(document).ready(function () {
+                        $(document).ready(function() {
                             $("#login_form").validate({
                                 focusInvalid: false,
                                 ignore: "",
                                 rules: {
                                     txtusername: "required",
                                     txtpassword: "required"
-                                }, submitHandler: function (form) {
+                                }, submitHandler: function(form) {
                                 }
                             });
 
@@ -104,22 +104,17 @@
                                 ignore: "",
                                 rules: {
                                     reset_pw_email: "required"
-                                }, submitHandler: function (form) {
-                                    
-                                    
+                                }, submitHandler: function(form) {
+
+                                    var $form = $('#reset_pw_form');
 
                                     $.ajax({
                                         type: "POST",
                                         url: site_url + '/login/reset_password',
-                                        data: $('#vehicle_model_add_form').serialize(),
-                                        success: function (msg) {
+                                        data: $form.serialize(),
+                                        success: function(msg) {
 
-                                            if (msg == 1) {
-                                                setTimeout("location.href = site_url+'/login/load_login';", 100);
-                                            } else {
-                                                login_form.reset();
-                                                alert("Invalid Login details...");
-                                            }
+                                           
                                         }
                                     });
 
@@ -140,7 +135,7 @@
                                     type: "POST",
                                     url: site_url + '/login/authenticate_user',
                                     data: "login_username=" + login_username + "&login_password=" + login_password,
-                                    success: function (msg) {
+                                    success: function(msg) {
 
                                         if (msg == 1) {
                                             setTimeout("location.href = site_url+'/login/load_login';", 100);

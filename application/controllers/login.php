@@ -17,7 +17,7 @@ class Login extends CI_Controller {
             redirect(site_url() . '/home/index');
         } else {
             $parials = array('content' => 'content_pages/login');
-            $this->template->load('template/main_template',$parials);
+            $this->template->load('template/main_template', $parials);
         }
     }
 
@@ -75,6 +75,14 @@ class Login extends CI_Controller {
 
         $this->session->sess_destroy();
         redirect(site_url() . '/login/load_login');
+    }
+
+    function reset_password() {
+
+        $user_service = new User_service();
+
+        $admin_list = $user_service->get_admin_details();
+        $email      = $this->input->post('login_username', TRUE);
     }
 
 }

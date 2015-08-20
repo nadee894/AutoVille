@@ -23,7 +23,7 @@
                         <label class="form-group">
 
                             <span class="pull-left">
-                                <a data-toggle="modal" href="#myModal"> Forgot your Password?</a>
+                                <a data-toggle="modal" href="#forgot_password_model"> Forgot your Password?</a>
                             </span>
                         </label>
                         <!--End Forgot Password-->
@@ -41,45 +41,51 @@
 <!-- end Page Content-->
 
 
-<!-- Modal -->
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Forgot Password ?</h4>
-            </div>
-            <div class="modal-body">
-                <p>Enter your e-mail address below to reset your password.</p>
-                <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-
-            </div>
-            <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                <button class="btn btn-success" type="button">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- modal -->
-
-
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
                                 var base_url = "<?php echo base_url(); ?>";
                                 var site_url = "<?php echo site_url(); ?>";
 
-                                $(document).ready(function () {
+                                $(document).ready(function() {
                                     $("#login_form").validate({
                                         focusInvalid: false,
                                         ignore: "",
                                         rules: {
                                             txtusername: "required",
                                             txtpassword: "required"
-                                        }, submitHandler: function (form) {
+                                        }, submitHandler: function(form) {
                                         }
                                     });
+
+
+                                    $("#reset_pw_form").validate({
+                                        focusInvalid: false,
+                                        ignore: "",
+                                        rules: {
+                                            reset_pw_email: "required"
+                                        }, submitHandler: function(form) {
+
+                                            var $form = $('#reset_pw_form');
+
+                                            $.ajax({
+                                                type: "POST",
+                                                url: site_url + '/login/reset_password',
+                                                data: $form.serialize(),
+                                                success: function(msg) {
+
+                                                    if (msg == 1) {
+                                                        setTimeout("location.href = site_url+'/login/load_login';", 100);
+                                                    } else {
+                                                        reset_pw_form.reset();
+                                                        alert("Invalid Login details...");
+                                                    }
+                                                }
+                                            });
+
+                                        }
+                                    });
+
 
                                 });
 
@@ -94,7 +100,7 @@
                                             type: "POST",
                                             url: site_url + '/login/authenticate_user',
                                             data: "login_username=" + login_username + "&login_password=" + login_password,
-                                            success: function (msg) {
+                                            success: function(msg) {
 
                                                 if (msg == 1) {
                                                     setTimeout("location.href = site_url+'/login/load_login';", 100);
