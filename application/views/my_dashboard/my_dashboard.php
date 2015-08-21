@@ -49,7 +49,6 @@
         $(document).ready(function() {
             var goffset = $(".site-header-wrapper").height() + 19;
 
-
             $(".tbssticky").sticky({topSpacing: goffset});
         });
 
@@ -99,6 +98,15 @@
                 $('#dashboard_right_content').html(msg);
             });
         });
+
+        //this function invokes from Pagination_custome.php in system/libraries    
+        function setting_pagination_content(url) {
+
+            $.post(url, {}, function(msg)
+            {
+                $('#dashboard_right_content').html(msg);
+            });
+        }
 
 
 

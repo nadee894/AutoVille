@@ -20,32 +20,33 @@ class Dashboard extends CI_Controller {
         $this->load->model('bookmarked_vehicles/bookmarked_vehicles_service');
 
         $this->load->library('pagination');
+        $this->load->library('pagination_custome');
     }
 
-    function index($start = 0) {
+    function index($start = "0") {
 
         $vehicle_advertisements_service = new Vehicle_advertisments_service();
 
 
         $config = array();
 
-        $config["base_url"]    = site_url() . "/dashboard/index/";
+        $config["base_url"]    = site_url() . "/dashboard/load_my_advertisements/";
         $config["per_page"]    = 8;
         $config["uri_segment"] = 4;
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
 
-        $this->pagination->initialize($config);
+        $this->pagination_custome->initialize($config);
 
         $data['my_advertisements'] = $vehicle_advertisements_service->get_advertisements_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]             = $this->pagination->create_links();
+        $data["links"]             = $this->pagination_custome->create_links();
 
 
         $parials = array('content' => 'my_dashboard/my_dashboard');
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    function load_my_advertisements($start = 0) {
+    function load_my_advertisements($start = "0") {
 
 
         $vehicle_advertisements_service = new Vehicle_advertisments_service();
@@ -59,15 +60,15 @@ class Dashboard extends CI_Controller {
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
 
-        $this->pagination->initialize($config);
+        $this->pagination_custome->initialize($config);
 
         $data['my_advertisements'] = $vehicle_advertisements_service->get_advertisements_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]             = $this->pagination->create_links();
+        $data["links"]             = $this->pagination_custome->create_links();
 
         echo $this->load->view('my_dashboard/my_advertisements', $data);
     }
 
-    function load_saved_searches($start = 0) {
+    function load_saved_searches($start = "0") {
 
 
         $searched_vehicles_service = new Searched_vehicles_service();
@@ -81,10 +82,10 @@ class Dashboard extends CI_Controller {
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($searched_vehicles_service->get_searched_vehicles_for_user('', '', $this->session->userdata('USER_ID')));
 
-        $this->pagination->initialize($config);
+        $this->pagination_custome->initialize($config);
 
         $data['my_advertisements'] = $searched_vehicles_service->get_searched_vehicles_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]             = $this->pagination->create_links();
+        $data["links"]             = $this->pagination_custome->create_links();
 
         echo $this->load->view('my_dashboard/saved_searches', $data);
     }
@@ -96,7 +97,7 @@ class Dashboard extends CI_Controller {
         echo $searched_vehicles_service->delete_serached_record(trim($this->input->post('id', TRUE)));
     }
 
-    function load_bookmarked_vehicles($start = 0) {
+    function load_bookmarked_vehicles($start = "0") {
 
         $bookmarked_vehicles_service = new Bookmarked_vehicles_service();
 
@@ -108,10 +109,10 @@ class Dashboard extends CI_Controller {
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($bookmarked_vehicles_service->get_bookmarked_vehicles('', '', $this->session->userdata('USER_ID')));
 
-        $this->pagination->initialize($config);
+        $this->pagination_custome->initialize($config);
 
         $data['bookmarked_vehicles'] = $bookmarked_vehicles_service->get_bookmarked_vehicles($config["per_page"], $start, $this->session->userdata('USER_ID'));
-        $data["links"]             = $this->pagination->create_links();
+        $data["links"]               = $this->pagination_custome->create_links();
 
         echo $this->load->view('my_dashboard/bookmarked_vehicles', $data);
     }
