@@ -443,6 +443,8 @@ class Vehicle_advertisements extends CI_Controller {
             $searched_vehicles_model->set_date(date("Y-m-d H:i:s"));
 
             echo $searched_vehicles_service->add_search_record($searched_vehicles_model);
+        }else{
+            echo '2';
         }
     }
 

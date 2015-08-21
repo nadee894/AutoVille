@@ -8,6 +8,8 @@ class Login extends CI_Controller {
     function __construct() {
         parent::__construct();
 
+        $this->load->library('email');
+
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
     }
@@ -79,10 +81,34 @@ class Login extends CI_Controller {
 
     function reset_password() {
 
+        $user_exist = FALSE;
+
         $user_service = new User_service();
 
-        $admin_list = $user_service->get_admin_details();
-        $email      = $this->input->post('login_username', TRUE);
+        $reg_user_list = $user_service->get_all_active_registered_users();
+        $email         = trim($this->input->post('reset_pw_email', TRUE));
+
+        foreach ($reg_user_list as $user) {
+            if (trim($user->email) == $email) {
+                $user_exist = TRUE;
+
+                //send email
+
+                $this->email->from('heshani7.herath@gmail.com', 'HeshRox');
+                $this->email->to($user->email);
+                // $this->email->cc('another@another-example.com');
+                //$this->email->bcc('them@their-example.com');
+
+                $this->email->subject('Email Test-Forgot pw');
+                $this->email->message('Testing the email classsssssss hhhh.');
+
+                $this->email->send();
+
+                break;
+            }
+        }
+
+        echo $this->email->print_debugger();
     }
 
 }

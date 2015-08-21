@@ -74,12 +74,7 @@
                                                 data: $form.serialize(),
                                                 success: function(msg) {
 
-                                                    if (msg == 1) {
-                                                        setTimeout("location.href = site_url+'/login/load_login';", 100);
-                                                    } else {
-                                                        reset_pw_form.reset();
-                                                        alert("Invalid Login details...");
-                                                    }
+                                                    alert(msg);
                                                 }
                                             });
 
