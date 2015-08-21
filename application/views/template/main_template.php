@@ -114,7 +114,7 @@
                 </div>
                 <!-- end Page Canvas-->
                 <!--Page Footer-->
-                <!--                <footer id="page-footer">
+                        <footer id="page-footer">
                                     <div class="inner">
                                         <div class="footer-top">
                                             <div class="container">
@@ -137,7 +137,7 @@
                                                                     </div>
                                                                 </div>
                                                             </a>
-                                                            /.item-horizontal small
+                                                           <!--item-horizontal small-->
                                                             <a href="car-item-detail.html" class="item-horizontal small">
                                                                 <h3>Blue Chilli</h3>
                                                                 <figure>2476 Whispering Pines Circle</figure>
@@ -152,9 +152,9 @@
                                                                     </div>
                                                                 </div>
                                                             </a>
-                                                            /.item-horizontal small
+                                                            <!--item-horizontal small-->
                                                         </section>
-                                                        end New Items
+                                                        <!--end New Items-->
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
                                                         Recent Reviews
@@ -173,7 +173,7 @@
                                                                 <p>
                                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non suscipit felis, sed sagittis tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ac placerat mauris.
                                                                 </p>
-                                                            </a>/.review
+                                                            </a><!--review
                                                             <a href="car-item-detail.html#reviews" class="review small">
                                                                 <h3>Saguaro Tavern</h3>
                                                                 <figure>2476 Whispering Pines Circle</figure>
@@ -188,48 +188,48 @@
                                                                     Pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis curabitur
                                                                 </p>
                                                             </a>
-                                                            /.review
+                                                            <!--review-->
                                                         </section>
-                                                        end Recent Reviews
+                                                        <!--end Recent Reviews-->
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
                                                         <section>
                                                             <h2>About Us</h2>
                                                             <address>
-                                                                <div>Max Five Lounge</div>
-                                                                <div>63 Birch Street</div>
-                                                                <div>Granada Hills, CA 91344</div>
+                                                                <div>AutoVille (Pvt) Ltd.</div>
+                                                                <div>65 C, Dharmapala Mawatha,</div>
+                                                                <div>Colombo 07, Sri Lanka/div>
                                                                 <figure>
                                                                     <div class="info">
                                                                         <i class="fa fa-mobile"></i>
-                                                                        <span>818-832-5258</span>
+                                                                        <span>077-832-5258</span>
                                                                     </div>
                                                                     <div class="info">
                                                                         <i class="fa fa-phone"></i>
-                                                                        <span>+1 123 456 789</span>
+                                                                        <span>+94 123 4567</span>
                                                                     </div>
                                                                     <div class="info">
-                                                                        <i class="fa fa-globe"></i>
-                                                                        <a href="index.htm#">www.maxfivelounge.com</a>
+                                                                        <i class="fa fa-envelope"></i>
+                                                                        <a href="mailto:info.autovillle@gmail.com">info.autovillle@gmail.com</a>
                                                                     </div>
                                                                 </figure>
                                                             </address>
                                                             <div class="social">
-                                                                <a href="index.htm#" class="social-button"><i class="fa fa-twitter"></i></a>
-                                                                <a href="index.htm#" class="social-button"><i class="fa fa-facebook"></i></a>
-                                                                <a href="index.htm#" class="social-button"><i class="fa fa-pinterest"></i></a>
+                                                                <a href="#" class="social-button"><i class="fa fa-twitter"></i></a>
+                                                                <a href="#" class="social-button"><i class="fa fa-facebook"></i></a>
+                                                                <a href="#" class="social-button"><i class="fa fa-pinterest"></i></a>
                                                             </div>
                 
-                                                            <a href="contact.html" class="btn framed icon">Contact Us<i class="fa fa-angle-right"></i></a>
+                                                            <a href="<?php echo site_url(); ?>/pages/contact_us" class="btn framed icon">Contact Us<i class="fa fa-angle-right"></i></a>
                                                         </section>
                                                     </div>
-                                                    /.col-md-4
+                                                    <!--col-md-4-->
                                                 </div>
-                                                /.row
+                                                <!--row-->
                                             </div>
-                                            /.container
+                                            <!--container-->
                                         </div>
-                                        /.footer-top
+                                        <!--footer-top-->
                                         <div class="footer-bottom">
                                             <div class="container">
                                                 <span class="left">(C) AutoVille, All rights reserved</span>
@@ -238,9 +238,9 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        /.footer-bottom
+                                        <!--footer-bottom-->
                                     </div>
-                                </footer>-->
+                                </footer>
                 <!--end Page Footer-->
             </div>
             <!-- end Inner Wrapper -->
