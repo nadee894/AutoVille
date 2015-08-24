@@ -49,9 +49,10 @@
                             <div class="wrapper">
                                 <ul class="main-navigation navigation-top-header"></ul>
                                 <ul class="user-area">
-                                    <div class="dealer-login">   
+                                    <!--<div class="dealer-login">-->   
 
-                                        <!--cart-->
+                                    <!--cart-->
+                                    <li>
                                         <div class="btn-group" id="compare_vehicle_list">                                                
                                             <button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(0)
                                                 <span class="caret"></span>
@@ -62,21 +63,22 @@
                                                 <!--End One car-->                                                                                                        
                                             </ul>
                                         </div>
-                                        <!--End cart-->
+                                    </li>
+                                    <!--End cart-->
 
-                                        <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
-
+                                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
+                                        <li>
                                             <a href="<?php echo site_url(); ?>/login/load_login" class="dealer-name"><i class="fa fa-unlock-alt"></i>  Sign In</a>
                                             <a href="<?php echo site_url(); ?>/register_users/load_registration" class="sign-out"><i class="fa fa-user"></i> Register</a>                                        
-
-                                        <?php } else { ?>                                                                                                                
-
+                                        </li>
+                                    <?php } else { ?>                                                                                                                
+                                        <li>
                                             <a href="<?php echo site_url(); ?>/dashboard" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_FULLNAME')); ?></a>
                                             <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>                                        
+                                        </li>
+                                    <?php } ?>
 
-                                        <?php } ?>
-
-                                    </div>
+                                    <!--</div>-->
                                 </ul>
                                 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                                     <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement" class="submit-item">
@@ -114,133 +116,133 @@
                 </div>
                 <!-- end Page Canvas-->
                 <!--Page Footer-->
-                        <footer id="page-footer">
-                                    <div class="inner">
-                                        <div class="footer-top">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4">
-                                                        New Items
-                                                        <section>
-                                                            <h2>New Items</h2>
-                                                            <a href="car-item-detail.html" class="item-horizontal small">
-                                                                <h3>Cash Cow Restaurante</h3>
-                                                                <figure>63 Birch Street</figure>
-                                                                <div class="wrapper">
-                                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/1.jpg" alt=""></div>
-                                                                    <div class="info">
-                                                                        <div class="type">
-                                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                                            <span>Restaurant</span>
-                                                                        </div>
-                                                                        <div class="rating" data-rating="4"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                           <!--item-horizontal small-->
-                                                            <a href="car-item-detail.html" class="item-horizontal small">
-                                                                <h3>Blue Chilli</h3>
-                                                                <figure>2476 Whispering Pines Circle</figure>
-                                                                <div class="wrapper">
-                                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/2.jpg" alt=""></div>
-                                                                    <div class="info">
-                                                                        <div class="type">
-                                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                                            <span>Restaurant</span>
-                                                                        </div>
-                                                                        <div class="rating" data-rating="3"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                            <!--item-horizontal small-->
-                                                        </section>
-                                                        <!--end New Items-->
+                <footer id="page-footer">
+                    <div class="inner">
+                        <div class="footer-top">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4">
+                                        New Items
+                                        <section>
+                                            <h2>New Items</h2>
+                                            <a href="car-item-detail.html" class="item-horizontal small">
+                                                <h3>Cash Cow Restaurante</h3>
+                                                <figure>63 Birch Street</figure>
+                                                <div class="wrapper">
+                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/1.jpg" alt=""></div>
+                                                    <div class="info">
+                                                        <div class="type">
+                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                            <span>Restaurant</span>
+                                                        </div>
+                                                        <div class="rating" data-rating="4"></div>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-4">
-                                                        Recent Reviews
-                                                        <section>
-                                                            <h2>Recent Reviews</h2>
-                                                            <a href="car-item-detail.html#reviews" class="review small">
-                                                                <h3>Max Five Lounge</h3>
-                                                                <figure>4365 Bruce Street</figure>
-                                                                <div class="info">
-                                                                    <div class="rating" data-rating="4"></div>
-                                                                    <div class="type">
-                                                                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                                        <span>Restaurant</span>
-                                                                    </div>
-                                                                </div>
-                                                                <p>
-                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non suscipit felis, sed sagittis tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ac placerat mauris.
-                                                                </p>
-                                                            </a><!--review
-                                                            <a href="car-item-detail.html#reviews" class="review small">
-                                                                <h3>Saguaro Tavern</h3>
-                                                                <figure>2476 Whispering Pines Circle</figure>
-                                                                <div class="info">
-                                                                    <div class="rating" data-rating="5"></div>
-                                                                    <div class="type">
-                                                                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                                        <span>Restaurant</span>
-                                                                    </div>
-                                                                </div>
-                                                                <p>
-                                                                    Pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis curabitur
-                                                                </p>
-                                                            </a>
-                                                            <!--review-->
-                                                        </section>
-                                                        <!--end Recent Reviews-->
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <section>
-                                                            <h2>About Us</h2>
-                                                            <address>
-                                                                <div>AutoVille (Pvt) Ltd.</div>
-                                                                <div>65 C, Dharmapala Mawatha,</div>
-                                                                <div>Colombo 07, Sri Lanka/div>
-                                                                <figure>
-                                                                    <div class="info">
-                                                                        <i class="fa fa-mobile"></i>
-                                                                        <span>077-832-5258</span>
-                                                                    </div>
-                                                                    <div class="info">
-                                                                        <i class="fa fa-phone"></i>
-                                                                        <span>+94 123 4567</span>
-                                                                    </div>
-                                                                    <div class="info">
-                                                                        <i class="fa fa-envelope"></i>
-                                                                        <a href="mailto:info.autovillle@gmail.com">info.autovillle@gmail.com</a>
-                                                                    </div>
-                                                                </figure>
-                                                            </address>
-                                                            <div class="social">
-                                                                <a href="#" class="social-button"><i class="fa fa-twitter"></i></a>
-                                                                <a href="#" class="social-button"><i class="fa fa-facebook"></i></a>
-                                                                <a href="#" class="social-button"><i class="fa fa-pinterest"></i></a>
-                                                            </div>
-                
-                                                            <a href="<?php echo site_url(); ?>/pages/contact_us" class="btn framed icon">Contact Us<i class="fa fa-angle-right"></i></a>
-                                                        </section>
-                                                    </div>
-                                                    <!--col-md-4-->
                                                 </div>
-                                                <!--row-->
-                                            </div>
-                                            <!--container-->
-                                        </div>
-                                        <!--footer-top-->
-                                        <div class="footer-bottom">
-                                            <div class="container">
-                                                <span class="left">(C) AutoVille, All rights reserved</span>
-                                                <span class="right">
-                                                    <a href="#page-top" class="to-top roll"><i class="fa fa-angle-up"></i></a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <!--footer-bottom-->
+                                            </a>
+                                            <!--item-horizontal small-->
+                                            <a href="car-item-detail.html" class="item-horizontal small">
+                                                <h3>Blue Chilli</h3>
+                                                <figure>2476 Whispering Pines Circle</figure>
+                                                <div class="wrapper">
+                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/2.jpg" alt=""></div>
+                                                    <div class="info">
+                                                        <div class="type">
+                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                            <span>Restaurant</span>
+                                                        </div>
+                                                        <div class="rating" data-rating="3"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!--item-horizontal small-->
+                                        </section>
+                                        <!--end New Items-->
                                     </div>
-                                </footer>
+                                    <div class="col-md-4 col-sm-4">
+                                        Recent Reviews
+                                        <section>
+                                            <h2>Recent Reviews</h2>
+                                            <a href="car-item-detail.html#reviews" class="review small">
+                                                <h3>Max Five Lounge</h3>
+                                                <figure>4365 Bruce Street</figure>
+                                                <div class="info">
+                                                    <div class="rating" data-rating="4"></div>
+                                                    <div class="type">
+                                                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                        <span>Restaurant</span>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non suscipit felis, sed sagittis tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ac placerat mauris.
+                                                </p>
+                                            </a><!--review
+                                            <a href="car-item-detail.html#reviews" class="review small">
+                                                <h3>Saguaro Tavern</h3>
+                                                <figure>2476 Whispering Pines Circle</figure>
+                                                <div class="info">
+                                                    <div class="rating" data-rating="5"></div>
+                                                    <div class="type">
+                                                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                        <span>Restaurant</span>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis curabitur
+                                                </p>
+                                            </a>
+                                            <!--review-->
+                                        </section>
+                                        <!--end Recent Reviews-->
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <section>
+                                            <h2>About Us</h2>
+                                            <address>
+                                                <div>AutoVille (Pvt) Ltd.</div>
+                                                <div>65 C, Dharmapala Mawatha,</div>
+                                                <div>Colombo 07, Sri Lanka/div>
+                                                    <figure>
+                                                        <div class="info">
+                                                            <i class="fa fa-mobile"></i>
+                                                            <span>077-832-5258</span>
+                                                        </div>
+                                                        <div class="info">
+                                                            <i class="fa fa-phone"></i>
+                                                            <span>+94 123 4567</span>
+                                                        </div>
+                                                        <div class="info">
+                                                            <i class="fa fa-envelope"></i>
+                                                            <a href="mailto:info.autovillle@gmail.com">info.autovillle@gmail.com</a>
+                                                        </div>
+                                                    </figure>
+                                            </address>
+                                            <div class="social">
+                                                <a href="#" class="social-button"><i class="fa fa-twitter"></i></a>
+                                                <a href="#" class="social-button"><i class="fa fa-facebook"></i></a>
+                                                <a href="#" class="social-button"><i class="fa fa-pinterest"></i></a>
+                                            </div>
+
+                                            <a href="<?php echo site_url(); ?>/pages/contact_us" class="btn framed icon">Contact Us<i class="fa fa-angle-right"></i></a>
+                                        </section>
+                                    </div>
+                                    <!--col-md-4-->
+                                </div>
+                                <!--row-->
+                            </div>
+                            <!--container-->
+                        </div>
+                        <!--footer-top-->
+                        <div class="footer-bottom">
+                            <div class="container">
+                                <span class="left">(C) AutoVille, All rights reserved</span>
+                                <span class="right">
+                                    <a href="#page-top" class="to-top roll"><i class="fa fa-angle-up"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                        <!--footer-bottom-->
+                    </div>
+                </footer>
                 <!--end Page Footer-->
             </div>
             <!-- end Inner Wrapper -->
