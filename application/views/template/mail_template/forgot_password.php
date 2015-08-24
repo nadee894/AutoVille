@@ -219,9 +219,7 @@
                                                                         <tr>
                                                                             <td style="text-align:left;">
                                                                                 <br/>
-                                                                                To reset your password click on the link below (or copy paste the URL into your browser).
-                                                                                <br/><br/>
-                                                                                <a href="http://autoville.lankapanel.biz/index.php/login/load_login">http://autoville.lankapanel.biz/index.php/login/load_login</a>
+                                                                                If you did make the request,then click <a href="http://autoville.lankapanel.biz/index.php/login/load_login">here</a> to reset your password.                                                                                                                                                                
                                                                             </td>
                                                                         </tr>
 
