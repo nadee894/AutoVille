@@ -210,7 +210,7 @@
                                         </tr>
                                     </table>
 
-                                    <table cellspacing="0" cellpadding="0" class="force-full-width" bgcolor="#ffffff" >
+                                    <table cellspacing="0" cellpadding="0" class="force-full-width" bgcolor="#ffffff"   width="100%">
                                         <tr>
                                             <td style="background-color:#ffffff; padding-top: 15px;">
 
@@ -273,7 +273,7 @@
                                                                     </table>
 
 
-                                                                    <table cellspacing="0" cellpadding="0" bgcolor="#363636"  class="force-full-width">
+                                                                    <table cellspacing="0" cellpadding="0" bgcolor="#363636"  class="force-full-width"  width="100%">
                                                                         <tr>
                                                                             <td style="background-color:#363636; text-align:center;">
                                                                                 <br>
@@ -287,7 +287,7 @@
                                                                                                             </tr>
                                                                                                             <tr>
                                                                                                                 <td style="color:#f0f0f0; font-size: 14px; text-align:center; padding-bottom:4px;">
-                                                                                                                    © 2014 All Rights Reserved
+                                                                                                                    © Autoville All Rights Reserved
                                                                                                                 </td>
                                                                                                             </tr>
 

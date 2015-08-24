@@ -78,11 +78,11 @@
                                                         $('#fade_valid_msg').fadeIn();
                                                         $('#fade_valid_msg').fadeOut(4000);
                                                     } else if (msg == '2') {
-                                                        $('#fade_valid_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Email Not Sent!!</div>');
+                                                        $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Email Not Sent!!</div>');
                                                         $('#fade_valid_msg').fadeIn();
                                                         $('#fade_valid_msg').fadeOut(4000);
                                                     } else {
-                                                        $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-check-circle fa-fw fa-lg"></i>Invalid User or Email!!</div>');
+                                                        $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid User or Email!!</div>');
                                                         $('#fade_valid_msg').fadeIn();
                                                         $('#fade_valid_msg').fadeOut(4000);
                                                     }
