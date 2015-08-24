@@ -15,9 +15,9 @@
                     <?php
                     $vehicle_images_service = new Vehicle_images_service();
                     foreach ($my_advertisements as $my_advertisement) {
-                        $image=$vehicle_images_service->get_images_for_advertisement_one($my_advertisement->id);
+                        $image = $vehicle_images_service->get_images_for_advertisement_one($my_advertisement->id);
                         ?>
-                    <tr id="list_<?php echo $my_advertisement->search_id; ?>">
+                        <tr id="list_<?php echo $my_advertisement->search_id; ?>">
                             <td>
                                 <a class="car-image" href="<?php echo site_url() . '/vehicle_advertisements/vehicle_advertisement_detail_view/' . $my_advertisement->id; ?>">
                                     <img  class="lazy" src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $my_advertisement->id . '/thumbnail/' . $image->image_path; ?>">
@@ -59,24 +59,23 @@
         </ul>
     </nav>
 </div>
-
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script>
-                                //delete advertisement
-                                function delete_advertisement(id) {
+                                    //delete advertisement
+                                    function delete_advertisement(id) {
 
-                                    $.ajax({
-                                        type: "POST",
-                                        url: '<?php echo site_url(); ?>/dashboard/delete_saved_search',
-                                        data: "id=" + id,
-                                        success: function(msg) {
-                                            if (msg == 1) {
-                                                $('#list_' + id).hide();
-                                                toastr.success("Successfully removed  !!", "AutoVille");
-                                            } else if (msg == 2) {
-                                                toastr.danger('Error occured. !!', "AutoVille");
+                                        $.ajax({
+                                            type: "POST",
+                                            url: '<?php echo site_url(); ?>/dashboard/delete_saved_search',
+                                            data: "id=" + id,
+                                            success: function(msg) {
+                                                if (msg == 1) {
+                                                    $('#list_' + id).hide();
+                                                    toastr.success("Successfully removed  !!", "AutoVille");
+                                                } else if (msg == 2) {
+                                                    toastr.danger('Error occured. !!', "AutoVille");
+                                                }
                                             }
-                                        }
-                                    });
-                                }
+                                        });
+                                    }
 </script>
