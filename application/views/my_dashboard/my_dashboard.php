@@ -1,5 +1,5 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/jquery.sticky.js"></script>
-<section id="content" class="container">
+<section id="content" class="container page-profile">
     <header>
         <ul class="nav nav-pills">
             <li class="active">
