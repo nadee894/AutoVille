@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 07, 2015 at 03:13 PM
+-- Generation Time: Aug 24, 2015 at 11:55 AM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -775,12 +775,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `address`, `contact_no_1`, `contact_no_2`, `profile_pic`, `password`, `account_activation_code`, `is_online`, `is_published`, `is_deleted`, `added_by`, `added_date`, `updated_date`, `updated_by`) VALUES
-(1, 'Mr', 'Robert Pattinson', 'admin', 1, 'tom@gmail.com', 'No 6,USA', '0772348892', NULL, 'avatar.png', '81dc9bdb52d04dc20036dbd8313ed055', '', '1', '1', '0', 0, '2015-03-21 23:59:36', NULL, 0),
-(2, 'Ms', 'Gayathma Perera', 'gayathma', 1, 'gayathma@gmail.com', 'No 6,Panadura', '0719234567', NULL, 'avatar.png', 'e10adc3949ba59abbe56e057f20f883e', '', '0', '1', '0', 0, '2015-07-07 23:59:36', NULL, 0),
-(3, 'Ms', 'Nadeesha Perera', 'nadeesha', 3, 'nadeesha@gmail.com', 'No 5,Angoda', '0716273829', NULL, 'avatar.png', '827548485795e8a0b2670d3981427ec2', '', '0', '1', '0', 0, '2015-07-21 23:59:36', NULL, 0),
-(4, 'Ms', 'Ashani Dias', 'ashani', 3, 'Ashani@gmail.com', 'No 7,Galle', '0756778234', NULL, 'avatar.png', 'aad619af8f7157a1d4d40cfbebf0de8e', '', '1', '1', '0', 0, '2015-07-14 23:59:36', NULL, 0),
-(5, 'Ms', 'Ishani Pathinayake', 'ishani', 2, 'ishani@gmail.com', 'No 9,Moratuwa', '0716728356', NULL, 'avatar.png', '8cb50fdc11cf40b2a2f0a5a78c7bfe8f', '', '0', '1', '0', 0, '2015-07-07 23:59:36', NULL, 0),
-(6, 'Ms', 'Heshani Herath', 'heshani', 1, 'heshani@gmail.com', 'No 4,Rathmalana', '0719234567', NULL, 'avatar.png', 'ad8e9ec499f16542d9ac8873ddef9afe', '', '0', '1', '0', 0, '2015-07-01 23:59:36', NULL, 0);
+(1, 'Mr', 'Robert Pattinson', 'admin', 1, 'tom@gmail.com', 'No 6,USA', '0772348892', '', 'avatar.png', '81dc9bdb52d04dc20036dbd8313ed055', '', '0', '1', '0', 0, '2015-03-21 23:59:36', '2015-08-17 11:08:44', 0),
+(2, 'Ms', 'Gayathma Perera', 'gayathma', 1, 'gayathma3@gmail.com', 'No 6,Panadura', '0719234567', NULL, 'avatar.png', 'e10adc3949ba59abbe56e057f20f883e', '', '0', '1', '0', 0, '2015-08-24 11:51:03', NULL, 0),
+(3, 'Ms', 'Nadeesha Perera', 'nadeesha', 3, 'niklakshaya@gmail.com', 'No 5,Angoda', '0716273829', NULL, 'avatar.png', '827548485795e8a0b2670d3981427ec2', '', '0', '1', '0', 0, '2015-08-24 11:51:38', NULL, 0),
+(4, 'Ms', 'Ashani Dias', 'ashani', 3, 'ashanidiaz@gmail.com', 'No 7,Galle', '0756778234', NULL, 'avatar.png', 'aad619af8f7157a1d4d40cfbebf0de8e', '', '1', '1', '0', 0, '2015-08-24 11:52:07', NULL, 0),
+(5, 'Ms', 'Ishani Pathinayake', 'ishani', 2, 'ishanipathinayake@gmail.com', 'No 9,Moratuwa', '0716728356', NULL, 'avatar.png', '8cb50fdc11cf40b2a2f0a5a78c7bfe8f', '', '0', '1', '0', 0, '2015-08-24 11:52:34', NULL, 0),
+(6, 'Ms', 'Heshani Herath', 'heshani', 3, 'heshani7.herath@gmail.com', 'No 4,Rathmalana', '0719234567', NULL, 'avatar.png', 'ad8e9ec499f16542d9ac8873ddef9afe', '', '0', '1', '0', 0, '2015-08-24 11:53:02', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -905,7 +905,7 @@ CREATE TABLE IF NOT EXISTS `vehicle_compare` (
   `vehicle_id` int(11) NOT NULL,
   `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `vehicle_compare`
@@ -913,8 +913,7 @@ CREATE TABLE IF NOT EXISTS `vehicle_compare` (
 
 INSERT INTO `vehicle_compare` (`id`, `user_id`, `vehicle_id`, `added_date`) VALUES
 (30, 1, 12, '2015-07-17 19:01:29'),
-(31, 1, 15, '2015-07-17 19:02:06'),
-(32, 1, 17, '2015-08-05 10:31:11');
+(31, 1, 15, '2015-07-17 19:02:06');
 
 -- --------------------------------------------------------
 

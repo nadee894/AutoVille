@@ -81,34 +81,41 @@ class Login extends CI_Controller {
 
     function reset_password() {
 
-        $user_exist = FALSE;
-
         $user_service = new User_service();
 
         $reg_user_list = $user_service->get_all_active_registered_users();
-        $email         = trim($this->input->post('reset_pw_email', TRUE));
+        $input_email   = trim($this->input->post('reset_pw_email', TRUE));
 
         foreach ($reg_user_list as $user) {
-            if (trim($user->email) == $email) {
-                $user_exist = TRUE;
+
+            if (strcmp($user->email, $input_email) == 0) {
 
                 //send email
 
-                $this->email->from('heshani7.herath@gmail.com', 'HeshRox');
-                $this->email->to($user->email);
-                // $this->email->cc('another@another-example.com');
-                //$this->email->bcc('them@their-example.com');
+                $email_to          = 'heshani7.herath@gmail.com'; //$user->email
+                $email_subject     = "Autoville Reset Password";
+                $data['name']      = $user->name;
+                $data['user_name'] = $user->user_name;
+                $data['pasword']   = 'asda';
+                //
+                $msg               = $this->load->view('template/mail_template/body', $data, TRUE);
 
-                $this->email->subject('Email Test-Forgot pw');
-                $this->email->message('Testing the email classsssssss hhhh.');
+                $headers = 'MIME-Version: 1.0' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
+                // $headers .= 'Cc: info.autovillle@gmail.com' . "\r\n";
 
-                $this->email->send();
-
-                break;
+                if (mail($email_to, $email_subject, $msg, $headers)) {
+                    echo "1";
+                    die();
+                } else {
+                    echo "2";
+                    die();
+                }
             }
         }
 
-        echo $this->email->print_debugger();
+        echo '0';
     }
 
 }
