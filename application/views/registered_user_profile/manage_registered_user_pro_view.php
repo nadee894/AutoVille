@@ -5,27 +5,7 @@
                 <i class="fa fa-user"></i>
                 Personal Info
             </h3>
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <section>
-                        <h3>
-                            <i class="fa fa-image"></i>
-                            Profile Picture
-                        </h3>
-                        <div id="profile-picture" class="profile-picture dropzone dz-clickable">
-                            <input type="file" name="file">
-                            <div class="dz-default dz-message">
-                                <span>Click or drop picture here</span>
-                            </div>
-                            <?php if($user->profile_pic !=''){?>
-                            <img alt="" src="<?php echo base_url(); ?>uploads/user_avatars/<?php echo $user->profile_pic;?>">
-                            <?php }else{?>
-                            <img alt="" src="<?php echo base_url(); ?>uploads/user_avatars/avatar.png">
-                            <?php }?>
-                        </div>
-                    </section>
-                </div>
-            </div>
+
             <form validateIt id="edit_reg_user_profile_form" role="form" method="post" >
                 <div class="row">
                     <div class="col-md-12">
@@ -82,27 +62,49 @@
         </div>
 
         <div class="col-md-3 col-sm-9">
-            <h3>
-                <i class="fa fa-asterisk"></i>
-                Password Change
-            </h3>
-            <form id="form-password" class="framed" action="?" method="post" role="form">
-                <div class="form-group">
-                    <label for="current_pwd">Current Password</label>
-                    <input  class="form-control" type="password" id="current_pwd" name="current_pwd">
+            <section>
+                <div class="col-md-12">
+                    <h3>
+                        <i class="fa fa-image"></i>
+                        Profile Picture
+                    </h3>
+                    <div id="profile-picture" class="profile-picture dropzone dz-clickable">
+                        <input type="file" name="file">
+                        <div class="dz-default dz-message">
+                            <span>Click or drop picture here</span>
+                        </div>
+                        <?php if ($user->profile_pic != '') { ?>
+                            <img alt="" src="<?php echo base_url(); ?>uploads/user_avatars/<?php echo $user->profile_pic; ?>">
+                        <?php } else { ?>
+                            <img alt="" src="<?php echo base_url(); ?>uploads/user_avatars/avatar.png">
+                        <?php } ?>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="new_pwd">New Password</label>
-                    <input class="form-control" type="password" id="new_pwd" name="new_pwd">
-                </div>
-                <div class="form-group">
-                    <label for="confirm-new-password">Confirm New Password</label>
-                    <input  class="form-control" type="password" id="confirm_new_pwd" name="confirm_new_pwd">
-                </div>
-                <div class="form-group">
-                    <input class="btn btn-default" type="submit" value="Change Password" />
-                </div>
-            </form>
+            </section>
+
+            <section>
+                <h3>
+                    <i class="fa fa-asterisk"></i>
+                    Password Change
+                </h3>
+                <form id="form-password" class="framed" action="?" method="post" role="form">
+                    <div class="form-group">
+                        <label for="current_pwd">Current Password</label>
+                        <input  class="form-control" type="password" id="current_pwd" name="current_pwd">
+                    </div>
+                    <div class="form-group">
+                        <label for="new_pwd">New Password</label>
+                        <input class="form-control" type="password" id="new_pwd" name="new_pwd">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-new-password">Confirm New Password</label>
+                        <input  class="form-control" type="password" id="confirm_new_pwd" name="confirm_new_pwd">
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-default" type="submit" value="Change Password" />
+                    </div>
+                </form>
+            </section>
         </div>
     </div>
 </section>
