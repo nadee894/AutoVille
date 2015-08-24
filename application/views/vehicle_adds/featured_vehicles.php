@@ -28,8 +28,8 @@
                                                                 <span title="Area"><img src="assets/img/area.png" alt="">240m<sup>2</sup></span>
                                                                 <span title="Garages"><img src="assets/img/garages.png" alt="">1</span>
                                                             </div>-->
-                                <div class="icon">
-                                    <i class="fa fa-thumbs-up"></i>
+                                <div class="ribbon approved">
+                                    <i class="fa fa-check" title="Featured"></i>
                                 </div>
                                 <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/' . $result->image_path; ?>" height="180" width="260" alt=""/>
                             </a>

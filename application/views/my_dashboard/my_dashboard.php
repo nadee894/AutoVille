@@ -45,8 +45,9 @@
 <script>
     $(document).ready(function() {
         var goffset = $(".site-header-wrapper").height() + 19;
+        var bottomffset = $("#page-footer").height();
 
-        $(".tbssticky").sticky({topSpacing: goffset});
+        $(".tbssticky").sticky({topSpacing: goffset,bottomSpacing:bottomffset});
     });
 
     //load profile view
