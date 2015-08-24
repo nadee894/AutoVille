@@ -51,7 +51,7 @@
                 <div class="description">
                     <ul class="list-unstyled actions">
                         <li>
-                            <a href="#" onclick="delete_advertisement(<?php echo $vehicle->id; ?>)" title="Remove this advertisement">
+                            <a href="#" onclick="remove_bookmark(<?php echo $vehicle->bookmark_id; ?>)" title="Remove Bookmark">
                                 <i class="fa fa-trash-o" style="color: red;"></i>
                             </a>
                         </li>
