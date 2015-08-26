@@ -79,7 +79,7 @@ class Login extends CI_Controller {
         redirect(site_url() . '/login/load_login');
     }
 
-    function reset_password() {
+    function forget_password() {
 
         $user_service = new User_service();
 
@@ -92,7 +92,7 @@ class Login extends CI_Controller {
 
                 //send email
                 $email_to          = $user->email; //'heshani7.herath@gmail.com';
-                $email_subject     = "Autoville Password Reset";
+                $email_subject     = "AutoVille Password Reset";
                 $data['name']      = $user->name;
                 $data['user_name'] = $user->user_name;
                 $data['pasword']   = 'asda';
@@ -101,7 +101,7 @@ class Login extends CI_Controller {
 
                 $headers = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                $headers .= 'From: Autoville <info.autovillle@gmail.com>' . "\r\n";
+                $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
                 // $headers .= 'Cc: info.autovillle@gmail.com' . "\r\n";
 
                 if (mail($email_to, $email_subject, $msg, $headers)) {
@@ -115,6 +115,15 @@ class Login extends CI_Controller {
         }
 
         echo '0';
+    }
+
+    function reset_password() {
+        $parials = array('content' => 'content_pages/reset_password');
+        $this->template->load('template/main_template', $parials);
+    }
+
+    function update_password() {
+        
     }
 
 }

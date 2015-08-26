@@ -32,7 +32,13 @@
                             <button type="submit" onclick="login()" class="btn pull-right btn-default" id="account-submit">Sign In</button>
                         </div><!-- /.form-group -->
                     </form>
-                </div>
+                    <div id="login_msg" style="display: none">
+                        <div class="alert alert-success">
+                            <i class="fa fa-check-circle fa-fw fa-lg"></i>
+                            Login Successfull!!
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
     </section>
@@ -70,13 +76,14 @@
 
                                             $.ajax({
                                                 type: "POST",
-                                                url: site_url + '/login/reset_password',
+                                                url: site_url + '/login/forget_password',
                                                 data: $form.serialize(),
                                                 success: function(msg) {
                                                     if (msg == '1') {
                                                         $('#fade_valid_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Email Sent!!</div>');
                                                         $('#fade_valid_msg').fadeIn();
                                                         $('#fade_valid_msg').fadeOut(4000);
+                                                        $('#forgot_password_model').modal('hide');
                                                     } else if (msg == '2') {
                                                         $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Email Not Sent!!</div>');
                                                         $('#fade_valid_msg').fadeIn();
@@ -109,10 +116,16 @@
                                             success: function(msg) {
 
                                                 if (msg == 1) {
+                                                    $('#login_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Login Successfull!!</div>');
+                                                    $('#login_msg').fadeIn();
+                                                    $('#login_msg').fadeOut(4000);
                                                     setTimeout("location.href = site_url+'/login/load_login';", 100);
                                                 } else {
                                                     login_form.reset();
-                                                    alert("Invalid Login details...");
+                                                    $('#login_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid Login Details!!</div>');
+                                                    $('#login_msg').fadeIn();
+                                                    $('#login_msg').fadeOut(4000);
+
                                                 }
                                             }
                                         });

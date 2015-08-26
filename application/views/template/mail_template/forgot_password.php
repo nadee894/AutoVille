@@ -211,26 +211,24 @@
                                                                         <tr>
                                                                             <td style="text-align:left;">
                                                                                 <br/>
-                                                                                Autoville received a request to reset the password for your Autoville Account  "<?php echo $user_name; ?>" on
+                                                                                AutoVille received a request to reset the password for your AutoVille Account  "<?php echo $user_name; ?>" on
                                                                                 <?php echo date('Y-m-d H:i:s'); ?>.
                                                                             </td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                            <td style="text-align:left;">
-                                                                                <br/>
-                                                                                If you did make the request,then click <a href="http://autoville.lankapanel.biz/index.php/login/load_login">here</a> to reset your password.                                                                                                                                                                
+                                                                            <td style="text-align:left;">                                                                                
+                                                                                If you did make the request,then click <a href="<?php echo site_url(); ?>/login/reset_password">here</a> to reset your password.                                                                                                                                                                
                                                                             </td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                            <td style="text-align:left;">
-                                                                                <br/>
+                                                                            <td style="text-align:left;">                                                                              
                                                                                 If you don't want to reset your password you can ignore this email.
-                                                                                <br/><br/><br/>
+                                                                                <br/><br/>
                                                                                 Best Regards,
                                                                                 <br/>
-                                                                                <strong>Autoville Customer Support</strong>
+                                                                                <strong>AutoVille Customer Support</strong>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
