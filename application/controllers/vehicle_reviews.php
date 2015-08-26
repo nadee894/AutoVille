@@ -31,7 +31,7 @@ class Vehicle_reviews extends CI_Controller {
     function add_vehicle_reviews() {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         $vehicle_reviews_model   = new Vehicle_reviews_model();
-
+        $vehicle_id=  $this->uri->segment(3);
 
         $vehicle_reviews_model->set_description($this->input->post('description', TRUE));
         $vehicle_reviews_model->set_vehicle_id($this->input->post('vehicle_id', TRUE));
@@ -44,7 +44,7 @@ class Vehicle_reviews extends CI_Controller {
         $vehicle_reviews_model->set_is_deleted('0');
 
         $vehicle_reviews_service->add_vehicle_reviews($vehicle_reviews_model);
-        $vehicle_reviews = $vehicle_reviews_service->get_all_vehicle_reviews();
+        $vehicle_reviews = $vehicle_reviews_service->get_all_vehicle_reviews($vehicle_id);
 
         foreach ($vehicle_reviews as $value) {
             ?>
