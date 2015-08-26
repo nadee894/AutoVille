@@ -1,38 +1,36 @@
-
-<div class="top-label">
-    <h4>
-        <i class="fa fa-"></i>
-        Ask for price
-    </h4>
-
-    <form name="ask_form" id="ask_form">
+<header><h3>Ask For Price</h3></header>
+<figure>
+    <form id="ask_form" name="ask_form" role="form">
         <div class="form-group">
-            <input class="form-control" type="text" name="name" placeholder="Your Name"/>
+            <label for="name">Name</label>
+            <input type="text" class="form-control framed" id="name" name="name" required="">
         </div>
-
+        <!-- /.form-group -->
         <div class="form-group">
-            <input class="form-control" type="text" name="user_email" placeholder="Your Email"/>
+            <label for="user_email">Email</label>
+            <input type="email" class="form-control framed" id="user_email" name="user_email" required="">
         </div>
+        <!-- /.form-group -->
         <div class="form-group">
-            <input class="form-control" type="text" name="phone" placeholder="Your Phone"/>
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control framed" id="phone" name="phone" required="">
         </div>
-
+        <!-- /.form-group -->
         <div class="form-group">
-            <textarea class="form-control" id="ContactAgentForm_comment" name="comments" rows="3">Hello, I found your listing on AutoVille. Please, send me more information about <?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model; ?><?php echo $vehicle_detail->year; ?>. Thank you</textarea>
+            <label for="ContactAgentForm_comment">Message</label>
+            <textarea class="form-control framed" id="ContactAgentForm_comment" name="comments"  rows="5" required="">Hello, I found your listing on AutoVille. Please, send me more information about <?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model; ?><?php echo $vehicle_detail->year; ?>. Thank you</textarea>
         </div>
-
-        <div>
-
-
+        <!-- /.form-group -->
+        <div class="form-group">
             <input type="hidden" value="SU092CA68QPZINTCARLK" name="sku">
             <div data-ajax-local-messages=""></div>
-            <div class="confirm-btn">
-                <input type="hidden" name="sender_email" id="sender_email" value="<?php echo $vehicle_detail->user_email; ?>" />
-                <input type="button" id="lead-form-submit" onclick="send_email()" class="btn btn-default" value=" Contact Seller"> 
-            </div>
+            <input type="hidden" name="sender_email" id="sender_email" value="<?php echo $vehicle_detail->user_email; ?>" />
+            <button type="button" class="btn framed icon" onclick="send_email()">Send<i class="fa fa-angle-right"></i></button>
         </div>
+        <!-- /.form-group -->
     </form>
-</div>
+</figure>
+
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
 
@@ -41,7 +39,7 @@
                     $.ajax({
                         type: "POST",
                         url: '<?php echo site_url(); ?>/vehicle_advertisements/send_email_to_sellers',
-                        data:$('#ask_form').serialize(),
+                        data: $('#ask_form').serialize(),
                         success: function(msg) {
                             toastr.success("Email successfully sent !!", "AutoVille");
                         }

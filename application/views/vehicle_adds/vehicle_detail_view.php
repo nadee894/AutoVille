@@ -1,235 +1,337 @@
-<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/blue/css/main.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application_resources/bxslider/jquery.bxslider.css" />
-<style>
-    .checkboxes{
-        display: inline-block;
-        width: 33%;
-    }
-</style>
-<div class="container">
-    <div id="page-content" class="row">
-        <div class="col-md-12">
-            <div id="car-pagination">
-                <div class="content-holder">
-                    <div class="page-main-heading extra-space">
-                        <div class="heading-location">
-                            <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $vehicle_detail->id; ?>" />
-                            <h2><span class="bold"><?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model; ?></span> <?php echo $vehicle_detail->year; ?></h2>
+<div id="map-detail"></div>
+<section class="container page-item-detail">
+    <div class="row">
+        <!--Item Detail Content-->
+        <div class="col-md-9">
+            <section class="block" id="main-content">
+                <header class="page-title">
+                    <div class="title">
+                        <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $vehicle_detail->id; ?>" />
+                        <h1><?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model . ' ' . $vehicle_detail->year; ?></h1>
+                        <figure>Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></figure>
+                    </div>
+                    <div class="info">
+                        <div class="type">
+                            <span>The offer had <?php echo $review_looks_count; ?> Views</span>
                         </div>
+                    </div>
+                </header>
+                <div class="row">
+                    <!--Detail Sidebar-->
+                    <aside class="col-md-4 col-sm-4" id="detail-sidebar">
+                        <!--Contact-->
+                        <section>
+                            <header><h3>Contact</h3></header>
+                            <address>
+                                <div>Max Five Lounge</div>
+                                <div><?php echo $seller_add->address; ?></div>
+                                <figure>
+                                    <div class="info">
+                                        <i class="fa fa-mobile"></i>
+                                        <span><?php echo $seller_add->contact_no_1; ?></span>
+                                    </div>
+                                    <div class="info">
+                                        <i class="fa fa-phone"></i>
+                                        <span>+1 123 456 789</span>
+                                    </div>
+                                    <div class="info">
+                                        <i class="fa fa-envelope"></i>
+                                        <a href="#"><?php echo $seller_add->email; ?></a>
+                                    </div>
+                                    <div class="info">
+                                        <i class="fa fa-globe"></i>
+                                        <a href="#">www.autoville.lankapanel.biz</a>
+                                    </div>
+                                </figure>
+                            </address>
+                        </section>
+                        <!--end Contact-->
+                        <!--Rating-->
+                        <section class="clearfix">
+                            <header class="pull-left"><a href="#reviews" class="roll"><h3>Rating</h3></a></header>
+                            <figure class="rating big pull-right" data-rating="4"></figure>
+                        </section>
+                        <!--end Rating-->
+                        <!--Events-->
+                        <section>
+                            <header><h3>Events</h3></header>
+                            <figure>
+                                <div class="expandable-content collapsed show-60" id="detail-sidebar-event">
+                                    <div class="content">
+                                        <p>Maecenas purus sapien, pellentesque non consectetur eu, rhoncus in mauris.
+                                            Duis et nisl metus. Sed ut pulvinar mauris, bibendum ullamcorper ex.
+                                            Aliquam vitae ante diam. Nam eu blandit odio. Cras erat lorem, iaculis eu nulla eu, sodales aliquam eros.
+                                        </p>
+                                    </div>
+                                </div>
+                                <a href="#" class="show-more expand-content" data-expand="#detail-sidebar-event" >Show More</a>
+                            </figure>
+                        </section>
+                        <!--end Events-->
+                        <!--Contact Form-->
+                        <section>
+                            <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
+                        </section>
+                        <!--end Contact Form-->
+                    </aside>
+                    <!--end Detail Sidebar-->
+                    <!--Content-->
+                    <div class="col-md-8 col-sm-8">
+                        <section>
+                            <article class="item-gallery">
+                                <div class="owl-carousel item-slider">
+                                    <?php
+                                    $i = 0;
+                                    foreach ($images as $image) {
+                                        ++$i
+                                        ?>
+                                        <div class="owl-item <?php if ($i == 1) { ?> active<?php } ?>">
+                                            <div class="slide"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" data-hash="<?php echo $i; ?>" alt=""></div>
+                                        </div>
 
-                        <div class="extra-info">
-                            <!--<span>Offer ID C24021482</span>-->
-                            <p>The offer had <?php echo $review_looks_count; ?> Views</p>
-
-                            <div class="price-car">
-                                <div class="price" style="color:blue">Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></div>
-                                     <span class="small-note">* Price negotiable</span>
-
+                                    <?php } ?>
 
                                 </div>
-                            </div>
-                        </div>
-
-                        <nav class="default-tabs split-tabs">
-                            <ul id="vehicle-toggle">
-                                <li id="vehicle-description" class="current-item"><a href="#"><span>Vehicle description</span></a></li>
-                                <li id="vehicle-location"><a href="#"><span>Vehicle location</span></a></li>
-                            </ul>
-
-                            <ul>
-                                <li class="click-to-share"><a href="#"><span>Click to share</span></a></li>
-                                <li class="print-this-page"><a href="#"><span>Print this page</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div><!--#car-pagination -->
-
-                <div id="car-details">
-                    <div class="row">
-                        <div class="social-icons-round">
-                            <p>Share to:</p>
-                            <ul>
-                                <li class="facebook"><a href="#">Facebook</a></li>
-                                <li class="twitter"><a href="#">Twitter</a></li>
-                                <li class="google"><a href="#">Gmail</a></li>
-                            </ul>
-                        </div>
-                        <div class="content-holder">
-                            <div class="full-width google-maps dealer-maps vehicle-location">
-                                <div id="map-canvas" style="width: 978px; height: 380px;"></div>
-                            </div>
-
-                            <div class="full-width vehicle-description row">
-                                <div class="col-md-8">
-                                    <div >
-                                        <!-- Elastislide Carousel -->
-                                        <ul class="bxslider">
-                                            <?php foreach ($images as $image) { ?>
-                                                <li ><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>"  /></li>
-                                            <?php } ?>
-                                        </ul>
-
-                                        <div id="bx-pager">
+                                <!-- /.item-slider -->
+                                <div class="thumbnails">
+                                    <span class="expand-content btn framed icon" data-expand="#gallery-thumbnails" >More<i class="fa fa-plus"></i></span>
+                                    <div class="expandable-content height collapsed show-70" id="gallery-thumbnails">
+                                        <div class="content">
                                             <?php
                                             $i = 0;
                                             foreach ($images as $image) {
+                                                ++$i
                                                 ?>
-                                                <a data-slide-index="<?php echo $i++; ?>" href="#"><img  src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/thumbnail/' . $image->image_path; ?>" /></a>
-
+                                                <a href="#<?php echo $i; ?>" id="thumbnail-<?php echo $i; ?>" <?php if ($i == 1) { ?> class="active" <?php } ?>><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" alt=""></a>
                                             <?php } ?>
                                         </div>
                                     </div>
-
                                 </div>
-                                <div id="loan-calculator" class="col-md-4">
-                                    <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
-                                </div>
-
-                            </div>
-
-                            <div class="full-width standard-text-content row">
-                                <div class="col-md-4">
-                                    <ul class="car-specs-list">
-                                        <li>
-                                            <span class="label">Model, Body type:</span>
-                                            <span><?php echo $vehicle_detail->model . ' , ' . $vehicle_detail->body_type; ?></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Year:</span>
-                                            <span><?php echo $vehicle_detail->year; ?></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Fuel:</span>
-                                            <span><?php echo $vehicle_detail->fuel_type; ?></span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-
-                                    <ul class="car-specs-list">
-
-                                        <li>
-                                            <span class="label">Chassis Number:</span>
-                                            <span ><?php echo $vehicle_detail->chassis_no; ?></span>
-                                        </li>
-
-                                        <li>
-                                            <span class="label">Doors:</span>
-                                            <span><?php echo $vehicle_detail->doors; ?></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Kilometers:</span>
-                                            <span><?php echo $vehicle_detail->kilometers; ?> km</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <ul class="car-specs-list">
-
-                                        <li>
-                                            <span class="label">Transmission:</span>
-                                            <span><?php echo $vehicle_detail->transmission; ?></span>
-                                        </li>
-                                        <li>
-                                            <span class="label">Color:</span>
-                                            <span><?php echo $vehicle_detail->colour; ?></span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="full-width grey-border-bottom">
-                                <div class="one-half standard-text-content col-701">
-
-                                    <h3><span class="bold">Vehicle</span> information</h3>
-                                    <div class="row">
-                                        <?php foreach ($equipments as $equipment) { ?>
-                                        <div class="col-md-3" style="padding-bottom: 12px;">
-                                                <?php echo $equipment->name; ?>
-
+                            </article>
+                            <!-- /.item-gallery -->
+                            <article class="block">
+                                <header><h2>Description</h2></header>
+                                <p><?php echo $vehicle_detail->description; ?></p>
+                            </article>
+                            <!-- /.block -->
+                            <article class="block">
+                                <header><h2>Daily Menu</h2></header>
+                                <div class="list-slider owl-carousel">
+                                    <div class="slide">
+                                        <header>
+                                            <h3><i class="fa fa-calendar"></i>Monday (today)</h3>
+                                        </header>
+                                        <div class="list-item">
+                                            <div class="left">
+                                                <h4>Chicken wings</h4>
+                                                <figure>Curabitur odio nibh, luctus non pulvinar</figure>
                                             </div>
-                                        <div class="col-md-3" style="padding-bottom: 12px;">
-                                                <?php if (in_array($equipment->id, $vehicle_equipments)) { ?> Yes <?php } else { ?> No<?php } ?>
+                                            <div class="right">$4.50</div>
+                                        </div>
+                                        <!-- /.list-item -->
+                                        <div class="list-item">
+                                            <div class="left">
+                                                <h4>Mushroom ragout</h4>
+                                                <figure>Donec a odio rutrum, hendrerit sapien</figure>
                                             </div>
-                                        <?php }
-                                        ?>
+                                            <div class="right">$3.60</div>
+                                        </div>
+                                        <!-- /.list-item -->
+                                        <div class="list-item">
+                                            <div class="left">
+                                                <h4>Nice salad with tuna, beans and hard-boiled egg</h4>
+                                                <figure>Urabitur suscipit, justo eu dignissim lacinia </figure>
+                                            </div>
+                                            <div class="right">$1.20</div>
+                                        </div>
+                                        <!-- /.list-item -->
                                     </div>
-
-                                    <hr />
-
-                                    <h3><span class="bold">More</span> info</h3>
-                                    <p><?php echo $vehicle_detail->description; ?></p>
-
-
-                                    <hr />
-
-                                    <h3><span class="bold">Contact</span> details</h3>
-                                    <p class="heading-note">AutoVille does not store additional information about the seller except for those contained in the announcement.</p>
-                                    <br />
-                                    <ul class="icon-list">
-                                        <li class="phone"><?php echo $seller_add->contact_no_1; ?></li>
-                                        <li class="address"><?php echo $seller_add->address; ?></li>
-                                        <li class="e-mail"><a href="#"><?php echo $seller_add->email; ?></a>
-                                        <li class="website"><a href="#"> http://www.autoville.lankapanel.biz</a>
-                                    </ul>
+                                    <!-- /.slide -->
+                                    <div class="slide">
+                                        <header>
+                                            <h3><i class="fa fa-calendar"></i>Tuesday</h3>
+                                        </header>
+                                        <div class="list-item">
+                                            <div class="left">
+                                                <h4>Chicken wings</h4>
+                                                <figure>Curabitur odio nibh, luctus non pulvinar</figure>
+                                            </div>
+                                            <div class="right">$4.50</div>
+                                        </div>
+                                        <!-- /.list-item -->
+                                        <div class="list-item">
+                                            <div class="left">
+                                                <h4>Mushroom ragout</h4>
+                                                <figure>Donec a odio rutrum, hendrerit sapien</figure>
+                                            </div>
+                                            <div class="right">$3.60</div>
+                                        </div>
+                                        <!-- /.list-item -->
+                                        <div class="list-item">
+                                            <div class="left">
+                                                <h4>Nice salad with tuna, beans and hard-boiled egg</h4>
+                                                <figure>Urabitur suscipit, justo eu dignissim lacinia </figure>
+                                            </div>
+                                            <div class="right">$1.20</div>
+                                        </div>
+                                        <!-- /.list-item -->
+                                    </div>
+                                    <!-- /.slide -->
                                 </div>
-
-
-                                <div class="one-half col-241 search-area">
-
-
-
-
-                                    <div id="loan-calculator" class="grey-corner-box">
-                                        <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
-                                    </div>
-
-
-                                    <div class="grey-corner-box">
-                                        <a href="#"><img src="images/image_ads_here.gif" alt="Advertisement" /></a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="full-width standard-text-content">
-                                <?php echo $this->load->view('vehicle_adds/vehicle_reviews_view'); ?>
-                            </div>
-
-
-
-
-
-                        </div><!--.content-holder-->
+                                <!-- /.list-slider -->
+                            </article>
+                            <!-- /.block -->
+                            <article class="block">
+                                <header><h2>Features</h2></header>
+                                <ul class="bullets">
+                                    <li>Free Parking</li>
+                                    <li>Cards Accepted</li>
+                                    <li>Wi-Fi</li>
+                                    <li>Air Condition</li>
+                                    <li>Reservations</li>
+                                    <li>Teambuildings</li>
+                                    <li>Places to seat</li>
+                                    <li>Winery</li>
+                                    <li>Draft Beer</li>
+                                    <li>LCD</li>
+                                    <li>Saloon</li>
+                                    <li>Free Access</li>
+                                    <li>Terrace</li>
+                                    <li>Minigolf</li>
+                                </ul>
+                            </article>
+                            <!-- /.block -->
+                            <article class="block">
+                                <header><h2>Opening Hours</h2></header>
+                                <dl class="lines">
+                                    <dt>Monday</dt>
+                                    <dd>08:00 am - 11:00 pm</dd>
+                                    <dt>Tuesday</dt>
+                                    <dd>08:00 am - 11:00 pm</dd>
+                                    <dt>Wednesday</dt>
+                                    <dd>08:00 am - 11:00 pm</dd>
+                                    <dt>Thursday</dt>
+                                    <dd>08:00 am - 11:00 pm</dd>
+                                    <dt>Friday</dt>
+                                    <dd>08:00 am - 11:00 pm</dd>
+                                    <dt>Saturday</dt>
+                                    <dd>08:00 am - 11:00 pm</dd>
+                                </dl>
+                            </article>
+                            <!-- /.block -->
+                        </section>
+                        <!--Reviews-->
+                        <?php echo $this->load->view('vehicle_adds/vehicle_reviews_view'); ?>
+                        <!--end Review Form-->
                     </div>
-                </div><!--#search-list-->
-            </div>
-        </div><!--#page-content-->
-</div>
-<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/bxslider/jquery.bxslider.js"></script>
-<script type="text/javascript">
+                    <!-- /.col-md-8-->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /#main-content-->
+        </div>
+        <!-- /.col-md-8-->
+        <!--Sidebar-->
+        <div class="col-md-3">
+            <aside id="sidebar">
+                <section>
+                    <header><h2>New Places</h2></header>
+                    <a href="item-detail.html" class="item-horizontal small">
+                        <h3>Cash Cow Restaurante</h3>
+                        <figure>63 Birch Street</figure>
+                        <div class="wrapper">
+                            <div class="image"><img src="assets/img/items/1.jpg" alt=""></div>
+                            <div class="info">
+                                <div class="type">
+                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                    <span>Restaurant</span>
+                                </div>
+                                <div class="rating" data-rating="4"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <!--/.item-horizontal small-->
+                    <a href="item-detail.html" class="item-horizontal small">
+                        <h3>Blue Chilli</h3>
+                        <figure>2476 Whispering Pines Circle</figure>
+                        <div class="wrapper">
+                            <div class="image"><img src="assets/img/items/2.jpg" alt=""></div>
+                            <div class="info">
+                                <div class="type">
+                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                    <span>Restaurant</span>
+                                </div>
+                                <div class="rating" data-rating="3"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <!--/.item-horizontal small-->
+                    <a href="item-detail.html" class="item-horizontal small">
+                        <h3>Eddie’s Fast Food</h3>
+                        <figure>4365 Bruce Street</figure>
+                        <div class="wrapper">
+                            <div class="image"><img src="assets/img/items/3.jpg" alt=""></div>
+                            <div class="info">
+                                <div class="type">
+                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                    <span>Restaurant</span>
+                                </div>
+                                <div class="rating" data-rating="5"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <!--/.item-horizontal small-->
+                </section>
+                <section>
+                    <a href="#"><img src="assets/img/ad-banner-sidebar.png" alt=""></a>
+                </section>
+                <section>
+                    <header><h2>Categories</h2></header>
+                    <ul class="bullets">
+                        <li><a href="#" >Restaurant</a></li>
+                        <li><a href="#" >Steak House & Grill</a></li>
+                        <li><a href="#" >Fast Food</a></li>
+                        <li><a href="#" >Breakfast</a></li>
+                        <li><a href="#" >Winery</a></li>
+                        <li><a href="#" >Bar & Lounge</a></li>
+                        <li><a href="#" >Pub</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <header><h2>Events</h2></header>
+                    <div class="form-group">
+                        <select class="framed" name="events">
+                            <option value="">Select Your City</option>
+                            <option value="1">London</option>
+                            <option value="2">New York</option>
+                            <option value="3">Barcelona</option>
+                            <option value="4">Moscow</option>
+                            <option value="5">Tokyo</option>
+                        </select>
+                    </div>
+                    <!-- /.form-group -->
+                </section>
+            </aside>
+            <!-- /#sidebar-->
+        </div>
+        <!-- /.col-md-3-->
+        <!--end Sidebar-->
+    </div><!-- /.row-->
+</section>
+<!-- /.container-->
 
-    $(document).ready(function() {
+<script>
 
-        $('.bxslider').bxSlider({
-            pagerCustom: '#bx-pager'
-        });
 
-        $.ajax({
-            type: "POST",
-            url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
-            data: {vehicle_id: $('#vehicle_id').val()},
-            success: function(msg) {
-
-            }
-        });
-
+    $(".item-slider").owlCarousel({
+        rtl: false,
+        items: 1,
+        autoHeight: true,
+        responsiveBaseWidth: ".slide",
+        nav: false,
+        callbacks: true,
+        URLhashListener: true,
+        navText: ["", ""]
     });
-
 
 </script>
