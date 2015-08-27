@@ -1,3 +1,52 @@
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/richmarker.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
+<script>
+    $(window).load(function() {
+        $.ajax({
+            type: "POST",
+            url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
+            data: {vehicle_id: $('#vehicle_id').val()},
+            success: function(msg) {
+
+            }
+        });
+
+        if ($('.owl-carousel').length > 0) {
+            if ($('.carousel-full-width').length > 0) {
+                setCarouselWidth();
+            }
+            $(".item-slider").owlCarousel({
+                rtl: false,
+                items: 1,
+                lazyLoad: true,
+                autoHeight: true,
+                responsiveBaseWidth: ".slide",
+                nav: false,
+                callbacks: true,
+                URLhashListener: true,
+                navText: ["", ""]
+            });
+
+            $('.item-gallery .thumbnails a').on('click', function() {
+                $('.item-gallery .thumbnails a').each(function() {
+                    $(this).removeClass('active');
+                });
+                $(this).addClass('active');
+            });
+            $('.item-slider').on('translated.owl.carousel', function(event) {
+                var thumbnailNumber = $('.item-slider .owl-item.active img').attr('data-hash');
+                $('.item-gallery .thumbnails #thumbnail-' + thumbnailNumber).trigger('click');
+            });
+        }
+        
+                    itemDetailMap('51.538395','-0.097418');
+                
+    });
+
+
+</script>
 
 <section class="container page-item-detail">
     <div class="row">
@@ -291,80 +340,7 @@
     </div><!-- /.row-->
 </section>
 <!-- /.container-->
-
 <div id="map-detail"></div>
 
+
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55deb0b601ffb683" async="async"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/googlemap.js"></script>
-<script>
-                                $(window).load(function() {
-                                    if ($('.owl-carousel').length > 0) {
-                                        if ($('.carousel-full-width').length > 0) {
-                                            setCarouselWidth();
-                                        }
-                                        $(".item-slider").owlCarousel({
-                                            rtl: false,
-                                            items: 1,
-                                            autoHeight: true,
-                                            responsiveBaseWidth: ".slide",
-                                            nav: false,
-                                            callbacks: true,
-                                            URLhashListener: true,
-                                            navText: ["", ""]
-                                        });
-
-                                        $('.item-gallery .thumbnails a').on('click', function() {
-                                            $('.item-gallery .thumbnails a').each(function() {
-                                                $(this).removeClass('active');
-                                            });
-                                            $(this).addClass('active');
-                                        });
-                                        $('.item-slider').on('translated.owl.carousel', function(event) {
-                                            var thumbnailNumber = $('.item-slider .owl-item.active img').attr('data-hash');
-                                            $('.item-gallery .thumbnails #thumbnail-' + thumbnailNumber).trigger('click');
-                                        });
-                                    }
-                                });
-
-
-                                var mapCenter = new google.maps.LatLng(6.917078, 79.863126);
-                                var mapOptions = {
-                                    zoom: 14,
-                                    center: mapCenter,
-                                    disableDefaultUI: true,
-                                    scrollwheel: false,
-                                    styles: mapStyles,
-                                    panControl: false,
-                                    zoomControl: false,
-                                    draggable: true
-                                };
-                                var mapElement = $('map-detail');
-                                var map = new google.maps.Map(mapElement, mapOptions);
-                                if (json.type_icon)
-                                    var icon = '<img src="' + base_url + 'application_resources/assets/icons/store/apparel/umbrella-2.png">';
-                                else
-                                    icon = '';
-
-                                // Google map marker content -----------------------------------------------------------------------------------
-
-                                var markerContent = document.createElement('DIV');
-                                markerContent.innerHTML =
-                                        '<div class="map-marker">' +
-                                        '<div class="icon">' +
-                                        icon +
-                                        '</div>' +
-                                        '</div>';
-
-                                // Create marker on the map ------------------------------------------------------------------------------------
-
-                                var marker = new RichMarker({
-                                    position: new google.maps.LatLng(json.latitude, json.longitude),
-                                    map: map,
-                                    draggable: false,
-                                    content: markerContent,
-                                    flat: true
-                                });
-
-                                marker.content.className = 'marker-loaded';
-</script>

@@ -1,5 +1,5 @@
 "use strict";
-var $ = jQuery.noConflict();
+//var $ = jQuery.noConflict();
 
 var mapStyles = [ {"featureType":"road","elementType":"labels","stylers":[{"visibility":"simplified"},{"lightness":20}]},{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"on"},{"lightness":10}]},{"featureType":"road.local","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.local","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":50}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#a1cdfc"},{"saturation":30},{"lightness":49}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#f49935"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#fad959"}]}, {featureType:'road.highway',elementType:'all',stylers:[{hue:'#dddbd7'},{saturation:-92},{lightness:60},{visibility:'on'}]}, {featureType:'landscape.natural',elementType:'all',stylers:[{hue:'#c8c6c3'},{saturation:-71},{lightness:-18},{visibility:'on'}]},  {featureType:'poi',elementType:'all',stylers:[{hue:'#d9d5cd'},{saturation:-70},{lightness:20},{visibility:'on'}]} ];
 
@@ -485,8 +485,9 @@ function createHomepageOSM(_latitude,_longitude,json,mapProvider){
 // Item Detail Map - Google
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function itemDetailMap(json){
-    var mapCenter = new google.maps.LatLng(json.latitude,json.longitude);
+function itemDetailMap(latitude,longitude){
+
+    var mapCenter = new google.maps.LatLng(latitude,longitude);
     var mapOptions = {
         zoom: 14,
         center: mapCenter,
@@ -499,8 +500,7 @@ function itemDetailMap(json){
     };
     var mapElement = document.getElementById('map-detail');
     var map = new google.maps.Map(mapElement, mapOptions);
-    if( json.type_icon ) var icon = '<img src="' + json.type_icon +  '">';
-    else icon = '';
+    var icon = '<img src="' + base_url +  '/application_resources/assets/icons/transportation/road-transportation/car.png">';
 
     // Google map marker content -----------------------------------------------------------------------------------
 
@@ -515,7 +515,7 @@ function itemDetailMap(json){
     // Create marker on the map ------------------------------------------------------------------------------------
 
     var marker = new RichMarker({
-        position: new google.maps.LatLng( json.latitude, json.longitude ),
+        position: new google.maps.LatLng(latitude,longitude ),
         map: map,
         draggable: false,
         content: markerContent,

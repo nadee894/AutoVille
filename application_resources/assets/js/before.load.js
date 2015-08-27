@@ -3,13 +3,13 @@ $(document).ready(function($) {
     "use strict";
 
     var $body = $('body');
-
-    if( $body.hasClass('navigation-top-header') ) {
-        $( ".main-navigation.navigation-top-header" ).load( "assets/external/_navigation.html" );
-    }
-    else if( $body.hasClass('navigation-off-canvas') ) {
-        $( ".main-navigation.navigation-off-canvas" ).load( "assets/external/_navigation.html" );
-    }
+//
+//    if( $body.hasClass('navigation-top-header') ) {
+//        $( ".main-navigation.navigation-top-header" ).load( "assets/external/_navigation.html" );
+//    }
+//    else if( $body.hasClass('navigation-off-canvas') ) {
+//        $( ".main-navigation.navigation-off-canvas" ).load( "assets/external/_navigation.html" );
+//    }
     mobileNavigation();
     toggleNav();
 });
