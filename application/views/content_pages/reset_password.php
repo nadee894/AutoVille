@@ -8,7 +8,7 @@
                         <h1 class="page-title">Reset Password</h1>
                     </header>
                     <hr>
-                    <form role="form" id="login_form" name="password_reset_form" method="post">
+                    <form role="form" id="password_reset_form" name="password_reset_form" method="post">
                         <div class="form-group">
                             <label for="form-sign-in-Username">Username:</label>
                             <input id="username" name="username" type="text" class="form-control" placeholder="Username" autofocus>
@@ -23,7 +23,7 @@
                         </div><!-- /.form-group -->       
 
                         <div class="form-group clearfix">
-                            <button type="submit" class="btn pull-right btn-default" id="reset_button">Sign In</button>
+                            <input type="submit" class="btn pull-right btn-default" id="reset_button" value="Sign In">
                         </div><!-- /.form-group -->
                     </form>
                     <div id="reset_msg" style="display: none">
@@ -63,11 +63,22 @@
                     data: $form.serialize(),
                     success: function(msg) {
 
-                        $('#reset_msg').fadeIn();
-                        $('#reset_msg').fadeOut(4000);
-                        window.setTimeout(function() {
-                            location.reload()
-                        }, 1000);
+                        if (msg == '1') {
+                            $('#reset_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Successfull!!!</div>');
+                            $('#reset_msg').fadeIn();
+                            $('#reset_msg').fadeOut(4000);
+                            setTimeout("location.href = site_url+'/login/load_login';", 100);
+                        } else if (msg == '2') {
+                            $('#reset_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Error Occured!!</div>');
+                            $('#reset_msg').fadeIn();
+                            $('#reset_msg').fadeOut(4000);
+                            password_reset_form.reset();
+                        } else {
+                            $('#reset_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid User!!!</div>');
+                            $('#reset_msg').fadeIn();
+                            $('#reset_msg').fadeOut(4000);
+                            password_reset_form.reset();
+                        }
 
                     },
                     error: function(msg) {
