@@ -19,7 +19,7 @@
                         </div><!-- /.form-group -->
                         <div class="form-group">
                             <label for="form-sign-in-password">Confirm Password:</label>
-                            <input id="confirm_password" name="confirm_password" type="password" class="form-control" placeholder="Password">
+                            <input id="confirm_password" name="confirm_password" type="password" class="form-control" placeholder="Confirm Password">
                         </div><!-- /.form-group -->       
 
                         <div class="form-group clearfix">
