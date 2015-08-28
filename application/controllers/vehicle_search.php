@@ -36,6 +36,9 @@ class Vehicle_search extends CI_Controller {
         $this->load->model('contents/content_model');
         $this->load->model('contents/content_service');
 
+        $this->load->model('bookmarked_vehicles/bookmarked_vehicles_model');
+        $this->load->model('bookmarked_vehicles/bookmarked_vehicles_service');
+
         $this->load->library('pagination');
     }
 

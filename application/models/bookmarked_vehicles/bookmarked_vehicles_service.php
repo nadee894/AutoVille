@@ -52,4 +52,14 @@ class Bookmarked_vehicles_service extends CI_Model {
         return $query->result();
     }
 
+    function get_bookmarkd_vehicle($user_id, $vehicle_id) {
+
+        $this->db->select('bookmarked_vehicles.id as bookmarked_id,bookmarked_vehicles.user_id as bookmarked_user');
+        $this->db->from('bookmarked_vehicles');
+        $this->db->where('bookmarked_vehicles.user_id', $user_id);
+        $this->db->where('bookmarked_vehicles.vehicle_id', $vehicle_id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
 }
