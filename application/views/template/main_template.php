@@ -109,6 +109,7 @@
                             <ul>
                                 <li>
                                     <a href="<?php echo site_url(); ?>/home">Home</a>
+                                    <a href="<?php echo site_url(); ?>/advanced_search/advanced_search_view">Advanced Search</a>
                                     <a href="<?php echo site_url(); ?>/home">About Us</a>
                                     <a href="<?php echo site_url(); ?>/pages/contact_us">Contact</a>
                                     <a href="<?php echo site_url(); ?>/home">FAQ</a>
