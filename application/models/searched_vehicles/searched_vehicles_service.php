@@ -53,5 +53,13 @@ class Searched_vehicles_service extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+     function get_all_searched_vehicles() {
+
+        $this->db->select('searched_vehicles.*');
+        $this->db->from('searched_vehicles');      
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }
