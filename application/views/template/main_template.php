@@ -19,8 +19,8 @@
         <!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">-->
 
 
-        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>
-        <!--<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>-->
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>       
+        <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-ui.min.js"></script>
 
         <title>AutoVille</title>
@@ -105,7 +105,19 @@
                     <!--Off Canvas Navigation-->
                     <nav class="off-canvas-navigation">
                         <header>Navigation</header>
-                        <div class="main-navigation navigation-off-canvas"></div>
+                        <div class="main-navigation navigation-off-canvas">
+                            <ul>
+                                <li>
+                                    <a href="<?php echo site_url(); ?>/home">Home</a>
+                                    <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
+                                        <a href="<?php echo site_url(); ?>/advanced_search/advanced_search_view">Advanced Search</a>
+                                    <?php } ?>
+                                    <a href="<?php echo site_url(); ?>/home">About Us</a>
+                                    <a href="<?php echo site_url(); ?>/pages/contact_us">Contact</a>
+                                    <a href="<?php echo site_url(); ?>/home">FAQ</a>
+                                </li>
+                            </ul>
+                        </div>
                     </nav>
                     <!--end Off Canvas Navigation-->
                     <!--Page Content-->
@@ -200,21 +212,21 @@
                                             <address>
                                                 <div>AutoVille (Pvt) Ltd.</div>
                                                 <div>65 C, Dharmapala Mawatha,</div>
-                                                <div>Colombo 07, Sri Lanka/div>
-                                                    <figure>
-                                                        <div class="info">
-                                                            <i class="fa fa-mobile"></i>
-                                                            <span>077-832-5258</span>
-                                                        </div>
-                                                        <div class="info">
-                                                            <i class="fa fa-phone"></i>
-                                                            <span>+94 123 4567</span>
-                                                        </div>
-                                                        <div class="info">
-                                                            <i class="fa fa-envelope"></i>
-                                                            <a href="mailto:info.autovillle@gmail.com">info.autovillle@gmail.com</a>
-                                                        </div>
-                                                    </figure>
+                                                <div>Colombo 07, Sri Lanka</div>
+                                                <figure>
+                                                    <div class="info">
+                                                        <i class="fa fa-mobile"></i>
+                                                        <span>077-832-5258</span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <i class="fa fa-phone"></i>
+                                                        <span>+94 123 4567</span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <i class="fa fa-envelope"></i>
+                                                        <a href="mailto:info.autovillle@gmail.com">info.autovillle@gmail.com</a>
+                                                    </div>
+                                                </figure>
                                             </address>
                                             <div class="social">
                                                 <a href="#" class="social-button"><i class="fa fa-twitter"></i></a>
@@ -284,7 +296,7 @@
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();  ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();    ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -295,16 +307,17 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-        <!--<script type="text/javascript" src="<?php //echo base_url();  ?>application_resources/assets/js/maps.js"></script>-->
+       <!--<script type="text/javascript" src="<?php //echo base_url();    ?>application_resources/assets/js/maps.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
 
         <script>
-            autoComplete();
-            $(function() {
+            //autoComplete();
+            $(function () {
                 $("img.lazy").lazyload({
                     effect: "fadeIn"
                 });
             });
+
         </script>
         <!--[if lte IE 9]>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/ie-scripts.js"></script>
@@ -318,13 +331,13 @@
 
 <script>
 
-            $(document).ready(function() {
+            $(document).ready(function () {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                     $.ajax({
                         type: "POST",
                         url: site_url + '/vehicle_compare/load_vehicle_popup',
-                        success: function(msg) {
+                        success: function (msg) {
                             if (msg != 0) {
                                 $('#compare_vehicle_list').html(msg);
                             } else {

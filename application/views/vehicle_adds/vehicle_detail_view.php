@@ -1,4 +1,53 @@
-<div id="map-detail"></div>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/richmarker.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
+<script>
+    $(window).load(function() {
+        $.ajax({
+            type: "POST",
+            url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
+            data: {vehicle_id: $('#vehicle_id').val()},
+            success: function(msg) {
+
+            }
+        });
+
+        if ($('.owl-carousel').length > 0) {
+            if ($('.carousel-full-width').length > 0) {
+                setCarouselWidth();
+            }
+            $(".item-slider").owlCarousel({
+                rtl: false,
+                items: 1,
+                lazyLoad: true,
+                autoHeight: true,
+                responsiveBaseWidth: ".slide",
+                nav: false,
+                callbacks: true,
+                URLhashListener: true,
+                navText: ["", ""]
+            });
+
+            $('.item-gallery .thumbnails a').on('click', function() {
+                $('.item-gallery .thumbnails a').each(function() {
+                    $(this).removeClass('active');
+                });
+                $(this).addClass('active');
+            });
+            $('.item-slider').on('translated.owl.carousel', function(event) {
+                var thumbnailNumber = $('.item-slider .owl-item.active img').attr('data-hash');
+                $('.item-gallery .thumbnails #thumbnail-' + thumbnailNumber).trigger('click');
+            });
+        }
+        
+                    itemDetailMap('51.538395','-0.097418');
+                
+    });
+
+
+</script>
+
 <section class="container page-item-detail">
     <div class="row">
         <!--Item Detail Content-->
@@ -8,11 +57,20 @@
                     <div class="title">
                         <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $vehicle_detail->id; ?>" />
                         <h1><?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model . ' ' . $vehicle_detail->year; ?></h1>
-                        <figure>Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></figure>
+                        <figure style="color: red;"><strong>Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></strong></figure>
                     </div>
                     <div class="info">
                         <div class="type">
+                            <i>
+                                <img alt="" src="<?php echo base_url(); ?>application_resources/assets/icons/media/photo.png">
+                            </i>
                             <span>The offer had <?php echo $review_looks_count; ?> Views</span>
+                        </div>
+                        <div class="type">
+                            <a class="btn btn-default framed icon pull-right roll" href="#" onclick="window.print();">
+                                Print
+                                <i class="fa fa-print"></i>
+                            </a>
                         </div>
                     </div>
                 </header>
@@ -23,20 +81,21 @@
                         <section>
                             <header><h3>Contact</h3></header>
                             <address>
-                                <div>Max Five Lounge</div>
                                 <div><?php echo $seller_add->address; ?></div>
                                 <figure>
                                     <div class="info">
                                         <i class="fa fa-mobile"></i>
                                         <span><?php echo $seller_add->contact_no_1; ?></span>
                                     </div>
-                                    <div class="info">
-                                        <i class="fa fa-phone"></i>
-                                        <span>+1 123 456 789</span>
-                                    </div>
+                                    <?php if ($seller_add->contact_no_2 != '') { ?>
+                                        <div class="info">
+                                            <i class="fa fa-phone"></i>
+                                            <span><?php echo $seller_add->contact_no_2; ?></span>
+                                        </div>
+                                    <?php } ?>
                                     <div class="info">
                                         <i class="fa fa-envelope"></i>
-                                        <a href="#"><?php echo $seller_add->email; ?></a>
+                                        <a href="mailto:<?php echo $seller_add->email; ?>"><?php echo $seller_add->email; ?></a>
                                     </div>
                                     <div class="info">
                                         <i class="fa fa-globe"></i>
@@ -46,33 +105,28 @@
                             </address>
                         </section>
                         <!--end Contact-->
-                        <!--Rating-->
+                        <!--Share-->
                         <section class="clearfix">
-                            <header class="pull-left"><a href="#reviews" class="roll"><h3>Rating</h3></a></header>
-                            <figure class="rating big pull-right" data-rating="4"></figure>
-                        </section>
-                        <!--end Rating-->
-                        <!--Events-->
-                        <section>
-                            <header><h3>Events</h3></header>
-                            <figure>
-                                <div class="expandable-content collapsed show-60" id="detail-sidebar-event">
-                                    <div class="content">
-                                        <p>Maecenas purus sapien, pellentesque non consectetur eu, rhoncus in mauris.
-                                            Duis et nisl metus. Sed ut pulvinar mauris, bibendum ullamcorper ex.
-                                            Aliquam vitae ante diam. Nam eu blandit odio. Cras erat lorem, iaculis eu nulla eu, sodales aliquam eros.
-                                        </p>
-                                    </div>
-                                </div>
-                                <a href="#" class="show-more expand-content" data-expand="#detail-sidebar-event" >Show More</a>
+                            <header class="pull-left">
+                                <a class="roll" href="#reviews">
+                                    <h3>Share</h3>
+                                </a>
+                            </header>
+                            <figure class="pull-right">
+                                <div class="addthis_sharing_toolbox"></div>
+
                             </figure>
                         </section>
-                        <!--end Events-->
+                        <!--End Share-->
                         <!--Contact Form-->
                         <section>
                             <?php echo $this->load->view('vehicle_adds/ask_for_price_view'); ?>
                         </section>
                         <!--end Contact Form-->
+
+                        <section style="background-color: #fff;">
+                            <?php echo $this->load->view('vehicle_adds/loan_calculator'); ?>
+                        </section>
                     </aside>
                     <!--end Detail Sidebar-->
                     <!--Content-->
@@ -112,6 +166,24 @@
                             <article class="block">
                                 <header><h2>Description</h2></header>
                                 <p><?php echo $vehicle_detail->description; ?></p>
+                            </article>
+                            <!-- /.block -->
+                            <article class="block">
+                                <header><h2>Info</h2></header>
+                                <dl class="lines">
+                                    <dt>Model, Body type</dt>
+                                    <dd><?php echo $vehicle_detail->model . ' , ' . $vehicle_detail->body_type; ?></dd>
+                                    <dt>Year</dt>
+                                    <dd><?php echo $vehicle_detail->year; ?></dd>
+                                    <dt>Fuel</dt>
+                                    <dd><?php echo $vehicle_detail->fuel_type; ?></dd>
+                                    <dt>Chassis Number</dt>
+                                    <dd><?php echo $vehicle_detail->chassis_no; ?></dd>
+                                    <dt>Doors</dt>
+                                    <dd><?php echo $vehicle_detail->doors; ?></dd>
+                                    <dt>Kilometers</dt>
+                                    <dd><?php echo $vehicle_detail->kilometers; ?> km</dd>
+                                </dl>
                             </article>
                             <!-- /.block -->
                             <article class="block">
@@ -184,41 +256,15 @@
                             <article class="block">
                                 <header><h2>Features</h2></header>
                                 <ul class="bullets">
-                                    <li>Free Parking</li>
-                                    <li>Cards Accepted</li>
-                                    <li>Wi-Fi</li>
-                                    <li>Air Condition</li>
-                                    <li>Reservations</li>
-                                    <li>Teambuildings</li>
-                                    <li>Places to seat</li>
-                                    <li>Winery</li>
-                                    <li>Draft Beer</li>
-                                    <li>LCD</li>
-                                    <li>Saloon</li>
-                                    <li>Free Access</li>
-                                    <li>Terrace</li>
-                                    <li>Minigolf</li>
+                                    <?php foreach ($equipments as $equipment) { ?>
+                                        <li><span><?php echo $equipment->name; ?></span>&nbsp; <?php if (in_array($equipment->id, $vehicle_equipments)) { ?> Yes <?php } else { ?> No<?php } ?></li>
+
+                                    <?php }
+                                    ?>
                                 </ul>
                             </article>
                             <!-- /.block -->
-                            <article class="block">
-                                <header><h2>Opening Hours</h2></header>
-                                <dl class="lines">
-                                    <dt>Monday</dt>
-                                    <dd>08:00 am - 11:00 pm</dd>
-                                    <dt>Tuesday</dt>
-                                    <dd>08:00 am - 11:00 pm</dd>
-                                    <dt>Wednesday</dt>
-                                    <dd>08:00 am - 11:00 pm</dd>
-                                    <dt>Thursday</dt>
-                                    <dd>08:00 am - 11:00 pm</dd>
-                                    <dt>Friday</dt>
-                                    <dd>08:00 am - 11:00 pm</dd>
-                                    <dt>Saturday</dt>
-                                    <dd>08:00 am - 11:00 pm</dd>
-                                </dl>
-                            </article>
-                            <!-- /.block -->
+
                         </section>
                         <!--Reviews-->
                         <?php echo $this->load->view('vehicle_adds/vehicle_reviews_view'); ?>
@@ -235,7 +281,7 @@
         <div class="col-md-3">
             <aside id="sidebar">
                 <section>
-                    <header><h2>New Places</h2></header>
+                    <header><h2>Similar listings</h2></header>
                     <a href="item-detail.html" class="item-horizontal small">
                         <h3>Cash Cow Restaurante</h3>
                         <figure>63 Birch Street</figure>
@@ -283,34 +329,9 @@
                     <!--/.item-horizontal small-->
                 </section>
                 <section>
-                    <a href="#"><img src="assets/img/ad-banner-sidebar.png" alt=""></a>
+                    <a href="#"><img src="<?php echo base_url() ?>application_resources/assets/img/ad-banner-sidebar.png" alt=""></a>
                 </section>
-                <section>
-                    <header><h2>Categories</h2></header>
-                    <ul class="bullets">
-                        <li><a href="#" >Restaurant</a></li>
-                        <li><a href="#" >Steak House & Grill</a></li>
-                        <li><a href="#" >Fast Food</a></li>
-                        <li><a href="#" >Breakfast</a></li>
-                        <li><a href="#" >Winery</a></li>
-                        <li><a href="#" >Bar & Lounge</a></li>
-                        <li><a href="#" >Pub</a></li>
-                    </ul>
-                </section>
-                <section>
-                    <header><h2>Events</h2></header>
-                    <div class="form-group">
-                        <select class="framed" name="events">
-                            <option value="">Select Your City</option>
-                            <option value="1">London</option>
-                            <option value="2">New York</option>
-                            <option value="3">Barcelona</option>
-                            <option value="4">Moscow</option>
-                            <option value="5">Tokyo</option>
-                        </select>
-                    </div>
-                    <!-- /.form-group -->
-                </section>
+
             </aside>
             <!-- /#sidebar-->
         </div>
@@ -319,19 +340,7 @@
     </div><!-- /.row-->
 </section>
 <!-- /.container-->
+<div id="map-detail"></div>
 
-<script>
 
-
-    $(".item-slider").owlCarousel({
-        rtl: false,
-        items: 1,
-        autoHeight: true,
-        responsiveBaseWidth: ".slide",
-        nav: false,
-        callbacks: true,
-        URLhashListener: true,
-        navText: ["", ""]
-    });
-
-</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55deb0b601ffb683" async="async"></script>

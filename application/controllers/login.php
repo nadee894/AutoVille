@@ -123,7 +123,33 @@ class Login extends CI_Controller {
     }
 
     function update_password() {
-        
+
+        $user_service = new User_service();
+
+        $reg_user_list  = $user_service->get_all_active_registered_users();
+        $input_username = trim($this->input->post('username', TRUE));
+
+        foreach ($reg_user_list as $user) {
+
+            if (strcmp($user->user_name, $input_username) == 0) {
+
+                $user_model = new User_model();
+                $user_model->set_id($user->id);
+                $user_model->set_password(md5($this->input->post('password', TRUE)));
+
+                $result = $user_service->update_password($user_model);
+
+                if ($result == '1') {
+                    echo "1";
+                    die();
+                } else {
+                    echo "2";
+                    die();
+                }
+            }
+        }
+
+        echo '0';
     }
 
 }

@@ -38,7 +38,7 @@
                     <label class="checkbox">
 <!--                        <input type="checkbox" value="remember-me"> Remember me-->
                         <span class="pull-right">
-                            <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+                            <a data-toggle="modal" href="#forgot_password_model"> Forgot your Password?</a>
                         </span>
                     </label>
                     <button onclick="login()" class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>                   
@@ -47,8 +47,8 @@
             </form>
 
 
-            <!-- Modal -->
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <!-- Forgot Password Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="forgot_password_model" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -66,9 +66,15 @@
                             </div>
                         </form>
                     </div>
+                    <div id="fade_valid_msg" style="display: none">
+                        <div class="alert alert-success">
+                            <i class="fa fa-check-circle fa-fw fa-lg"></i>
+                            Email Sent!!
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- modal -->
+            <!-- End Forgot Password Modal -->
         </div>
 
         <!-- js placed at the end of the document so the pages load faster -->
@@ -110,17 +116,28 @@
 
                                     $.ajax({
                                         type: "POST",
-                                        url: site_url + '/login/reset_password',
+                                        url: site_url + '/login/forget_password',
                                         data: $form.serialize(),
                                         success: function(msg) {
-
-                                           
+                                            if (msg == '1') {
+                                                $('#fade_valid_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Email Sent!!</div>');
+                                                $('#fade_valid_msg').fadeIn();
+                                                $('#fade_valid_msg').fadeOut(7000);
+                                                $('#forgot_password_model').modal('hide');
+                                            } else if (msg == '2') {
+                                                $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Email Not Sent!!</div>');
+                                                $('#fade_valid_msg').fadeIn();
+                                                $('#fade_valid_msg').fadeOut(4000);
+                                            } else {
+                                                $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid User or Email!!</div>');
+                                                $('#fade_valid_msg').fadeIn();
+                                                $('#fade_valid_msg').fadeOut(4000);
+                                            }
                                         }
                                     });
 
                                 }
                             });
-
 
                         });
 

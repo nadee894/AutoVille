@@ -61,4 +61,11 @@ class User_service extends CI_Model {
         return $query->result();
     }
 
+    function update_password($user_model) {
+
+        $data = array('password' => $user_model->get_password());
+        $this->db->where('id', $user_model->get_id());
+        return $this->db->update('user', $data);
+    }
+
 }

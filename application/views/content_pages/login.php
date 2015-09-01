@@ -54,6 +54,7 @@
                                 var site_url = "<?php echo site_url(); ?>";
 
                                 $(document).ready(function() {
+                                    
                                     $("#login_form").validate({
                                         focusInvalid: false,
                                         ignore: "",
@@ -82,7 +83,7 @@
                                                     if (msg == '1') {
                                                         $('#fade_valid_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Email Sent!!</div>');
                                                         $('#fade_valid_msg').fadeIn();
-                                                        $('#fade_valid_msg').fadeOut(4000);
+                                                        $('#fade_valid_msg').fadeOut(7000);
                                                         $('#forgot_password_model').modal('hide');
                                                     } else if (msg == '2') {
                                                         $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Email Not Sent!!</div>');
@@ -98,8 +99,6 @@
 
                                         }
                                     });
-
-
                                 });
 
 
