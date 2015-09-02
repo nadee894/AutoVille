@@ -30,6 +30,7 @@
             <ul class="sub">
                 <li><a  href="<?php echo site_url(); ?>/vehicle_advertisements/manage_advertisements">Vehicle Advertisements</a></li>
                 <li><a  href="<?php echo site_url(); ?>/vehicle_advertisements/get_Approved_advertisements">Featured Advertisements</a></li>
+                <li><a  href="<?php echo site_url(); ?>/website_advertisements/manage_advertisements">Website Advertisements</a></li>
             </ul>
         </li>
     <?php } ?>
