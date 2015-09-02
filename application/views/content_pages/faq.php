@@ -137,7 +137,7 @@
                         <div class="col-md-3">
                             <aside id="sidebar">
                                 <section>
-                                    <header><h2>New Places</h2></header>
+                                    <header><h2>New Advertisements</h2></header>
                                     <a href="item-detail.html" class="item-horizontal small">
                                         <h3>Cash Cow Restaurante</h3>
                                         <figure>63 Birch Street</figure>
@@ -303,53 +303,13 @@
                                 </section>
                                 <!--end Recent Reviews-->
                             </div>
-                            <div class="col-md-4 col-sm-4">
-                                <section>
-                                    <h2>About Us</h2>
-                                    <address>
-                                        <div>Max Five Lounge</div>
-                                        <div>63 Birch Street</div>
-                                        <div>Granada Hills, CA 91344</div>
-                                        <figure>
-                                            <div class="info">
-                                                <i class="fa fa-mobile"></i>
-                                                <span>818-832-5258</span>
-                                            </div>
-                                            <div class="info">
-                                                <i class="fa fa-phone"></i>
-                                                <span>+1 123 456 789</span>
-                                            </div>
-                                            <div class="info">
-                                                <i class="fa fa-globe"></i>
-                                                <a href="#">www.maxfivelounge.com</a>
-                                            </div>
-                                        </figure>
-                                    </address>
-                                    <div class="social">
-                                        <a href="#" class="social-button"><i class="fa fa-twitter"></i></a>
-                                        <a href="#" class="social-button"><i class="fa fa-facebook"></i></a>
-                                        <a href="#" class="social-button"><i class="fa fa-pinterest"></i></a>
-                                    </div>
-
-                                    <a href="contact.html" class="btn framed icon">Contact Us<i class="fa fa-angle-right"></i></a>
-                                </section>
-                            </div>
-                            <!--/.col-md-4-->
+                           
                         </div>
                         <!--/.row-->
                     </div>
                     <!--/.container-->
                 </div>
-                <!--/.footer-top-->
-                <div class="footer-bottom">
-                    <div class="container">
-                        <span class="left">(C) ThemeStarz, All rights reserved</span>
-                            <span class="right">
-                                <a href="#page-top" class="to-top roll"><i class="fa fa-angle-up"></i></a>
-                            </span>
-                    </div>
-                </div>
-                <!--/.footer-bottom-->
+           
             </div>
         </footer>
         <!--end Page Footer-->
