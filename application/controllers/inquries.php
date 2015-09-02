@@ -18,10 +18,8 @@ class Inquries extends CI_Controller {
 
         $inqurie_model->set_name($this->input->post('name', TRUE));
         $inqurie_model->set_email($this->input->post('email', TRUE));
-        $inqurie_model->set_message($this->input->post('message', TRUE));
-        $inqurie_model->set_added_by($this->session->userdata('USER_ID'));
-        $inqurie_model->set_added_date(date("Y-m-d H:i:s"));
-        $inqurie_model->set_updated_by(1);        
+        $inqurie_model->set_message($this->input->post('message', TRUE));        
+        $inqurie_model->set_added_date(date("Y-m-d H:i:s"));             
         $inqurie_model->set_is_deleted('0');
 
         echo $inqurie_service->add_inquries($inqurie_model);
