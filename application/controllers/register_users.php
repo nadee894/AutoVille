@@ -30,7 +30,7 @@ class Register_Users extends CI_Controller {
         $register_users_model->set_name($this->input->post('form_register_full_name', TRUE));
         $register_users_model->set_user_name($this->input->post('form_register_user_name', TRUE));
         $register_users_model->set_user_type('3');
-        $register_users_model->set_email($this->input->post('form_register_email', TRUE));
+        $register_users_model->set_email(trim($this->input->post('form_register_email', TRUE)));
         $register_users_model->set_address($this->input->post('form_register_address', TRUE));
         $register_users_model->set_contact1($this->input->post('form_register_contact', TRUE));
         //$register_users_model->set_contact2($this->input->post('contact_no_2', TRUE));
@@ -50,17 +50,17 @@ class Register_Users extends CI_Controller {
         $token = $this->generate_random_string(); //generate account activation token
         $register_users_model->set_account_activation_code(md5($token));
 
-        $email             = 'gayathma3@gmail.com';
+        $email             = trim($this->input->post('form_register_email', TRUE));
         $email_subject     = "AutoVille Account Activation";
         $data['name']      = $this->input->post('form_register_full_name', TRUE);
         $data['user_name'] = $this->input->post('form_register_user_name', TRUE);
         $data['pasword']   = $this->input->post('form_register_password', TRUE);
-        $data['link']     = $token;
+        $data['link']      = $token;
         $msg               = $this->load->view('template/mail_template/body', $data, TRUE);
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: Autoville <autoville@gmail.com>' . "\r\n";
+        $headers .= 'From: Autoville <info.autovillle@gmail.com>' . "\r\n";
         $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
 
         if (mail($email, $email_subject, $msg, $headers)) {

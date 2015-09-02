@@ -133,43 +133,10 @@
                         <div class="footer-top">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-4">
-                                        New Items
-                                        <section>
-                                            <h2>New Items</h2>
-                                            <a href="car-item-detail.html" class="item-horizontal small">
-                                                <h3>Cash Cow Restaurante</h3>
-                                                <figure>63 Birch Street</figure>
-                                                <div class="wrapper">
-                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/1.jpg" alt=""></div>
-                                                    <div class="info">
-                                                        <div class="type">
-                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                            <span>Restaurant</span>
-                                                        </div>
-                                                        <div class="rating" data-rating="4"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!--item-horizontal small-->
-                                            <a href="car-item-detail.html" class="item-horizontal small">
-                                                <h3>Blue Chilli</h3>
-                                                <figure>2476 Whispering Pines Circle</figure>
-                                                <div class="wrapper">
-                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/2.jpg" alt=""></div>
-                                                    <div class="info">
-                                                        <div class="type">
-                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                            <span>Restaurant</span>
-                                                        </div>
-                                                        <div class="rating" data-rating="3"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!--item-horizontal small-->
-                                        </section>
-                                        <!--end New Items-->
-                                    </div>
+                                    <!--Start New Arrivals-->
+                                    <?php echo $this->load->view('vehicle_adds/new_arrivals'); ?>    
+                                    <!--End Start New Arrivals-->
+
                                     <div class="col-md-4 col-sm-4">
                                         Recent Reviews
                                         <section>
@@ -296,7 +263,7 @@
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();    ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();      ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -307,12 +274,12 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-       <!--<script type="text/javascript" src="<?php //echo base_url();    ?>application_resources/assets/js/maps.js"></script>-->
+       <!--<script type="text/javascript" src="<?php //echo base_url();      ?>application_resources/assets/js/maps.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
 
         <script>
             //autoComplete();
-            $(function () {
+            $(function() {
                 $("img.lazy").lazyload({
                     effect: "fadeIn"
                 });
@@ -331,13 +298,13 @@
 
 <script>
 
-            $(document).ready(function () {
+            $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                     $.ajax({
                         type: "POST",
                         url: site_url + '/vehicle_compare/load_vehicle_popup',
-                        success: function (msg) {
+                        success: function(msg) {
                             if (msg != 0) {
                                 $('#compare_vehicle_list').html(msg);
                             } else {
