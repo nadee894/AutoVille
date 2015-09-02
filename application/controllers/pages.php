@@ -18,4 +18,11 @@ class Pages extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
+    function faq() {
+
+        $data['']='';
+        
+        $parials = array('content' => 'content_pages/faq');
+        $this->template->load('template/main_template', $parials, $data);
+    }
 }
