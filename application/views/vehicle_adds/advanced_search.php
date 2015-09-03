@@ -27,12 +27,28 @@
         <div class="row col-md-12">     
             <button type="button" class="btn btn-default pull-right" onclick="add_fields()" title="Save Feature(s)">Save</button>            
         </div>
+
+        <div class="col-lg-12 row clearfix">
+            <div id="fade_success" style="display: none">
+                <div class="alert alert-success">
+                    <i class="fa fa-check-circle fa-fw fa-lg"></i> 
+                    Saved Successfully !!
+                </div>
+            </div>
+            <div id="fade_error" style="display: none">
+                <div class="alert alert-danger">
+                    <i class="fa fa-times-circle fa-fw fa-lg"></i> 
+                    Error!!!
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
     </form>
     <br/>
 </div>
 
 <div class="row col-md-12" id="added_search_features_div">
-
+    <?php echo $this->load->view('vehicle_adds/advanced_search_fields'); ?>
 </div>
 
 
@@ -48,11 +64,17 @@
             data: form.serialize(),
             success: function(msg) {
                 if (msg == '0') {
-                    //error
+                    $('#fade_error').fadeIn();
+                    $('#fade_error').fadeOut(4000);
                 } else if (msg == '2') {
                     //field list empty/user not logged
+                    $('#fade_error').fadeIn();
+                    $('#fade_error').fadeOut(4000);
                 } else {
-                    $('added_search_features_div').html(msg);
+                    $('#fade_success').fadeIn();
+                    $('#fade_success').fadeOut(4000);
+                    add_features_form.reset();
+                    $('#added_search_features_div').html(msg);
                 }
             }
         });

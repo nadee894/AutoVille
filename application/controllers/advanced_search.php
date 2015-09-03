@@ -13,17 +13,17 @@ class Advanced_search extends CI_Controller {
     }
 
     function advanced_search_view() {
-        $parials = array('content' => 'vehicle_adds/advanced_search');
+        $parials = array('content' => 'vehicle_adds/advanced_search', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials);
     }
 
     function add_advanced_search_fields() {
 
         $advanced_search_content_service = new Advanced_search_content_service();
-        $features_list = $this->input->post('features', TRUE);
+        $features_list                   = $this->input->post('features', TRUE);
 
         $success_count = 0;
-        $result_count = 0;
+        $result_count  = 0;
 
         if ((!empty($features_list)) && ($this->session->userdata('USER_ID') != '')) {
 
