@@ -46,13 +46,40 @@ class Vehicle_reviews_service extends CI_Model {
      * Service function to update vehicle reviews
      */
 
-    function update_vehicle_reviews($vehicle_reviews_model) {
-        $data = array('title' => $vehicle_reviews_model->get_title(),
-            'updated_date' => $vehicle_reviews_model->get_updated_date(),
-            'updated_by' => $vehicle_reviews_model->get_updated_by()
+//    function update_vehicle_reviews($vehicle_reviews_model) {
+//        $data = array('title' => $vehicle_reviews_model->get_title(),
+//            'updated_date' => $vehicle_reviews_model->get_updated_date(),
+//            'updated_by' => $vehicle_reviews_model->get_updated_by()
+//        );
+//
+//        $this->db->where('id', $vehicle_reviews_model->get_id());
+//        return $this->db->update('review', $data);
+//    }
+    
+    
+    /*
+     * This is the service function to get review detail by  passing the 
+     * review_id as a parameter
+     */
+
+    function get_review_by_id($review_model) {
+
+        $query = $this->db->get_where('review', array('id' => $review_model->get_id(), 'is_deleted' => '0'));
+        return $query->row();
+    }
+    
+    /*
+     * update reviews
+     */
+    
+    function update_reviews($review_model) {
+
+        $data = array('description' => $review_model->get_description(),
+            'updated_date' => $review_model->get_updated_date(),
+            'updated_by' => $review_model->get_updated_by()
         );
 
-        $this->db->where('id', $vehicle_reviews_model->get_id());
+        $this->db->where('id', $review_model->get_id());
         return $this->db->update('review', $data);
     }
 

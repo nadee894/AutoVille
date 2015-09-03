@@ -1,37 +1,51 @@
-<div class="col-md-4 col-sm-4">
-    New Items
-    <section>
         <h2>New Items</h2>
-        <a href="car-item-detail.html" class="item-horizontal small">
-            <h3>Cash Cow Restaurante</h3>
-            <figure>63 Birch Street</figure>
-            <div class="wrapper">
-                <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/1.jpg" alt=""></div>
-                <div class="info">
-                    <div class="type">
-                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                        <span>Restaurant</span>
+        
+        <?php foreach ($latest_vehicles as $result) { ?>
+    <div class="col-md-3 col-sm-3">
+        <div class="item">
+            <div class="image">
+                <div class="quick-view"><i class="fa fa-eye"></i><span>Quick View</span></div>
+                <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>">
+                    <div class="overlay">
+                        <div class="inner">
+                            <div class="content">
+                                <h4>Description</h4>
+                                <p><?php echo $result->description; ?></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rating" data-rating="4"></div>
+                    <!--<div class="item-specific">
+                        <span>Used Car</span>
+                    </div>-->
+                    <div class="icon">
+                        <i class="fa fa-thumbs-up"></i>
+                    </div>
+                    <img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $result->id . '/' . $result->image_path; ?>" height="180" width="260" alt=""/>
+                </a>
+            </div>
+            <div class="wrapper">
+                <a href=""><h3><?php echo $result->manufacture . " " . $result->model; ?></h3></a>
+                <figure><?php echo $result->body_type; ?></figure>
+                <!--<div class="price">$12.000</div>-->
+                <div class="info">
+                    <dl>
+                        <?php if (!is_null($result->fuel_type)) { ?>
+                            <dt>Engine</dt>
+                            <dd><?php echo $result->fuel_type; ?></dd>
+                        <?php } ?>
+
+                        <?php if (!is_null($result->kilometers)) { ?>
+                            <dt>Kilometers</dt>
+                            <dd><?php echo $result->kilometers; ?></dd>
+                        <?php } ?>
+
+                        <?php if (!is_null($result->year)) { ?>
+                            <dt>Year</dt>
+                            <dd><?php echo $result->year; ?></dd>
+                        <?php } ?>
+                    </dl>
                 </div>
             </div>
-        </a>
-        <!--item-horizontal small-->
-        <a href="car-item-detail.html" class="item-horizontal small">
-            <h3>Blue Chilli</h3>
-            <figure>2476 Whispering Pines Circle</figure>
-            <div class="wrapper">
-                <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/2.jpg" alt=""></div>
-                <div class="info">
-                    <div class="type">
-                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                        <span>Restaurant</span>
-                    </div>
-                    <div class="rating" data-rating="3"></div>
-                </div>
-            </div>
-        </a>
-        <!--item-horizontal small-->
-    </section>
-    <!--end New Items-->
-</div>
+        </div>                 
+    </div>
+<?php } ?>
