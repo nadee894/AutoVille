@@ -16,4 +16,31 @@
         <button class="btn btn-success" type="submit">Save changes</button>
     </div>
 </form>
-<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    //edit review form validation
+    $("#edit_review_form").validate({
+        rules: {
+            name: "required"
+        },
+        messages: {
+            name: "Please enter a description"
+        }, submitHandler: function(form)
+        {
+            $.post(site_url + '/vehicle_reviews/edit_review', $('#edit_review_form').serialize(), function(msg)
+            {
+                if (msg == 1) {
+                    $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+
+                   // window.location = site_url + '/transmission/manage_transmissions';
+                } else {
+                    $('#rtn_msg_edit').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+
+                }
+            });
+
+
+        }
+    });
+</script>

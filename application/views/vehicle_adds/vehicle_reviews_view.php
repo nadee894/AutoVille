@@ -24,8 +24,7 @@
                         <?php echo $value->description; ?>
                     </p>
                     <a class="btn btn-danger btn-xs" onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
-                <a class="btn btn-primary btn-xs" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>
-                    
+                <a class="btn btn-primary btn-xs" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>                    
                 </div>
                 <!-- /.wrapper-->
             </article>
