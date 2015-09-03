@@ -73,7 +73,7 @@ class Home extends CI_Controller {
         $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();
         $data['featured_vehicles']    = $vehicle_advertisments_service->get_featured_advertisements(4);
 
-        $parials = array('content' => 'content_pages/home_content');
+        $parials = array('content' => 'content_pages/home_content', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 

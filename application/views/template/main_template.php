@@ -134,7 +134,7 @@
                             <div class="container">
                                 <div class="row">
                                     <!--Start New Arrivals-->
-                                    <?php echo $this->load->view('vehicle_adds/new_arrivals'); ?>    
+                                    <?php echo $new_arrivals; ?>    
                                     <!--End Start New Arrivals-->
 
                                     <div class="col-md-4 col-sm-4">
@@ -263,7 +263,7 @@
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();      ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();        ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -274,7 +274,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-       <!--<script type="text/javascript" src="<?php //echo base_url();      ?>application_resources/assets/js/maps.js"></script>-->
+       <!--<script type="text/javascript" src="<?php //echo base_url();        ?>application_resources/assets/js/maps.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
 
         <script>
