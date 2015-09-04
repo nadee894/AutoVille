@@ -55,8 +55,7 @@ class Register_Users extends CI_Controller {
         $register_users_model->set_account_activation_code(md5($token));
 
 
-        $email             = trim($this->input->post('form_register_email', TRUE)); //'ashanidiaz@gmail.com';
-       // $email             = trim($this->input->post('form_register_email', TRUE));
+        $email             = trim($this->input->post('form_register_email', TRUE)); //'ashanidiaz@gmail.com';  
         $email_subject     = "AutoVille Account Activation";
         $data['name']      = $this->input->post('form_register_full_name', TRUE);
         $data['user_name'] = $this->input->post('form_register_user_name', TRUE);
