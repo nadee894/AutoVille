@@ -12,8 +12,14 @@ class Login extends CI_Controller {
 
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
+        $this->load->model('register_users/register_users_service');
     }
 
+    function activate(){
+        if($this->register_users_service->activate_user($_GET['email'], $_GET['token']) ){
+            redirect(site_url() . '/login/load_login');
+        }
+    }
     function load_login() {
         if ($this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/home/index');

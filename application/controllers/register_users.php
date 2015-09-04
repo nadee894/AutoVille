@@ -13,6 +13,7 @@ class Register_Users extends CI_Controller {
     }
 
     function load_registration() {
+        
         if ($this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/home/index');
         } else {
@@ -54,13 +55,13 @@ class Register_Users extends CI_Controller {
         $register_users_model->set_account_activation_code(md5($token));
 
 
-        $email             = 'ashanidiaz@gmail.com';
+        $email             = trim($this->input->post('form_register_email', TRUE)); //'ashanidiaz@gmail.com';
        // $email             = trim($this->input->post('form_register_email', TRUE));
         $email_subject     = "AutoVille Account Activation";
         $data['name']      = $this->input->post('form_register_full_name', TRUE);
         $data['user_name'] = $this->input->post('form_register_user_name', TRUE);
         $data['pasword']   = $this->input->post('form_register_password', TRUE);
-        $data['link']      = base_url() . 'login/activate?email=' . $this->input->post('form_register_email', TRUE) . 'key=' . $token;
+        $data['link']      = site_url() . '/login/activate?email=' . $this->input->post('form_register_email', TRUE) . '&token=' . $token;
         $msg               = $this->load->view('template/mail_template/body', $data, TRUE);
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
@@ -68,14 +69,16 @@ class Register_Users extends CI_Controller {
         $headers .= 'From: Autoville <info.autovillle@gmail.com>' . "\r\n";
         //$headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
 
-        echo $msg;
-        return;
+//        echo $msg;
+//        return;
 
         if (mail($email, $email_subject, $msg, $headers)) {
             echo "1";
         } else {
             echo "0";
         }
+        
+        return true;
     }
 
     public function generate_random_string($length = 10) {

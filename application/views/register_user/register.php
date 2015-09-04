@@ -1,4 +1,6 @@
-
+<div id="tst_">
+    
+</div>
 <!--Page Content-->
 <div id="page-content">
     <section class="container">
@@ -119,7 +121,9 @@
             {
                 $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
                 {
-      
+                    banana=msg;
+                    $("#tst_").html(banana);
+                    alert(banana);
                     if (msg == "1") {
                         toastr.success("Successfully Registered", "AutoVille");
                         window.location = site_url + '/home';
