@@ -23,6 +23,8 @@
                     <p>
                         <?php echo $value->description; ?>
                     </p>
+                    <a class="btn btn-danger btn-xs" onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
+                <a class="btn btn-primary btn-xs" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>                    
                 </div>
                 <!-- /.wrapper-->
             </article>
@@ -58,6 +60,15 @@
     <!-- /.main-search -->
 </section>
 
+<!--Review Edit Modal -->
+<div  class="modal fade "   id="review_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="review_edit_content">
+
+        </div>
+    </div>
+</div>
+
 
 <script>
     function commentSubmit() {
@@ -74,5 +85,39 @@
                 }
             });
         }
+    }
+    
+    //delete review
+    function delete_comment(id) {
+
+        if (confirm('Are you sure want to delete this Comment ?')) {
+
+            $.ajax({
+                type: "POST",
+                url: '<?php echo site_url(); ?>/vehicle_reviews/delete_review',
+                data: "id=" + id,
+                success: function (msg) {
+                    //alert(msg);
+                    if (msg === 1) {
+                        //alert('success');
+                        $('#review_' + id).hide();
+                        //toastr.success("Successfully deleted !!", "AutoVille");
+                    }
+                    else if (msg === 2) {
+                        alert('error occured');
+                    }
+                }
+            });
+        }
+    }
+
+    function  display_edit_review_pop_up(review_id) {
+
+        $.post('<?php echo site_url();?>/vehicle_reviews/load_edit_review_content', {review_id: review_id}, function (msg) {
+
+            $('#review_edit_content').html('');
+            $('#review_edit_content').html(msg);
+            $('#review_edit_div').modal('show');
+        });
     }
 </script>

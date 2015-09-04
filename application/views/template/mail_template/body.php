@@ -193,7 +193,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td style="font-size:24px; text-align:center; padding: 0 75px; color: #6f6f6f;" class="w320 mobile-spacing">
-                                                            Congratulations now your are officially one of us.Use below link to activate your AutoVille account.
+                                                            Congratulations now your are officially one of us. Click <a href="<?php echo $link; ?>">here</a> to activate your account.
                                                         </td>
                                                     </tr>
                                                 </table>
