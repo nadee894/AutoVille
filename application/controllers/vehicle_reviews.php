@@ -72,18 +72,42 @@ class Vehicle_reviews extends CI_Controller {
             </li>
         <?php
         }
-    }
+    }   
 
-    function delete_manufactures() {
+   function delete_review() {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         echo $vehicle_reviews_service->delete_vehicle_reviews(trim($this->input->post('id', TRUE)));
     }
+    
+    /*
+     * Edit transmission pop up content set up and then send .
+     */
 
-//    function edit_manufacture() {
-//        $vehicle_reviews_service=new Vehicle_reviews_service();
-//        $vehicle_reviews_model=new Vehicle_reviews_model();
-//        
-//        
-//        
-//    }
+    function load_edit_review_content() {
+        $vehicle_reviews_service = new Vehicle_reviews_service();
+        $vehicle_reviews_model   = new Vehicle_reviews_model();
+
+        $vehicle_reviews_model->set_id(trim($this->input->post('review_id', TRUE)));
+        $review = $vehicle_reviews_service->get_review_by_id($vehicle_reviews_model);
+        $data['review'] = $review;
+
+        echo $this->load->view('vehicle_adds/vehicle_reviews_edit_view', $data, TRUE);
+    }
+
+ /*
+     * This function is to update the review details
+     */
+
+    function edit_review() {
+
+        $vehicle_reviews_service = new Vehicle_reviews_service();
+        $vehicle_reviews_model   = new Vehicle_reviews_model();
+
+        $vehicle_reviews_model->set_id($this->input->post('review_id', TRUE));
+        $vehicle_reviews_model->set_description($this->input->post('name', TRUE));
+        $vehicle_reviews_model->set_updated_by($this->session->userdata('USER_ID'));
+        $vehicle_reviews_model->set_updated_date(date("Y-m-d H:i:s"));
+
+        echo $vehicle_reviews_service->update_reviews($vehicle_reviews_model);
+    }
 }

@@ -69,11 +69,12 @@ class Home extends CI_Controller {
         $data['names'] = $manufacture_service->get_manufacture_name();
 //        $data['logos'] = $manufacture_service->get_manufacture_logo();
 
-        $data['price_drop_vehicles'] = $vehicle_advertisments_service->get_price_drop_vehicles(4);
-        $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();
+        $data['price_drop_vehicles']  = $vehicle_advertisments_service->get_price_drop_vehicles(4);
+        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(1);  //author-Ishani
+        $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();      //author-Ishani
         $data['featured_vehicles']    = $vehicle_advertisments_service->get_featured_advertisements(4);
 
-        $parials = array('content' => 'content_pages/home_content', 'vehicle_search_content' => 'vehicle_adds/load_vehicle_sepecs_for_search', 'recent_adds' => 'vehicle_adds/recent_adds', 'manu_list' => 'manufacturers/manufacture_list_view', 'featured_vehicles' => 'vehicle_adds/featured_vehicles');
+        $parials = array('content' => 'content_pages/home_content', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 

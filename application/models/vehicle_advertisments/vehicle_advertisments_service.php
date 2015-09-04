@@ -405,5 +405,38 @@ class Vehicle_advertisments_service extends CI_Model {
         $this->db->update('vehicle_advertisements', $data, array('id' => $vehicle_advertisement_model->get_id()));
         return $this->db->affected_rows();
     }
+    
+    /*
+     * This service function to get new arrivals
+     * author-Ishani
+     */
+    
+     public function get_new_arrival($limit) {
+
+        $this->db->select('vehicle_advertisements.id,'
+                . 'vehicle_advertisements.kilometers,'
+                . 'vehicle_advertisements.year,'
+                . 'vehicle_advertisements.description,'
+                . 'vehicle_images.image_path,'
+                . 'manufacture.name as manufacture,'
+                . 'model.name as model,'
+                . 'fuel_type.name as fuel_type,'
+                . 'body_type.name as body_type');
+        $this->db->from('vehicle_advertisements');
+        $this->db->join('manufacture', 'manufacture.id = vehicle_advertisements.manufacture_id');
+        $this->db->join('model', 'model.id = vehicle_advertisements.model_id');
+        $this->db->join('fuel_type', 'fuel_type.id = vehicle_advertisements.fuel_type_id');
+        $this->db->join('body_type', 'body_type.id = vehicle_advertisements.body_type_id');
+        $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
+        $this->db->where('vehicle_advertisements.is_deleted', '0');
+        $this->db->order_by("vehicle_advertisements.added_date", "desc");
+        $this->db->group_by('vehicle_advertisements.id');
+        if ($limit != '') {
+            $this->db->limit($limit);
+        }
+
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }
