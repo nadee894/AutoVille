@@ -38,7 +38,11 @@ class Register_Users extends CI_Controller {
         $register_users_model->set_password(md5($this->input->post('form_register_password', TRUE)));
         //$register_users_model->set_account_activation_code($this->input->post('account_activation_code', TRUE));
         $register_users_model->set_is_online('0');
-        $register_users_model->set_is_published('0');
+        
+        $token = $this->generate_random_string(); //generate account activation token
+        
+        
+        $register_users_model->set_is_published($token);
         $register_users_model->set_is_deleted('0');
         //$register_users_model->set_added_by($this->input->post('added_by', TRUE));
         //$register_users_model->set_added_date($this->input->post('added_date', TRUE));
@@ -47,22 +51,23 @@ class Register_Users extends CI_Controller {
 
         $register_users_service->add_new_user_registration($register_users_model);
 
-        $token = $this->generate_random_string(); //generate account activation token
         $register_users_model->set_account_activation_code(md5($token));
 
-        $email             = 'gayathma3@gmail.com';
+        $email             = 'ashanidiaz@gmail.com';
         $email_subject     = "AutoVille Account Activation";
         $data['name']      = $this->input->post('form_register_full_name', TRUE);
         $data['user_name'] = $this->input->post('form_register_user_name', TRUE);
         $data['pasword']   = $this->input->post('form_register_password', TRUE);
-        $data['link']     = $token;
+        $data['link']     = base_url().'login/activate?email='.
+                                        $this->input->post('form_register_email', TRUE).'key='.$token;
         $msg               = $this->load->view('template/mail_template/body', $data, TRUE);
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: Autoville <autoville@gmail.com>' . "\r\n";
-        $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
-
+        //$headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+        
+        echo $msg; return;
         if (mail($email, $email_subject, $msg, $headers)) {
             echo "1";
         } else {
