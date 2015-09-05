@@ -17,6 +17,8 @@ class Vehicle_advertisments_model extends CI_Model {
     var $price;
     var $kilometers;
     var $sale_type;
+    var $latitude;
+    var $longitude;
     var $location_id;
     var $is_published;
     var $is_deleted;
@@ -30,6 +32,7 @@ class Vehicle_advertisments_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
+    
     public function get_id() {
         return $this->id;
     }
@@ -150,6 +153,22 @@ class Vehicle_advertisments_model extends CI_Model {
         $this->sale_type = $sale_type;
     }
 
+    public function get_latitude() {
+        return $this->latitude;
+    }
+
+    public function set_latitude($latitude) {
+        $this->latitude = $latitude;
+    }
+
+    public function get_longitude() {
+        return $this->longitude;
+    }
+
+    public function set_longitude($longitude) {
+        $this->longitude = $longitude;
+    }
+
     public function get_location_id() {
         return $this->location_id;
     }
@@ -223,6 +242,5 @@ class Vehicle_advertisments_model extends CI_Model {
     }
 
 
-   
-
+    
 }
