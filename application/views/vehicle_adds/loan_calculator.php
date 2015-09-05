@@ -5,29 +5,17 @@
             <div class="row options">
                 <div class="form-group">
                     <label>Down Payment</label>
-                  
-                    <input type="range" value="price" id="price-slider" min="0" max="<?php echo ($vehicle_detail->price);?>"><br>
-                    <output> </output>
+
+                    <input type="range" value="price" id="price-slider" min="0" max="<?php echo $vehicle_detail->price; ?>"><br>
+                    <output value="#price-slider"> </output>
                 </div>
                 <br>
                 <div class="form-group">
                     <label>Loan Term (Months)</label>
-                    
+
                     <input type="range" id="month-slider" min="1" max="120"><br>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label>Interest Rate %</label>
-                    <!--                    <div class="ui-slider" id="rate-slider" data-value-min="0" data-value-max="100"  data-step="10">data-currency="$" data-currency-placement="before" data-value-type="price"
-                                            <div class="values clearfix">
-                                                <input class="value-min" id="minrate" name="minrate" readonly>
-                                                <input class="value-max" id="maxrate" name="maxrate" readonly>
-                                            </div>
-                                            <div class="element"></div>
-                                        </div>-->
-                    <input type="range" id="val1" min="0" max="100"><br>
 
-                </div>
             </div>
         </div>
         <br>
@@ -63,41 +51,19 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-//   $('#price-slider').on('change', function(){
-//
-//        var maxprice = 0;
-//        var carPrice = number_format(<?php echo $vehicle_detail->price; ?>, 2, '.', ',');
-////        var maxmonth = $('#maxmonth').val();
-////        var maxrate = $('#maxrate').val();
-//        $('#monthly-payment').html('Rs.'+$('#maxprice').val());
-//        function changeValue() {
-//            var installment = (carPrice - $("#price-slider").slider(".value"));
-////                    + (($vehicle_detail - > price) * maxrate) / 100.0;
-//            $("#monthly-payment").val(installment);
-//        }
-//
-//        $("#price-slider").slider({
-//            value: 100,
-//            min: 0,
-//            max: 500,
-//            step: 50,
-//            slide: function (event, ui) {
-//                maxprice = ui.value;
-//                changeValue();
-//            }
-//        });
 
-        var carvalue=<?php echo $vehicle_detail->price; ?>;
+        var carvalue =<?php echo $vehicle_detail->price; ?>;
+         
         print("carvalue");
 
         $("#price-slider").mousemove(function () {
             $("#val3").val(
-                   parseInt(carvalue) - parseInt($("#price-slider").val()));
+                    parseInt(carvalue) - parseInt($("#price-slider").val()));
         });
-        
+
         $("#month-slider").mousemove(function () {
             $("#val3").val(
-                   (parseInt(carvalue) - parseInt($("#price-slider").val()))/parseInt($("#month-slider").val()));
+                    (parseInt(carvalue) - parseInt($("#price-slider").val())) / parseInt($("#month-slider").val()));
         });
 
     });
