@@ -1,87 +1,36 @@
 <?php
 
-class Faq_model extends CI_Model {
+class Faq_service extends CI_Model {
 
-    var $id;
-    var $question;
-    var $answer;
-    var $is_published;
-    var $is_deleted;
-    var $added_date;
-    var $added_by;
-    var $updated_date;
-    var $updated_by;
-
-    function getId() {
-        return $this->id;
+    function __construct() {
+        parent::__construct();
+        $this->load->model('faq/faq_model');
     }
 
-    function getQuestion() {
-        return $this->question;
+    public function get_all_questions() {
+        $this->db->select('faq.question');
+        $this->db->from('faq');
+        $this->db->where('faq.is_deleted', '0');
+        $this->db->where('faq.is_published', '1');
+        $this->db->order_by("faq.added_date", "dsc");
+        $this->db->limit(2); //Ask from gayathma 
+        $query = $this->db->get();
+        return $query->result();
     }
 
-    function getAnswer() {
-        return $this->answer;
+    public function get_all_questions_list() {
+        $this->db->select('faq.*,user.name as added_by_user,user.profile_pic');
+        $this->db->from('faq');
+        $this->db->join('user', 'user.id=faq.added_by', 'left');
+        $this->db->where('faq.is_deleted', '0');
+        $this->db->where('faq.is_published', '1');
+        $this->db->order_by("faq.added_date", "asc");
+        $query = $this->db->get();
+        return $query->result();
     }
 
-    function getIs_published() {
-        return $this->is_published;
-    }
-
-    function getIs_deleted() {
-        return $this->is_deleted;
-    }
-
-    function getAdded_date() {
-        return $this->added_date;
-    }
-
-    function getAdded_by() {
-        return $this->added_by;
-    }
-
-    function getUpdated_date() {
-        return $this->updated_date;
-    }
-
-    function getUpdated_by() {
-        return $this->updated_by;
-    }
-
-    function setId($id) {
-        $this->id = $id;
-    }
-
-    function setQuestion($question) {
-        $this->question = $question;
-    }
-
-    function setAnswer($answer) {
-        $this->answer = $answer;
-    }
-
-    function setIs_published($is_published) {
-        $this->is_published = $is_published;
-    }
-
-    function setIs_deleted($is_deleted) {
-        $this->is_deleted = $is_deleted;
-    }
-
-    function setAdded_date($added_date) {
-        $this->added_date = $added_date;
-    }
-
-    function setAdded_by($added_by) {
-        $this->added_by = $added_by;
-    }
-
-    function setUpdated_date($updated_date) {
-        $this->updated_date = $updated_date;
-    }
-
-    function setUpdated_by($updated_by) {
-        $this->updated_by = $updated_by;
+    public function add_questions($faq_model) {
+        return $this->db->insert('faq', $faq_model);
     }
 
 }

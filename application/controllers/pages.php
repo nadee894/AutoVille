@@ -22,7 +22,7 @@ class Pages extends CI_Controller {
 
         $data['']='';
         
-        $parials = array('content' => 'content_pages/faq');
+        $parials = array('content' => 'content_pages/faq_view');
         $this->template->load('template/main_template', $parials, $data);
     }
 }
