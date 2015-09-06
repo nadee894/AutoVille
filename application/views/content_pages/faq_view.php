@@ -48,12 +48,12 @@
                         <article class="faq-single">
                             <i class="fa fa-question-circle"></i>
                             <div class="wrapper">
-                                <h4>
+                                <h4><?php echo $value->question;?>
                                 </h4>
                                 <div class="answer">
                                     <figure>Answer</figure>
                                     <p>
-
+                                            <?php echo $value->answer;?>
                                     </p>
                                 </div>
                             </div>
