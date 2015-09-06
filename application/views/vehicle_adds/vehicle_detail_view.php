@@ -41,7 +41,7 @@
             });
         }
         
-                    itemDetailMap('51.538395','-0.097418');
+                    itemDetailMap('<?php echo $vehicle_detail->latitude;?>','<?php echo $vehicle_detail->longitude;?>');
                 
     });
 
