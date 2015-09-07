@@ -37,6 +37,8 @@ class Inquries extends CI_Controller {
 
             mail($email, $email_subject, $msg, $headers);
         }
+        
+        echo $msg;
     }
 
 }
