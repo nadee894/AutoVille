@@ -104,7 +104,7 @@ class Vehicle_reviews extends CI_Controller {
         $vehicle_reviews_model   = new Vehicle_reviews_model();
 
         $vehicle_reviews_model->set_id($this->input->post('review_id', TRUE));
-        $vehicle_reviews_model->set_description($this->input->post('name', TRUE));
+        $vehicle_reviews_model->set_description($this->input->post('description', TRUE));
         $vehicle_reviews_model->set_updated_by($this->session->userdata('USER_ID'));
         $vehicle_reviews_model->set_updated_date(date("Y-m-d H:i:s"));
 
