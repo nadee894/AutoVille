@@ -3,6 +3,7 @@
 class Faq_model extends CI_Model {
 
     var $id;
+    var $email;
     var $question;
     var $answer;
     var $is_published;
@@ -46,6 +47,14 @@ class Faq_model extends CI_Model {
 
     function getUpdated_by() {
         return $this->updated_by;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
     }
 
     function setId($id) {

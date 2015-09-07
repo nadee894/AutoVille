@@ -24,7 +24,7 @@ class Faq_service extends CI_Model {
         $this->db->join('user', 'user.id=faq.added_by', 'left');
         $this->db->where('faq.is_deleted', '0');
         $this->db->where('faq.is_published', '1');
-        $this->db->order_by("faq.added_date", "asc");
+        $this->db->order_by("faq.added_date", "dsc");
         $query = $this->db->get();
         return $query->result();
     }
