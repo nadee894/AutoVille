@@ -18,13 +18,13 @@
                                                     </a>
                                                 </div>-->
                     </div>
-                    <table  class="display table table-bordered table-striped" id="comment_table">
+                    <table  class="display table table-bordered table-striped" id="faq_table">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Title</th>
                                 <th>Question</th>
-                                <th>Answer</th>                                
+                                <th>Answer</th> 
+                                <th>Email </th>
                                 <th>Active Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -34,19 +34,21 @@
                             $i = 0;
                             foreach ($results as $result) {
                                 ?>
-                                <tr id="comments_<?php echo $result->id; ?>">
+                                <tr id="faq_<?php echo $result->id; ?>">
                                     <td><?php echo ++$i; ?></td>
-                                    <td><?php echo $result->title; ?></td>
-                                    <td><?php echo $result->description; ?></td>
+                                    <td><?php echo $result->question; ?></td>
+                                    <td><?php echo $result->answer; ?></td>
+                                    <td><?php echo $result->email; ?></td>
                                     <td align="center">
                                         <?php if ($result->is_published) { ?>
-                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate manufacture"><i class="fa fa-check"></i></a> 
+                                            <a class="btn btn-success btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 0, this)" title="click to deactivate Question"><i class="fa fa-check"></i></a> 
                                         <?php } else { ?> 
-                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate manufacture"><i class="fa fa-exclamation-circle"></i></a> 
+                                            <a class="btn btn-warning btn-xs" onclick="change_publish_status(<?php echo $result->id; ?>, 1, this)" title="click to activate Question"><i class="fa fa-exclamation-circle"></i></a> 
                                         <?php } ?>
                                     </td>
                                     <td align="center">
     <!--                                        <a href="<?php echo site_url(); ?>/comments/manage_comments" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>-->
+                                        <a class="btn btn-primary btn-xs" onclick="display_edit_faq_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil" title="Update"></i></a>
                                         <a class="btn btn-danger btn-xs" onclick="delete_comment(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
                                     </td>
@@ -62,12 +64,21 @@
     </div>
 </div>
 
+<!--FAQ'S Edit Modal -->
+<div class="modal fade "  id="faq_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="faq_edit_content">
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
-    $('#comments_menu').addClass('active open');
+    $('#FAQ_menu').addClass('active open');
 
     $(document).ready(function () {
-        $('#comment_table').dataTable();
+        $('#faq_table').dataTable();
     });
     //delete comment
     function delete_comment(id) {
@@ -91,23 +102,23 @@
     }
 
     //change publish status of comment
-    function change_publish_status(comment_id, value, element) {
-        var condition = 'Do you want to activate this Comment?';
+    function change_publish_status(faq_id, value, element) {
+        var condition = 'Do you want to activate this Question?';
         if (value == 0) {
-            condition = 'Do you want to deactivate this Comment?';
+            condition = 'Do you want to deactivate this Question?';
         }
 
         if (confirm(condition)) {
             $.ajax({
                 type: "POST",
-                url: site_url + '/comments/change_publish_status',
-                data: "id=" + comment_id + "&value=" + value,
+                url: site_url + '/faq/change_publish_status',
+                data: "id=" + faq_id + "&value=" + value,
                 success: function (msg) {
                     if (msg == 1) {
                         if (value == 1) {
-                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + comment_id + ', 0, this)" title="click to deactivate comment"><i class="fa fa-check"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-success btn-xs" onclick="change_publish_status(' + faq_id + ', 0, this)" title="click to deactivate Question"><i class="fa fa-check"></i></a> ');
                         } else {
-                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + comment_id + ', 1, this)" title="click to activate comment"><i class="fa fa-exclamation-circle"></i></a> ');
+                            $(element).parent().html('<a class="btn btn-warning btn-xs" onclick="change_publish_status(' + faq_id + ', 1, this)" title="click to activate Question"><i class="fa fa-exclamation-circle"></i></a> ');
                         }
                     } else if (msg == 2) {
 
@@ -116,5 +127,17 @@
             });
         }
 
+    }
+    
+    function display_edit_faq_pop_up(faq_id){
+    
+        $.post(site_url+'faq/load_update_faq_popup',{faq_id:faq_id},function (msg){
+            
+            $('#faq_edit_content').html('');
+            $('#faq_edit_content').html(msg);
+            $('#faq_edit_div').modal(show);
+            
+        });
+    
     }
 </script>
