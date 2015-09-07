@@ -45,22 +45,32 @@
                     </div>
                     <br/>
                     <!-- /#form-faq-->
-                    <?php foreach ($faq_question_list as $value) { ?> 
-                        <article class="faq-single" id="question_list">
+                </section>
+                <?php foreach ($faq_question_list as $value) { ?> 
+                    <div id="question_list">
+                        <article class="faq-single" >
                             <i class="fa fa-question-circle"></i>
                             <div class="wrapper">
                                 <h4><?php echo $value->question; ?>
                                 </h4>
                                 <div class="answer">
-                                    <figure>Answer</figure>
-                                    <p>
-                                        <?php echo $value->answer; ?>
-                                    </p>
+                                    <?php if ($value->answer == '') { ?>
+                                        <figure>Answer</figure>
+                                        <p>
+                                            <?php echo ("Not yet Answered!"); ?>  
+                                        </p>
+                                    <?php } else { ?>
+                                        <figure>Answer</figure>
+                                        <p>
+                                            <?php echo $value->answer; ?>
+                                        </p>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </article>
-                    <?php } ?>
-                </section>
+                    </div>
+                <?php } ?>
+
                 <!-- /#faq-form-->
 
 

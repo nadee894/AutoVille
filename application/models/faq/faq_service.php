@@ -8,7 +8,7 @@ class Faq_service extends CI_Model {
     }
 
     public function get_all_questions() {
-        $this->db->select('faq.question');
+        $this->db->select('faq.question,faq.answer');
         $this->db->from('faq');
         $this->db->where('faq.is_deleted', '0');
         $this->db->where('faq.is_published', '1');

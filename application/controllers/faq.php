@@ -44,28 +44,28 @@ class Faq extends CI_Controller {
 
         foreach ($questions as $value) {
             ?> 
-
-            <article class="faq-single">
-                <i class="fa fa-question-circle"></i>
-                <div class="wrapper">
-                    <h4><?php echo $value->question; ?>
-                    </h4>
-                    <div class="answer">
-                        <?php if ($value->answer == '') { ?>
-                            <figure>Answer</figure>
-                            <p>
-                                <?php echo ("Not yet Answered!"); ?>  
-                            </p>
-                        <?php } else { ?>
-                             <figure>Answer</figure>
-                            <p>
-                                <?php echo $value->answer; ?>
-                            </p>
-                        <?php } ?>
-
+            <div id="question_list">
+                <article class="faq-single" >
+                    <i class="fa fa-question-circle"></i>
+                    <div class="wrapper">
+                        <h4><?php echo $value->question; ?>
+                        </h4>
+                        <div class="answer">
+                            <?php if ($value->answer == '') { ?>
+                                <figure>Answer</figure>
+                                <p>
+                                    <?php echo ("Not yet Answered!"); ?>  
+                                </p>
+                            <?php } else { ?>
+                                <figure>Answer</figure>
+                                <p>
+                                    <?php echo $value->answer; ?>
+                                </p>
+                            <?php } ?>
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            </div>
             <?php
         }
     }
