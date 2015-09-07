@@ -22,7 +22,21 @@ class Inquries extends CI_Controller {
         $inqurie_model->set_added_date(date("Y-m-d H:i:s"));             
         $inqurie_model->set_is_deleted('0');
 
-        echo $inqurie_service->add_inquries($inqurie_model);
+        $msg=$inqurie_service->add_inquries($inqurie_model);
+        
+        if($msg='1'){
+            $email = 'ishanipathinayake@gmail.com';
+            $email_subject = "AutoVille New Inquiry";
+            //$data['msg'] = "New Advertisement submitted!!";
+            $msg = $this->load->view('template/mail_template/contact_us', $data, TRUE);
+
+            $headers = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
+            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+
+            mail($email, $email_subject, $msg, $headers);
+        }
     }
 
 }
