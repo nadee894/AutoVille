@@ -114,7 +114,7 @@
                                     <?php } ?>
                                     <a href="<?php echo site_url(); ?>/home">About Us</a>
                                     <a href="<?php echo site_url(); ?>/pages/contact_us">Contact</a>
-                                    <a href="<?php echo site_url(); ?>/pages/faq">FAQ</a>
+                                    <a href="<?php echo site_url(); ?>/faq/list_faq_questions">FAQ</a>
                                 </li>
                             </ul>
                         </div>
