@@ -18,10 +18,10 @@
         </ul>
     </li>
 
-     <?php
+    <?php
     $perm = Access_controll_service::check_access('ADD_ADVERTISEMENT');
-   if ($perm) 
-   {        ?>
+    if ($perm) {
+        ?>
         <li class="sub-menu">
             <a href="javascript:;" id="advertisements_menu">
                 <i class="fa fa-film"></i>
@@ -34,7 +34,7 @@
             </ul>
         </li>
     <?php } ?>
-        
+
 
     <li class="sub-menu">
         <a href="javascript:;" id="pages_menu">
@@ -59,8 +59,7 @@
         <ul class="sub">
             <li><a  href="<?php echo site_url(); ?>/comments/manage_comments">Website Reviews</a></li>
             <li><a  href="<?php echo site_url(); ?>/vehicle_news/manage_vehicle_news">Vehicle News</a></li>
-            <li><a href="<?php echo site_url(); ?>/faq/manage_faq">Manage FAQ's</a></li>
-            <li><a href="<?php echo site_url(); ?>/"
+            <li><a  href="<?php echo site_url(); ?>/faq/manage_faq">Manage FAQ's</a></li>
         </ul>
     </li>
 

@@ -12,7 +12,7 @@ class Faq_service extends CI_Model {
         $this->db->from('faq');
         $this->db->where('faq.is_deleted', '0');
         $this->db->where('faq.is_published', '1');
-        $this->db->order_by("faq.added_date", "dsc");
+        $this->db->order_by("faq.added_date", "desc");
         $this->db->limit(2); //Ask from gayathma 
         $query = $this->db->get();
         return $query->result();
@@ -24,7 +24,7 @@ class Faq_service extends CI_Model {
         $this->db->join('user', 'user.id=faq.added_by', 'left');
         $this->db->where('faq.is_deleted', '0');
         $this->db->where('faq.is_published', '1');
-        $this->db->order_by("faq.added_date", "dsc");
+        $this->db->order_by("faq.added_date", "desc");
         $query = $this->db->get();
         return $query->result();
     }

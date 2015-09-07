@@ -49,7 +49,7 @@
                                     <td align="center">
     <!--                                        <a href="<?php echo site_url(); ?>/comments/manage_comments" class="btn btn-success btn-xs"><i class="fa fa-pencil"  data-original-title="Update"></i></a>-->
                                         <a class="btn btn-primary btn-xs" onclick="display_edit_faq_pop_up(<?php echo $result->id; ?>)"><i class="fa fa-pencil" title="Update"></i></a>
-                                        <a class="btn btn-danger btn-xs" onclick="delete_comment(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
+                                        <a class="btn btn-danger btn-xs" onclick="delete_question(<?php echo $result->id; ?>)" ><i class="fa fa-trash-o " title="" data-original-title="Remove"></i></a>
 
                                     </td>
                                 </tr>
@@ -72,7 +72,7 @@
         </div>
     </div>
 </div>
-
+<script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
 
     $('#FAQ_menu').addClass('active open');
@@ -81,15 +81,15 @@
         $('#faq_table').dataTable();
     });
     //delete comment
-    function delete_comment(id) {
-        if (confirm('Are you sure want ot delete this comment ?')) {
+    function delete_question(id) {
+        if (confirm('Are you sure want ot delete this Question?')) {
             $.ajax({
                 type: "POST",
-                url: site_url + '/comments/delete_comments',
+                url: site_url + '/faq/delete_faqs',
                 data: "id=" + id,
                 success: function (msg) {
                     if (msg == 1) {
-                        $('#comments_' + id).hide();
+                        $('#faq_' + id).hide();                        
                         toastr.success("Successfully deleted !!", "AutoVille");
                     }
                     else if (msg == 2) {
@@ -131,11 +131,11 @@
     
     function display_edit_faq_pop_up(faq_id){
     
-        $.post(site_url+'faq/load_update_faq_popup',{faq_id:faq_id},function (msg){
+        $.post(site_url+'/faq/load_update_faq_popup',{faq_id:faq_id},function (msg){
             
             $('#faq_edit_content').html('');
             $('#faq_edit_content').html(msg);
-            $('#faq_edit_div').modal(show);
+            $('#faq_edit_div').modal('show');
             
         });
     

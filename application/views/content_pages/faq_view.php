@@ -257,6 +257,7 @@
     </div>
 </footer>
 <!--end Page Footer-->
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script>
     function askQuestion() {
         var question = $('#faq-form-question').val();
@@ -271,6 +272,7 @@
                 data: "question=" + question + "&email=" + email,
                 success: function (msg) {
                     $('#question_list').html(msg);
+                    toastr.success("Successfully Posted !!", "AutoVille");
                     c_form.reset();
                 }
             });

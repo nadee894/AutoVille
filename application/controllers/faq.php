@@ -39,7 +39,7 @@ class Faq extends CI_Controller {
         $faq_model->setIs_deleted('0');
 
         $faq_service->add_questions($faq_model);
-        $questions = $faq_service->get_all_questions();
+        $questions = $faq_service->get_all_questions_list();
 
 
         foreach ($questions as $value) {
