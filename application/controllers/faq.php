@@ -51,16 +51,18 @@ class Faq extends CI_Controller {
                     <h4><?php echo $value->question; ?>
                     </h4>
                     <div class="answer">
-                        <figure>Answer</figure>
                         <?php if ($value->answer == '') { ?>
+                            <figure>Answer</figure>
                             <p>
                                 <?php echo ("Not yet Answered!"); ?>  
                             </p>
                         <?php } else { ?>
+                             <figure>Answer</figure>
                             <p>
                                 <?php echo $value->answer; ?>
                             </p>
                         <?php } ?>
+
                     </div>
                 </div>
             </article>
