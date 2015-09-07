@@ -40,9 +40,10 @@ class Dashboard extends CI_Controller {
 
         $data['my_advertisements'] = $vehicle_advertisements_service->get_advertisements_for_user($config["per_page"], $start, $this->session->userdata('USER_ID'));
         $data["links"]             = $this->pagination_custome->create_links();
+        $data['latest_vehicles']   = $vehicle_advertisements_service->get_new_arrival(2);
 
 
-        $parials = array('content' => 'my_dashboard/my_dashboard');
+        $parials = array('content' => 'my_dashboard/my_dashboard', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 

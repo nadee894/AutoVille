@@ -134,7 +134,9 @@
                             <div class="container">
                                 <div class="row">
                                     <!--Start New Arrivals-->
+                                    <div class="col-md-4 col-sm-4">
                                     <?php echo $new_arrivals; ?>    
+                                    </div>
                                     <!--End Start New Arrivals-->
 
                                     <div class="col-md-4 col-sm-4">

@@ -19,7 +19,7 @@
                     <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                         <li class="active dash_items">  <a class="dashboard_link" href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
                         <li class="dash_items">  <a class="dashboard_link" href="#"><i class="fa fa-edit"></i> <span>My Advertisements</span></a></li>
-                        <li> <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement"><i class="fa fa-plus-square-o"></i> <span>Create new Advertisement</span></a></li>
+                        <li> <a href="<?php echo site_url(); ?>/vehicle_advertisements/post_new_advertisement"><i class="fa fa-plus-square-o"></i> <span>New Advertisement</span></a></li>
                     <?php } ?>
                     <li class="dash_items">  <a id="compare_vehicle_view" href="#"><i class="fa fa-compress"></i> <span>Compare Vehicles</span></a></li>
                     <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>    

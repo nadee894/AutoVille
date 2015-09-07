@@ -23,8 +23,10 @@
                     <p>
                         <?php echo $value->description; ?>
                     </p>
-                    <a class="btn btn-danger btn-xs" onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
-                <a class="btn btn-primary btn-xs" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>                    
+                    <div class="description">
+                        <a onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
+                        <a  onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>                    
+                    </div>
                 </div>
                 <!-- /.wrapper-->
             </article>
@@ -64,53 +66,53 @@
 
 
 <script>
-    function commentSubmit() {
-        var description = $('#description').val();
+                        function commentSubmit() {
+                            var description = $('#description').val();
 
-        if (description != '') {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url(); ?>/vehicle_reviews/add_vehicle_reviews",
-                data: "description=" + description + "&vehicle_id=" + $('#vehicle_id').val(),
-                success: function(msg) {
-                    $('#review_list').html(msg);
-                    $('#description').val('');
-                }
-            });
-        }
-    }
-    
-    //delete review
-    function delete_comment(id) {
+                            if (description != '') {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo site_url(); ?>/vehicle_reviews/add_vehicle_reviews",
+                                    data: "description=" + description + "&vehicle_id=" + $('#vehicle_id').val(),
+                                    success: function(msg) {
+                                        $('#review_list').html(msg);
+                                        $('#description').val('');
+                                    }
+                                });
+                            }
+                        }
 
-        if (confirm('Are you sure want to delete this Comment ?')) {
+                        //delete review
+                        function delete_comment(id) {
 
-            $.ajax({
-                type: "POST",
-                url: '<?php echo site_url(); ?>/vehicle_reviews/delete_review',
-                data: "id=" + id,
-                success: function (msg) {
-                    //alert(msg);
-                    if (msg === 1) {
-                        //alert('success');
-                        $('#review_' + id).hide();
-                        //toastr.success("Successfully deleted !!", "AutoVille");
-                    }
-                    else if (msg === 2) {
-                        alert('error occured');
-                    }
-                }
-            });
-        }
-    }
+                            if (confirm('Are you sure want to delete this Comment ?')) {
 
-    function  display_edit_review_pop_up(review_id) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: '<?php echo site_url(); ?>/vehicle_reviews/delete_review',
+                                    data: "id=" + id,
+                                    success: function(msg) {
+                                        //alert(msg);
+                                        if (msg === 1) {
+                                            //alert('success');
+                                            $('#review_' + id).hide();
+                                            //toastr.success("Successfully deleted !!", "AutoVille");
+                                        }
+                                        else if (msg === 2) {
+                                            alert('error occured');
+                                        }
+                                    }
+                                });
+                            }
+                        }
 
-        $.post('<?php echo site_url();?>/vehicle_reviews/load_edit_review_content', {review_id: review_id}, function (msg) {
+                        function  display_edit_review_pop_up(review_id) {
 
-            $('#review_edit_content').html('');
-            $('#review_edit_content').html(msg);
-            $('#review_edit_div').modal('show');
-        });
-    }
+                            $.post('<?php echo site_url(); ?>/vehicle_reviews/load_edit_review_content', {review_id: review_id}, function(msg) {
+
+                                $('#review_edit_content').html('');
+                                $('#review_edit_content').html(msg);
+                                $('#review_edit_div').modal('show');
+                            });
+                        }
 </script>

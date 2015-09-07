@@ -70,7 +70,7 @@ class Home extends CI_Controller {
 //        $data['logos'] = $manufacture_service->get_manufacture_logo();
 
         $data['price_drop_vehicles']  = $vehicle_advertisments_service->get_price_drop_vehicles(4);
-        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(1);  //author-Ishani
+        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
         $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();      //author-Ishani
         $data['featured_vehicles']    = $vehicle_advertisments_service->get_featured_advertisements(4);
 
