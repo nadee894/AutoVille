@@ -8,12 +8,12 @@ class Vehicle_news extends CI_Controller {
     function __construct() {
         parent::__construct();
 
-        
-            $this->load->model('vehicle_news/vehicle_news_model');
-            $this->load->model('vehicle_news/vehicle_news_service');
 
-         
-        
+        $this->load->model('vehicle_news/vehicle_news_model');
+        $this->load->model('vehicle_news/vehicle_news_service');
+
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
     /*
@@ -29,13 +29,16 @@ class Vehicle_news extends CI_Controller {
         $parials = array('content' => 'vehicle_news/manage_vehicle_news_view');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
-    function list_vehicle_news(){
+
+    function list_vehicle_news() {
         $vehicle_news_service = new Vehicle_news_service();
-         $data['vehicle_news_list']=$vehicle_news_service->get_vehicle_news_list();
-        $parials = array('content' => 'vehicle_news/vehicle_news_list_view');
-        $this->template->load('template/main_template',$parials,$data);    
-       
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        
+        $data['vehicle_news_list'] = $vehicle_news_service->get_vehicle_news_list();
+        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);
+        
+        $parials = array('content' => 'vehicle_news/vehicle_news_list_view','new_arrivals' => 'vehicle_adds/new_arrivals');
+        $this->template->load('template/main_template', $parials, $data);
     }
 
     /*
@@ -43,7 +46,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function add_vehicle_news() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_title($this->input->post('name', TRUE));
@@ -71,7 +74,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function change_publish_status() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('id', TRUE)));
@@ -85,11 +88,11 @@ class Vehicle_news extends CI_Controller {
      */
 
     function load_edit_vehicle_news_content() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
-        $vehicle_news         = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
+        $vehicle_news = $vehicle_news_service->get_vehicle_news_by_id($vehicle_news_model);
         $data['vehicle_news'] = $vehicle_news;
 
         echo $this->load->view('vehicle_news/vehicle_news_edit_pop_up', $data, TRUE);
@@ -100,7 +103,7 @@ class Vehicle_news extends CI_Controller {
      */
 
     function edit_vehicle_news() {
-        $vehicle_news_model   = new Vehicle_news_model();
+        $vehicle_news_model = new Vehicle_news_model();
         $vehicle_news_service = new Vehicle_news_service();
 
         $vehicle_news_model->set_id(trim($this->input->post('vehicle_news_id', TRUE)));
@@ -118,7 +121,7 @@ class Vehicle_news extends CI_Controller {
 
     public function load_latest_vehicle_news() {
         $vehicle_news_service = new Vehicle_news_service();
-        $data['results']      = $vehicle_news_service->get_vehicle_news();
+        $data['results'] = $vehicle_news_service->get_vehicle_news();
         echo $this->load->view('manufacturers/manufacture_list_view', $data);
     }
 
