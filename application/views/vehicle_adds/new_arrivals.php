@@ -1,5 +1,5 @@
 <section>
-    <h2>New Items</h2>
+    <h2>New Arrivals</h2>
 
     <?php foreach ($latest_vehicles as $result) { ?>
         <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $result->id; ?>" class="item-horizontal small">

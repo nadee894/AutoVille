@@ -40,9 +40,9 @@
                 $('.item-gallery .thumbnails #thumbnail-' + thumbnailNumber).trigger('click');
             });
         }
-        
-                    itemDetailMap('<?php echo $vehicle_detail->latitude;?>','<?php echo $vehicle_detail->longitude;?>');
-                
+
+        itemDetailMap('<?php echo $vehicle_detail->latitude; ?>', '<?php echo $vehicle_detail->longitude; ?>');
+
     });
 
 
@@ -186,73 +186,7 @@
                                 </dl>
                             </article>
                             <!-- /.block -->
-                            <article class="block">
-                                <header><h2>Daily Menu</h2></header>
-                                <div class="list-slider owl-carousel">
-                                    <div class="slide">
-                                        <header>
-                                            <h3><i class="fa fa-calendar"></i>Monday (today)</h3>
-                                        </header>
-                                        <div class="list-item">
-                                            <div class="left">
-                                                <h4>Chicken wings</h4>
-                                                <figure>Curabitur odio nibh, luctus non pulvinar</figure>
-                                            </div>
-                                            <div class="right">$4.50</div>
-                                        </div>
-                                        <!-- /.list-item -->
-                                        <div class="list-item">
-                                            <div class="left">
-                                                <h4>Mushroom ragout</h4>
-                                                <figure>Donec a odio rutrum, hendrerit sapien</figure>
-                                            </div>
-                                            <div class="right">$3.60</div>
-                                        </div>
-                                        <!-- /.list-item -->
-                                        <div class="list-item">
-                                            <div class="left">
-                                                <h4>Nice salad with tuna, beans and hard-boiled egg</h4>
-                                                <figure>Urabitur suscipit, justo eu dignissim lacinia </figure>
-                                            </div>
-                                            <div class="right">$1.20</div>
-                                        </div>
-                                        <!-- /.list-item -->
-                                    </div>
-                                    <!-- /.slide -->
-                                    <div class="slide">
-                                        <header>
-                                            <h3><i class="fa fa-calendar"></i>Tuesday</h3>
-                                        </header>
-                                        <div class="list-item">
-                                            <div class="left">
-                                                <h4>Chicken wings</h4>
-                                                <figure>Curabitur odio nibh, luctus non pulvinar</figure>
-                                            </div>
-                                            <div class="right">$4.50</div>
-                                        </div>
-                                        <!-- /.list-item -->
-                                        <div class="list-item">
-                                            <div class="left">
-                                                <h4>Mushroom ragout</h4>
-                                                <figure>Donec a odio rutrum, hendrerit sapien</figure>
-                                            </div>
-                                            <div class="right">$3.60</div>
-                                        </div>
-                                        <!-- /.list-item -->
-                                        <div class="list-item">
-                                            <div class="left">
-                                                <h4>Nice salad with tuna, beans and hard-boiled egg</h4>
-                                                <figure>Urabitur suscipit, justo eu dignissim lacinia </figure>
-                                            </div>
-                                            <div class="right">$1.20</div>
-                                        </div>
-                                        <!-- /.list-item -->
-                                    </div>
-                                    <!-- /.slide -->
-                                </div>
-                                <!-- /.list-slider -->
-                            </article>
-                            <!-- /.block -->
+                            
                             <article class="block">
                                 <header><h2>Features</h2></header>
                                 <ul class="bullets">
@@ -329,7 +263,7 @@
                     <!--/.item-horizontal small-->
                 </section>
                 <section>
-                    <a href="#"><img src="<?php echo base_url() ?>application_resources/assets/img/ad-banner-sidebar.png" alt=""></a>
+                    <?php echo $this->load->view('vehicle_adds/commercial_add_view'); ?>
                 </section>
 
             </aside>
