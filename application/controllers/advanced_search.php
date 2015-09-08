@@ -10,11 +10,16 @@ class Advanced_search extends CI_Controller {
 
         $this->load->model('advanced_search_content/advanced_search_content_model');
         $this->load->model('advanced_search_content/advanced_search_content_service');
+        
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
     function advanced_search_view() {
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);
         $parials = array('content' => 'vehicle_adds/advanced_search', 'new_arrivals' => 'vehicle_adds/new_arrivals');
-        $this->template->load('template/main_template', $parials);
+        $this->template->load('template/main_template', $parials,$data);
     }
 
     function add_advanced_search_fields() {
