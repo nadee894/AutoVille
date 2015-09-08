@@ -47,10 +47,13 @@
     <br/>
 </div>
 
-<div class="row col-md-12" id="added_search_features_div">
+<div class="row col-lg-12" id="added_search_features_div">
     <?php echo $this->load->view('vehicle_adds/advanced_search_fields'); ?>
 </div>
 
+<div class="row col-lg-12" id="advanced_search_result_content">
+   
+</div>
 
 <script type="text/javascript">
 
@@ -63,21 +66,38 @@
             url: site_url + '/advanced_search/add_advanced_search_fields',
             data: form.serialize(),
             success: function(msg) {
-                if (msg == '0') {
+
+                if (msg == '1') {
+                    $('#fade_success').fadeIn();
+                    $('#fade_success').fadeOut(4000);
+                    add_features_form.reset();
+                    //$('#added_search_features_div').html(msg);
+                    window.setTimeout(function() {
+                        location.reload()
+                    }, 1000);
+
+                } else if (msg == '0') {
                     $('#fade_error').fadeIn();
                     $('#fade_error').fadeOut(4000);
                 } else if (msg == '2') {
                     //field list empty/user not logged
                     $('#fade_error').fadeIn();
                     $('#fade_error').fadeOut(4000);
-                } else {
-                    $('#fade_success').fadeIn();
-                    $('#fade_success').fadeOut(4000);
-                    add_features_form.reset();
-                    $('#added_search_features_div').html(msg);
                 }
             }
         });
     }
 
+    //Manufacturer on change 
+    $('#manufacturer').on('change', function(e) {
+
+        var manufacturer = $(this).val();
+
+        $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
+        {
+            $('#model_wrapper').html(msg);
+        });
+    });
+
+   
 </script>
