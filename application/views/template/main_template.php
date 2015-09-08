@@ -140,7 +140,6 @@
                                     <!--End Start New Arrivals-->
 
                                     <div class="col-md-4 col-sm-4">
-                                        Recent Reviews
                                         <section>
                                             <h2>Recent Reviews</h2>
                                             <a href="car-item-detail.html#reviews" class="review small">
