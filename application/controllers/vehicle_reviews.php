@@ -66,8 +66,18 @@ class Vehicle_reviews extends CI_Controller {
                     <p>
                         <?php echo $value->description; ?>
                     </p>
-                    <a class="btn btn-danger btn-xs" onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove"></i></a>
-                    <a class="btn btn-primary btn-xs" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>                    
+                    <div class="item list admin-view">
+                        <div class="description">
+                            <ul class="list-unstyled actions">
+                                <li>
+                                    <a  onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
+                                </li>
+                                <li>
+                                    <a onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
+                                </li>
+                            </ul> 
+                        </div>
+                    </div>                    
                 </div>
                 <!-- /.wrapper-->
             </article>
