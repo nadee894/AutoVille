@@ -70,10 +70,10 @@ class Vehicle_reviews extends CI_Controller {
                         <div class="description">
                             <ul class="list-unstyled actions">
                                 <li>
-                                    <a  onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
+                                    <a style="cursor: pointer" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
                                 </li>
                                 <li>
-                                    <a onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
+                                    <a  style="cursor: pointer"  onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
                                 </li>
                             </ul> 
                         </div>

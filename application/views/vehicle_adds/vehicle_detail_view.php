@@ -2,6 +2,7 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/richmarker.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script>
     $(window).load(function() {
         $.ajax({
@@ -44,7 +45,33 @@
         itemDetailMap('<?php echo $vehicle_detail->latitude; ?>', '<?php echo $vehicle_detail->longitude; ?>');
 
     });
+    $(document).ready(function() {
 
+        //edit review form validation
+        $("#edit_review_form").validate({
+            rules: {
+                description: "required"
+            },
+            messages: {
+                description: "Please enter a description"
+            }, submitHandler: function(form)
+            {
+                var id = $('#vehicle_id').val();
+                $.post(site_url + '/vehicle_reviews/edit_review', $('#edit_review_form').serialize(), function(msg)
+                {
+                    if (msg == 1) {
+                        $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
+                        window.location = site_url + '/vehicle_advertisements/vehicle_advertisement_detail_view' + '/' + id;
+                    } else {
+                        $('#rtn_msg_edit').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+
+                    }
+                });
+
+
+            }
+        });
+    });
 
 </script>
 
@@ -186,7 +213,7 @@
                                 </dl>
                             </article>
                             <!-- /.block -->
-                            
+
                             <article class="block">
                                 <header><h2>Features</h2></header>
                                 <ul class="bullets">
