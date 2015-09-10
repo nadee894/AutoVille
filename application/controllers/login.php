@@ -13,26 +13,34 @@ class Login extends CI_Controller {
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
         $this->load->model('register_users/register_users_service');
+
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
-    function activate(){
-        if($this->register_users_service->activate_user($_GET['email'], $_GET['token']) ){
+    function activate() {
+        if ($this->register_users_service->activate_user($_GET['email'], $_GET['token'])) {
             redirect(site_url() . '/login/load_login');
         }
     }
+
     function load_login() {
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);
+
         if ($this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/home/index');
         } else {
-            $parials = array('content' => 'content_pages/login');
-            $this->template->load('template/main_template', $parials);
+            $parials = array('content' => 'content_pages/login', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+            $this->template->load('template/main_template', $parials, $data);
         }
     }
 
     //Login details checking function 
     function authenticate_user() {
 
-        $user_model   = new User_model();
+        $user_model = new User_model();
         $user_service = new User_service();
 
         $user_model->set_user_name($this->input->post('login_username', TRUE));
@@ -71,7 +79,7 @@ class Login extends CI_Controller {
 
     function logout() {
 
-        $user_model   = new User_model();
+        $user_model = new User_model();
         $user_service = new User_service();
 
         $user_model->set_is_online('0');
@@ -90,18 +98,18 @@ class Login extends CI_Controller {
         $user_service = new User_service();
 
         $reg_user_list = $user_service->get_all_active_registered_users();
-        $input_email   = trim($this->input->post('reset_pw_email', TRUE));
+        $input_email = trim($this->input->post('reset_pw_email', TRUE));
 
         foreach ($reg_user_list as $user) {
 
             if (strcmp($user->email, $input_email) == 0) {
 
                 //send email
-                $email_to          = $user->email; //'heshani7.herath@gmail.com';
-                $email_subject     = "AutoVille Password Reset";
-                $data['name']      = $user->name;
+                $email_to = $user->email; //'heshani7.herath@gmail.com';
+                $email_subject = "AutoVille Password Reset";
+                $data['name'] = $user->name;
                 $data['user_name'] = $user->user_name;
-                $data['pasword']   = 'asda';
+                $data['pasword'] = 'asda';
 
                 $msg = $this->load->view('template/mail_template/forgot_password', $data, TRUE);
 
@@ -132,7 +140,7 @@ class Login extends CI_Controller {
 
         $user_service = new User_service();
 
-        $reg_user_list  = $user_service->get_all_active_registered_users();
+        $reg_user_list = $user_service->get_all_active_registered_users();
         $input_username = trim($this->input->post('username', TRUE));
 
         foreach ($reg_user_list as $user) {
