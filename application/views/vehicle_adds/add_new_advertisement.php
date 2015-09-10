@@ -461,7 +461,7 @@
                                                 });
                                             });
 
-                                            // add project sumbit btn action
+                                            // add advertisement sumbit btn action
                                             $(document).on('click', '#add_addvertisement_btn', function() {
                                                 if ($('#form-submit').valid()) {
                                                     $('#form-submit').submit();

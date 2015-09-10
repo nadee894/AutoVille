@@ -50,6 +50,10 @@ class Vehicle_advertisements extends CI_Controller {
 
         $this->load->model('vehicle_reviews/vehicle_reviews_model');
         $this->load->model('vehicle_reviews/vehicle_reviews_service');
+
+        $this->load->model('website_advertisements/website_advertisements_model');
+        $this->load->model('website_advertisements/website_advertisements_service');
+
         $this->load->library('email');
         $this->load->library('sms_handler');
     }
@@ -353,6 +357,7 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_equipment_service     = new Vehicle_equipment_service();
         $equipment_service             = new Equipment_service();
         $user_service                  = new User_service();
+        $website_advertisement_service = new Website_advertisements_service();
 
         $vehicle_id = $this->uri->segment(3);
 
@@ -371,6 +376,8 @@ class Vehicle_advertisements extends CI_Controller {
 
         $data['vehicle_equipments'] = $equipment_array;
         $data['latest_vehicles']    = $vehicle_advertisments_service->get_new_arrival(2);
+
+        $data['commercial_images'] = $website_advertisement_service->get_advertisement_image();
 
         $parials = array('content'      => 'vehicle_adds/vehicle_detail_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);

@@ -23,13 +23,7 @@ class Website_advertisements extends CI_Controller{
         $parials = array('content'      => 'website_advertisements/add_new_website_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
-    function load_commercial_images(){
-        $website_advertisement_service=new Website_advertisements_service();
-        
-        $data['commercial_images']=$website_advertisement_service->get_advertisement_image();
-        $this->load->view('vehicle_adds/commercial_add_view',$data);
-    }
+
 
 
     /*
