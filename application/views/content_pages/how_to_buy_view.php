@@ -89,7 +89,7 @@
 
 
                 <div class="step_box clearfix">
-                    <h3 class="step4"><span>Buy&nbsp;&amp;&nbsp;DRIVE YOUR CAR</span></h3>
+                    <h3 class="step4"><span>Buy&nbsp;&amp;&nbsp;Drive your Car</span></h3>
                     <div class="step_inner">
                         <div class="txt_right">If you are satisfied with the Price and everything You can buy the car directly from seller. Autoville is here to put you on the right track</div>
                     </div>
