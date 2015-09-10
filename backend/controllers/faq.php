@@ -88,8 +88,10 @@ class Faq extends CI_Controller {
 
         if (mail($data['sender_email'], $email_subject, $msg, $headers)) {
             echo "1";
+            echo 'Mail sent successfully';
         } else {
             echo "0";
+            echo 'Mail not sent successfully';
         }
     }
 
