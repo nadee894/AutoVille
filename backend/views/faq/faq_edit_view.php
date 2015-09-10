@@ -18,7 +18,7 @@
     </div>
     <div class="modal-footer">
         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-        <button class="btn btn-success" type="submit">Save changes</button>
+        <button class="btn btn-success" onclick="send_answer_email()" type="submit">Save changes</button>
     </div>
 </form>
 
@@ -48,4 +48,16 @@
 
         }
     });
+
+    function send_answer_email() {
+
+        $.ajax({
+            type: "POST",
+            url: '<?php echo site_url(); ?>/faq/send_faq_answer_email',
+            data: $('#answer').serialize(),
+            success: function (msg) {
+                toastr.success("Email successfully sent !!", "AutoVille");
+            }
+        });
+    }
 </script>
