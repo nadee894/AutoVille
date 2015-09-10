@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.nouislider.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
         <!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">-->
-
+        <link href="<?php echo base_url(); ?>application_resources/pusher/pusher-chat-widget.css" rel="stylesheet" />
 
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>       
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>
@@ -136,12 +136,12 @@
                                 <div class="row">
                                     <!--Start New Arrivals-->
                                     <div class="col-md-4 col-sm-4">
-                                    <?php echo $new_arrivals; ?>    
+                                        <?php echo $new_arrivals; ?>    
                                     </div>
                                     <!--End Start New Arrivals-->
 
                                     <div class="col-md-4 col-sm-4">
-                                        
+
                                         <!--end Recent Reviews-->
                                     </div>
                                     <div class="col-md-4 col-sm-4">
@@ -229,21 +229,21 @@
             </div>
         </div>
         <!-- End Forgot Password Modal -->
-        
-        <!--Review Edit Modal -->
-<div  class="modal fade "   id="review_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" id="review_edit_content">
 
+        <!--Review Edit Modal -->
+        <div  class="modal fade "   id="review_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="review_edit_content">
+
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();        ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();         ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -254,8 +254,12 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-       <!--<script type="text/javascript" src="<?php //echo base_url();        ?>application_resources/assets/js/maps.js"></script>-->
+       <!--<script type="text/javascript" src="<?php //echo base_url();         ?>application_resources/assets/js/maps.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
+        <script src="//js.pusher.com/3.0/pusher.min.js"></script>
+
+        <!-- Downloaded in step 1 -->
+        <script src="<?php echo base_url(); ?>application_resources/pusher/js/PusherChatWidget.js"></script>
 
         <script>
             //autoComplete();
@@ -278,45 +282,45 @@
 
 <script>
 
-            $(document).ready(function() {
+    $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-                    $.ajax({
-                        type: "POST",
-                        url: site_url + '/vehicle_compare/load_vehicle_popup',
-                        success: function(msg) {
-                            if (msg != 0) {
-                                $('#compare_vehicle_list').html(msg);
-                            } else {
-                                alert('Error loading vehicles');
-                            }
-                        }
-                    });
+            $.ajax({
+                type: "POST",
+                url: site_url + '/vehicle_compare/load_vehicle_popup',
+                success: function(msg) {
+                    if (msg != 0) {
+                        $('#compare_vehicle_list').html(msg);
+                    } else {
+                        alert('Error loading vehicles');
+                    }
+                }
+            });
 
 <?php } else { ?>
-                    $.jStorage.flush();
-                    var jSindex = $.jStorage.index();
+            $.jStorage.flush();
+            var jSindex = $.jStorage.index();
 
-                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+            var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-                    var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+            var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-                    if (jSindex.length == 0) {
-                        li_list += '<li>Add Vehicle</li>';
-                    }
+            if (jSindex.length == 0) {
+                li_list += '<li>Add Vehicle</li>';
+            }
 
-                    for (i = 0; i < jSindex.length; i++) {
-                        li_list += $.jStorage.get(jSindex[i]);
-                    }
+            for (i = 0; i < jSindex.length; i++) {
+                li_list += $.jStorage.get(jSindex[i]);
+            }
 
-                    if (jSindex.length >= 2) {
-                        li_list += compareBtn;
-                    }
+            if (jSindex.length >= 2) {
+                li_list += compareBtn;
+            }
 
-                    li_list += '</ul>';
-                    $('#compare_vehicle_list').html(li_list);
+            li_list += '</ul>';
+            $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
-            });
+    });
 
 </script>
