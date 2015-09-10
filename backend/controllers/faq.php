@@ -78,7 +78,10 @@ class Faq extends CI_Controller {
         $data['user_email'] = $faq_question->email;
 //        $data['phone']        = $this->input->post('phone', TRUE);
         $data['sender_email'] = $this->input->post('sender_email', TRUE);
-        $data['msg'] = 'Your Question has been answered. To check Your Answer refer below Link';
+        $data['msg'] = 'Your Question has been answered and Updated. To check Your Answer refer below Link'
+                . ''
+                . ''
+                . 'http://localhost:8080/autoville/index.php/faq/list_faq_questions';
 
         $msg = $this->load->view('template/mail_template/body_ask', $data, TRUE);
 
