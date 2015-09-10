@@ -24,5 +24,54 @@ class Website_advertisements extends CI_Controller{
         $this->template->load('template/main_template', $parials, $data);
     }
     
+    function load_commercial_images(){
+        $website_advertisement_service=new Website_advertisements_service();
+        
+        $data['commercial_images']=$website_advertisement_service->get_advertisement_image();
+        $this->load->view('vehicle_adds/commercial_add_view',$data);
+    }
+
+
+    /*
+     * This function is to upload commercial image
+     */
+
+    function upload_commercial_image() {
+
+        $uploaddir = './uploads/commercial_images/';
+        $unique_tag = 'commercial_images_';
+
+        $filename = $unique_tag . time() . '-' . basename($_FILES['uploadfile']['name']); //this is the file name
+        $file = $uploaddir . $filename; // this is the full path of the uploaded file
+
+        if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file)) {
+            echo $filename;
+        } else {
+            echo "error";
+        }
+    }
+    
+    /*
+     * This service function to insert a commercial
+     */
+    
+    function add_commercial(){
+        
+        $website_advertisement_model=new Website_advertisements_model();
+        $website_advertisement_service=new Website_advertisements_service();
+        
+        $website_advertisement_model->set_topic($this->input->post('topic', TRUE));
+        $website_advertisement_model->set_image($this->input->post('logo', TRUE));
+        $website_advertisement_model->set_description($this->input->post('description', TRUE));
+        $website_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
+        $website_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
+        $website_advertisement_model->set_updated_by(1);
+        $website_advertisement_model->set_is_published('1');
+        $website_advertisement_model->set_is_deleted('0');
+        $website_advertisement_model->set_is_feartured('2');
+
+        echo $website_advertisement_service->add_website_advertisement($website_advertisement_model);
+    }
+    
 }
 
