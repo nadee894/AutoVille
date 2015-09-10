@@ -187,7 +187,7 @@
                     if (msg = 1) {
                         $('#confirm_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Question Posted Successfully. Please wait for the question to be approved and answered!!</div>');
                         $('#confirm_msg').fadeIn();
-                        $('#confirm_msg').fadeOut(4000);
+                        $('#confirm_msg').fadeOut(8000);
 //                        setTimeout("location.href = site_url+'/faq/list_faq_questions';", 100);
                         //                    toastr.success("Successfully Posted !!", "AutoVille");
                         c_form.reset();
