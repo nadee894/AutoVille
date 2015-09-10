@@ -31,12 +31,12 @@
 
         var carvalue =<?php echo $vehicle_detail->price; ?>;
 
-        $("#price-slider").change(function() {
+        $("#price-slider").mousemove(function() {
             var month_val=parseInt(carvalue) - parseInt($("#price-slider").val());
             $("#val3").html("Rs. "+month_val.toFixed(2));
         });
 
-        $("#month-slider").change(function() {
+        $("#month-slider").mousemove(function() {
             var month_val=(parseInt(carvalue) - parseInt($("#price-slider").val())) / parseInt($("#month-slider").val());
             $("#val3").html("Rs. "+month_val.toFixed(2));
         });
