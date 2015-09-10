@@ -14,7 +14,7 @@
         <br>
         <div class="form-group">
             <label>Car Value: </label>
-            <span> Rs.  <?php echo number_format($vehicle_detail->price,2); ?></span>
+            <span> Rs.  <?php echo number_format($vehicle_detail->price, 2); ?></span>
         </div>
         <br>
         <div class="form-group">
@@ -27,18 +27,18 @@
 </figure>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         var carvalue =<?php echo $vehicle_detail->price; ?>;
 
-        $("#price-slider").mousemove(function() {
-            var month_val=parseInt(carvalue) - parseInt($("#price-slider").val());
-            $("#val3").html("Rs. "+month_val.toFixed(2));
+        $("#price-slider").change(function () {
+            var month_val = parseInt(carvalue) - parseInt($("#price-slider").val());
+            $("#val3").html("Rs. " + month_val.toFixed(2));
         });
 
-        $("#month-slider").mousemove(function() {
-            var month_val=(parseInt(carvalue) - parseInt($("#price-slider").val())) / parseInt($("#month-slider").val());
-            $("#val3").html("Rs. "+month_val.toFixed(2));
+        $("#month-slider").change(function () {
+            var month_val = (parseInt(carvalue) - parseInt($("#price-slider").val())) / parseInt($("#month-slider").val());
+            $("#val3").html("Rs. " + month_val.toFixed(2));
         });
 
     });

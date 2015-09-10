@@ -115,6 +115,7 @@
                                     <a href="<?php echo site_url(); ?>/home">About Us</a>
                                     <a href="<?php echo site_url(); ?>/pages/contact_us">Contact</a>
                                     <a href="<?php echo site_url(); ?>/faq/list_faq_questions">FAQ</a>
+                                    <a href="<?php echo site_url(); ?>/pages/how_to_buy">How To Buy</a>
                                 </li>
                             </ul>
                         </div>

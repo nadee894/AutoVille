@@ -23,11 +23,11 @@ class Pages extends CI_Controller {
         $this->template->load('template/main_template', $parials, $data);
     }
 
-    function faq() {
+    function how_to_buy() {
 
         $data['']='';
         
-        $parials = array('content' => 'content_pages/faq_view');
+        $parials = array('content' => 'content_pages/how_to_buy_view');
         $this->template->load('template/main_template', $parials, $data);
     }
 }

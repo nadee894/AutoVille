@@ -65,4 +65,37 @@ class Faq extends CI_Controller {
         echo $faq_service->delete_faqs(trim($this->input->post('id', TRUE)));
     }
 
+    function send_faq_answer_email() {
+        $faq_model = new faq_model();
+        $faq_service = new faq_service();
+
+        $faq_question = $faq_service->get_question_by_id($faq_model);
+
+
+        $email_subject = "AutoVille FAQ Answer";
+        $data['user_name'] = 'Sir/Madam';
+        $data['name'] = 'Sir/Madam';
+        $data['user_email'] = $faq_question->email;
+//        $data['phone']        = $this->input->post('phone', TRUE);
+        $data['sender_email'] = $this->input->post('sender_email', TRUE);
+        $data['msg'] = 'Your Question has been answered and Updated. To check Your Answer refer below Link'
+                . ''
+                . ''
+                . 'http://localhost:8080/autoville/index.php/faq/list_faq_questions';
+
+        $msg = $this->load->view('template/mail_template/body_ask', $data, TRUE);
+
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
+
+        if (mail($data['sender_email'], $email_subject, $msg, $headers)) {
+            echo "1";
+            echo 'Mail sent successfully';
+        } else {
+            echo "0";
+            echo 'Mail not sent successfully';
+        }
+    }
+
 }
