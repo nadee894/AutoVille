@@ -68,7 +68,7 @@ class Faq extends CI_Controller {
     function send_faq_answer_email() {
         $faq_model = new faq_model();
         $faq_service = new faq_service();
-
+        $faq_model->setId($this->input->post('id', TRUE));
         $faq_question = $faq_service->get_question_by_id($faq_model);
 
 
