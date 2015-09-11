@@ -1,17 +1,17 @@
-<header class="clearfix">                        
+<header class="clearfix"  style="padding: 15px;">                        
     <h2>
-        <a href="#advanced-search" class="show-more pull-left" data-toggle="collapse" aria-expanded="false" aria-controls="advanced-search">Advanced Search</a>
+        <a href="#advanced-search" class="show-more pull-left" data-toggle="collapse" aria-expanded="false" aria-controls="advanced-search">Custom Search</a>
     </h2>
     <br/>
 </header>
 <div class="advanced-search collapse" id="advanced-search" style="padding: 15px">    
-    <h4>Features</h4>
+    <h4>Add Features</h4>
     <form id="add_features_form" role="form" method="post">
         <div class="row col-md-12">
             <ul class="list-unstyled list-inline checkboxes clearfix">
                 <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="price">Price</label></div></li>
-                <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="manufacture_id">Manufacture</label></div></li>
-                <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="model_id">Model</label></div></li>
+                <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" id="manufacture_id" value="manufacture_id">Manufacture</label></div></li>
+                <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" id="model_id" value="model_id">Model</label></div></li>
                 <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="body_type_id">Body Type</label></div></li>
                 <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="year">Year</label></div></li>
                 <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="fuel_type_id">Fuel</label></div></li>
@@ -22,7 +22,7 @@
                 <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="location_id">Location</label></div></li>            
                 <li><div class="checkbox col-md-2"><label><input type="checkbox" name="features[]" value="description">Keyword</label></div></li>
             </ul>
-        </div>
+        </div>        
 
         <div class="row col-md-12">     
             <button type="button" class="btn btn-default pull-right" onclick="add_fields()" title="Save Feature(s)">Save</button>            
@@ -52,12 +52,16 @@
 </div>
 
 <div class="row col-lg-12" id="advanced_search_result_content">
-   
+
 </div>
 
 <script type="text/javascript">
 
     function add_fields() {
+
+        if ($('#model_id').is(':checked')) {           
+            $('#manufacture_id').prop("checked", true);           
+        }
 
         var form = $("#add_features_form");
 
@@ -71,7 +75,7 @@
                     $('#fade_success').fadeIn();
                     $('#fade_success').fadeOut(4000);
                     add_features_form.reset();
-                    //$('#added_search_features_div').html(msg);
+                    
                     window.setTimeout(function() {
                         location.reload()
                     }, 1000);
@@ -99,5 +103,5 @@
         });
     });
 
-   
+
 </script>
