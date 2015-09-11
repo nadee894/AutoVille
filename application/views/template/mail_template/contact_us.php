@@ -205,27 +205,38 @@
                                                                     <table cellspacing="10" cellpadding="10" class="force-full-width">
 <!--                                                                        <tr>
                                                                             <td style="border-bottom:1px solid #e3e3e3; font-weight: bold; text-align:left">
-                                                                                Dear <?php //echo $name; ?>,
+                                                                                Dear <?php //echo $name;   ?>,
+                                                                            </td>
+                                                                        </tr>
+                                                                        -->                                                                        <tr>
+                                                                            <td style="text-align:left;">
+                                                                                <br/>
+                                                                                <?php echo $name; ?> has requested to contact us regarding the following matter.
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="text-align:left;">
                                                                                 <br/>
-                                                                                AutoVille received a request to reset the password for your AutoVille Account  "<?php// echo $user_name; ?>" on
-                                                                                <?php //echo date('Y-m-d H:i:s'); ?>.
+                                                                                <?php echo $message; ?>.
                                                                             </td>
                                                                         </tr>
-
                                                                         <tr>
-                                                                            <td style="text-align:left;">                                                                                
-                                                                                If you did make the request,then click <a href="<?php echo site_url(); ?>/login/reset_password">here</a> to reset your password.                                                                                                                                                                
+                                                                            <td style="text-align:left;">
+                                                                                <br/>
+                                                                                replied to following email address regarding this matter.
                                                                             </td>
-                                                                        </tr>-->
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="text-align:left;">
+                                                                                <br/>
+                                                                                <?php echo $email; ?>.
+                                                                            </td>
+                                                                        </tr>                                                                 
 
                                                                         <tr>
-                                                                            <td style="text-align:left;">                                                                              
-                                                                                If you don't want to reset your password you can ignore this email.
-                                                                                <br/><br/>
+                                                                            <td style="text-align:left;">                                                                            
+                                                                                
+                                                                                <br/>
                                                                                 Best Regards,
                                                                                 <br/>
                                                                                 <strong>AutoVille Customer Support</strong>

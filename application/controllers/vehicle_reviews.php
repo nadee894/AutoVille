@@ -21,8 +21,12 @@ class Vehicle_reviews extends CI_Controller {
     function load_all_vehicle_reviews() {
         $vehicle_reviews_service = new Vehicle_reviews_service();
         $vehicle_id              = $this->uri->segment(3);
+        $logged_user_id=$this->session->userdata('USER_ID');
+        $data['logged_user']=$this->session->userdata('USER_ID');
+        //echo $logged_user_id;
         //echo $vehicle_id;
         $data['vehicle_reviews'] = $vehicle_reviews_service->get_all_vehicle_reviews($vehicle_id);
+        $data['user_id']= $vehicle_reviews_service->get_logged_in_users_reviews($logged_user_id);
 
         $parials = array('content' => 'vehicle_adds/vehicle_detail_view');
         $this->template->load('template/main_template', $parials, $data);

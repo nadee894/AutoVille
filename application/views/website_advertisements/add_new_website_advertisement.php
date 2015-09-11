@@ -104,9 +104,7 @@
                                                     // extension is not allowed 
                                                     status.text('Only JPG, PNG or GIF files are allowed');
                                                     return false;
-                                                }
-                                                //status.text('Uploading...Please wait');
-                                                //                                            $("#files").html("<i id='animate-icon' class='fa fa-spinner fa fa-2x fa-spin'></i>");
+                                                }                                              
 
                                             },
                                             onComplete: function(file, response) {
@@ -117,7 +115,7 @@
                                                 //Add uploaded file to list
                                                 if (response != "error") {
                                                     $('#files').html("");
-                                                    $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/commercial_images/' + response + '"   width="1000px" height="680px" /><br />');
+                                                    $('<div></div>').appendTo('#files').html('<img src="<?php echo base_url(); ?>uploads/commercial_images/' + response + '"   width="200px" height="200px" /><br />');
                                                     picFileName = response;
                                                     document.getElementById('logo').value = response;
                                                     //                    document.getElementById('cover_image').value = response;
@@ -138,6 +136,10 @@
                         </div>
                         <div id="sta"><span id="status" ></span></div>
                     </div>
+                    <div class="form-group">
+                        <div id="files" class="project-logo">
+                        </div>
+                    </div>
 
                 </section>
             </form>
@@ -156,36 +158,7 @@
             <!--            </form>-->
             <!--/#form-submit-->
         </div>
-        <!--/.col-md-9-->
-        <!--Sidebar-->
-        <!--        <div class="col-md-3">
-                    <aside id="sidebar">
-                        <div class="sidebar-box">
-                            <h3>Payment</h3>
-                            <div class="form-group">
-                                <label for="package">Your Package</label>
-                                <select name="package" id="package" class="framed">
-                                    <option value="">Select your package</option>
-                                    <option value="1">Free</option>
-                                    <option value="2">Silver</option>
-                                    <option value="3">Gold</option>
-                                    <option value="4">Platinum</option>
-                                </select>
-                            </div>
-                             /.form-group 
-                            <h4>This package includes</h4>
-                            <ul class="bullets">
-                                <li>1 Property</li>
-                                <li>1 Agent Profile</li>
-                                <li class="disabled">Agency Profile</li>
-                                <li class="disabled">Featured Properties</li>
-                            </ul>
-                        </div>
-                    </aside>
-                     /#sidebar
-                </div>-->
-        <!-- /.col-md-3-->
-        <!--end Sidebar-->
+        
     </div>
 </section>
 
@@ -204,14 +177,18 @@
 
         $("#commercial_form").validate({
             rules: {
-                topic: "required"
+                topic: "required",
+                price:"required",
+                logo:"required"
             },
             messages: {
-                topic: "Please enter a Topic"
+                topic: "Please enter a Topic",
+                price:"Please enter a Price",
+                logo:"Please upload an image"
             }, submitHandler: function(form)
             {
                 $.post(site_url + '/website_advertisements/add_commercial', $('#commercial_form').serialize(), function(msg)
-                {
+                {                  
                     if (msg == 1) {
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 

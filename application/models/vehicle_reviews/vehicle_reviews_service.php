@@ -82,5 +82,21 @@ class Vehicle_reviews_service extends CI_Model {
         $this->db->where('id', $review_model->get_id());
         return $this->db->update('review', $data);
     }
+    
+    /*
+     * get logged in users reviews
+     */
+    
+    function get_logged_in_users_reviews($user_id){
+        $this->db->select('review.added_by');
+        $this->db->from('review');       
+        $this->db->where('review.is_deleted', '0');
+        $this->db->where('review.is_published', '1');
+        $this->db->where('review.added_by',$user_id);        
+        $query = $this->db->get();
+        echo $this->db->last_query();
+        return $query->result();
+    }
+   
 
 }

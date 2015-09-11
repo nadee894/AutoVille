@@ -15,6 +15,9 @@ class Inquries extends CI_Controller {
     function add_inqurie() {
         $inqurie_model = new Inquries_model();
         $inqurie_service = new Inquries_service();
+        $data['name']=$this->input->post('name', TRUE);
+        $data['message']=$this->input->post('message', TRUE);
+        $data['email']=$this->input->post('email', TRUE);
 
         $inqurie_model->set_name($this->input->post('name', TRUE));
         $inqurie_model->set_email($this->input->post('email', TRUE));
@@ -24,16 +27,16 @@ class Inquries extends CI_Controller {
 
         $msg=$inqurie_service->add_inquries($inqurie_model);
         
-        if($msg='1'){
-            $email = 'ishanipathinayake@gmail.com';
+        if($msg=='1'){
+            $email = 'info.autovillle@gmail.com';
             $email_subject = "AutoVille New Inquiry";
             //$data['msg'] = "New Advertisement submitted!!";
-            $msg = $this->load->view('template/mail_template/contact_us', $data, TRUE);
+            $msg = $this->load->view('template/mail_template/contact_us',$data,TRUE);
 
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
             $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
-            $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+            $headers .= 'Cc: ishanipathinayake@gmail.com' . "\r\n";
 
             mail($email, $email_subject, $msg, $headers);
         }

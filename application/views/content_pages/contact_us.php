@@ -12,22 +12,22 @@
                     <div class="col-md-4 col-sm-4">
                         <header class="no-border"><h3>Address</h3></header>
                         <address>
-                            <div><strong>Spotter Limited</strong></div>
-                            <div>63 Birch Street</div>
-                            <div>Granada Hills, CA 91344</div>
+                            <div><strong>AutoVille (Pvt) Ltd.</strong></div>
+                            <div>65 C, Dharmapala Mawatha,</div>
+                            <div>Colombo 07, Sri Lanka</div>
                             <br>
                             <figure>
                                 <div class="info">
                                     <i class="fa fa-mobile"></i>
-                                    <span>818-832-5258</span>
+                                    <span>077-832-5258</span>
                                 </div>
                                 <div class="info">
                                     <i class="fa fa-phone"></i>
-                                    <span>+1 123 456 789</span>
+                                    <span>+94 123 4567</span>
                                 </div>
                                 <div class="info">
                                     <i class="fa fa-globe"></i>
-                                    <a href="#">www.spotterlimited.com</a>
+                                    <a href="mailto:info.autovillle@gmail.com">info.autovillle@gmail.com</a>
                                 </div>
                             </figure>
                         </address>
@@ -190,7 +190,7 @@
                     $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
                     contact_form.reset();
-                    // window.location = site_url + '/manufacture/manage_manufactures';
+                     window.location = site_url + '/pages/contact_us';
                 } else {
                     $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 

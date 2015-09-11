@@ -13,7 +13,7 @@ class Website_advertisements_model extends CI_Model{
     var $added_by;
     var $updated_date;
     var $updated_by;
-    var $is_featured;
+    //var $is_featured;
     
     function __construct() {
         parent::__construct();
@@ -63,9 +63,9 @@ class Website_advertisements_model extends CI_Model{
         return $this->updated_by;
     }
 
-    function get_is_featured() {
-        return $this->is_featured;
-    }
+//    function get_is_featured() {
+//        return $this->is_featured;
+//    }
 
     function set_id($id) {
         $this->id = $id;
@@ -111,9 +111,9 @@ class Website_advertisements_model extends CI_Model{
         $this->updated_by = $updated_by;
     }
 
-    function set_is_featured($is_featured) {
-        $this->is_featured = $is_featured;
-    }
+//    function set_is_featured($is_featured) {
+//        $this->is_featured = $is_featured;
+//    }
 
 
 }
