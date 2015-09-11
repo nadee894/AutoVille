@@ -40,6 +40,7 @@ class Vehicle_search extends CI_Controller {
         $this->load->model('bookmarked_vehicles/bookmarked_vehicles_service');
 
         $this->load->library('pagination');
+        $this->load->library('pagination_custome');
     }
 
     function load_data() {
@@ -71,6 +72,7 @@ class Vehicle_search extends CI_Controller {
 
         $vehicle_advertisments_model   = new Vehicle_advertisments_model();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
 
         $config = array();
 
@@ -110,7 +112,7 @@ class Vehicle_search extends CI_Controller {
         if ($view_no == 1) {
             echo $this->load->view('vehicle_adds/search_result', $data);
         } else {
-            $parials = array('content' => 'vehicle_adds/search_advertisement');
+            $parials = array('content' => 'vehicle_adds/search_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
             $this->template->load('template/main_template', $parials, $data);
         }
     }
