@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2015 at 08:11 AM
+-- Generation Time: Sep 11, 2015 at 02:48 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.5.27
 
@@ -72,7 +72,15 @@ CREATE TABLE IF NOT EXISTS `bookmarked_vehicles` (
   `added_by` int(11) NOT NULL,
   `updated_date` datetime DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bookmarked_vehicles`
+--
+
+INSERT INTO `bookmarked_vehicles` (`id`, `user_id`, `vehicle_id`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 1, 8, '0', '2015-09-11 14:23:55', 1, NULL, NULL),
+(2, 1, 14, '0', '2015-09-11 14:24:01', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -722,7 +730,15 @@ CREATE TABLE IF NOT EXISTS `searched_vehicles` (
   `user_id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `searched_vehicles`
+--
+
+INSERT INTO `searched_vehicles` (`id`, `user_id`, `vehicle_id`, `date`) VALUES
+(1, 1, 1, '2015-09-11 12:34:26'),
+(2, 1, 11, '2015-09-11 12:36:59');
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1079,18 @@ CREATE TABLE IF NOT EXISTS `website_advertisements` (
   `added_by` int(11) NOT NULL,
   `updated_date` datetime NOT NULL,
   `updated_by` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `website_advertisements`
+--
+
+INSERT INTO `website_advertisements` (`id`, `topic`, `description`, `price`, `image`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(7, 'test', 'test', '22222.00', 'commercial_images_1441951882-advertisement-poster-7.jpg', '1', '0', '2015-09-11 06:11:53', 2, '2015-09-11 06:11:24', 1),
+(8, 'test', 'test', '5.00', 'commercial_images_1441952016-creative-advertisement (13).jpg', '1', '0', '2015-09-11 06:25:17', 2, '2015-09-11 06:13:38', 1),
+(9, 'test', 'test', '60000.00', 'commercial_images_1441952032-australia-post.jpg', '1', '0', '2015-09-11 06:25:25', 2, '2015-09-11 06:13:54', 1),
+(10, 'test', 'test', '63333.00', 'commercial_images_1441952094-advertisements-hung-sing-g-running-shoe-series-psd.jpg', '1', '0', '2015-09-11 06:25:35', 2, '2015-09-11 06:14:57', 1),
+(11, 'test', 'test', '5222.00', 'commercial_images_1441952681-Print-Advertisements-20.jpg', '1', '0', '2015-09-11 06:25:41', 2, '2015-09-11 06:24:43', 1);
 
 --
 -- Indexes for dumped tables
@@ -1266,7 +1293,7 @@ ALTER TABLE `body_type`
 -- AUTO_INCREMENT for table `bookmarked_vehicles`
 --
 ALTER TABLE `bookmarked_vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `comment`
 --
@@ -1336,7 +1363,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `searched_vehicles`
 --
 ALTER TABLE `searched_vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `transmission`
 --
@@ -1391,7 +1418,7 @@ ALTER TABLE `vehicle_news`
 -- AUTO_INCREMENT for table `website_advertisements`
 --
 ALTER TABLE `website_advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
