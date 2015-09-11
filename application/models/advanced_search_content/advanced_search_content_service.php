@@ -114,8 +114,8 @@ class Advanced_search_content_service extends CI_Model {
             $this->db->limit($limit, $start);
         }
         $query = $this->db->get();
-        echo $this->db->last_query();
-        die;
+//        echo $this->db->last_query();
+//        die;
         return $query->result();
     }
 

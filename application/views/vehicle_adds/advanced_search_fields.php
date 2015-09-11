@@ -4,7 +4,7 @@
             <?php
             foreach ($fields as $field) {
 
-                if (($field->field_name == 'manufacture_id') || ($field->field_name == 'model_id')) {
+                if ($field->field_name == 'manufacture_id') {
                     ?>    
                     <div class="form-group col-lg-2">
                         <label for="manufacturer">Manufacturer</label>
