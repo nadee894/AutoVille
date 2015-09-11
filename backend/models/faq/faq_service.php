@@ -19,6 +19,8 @@ class Faq_service extends CI_Model {
     public function get_question_by_id($faq_model) {
         $data = array('id' => $faq_model->getId(), 'is_deleted' => '0');
         $query = $this->db->get_where('faq', $data);
+        echo $this->db->last_query();
+        die();
         return $query->row();
     }
 
@@ -41,10 +43,10 @@ class Faq_service extends CI_Model {
         return $this->db->update('faq', $data);
     }
 
-    public function delete_faqs($faq_id){
-        $data= array('is_deleted'=>'1');
-        $this->db->where('id',$faq_id);
-        return $this->db->update('faq',$data);
-        
+    public function delete_faqs($faq_id) {
+        $data = array('is_deleted' => '1');
+        $this->db->where('id', $faq_id);
+        return $this->db->update('faq', $data);
     }
+
 }
