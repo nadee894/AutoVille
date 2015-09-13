@@ -360,7 +360,9 @@ class Vehicle_advertisements extends CI_Controller {
         $website_advertisement_service = new Website_advertisements_service();
 
         $vehicle_id = $this->uri->segment(3);
-
+        
+        
+        
 
         $data['equipments']         = $equipment_service->get_all_active_equipment();
         $data['vehicle_detail']     = $vehicle_advertisments_service->get_advertisement_by_id($id);
@@ -368,6 +370,11 @@ class Vehicle_advertisements extends CI_Controller {
         $data['images']             = $vehicle_images_service->get_images_for_advertisement($id);
         $data['vehicle_reviews']    = $vehicle_reviews_service->get_all_vehicle_reviews($vehicle_id);
         $data['review_looks_count'] = count($searched_vehicles_service->get_view_count_for_advertisement($id));
+        
+        
+        $data['suggestions'] = $vehicle_advertisments_service->similar_suggestions($data['vehicle_detail']->manufacture_id, $data['vehicle_detail']->model_id);
+        
+        
         $vehicle_equipments         = $vehicle_equipment_service->get_equipments_by_vehicle_id($id);
         $equipment_array            = array();
         foreach ($vehicle_equipments as $value) {

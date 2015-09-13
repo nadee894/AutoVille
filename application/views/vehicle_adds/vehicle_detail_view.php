@@ -114,7 +114,8 @@
                                         <i class="fa fa-mobile"></i>
                                         <span><?php echo $seller_add->contact_no_1; ?></span>
                                     </div>
-                                    <?php if ($seller_add->contact_no_2 != '') { ?>
+                                    <?php if (isset($seller_add->contact_no_2) )
+                                            if ($seller_add->contact_no_2 != '') { ?>
                                         <div class="info">
                                             <i class="fa fa-phone"></i>
                                             <span><?php echo $seller_add->contact_no_2; ?></span>
@@ -242,52 +243,26 @@
         <div class="col-md-3">
             <aside id="sidebar">
                 <section>
-                    <header><h2>Similar listings</h2></header>
-                    <a href="item-detail.html" class="item-horizontal small">
-                        <h3>Cash Cow Restaurante</h3>
-                        <figure>63 Birch Street</figure>
+                    <header><h2>Similar Suggestions</h2></header>
+                    
+                    <?php foreach($suggestions as $suggestion){ 
+                        if($vehicle_detail->id==$suggestion->id)
+                            continue;
+                        ?>
+                    <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $suggestion->id; ?>" class="item-horizontal small">
+                        <h3><?php echo $suggestion->description; ?></h3>
+                        
                         <div class="wrapper">
-                            <div class="image"><img src="assets/img/items/1.jpg" alt=""></div>
+                            <div class="image"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $suggestion->id . '/' . $suggestion->image_path; ?>" alt=""></div>
                             <div class="info">
                                 <div class="type">
-                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                    <span>Restaurant</span>
+                                    <span><?php echo $suggestion->year; ?>, <?php echo $suggestion->fuel_type; ?></span>
+                                    <span style="color: red; font-size: 15px;">Rs. <?php echo number_format($suggestion->price, 2, '.', ','); ?></span>
                                 </div>
-                                <div class="rating" data-rating="4"></div>
                             </div>
                         </div>
                     </a>
-                    <!--/.item-horizontal small-->
-                    <a href="item-detail.html" class="item-horizontal small">
-                        <h3>Blue Chilli</h3>
-                        <figure>2476 Whispering Pines Circle</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="assets/img/items/2.jpg" alt=""></div>
-                            <div class="info">
-                                <div class="type">
-                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                    <span>Restaurant</span>
-                                </div>
-                                <div class="rating" data-rating="3"></div>
-                            </div>
-                        </div>
-                    </a>
-                    <!--/.item-horizontal small-->
-                    <a href="item-detail.html" class="item-horizontal small">
-                        <h3>Eddie’s Fast Food</h3>
-                        <figure>4365 Bruce Street</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="assets/img/items/3.jpg" alt=""></div>
-                            <div class="info">
-                                <div class="type">
-                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                    <span>Restaurant</span>
-                                </div>
-                                <div class="rating" data-rating="5"></div>
-                            </div>
-                        </div>
-                    </a>
-                    <!--/.item-horizontal small-->
+                    <?php } ?>
                 </section>
                 <section>
                     <?php echo $this->load->view('vehicle_adds/commercial_add_view'); ?>
