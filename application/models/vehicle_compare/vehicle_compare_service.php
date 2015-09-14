@@ -76,14 +76,13 @@ class Vehicle_compare_service extends CI_Model {
         $this->db->join('vehicle_images', 'vehicle_images.vehicle_id = vehicle_advertisements.id');
         $this->db->where('vehicle_advertisements.is_deleted', '0');
         $this->db->where('vehicle_advertisements.is_published', '1');
-
-        foreach ($id_arr as $id) {
-            $this->db->or_where('vehicle_advertisements.id',$id);
-        }
-
+        $this->db->where_in('vehicle_advertisements.id', $id_arr);
         $this->db->group_by('vehicle_advertisements.id');
 
         $query = $this->db->get();
+
+//        echo $this->db->last_query();
+//        die;
         return $query->result();
     }
 

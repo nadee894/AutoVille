@@ -248,7 +248,9 @@ function CurrencyFormat($number) {
                                                             success: function (msg) {
                                                                 if (msg != 0) {
 
-                                                                    $.jStorage.set("vehicle" + id, msg);
+                                                                    //save key as vehicle_vehicleid, load_li_tags return <li> tag for one vehicle, save it as value                                                                   
+                                                                    //$.jStorage.set(key, value, options), Saves a value to local storage 
+                                                                    $.jStorage.set("vehicle_" + id, msg);
                                                                     jStorege_get_values();
 
                                                                 } else {
@@ -260,23 +262,28 @@ function CurrencyFormat($number) {
                                                     }
 
 
+                                                    //append all <li> tags and compare button,load compare_vehicle_list on header
                                                     function jStorege_get_values() {
-                                                        var jSindex = $.jStorage.index();
 
-                                                        var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+                                                        //$.jStorage.index() Returns all the keys currently in use as an array.
+                                                        var key_list = $.jStorage.index();
 
-                                                        var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+                                                        var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + key_list.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-                                                        if (jSindex.length == 0) {
+                                                        if (key_list.length == 0) {
                                                             li_list = '<li>Add Vehicle</li>';
                                                         }
 
-                                                        for (i = 0; i < jSindex.length; i++) {
-                                                            li_list += $.jStorage.get(jSindex[i]);
+                                                        //append all li tags
+                                                        for (i = 0; i < key_list.length; i++) {
+                                                            li_list += $.jStorage.get(key_list[i]);
                                                         }
 
-                                                        if (jSindex.length >= 2) {
-                                                            li_list += compareBtn;
+                                                        var compare_btn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user/' + key_list + '" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+
+                                                        //append compare button
+                                                        if (key_list.length >= 2) {
+                                                            li_list += compare_btn;
                                                         }
 
                                                         li_list += '</ul>';
