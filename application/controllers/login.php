@@ -17,7 +17,7 @@ class Login extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
-
+        //author Ashani
     function activate() {
         if ($this->register_users_service->activate_user($_GET['email'], $_GET['token'])) {
             redirect(site_url() . '/login/load_login');
