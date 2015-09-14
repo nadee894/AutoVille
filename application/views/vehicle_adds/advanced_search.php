@@ -88,7 +88,7 @@
 
                 if ($is_field_added == FALSE) {
                     ?>
-                    <h3>All Fields have been Added! <?php echo $is_field_added; ?></h3>
+                    <h3>All Fields have been Added! </h3>
                     <?php
                 }
                 ?>                                                                                                                                                                                          
