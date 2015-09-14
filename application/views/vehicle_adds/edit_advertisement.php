@@ -463,6 +463,7 @@
                                         $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
                                         {
                                             $('#model_wrapper').html(msg);
+                                            $('#model').selectpicker();
                                         });
                                     });
 
