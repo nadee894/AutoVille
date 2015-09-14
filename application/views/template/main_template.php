@@ -272,7 +272,7 @@
             $(function() {
                 var pusher = new Pusher('ec747a95f1c879f5fd91');
                 var chatWidget = new PusherChatWidget(pusher, {
-                    chatEndPoint: 'pusher-realtime-chat-widget/src/php/chat.php'
+                    chatEndPoint: '<?php echo base_url(); ?>application_resources/pusher/php/chat.php'
                 });
             });
 
