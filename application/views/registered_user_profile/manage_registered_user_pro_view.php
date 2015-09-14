@@ -62,7 +62,7 @@
         </div>
 
         <div class="col-md-3 col-sm-9">
-            
+
 
             <section>
                 <h3>
@@ -97,137 +97,134 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/validateIt.js"></script>
 
 <script type="text/javascript">
-    
-    function showNotification(msg){
-        a=`<div class="notification_216" style="
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            border: black solid 2px;
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 22px;
-        ">`+msg+`</div>`;
-    $("#details_").prepend(a);
-    setTimeout(function(){ $(".notification_216").fadeOut(function(){ $(this).remove(); }); }, 3000);
-    }
+
+            function showNotification(msg){
+            a = ` < div class = "notification_216" style = "
+                    position: fixed;
+                    bottom: 10px;
+                    left: 10px;
+                    border: black solid 2px;
+                    border - radius: 10px;
+                    padding: 10px;
+                    font - size: 22px;
+                    ">`+msg+`</div>`;
+                    $("#details_").prepend(a);
+                    setTimeout(function(){ $(".notification_216").fadeOut(function(){ $(this).remove(); }); }, 3000);
+            }
     function submitForm() {
-        var postData = $("#edit_reg_user_profile_form").serializeArray();
-        var formURL = site_url + '/reg_user_profile/update_reg_user_profile';
-        //alert(formURL); 
+    var postData = $("#edit_reg_user_profile_form").serializeArray();
+            var formURL = site_url + '/reg_user_profile/update_reg_user_profile';
+            //alert(formURL); 
 
 
-        $.ajax(
-                {
-                    url: formURL,
+            $.ajax(
+            {
+            url: formURL,
                     type: "POST",
                     data: postData,
                     success: function(data, textStatus, jqXHR)
                     {
-                        //alert(data + ">>" + textStatus);
-                        if (data == "SUCCESS" ) {
-                            
-                            showNotification("Successfully Updated")
+                    //alert(data + ">>" + textStatus);
+                    if (data == "SUCCESS") {
+
+                    showNotification("Successfully Updated")
                             toastr.success("Successfully Updated", "AutoVille");
-                        }
-                        else{
-                            showNotification("Error!")
+                    }
+                    else{
+                    showNotification("Error!")
                             toastr.error("Error!!", "AutoVille");
-                        }
+                    }
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        showNotification("Error!")
-                        toastr.error("Error!!", "AutoVille");
+                    showNotification("Error!")
+                            toastr.error("Error!!", "AutoVille");
                     }
-                });
-        //$("#edit_reg_user_profile_form").submit(); //Submit  the FORM
+            });
+            //$("#edit_reg_user_profile_form").submit(); //Submit  the FORM
     }
 
     function submitPasswordForm() {
-        var postData = $("#form-password").serializeArray();
-        var formURL = site_url + '/reg_user_profile/update_reg_user_profile_password';
-        //alert(formURL); 
+    var postData = $("#form-password").serializeArray();
+            var formURL = site_url + '/reg_user_profile/update_reg_user_profile_password';
+            //alert(formURL); 
 
 
-        $.ajax(
-                {
-                    url: formURL,
+            $.ajax(
+            {
+            url: formURL,
                     type: "POST",
                     data: postData,
                     success: function(data, textStatus, jqXHR)
                     {
-                        //alert(data + ">>" + textStatus);
-                        if (data == "SUCCESS" ) {
-                            
-                            showNotification("Successfully Updated")
+                    //alert(data + ">>" + textStatus);
+                    if (data == "SUCCESS") {
+
+                    showNotification("Successfully Updated")
                             toastr.success("Successfully Updated", "AutoVille");
-                        }
-                        else{
-                            showNotification("Error!")
+                    }
+                    else{
+                    showNotification("Error!")
                             toastr.error("Error!!", "AutoVille");
-                        }
+                    }
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        showNotification("Error!")
-                        toastr.error("Error!!", "AutoVille");
+                    showNotification("Error!")
+                            toastr.error("Error!!", "AutoVille");
                     }
-                });
-        //$("#edit_reg_user_profile_form").submit(); //Submit  the FORM
+            });
+            //$("#edit_reg_user_profile_form").submit(); //Submit  the FORM
     }
-    
-        var password = document.getElementById("new_pwd")
-        , confirm_password = document.getElementById("confirm_new_pwd");
 
-      function validatePassword(){
-        if(password.value != confirm_password.value) {
-          confirm_password.setCustomValidity("Passwords Don't Match");
-        } else {
-          confirm_password.setCustomValidity('');
-        }
-      }
+    var password = document.getElementById("new_pwd")
+            , confirm_password = document.getElementById("confirm_new_pwd");
+            function validatePassword(){
+            if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+            confirm_password.setCustomValidity('');
+            }
+            }
 
-      password.onchange = validatePassword;
-      confirm_password.onkeyup = validatePassword;
-    $(document).ready(function() {
+    password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+            $(document).ready(function() {
 
-        $('#form-password').submit(function(event){
-            // cancels the form submission
-            event.preventDefault();
+    $('#form-password').submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
             submitPasswordForm();
-        // do whatever you want here
-        });
-        $('#edit_reg_user_profile_form').submit(function(event){
-            // cancels the form submission
-            event.preventDefault();
+            // do whatever you want here
+    });
+            $('#edit_reg_user_profile_form').submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
             submitForm();
-        // do whatever you want here
-        });
-        
-        
-        /*   
-         $("#edit_reg_user_profile_form").submit(function(e)
-         {
-         $("#edit_reg_user_profile_form").validate({
-         rules: {},
-         messages: {}, submitHandler: function(form)
-         {
-         alert("aaaaaaaaaaaaaaaaa");
-         $.post(site_url + '/reg_user_profile/update_reg_user_profile', $('#edit_reg_user_profile_form').serialize(), function(msg)
-         {
-         //alert(msg);
-         if (msg == 1) {
-         toastr.success("Successfully Updated", "AutoVille");
-         window.location = site_url + '/reg_user_profile/load_profile_of_reg_user'
-         } else {
-         toastr.error("Error!!", "AutoVille");
-         
-         }
-         });
-         }
-         
-         });*/
+            // do whatever you want here
+    });
+            /*   
+             $("#edit_reg_user_profile_form").submit(function(e)
+             {
+             $("#edit_reg_user_profile_form").validate({
+             rules: {},
+             messages: {}, submitHandler: function(form)
+             {
+             alert("aaaaaaaaaaaaaaaaa");
+             $.post(site_url + '/reg_user_profile/update_reg_user_profile', $('#edit_reg_user_profile_form').serialize(), function(msg)
+             {
+             //alert(msg);
+             if (msg == 1) {
+             toastr.success("Successfully Updated", "AutoVille");
+             window.location = site_url + '/reg_user_profile/load_profile_of_reg_user'
+             } else {
+             toastr.error("Error!!", "AutoVille");
+             
+             }
+             });
+             }
+             
+             });*/
     });
 
 </script>
