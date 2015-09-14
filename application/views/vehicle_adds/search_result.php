@@ -74,7 +74,7 @@
 
                                         <?php
                                         $bookmarked_vehicles_service = new Bookmarked_vehicles_service();
-                                        $bookmarked_vehile_det       = $bookmarked_vehicles_service->get_bookmarkd_vehicle($this->session->userdata('USER_ID'), $result->id);
+                                        $bookmarked_vehile_det = $bookmarked_vehicles_service->get_bookmarkd_vehicle($this->session->userdata('USER_ID'), $result->id);
                                         ?>                                        
 
                                         <!--Add New Bookmark-->
@@ -154,8 +154,8 @@
 <?php
 
 function CurrencyFormat($number) {
-    $decimalplaces     = 2;
-    $decimalcharacter  = '.';
+    $decimalplaces = 2;
+    $decimalcharacter = '.';
     $thousandseparater = ',';
     return number_format($number, $decimalplaces, $decimalcharacter, $thousandseparater);
 }
@@ -181,7 +181,7 @@ function CurrencyFormat($number) {
                                                                     type: "POST",
                                                                     url: site_url + '/bookmarked_vehicles/bookmark_vehicle',
                                                                     data: "vehicle_id=" + vehicle_id,
-                                                                    success: function(msg) {
+                                                                    success: function (msg) {
                                                                         if (msg != 0) {
                                                                             toastr.success("Successfully Bookmarked!!", "AutoVille");
                                                                             $('#bookmark_status_' + vehicle_id).val('1');
@@ -203,7 +203,7 @@ function CurrencyFormat($number) {
                                                                     type: "POST",
                                                                     url: site_url + '/bookmarked_vehicles/remove_bookmark',
                                                                     data: "bookmark_id=" + bookmark_id,
-                                                                    success: function(msg) {
+                                                                    success: function (msg) {
                                                                         if (msg != 0) {
                                                                             toastr.success("Bookmark Removed Successfully!!", "AutoVille");
                                                                             $('#bookmark_status_' + vehicle_id).val('0');
@@ -227,7 +227,7 @@ function CurrencyFormat($number) {
                                                             type: "POST",
                                                             url: site_url + '/vehicle_compare/add_vehicle_to_compare',
                                                             data: "id=" + id,
-                                                            success: function(msg) {
+                                                            success: function (msg) {
                                                                 if (msg != 0) {
                                                                     toastr.success("Successfully parked in Garage!!", "AutoVille");
                                                                     $('#compare_vehicle_list').html(msg);
@@ -245,7 +245,7 @@ function CurrencyFormat($number) {
                                                             type: "POST",
                                                             url: site_url + '/vehicle_compare/load_li_tags',
                                                             data: "id=" + id,
-                                                            success: function(msg) {
+                                                            success: function (msg) {
                                                                 if (msg != 0) {
 
                                                                     $.jStorage.set("vehicle" + id, msg);
@@ -281,6 +281,16 @@ function CurrencyFormat($number) {
 
                                                         li_list += '</ul>';
                                                         $('#compare_vehicle_list').html(li_list);
+                                                    }
+
+
+                                                    //this function invokes from Pagination_custome.php in system/libraries    
+                                                    function setting_pagination_content(url) {
+
+                                                        $.post(url, {}, function (msg)
+                                                        {
+                                                            $('#advanced_search_result_content').html(msg);
+                                                        });
                                                     }
 
 </script>
