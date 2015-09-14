@@ -31,7 +31,7 @@
                 </tr>
 
                 <tr>
-                    <?php if (!$this->session->userdata('USER_LOGGED_IN')) { ?>
+                    <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                         <th>Actions</th>    
                         <?php foreach ($vehicle_list as $result) { ?>
                             <td align="center"><a href="#"><i class="fa fa-trash-o" onclick="delete_compared_vehicle(<?php echo $result->id; ?>)"></i></a></td>      
