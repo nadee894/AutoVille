@@ -4,15 +4,16 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script>
-    $(window).load(function() {
-        $.ajax({
-            type: "POST",
-            url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
-            data: {vehicle_id: $('#vehicle_id').val()},
-            success: function(msg) {
+    $.ajax({
+        type: "POST",
+        url: '<?php echo site_url(); ?>/vehicle_advertisements/add_search_history',
+        data: {vehicle_id: <?php echo $vehicle_detail->id;?>},
+        success: function(msg) {
 
-            }
-        });
+        }
+    });
+
+    $(window).load(function() {
 
         if ($('.owl-carousel').length > 0) {
             if ($('.carousel-full-width').length > 0) {
