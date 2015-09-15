@@ -19,8 +19,10 @@ class Login extends CI_Controller {
     }
 
     function activate() {
-        if ($this->register_users_service->activate_user($_GET['email'], $_GET['token'])) {
+        if ($this->register_users_service->activate_user($this->input->get('email', TRUE), $this->input->get('token', TRUE))) {
             redirect(site_url() . '/login/load_login');
+        }else{
+            echo "Activation Link is Expired !!";
         }
     }
 
