@@ -25,9 +25,9 @@
                 if ($resultcount == 3 || $resultcount > 3) {
                     $class_no = 4;
                 } else if ($resultcount == 2) {
-                    $class_no = 5;
+                    $class_no = 4;
                 } else if ($resultcount == 1) {
-                    $class_no = 8;
+                    $class_no = 4;
                 }
             } else if ($is_advance_search == '1') {
                 //advanced search
