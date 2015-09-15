@@ -1,5 +1,5 @@
 <div id="tst_">
-    
+
 </div>
 <!--Page Content-->
 <div id="page-content">
@@ -67,9 +67,9 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
-        $('#account-submit').click(function() {
+        $('#account-submit').click(function () {
             var validator = $("#form-register").validate();
             validator.resetForm();
 
@@ -117,11 +117,11 @@
                     required: "Confirm the password",
                     equalTo: "Passwords do not match"
                 }
-            }, submitHandler: function(form)
+            }, submitHandler: function (form)
             {
-                $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function(msg)
+                $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function (msg)
                 {
-                    banana=msg;
+                    banana = msg;
                     $("#tst_").html(banana);
                     alert(banana);
                     if (msg == "1") {

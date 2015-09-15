@@ -116,7 +116,42 @@ class Reg_User_Profile extends CI_Controller {
         $sts = 0;
         if(isset($_POST['new_pwd'])){
             if($_POST['new_pwd']!=''){
+                if( strcmp($user->password,md5($this->input->post('current_pwd', TRUE)) )==0 ){
+                    $data['password'] = md5($this->input->post('new_pwd', TRUE));
+                }
+                else{
+                    $sts=-1;
+                }
                 
+            }
+        }
+        //$reg_user_profile_model->set_profile_pic($this->input->post('profile_pic', TRUE));
+        //$reg_user_profile_model->set_updated_by($this->session->userdata('USER_ID'));
+        
+        if($sts == 0)
+            if($reg_user_profile_service->update_reg_user($user->user_name, $data)!=1)
+                $sts = -1;
+        
+        if($sts==0)
+            echo"SUCCESS";
+        else
+            echo"ERROR";
+    }
+    
+    
+    
+    
+    function update_reg_user_profile_password() {
+        $reg_user_profile_model=new Reg_User_Profile_model();
+        $reg_user_profile_service=new Reg_User_Profile_service();
+        
+        $reg_user_profile_model->set_id($this->session->userdata('USER_ID'));
+        $user=$reg_user_profile_service->get_reg_user_by_id($reg_user_profile_model);
+        
+        $data=array();
+        $sts = 0;
+        if(isset($_POST['new_pwd'])){
+            if($_POST['new_pwd']!=''){
                 if( strcmp($user->password,md5($this->input->post('current_pwd', TRUE)) )==0 ){
                     $data['password'] = md5($this->input->post('new_pwd', TRUE));
                 }
