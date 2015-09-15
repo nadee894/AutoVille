@@ -6,6 +6,8 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                     <header>
+                        <meta name="google-signin-client_id" content="985266696918-0t2g0klgc5omnq1mbchcvf9navi9v6dh.apps.googleusercontent.com">
+
                         <h1 class="page-title">Sign In</h1>
                     </header>
                     <hr>
@@ -38,7 +40,12 @@
                             Login Successfull!!
                         </div>
                     </div>
-                </div>                
+                </div>   
+                <div class="col-md-4">
+                <div id="my-signin2"></div>
+
+                </div>
+
             </div>
         </div>
     </section>
@@ -46,9 +53,28 @@
 </div>
 <!-- end Page Content-->
 
-
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
+    
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'https://www.googleapis.com/auth/plus.login',
+        'width': 200,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+
 
                                 var base_url = "<?php echo base_url(); ?>";
                                 var site_url = "<?php echo site_url(); ?>";
