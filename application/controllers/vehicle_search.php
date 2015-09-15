@@ -78,7 +78,7 @@ class Vehicle_search extends CI_Controller {
 
         $config["base_url"]    = site_url() . "/vehicle_search/search_advertisements/";
         $config["per_page"]    = 12;
-        $config["uri_segment"] = 4;
+        $config["uri_segment"] = 3;
         $config["num_links"]   = 4;
 
 

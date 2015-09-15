@@ -114,13 +114,15 @@
                                         <i class="fa fa-mobile"></i>
                                         <span><?php echo $seller_add->contact_no_1; ?></span>
                                     </div>
-                                    <?php if (isset($seller_add->contact_no_2) )
-                                            if ($seller_add->contact_no_2 != '') { ?>
-                                        <div class="info">
-                                            <i class="fa fa-phone"></i>
-                                            <span><?php echo $seller_add->contact_no_2; ?></span>
-                                        </div>
-                                    <?php } ?>
+                                    <?php
+                                    if (isset($seller_add->contact_no_2))
+                                        if ($seller_add->contact_no_2 != '') {
+                                            ?>
+                                            <div class="info">
+                                                <i class="fa fa-phone"></i>
+                                                <span><?php echo $seller_add->contact_no_2; ?></span>
+                                            </div>
+                                        <?php } ?>
                                     <div class="info">
                                         <i class="fa fa-envelope"></i>
                                         <a href="mailto:<?php echo $seller_add->email; ?>"><?php echo $seller_add->email; ?></a>
@@ -244,24 +246,24 @@
             <aside id="sidebar">
                 <section>
                     <header><h2>Similar Suggestions</h2></header>
-                    
-                    <?php foreach($suggestions as $suggestion){ 
-                        if($vehicle_detail->id==$suggestion->id)
+                    <?php
+                    foreach ($suggestions as $suggestion) {
+                        if ($vehicle_detail->id == $suggestion->id)
                             continue;
                         ?>
-                    <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $suggestion->id; ?>" class="item-horizontal small">
-                        <h3><?php echo $suggestion->description; ?></h3>
-                        
-                        <div class="wrapper">
-                            <div class="image"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $suggestion->id . '/' . $suggestion->image_path; ?>" alt=""></div>
-                            <div class="info">
-                                <div class="type">
-                                    <span><?php echo $suggestion->year; ?>, <?php echo $suggestion->fuel_type; ?></span>
-                                    <span style="color: red; font-size: 15px;">Rs. <?php echo number_format($suggestion->price, 2, '.', ','); ?></span>
+                        <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $suggestion->id; ?>" class="item-horizontal small">
+                            <h3><?php echo $suggestion->description; ?></h3>
+
+                            <div class="wrapper">
+                                <div class="image"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $suggestion->id . '/' . $suggestion->image_path; ?>" alt=""></div>
+                                <div class="info">
+                                    <div class="type">
+                                        <span><?php echo $suggestion->year; ?>, <?php echo $suggestion->fuel_type; ?></span>
+                                        <span style="color: red; font-size: 15px;">Rs. <?php echo number_format($suggestion->price, 2, '.', ','); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
                     <?php } ?>
                 </section>
                 <section>

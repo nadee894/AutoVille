@@ -32,7 +32,7 @@ class Dashboard extends CI_Controller {
 
         $config["base_url"]    = site_url() . "/dashboard/load_my_advertisements/";
         $config["per_page"]    = 8;
-        $config["uri_segment"] = 4;
+        $config["uri_segment"] = 3;
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
 
@@ -57,7 +57,7 @@ class Dashboard extends CI_Controller {
 
         $config["base_url"]    = site_url() . "/dashboard/load_my_advertisements/";
         $config["per_page"]    = 8;
-        $config["uri_segment"] = 4;
+        $config["uri_segment"] = 3;
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($vehicle_advertisements_service->get_advertisements_for_user('', '', $this->session->userdata('USER_ID')));
 
@@ -79,7 +79,7 @@ class Dashboard extends CI_Controller {
 
         $config["base_url"]    = site_url() . "/dashboard/load_saved_searches/";
         $config["per_page"]    = 8;
-        $config["uri_segment"] = 4;
+        $config["uri_segment"] = 3;
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($searched_vehicles_service->get_searched_vehicles_for_user('', '', $this->session->userdata('USER_ID')));
 
@@ -106,7 +106,7 @@ class Dashboard extends CI_Controller {
 
         $config["base_url"]    = site_url() . "/dashboard/load_bookmarked_vehicles/";
         $config["per_page"]    = 8;
-        $config["uri_segment"] = 4;
+        $config["uri_segment"] = 3;
         $config["num_links"]   = 4;
         $config["total_rows"]  = count($bookmarked_vehicles_service->get_bookmarked_vehicles('', '', $this->session->userdata('USER_ID')));
 
