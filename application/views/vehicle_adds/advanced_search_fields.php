@@ -14,6 +14,9 @@
                                 <option value="<?php echo $manufacture->id; ?>"><?php echo $manufacture->name; ?></option>
                             <?php } ?>
                         </select>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -22,11 +25,16 @@
                     <div class="form-group col-lg-2">                        
                         <label for="model">Model</label>
                         <div id="model_wrapper">
-                            <select name="model" id="model" data-live-search="true" disabled="true">
+                            <select name="model" id="model" data-live-search="true">
                                 <option value="">Select Model</option>
-
+                                <?php foreach ($models as $model) { ?>
+                                    <option value="<?php echo $model->id; ?>"><?php echo $model->name; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>        
                     <?php
                 }
@@ -40,21 +48,26 @@
                                 <option value="<?php echo $body_type->id; ?>"><?php echo $body_type->name; ?></option>
                             <?php } ?>
                         </select>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>        
                     <?php
                 }
                 if ($field->field_name == 'year') {
                     ?>
                     <div class="form-group col-lg-2">
-                        <label>Year</label>
+                        <label for="year-slider">Year</label>                       
                         <div class="ui-slider" id="year-slider" data-value-min="1920" data-value-max="2015" data-step="1">
                             <div class="values clearfix">
                                 <input class="value-min" id="minyear" name="minyear" readonly>
                                 <input class="value-max" id="maxyear" name="maxyear" readonly>
-                            </div>
-                            <div class="element"></div>
-                        </div>
-                    </div>
+                            </div>              
+                        </div>                         
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
+                    </div>                    
                     <?php
                 }
                 if ($field->field_name == 'fuel_type_id') {
@@ -67,6 +80,9 @@
                                 <option value="<?php echo $fuel_type->id; ?>"><?php echo $fuel_type->name; ?></option>
                             <?php } ?>
                         </select>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -80,6 +96,9 @@
                             <option value="Used">Used</option>
                             <option value="Reconditioned">Reconditioned</option>
                         </select>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -99,6 +118,9 @@
                             <option value="Black">Black</option>
                             <option value="Silver">Silver</option>
                         </select>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -113,6 +135,9 @@
                             </div>
                             <div class="element"></div>
                         </div>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -126,6 +151,9 @@
                                 <option value="<?php echo $transmission->id; ?>"><?php echo $transmission->name; ?></option>
                             <?php } ?>
                         </select>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -134,6 +162,9 @@
                     <div class="form-group col-lg-2">
                         <label for="kilometers">Kilometers</label>                                                
                         <input type="text" class="form-control" id="kilometers" name="kilometers" placeholder="Enter Kilometers">
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -146,6 +177,9 @@
                                 <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                             <?php } ?>
                         </select>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>
                     <?php
                 }
@@ -154,12 +188,30 @@
                     <div class="form-group col-lg-2">
                         <label for="keyword">Keyword</label>
                         <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Enter Keyword">
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                     </div>  
                 <?php } ?>
             <?php } ?>
         </div> 
         <div class=" row form-group col-lg-1 pull-right">                                          
             <button type="button" class="btn btn-default"  onclick="custom_search_vehicle()"><i class="fa fa-search"></i> Search</button>
+        </div>
+        <div class="col-lg-12 row clearfix">
+            <div id="delete_fade_success" style="display: none">
+                <div class="alert alert-success">
+                    <i class="fa fa-check-circle fa-fw fa-lg"></i> 
+                    Saved Successfully !!
+                </div>
+            </div>
+            <div id="delete_fade_error" style="display: none">
+                <div class="alert alert-danger">
+                    <i class="fa fa-times-circle fa-fw fa-lg"></i> 
+                    Error!!!
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
         </div>
     </form>
 <?php } ?>
@@ -191,10 +243,34 @@
                     "&minyear=" + minyear + "&fuel_type=" + fuel_type + "&sale_type=" + sale_type + "&color=" + color +
                     "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
                     "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword,
-            success: function(msg) {
+            success: function (msg) {
                 $('#advanced_search_result_content').html(msg);
             }
         });
+    }
+
+
+    function delete_field(field_id) {
+
+        if (confirm("Are you sure you want to delete this?")) {
+            $.ajax({
+                type: "POST",
+                url: site_url + '/advanced_search/delete_user_field',
+                data: 'field_id=' + field_id,
+                success: function (msg) {
+                    if (msg == '1') {
+                        $('#delete_fade_success').fadeIn();
+                        $('#delete_fade_success').fadeOut(4000);
+                        window.setTimeout(function () {
+                            location.reload()
+                        }, 1000);
+                    } else {
+                        $('#delete_fade_error').fadeIn();
+                        $('#delete_fade_error').fadeOut(4000);
+                    }
+                }
+            });
+        }
     }
 
 

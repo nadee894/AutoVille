@@ -119,4 +119,10 @@ class Advanced_search_content_service extends CI_Model {
         return $query->result();
     }
 
+    function delete_field($field_id) {
+
+        $this->db->where('advanced_search_content_id', $field_id);
+        return $this->db->delete('advanced_search_content');
+    }
+
 }
