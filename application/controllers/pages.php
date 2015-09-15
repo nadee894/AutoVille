@@ -30,4 +30,12 @@ class Pages extends CI_Controller {
         $parials = array('content' => 'content_pages/how_to_buy_view');
         $this->template->load('template/main_template', $parials, $data);
     }
+    
+    function site_map() {
+
+        $data['']='';
+        
+        $parials = array('content' => 'content_pages/site_map_view');
+        $this->template->load('template/main_template', $parials, $data);
+    }
 }

@@ -116,6 +116,7 @@
                                     <a href="<?php echo site_url(); ?>/pages/contact_us">Contact</a>
                                     <a href="<?php echo site_url(); ?>/faq/list_faq_questions">FAQ</a>
                                     <a href="<?php echo site_url(); ?>/pages/how_to_buy">How To Buy</a>
+                                    <a href="<?php echo site_url(); ?>/pages/site_map">Vehicle Site Map</a>
                                 </li>
                             </ul>
                         </div>
