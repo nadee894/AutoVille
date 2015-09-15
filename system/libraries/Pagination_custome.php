@@ -48,12 +48,12 @@ class CI_Pagination_custome {
     var $last_tag_open        = '&nbsp;';
     var $last_tag_close       = '';
     var $first_url            = ''; // Alternative URL for the First Page.
-    var $cur_tag_open         = '<li class="paginate_button active"><a>';
-    var $cur_tag_close        = '</a></li>';
+    var $cur_tag_open         = '<li class="paginate_button active">';
+    var $cur_tag_close        = '</li>';
     var $next_tag_open        = '<li class="paginate_button next">';
-    var $next_tag_close       = '</a></li>';
+    var $next_tag_close       = '</li>';
     var $prev_tag_open        = '<li class="paginate_button prev">';
-    var $prev_tag_close       = '</a></li>';
+    var $prev_tag_close       = '</li>';
     var $num_tag_open         = '<li class="paginate_button">';
     var $num_tag_close        = '</li>';
     var $page_query_string    = FALSE;
