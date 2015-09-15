@@ -77,18 +77,16 @@ class Register_Users_service extends CI_Model {
         return $this->db->insert('user', $register_users_model);
     }
 
+    function activate_user($email, $token) {
 
-    
-    function activate_user($email, $token){
+        $user = $this->db->get_where('user', array('email' => $email, 'account_activation_code' => $token, 'is_published' => '0'));
 
-        $user = $this->db->get_where('user',array('email' => $email,'token' => $token,'is_published' => '0'));
-
-        if(!empty($user)){
-            $data=array('is_published'=>'1','token' => 'NULL');
-            $this->db->where('id',$user->id);
+        if (!empty($user)) {
+            $data = array('is_published' => '1', 'account_activation_code' => 'NULL');
+            $this->db->where('id', $user->id);
             $this->db->update('user', $data);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
