@@ -4,7 +4,7 @@
         <div class="form-group">
             <label>Down Payment</label>
             <input class="ui-slider" type="range" value="price" id="price-slider" min="0" max="<?php echo $vehicle_detail->price; ?>"><br>
-            <output value="#price-slider" > </output>
+            <output id="price_output"></output>
         </div>
         <br>
         <div class="form-group">
