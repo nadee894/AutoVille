@@ -23,6 +23,7 @@
                     <p>
                         <?php echo $value->description; ?>
                     </p>
+                    <?php if ($value->added_by_user == $this->session->userdata('USER_ID')) {?>
                     <div class="item list admin-view">
                         <div class="description">
                             <ul class="list-unstyled actions">
@@ -35,6 +36,7 @@
                             </ul> 
                         </div>
                     </div>
+                    <?php   } ?>
                 </div>
                 <!-- /.wrapper-->
             </article>
