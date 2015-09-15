@@ -20,7 +20,7 @@ class Vehicle_reviews_service extends CI_Model {
      */
 
     function get_all_vehicle_reviews($vehicle_id) {
-        $this->db->select('review.*,user.name as added_by_user,user.profile_pic');
+        $this->db->select('review.*,user.name as added_by_user,user.profile_pic,review.added_by as review_user');
         $this->db->from('review');
         $this->db->join('vehicle_advertisements', 'review.vehicle_id=vehicle_advertisements.id');
         $this->db->join('user', 'user.id = review.added_by','left');
