@@ -170,7 +170,7 @@ class Vehicle_compare extends CI_Controller {
             $data['equipment_arr'] = $equipment_service->get_equiments_in_vehicle($vehicle->id);
             array_push($data['vehicle_equipments'], $data['equipment_arr']);
         }
-
+        
         $data['my_advertisements'] = 0;
 
 

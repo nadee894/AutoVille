@@ -123,7 +123,7 @@ class Advanced_search extends CI_Controller {
 
         $config["base_url"] = site_url() . "/advanced_search/get_advanced_search_results/";
         $config["per_page"] = 12;
-        $config["uri_segment"] = 4;
+        $config["uri_segment"] = 3;
         $config["num_links"] = 4;
 
         $manufacture = trim($this->input->post('manufacturer', TRUE));
