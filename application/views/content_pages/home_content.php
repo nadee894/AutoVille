@@ -10,6 +10,12 @@
 </section>
 <!--end Featured-->
 
+<!--Popular Vehicles-->
+<section id="popular" class="block background-color-grey-dark equal-height">
+    <?php echo $this->load->view('vehicle_adds/popular_vehicles'); ?>    
+</section>
+<!--end Popular vehicles-->
+
 
 <!--Categories-->
 <section id="manufacturer_list" class="block background-color-white">
