@@ -43,13 +43,12 @@ class Register_Users extends CI_Controller {
         //$register_users_model->set_contact2($this->input->post('contact_no_2', TRUE));
         $register_users_model->set_profile_pic('avatar.png');
         $register_users_model->set_password(md5($this->input->post('form_register_password', TRUE)));
-        //$register_users_model->set_account_activation_code($this->input->post('account_activation_code', TRUE));
         $register_users_model->set_is_online('0');
 
         $token = $this->generate_random_string(); //generate account activation token
 
-
-        $register_users_model->set_is_published($token);
+        $register_users_model->set_account_activation_code($token);
+        $register_users_model->set_is_published('0');
         $register_users_model->set_is_deleted('0');
         //$register_users_model->set_added_by($this->input->post('added_by', TRUE));
         //$register_users_model->set_added_date($this->input->post('added_date', TRUE));
