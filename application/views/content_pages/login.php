@@ -42,7 +42,7 @@
                     </div>
                 </div>   
                 <div class="col-md-4">
-                    <div id="my-signin2" data-onsuccess="onSignIn"></div>
+                    <div id="my-signin2" data-onsuccess="onSuccess"></div>
 
                 </div>
 
@@ -57,7 +57,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
-function onSignIn(googleUser) {
+function onSuccess(googleUser) {
   var profile = googleUser.getBasicProfile();
   var name = profile.getName();
   var image_url = profile.getImageUrl();
@@ -71,9 +71,20 @@ function onSignIn(googleUser) {
       type: 'POST',
       url: site_url+'/login/google_authenticate_user',
       success: function(result) {
-       setTimeout("location.href = site_url;", 100);
-   },
-   data: {code:id_token,name:name,image_url:image_url,email:email}
+        if(result){
+            $('#login_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Login Successfull!!</div>');
+            $('#login_msg').fadeIn();
+            $('#login_msg').fadeOut(4000);
+            setTimeout("location.href = site_url;", 100);
+        }else {
+
+            $('#login_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Google Plus Authentication Failed!!</div>');
+            $('#login_msg').fadeIn();
+            $('#login_msg').fadeOut(4000);
+
+        }
+    },
+    data: {code:id_token,name:name,image_url:image_url,email:email}
 });
 }
 
@@ -88,7 +99,7 @@ function renderButton() {
     'height': 50,
     'longtitle': true,
     'theme': 'dark',
-    'onsuccess': onSignIn,
+    'onsuccess': onSuccess,
     'onfailure': onFailure
 });
 }
