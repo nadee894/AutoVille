@@ -386,8 +386,6 @@ class Vehicle_advertisements extends CI_Controller {
         $data['vehicle_reviews']    = $vehicle_reviews_service->get_all_vehicle_reviews($vehicle_id);
         $data['review_looks_count'] = count($searched_vehicles_service->get_view_count_for_advertisement($id));
 
-        $vehicle_advertisments_service->update_views($id); //Ashani
-
         $data['suggestions'] = $vehicle_advertisments_service->similar_suggestions($data['vehicle_detail']->manufacture_id, $data['vehicle_detail']->model_id); //Ashani
 
 
