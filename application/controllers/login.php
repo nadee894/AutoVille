@@ -12,6 +12,8 @@ class Login extends CI_Controller {
 
         $this->load->model('users/user_model');
         $this->load->model('users/user_service');
+
+        $this->load->model('register_users/register_users_model');
         $this->load->model('register_users/register_users_service');
 
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
@@ -80,17 +82,63 @@ class Login extends CI_Controller {
         //Authenticate via Google Plus
     function google_authenticate_user() {
 
+        $user_model = new User_model();
+        $user_service = new User_service();
+
         $this->load->library('googleplus');
 
         $code =$this->input->post('code', TRUE);
         if (!empty($code)) {
 
             $this->googleplus->client->authenticate();
+             $this->session->set_userdata('token',$this->googleplus->client->getAccessToken());
 
-            $this->session->set_userdata('token',$this->googleplus->client->getAccessToken());
-            $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
-            $this->session->set_userdata('USER_NAME', 'Google');
-            $this->session->set_userdata('USER_FULLNAME', 'Google');
+            $email =$this->input->post('email', TRUE);
+            $name =$this->input->post('name', TRUE);
+            $image_url =$this->input->post('image_url', TRUE);
+
+            $exist_user = $user_service->check_user_email_exist($email);
+            if(!empty($exist_user)){
+                $this->session->set_userdata('USER_ID', $exist_user->id);
+                $this->session->set_userdata('USER_FULLNAME', $exist_user->name);
+                $this->session->set_userdata('USER_NAME', $exist_user->user_name);
+                $this->session->set_userdata('USER_TYPE', $exist_user->user_type);
+                $this->session->set_userdata('USER_EMAIL', $exist_user->email);
+                $this->session->set_userdata('USER_PHONE', $exist_user->contact_no_1);
+                $this->session->set_userdata('USER_ADDRESS', $exist_user->address);
+                $this->session->set_userdata('USER_PROFILE_PIC', $exist_user->profile_pic);
+                $this->session->set_userdata('USER_ONLINE', 'Y');
+                $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
+
+                $user_model->set_id($this->session->userdata('USER_ID'));
+                $user_model->set_is_online('1');
+                $user_service->update_user_online_status($user_model);
+            }else{
+
+                $register_users_model = new Register_Users_model();
+                $register_users_service = new Register_Users_service();
+
+                $register_users_model->set_name($name);
+                $register_users_model->set_user_name($name);
+                $register_users_model->set_user_type('3');
+                $register_users_model->set_email($email);
+                $register_users_model->set_profile_pic($image_url);
+                $register_users_model->set_is_online('1');
+                $register_users_model->set_is_published('1');
+                $register_users_model->set_is_deleted('0');
+
+                $register_users_service->add_new_user_registration($register_users_model);
+
+                $this->session->set_userdata('USER_NAME', $name);
+                $this->session->set_userdata('USER_FULLNAME', $name);
+                $this->session->set_userdata('USER_EMAIL', $email);
+                $this->session->set_userdata('USER_ONLINE', 'Y');
+                $this->session->set_userdata('USER_TYPE', 3);
+                $this->session->set_userdata('USER_PHONE', '');
+                $this->session->set_userdata('USER_ADDRESS','');
+                $this->session->set_userdata('USER_PROFILE_PIC', $image_url);
+                $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
+            }
 
         }
         echo '1';
