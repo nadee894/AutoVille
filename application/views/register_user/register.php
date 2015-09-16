@@ -1,6 +1,4 @@
-<div id="tst_">
 
-</div>
 <!--Page Content-->
 <div id="page-content">
     <section class="container">
