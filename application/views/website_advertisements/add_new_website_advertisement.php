@@ -9,7 +9,7 @@
             </header>
             <form id="commercial_form" name="commercial_form" role="form" method="post" enctype="multipart/form-data">
 
-                <!--Vehicle details -->
+             
                 <section>
                     <h3>Topic</h3>
                     <div class="row">
@@ -19,9 +19,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 </section>
 
                 <section>
@@ -33,9 +30,18 @@
                             </div>
                         </div>
                     </div>
-                </section>    
-
-                <!--Vehicle details -->
+                </section>
+                
+                <section>
+                    <h3>Enter your website url</h3>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <input type="text" id="url" name="url"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>           
 
                 <section>
                     <h3>Price</h3>
@@ -51,7 +57,6 @@
 
                 <section>
                     <h3>Address & Contact</h3>
-
                     <!--/.row-->
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
@@ -79,11 +84,7 @@
                         </div>
 
                     </div>
-
-                </section>
-                <!--/#address-contact-->
-                <!--            </form>-->
-
+                </section>               
                 <!--Gallery-->
                 <section>
                     <h3>Gallery</h3>
@@ -161,7 +162,7 @@
         
     </div>
 </section>
-
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 
@@ -178,22 +179,28 @@
         $("#commercial_form").validate({
             rules: {
                 topic: "required",
-                price:"required",
-                logo:"required"
+                price:{
+                    required:true,
+                    digits: true
+                },
+                logo:"required",
+                url:"required"
             },
             messages: {
                 topic: "Please enter a Topic",
-                price:"Please enter a Price",
-                logo:"Please upload an image"
+                price:{
+                    required:"Please enter a Price",
+                    digits:"Enter numbers only"
+                },
+                logo:"Please upload an image",
+                url:"Please enter the url"
             }, submitHandler: function(form)
             {
                 $.post(site_url + '/website_advertisements/add_commercial', $('#commercial_form').serialize(), function(msg)
                 {                  
                     if (msg == 1) {
-                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
-
-                        commercial_form.reset();
-                        window.location = site_url + '/website_advertisements/post_new_commercial_advertisement';
+                        toastr.success("Successfully submited your advertisement !!", "AutoVille");
+                        setTimeout("location.href = site_url+'/website_advertisements/post_new_commercial_advertisement';", 1000);
                     } else {
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 

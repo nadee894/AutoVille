@@ -56,14 +56,14 @@ class Website_advertisements extends CI_Controller{
         
         $website_advertisement_model->set_topic($this->input->post('topic', TRUE));
         $website_advertisement_model->set_image($this->input->post('logo', TRUE));
+        $website_advertisement_model->set_url($this->input->post('url',TRUE));
         $website_advertisement_model->set_description($this->input->post('description', TRUE));
         $website_advertisement_model->set_price($this->input->post('price',TRUE));
         $website_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
         $website_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
         $website_advertisement_model->set_updated_by(1);
         $website_advertisement_model->set_is_published('0');
-        $website_advertisement_model->set_is_deleted('0');
-        //$website_advertisement_model->set_is_feartured('2');
+        $website_advertisement_model->set_is_deleted('0');       
 
         echo $website_advertisement_service->add_website_advertisement($website_advertisement_model);
     }

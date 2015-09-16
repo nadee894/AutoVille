@@ -7,6 +7,8 @@ class Website_advertisements_model extends CI_Model{
     var $description;
     var $price;
     var $image;
+    var $url;
+    var $is_front_page;
     var $is_published;
     var $is_deleted;
     var $added_date;
@@ -38,7 +40,24 @@ class Website_advertisements_model extends CI_Model{
     function get_image() {
         return $this->image;
     }
+    
+    function get_url() {
+        return $this->url;
+    }
 
+    function get_is_front_page() {
+        return $this->is_front_page;
+    }
+
+    function set_url($url) {
+        $this->url = $url;
+    }
+
+    function set_is_front_page($is_front_page) {
+        $this->is_front_page = $is_front_page;
+    }
+
+    
     function get_is_published() {
         return $this->is_published;
     }
