@@ -42,7 +42,7 @@
                     </div>
                 </div>   
                 <div class="col-md-4">
-                <div id="my-signin2"></div>
+                    <div id="my-signin2" data-onsuccess="onSignIn"></div>
 
                 </div>
 
@@ -56,106 +56,125 @@
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+  
+   // The ID token you need to pass to your backend:
+   var id_token = googleUser.getAuthResponse().id_token;
+   console.log("ID Token: " + id_token);
+
+   $.ajax({
+      type: 'POST',
+      url: site_url+'/login/google_authenticate_user',
+      success: function(result) {
+         setTimeout("location.href = site_url;", 100);
+     },
+     data: {code:id_token}
+ });
+}
+
+function onFailure(error) {
+  console.log(error);
+}
+
+function renderButton() {
+  gapi.signin2.render('my-signin2', {
+    'scope': 'https://www.googleapis.com/auth/plus.login',
+    'width': 200,
+    'height': 50,
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': onSignIn,
+    'onfailure': onFailure
+});
+}
+
+
+var base_url = "<?php echo base_url(); ?>";
+var site_url = "<?php echo site_url(); ?>";
+
+$(document).ready(function() {
+
+    $("#login_form").validate({
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            txtusername: "required",
+            txtpassword: "required"
+        }, submitHandler: function(form) {
+        }
+    });
+
+
+    $("#reset_pw_form").validate({
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            reset_pw_email: "required"
+        }, submitHandler: function(form) {
+
+            var $form = $('#reset_pw_form');
+
+            $.ajax({
+                type: "POST",
+                url: site_url + '/login/forget_password',
+                data: $form.serialize(),
+                success: function(msg) {
+                    if (msg == '1') {
+                        $('#fade_valid_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Email Sent!!</div>');
+                        $('#fade_valid_msg').fadeIn();
+                        $('#fade_valid_msg').fadeOut(7000);
+                        $('#forgot_password_model').modal('hide');
+                    } else if (msg == '2') {
+                        $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Email Not Sent!!</div>');
+                        $('#fade_valid_msg').fadeIn();
+                        $('#fade_valid_msg').fadeOut(4000);
+                    } else {
+                        $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid User or Email!!</div>');
+                        $('#fade_valid_msg').fadeIn();
+                        $('#fade_valid_msg').fadeOut(4000);
+                    }
+                }
+            });
+
+}
+});
+});
+
+
+function login() {
+    var login_username = $('#txtusername').val();
+    var login_password = $('#txtpassword').val();
+
+    if ($('#login_form').valid()) {
+
+        $.ajax({
+            type: "POST",
+            url: site_url + '/login/authenticate_user',
+            data: "login_username=" + login_username + "&login_password=" + login_password,
+            success: function(msg) {
+
+                if (msg == 1) {
+                    $('#login_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Login Successfull!!</div>');
+                    $('#login_msg').fadeIn();
+                    $('#login_msg').fadeOut(4000);
+                    setTimeout("location.href = site_url+'/login/load_login';", 100);
+                } else {
+                    login_form.reset();
+                    $('#login_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid Login Details!!</div>');
+                    $('#login_msg').fadeIn();
+                    $('#login_msg').fadeOut(4000);
+
+                }
+            }
+        });
     }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'https://www.googleapis.com/auth/plus.login',
-        'width': 200,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-
-
-                                var base_url = "<?php echo base_url(); ?>";
-                                var site_url = "<?php echo site_url(); ?>";
-
-                                $(document).ready(function() {
-                                    
-                                    $("#login_form").validate({
-                                        focusInvalid: false,
-                                        ignore: "",
-                                        rules: {
-                                            txtusername: "required",
-                                            txtpassword: "required"
-                                        }, submitHandler: function(form) {
-                                        }
-                                    });
-
-
-                                    $("#reset_pw_form").validate({
-                                        focusInvalid: false,
-                                        ignore: "",
-                                        rules: {
-                                            reset_pw_email: "required"
-                                        }, submitHandler: function(form) {
-
-                                            var $form = $('#reset_pw_form');
-
-                                            $.ajax({
-                                                type: "POST",
-                                                url: site_url + '/login/forget_password',
-                                                data: $form.serialize(),
-                                                success: function(msg) {
-                                                    if (msg == '1') {
-                                                        $('#fade_valid_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Email Sent!!</div>');
-                                                        $('#fade_valid_msg').fadeIn();
-                                                        $('#fade_valid_msg').fadeOut(7000);
-                                                        $('#forgot_password_model').modal('hide');
-                                                    } else if (msg == '2') {
-                                                        $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Email Not Sent!!</div>');
-                                                        $('#fade_valid_msg').fadeIn();
-                                                        $('#fade_valid_msg').fadeOut(4000);
-                                                    } else {
-                                                        $('#fade_valid_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid User or Email!!</div>');
-                                                        $('#fade_valid_msg').fadeIn();
-                                                        $('#fade_valid_msg').fadeOut(4000);
-                                                    }
-                                                }
-                                            });
-
-                                        }
-                                    });
-                                });
-
-
-                                function login() {
-                                    var login_username = $('#txtusername').val();
-                                    var login_password = $('#txtpassword').val();
-
-                                    if ($('#login_form').valid()) {
-
-                                        $.ajax({
-                                            type: "POST",
-                                            url: site_url + '/login/authenticate_user',
-                                            data: "login_username=" + login_username + "&login_password=" + login_password,
-                                            success: function(msg) {
-
-                                                if (msg == 1) {
-                                                    $('#login_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Login Successfull!!</div>');
-                                                    $('#login_msg').fadeIn();
-                                                    $('#login_msg').fadeOut(4000);
-                                                    setTimeout("location.href = site_url+'/login/load_login';", 100);
-                                                } else {
-                                                    login_form.reset();
-                                                    $('#login_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Invalid Login Details!!</div>');
-                                                    $('#login_msg').fadeIn();
-                                                    $('#login_msg').fadeOut(4000);
-
-                                                }
-                                            }
-                                        });
-                                    }
-                                }
+}
 
 </script>
 
