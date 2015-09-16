@@ -40,11 +40,10 @@
                     <!--/.col-md-4-->
                     <div class="col-md-4 col-sm-4">
                         <header class="no-border"><h3>About Us</h3></header>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique imperdiet
-                            nibh tincidunt fermentum. Nunc enim nibh, convallis et tincidunt in, vehicula a diam.
-                            Nullam in risus erat
+                        <p>
+                            Autoville- the best place to advertise your vehicle. Join us today!!
                         </p>
-                        <a href="about-us.html" class="read-more icon">Read More</a>
+                        <a href="<?php echo site_url(); ?>/home/about_us" class="read-more icon">Read More</a>
                     </div>
                     <!--/.col-md-4-->
                 </div>

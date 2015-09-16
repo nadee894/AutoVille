@@ -14,7 +14,22 @@ class Register_Users extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
-
+    
+    function check_email(){
+        if($this->register_users_service->check_email($_POST['email']) )
+            echo 1;
+        else
+            echo -1;
+    }
+    
+    function check_username(){
+        if($this->register_users_service->check_username($_POST['username']) )
+            echo 1;
+        else
+            echo -1;
+    }
+    
+    
     function load_registration() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
@@ -44,7 +59,8 @@ class Register_Users extends CI_Controller {
         $register_users_model->set_profile_pic('avatar.png');
         $register_users_model->set_password(md5($this->input->post('form_register_password', TRUE)));
         $register_users_model->set_is_online('0');
-
+        $register_users_model->set_title(trim($this->input->post('title', TRUE)));
+        
         $token = $this->generate_random_string(); //generate account activation token
 
         $register_users_model->set_account_activation_code($token);
@@ -77,6 +93,7 @@ class Register_Users extends CI_Controller {
 
         if (mail($email, $email_subject, $msg, $headers)) {
             echo "1";
+            $this->session->set_flashdata('info', 'Please go to your email account and continue the registration process');
         } else {
             echo "0";
         }

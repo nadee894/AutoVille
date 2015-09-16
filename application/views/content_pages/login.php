@@ -5,7 +5,20 @@
         <div class="block">
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                    <header>                       
+
+                    <header>
+                        <meta name="google-signin-client_id" content="985266696918-0t2g0klgc5omnq1mbchcvf9navi9v6dh.apps.googleusercontent.com">
+                        <?php
+                        if($this->session->flashdata('info')){
+                         ?>
+                            <div class="alert alert-info" role="alert">
+                                <?php echo $this->session->flashdata('info'); ?>
+                            </div> 
+                             
+                             <?php   
+                        }
+                        ?>
+
                         <h1 class="page-title">Sign In</h1>
                     </header>
                     <hr>
@@ -38,10 +51,7 @@
                             Login Successfull!!
                         </div>
                     </div>
-                    <hr>
-                    <div class="clearfix text-center">
-                        <meta name="google-signin-client_id" content="985266696918-0t2g0klgc5omnq1mbchcvf9navi9v6dh.apps.googleusercontent.com">
-                    </div>
+                   
                 </div>   
                 <div class="col-md-4">
                     <div id="my-signin2" data-onsuccess="onSuccess"></div>

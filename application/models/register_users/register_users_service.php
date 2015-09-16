@@ -6,7 +6,27 @@ class Register_Users_service extends CI_Model {
         parent::__construct();
         $this->load->model('register_users/register_users_model');
     }
-
+    
+    function check_email($email){
+        $this->db->from('user');
+        $this->db->where('email', $email);
+        $query = $this->db->get();
+        $res  = $query->row();
+        if (empty($res)) 
+            return true;
+        return false;
+    }
+    
+    function check_username($username){
+        $this->db->from('user');
+        $this->db->where('user_name', $username);
+        $query = $this->db->get();
+        $res  = $query->row();
+        if (empty($res)) 
+            return true;
+        return false;
+    }
+    
     /*
      * update user
      */

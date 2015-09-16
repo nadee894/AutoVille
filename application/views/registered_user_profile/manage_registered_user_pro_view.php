@@ -13,8 +13,18 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label for="title">Title <span style="color: red;">*</span></label>
-                                        <input required id="title" class="form-control" type="text" value="<?php echo $user->title; ?>" name="title">
+                                        <select name="title">
+                                            <?php
+                                            $titles = array("Mr.", "Mrs.", "Ms.");
+                                            foreach ($titles as $title) {
+                                                if ($title == $user->title) {
+                                                    echo '<option selected value="' . $title . '">' . $title . '</option>';
+                                                } else {
+                                                    echo '<option value="' . $title . '">' . $title . '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -25,14 +35,14 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label for="contact_no_1">Mobile <span style="color: red;">*</span></label>
+                                        <label for="contact_no_1">Contact 1 <span style="color: red;">*</span></label>
                                         <input required class="form-control" type="phone" value="<?php echo $user->contact_no_1; ?>" id="contact_no_1" name="contact_no_1">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label for="contact_no_2">Phone <span style="color: red;">*</span></label>
-                                        <input required class="form-control" type="phone" value="<?php echo $user->contact_no_2; ?>" id="contact_no_2" name="contact_no_2">
+                                        <label for="contact_no_2">Contact 2</label>
+                                        <input class="form-control" type="phone" value="<?php echo $user->contact_no_2; ?>" id="contact_no_2" name="contact_no_2">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -99,7 +109,7 @@
 <script type="text/javascript">
 
             function showNotification(msg){
-            a = ` < div class = "notification_216" style = "
+            a = ` <div class = "notification_216" style = "
                     position: fixed;
                     bottom: 10px;
                     left: 10px;
