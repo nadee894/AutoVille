@@ -420,6 +420,7 @@ class Vehicle_advertisements extends CI_Controller {
      */
 
     function send_email_to_sellers() {
+        alert("entered the method");
         $email_subject = "AutoVille Customer Request";
         $data['user_name'] = $this->input->post('name', TRUE);
         $data['name'] = 'Sir/Madam';
@@ -440,6 +441,15 @@ class Vehicle_advertisements extends CI_Controller {
         } else {
             echo "0";
         }
+        
+           //sms to admins
+            $message = "New Advertisement has submitted. \n ";
+//            $message .= 'Driver:' . $driver_details->Employee_Name . ' ' . $driver_details->last_name . ' \n ';
+//            $message .= 'Start Time:' . $basic_request_details->required_date . ' \n ';
+            $message .= 'Location(s):';
+
+            $message .= $location_messages;
+            $this->sms_handler->sendSMS(0765514269, $message); //correct one
     }
 
     /*
