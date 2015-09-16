@@ -109,7 +109,7 @@ class Home extends CI_Controller {
         $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
         $data['vehicle_news_results'] = $vehicle_news_service->get_vehicle_news();      //author-Ishani
         $data['featured_vehicles']    = $vehicle_advertisments_service->get_featured_advertisements(4);
-        $data['popular_vehicles']    = $vehicle_advertisments_service->get_popular_advertisements(4);//Ashani
+        $data['popular_vehicles']    = $vehicle_advertisments_service->get_popular_advertisements();//Ashani
 
         $parials = array('content' => 'content_pages/home_content', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
