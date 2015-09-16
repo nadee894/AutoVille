@@ -88,13 +88,19 @@ class Faq extends CI_Controller {
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
+        $headers .= 'Cc: gayathma3@gmail.com,niklakshaya@gmail.com,heshani7.herath@gmail.com' . "\r\n";
 
-        if (mail($sender_email, $email_subject, $msg, $headers)) {
+//        if (mail($sender_email, $email_subject, $msg, $headers)) {
+//            echo "1";
+//            echo 'Mail sent successfully';
+//        } else {
+//            echo "0";
+//            echo 'Mail not sent successfully';
+//        }
+        if (mail($data['sender_email'], $email_subject, $msg, $headers)) {
             echo "1";
-            echo 'Mail sent successfully';
         } else {
             echo "0";
-            echo 'Mail not sent successfully';
         }
     }
 
