@@ -23,13 +23,15 @@ class Login extends CI_Controller {
     function activate() {
         if ($this->register_users_service->activate_user($_GET['email'], $_GET['token'])) {
             redirect(site_url() . '/login/load_login');
+        } else {
+            redirect(site_url() . '/home/index');
         }
     }
 
     function load_login() {
 
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);
+        $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
 
         if ($this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/home/index');
@@ -42,7 +44,7 @@ class Login extends CI_Controller {
     //Login details checking function 
     function authenticate_user() {
 
-        $user_model = new User_model();
+        $user_model   = new User_model();
         $user_service = new User_service();
 
         $user_model->set_user_name($this->input->post('login_username', TRUE));
@@ -79,27 +81,27 @@ class Login extends CI_Controller {
         }
     }
 
-        //Authenticate via Google Plus
+    //Authenticate via Google Plus
     function google_authenticate_user() {
 
-        $user_model = new User_model();
+        $user_model   = new User_model();
         $user_service = new User_service();
 
         $this->load->library('googleplus');
 
-        $code =$this->input->post('code', TRUE);
+        $code = $this->input->post('code', TRUE);
 
         if (!empty($code)) {
 
             $this->googleplus->client->authenticate();
-            $this->session->set_userdata('token',$this->googleplus->client->getAccessToken());
+            $this->session->set_userdata('token', $this->googleplus->client->getAccessToken());
 
-            $email =$this->input->post('email', TRUE);
-            $name =$this->input->post('name', TRUE);
-            $image_url =$this->input->post('image_url', TRUE);
+            $email     = $this->input->post('email', TRUE);
+            $name      = $this->input->post('name', TRUE);
+            $image_url = $this->input->post('image_url', TRUE);
 
             $exist_user = $user_service->check_user_email_exist($email);
-            if(!empty($exist_user)){
+            if (!empty($exist_user)) {
                 $this->session->set_userdata('USER_ID', $exist_user->id);
                 $this->session->set_userdata('USER_FULLNAME', $exist_user->name);
                 $this->session->set_userdata('USER_NAME', $exist_user->user_name);
@@ -114,9 +116,9 @@ class Login extends CI_Controller {
                 $user_model->set_id($this->session->userdata('USER_ID'));
                 $user_model->set_is_online('1');
                 $user_service->update_user_online_status($user_model);
-            }else{
+            } else {
 
-                $register_users_model = new Register_Users_model();
+                $register_users_model   = new Register_Users_model();
                 $register_users_service = new Register_Users_service();
 
                 $register_users_model->set_name($name);
@@ -136,18 +138,18 @@ class Login extends CI_Controller {
                 $this->session->set_userdata('USER_ONLINE', 'Y');
                 $this->session->set_userdata('USER_TYPE', 3);
                 $this->session->set_userdata('USER_PHONE', '');
-                $this->session->set_userdata('USER_ADDRESS','');
+                $this->session->set_userdata('USER_ADDRESS', '');
                 $this->session->set_userdata('USER_PROFILE_PIC', $image_url);
                 $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
             }
-
         }
-        echo '1';die;
+        echo '1';
+        die;
     }
 
     function logout() {
 
-        $user_model = new User_model();
+        $user_model   = new User_model();
         $user_service = new User_service();
 
         $user_model->set_is_online('0');
@@ -166,18 +168,18 @@ class Login extends CI_Controller {
         $user_service = new User_service();
 
         $reg_user_list = $user_service->get_all_active_registered_users();
-        $input_email = trim($this->input->post('reset_pw_email', TRUE));
+        $input_email   = trim($this->input->post('reset_pw_email', TRUE));
 
         foreach ($reg_user_list as $user) {
 
             if (strcmp($user->email, $input_email) == 0) {
 
                 //send email
-                $email_to = $user->email; //'heshani7.herath@gmail.com';
-                $email_subject = "AutoVille Password Reset";
-                $data['name'] = $user->name;
+                $email_to          = $user->email; //'heshani7.herath@gmail.com';
+                $email_subject     = "AutoVille Password Reset";
+                $data['name']      = $user->name;
                 $data['user_name'] = $user->user_name;
-                $data['pasword'] = 'asda';
+                $data['pasword']   = 'asda';
 
                 $msg = $this->load->view('template/mail_template/forgot_password', $data, TRUE);
 
@@ -208,7 +210,7 @@ class Login extends CI_Controller {
 
         $user_service = new User_service();
 
-        $reg_user_list = $user_service->get_all_active_registered_users();
+        $reg_user_list  = $user_service->get_all_active_registered_users();
         $input_username = trim($this->input->post('username', TRUE));
 
         foreach ($reg_user_list as $user) {

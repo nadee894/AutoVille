@@ -123,7 +123,7 @@
                 {
                     banana = msg;
                     $("#tst_").html(banana);
-                   // alert(banana);
+                    //alert(banana);
                     if (msg == "1") {
                         toastr.success("Successfully Registered", "AutoVille");
                         window.location = site_url + '/home';
