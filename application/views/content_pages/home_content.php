@@ -10,19 +10,11 @@
 </section>
 <!--end Featured-->
 
-<!--Popular Vehicles-->
-<section id="popular" class="block background-color-grey-dark equal-height">
-    <?php echo $this->load->view('vehicle_adds/popular_vehicles'); ?>    
-</section>
-<!--end Popular vehicles-->
-
-
 <!--Categories-->
 <section id="manufacturer_list" class="block background-color-white">
     <?php echo $this->load->view('manufacturers/manufacture_list_view'); ?>
 </section>
 <!--end Categories-->
-
 
 
 <!--Price Drop-->
@@ -31,10 +23,15 @@
 </section>
 <!--end Price Drop-->
 
-<!--Recent-->
-<section id="recent" class="block">
-    <?php echo $this->load->view('vehicle_adds/recent_adds'); ?>
+
+<!--Popular Vehicles-->
+<section id="popular" class="block background-color-white">
+    <?php echo $this->load->view('vehicle_adds/popular_vehicles'); ?>    
 </section>
+<!--end Popular vehicles-->
+
+<!--Recent-->
+<?php echo $this->load->view('vehicle_adds/recent_adds'); ?>
 <!--end Recent-->
 
 <!--Why Us-->
