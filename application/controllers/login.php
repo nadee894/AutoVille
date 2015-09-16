@@ -17,12 +17,10 @@ class Login extends CI_Controller {
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
-        //author Ashani
+
     function activate() {
-        if ($this->register_users_service->activate_user($this->input->get('email', TRUE), $this->input->get('token', TRUE))) {
+        if ($this->register_users_service->activate_user($_GET['email'], $_GET['token'])) {
             redirect(site_url() . '/login/load_login');
-        }else{
-            echo "Activation Link is Expired !!";
         }
     }
 
@@ -77,6 +75,25 @@ class Login extends CI_Controller {
         } else {
             echo 0;
         }
+    }
+
+        //Authenticate via Google Plus
+    function google_authenticate_user() {
+
+        $this->load->library('googleplus');
+
+        $code =$this->input->post('code', TRUE);
+        if (!empty($code)) {
+
+            $this->googleplus->client->authenticate();
+
+            $this->session->set_userdata('token',$this->googleplus->client->getAccessToken());
+            $this->session->set_userdata('USER_LOGGED_IN', 'TRUE');
+            $this->session->set_userdata('USER_NAME', 'Google');
+            $this->session->set_userdata('USER_FULLNAME', 'Google');
+
+        }
+        echo '1';
     }
 
     function logout() {
