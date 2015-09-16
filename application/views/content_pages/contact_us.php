@@ -101,7 +101,7 @@
             {
                 if (msg == 1) {
                     toastr.success("Successfully submited your Inquiry !!", "AutoVille");
-                        setTimeout("location.href = site_url+'/pages/contact_us';", 1000);                    
+                    contact_form.reset();                  
                 } else {
                     $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 

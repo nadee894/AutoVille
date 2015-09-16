@@ -399,6 +399,8 @@ class Vehicle_advertisments_service extends CI_Model {
             'kilometers' => $vehicle_advertisement_model->get_kilometers(),
             'price' => $vehicle_advertisement_model->get_price(),
             'is_price_drop' => $vehicle_advertisement_model->get_is_price_drop(),
+            'latitude' => $vehicle_advertisement_model->get_latitude(),
+            'longitude' => $vehicle_advertisement_model->get_longitude(),
             'updated_by' => $vehicle_advertisement_model->get_updated_by(),
             'updated_date' => $vehicle_advertisement_model->get_updated_date()
         );

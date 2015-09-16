@@ -459,7 +459,7 @@
 
 
                                     $(window).load(function() {
-                                        var _latitude = 6.9006;
+                                        var _latitude = 6.9005;
                                         var _longitude = 79.8533;
                                         var draggableMarker = true;
 

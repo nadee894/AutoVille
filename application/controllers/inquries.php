@@ -31,14 +31,14 @@ class Inquries extends CI_Controller {
             $email = 'info.autovillle@gmail.com';
             $email_subject = "AutoVille New Inquiry";
             //$data['msg'] = "New Advertisement submitted!!";
-            $msg = $this->load->view('template/mail_template/contact_us',$data,TRUE);
+            $mseg = $this->load->view('template/mail_template/contact_us',$data,TRUE);
 
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
             $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
             $headers .= 'Cc: ishanipathinayake@gmail.com' . "\r\n";
 
-            mail($email, $email_subject, $msg, $headers);
+            mail($email, $email_subject, $mseg, $headers);
         }
         
         echo $msg;
