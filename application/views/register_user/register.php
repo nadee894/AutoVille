@@ -12,13 +12,21 @@
                     </header>
                     <hr>
                     <form role="form" id="form-register" name="form-register" method="post" >
+                        
+                        <div class="form-group">
+                            <select name="title">
+                                <option selected value="Mr.">Mr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Ms.">Ms.</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="form-register-full-name">Full Name:<span class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="form-register-full-name" name="form_register_full_name" >
                         </div><!-- /.form-group -->
                         <div class="form-group">
                             <label for="form-register-email">Email:<span class="mandatory">*</span></label>
-                            <input type="email" class="form-control" id="form-register-email" name="form_register_email" >
+                            <input onfocusout="check_email()" type="email" class="form-control" id="form-register-email" name="form_register_email" >
                         </div><!-- /.form-group -->
 
                         <div class="form-group">
@@ -33,7 +41,7 @@
 
                         <div class="form-group">
                             <label for="form-register-user_name">Username:<span class="mandatory">*</span></label>
-                            <input type="text"  class="form-control" id="form-register-user_name" name="form_register_user_name" >
+                            <input type="text" onfocusout="check_username()" class="form-control" id="form-register-user_name" name="form_register_user_name" >
                         </div>
 
                         <div class="form-group">
@@ -66,7 +74,43 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
-
+    function disable_submit_btn(){
+        $("#account-submit").css("opacity", 0.2).attr('disabled','disabled');   
+    }
+    function enable_submit_btn(){
+        $("#account-submit").css("opacity", 1).removeAttr('disabled');   
+    }
+    function check_email(){
+        $(".emailError").remove();
+        email=$("#form-register-email").val();
+        if(email!='' && email.indexOf("@")!=-1 ){
+            $.post(site_url + '/register_users/check_email',{email:email }, function (msg){
+                if(msg=="-1"){
+                    disable_submit_btn();
+                    $('#form-register-email').parent().append('<label for="form-register-email" class="error emailError">Email Address already exsists.</label>');
+                }else{
+                    enable_submit_btn();
+                }
+                //alert(msg);
+            });
+        }
+    }
+    function check_username(){
+        $(".user_nameError").remove();
+        username=$('#form-register-user_name').val();
+        if(username.length>=3 ){
+            $.post(site_url + '/register_users/check_username',{username:username}, function (msg){
+                if(msg=="-1"){
+                    disable_submit_btn();
+                    $('#form-register-user_name').parent().append('<label for="form-register-user_name" class="error user_nameError">Username already exsists.</label>');
+                }else{
+                    enable_submit_btn();
+                }
+                //alert(msg);
+            });
+        }
+    }
+    
     $(document).ready(function () {
 
         $('#account-submit').click(function () {
