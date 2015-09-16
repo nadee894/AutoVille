@@ -233,6 +233,7 @@
                 <section>
                     <h3>Vehicle Location</h3>
                     <div id="map-simple" class="map-submit"></div>
+                    <input type="hidden" name="marker_position" id="marker_position" />
                 </section>
 
 
@@ -458,7 +459,7 @@
 
 
                                     $(window).load(function() {
-                                        var _latitude = 6.9006;
+                                        var _latitude = 6.9005;
                                         var _longitude = 79.8533;
                                         var draggableMarker = true;
 

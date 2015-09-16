@@ -74,7 +74,7 @@
                                     <?php } else { ?>                                                                                                                
                                         <li>
                                             <a href="<?php echo site_url(); ?>/dashboard" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_FULLNAME')); ?></a>
-                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>                                        
+                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out" onclick="signOut()"><i class="fa fa-power-off"></i> Sign Out</a>                                        
                                         </li>
                                     <?php } ?>
 
@@ -112,7 +112,7 @@
                                     <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
                                         <a href="<?php echo site_url(); ?>/advanced_search/advanced_search_view">Custom Search</a>
                                     <?php } ?>
-                                    <a href="<?php echo site_url(); ?>/home">About Us</a>
+                                    <a href="<?php echo site_url(); ?>/home/about_us">About Us</a>
                                     <a href="<?php echo site_url(); ?>/pages/contact_us">Contact</a>
                                     <a href="<?php echo site_url(); ?>/faq/list_faq_questions">FAQ</a>
                                     <a href="<?php echo site_url(); ?>/pages/how_to_buy">How To Buy</a>
@@ -130,7 +130,12 @@
                 </div>
                 <!-- end Page Canvas-->
                 <!--Page Footer-->
-                <footer id="page-footer">
+                <?php
+                    $footerHide='';
+                    if(strpos(current_url(), 'about_us'))
+                            $footerHide='display:none;';
+                ?>
+                <footer style="<?php echo $footerHide; ?>" id="page-footer">
                     <div class="inner">
                         <div class="footer-top">
                             <div class="container">
@@ -329,6 +334,11 @@
             $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut();
+  }
     });
 
 </script>

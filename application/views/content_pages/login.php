@@ -5,8 +5,19 @@
         <div class="block">
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+
                     <header>
                         <meta name="google-signin-client_id" content="985266696918-0t2g0klgc5omnq1mbchcvf9navi9v6dh.apps.googleusercontent.com">
+                        <?php
+                        if($this->session->flashdata('info')){
+                         ?>
+                            <div class="alert alert-info" role="alert">
+                                <?php echo $this->session->flashdata('info'); ?>
+                            </div> 
+                             
+                             <?php   
+                        }
+                        ?>
 
                         <h1 class="page-title">Sign In</h1>
                     </header>
@@ -40,9 +51,10 @@
                             Login Successfull!!
                         </div>
                     </div>
+                   
                 </div>   
                 <div class="col-md-4">
-                <div id="my-signin2"></div>
+                    <div id="my-signin2" data-onsuccess="onSuccess"></div>
 
                 </div>
 
@@ -56,31 +68,60 @@
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'https://www.googleapis.com/auth/plus.login',
-        'width': 200,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
+
+                                function onSuccess(googleUser) {
+                                    var profile = googleUser.getBasicProfile();
+                                    var name = profile.getName();
+                                    var image_url = profile.getImageUrl();
+                                    var email = profile.getEmail();
+
+                                    // The ID token you need to pass to your backend:
+                                    var id_token = googleUser.getAuthResponse().id_token;
+
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: site_url + '/login/google_authenticate_user',
+                                        success: function(result) {
+                                            if (result) {
+                                                $('#login_msg').html('<div class="alert alert-success"><i class="fa fa-check-circle fa-fw fa-lg"></i>Login Successfull!!</div>');
+                                                $('#login_msg').fadeIn();
+                                                $('#login_msg').fadeOut(4000);
+                                                setTimeout("location.href = site_url;", 100);
+                                            } else {
+
+                                                $('#login_msg').html('<div class="alert alert-danger"><i class="fa fa-times-circle fa-fw fa-lg"></i>Google Plus Authentication Failed!!</div>');
+                                                $('#login_msg').fadeIn();
+                                                $('#login_msg').fadeOut(4000);
+
+                                            }
+                                        },
+                                        data: {code: id_token, name: name, image_url: image_url, email: email}
+                                    });
+                                }
+
+                                function onFailure(error) {
+                                    console.log(error);
+                                }
+
+                                function renderButton() {
+                                    gapi.signin2.render('my-signin2', {
+                                        'scope': 'https://www.googleapis.com/auth/plus.login',
+                                        'width': 200,
+                                        'height': 50,
+                                        'longtitle': true,
+                                        'theme': 'dark',
+                                        'onsuccess': onSuccess,
+                                        'onfailure': onFailure
+                                    });
+                                }
 
 
                                 var base_url = "<?php echo base_url(); ?>";
                                 var site_url = "<?php echo site_url(); ?>";
 
                                 $(document).ready(function() {
-                                    
+
                                     $("#login_form").validate({
                                         focusInvalid: false,
                                         ignore: "",

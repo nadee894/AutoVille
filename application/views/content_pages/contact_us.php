@@ -1,5 +1,3 @@
-
-<!--                <section id="map-simple" class="map-contact"></section>-->
 <section class="container">
     <div class="row">
         <!--Content-->
@@ -42,11 +40,10 @@
                     <!--/.col-md-4-->
                     <div class="col-md-4 col-sm-4">
                         <header class="no-border"><h3>About Us</h3></header>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique imperdiet
-                            nibh tincidunt fermentum. Nunc enim nibh, convallis et tincidunt in, vehicula a diam.
-                            Nullam in risus erat
+                        <p>
+                            Autoville- the best place to advertise your vehicle. Join us today!!
                         </p>
-                        <a href="about-us.html" class="read-more icon">Read More</a>
+                        <a href="<?php echo site_url(); ?>/home/about_us" class="read-more icon">Read More</a>
                     </div>
                     <!--/.col-md-4-->
                 </div>
@@ -86,94 +83,10 @@
                 </form>
                 <!--/#contact-form-->
             </section>
-        </div>
-        <!--Sidebar-->
-        <!--                        <div class="col-md-3">
-                                    <aside id="sidebar">
-                                        <section>
-                                            <header><h2>New Places</h2></header>
-                                            <a href="item-detail.html" class="item-horizontal small">
-                                                <h3>Cash Cow Restaurante</h3>
-                                                <figure>63 Birch Street</figure>
-                                                <div class="wrapper">
-                                                    <div class="image"><img src="<?php echo base_url() ?>/application_resources/assets/img/items/1.jpg" alt=""></div>
-                                                    <div class="info">
-                                                        <div class="type">
-                                                            <i><img src="<?php echo base_url() ?>/application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                            <span>Restaurant</span>
-                                                        </div>
-                                                        <div class="rating" data-rating="4"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            /.item-horizontal small
-                                            <a href="item-detail.html" class="item-horizontal small">
-                                                <h3>Blue Chilli</h3>
-                                                <figure>2476 Whispering Pines Circle</figure>
-                                                <div class="wrapper">
-                                                    <div class="image"><img src="<?php echo base_url() ?>/application_resources/assets/img/items/2.jpg" alt=""></div>
-                                                    <div class="info">
-                                                        <div class="type">
-                                                            <i><img src="<?php echo base_url() ?>/application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                            <span>Restaurant</span>
-                                                        </div>
-                                                        <div class="rating" data-rating="3"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            /.item-horizontal small
-                                            <a href="item-detail.html" class="item-horizontal small">
-                                                <h3>Eddie’s Fast Food</h3>
-                                                <figure>4365 Bruce Street</figure>
-                                                <div class="wrapper">
-                                                    <div class="image"><img src="<?php echo base_url() ?>/application_resources/assets/img/items/3.jpg" alt=""></div>
-                                                    <div class="info">
-                                                        <div class="type">
-                                                            <i><img src="<?php echo base_url() ?>/application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                            <span>Restaurant</span>
-                                                        </div>
-                                                        <div class="rating" data-rating="5"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            /.item-horizontal small
-                                        </section>
-                                        <section>
-                                            <a href="#"><img src="<?php echo base_url() ?>/application_resources/assets/img/ad-banner-sidebar.png" alt=""></a>
-                                        </section>
-                                        <section>
-                                            <header><h2>Categories</h2></header>
-                                            <ul class="bullets">
-                                                <li><a href="#" >Restaurant</a></li>
-                                                <li><a href="#" >Steak House & Grill</a></li>
-                                                <li><a href="#" >Fast Food</a></li>
-                                                <li><a href="#" >Breakfast</a></li>
-                                                <li><a href="#" >Winery</a></li>
-                                                <li><a href="#" >Bar & Lounge</a></li>
-                                                <li><a href="#" >Pub</a></li>
-                                            </ul>
-                                        </section>
-                                        <section>
-                                            <header><h2>Events</h2></header>
-                                            <div class="form-group">
-                                                <select class="framed" name="events">
-                                                    <option value="">Select Your City</option>
-                                                    <option value="1">London</option>
-                                                    <option value="2">New York</option>
-                                                    <option value="3">Barcelona</option>
-                                                    <option value="4">Moscow</option>
-                                                    <option value="5">Tokyo</option>
-                                                </select>
-                                            </div>
-                                             /.form-group 
-                                        </section>
-                                    </aside>
-                                     /#sidebar
-                                </div>-->
-        <!-- /.col-md-3-->
-        <!--end Sidebar-->
+        </div>        
     </div>
 </section>
+<script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript">
     $("#contact_form").validate({
@@ -187,10 +100,8 @@
             $.post(site_url + '/inquries/add_inqurie', $('#contact_form').serialize(), function(msg)
             {
                 if (msg == 1) {
-                    $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
-
-                    contact_form.reset();
-                     window.location = site_url + '/pages/contact_us';
+                    toastr.success("Successfully submited your Inquiry !!", "AutoVille");
+                    contact_form.reset();                  
                 } else {
                     $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 

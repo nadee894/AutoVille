@@ -136,8 +136,9 @@ class Vehicle_advertisements extends CI_Controller {
         }
 
         $data['vehicle_equipments'] = $equipment_array;
+        $data['latest_vehicles'] = $vehicle_advertisement_service->get_new_arrival(2);
 
-        $parials = array('content' => 'vehicle_adds/edit_advertisement');
+        $parials = array('content' => 'vehicle_adds/edit_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
@@ -177,6 +178,11 @@ class Vehicle_advertisements extends CI_Controller {
 
         $temp_images = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
 
+        $marker_position = $this->input->post('marker_position');
+        $marker_position = str_replace(array('(', ')'), '', $marker_position);
+        $cordinates        = explode(',', $marker_position);
+
+
         $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
         $vehicle_advertisement_model->set_manufacture_id($this->input->post('manufacturer', TRUE));
         $vehicle_advertisement_model->set_description($this->input->post('description', TRUE));
@@ -191,12 +197,15 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model->set_chassis_no($this->input->post('chassis_no'));
         $vehicle_advertisement_model->set_kilometers($this->input->post('kilo_meters'));
         $vehicle_advertisement_model->set_price($this->input->post('price'));
+        $vehicle_advertisement_model->set_latitude($cordinates[0]);
+        $vehicle_advertisement_model->set_longitude($cordinates[1]);
         $vehicle_advertisement_model->set_is_deleted('0');
         $vehicle_advertisement_model->set_is_featured('0');
         $vehicle_advertisement_model->set_is_price_drop('0');
         $vehicle_advertisement_model->set_is_published('0');
         $vehicle_advertisement_model->set_added_date(date("Y-m-d H:i:s"));
         $vehicle_advertisement_model->set_added_by($this->session->userdata('USER_ID'));
+
 
 
 
@@ -229,14 +238,14 @@ class Vehicle_advertisements extends CI_Controller {
             $email         = 'gayathma3@gmail.com';
             $email_subject = "AutoVille New Advertisement";
             $data['msg']   = "New Advertisement submitted!!";
-            $msg           = $this->load->view('template/mail_template/body_ask', $data, TRUE);
+            $mseg           = $this->load->view('template/mail_template/body_ask', $data, TRUE);
 
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
             $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
             $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
 
-            mail($email, $email_subject, $msg, $headers);
+            mail($email, $email_subject, $mseg, $headers);
 
 
             //sms to admins
@@ -247,7 +256,7 @@ class Vehicle_advertisements extends CI_Controller {
 //
 //            $message .= $location_messages;
 
-            $this->sms_handler->sendSMS(0756020115, $message); //correct one
+//            $this->sms_handler->sendSMS(0756020115, $message); //correct one
         }
 
         echo $msg;
@@ -276,6 +285,10 @@ class Vehicle_advertisements extends CI_Controller {
 
         $advertisement_id = $this->input->post('vehicle_id', TRUE);
         $temp_images      = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
+        
+        $marker_position = $this->input->post('marker_position');
+        $marker_position = str_replace(array('(', ')'), '', $marker_position);
+        $cordinates        = explode(',', $marker_position);
 
         $vehicle_advertisement_model->set_id($advertisement_id);
         $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
@@ -291,6 +304,8 @@ class Vehicle_advertisements extends CI_Controller {
         $vehicle_advertisement_model->set_sale_type($this->input->post('sale_type'));
         $vehicle_advertisement_model->set_chassis_no($this->input->post('chassis_no'));
         $vehicle_advertisement_model->set_kilometers($this->input->post('kilo_meters'));
+        $vehicle_advertisement_model->set_latitude($cordinates[0]);
+        $vehicle_advertisement_model->set_longitude($cordinates[1]);
         $vehicle_advertisement_model->set_price($this->input->post('price'));
         if ($this->input->post('price') < $this->input->post('price_old')) {
             $vehicle_advertisement_model->set_is_price_drop('1');
@@ -360,9 +375,9 @@ class Vehicle_advertisements extends CI_Controller {
         $website_advertisement_service = new Website_advertisements_service();
 
         $vehicle_id = $this->uri->segment(3);
-        
-        
-        
+
+
+
 
         $data['equipments']         = $equipment_service->get_all_active_equipment();
         $data['vehicle_detail']     = $vehicle_advertisments_service->get_advertisement_by_id($id);
@@ -370,13 +385,14 @@ class Vehicle_advertisements extends CI_Controller {
         $data['images']             = $vehicle_images_service->get_images_for_advertisement($id);
         $data['vehicle_reviews']    = $vehicle_reviews_service->get_all_vehicle_reviews($vehicle_id);
         $data['review_looks_count'] = count($searched_vehicles_service->get_view_count_for_advertisement($id));
-        
-        
-        $data['suggestions'] = $vehicle_advertisments_service->similar_suggestions($data['vehicle_detail']->manufacture_id, $data['vehicle_detail']->model_id);
-        
-        
-        $vehicle_equipments         = $vehicle_equipment_service->get_equipments_by_vehicle_id($id);
-        $equipment_array            = array();
+
+        $vehicle_advertisments_service->update_views($id); //Ashani
+
+        $data['suggestions'] = $vehicle_advertisments_service->similar_suggestions($data['vehicle_detail']->manufacture_id, $data['vehicle_detail']->model_id); //Ashani
+
+
+        $vehicle_equipments = $vehicle_equipment_service->get_equipments_by_vehicle_id($id);
+        $equipment_array    = array();
         foreach ($vehicle_equipments as $value) {
             $equipment_array[] = $value->equipment_id;
         }

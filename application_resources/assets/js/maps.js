@@ -565,6 +565,10 @@ function simpleMap(_latitude, _longitude, draggableMarker){
     });
 
     marker.content.className = 'marker-loaded';
+    
+//    google.maps.event.addListener(marker, 'position_changed', function() {
+//      $('#marker_position').val( marker.getPosition());
+//    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
