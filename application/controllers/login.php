@@ -88,10 +88,11 @@ class Login extends CI_Controller {
         $this->load->library('googleplus');
 
         $code =$this->input->post('code', TRUE);
+
         if (!empty($code)) {
 
             $this->googleplus->client->authenticate();
-             $this->session->set_userdata('token',$this->googleplus->client->getAccessToken());
+            $this->session->set_userdata('token',$this->googleplus->client->getAccessToken());
 
             $email =$this->input->post('email', TRUE);
             $name =$this->input->post('name', TRUE);
@@ -141,7 +142,7 @@ class Login extends CI_Controller {
             }
 
         }
-        echo '1';
+        echo '1';die;
     }
 
     function logout() {
