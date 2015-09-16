@@ -59,23 +59,22 @@
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
+  var name = profile.getName();
+  var image_url = profile.getImageUrl();
+  var email = profile.getEmail();
   
    // The ID token you need to pass to your backend:
    var id_token = googleUser.getAuthResponse().id_token;
-   console.log("ID Token: " + id_token);
+
 
    $.ajax({
       type: 'POST',
       url: site_url+'/login/google_authenticate_user',
       success: function(result) {
-         setTimeout("location.href = site_url;", 100);
-     },
-     data: {code:id_token}
- });
+       setTimeout("location.href = site_url;", 100);
+   },
+   data: {code:id_token,name:name,image_url:image_url,email:email}
+});
 }
 
 function onFailure(error) {
