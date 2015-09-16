@@ -68,4 +68,15 @@ class User_service extends CI_Model {
         return $this->db->update('user', $data);
     }
 
+    function check_user_email_exist($email){
+        $data = array('email' => $email, 'is_deleted' => '0');
+
+        $this->db->select('user.*,user_type.type as user_type_name');
+        $this->db->from('user');
+        $this->db->join('user_type', 'user.user_type = user_type.id');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
 }
