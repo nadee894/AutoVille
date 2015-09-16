@@ -74,7 +74,7 @@
                                     <?php } else { ?>                                                                                                                
                                         <li>
                                             <a href="<?php echo site_url(); ?>/dashboard" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_FULLNAME')); ?></a>
-                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>                                        
+                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out" onclick="signOut()"><i class="fa fa-power-off"></i> Sign Out</a>                                        
                                         </li>
                                     <?php } ?>
 
@@ -329,6 +329,11 @@
             $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut();
+  }
     });
 
 </script>
