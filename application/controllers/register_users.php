@@ -93,6 +93,7 @@ class Register_Users extends CI_Controller {
 
         if (mail($email, $email_subject, $msg, $headers)) {
             echo "1";
+            $this->session->set_flashdata('info', 'Please go to your email account and continue the registration process');
         } else {
             echo "0";
         }

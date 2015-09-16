@@ -163,6 +163,7 @@
                 }
             }, submitHandler: function (form)
             {
+                disable_submit_btn();
                 $.post(site_url + '/register_users/add_new_user', $('#form-register').serialize(), function (msg)
                 {
                     banana = msg;
@@ -170,7 +171,7 @@
                     //alert(banana);
                     if (msg == "1") {
                         toastr.success("Successfully Registered", "AutoVille");
-                        window.location = site_url + '/home';
+                        window.location = site_url + '/login/load_login';
                     } else {
                         toastr.error("Error in registration", "AutoVille");
 
