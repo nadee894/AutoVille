@@ -8,8 +8,8 @@
             navText: ["", ""]
         });
     });
-
-
+    
+    
 </script>
 <div class="list-slider owl-carousel">
     <?php foreach ($commercial_images as $value) { ?>
