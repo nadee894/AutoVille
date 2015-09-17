@@ -1,7 +1,5 @@
 
 <style>
-<style>
-
 
 .chat-box {
   font:normal normal 11px/1.4 Tahoma,Verdana,Sans-Serif;
