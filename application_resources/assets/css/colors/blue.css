@@ -909,7 +909,7 @@ ul.bullets li a:hover {
 
 #page-content {
   padding-bottom: 60px;
-  z-index: 0;
+  z-index: 9; //heshani
   position: relative;
 }
 
