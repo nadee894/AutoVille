@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.7
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 17, 2015 at 01:27 PM
--- Server version: 5.1.73-cll
--- PHP Version: 5.4.23
+-- Host: 127.0.0.1
+-- Generation Time: Sep 17, 2015 at 05:14 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `autovill_live`
+-- Database: `autoville_new`
 --
 
 -- --------------------------------------------------------
@@ -926,6 +926,8 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `price` decimal(20,2) NOT NULL,
   `kilometers` int(10) DEFAULT NULL,
   `sale_type` enum('Used','New','Reconditioned') NOT NULL DEFAULT 'New',
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
   `location_id` int(11) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
@@ -942,24 +944,24 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
 -- Dumping data for table `vehicle_advertisements`
 --
 
-INSERT INTO `vehicle_advertisements` (`id`, `vehicle_type`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `kilometers`, `sale_type`, `location_id`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`, `is_featured`, `is_price_drop`) VALUES
-(1, '1', 55, 2005, 3, 2, 7, 1, 4, NULL, 'White', 'The BMW M3 is a high-performance version of the BMW 3-Series\r\n', '3421', '250000.00', 23, 'Used', 5, '1', '0', '2015-03-21 14:51:03', 1, NULL, NULL, '1', '1'),
-(2, '1', 55, 2006, 3, 1, 1, 2, 4, NULL, 'White', 'The Toyota Corolla is a line of subcompact and compact cars manufactured by Toyota.', '235', '345000.00', 12, 'New', 7, '1', '0', '2015-03-21 14:55:23', 1, '2015-05-12 00:42:40', 1, '2', '0'),
-(3, '1', 55, 2008, 2, 4, 4, 3, 4, NULL, 'Red', 'The Ford Mustang is an American automobile manufactured by the Ford Motor Company. ', '654', '540000.00', 12, 'Used', 6, '1', '0', '2015-03-21 15:01:02', 1, '2015-05-12 00:37:30', 1, '1', '0'),
-(4, '1', 54, 2013, 2, 5, 10, 1, 4, NULL, 'Red', 'The Mazda RX-8 was a sports car manufactured by Mazda', '546', '400000.00', 23, 'Used', 3, '1', '0', '2015-03-21 15:03:14', 1, NULL, NULL, '2', '0'),
-(5, '1', 55, 2001, 2, 6, 11, 3, 4, NULL, 'Blue', 'The Nissan Skyline is a line of compact cars, sports cars and compact executive cars originally produced by the Prince Motor Company.', '43', '540200.00', 12, 'New', 5, '1', '0', '2015-03-21 15:05:37', 1, NULL, NULL, '2', '0'),
-(6, '1', 55, 1996, 3, 7, 12, 1, 4, NULL, 'Blue', 'Maruti Suzuki  is an automobile manufacturer in India.', '542', '230000.00', 32, 'Used', 7, '1', '0', '2015-03-21 15:08:06', 1, NULL, NULL, '0', '0'),
-(7, '1', 54, 2013, 4, 1, 15, 1, 4, NULL, 'Black', 'The Toyota Prius is a full hybrid electric mid-size hatchback, developed and manufactured by Toyota.', '432', '1000000.00', 42, 'New', 5, '1', '0', '2015-03-21 15:10:47', 1, NULL, NULL, '2', '0'),
-(8, '1', 55, 2010, 3, 7, 13, 1, 4, NULL, 'Blue', 'The Suzuki Swift is a subcompact car produced by Suzuki in Japan since 2000', '32', '230300.00', 65, 'Used', 5, '1', '0', '2015-03-21 15:14:18', 1, NULL, NULL, '0', '1'),
-(9, '1', 55, 2003, 3, 1, 16, 2, 4, NULL, 'White', 'The Toyota Vitz is a line of three- and five-door hatchback subcompact cars produced  by the Japanese automobile manufacturer Toyota', '54', '540000.00', 12, 'Used', 5, '1', '0', '2015-03-21 15:16:43', 1, NULL, NULL, '0', '0'),
-(10, '1', 55, 1993, 2, 5, 10, 2, 4, NULL, 'Yellow', 'Mazda RX-8 yellow car', '434', '3005000.00', 23, 'Used', 5, '1', '0', '2015-03-26 02:04:01', 1, NULL, NULL, '0', '0'),
-(11, '1', 54, 2004, 3, 4, 8, 1, 4, NULL, 'Purple', 'Ford Mustang GT purple', '874', '5000000.00', 200, 'Used', 7, '1', '0', '2015-03-26 02:12:04', 1, NULL, NULL, '0', '1'),
-(12, '1', 55, 2003, 3, 4, 8, 1, 4, NULL, 'Blue', 'Ford Mustang GT blue', '234', '10000000.00', 56, 'New', 4, '1', '0', '2015-03-26 02:13:24', 1, NULL, NULL, '0', '0'),
-(13, '1', 57, 2007, 3, 4, 8, 1, 4, NULL, 'Yellow', 'Ford Mustang GT yellow', '32', '3000000.00', 43, 'Used', 1, '1', '0', '2015-03-26 02:15:05', 1, NULL, NULL, '0', '0'),
-(14, '1', 57, 2006, 2, 6, 11, 1, 4, NULL, 'Pink', 'Nissan Skyline pink', '43', '3000000.00', 34, 'New', 2, '1', '0', '2015-03-26 02:21:29', 1, NULL, NULL, '0', '0'),
-(15, '1', 56, 2013, 3, 6, 11, 2, 4, NULL, 'Green', 'Nissan skyline green', '32', '4560000.00', 43, 'Used', 5, '1', '0', '2015-03-26 02:23:06', 1, NULL, NULL, '0', '0'),
-(16, '1', 56, 2006, 3, 1, 16, 3, 4, NULL, 'Pink', 'Toyota vits pink', '32', '5030000.00', 43, 'Used', 5, '1', '0', '2015-03-26 02:25:01', 1, NULL, NULL, '0', '0'),
-(17, '1', 56, 2011, 3, 1, 16, 3, 4, NULL, 'Green', 'Toyota vits green', '3242', '6703000.00', 424, 'Used', 5, '1', '0', '2015-03-26 02:25:59', 1, NULL, NULL, '0', '0');
+INSERT INTO `vehicle_advertisements` (`id`, `vehicle_type`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `kilometers`, `sale_type`, `latitude`, `longitude`, `location_id`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`, `is_featured`, `is_price_drop`) VALUES
+(1, '1', 55, 2005, 3, 2, 7, 1, 4, NULL, 'White', 'The BMW M3 is a high-performance version of the BMW 3-Series\r\n', '3421', 250000.00, 23, 'Used', NULL, NULL, 5, '1', '0', '2015-03-21 14:51:03', 1, NULL, NULL, '1', '1'),
+(2, '1', 55, 2006, 3, 1, 1, 2, 4, NULL, 'White', 'The Toyota Corolla is a line of subcompact and compact cars manufactured by Toyota.', '235', 345000.00, 12, 'New', NULL, NULL, 7, '1', '0', '2015-03-21 14:55:23', 1, '2015-05-12 00:42:40', 1, '2', '0'),
+(3, '1', 55, 2008, 2, 4, 4, 3, 4, NULL, 'Red', 'The Ford Mustang is an American automobile manufactured by the Ford Motor Company. ', '654', 540000.00, 12, 'Used', NULL, NULL, 6, '1', '0', '2015-03-21 15:01:02', 1, '2015-05-12 00:37:30', 1, '1', '0'),
+(4, '1', 54, 2013, 2, 5, 10, 1, 4, NULL, 'Red', 'The Mazda RX-8 was a sports car manufactured by Mazda', '546', 400000.00, 23, 'Used', NULL, NULL, 3, '1', '0', '2015-03-21 15:03:14', 1, NULL, NULL, '2', '0'),
+(5, '1', 55, 2001, 2, 6, 11, 3, 4, NULL, 'Blue', 'The Nissan Skyline is a line of compact cars, sports cars and compact executive cars originally produced by the Prince Motor Company.', '43', 540200.00, 12, 'New', NULL, NULL, 5, '1', '0', '2015-03-21 15:05:37', 1, NULL, NULL, '2', '0'),
+(6, '1', 55, 1996, 3, 7, 12, 1, 4, NULL, 'Blue', 'Maruti Suzuki  is an automobile manufacturer in India.', '542', 230000.00, 32, 'Used', NULL, NULL, 7, '1', '0', '2015-03-21 15:08:06', 1, NULL, NULL, '0', '0'),
+(7, '1', 54, 2013, 4, 1, 15, 1, 4, NULL, 'Black', 'The Toyota Prius is a full hybrid electric mid-size hatchback, developed and manufactured by Toyota.', '432', 1000000.00, 42, 'New', NULL, NULL, 5, '1', '0', '2015-03-21 15:10:47', 1, NULL, NULL, '2', '0'),
+(8, '1', 55, 2010, 3, 7, 13, 1, 4, NULL, 'Blue', 'The Suzuki Swift is a subcompact car produced by Suzuki in Japan since 2000', '32', 230300.00, 65, 'Used', NULL, NULL, 5, '1', '0', '2015-03-21 15:14:18', 1, NULL, NULL, '0', '1'),
+(9, '1', 55, 2003, 3, 1, 16, 2, 4, NULL, 'White', 'The Toyota Vitz is a line of three- and five-door hatchback subcompact cars produced  by the Japanese automobile manufacturer Toyota', '54', 540000.00, 12, 'Used', NULL, NULL, 5, '1', '0', '2015-03-21 15:16:43', 1, NULL, NULL, '0', '0'),
+(10, '1', 55, 1993, 2, 5, 10, 2, 4, NULL, 'Yellow', 'Mazda RX-8 yellow car', '434', 3005000.00, 23, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:04:01', 1, NULL, NULL, '0', '0'),
+(11, '1', 54, 2004, 3, 4, 8, 1, 4, NULL, 'Purple', 'Ford Mustang GT purple', '874', 5000000.00, 200, 'Used', NULL, NULL, 7, '1', '0', '2015-03-26 02:12:04', 1, NULL, NULL, '0', '1'),
+(12, '1', 55, 2003, 3, 4, 8, 1, 4, NULL, 'Blue', 'Ford Mustang GT blue', '234', 10000000.00, 56, 'New', NULL, NULL, 4, '1', '0', '2015-03-26 02:13:24', 1, NULL, NULL, '0', '0'),
+(13, '1', 57, 2007, 3, 4, 8, 1, 4, NULL, 'Yellow', 'Ford Mustang GT yellow', '32', 3000000.00, 43, 'Used', NULL, NULL, 1, '1', '0', '2015-03-26 02:15:05', 1, NULL, NULL, '0', '0'),
+(14, '1', 57, 2006, 2, 6, 11, 1, 4, NULL, 'Pink', 'Nissan Skyline pink', '43', 3000000.00, 34, 'New', NULL, NULL, 2, '1', '0', '2015-03-26 02:21:29', 1, NULL, NULL, '0', '0'),
+(15, '1', 56, 2013, 3, 6, 11, 2, 4, NULL, 'Green', 'Nissan skyline green', '32', 4560000.00, 43, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:23:06', 1, NULL, NULL, '0', '0'),
+(16, '1', 56, 2006, 3, 1, 16, 3, 4, NULL, 'Pink', 'Toyota vits pink', '32', 5030000.00, 43, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:25:01', 1, NULL, NULL, '0', '0'),
+(17, '1', 56, 2011, 3, 1, 16, 3, 4, NULL, 'Green', 'Toyota vits green', '3242', 6703000.00, 424, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:25:59', 1, NULL, NULL, '0', '0');
 
 -- --------------------------------------------------------
 
@@ -1151,11 +1153,11 @@ CREATE TABLE IF NOT EXISTS `website_advertisements` (
 --
 
 INSERT INTO `website_advertisements` (`id`, `topic`, `description`, `price`, `image`, `url`, `is_front_page`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(7, 'test', 'test', '22222.00', 'commercial_images_1441951882-advertisement-poster-7.jpg', '', '1', '1', '0', '2015-09-11 00:41:53', 2, '2015-09-11 00:41:24', 1),
-(8, 'test', 'test', '5.00', 'commercial_images_1441952016-creative-advertisement (13).jpg', '', '1', '1', '0', '2015-09-11 00:55:17', 2, '2015-09-11 00:43:38', 1),
-(9, 'test', 'test', '60000.00', 'commercial_images_1441952032-australia-post.jpg', '', '1', '1', '0', '2015-09-11 00:55:25', 2, '2015-09-11 00:43:54', 1),
-(10, 'test', 'test', '63333.00', 'commercial_images_1441952094-advertisements-hung-sing-g-running-shoe-series-psd.jpg', '', '1', '1', '0', '2015-09-11 00:55:35', 2, '2015-09-11 00:44:57', 1),
-(11, 'test', 'test', '5222.00', 'commercial_images_1441952681-Print-Advertisements-20.jpg', '', '1', '1', '0', '2015-09-11 00:55:41', 2, '2015-09-11 00:54:43', 1);
+(7, 'test', 'test', 22222.00, 'commercial_images_1441951882-advertisement-poster-7.jpg', '', '1', '1', '0', '2015-09-11 00:41:53', 2, '2015-09-11 00:41:24', 1),
+(8, 'test', 'test', 5.00, 'commercial_images_1441952016-creative-advertisement (13).jpg', '', '1', '1', '0', '2015-09-11 00:55:17', 2, '2015-09-11 00:43:38', 1),
+(9, 'test', 'test', 60000.00, 'commercial_images_1441952032-australia-post.jpg', '', '1', '1', '0', '2015-09-11 00:55:25', 2, '2015-09-11 00:43:54', 1),
+(10, 'test', 'test', 63333.00, 'commercial_images_1441952094-advertisements-hung-sing-g-running-shoe-series-psd.jpg', '', '1', '1', '0', '2015-09-11 00:55:35', 2, '2015-09-11 00:44:57', 1),
+(11, 'test', 'test', 5222.00, 'commercial_images_1441952681-Print-Advertisements-20.jpg', '', '1', '1', '0', '2015-09-11 00:55:41', 2, '2015-09-11 00:54:43', 1);
 
 --
 -- Constraints for dumped tables
