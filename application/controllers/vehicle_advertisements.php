@@ -97,7 +97,7 @@ class Vehicle_advertisements extends CI_Controller {
         $data['last_id']         = $last_id;
         $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);
 
-        $parials = array('content'      => 'vehicle_adds/add_new_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+        $parials = array('content' => 'vehicle_adds/add_new_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
@@ -136,7 +136,7 @@ class Vehicle_advertisements extends CI_Controller {
         }
 
         $data['vehicle_equipments'] = $equipment_array;
-        $data['latest_vehicles'] = $vehicle_advertisement_service->get_new_arrival(2);
+        $data['latest_vehicles']    = $vehicle_advertisement_service->get_new_arrival(2);
 
         $parials = array('content' => 'vehicle_adds/edit_advertisement', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
@@ -180,7 +180,7 @@ class Vehicle_advertisements extends CI_Controller {
 
         $marker_position = $this->input->post('marker_position');
         $marker_position = str_replace(array('(', ')'), '', $marker_position);
-        $cordinates        = explode(',', $marker_position);
+        $cordinates      = explode(',', $marker_position);
 
 
         $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
@@ -238,7 +238,7 @@ class Vehicle_advertisements extends CI_Controller {
             $email         = 'gayathma3@gmail.com';
             $email_subject = "AutoVille New Advertisement";
             $data['msg']   = "New Advertisement submitted!!";
-            $mseg           = $this->load->view('template/mail_template/body_ask', $data, TRUE);
+            $mseg          = $this->load->view('template/mail_template/body_ask', $data, TRUE);
 
             $headers = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -255,7 +255,6 @@ class Vehicle_advertisements extends CI_Controller {
 //            $message .= 'Location(s):';
 //
 //            $message .= $location_messages;
-
 //            $this->sms_handler->sendSMS(0756020115, $message); //correct one
         }
 
@@ -285,10 +284,10 @@ class Vehicle_advertisements extends CI_Controller {
 
         $advertisement_id = $this->input->post('vehicle_id', TRUE);
         $temp_images      = $vehicle_images_temp_service->get_all_temp_images_for_user($this->session->userdata('USER_ID'));
-        
+
         $marker_position = $this->input->post('marker_position');
         $marker_position = str_replace(array('(', ')'), '', $marker_position);
-        $cordinates        = explode(',', $marker_position);
+        $cordinates      = explode(',', $marker_position);
 
         $vehicle_advertisement_model->set_id($advertisement_id);
         $vehicle_advertisement_model->set_model_id($this->input->post('model', TRUE));
@@ -400,7 +399,7 @@ class Vehicle_advertisements extends CI_Controller {
 
         $data['commercial_images'] = $website_advertisement_service->get_advertisement_image();
 
-        $parials = array('content'      => 'vehicle_adds/vehicle_detail_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+        $parials = array('content' => 'vehicle_adds/vehicle_detail_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
@@ -421,26 +420,36 @@ class Vehicle_advertisements extends CI_Controller {
      */
 
     function send_email_to_sellers() {
+
         $email_subject        = "AutoVille Customer Request";
         $data['user_name']    = $this->input->post('name', TRUE);
         $data['name']         = 'Sir/Madam';
-        $data['user_email']   = $this->input->post('user_email', TRUE);
+        $user_email           = $this->input->post('user_email', TRUE);
         $data['phone']        = $this->input->post('phone', TRUE);
         $data['sender_email'] = $this->input->post('sender_email', TRUE);
         $data['msg']          = $this->input->post('comments', TRUE);
-
-        $msg = $this->load->view('template/mail_template/body_ask', $data, TRUE);
+        $msg                  = $this->load->view('template/mail_template/body_ask', $data, TRUE);
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: AutoVille <autoville@gmail.com>' . "\r\n";
         $headers .= 'Cc: gayathma3@gmail.com,niklakshaya@gmail.com,heshani7.herath@gmail.com' . "\r\n";
 
-        if (mail($data['sender_email'], $email_subject, $msg, $headers)) {
+
+        if (mail($user_email, $email_subject, $msg, $headers)) {
             echo "1";
         } else {
             echo "0";
         }
+
+        //sms to admins
+        $message = "New Advertisement has submitted. \n ";
+//            $message .= 'Driver:' . $driver_details->Employee_Name . ' ' . $driver_details->last_name . ' \n ';
+//            $message .= 'Start Time:' . $basic_request_details->required_date . ' \n ';
+        $message .= 'Location(s):';
+
+        $message .= $location_messages;
+        $this->sms_handler->sendSMS(0765514269, $message); //correct one
     }
 
     /*

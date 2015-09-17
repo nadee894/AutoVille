@@ -9,7 +9,7 @@
                 <div class="rawHtmlContent section"><p>Find information on used, new and certified cars on Autotrader. Read car reviews and articles, compare cars and find a dealer in your area. Begin your car search at the ultimate automotive marketplace.</p>
 
                     <!-- column #1 -->
-                    <div class="small-12 medium-6 columns">
+                    <div class="atcui-column atcui-span-6">
                         <h3><a href="/research/index.jsp">Research &amp; Compare</a></h3>
 
                         <ul class="atcui-list atcui-bare">

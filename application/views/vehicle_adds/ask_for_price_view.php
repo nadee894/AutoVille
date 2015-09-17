@@ -33,7 +33,7 @@
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
-    $('#ask_for_price').addClass('active open');
+//    $('#ask_for_price').addClass('active open');
     $(document).ready(function () {
         $('#ask_form').validate({
             rules: {
@@ -64,9 +64,12 @@
                     minlength: "Phone number is too short"
                 }
             }, submitHandler: function (form)
-            {
-                $.post(site_url + '/vehicle_advertisements/send_email_to_sellers', $('#ask_form').serialize(), function (msg) {
+            {                                                  
+                $.post(site_url + '/vehicle_advertisements/send_email_to_sellers', $('#ask_form').serialize(), function (msg) 
+                {
+                    alert("method executed");
                     if (msg == 1) {
+                        alert("Done");
                         $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully Sent!!.</strong></div>');
                         ask_form.reset();
 //                        window.location = site_url + '/body_type/manage_body_types';
