@@ -32,7 +32,7 @@
         {
             $.post(site_url + '/vehicle_reviews/edit_review', $('#edit_review_form').serialize(), function(msg)
             {
-                if (msg === 1) {
+                if (msg == 1) {
                     $('#rtn_msg_edit').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully saved!!.</strong></div>');
 
                     //window.location = site_url + '/vehicle_advertisements/vehicle_advertisement_detail_view/'+$('#vehicle_id').val()+;
