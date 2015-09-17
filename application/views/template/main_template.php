@@ -33,7 +33,7 @@
 
     </head>
 
-    <body onunload="" class="map-fullscreen page-homepage navigation-off-canvas" id="page-top">
+    <body onunload="" class="map-fullscreen page-homepage navigation-off-canvas" id="page-top"  itemscope itemtype="http://schema.org/Product">
 
         <!-- Outer Wrapper-->
         <div id="outer-wrapper">

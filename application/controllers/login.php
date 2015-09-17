@@ -130,8 +130,9 @@ class Login extends CI_Controller {
                 $register_users_model->set_is_published('1');
                 $register_users_model->set_is_deleted('0');
 
-                $register_users_service->add_new_user_registration($register_users_model);
+                $new_user_id=$register_users_service->add_new_user_registration($register_users_model);
 
+                $this->session->set_userdata('USER_ID', $new_user_id);
                 $this->session->set_userdata('USER_NAME', $name);
                 $this->session->set_userdata('USER_FULLNAME', $name);
                 $this->session->set_userdata('USER_EMAIL', $email);
@@ -158,6 +159,7 @@ class Login extends CI_Controller {
 
         $this->session->set_userdata('USER_ONLINE', 'N');
         $this->session->set_userdata('USER_LOGGED_IN', 'FALSE');
+        $this->session->set_userdata('token', '');
 
         $this->session->sess_destroy();
         redirect(site_url() . '/login/load_login');
