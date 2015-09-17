@@ -94,7 +94,8 @@ class Register_Users_service extends CI_Model {
 
     function add_new_user_registration($register_users_model) {
 
-        return $this->db->insert('user', $register_users_model);
+        $this->db->insert('user', $register_users_model);
+        return $this->db->insert_id();
     }
 
     function activate_user($email, $token) {

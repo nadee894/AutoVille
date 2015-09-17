@@ -181,7 +181,9 @@
         var manufacturer = $('#manufacturer').val();
         var model = $('#model').val();
         var body_type = $('#body_type').val();
-        var maxyear = $('#maxyear').val();                                                 var minyear = $('#minyear').val();                                                 var fuel_type = $('#fuel_type').val();
+        var maxyear = $('#maxyear').val();
+        var minyear = $('#minyear').val();
+        var fuel_type = $('#fuel_type').val();
         var sale_type = $('#sale_type').val();
         var color = $('#color').val();
         var maxprice = $('#maxprice').val();
@@ -189,7 +191,8 @@
         var transmission = $('#transmission').val();
         var kilometers = $('#kilometers').val();
         var location = $('#location').val();
-        var keyword = $('#keyword').val();                                                 var view_no = 1;
+        var keyword = $('#keyword').val();
+        var view_no = 1;
 
         $.ajax({
             type: "POST",

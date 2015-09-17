@@ -57,16 +57,16 @@
                 if ($field->field_name == 'year') {
                     ?>
                     <div class="form-group col-lg-2">
-                        <label for="year-slider">Year</label>                       
+                        <label for="year-slider">Year</label>   
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                         <div class="ui-slider" id="year-slider" data-value-min="1920" data-value-max="2015" data-step="1">
                             <div class="values clearfix">
                                 <input class="value-min" id="minyear" name="minyear" readonly>
                                 <input class="value-max" id="maxyear" name="maxyear" readonly>
                             </div>              
-                        </div>                         
-                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
-                            <i class="fa fa-trash-o" style="color: red;"></i>
-                        </a>
+                        </div>                                             
                     </div>                    
                     <?php
                 }
@@ -128,16 +128,16 @@
                     ?>
                     <div class="form-group col-lg-2">
                         <label>Price Rs.</label>
+                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
+                            <i class="fa fa-trash-o" style="color: red;"></i>
+                        </a>
                         <div class="ui-slider" id="price-slider" data-value-min="100000" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
                             <div class="values clearfix">
                                 <input class="value-min" id="minprice" name="minprice" readonly>
                                 <input class="value-max" id="maxprice" name="maxprice" readonly>
                             </div>
                             <div class="element"></div>
-                        </div>
-                        <a href="#" onclick="delete_field('<?php echo $field->advanced_search_content_id; ?>')" title="Remove Field">
-                            <i class="fa fa-trash-o" style="color: red;"></i>
-                        </a>
+                        </div>                        
                     </div>
                     <?php
                 }
@@ -243,7 +243,7 @@
                     "&minyear=" + minyear + "&fuel_type=" + fuel_type + "&sale_type=" + sale_type + "&color=" + color +
                     "&maxprice=" + maxprice + "&minprice=" + minprice + "&transmission=" + transmission +
                     "&kilometers=" + kilometers + "&location=" + location + "&keyword=" + keyword,
-            success: function (msg) {
+            success: function(msg) {
                 $('#advanced_search_result_content').html(msg);
             }
         });
@@ -257,11 +257,11 @@
                 type: "POST",
                 url: site_url + '/advanced_search/delete_user_field',
                 data: 'field_id=' + field_id,
-                success: function (msg) {
+                success: function(msg) {
                     if (msg == '1') {
                         $('#delete_fade_success').fadeIn();
                         $('#delete_fade_success').fadeOut(4000);
-                        window.setTimeout(function () {
+                        window.setTimeout(function() {
                             location.reload()
                         }, 1000);
                     } else {

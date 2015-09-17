@@ -7,35 +7,42 @@ class Pages extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
+
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
-
     }
 
     function contact_us() {
 
-        $data['']='';
+        $data['']                      = '';
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);
-        
-        $parials = array('content' => 'content_pages/contact_us','new_arrivals' => 'vehicle_adds/new_arrivals');
+        $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
+
+        $parials = array('content' => 'content_pages/contact_us', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
     function how_to_buy() {
 
-        $data['']='';
-        
-        $parials = array('content' => 'content_pages/how_to_buy_view');
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        $data['']                = '';
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+
+        $parials = array('content' => 'content_pages/how_to_buy_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
-    
+
     function site_map() {
 
-        $data['']='';
-        
-        $parials = array('content' => 'content_pages/site_map_view');
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+
+        $data['']                = '';
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+
+        $parials = array('content' => 'content_pages/site_map_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
+
 }
