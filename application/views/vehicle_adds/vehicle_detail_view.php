@@ -71,6 +71,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/peer.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
     $.ajax({
         type: "POST",
@@ -347,7 +348,7 @@ window.onunload = window.onbeforeunload = function(e) {
                 <header class="page-title">
                     <div class="title">
                         <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $vehicle_detail->id; ?>" />
-                        <h1><?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model . ' ' . $vehicle_detail->year; ?></h1>
+                        <h1 itemprop="name"><?php echo $vehicle_detail->manufacture . ' ' . $vehicle_detail->model . ' ' . $vehicle_detail->year; ?></h1>
                         <figure style="color: red;"><strong>Rs. <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></strong></figure>
                     </div>
                     <div class="info">
@@ -440,7 +441,7 @@ window.onunload = window.onbeforeunload = function(e) {
                                         ++$i
                                         ?>
                                         <div class="owl-item <?php if ($i == 1) { ?> active<?php } ?>">
-                                            <div class="slide"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" data-hash="<?php echo $i; ?>" alt=""></div>
+                                            <div class="slide"><img <?php if ($i == 1) { ?> itemprop="image" <?php } ?> src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $vehicle_detail->id . '/' . $image->image_path; ?>" data-hash="<?php echo $i; ?>" alt=""></div>
                                         </div>
 
                                     <?php } ?>
@@ -465,7 +466,7 @@ window.onunload = window.onbeforeunload = function(e) {
                             <!-- /.item-gallery -->
                             <article class="block">
                                 <header><h2>Description</h2></header>
-                                <p><?php echo $vehicle_detail->description; ?></p>
+                                <p itemprop="description"><?php echo $vehicle_detail->description; ?></p>
                             </article>
                             <!-- /.block -->
                             <article class="block">
