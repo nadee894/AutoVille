@@ -1,5 +1,5 @@
 
-<div class="atcui-grid atcui-clearfix page-content-wrapper ">
+<div class="atcui-grid atcui-clearfix page-content-wrapper " style="padding: 20px">
 
     <div id="j_id_aw" class="atcui atcui-content  " data-qaid="">
         <div id="j_id_au-j_id_aw-sitemap" class="parsys atcui-inline " data-qaid="aem-content-sitemap"><!-- BEGIN AEM INJECTION -->

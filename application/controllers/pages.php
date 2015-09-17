@@ -29,7 +29,7 @@ class Pages extends CI_Controller {
         $data['']                = '';
         $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
 
-        $parials = array('content' => 'content_pages/how_to_buy_view');
+        $parials = array('content' => 'content_pages/how_to_buy_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
