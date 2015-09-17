@@ -111,7 +111,10 @@
             });
         }
 
-        itemDetailMap('<?php echo $vehicle_detail->latitude; ?>', '<?php echo $vehicle_detail->longitude; ?>');
+        var latitude = <?php echo (!empty($vehicle_detail->latitude)) ? $vehicle_detail->latitude : 6.9006 ; ?>;
+        var longitude = <?php echo (!empty($vehicle_detail->longitude)) ? $vehicle_detail->longitude : 79.8533 ; ?>;
+
+        itemDetailMap(latitude, longitude);
 
     });
     $(document).ready(function() {
@@ -391,7 +394,12 @@ window.onunload = window.onbeforeunload = function(e) {
                                     <div class="info">
                                         <i class="fa fa-globe"></i>
                                         <a href="#">www.autoville.lankapanel.biz</a>
+                                        <?php 
+                                          $user= $this->session->userdata("USER_ID");
+                                          if(empty($user) || ($user != $vehicle_detail->added_by)){
+                                        ?>
                                         <a href="#" id="startChat" class="">Chat </a>
+                                        <?php } ?>
                                     </div>
                                 </figure>
                             </address>
