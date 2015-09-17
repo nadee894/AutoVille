@@ -29,8 +29,7 @@ class Inquries extends CI_Controller {
         
         if($msg=='1'){
             $email = 'info.autovillle@gmail.com';
-            $email_subject = "AutoVille New Inquiry";
-            //$data['msg'] = "New Advertisement submitted!!";
+            $email_subject = "AutoVille New Inquiry";            
             $mseg = $this->load->view('template/mail_template/contact_us',$data,TRUE);
 
             $headers = 'MIME-Version: 1.0' . "\r\n";
