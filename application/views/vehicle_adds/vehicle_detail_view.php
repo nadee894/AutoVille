@@ -1,8 +1,78 @@
+
+<style>
+<style>
+
+
+.chat-box {
+  font:normal normal 11px/1.4 Tahoma,Verdana,Sans-Serif;
+  color:#333;
+  width:200px; /* Chatbox width */
+  border:1px solid #344150;
+  border-bottom:none;
+  background-color:white;
+  position:fixed;
+  right:10px;
+  bottom:0;
+  z-index:9999;
+  -webkit-box-shadow:1px 1px 5px rgba(0,0,0,.2);
+  -moz-box-shadow:1px 1px 5px rgba(0,0,0,.2);
+  box-shadow:1px 1px 5px rgba(0,0,0,.2);
+      overflow: visible!important;
+}
+
+.chat-box > input[type="checkbox"] {
+  display:block;
+  margin:0 0;
+  padding:0 0;
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  width:100%;
+  height:26px;
+  z-index:4;
+  cursor:pointer;
+  opacity:0;
+  filter:alpha(opacity=0);
+}
+
+.chat-box > label {
+  display:block;
+  height:24px;
+  line-height:24px;
+  background-color:#344150;
+  color:white;
+  font-weight:bold;
+  padding:0 1em 1px;
+}
+
+.chat-box > label:before {content:attr(data-collapsed)}
+
+.chat-box .chat-box-content {
+  padding:10px;
+  display:none;
+  height:200px;
+  overflow-y:scroll;
+}
+
+/* hover state */
+.chat-box > input[type="checkbox"]:hover + label {background-color:#404D5A}
+
+/* checked state */
+.chat-box > input[type="checkbox"]:checked + label {background-color:#212A35}
+.chat-box > input[type="checkbox"]:checked + label:before {content:attr(data-expanded)}
+.chat-box > input[type="checkbox"]:checked ~ .chat-box-content {display:block}
+
+.chatText{
+ width:76%;   
+}
+</style>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/richmarker.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/peer.js"></script>
 <script>
     $.ajax({
         type: "POST",
@@ -75,7 +145,199 @@
     });
 
 </script>
+<script>
+// Connect to PeerJS, have server assign an ID instead of providing one
+// Showing off some of the configs available with PeerJS :).
+var peer = new Peer('<?php echo $this->session->userdata("USER_ID");?>',{
+  // Set API key for cloud server (you don't need this if you're running your
+  // own.
 
+  key: 'x7fwx2kavpy6tj4i',
+
+  // Set highest debug level (log everything!).
+  debug: 3,
+
+  // Set a logging function:
+  logFunction: function() {
+    var copy = Array.prototype.slice.call(arguments).join(' ');
+    $('.log').append(copy + '<br>');
+  }
+});
+var connectedPeers = {};
+
+// Show this peer's ID.
+peer.on('open', function(id){
+  $('#pid').text(id);
+  var x='<?php echo $this->session->userdata("USER_ID");?>';
+  console.log(id +' '+x);
+});
+
+// Await connections from others
+peer.on('connection', connect);
+
+peer.on('error', function(err) {
+  console.log(err);
+})
+
+// Handle a connection object.
+function connect(c) {
+  // Handle a chat connection.
+  if (c.label === 'chat') {
+    var chatbox = $('<div class="chat-box"><input type="checkbox" /><label data-expanded="Close Chatbox" data-collapsed="Open Chatbox"></label></div>').addClass('connection').addClass('active1').attr('id', c.peer);
+    var header = $('<h1></h1>').html('Chat with <strong>' + c.peer + '</strong>');
+    var messages = $('<div class="chat-box-content"><em>Peer connected.</em></div>').addClass('messages');
+    chatbox.append(header);
+    chatbox.append(messages);
+ chatbox.append('<input type="text" id="text" placeholder="Enter message" style="width: 70%;'+
+    'float: left;"><input class="button" id="send" type="button" value="Send">');
+    // Select connection handler.
+   /* chatbox.on('click', function() {
+      if ($(this).attr('class').indexOf('active') === -1) {
+        $(this).addClass('active');
+      } else {
+        $(this).removeClass('active');
+      }
+    });*/
+    $('.filler').hide();
+    $('#ch').append(chatbox);
+
+    c.on('data', function(data) {
+      messages.append('<div><span class="peer">' + c.peer + '</span>: ' + data +
+        '</div>');
+        });
+        c.on('close', function() {
+          alert(c.peer + ' has left the chat.');
+          chatbox.remove();
+          if ($('.connection').length === 0) {
+            $('.filler').show();
+          }
+          delete connectedPeers[c.peer];
+        });
+
+        
+  } else if (c.label === 'file') {
+    c.on('data', function(data) {
+      // If we're getting a file, create a URL for it.
+      if (data.constructor === ArrayBuffer) {
+        var dataView = new Uint8Array(data);
+        var dataBlob = new Blob([dataView]);
+        var url = window.URL.createObjectURL(dataBlob);
+        $('#' + c.peer).find('.messages').append('<div><span class="file">' +
+            c.peer + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</span></div>');
+      }
+    });
+  }
+  connectedPeers[c.peer] = 1;
+}
+
+$(document).ready(function() {
+  // Prepare file drop box.
+  var box = $('#box');
+  box.on('dragenter', doNothing);
+  box.on('dragover', doNothing);
+  box.on('drop', function(e){
+    e.originalEvent.preventDefault();
+    var file = e.originalEvent.dataTransfer.files[0];
+    eachActiveConnection(function(c, $c) {
+      if (c.label === 'file') {
+        c.send(file);
+        $c.find('.messages').append('<div><span class="file">You sent a file.</span></div>');
+      }
+    });
+  });
+  function doNothing(e){
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+ 
+
+  // Connect to a peer
+  $('#startChat').click(function() {
+    var requestedPeer = '<?php echo $vehicle_detail->added_by; ?>';
+    if (!connectedPeers[requestedPeer]) {
+      // Create 2 connections, one labelled chat and another labelled file.
+      var c = peer.connect(requestedPeer, {
+        label: 'chat',
+        serialization: 'none',
+        metadata: {message: 'hi i want to chat with you about this car!'}
+      });
+      c.on('open', function() {
+        connect(c);
+        console.log('stated');
+      });
+      c.on('error', function(err) { alert(err); });
+      var f = peer.connect(requestedPeer, { label: 'file', reliable: true });
+      f.on('open', function() {
+        connect(f);
+      });
+      f.on('error', function(err) { alert(err); });
+    }
+    connectedPeers[requestedPeer] = 1;
+
+  });
+
+  // Close a connection.
+  $('#close').click(function() {
+    eachActiveConnection(function(c) {
+      c.close();
+    });
+  });
+
+  // Send a chat message to all active connections.
+  $(document).on('click','#send',function(e) {
+
+    //e.preventDefault();
+    // For each active connection, send the message.
+    var msg = $('#text').val();
+    eachActiveConnection(function(c, $c) {
+console.log('a');
+      if (c.label === 'chat') {
+
+        c.send(msg);
+        $c.find('.messages').append('<div><span class="you">You: </span>' + msg
+          + '</div>');
+      }
+    });
+    $('#text').val('');
+   $('#text').focus();
+
+  });
+
+  // Goes through each active peer and calls FN on its connections.
+  function eachActiveConnection(fn) {
+    var actives = $('.active1');
+    var checkedIds = {};
+    actives.each(function() {
+      var peerId = $(this).attr('id');
+
+      if (!checkedIds[peerId]) {
+
+        var conns = peer.connections[peerId];
+        console.log( $(this));
+        for (var i = 0, ii = conns.length; i < ii; i += 1) {
+          var conn = conns[i];
+          fn(conn, $(this));
+        }
+      }
+
+      checkedIds[peerId] = 1;
+    });
+  }
+
+  // Show browser version
+  $('#browsers').text(navigator.userAgent);
+});
+
+// Make sure things clean up properly.
+
+window.onunload = window.onbeforeunload = function(e) {
+  if (!!peer && !peer.destroyed) {
+    peer.destroy();
+  }
+};
+
+</script>
 <section class="container page-item-detail">
     <div class="row">
         <!--Item Detail Content-->
@@ -131,6 +393,7 @@
                                     <div class="info">
                                         <i class="fa fa-globe"></i>
                                         <a href="#">www.autoville.lankapanel.biz</a>
+                                        <a href="#" id="startChat" class="">Chat </a>
                                     </div>
                                 </figure>
                             </address>
@@ -278,6 +541,7 @@
         <!--end Sidebar-->
     </div><!-- /.row-->
 </section>
+<div id="ch" style="position:fixed;bottom:0;right:10; z-index:9999;"></div>
 <!-- /.container-->
 <div id="map-detail"></div>
 
