@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 17, 2015 at 12:45 PM
+-- Generation Time: Sep 17, 2015 at 01:27 PM
 -- Server version: 5.1.73-cll
 -- PHP Version: 5.4.23
 
@@ -768,7 +768,7 @@ CREATE TABLE IF NOT EXISTS `searched_vehicles` (
   `vehicle_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `searched_vehicles`
@@ -776,7 +776,10 @@ CREATE TABLE IF NOT EXISTS `searched_vehicles` (
 
 INSERT INTO `searched_vehicles` (`id`, `user_id`, `vehicle_id`, `date`) VALUES
 (1, 1, 1, '2015-09-11 12:34:26'),
-(2, 1, 11, '2015-09-11 12:36:59');
+(2, 1, 11, '2015-09-11 12:36:59'),
+(4, 2, 2, '2015-09-17 07:33:47'),
+(5, 2, 4, '2015-09-17 07:51:09'),
+(6, 1, 4, '2015-09-17 07:57:04');
 
 -- --------------------------------------------------------
 
@@ -841,7 +844,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `address`, `contact_no_1`, `contact_no_2`, `profile_pic`, `password`, `account_activation_code`, `is_online`, `is_published`, `is_deleted`, `added_by`, `added_date`, `updated_date`, `updated_by`) VALUES
 (1, 'Mr', 'Robert Pattinson', 'admin', 1, 'tom@gmail.com', 'No 6,USA', '0772348892', '', 'avatar.png', '81dc9bdb52d04dc20036dbd8313ed055', '', '0', '1', '0', 0, '2015-03-21 18:29:36', '2015-08-17 05:38:44', 0),
-(2, 'Ms', 'Gayathma Perera', 'gayathma', 1, 'gayathma3@gmail.com', 'No 6,Panadura', '0719234567', NULL, 'avatar.png', 'e10adc3949ba59abbe56e057f20f883e', '', '0', '1', '0', 0, '2015-08-24 06:21:03', NULL, 0),
+(2, 'Ms', 'Gayathma Perera', 'gayathma', 1, 'gayathma3@gmail.com', 'No 6,Panadura', '0719234567', NULL, 'avatar.png', 'e10adc3949ba59abbe56e057f20f883e', '', '1', '1', '0', 0, '2015-08-24 06:21:03', NULL, 0),
 (3, 'Ms', 'Nadeesha Perera', 'nadeesha', 3, 'niklakshaya@gmail.com', 'No 5,Angoda', '0716273829', NULL, 'avatar.png', '827548485795e8a0b2670d3981427ec2', '', '0', '1', '0', 0, '2015-08-24 06:21:38', NULL, 0),
 (4, 'Ms', 'Ashani Dias', 'ashani', 3, 'ashanidiaz@gmail.com', 'No 7,Galle', '0756778234', NULL, 'avatar.png', 'aad619af8f7157a1d4d40cfbebf0de8e', '', '1', '1', '0', 0, '2015-08-24 06:22:07', NULL, 0),
 (5, 'Ms', 'Ishani Pathinayake', 'ishani', 2, 'ishanipathinayake@gmail.com', 'No 9,Moratuwa', '0716728356', NULL, 'avatar.png', '8cb50fdc11cf40b2a2f0a5a78c7bfe8f', '', '0', '1', '0', 0, '2015-08-24 06:22:34', NULL, 0),
@@ -1136,9 +1139,9 @@ CREATE TABLE IF NOT EXISTS `website_advertisements` (
   `is_front_page` enum('1','0') DEFAULT '1',
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('1','0') NOT NULL DEFAULT '0',
-  `added_date` datetime NOT NULL,
+  `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `added_by` int(11) NOT NULL,
-  `updated_date` datetime NOT NULL,
+  `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_by` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
@@ -1148,11 +1151,11 @@ CREATE TABLE IF NOT EXISTS `website_advertisements` (
 --
 
 INSERT INTO `website_advertisements` (`id`, `topic`, `description`, `price`, `image`, `url`, `is_front_page`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
-(7, 'test', 'test', '22222.00', 'commercial_images_1441951882-advertisement-poster-7.jpg', '', '1', '1', '0', '2015-09-11 06:11:53', 2, '2015-09-11 06:11:24', 1),
-(8, 'test', 'test', '5.00', 'commercial_images_1441952016-creative-advertisement (13).jpg', '', '1', '1', '0', '2015-09-11 06:25:17', 2, '2015-09-11 06:13:38', 1),
-(9, 'test', 'test', '60000.00', 'commercial_images_1441952032-australia-post.jpg', '', '1', '1', '0', '2015-09-11 06:25:25', 2, '2015-09-11 06:13:54', 1),
-(10, 'test', 'test', '63333.00', 'commercial_images_1441952094-advertisements-hung-sing-g-running-shoe-series-psd.jpg', '', '1', '1', '0', '2015-09-11 06:25:35', 2, '2015-09-11 06:14:57', 1),
-(11, 'test', 'test', '5222.00', 'commercial_images_1441952681-Print-Advertisements-20.jpg', '', '1', '1', '0', '2015-09-11 06:25:41', 2, '2015-09-11 06:24:43', 1);
+(7, 'test', 'test', '22222.00', 'commercial_images_1441951882-advertisement-poster-7.jpg', '', '1', '1', '0', '2015-09-11 00:41:53', 2, '2015-09-11 00:41:24', 1),
+(8, 'test', 'test', '5.00', 'commercial_images_1441952016-creative-advertisement (13).jpg', '', '1', '1', '0', '2015-09-11 00:55:17', 2, '2015-09-11 00:43:38', 1),
+(9, 'test', 'test', '60000.00', 'commercial_images_1441952032-australia-post.jpg', '', '1', '1', '0', '2015-09-11 00:55:25', 2, '2015-09-11 00:43:54', 1),
+(10, 'test', 'test', '63333.00', 'commercial_images_1441952094-advertisements-hung-sing-g-running-shoe-series-psd.jpg', '', '1', '1', '0', '2015-09-11 00:55:35', 2, '2015-09-11 00:44:57', 1),
+(11, 'test', 'test', '5222.00', 'commercial_images_1441952681-Print-Advertisements-20.jpg', '', '1', '1', '0', '2015-09-11 00:55:41', 2, '2015-09-11 00:54:43', 1);
 
 --
 -- Constraints for dumped tables
