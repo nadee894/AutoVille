@@ -233,7 +233,7 @@
                 <section>
                     <h3>Vehicle Location</h3>
                     <div id="map-simple" class="map-submit"></div>
-                    <input type="hidden" name="marker_position" id="marker_position" />
+                    <input type="hidden" name="marker_position" id="marker_position" value="(6.9005,79.8533)"/>
                 </section>
 
 

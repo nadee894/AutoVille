@@ -101,26 +101,17 @@
     </div>
 </section>
 
-
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/validateIt.js"></script>
 
 <script type="text/javascript">
 
-            function showNotification(msg){
-            a = ` <div class = "notification_216" style = "
-                    position: fixed;
-                    bottom: 10px;
-                    left: 10px;
-                    border: black solid 2px;
-                    border - radius: 10px;
-                    padding: 10px;
-                    font - size: 22px;
-                    ">`+msg+`</div>`;
-                    $("#details_").prepend(a);
-                    setTimeout(function(){ $(".notification_216").fadeOut(function(){ $(this).remove(); }); }, 3000);
-            }
+    function showNotification(msg){
+    a = '<div class = "notification_216" style = " position: fixed; bottom: 10px; left: 10px;  border: black solid 2px; border - radius: 10px; padding: 10px; font - size: 22px; ">'+msg+'</div>';
+            $("#details_").prepend(a);
+            setTimeout(function(){ $(".notification_216").fadeOut(function(){ $(this).remove(); }); }, 3000);
+    }
     function submitForm() {
     var postData = $("#edit_reg_user_profile_form").serializeArray();
             var formURL = site_url + '/reg_user_profile/update_reg_user_profile';
@@ -128,29 +119,29 @@
 
 
             $.ajax(
-            {
-            url: formURL,
-                    type: "POST",
-                    data: postData,
-                    success: function(data, textStatus, jqXHR)
-                    {
-                    //alert(data + ">>" + textStatus);
-                    if (data == "SUCCESS") {
+    {
+    url: formURL,
+            type: "POST",
+            data: postData,
+            success: function(data, textStatus, jqXHR)
+    {
+    //alert(data + ">>" + textStatus);
+    if (data == "SUCCESS") {
 
-                    showNotification("Successfully Updated")
-                            toastr.success("Successfully Updated", "AutoVille");
-                    }
-                    else{
-                    showNotification("Error!")
-                            toastr.error("Error!!", "AutoVille");
-                    }
+    showNotification("Successfully Updated")
+            toastr.success("Successfully Updated", "AutoVille");
+    }
+    else{
+    showNotification("Error!")
+            toastr.error("Error!!", "AutoVille");
+    }
 
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                    showNotification("Error!")
-                            toastr.error("Error!!", "AutoVille");
-                    }
-            });
+    },
+            error: function(jqXHR, textStatus, errorThrown) {
+    showNotification("Error!")
+            toastr.error("Error!!", "AutoVille");
+    }
+    });
             //$("#edit_reg_user_profile_form").submit(); //Submit  the FORM
     }
 
@@ -161,29 +152,29 @@
 
 
             $.ajax(
-            {
-            url: formURL,
-                    type: "POST",
-                    data: postData,
-                    success: function(data, textStatus, jqXHR)
-                    {
-                    //alert(data + ">>" + textStatus);
-                    if (data == "SUCCESS") {
+    {
+    url: formURL,
+            type: "POST",
+            data: postData,
+            success: function(data, textStatus, jqXHR)
+    {
+    //alert(data + ">>" + textStatus);
+    if (data == "SUCCESS") {
 
-                    showNotification("Successfully Updated")
-                            toastr.success("Successfully Updated", "AutoVille");
-                    }
-                    else{
-                    showNotification("Error!")
-                            toastr.error("Error!!", "AutoVille");
-                    }
+    showNotification("Successfully Updated")
+            toastr.success("Successfully Updated", "AutoVille");
+    }
+    else{
+    showNotification("Error!")
+            toastr.error("Error!!", "AutoVille");
+    }
 
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                    showNotification("Error!")
-                            toastr.error("Error!!", "AutoVille");
-                    }
-            });
+    },
+            error: function(jqXHR, textStatus, errorThrown) {
+    showNotification("Error!")
+            toastr.error("Error!!", "AutoVille");
+    }
+    });
             //$("#edit_reg_user_profile_form").submit(); //Submit  the FORM
     }
 
