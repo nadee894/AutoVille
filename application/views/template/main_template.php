@@ -130,12 +130,8 @@
                 </div>
                 <!-- end Page Canvas-->
                 <!--Page Footer-->
-                <?php
-                    $footerHide='';
-                    if(strpos(current_url(), 'about_us'))
-                            $footerHide='display:none;';
-                ?>
-                <footer style="<?php echo $footerHide; ?>" id="page-footer">
+               
+                <footer  id="page-footer">
                     <div class="inner">
                         <div class="footer-top">
                             <div class="container">

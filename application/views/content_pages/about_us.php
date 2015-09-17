@@ -3,7 +3,7 @@
                         <div class="col-md-8 col-md-offset-2">
                             <div class="text-banner">
                                 <figure>
-                                    <!--<img src="assets/img/marker.png" alt="">-->
+                                    <img src="<?php echo base_url(); ?>application_resources/assets/img/marker.png" alt="">
                                 </figure>
                                 <div class="description">
                                     <h2>AUTOVILLE- THE BEST PLACE TO SELL YOUR VEHICLE</h2>

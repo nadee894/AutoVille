@@ -6,7 +6,7 @@
 
     <section class="reviews" id="review_list">
         <?php foreach ($vehicle_reviews as $value) { ?>
-        <article class="review" id="review_<?php echo $value->id;?>">
+            <article class="review" id="review_<?php echo $value->id; ?>">
                 <figure class="author">
                     <?php if ($value->profile_pic == '') { ?>
                         <img class="img-responsive " src="<?php echo base_url() . 'uploads/user_avatars/avatar.png'; ?>"/>
@@ -28,10 +28,10 @@
                             <div class="description">
                                 <ul class="list-unstyled actions">
                                     <li>
-                                        <a  style="cursor: pointer"  onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
+                                        <a  style="cursor: pointer"  onclick="display_edit_review_pop_up('<?php echo $value->id; ?>','<?php echo $vehicle_detail->id; ?>')"><i class="fa fa-pencil " title="Update"></i></a>   
                                     </li>
                                     <li>
-                                        <a  style="cursor: pointer" onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
+                                        <a  style="cursor: pointer" onclick="delete_comment('<?php echo $value->id; ?>','<?php echo $vehicle_detail->id; ?>')"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
                                     </li>
                                 </ul> 
                             </div>
@@ -76,56 +76,48 @@
 
 <script src="<?php echo base_url(); ?>backend_resources/assets/toastr-master/toastr.js"></script>
 <script>
-    function commentSubmit() {
-        var description = $('#description').val();
+                                            function commentSubmit() {
+                                                var description = $('#description').val();
 
-        if (description != '') {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url(); ?>/vehicle_reviews/add_vehicle_reviews",
-                data: "description=" + description + "&vehicle_id=" + $('#vehicle_id').val(),
-                success: function (msg) {
-                    $('#review_list').html(msg);
-                    $('#description').val('');
-                }
-            });
-        }
-    }
+                                                if (description != '') {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "<?php echo site_url(); ?>/vehicle_reviews/add_vehicle_reviews",
+                                                        data: "description=" + description + "&vehicle_id=" + $('#vehicle_id').val(),
+                                                        success: function(msg) {
+                                                            $('#review_list').html(msg);
+                                                            $('#description').val('');
+                                                        }
+                                                    });
+                                                }
+                                            }
 
-    //delete review
-    function delete_comment(id) {
+                                            //delete review
+                                            function delete_comment(id, vehicle_id) {
 
-        if (confirm('Are you sure want to delete this Comment ?')) {
+                                                if (confirm('Are you sure want to delete this Comment ?')) {
 
-            $.ajax({
-                type: "POST",
-                url: '<?php echo site_url(); ?>/vehicle_reviews/delete_review',
-                data: "id=" + id,
-                success: function (msg) {
-                    //alert(msg);
-                    if (msg === 1) {
-                        //alert('success');
-                        //toastr.success("Successfully deleted !!", "AutoVille");
-                        $('#review_' + id).hide();
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: '<?php echo site_url(); ?>/vehicle_reviews/delete_review',
+                                                        data: "id=" + id + '&vehicle_id=' + vehicle_id,
+                                                        success: function(msg) {
+                                                            $('#review_list').html(msg);
+                                                            $('#description').val('');
+                                                        }
+                                                    });
+                                                }
+                                            }
 
-                    }
-                    else if (msg === 2) {
-                        alert('error occured');
-                    }
-                }
-            });
-        }
-    }
+                                            function  display_edit_review_pop_up(review_id,vehicle_id) {
 
-    function  display_edit_review_pop_up(review_id) {
+                                                $.post('<?php echo site_url(); ?>/vehicle_reviews/load_edit_review_content', {review_id: review_id,vehicle_id:vehicle_id}, function(msg) {
 
-        $.post('<?php echo site_url(); ?>/vehicle_reviews/load_edit_review_content', {review_id: review_id}, function (msg) {
-
-            $('#review_edit_content').html('');
-            $('#review_edit_content').html(msg);
-            $('#review_edit_div').modal('show');
-        });
-    }
+                                                    $('#review_edit_content').html('');
+                                                    $('#review_edit_content').html(msg);
+                                                    $('#review_edit_div').modal('show');
+                                                });
+                                            }
 
 
 </script>
