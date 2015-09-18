@@ -69,18 +69,20 @@ class Vehicle_reviews extends CI_Controller {
                     <p>
                         <?php echo $value->description; ?>
                     </p>
-                    <div class="item list admin-view">
-                        <div class="description">
-                            <ul class="list-unstyled actions">
-                                <li>
-                                    <a style="cursor: pointer" onclick="display_edit_review_pop_up('<?php echo $value->id; ?>', '<?php echo $vehicle_id; ?>')"><i class="fa fa-pencil " title="Update"></i></a>   
-                                </li>
-                                <li>
-                                    <a  style="cursor: pointer"  onclick="delete_comment('<?php echo $value->id; ?>', '<?php echo $vehicle_id; ?>')"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
-                                </li>
-                            </ul> 
-                        </div>
-                    </div>                    
+                    <?php if ($value->review_user == $this->session->userdata('USER_ID')) { ?>
+                        <div class="item list admin-view">
+                            <div class="description">
+                                <ul class="list-unstyled actions">
+                                    <li>
+                                        <a style="cursor: pointer" onclick="display_edit_review_pop_up('<?php echo $value->id; ?>', '<?php echo $vehicle_id; ?>')"><i class="fa fa-pencil " title="Update"></i></a>   
+                                    </li>
+                                    <li>
+                                        <a  style="cursor: pointer"  onclick="delete_comment('<?php echo $value->id; ?>', '<?php echo $vehicle_id; ?>')"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
+                                    </li>
+                                </ul> 
+                            </div>
+                        </div>  
+                    <?php } ?>
                 </div>
                 <!-- /.wrapper-->
             </article>
@@ -98,7 +100,7 @@ class Vehicle_reviews extends CI_Controller {
             ?>
             <article class="review">
                 <figure class="author">
-            <?php if ($value->profile_pic == '') { ?>
+                    <?php if ($value->profile_pic == '') { ?>
                         <img class="img-responsive " src="<?php echo base_url() . 'uploads/user_avatars/avatar.png'; ?>"/>
                     <?php } else { ?>
                         <img class="img-responsive " src="<?php echo base_url() . 'uploads/user_avatars/' . $value->profile_pic; ?>"/>
@@ -107,24 +109,26 @@ class Vehicle_reviews extends CI_Controller {
                 </figure>
                 <!-- /.author-->
                 <div class="wrapper">
-            <?php if ($value->added_by_user != '') { ?>
+                    <?php if ($value->added_by_user != '') { ?>
                         <h5><?php echo ucfirst($value->added_by_user); ?></h5>
                     <?php } ?>
                     <p>
-                    <?php echo $value->description; ?>
+                        <?php echo $value->description; ?>
                     </p>
-                    <div class="item list admin-view">
-                        <div class="description">
-                            <ul class="list-unstyled actions">
-                                <li>
-                                    <a style="cursor: pointer" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
-                                </li>
-                                <li>
-                                    <a  style="cursor: pointer"  onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
-                                </li>
-                            </ul> 
+                    <?php if ($value->review_user == $this->session->userdata('USER_ID')) { ?>
+                        <div class="item list admin-view">
+                            <div class="description">
+                                <ul class="list-unstyled actions">
+                                    <li>
+                                        <a style="cursor: pointer" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
+                                    </li>
+                                    <li>
+                                        <a  style="cursor: pointer"  onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
+                                    </li>
+                                </ul> 
+                            </div>
                         </div>
-                    </div>                    
+                    <?php } ?>
                 </div>
                 <!-- /.wrapper-->
             </article>
@@ -170,7 +174,7 @@ class Vehicle_reviews extends CI_Controller {
             ?>
             <article class="review">
                 <figure class="author">
-            <?php if ($value->profile_pic == '') { ?>
+                    <?php if ($value->profile_pic == '') { ?>
                         <img class="img-responsive " src="<?php echo base_url() . 'uploads/user_avatars/avatar.png'; ?>"/>
                     <?php } else { ?>
                         <img class="img-responsive " src="<?php echo base_url() . 'uploads/user_avatars/' . $value->profile_pic; ?>"/>
@@ -179,24 +183,26 @@ class Vehicle_reviews extends CI_Controller {
                 </figure>
                 <!-- /.author-->
                 <div class="wrapper">
-            <?php if ($value->added_by_user != '') { ?>
+                    <?php if ($value->added_by_user != '') { ?>
                         <h5><?php echo ucfirst($value->added_by_user); ?></h5>
                     <?php } ?>
                     <p>
-                    <?php echo $value->description; ?>
+                        <?php echo $value->description; ?>
                     </p>
-                    <div class="item list admin-view">
-                        <div class="description">
-                            <ul class="list-unstyled actions">
-                                <li>
-                                    <a style="cursor: pointer" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
-                                </li>
-                                <li>
-                                    <a  style="cursor: pointer"  onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
-                                </li>
-                            </ul> 
+                    <?php if ($value->review_user == $this->session->userdata('USER_ID')) { ?>
+                        <div class="item list admin-view">
+                            <div class="description">
+                                <ul class="list-unstyled actions">
+                                    <li>
+                                        <a style="cursor: pointer" onclick="display_edit_review_pop_up(<?php echo $value->id; ?>)"><i class="fa fa-pencil " title="Update"></i></a>   
+                                    </li>
+                                    <li>
+                                        <a  style="cursor: pointer"  onclick="delete_comment(<?php echo $value->id; ?>)"><i class="fa fa-trash-o " title="Remove" style="color: red;"></i></a>
+                                    </li>
+                                </ul> 
+                            </div>
                         </div>
-                    </div>                    
+                    <?php } ?>
                 </div>
                 <!-- /.wrapper-->
             </article>

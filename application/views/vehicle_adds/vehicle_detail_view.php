@@ -223,7 +223,7 @@ function connect(c) {
         '</div>');
         });
         c.on('close', function() {
-          alert(c.peer + ' has left the chat.');
+          //alert(c.peer + ' has left the chat.');
           chatbox.remove();
           if ($('.connection').length === 0) {
             $('.filler').show();
@@ -439,7 +439,7 @@ window.onunload = window.onbeforeunload = function(e) {
                                           $user= $this->session->userdata("USER_ID");
                                           if(empty($user) || ($user != $vehicle_detail->added_by)){
                                         ?>
-                                        <a href="#" id="startChat" class="">Chat </a>
+                                        <a href="#" id="startChat" class="">Chat with seller </a>
                                         <?php } ?>
                                     </div>
                                 </figure>
@@ -563,7 +563,7 @@ window.onunload = window.onbeforeunload = function(e) {
                             continue;
                         ?>
                         <a href="<?php echo site_url() ?>/vehicle_advertisements/vehicle_advertisement_detail_view/<?php echo $suggestion->id; ?>" class="item-horizontal small">
-                            <h3><?php echo $suggestion->description; ?></h3>
+                            <h3><?php echo $suggestion->manufacture . ' ' . $suggestion->model . ' ' . $suggestion->year; ?></h3>
 
                             <div class="wrapper">
                                 <div class="image"><img src="<?php echo base_url() . 'uploads/vehicle_images/vh_' . $suggestion->id . '/' . $suggestion->image_path; ?>" alt=""></div>
@@ -591,27 +591,5 @@ window.onunload = window.onbeforeunload = function(e) {
 <div id="ch" style="position:fixed;bottom:0;right:10; z-index:9999;"></div>
 <!-- /.container-->
 <div id="map-detail"></div>
- <div class="modal-backdrop hide fade in"  ></div>
- <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="chat_error" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Sorry, Seller is not online</h4>
-                    </div>
-                    
-                        <div class="modal-body">
-                            <p>Please try again later</p>
-                           
-                        </div>
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                          
-                        </div>
-                   
-                </div>
-              
-            </div>
-        </div>
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55deb0b601ffb683" async="async"></script>
