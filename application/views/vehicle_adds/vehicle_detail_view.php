@@ -150,11 +150,17 @@
 <script>
 // Connect to PeerJS, have server assign an ID instead of providing one
 // Showing off some of the configs available with PeerJS :).
-var peer = new Peer('<?php echo $this->session->userdata("USER_ID");?>',{
+var id='<?php echo $this->session->userdata("USER_ID")."_".$this->session->userdata("USER_NAME");?>';
+var isAnn=false;
+if(id=='_'){
+  isAnn=true;
+id="";
+}
+var peer = new Peer(id,{
   // Set API key for cloud server (you don't need this if you're running your
   // own.
 
-  key: 'x7fwx2kavpy6tj4i',
+  key: '6rvbaekktla3jtt9',
 
   // Set highest debug level (log everything!).
   debug: 3,
@@ -179,19 +185,24 @@ peer.on('connection', connect);
 
 peer.on('error', function(err) {
   console.log(err);
+  $('#chat_error').modal('toggle');
 })
 
 // Handle a connection object.
 function connect(c) {
   // Handle a chat connection.
   if (c.label === 'chat') {
-    var chatbox = $('<div class="chat-box"><input type="checkbox" /><label data-expanded="Close Chatbox" data-collapsed="Open Chatbox"></label></div>').addClass('connection').addClass('active1').attr('id', c.peer);
-    var header = $('<h1></h1>').html('Chat with <strong>' + c.peer + '</strong>');
-    var messages = $('<div class="chat-box-content"><em>Peer connected.</em></div>').addClass('messages');
-    chatbox.append(header);
+    var chatbox = $('<div class="chat-box"><input type="checkbox" id="chkbx" /><label data-expanded="Close Chatbox" data-collapsed="Open Chatbox"></label></div>').addClass('connection').addClass('active1').attr('id', c.peer);
+    //var header = $('<h1></h1>').html('Chat with <strong>' + c.peer + '</strong>');
+    var messages;
+    if(isAnn)
+    messages = $('<div class="chat-box-content"><h1>'+ c.peer.split("_")[1] +'</h1><em>Peer connected.</em></div>').addClass('messages');
+    else
+     messages = $('<div class="chat-box-content"><h1>' + 'Anonymous User' + '</h1><em>Peer connected.</em></div>').addClass('messages'); 
+    //chatbox.append(header);
     chatbox.append(messages);
- chatbox.append('<input type="text" id="text" placeholder="Enter message" style="width: 70%;'+
-    'float: left;"><input class="button" id="send" type="button" value="Send">');
+ chatbox.append('<input type="text" id="text" placeholder="Enter message" style="width: 70%;display:none;'+
+    'float: left;"><input class="button" id="send" type="button" value="Send" style="display:none;">');
     // Select connection handler.
    /* chatbox.on('click', function() {
       if ($(this).attr('class').indexOf('active') === -1) {
@@ -204,7 +215,11 @@ function connect(c) {
     $('#ch').append(chatbox);
 
     c.on('data', function(data) {
-      messages.append('<div><span class="peer">' + c.peer + '</span>: ' + data +
+        if(isAnn)
+      messages.append('<div><span class="peer">' + c.peer.split("_")[1] + '</span>: ' + data +
+        '</div>');
+    else
+       messages.append('<div><span class="peer">' + 'Anonymous User' + '</span>: ' + data +
         '</div>');
         });
         c.on('close', function() {
@@ -224,8 +239,12 @@ function connect(c) {
         var dataView = new Uint8Array(data);
         var dataBlob = new Blob([dataView]);
         var url = window.URL.createObjectURL(dataBlob);
+         if(isAnn)
         $('#' + c.peer).find('.messages').append('<div><span class="file">' +
-            c.peer + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</span></div>');
+            c.peer.split("_")[1] + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</span></div>');
+      else
+         $('#' + c.peer).find('.messages').append('<div><span class="file">' +
+            'Anonymous User' + ' has sent you a <a target="_blank" href="' + url + '">file</a>.</span></div>');
       }
     });
   }
@@ -233,6 +252,12 @@ function connect(c) {
 }
 
 $(document).ready(function() {
+  
+  $('body').bind('beforeunload',function(){
+   //do something
+   c.close();
+});
+
   // Prepare file drop box.
   var box = $('#box');
   box.on('dragenter', doNothing);
@@ -256,8 +281,10 @@ $(document).ready(function() {
 
   // Connect to a peer
   $('#startChat').click(function() {
-    var requestedPeer = '<?php echo $vehicle_detail->added_by; ?>';
+
+    var requestedPeer = '<?php echo $vehicle_detail->added_by."_".$seller_add->user_name; ?>' ;
     if (!connectedPeers[requestedPeer]) {
+
       // Create 2 connections, one labelled chat and another labelled file.
       var c = peer.connect(requestedPeer, {
         label: 'chat',
@@ -272,8 +299,11 @@ $(document).ready(function() {
       var f = peer.connect(requestedPeer, { label: 'file', reliable: true });
       f.on('open', function() {
         connect(f);
+
       });
       f.on('error', function(err) { alert(err); });
+    }else{
+
     }
     connectedPeers[requestedPeer] = 1;
 
@@ -305,7 +335,17 @@ console.log('a');
    $('#text').focus();
 
   });
+$(document).on('change','#chkbx',function(){
 
+  if(this.checked) {
+        $('#text').show();
+         $('#send').show();
+    }else{
+  $('#text').hide();
+   $('#send').hide();
+    }
+
+});
   // Goes through each active peer and calls FN on its connections.
   function eachActiveConnection(fn) {
     var actives = $('.active1');
@@ -551,6 +591,27 @@ window.onunload = window.onbeforeunload = function(e) {
 <div id="ch" style="position:fixed;bottom:0;right:10; z-index:9999;"></div>
 <!-- /.container-->
 <div id="map-detail"></div>
-
+ <div class="modal-backdrop hide fade in"  ></div>
+ <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="chat_error" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Sorry, Seller is not online</h4>
+                    </div>
+                    
+                        <div class="modal-body">
+                            <p>Please try again later</p>
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                          
+                        </div>
+                   
+                </div>
+              
+            </div>
+        </div>
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55deb0b601ffb683" async="async"></script>

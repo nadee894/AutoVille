@@ -260,8 +260,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
         <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
-        <!-- Downloaded in step 1 -->
-        <script src="<?php echo base_url(); ?>application_resources/pusher/js/PusherChatWidget.js"></script>
+    
 
         <script>
             //autoComplete();
