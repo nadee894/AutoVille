@@ -9,9 +9,11 @@ class Faq extends CI_Controller {
 
         $this->load->model('faq/faq_model');
         $this->load->model('faq/faq_service');
-        
+
         $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
         $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
+
+        $this->load->model('website_advertisements/website_advertisements_service');
     }
 
     function load_all_questions() {
@@ -25,11 +27,13 @@ class Faq extends CI_Controller {
     function list_faq_questions() {
         $faq_service = new faq_service();
         $vehicle_advertisments_service = new Vehicle_advertisments_service();
-        
-        $data['faq_question_list'] = $faq_service->get_all_questions_list();
-        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);
+        $website_advertisement_service = new Website_advertisements_service();
 
-        $parials = array('content' => 'content_pages/faq_view','new_arrivals' => 'vehicle_adds/new_arrivals');
+        $data['faq_question_list'] = $faq_service->get_all_questions_list();
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);
+        $data['commercial_images'] = $website_advertisement_service->get_advertisement_image();
+
+        $parials = array('content' => 'content_pages/faq_view', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
