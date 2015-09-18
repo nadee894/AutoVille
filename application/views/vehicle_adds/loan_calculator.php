@@ -3,13 +3,14 @@
     <form>
         <div class="form-group">
             <label>Down Payment</label>
-            <input class="ui-slider" type="range" value="price" id="price-slider" min="0" max="<?php echo $vehicle_detail->price; ?>"><br>
-            <output id="price_output"></output>
+            <input class="ui-slider" type="range" value="price" id="price-slider" min="0" max="<?php echo $vehicle_detail->price; ?>" start="50000"><br>
+            <span id="output01">Rs. 0</span>&nbsp;<i class="fa fa-info-circle" style="color: #36b6ff"></i>
         </div>
         <br>
         <div class="form-group">
             <label>Loan Term (Months)</label>
-            <input class="ui-slider" type="range" id="month-slider" min="12" max="120" start="12"><br>
+            <input class="ui-slider" type="range" id="month-slider" min="12" max="120" start="60"><br>
+             <span id="output02">Rs. 0</span>&nbsp;<i class="fa fa-info-circle" style="color: #36b6ff"></i>
         </div>
         <br>
         <div class="form-group">
@@ -32,11 +33,14 @@
         var carvalue =<?php echo $vehicle_detail->price; ?>;
 
         $("#price-slider").change(function () {
+             $("#output01").html(parseFloat($("#price-slider").val()).toFixed(2));
             var month_val = parseInt(carvalue) - parseInt($("#price-slider").val());
             $("#val3").html("Rs. " + month_val.toFixed(2));
+           
         });
 
         $("#month-slider").change(function () {
+             $("#output02").html(parseInt($("#month-slider").val()));
             var month_val = (parseInt(carvalue) - parseInt($("#price-slider").val())) / parseInt($("#month-slider").val());
             $("#val3").html("Rs. " + month_val.toFixed(2));
         });
