@@ -45,7 +45,7 @@ class Faq extends CI_Controller {
         $faq = $faq_service->get_question_by_id($faq_model);
         $data['faq'] = $faq;
 
-        $this->load->view('faq/faq_edit_view', $data, TRUE);
+        echo $this->load->view('faq/faq_edit_view', $data, TRUE);
     }
 
     function update_faq_answer() {
