@@ -75,7 +75,7 @@ class Faq extends CI_Controller {
         $email_subject = "AutoVille FAQ Answer";
         $data['user_name'] = 'Sir/Madam';
         $data['name'] = 'Sir/Madam';
-        $data['user_email'] = $faq_question->email;
+        $user_email = $faq_question->email;
 //        $data['phone']        = $this->input->post('phone', TRUE);
         $sender_email = $this->input->post('sender_email', TRUE);
         $data['msg'] = 'Your Question has been answered and Updated. To check Your Answer refer below Link'
@@ -85,10 +85,11 @@ class Faq extends CI_Controller {
 
         $msg = $this->load->view('template/mail_template/faq_answer_mail', $data, TRUE);
 
+              
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: AutoVille <info.autovillle@gmail.com>' . "\r\n";
-        $headers .= 'Cc: gayathma3@gmail.com,niklakshaya@gmail.com,heshani7.herath@gmail.com' . "\r\n";
+        $headers .= 'From: Autoville <info.autovillle@gmail.com>' . "\r\n";
+        $headers .= 'Cc: gayathma3@gmail.com,info.autovillle@gmail.com' . "\r\n";
 
 //        if (mail($sender_email, $email_subject, $msg, $headers)) {
 //            echo "1";
@@ -97,7 +98,7 @@ class Faq extends CI_Controller {
 //            echo "0";
 //            echo 'Mail not sent successfully';
 //        }
-        if (mail($data['sender_email'], $email_subject, $msg, $headers)) {
+        if (mail($user_email, $email_subject, $msg, $headers)) {
             echo "1";
         } else {
             echo "0";

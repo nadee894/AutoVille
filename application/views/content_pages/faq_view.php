@@ -85,54 +85,7 @@
         <!--Sidebar-->
         <div class="col-md-3">
             <aside id="sidebar">
-                <section>
-                    <header><h2>New Advertisements</h2></header>
-                    <a href="item-detail.html" class="item-horizontal small">
-                        <h3>Cash Cow Restaurante</h3>
-                        <figure>63 Birch Street</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="assets/img/items/1.jpg" alt=""></div>
-                            <div class="info">
-                                <div class="type">
-                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                    <span>Restaurant</span>
-                                </div>
-                                <div class="rating" data-rating="4"></div>
-                            </div>
-                        </div>
-                    </a>
-                    <!--/.item-horizontal small-->
-                    <a href="item-detail.html" class="item-horizontal small">
-                        <h3>Blue Chilli</h3>
-                        <figure>2476 Whispering Pines Circle</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="assets/img/items/2.jpg" alt=""></div>
-                            <div class="info">
-                                <div class="type">
-                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                    <span>Restaurant</span>
-                                </div>
-                                <div class="rating" data-rating="3"></div>
-                            </div>
-                        </div>
-                    </a>
-                    <!--/.item-horizontal small-->
-                    <a href="item-detail.html" class="item-horizontal small">
-                        <h3>Eddie’s Fast Food</h3>
-                        <figure>4365 Bruce Street</figure>
-                        <div class="wrapper">
-                            <div class="image"><img src="assets/img/items/3.jpg" alt=""></div>
-                            <div class="info">
-                                <div class="type">
-                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                    <span>Restaurant</span>
-                                </div>
-                                <div class="rating" data-rating="5"></div>
-                            </div>
-                        </div>
-                    </a>
-                    <!--/.item-horizontal small-->
-                </section>
+             
                 <section>
                     <?php echo $this->load->view('vehicle_adds/commercial_add_view'); ?>
                 </section>
