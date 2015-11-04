@@ -13,6 +13,9 @@ class Vehicle_compare extends CI_Controller {
 
         $this->load->model('equipment/equipment_model');
         $this->load->model('equipment/equipment_service');
+
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
     function add_vehicle_to_compare() {
@@ -108,7 +111,11 @@ class Vehicle_compare extends CI_Controller {
 
         $data['my_advertisements'] = 0;
 
-        $parials = array('content' => 'my_dashboard/my_dashboard');
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+
+        $parials = array('content' => 'my_dashboard/my_dashboard', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 
@@ -121,7 +128,6 @@ class Vehicle_compare extends CI_Controller {
         echo $vehicle_compare_service->delete_compared_vehicle(trim($this->session->userdata('USER_ID')), trim($this->input->post('vehicle_id', TRUE)));
     }
 
-    
     function load_li_tags() {
         $vehicle_compare_service = new Vehicle_compare_service();
         $compare_vehicles = $vehicle_compare_service->get_vehicles_to_compare_for_unregistered_user(trim($this->input->post('id', TRUE)));
@@ -131,18 +137,31 @@ class Vehicle_compare extends CI_Controller {
             echo '<span class="subject"><h4>' . $result->manufacture . " " . $result->model . '</h4></span> </li>';
         }
     }
-    
-    
+
     /**
      * this is the controller function to load compare vehicles section on dashboard directly for unregistered user
      * compare button click event
      */
-    function load_compare_vehicles_dashboard_unreg_user() {
+    function load_compare_vehicles_dashboard_unreg_user($key_array) {
+
+
+        $saved_vehicle_list = array();
+        $saved_vehicle_id_list = array();
+
+        //split and extract vehicle list from jStorage key list (key list comes as one string)
+        $saved_vehicle_list = explode(',', $key_array);
+
+        //extract vehicle id from vehicle list
+        for ($i = 0; $i < count($saved_vehicle_list); $i++) {
+
+            $vehicle_id = explode('_', $saved_vehicle_list[$i]);
+            $saved_vehicle_id_list[$i] = $vehicle_id[1];
+        }
 
         $vehicle_compare_service = new Vehicle_compare_service();
         $equipment_service = new Equipment_service();
-        $arra=array(1,2,3);
-        $data['vehicle_list'] = $vehicle_compare_service->get_vehicle_to_compare_for_unregistered_user($arra);
+
+        $data['vehicle_list'] = $vehicle_compare_service->get_vehicle_to_compare_for_unregistered_user($saved_vehicle_id_list);
         $data['equipments'] = $equipment_service->get_all_active_equipment();
 
         $data['vehicle_equipments'] = array();
@@ -151,10 +170,14 @@ class Vehicle_compare extends CI_Controller {
             $data['equipment_arr'] = $equipment_service->get_equiments_in_vehicle($vehicle->id);
             array_push($data['vehicle_equipments'], $data['equipment_arr']);
         }
-
+        
         $data['my_advertisements'] = 0;
 
-        $parials = array('content' => 'my_dashboard/my_dashboard');
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $data['latest_vehicles'] = $vehicle_advertisments_service->get_new_arrival(2);  //author-Ishani
+
+        $parials = array('content' => 'my_dashboard/my_dashboard', 'new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 

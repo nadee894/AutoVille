@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/jquery.nouislider.min.css" type="text/css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/colors/blue.css" type="text/css">
         <!--<link rel="stylesheet" href="<?php echo base_url(); ?>application_resources/assets/css/user.style.css" type="text/css">-->
-
+        <link href="<?php echo base_url(); ?>application_resources/pusher/pusher-chat-widget.css" rel="stylesheet" />
 
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-2.1.0.min.js"></script>       
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/before.load.js"></script>
@@ -33,7 +33,7 @@
 
     </head>
 
-    <body onunload="" class="map-fullscreen page-homepage navigation-off-canvas" id="page-top">
+    <body onunload="" class="map-fullscreen page-homepage navigation-off-canvas" id="page-top"  itemscope itemtype="http://schema.org/Product">
 
         <!-- Outer Wrapper-->
         <div id="outer-wrapper">
@@ -74,7 +74,7 @@
                                     <?php } else { ?>                                                                                                                
                                         <li>
                                             <a href="<?php echo site_url(); ?>/dashboard" class="dealer-name"><i class="fa fa-user"></i> <?php echo ucfirst($this->session->userdata('USER_FULLNAME')); ?></a>
-                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out"><i class="fa fa-power-off"></i> Sign Out</a>                                        
+                                            <a href="<?php echo site_url(); ?>/login/logout" class="sign-out" onclick="signOut()"><i class="fa fa-power-off"></i> Sign Out</a>                                        
                                         </li>
                                     <?php } ?>
 
@@ -110,11 +110,13 @@
                                 <li>
                                     <a href="<?php echo site_url(); ?>/home">Home</a>
                                     <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-                                        <a href="<?php echo site_url(); ?>/advanced_search/advanced_search_view">Advanced Search</a>
+                                        <a href="<?php echo site_url(); ?>/advanced_search/advanced_search_view">Custom Search</a>
                                     <?php } ?>
-                                    <a href="<?php echo site_url(); ?>/home">About Us</a>
+                                    <a href="<?php echo site_url(); ?>/home/about_us">About Us</a>
                                     <a href="<?php echo site_url(); ?>/pages/contact_us">Contact</a>
-                                    <a href="<?php echo site_url(); ?>/home">FAQ</a>
+                                    <a href="<?php echo site_url(); ?>/faq/list_faq_questions">FAQ</a>
+                                    <a href="<?php echo site_url(); ?>/pages/how_to_buy">How To Buy</a>
+                                    <a href="<?php echo site_url(); ?>/pages/site_map">Vehicle Site Map</a>
                                 </li>
                             </ul>
                         </div>
@@ -128,82 +130,20 @@
                 </div>
                 <!-- end Page Canvas-->
                 <!--Page Footer-->
-                <footer id="page-footer">
+
+                <footer  id="page-footer">
                     <div class="inner">
                         <div class="footer-top">
                             <div class="container">
                                 <div class="row">
+                                    <!--Start New Arrivals-->
                                     <div class="col-md-4 col-sm-4">
-                                        New Items
-                                        <section>
-                                            <h2>New Items</h2>
-                                            <a href="car-item-detail.html" class="item-horizontal small">
-                                                <h3>Cash Cow Restaurante</h3>
-                                                <figure>63 Birch Street</figure>
-                                                <div class="wrapper">
-                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/1.jpg" alt=""></div>
-                                                    <div class="info">
-                                                        <div class="type">
-                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                            <span>Restaurant</span>
-                                                        </div>
-                                                        <div class="rating" data-rating="4"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!--item-horizontal small-->
-                                            <a href="car-item-detail.html" class="item-horizontal small">
-                                                <h3>Blue Chilli</h3>
-                                                <figure>2476 Whispering Pines Circle</figure>
-                                                <div class="wrapper">
-                                                    <div class="image"><img src="<?php echo base_url(); ?>application_resources/assets/img/items/2.jpg" alt=""></div>
-                                                    <div class="info">
-                                                        <div class="type">
-                                                            <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                            <span>Restaurant</span>
-                                                        </div>
-                                                        <div class="rating" data-rating="3"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!--item-horizontal small-->
-                                        </section>
-                                        <!--end New Items-->
+                                        <?php echo $new_arrivals; ?>    
                                     </div>
+                                    <!--End Start New Arrivals-->
+
                                     <div class="col-md-4 col-sm-4">
-                                        Recent Reviews
-                                        <section>
-                                            <h2>Recent Reviews</h2>
-                                            <a href="car-item-detail.html#reviews" class="review small">
-                                                <h3>Max Five Lounge</h3>
-                                                <figure>4365 Bruce Street</figure>
-                                                <div class="info">
-                                                    <div class="rating" data-rating="4"></div>
-                                                    <div class="type">
-                                                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                        <span>Restaurant</span>
-                                                    </div>
-                                                </div>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non suscipit felis, sed sagittis tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras ac placerat mauris.
-                                                </p>
-                                            </a><!--review
-                                            <a href="car-item-detail.html#reviews" class="review small">
-                                                <h3>Saguaro Tavern</h3>
-                                                <figure>2476 Whispering Pines Circle</figure>
-                                                <div class="info">
-                                                    <div class="rating" data-rating="5"></div>
-                                                    <div class="type">
-                                                        <i><img src="<?php echo base_url(); ?>application_resources/assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
-                                                        <span>Restaurant</span>
-                                                    </div>
-                                                </div>
-                                                <p>
-                                                    Pellentesque mauris. Proin sit amet scelerisque risus. Donec semper semper erat ut mollis curabitur
-                                                </p>
-                                            </a>
-                                            <!--review-->
-                                        </section>
+
                                         <!--end Recent Reviews-->
                                     </div>
                                     <div class="col-md-4 col-sm-4">
@@ -292,11 +232,44 @@
         </div>
         <!-- End Forgot Password Modal -->
 
+        <!--Review Edit Modal -->
+        <div  class="modal fade "   id="review_edit_div" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="review_edit_content">
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-backdrop hide fade in"  ></div>
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="chat_error" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Sorry, Seller is not online</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <p>Please try again later</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
 
 
 
         <!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>-->
-        <!--<script type="text/javascript" src="<?php // echo base_url();    ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo base_url();           ?>application_resources/assets/js/richmarker-compiled.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/smoothscroll.js"></script>
@@ -307,16 +280,26 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.ui.timepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.nouislider.all.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/custom.js"></script>
-       <!--<script type="text/javascript" src="<?php //echo base_url();    ?>application_resources/assets/js/maps.js"></script>-->
+       <!--<script type="text/javascript" src="<?php //echo base_url();           ?>application_resources/assets/js/maps.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/lazy/jquery.lazyload.js"></script>
+        <script src="//js.pusher.com/3.0/pusher.min.js"></script>
+
+
 
         <script>
             //autoComplete();
-            $(function () {
+            $(function() {
                 $("img.lazy").lazyload({
                     effect: "fadeIn"
                 });
             });
+
+//            $(function() {
+//                var pusher = new Pusher('ec747a95f1c879f5fd91');
+//                var chatWidget = new PusherChatWidget(pusher, {
+//                    chatEndPoint: '<?php echo base_url(); ?>application_resources/pusher/php/chat.php'
+//                });
+//            });
 
         </script>
         <!--[if lte IE 9]>
@@ -331,45 +314,50 @@
 
 <script>
 
-            $(document).ready(function () {
+    $(document).ready(function() {
 
 <?php if ($this->session->userdata('USER_LOGGED_IN')) { ?>
-                    $.ajax({
-                        type: "POST",
-                        url: site_url + '/vehicle_compare/load_vehicle_popup',
-                        success: function (msg) {
-                            if (msg != 0) {
-                                $('#compare_vehicle_list').html(msg);
-                            } else {
-                                alert('Error loading vehicles');
-                            }
-                        }
-                    });
+            $.ajax({
+                type: "POST",
+                url: site_url + '/vehicle_compare/load_vehicle_popup',
+                success: function(msg) {
+                    if (msg != 0) {
+                        $('#compare_vehicle_list').html(msg);
+                    } else {
+                        alert('Error loading vehicles');
+                    }
+                }
+            });
 
 <?php } else { ?>
-                    $.jStorage.flush();
-                    var jSindex = $.jStorage.index();
+            $.jStorage.flush();
+            var jSindex = $.jStorage.index();
 
-                    var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
+            var compareBtn = '<li><a href="<?php echo site_url(); ?>/vehicle_compare/load_compare_vehicles_dashboard_unreg_user" class="dealer-name"><button id="compareButton">Compare</button></a></li>';
 
-                    var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
+            var li_list = '<button style="border:0px solid black; background-color: transparent;" data-toggle="dropdown"><i class="fa fa-road"></i> Compare(' + jSindex.length + ')<span class="caret"></span></button><ul class="dropdown-menu" id="added_vehicle_list">';
 
-                    if (jSindex.length == 0) {
-                        li_list += '<li>Add Vehicle</li>';
-                    }
+            if (jSindex.length == 0) {
+                li_list += '<li>Add Vehicle</li>';
+            }
 
-                    for (i = 0; i < jSindex.length; i++) {
-                        li_list += $.jStorage.get(jSindex[i]);
-                    }
+            for (i = 0; i < jSindex.length; i++) {
+                li_list += $.jStorage.get(jSindex[i]);
+            }
 
-                    if (jSindex.length >= 2) {
-                        li_list += compareBtn;
-                    }
+            if (jSindex.length >= 2) {
+                li_list += compareBtn;
+            }
 
-                    li_list += '</ul>';
-                    $('#compare_vehicle_list').html(li_list);
+            li_list += '</ul>';
+            $('#compare_vehicle_list').html(li_list);
 
 <?php } ?>
-            });
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut();
+        }
+    });
 
 </script>

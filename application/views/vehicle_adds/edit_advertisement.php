@@ -233,6 +233,11 @@
                     </ul>
                 </section>
 
+                <section>
+                    <h3>Vehicle Location</h3>
+                    <div id="map-simple" class="map-submit"></div>
+                    <input type="hidden" name="marker_position" id="marker_position" />
+                </section>
 
                 <section>
                     <h3>Address & Contact</h3>
@@ -313,7 +318,7 @@
                             <!-- The loading indicator is shown during file processing -->
                             <label><em>Attach vehicle images.</em></label>
                             <br>
-                            
+
                             <input type="hidden" id="last_vehicle_id" value="<?php echo $vehicle_advertisement->id; ?>" name="last_vehicle_id"/>
                             <input type="hidden" id="image_count" value="<?php echo count($vehicle_images); ?>" name="image_count"/>
                             <span id="image_msg"></span>
@@ -451,9 +456,17 @@
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/jquery.validate.min.js"></script>
-
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/richmarker.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>application_resources/assets/js/maps.js"></script>
 <script type="text/javascript">
+                                    $(window).load(function() {
+                                        var _latitude = <?php echo $vehicle_advertisement->latitude; ?>;
+                                        var _longitude = <?php echo $vehicle_advertisement->longitude; ?>;
+                                        var draggableMarker = true;
 
+                                        simpleMap(_latitude, _longitude, draggableMarker);
+                                    });
 
                                     //Manufacturer on change 
                                     $('#manufacturer').on('change', function(e) {
@@ -463,6 +476,7 @@
                                         $.post(site_url + '/vehicle_advertisements/get_models_for_manufacturer', {manufacturer: manufacturer}, function(msg)
                                         {
                                             $('#model_wrapper').html(msg);
+                                            $('#model').selectpicker();
                                         });
                                     });
 

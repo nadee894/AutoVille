@@ -547,9 +547,10 @@ function simpleMap(_latitude, _longitude, draggableMarker){
     // Google map marker content -----------------------------------------------------------------------------------
 
     var markerContent = document.createElement('DIV');
+    var icon = '<img src="' + base_url +  '/application_resources/assets/icons/transportation/road-transportation/car.png">';
     markerContent.innerHTML =
         '<div class="map-marker">' +
-            '<div class="icon"></div>' +
+            '<div class="icon">'+icon+'</div>' +
         '</div>';
 
     // Create marker on the map ------------------------------------------------------------------------------------
@@ -564,6 +565,10 @@ function simpleMap(_latitude, _longitude, draggableMarker){
     });
 
     marker.content.className = 'marker-loaded';
+    
+    google.maps.event.addListener(marker, 'position_changed', function() {
+      $('#marker_position').val( marker.getPosition());
+    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,103 +1,51 @@
-<div class="one-half col-241 search-area">
-    <div class="small-12 large-3 columns loan-calculator" data-layer-category="loan-calculator">
-        <legend><span class="bold">Loan</span> calculator</legend>
-        <div class="payload">
-            <div class="row options">
-                <div class="form-group">
-                    <label>Down Payment</label>
-                    <div class="ui-slider" id="price-slider" data-value-min="0" data-value-max="100000000"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
-                        <div class="values clearfix">
-                            <input class="value-min" id="minprice" name="minprice" readonly>
-                            <input class="value-max" id="maxprice" name="maxprice" readonly>
-                        </div>
-
-                        <div class="element"></div>
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label>Loan Term (Months)</label>
-                    <div class="ui-slider" id="month-slider" data-value-min="12" data-value-max="120"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
-                        <div class="values clearfix">
-                            <input class="value-min" id="minmonth" name="minmonth" readonly>
-                            <input class="value-max" id="maxmonth" name="maxmonth" readonly>
-                        </div>
-                        <div class="element"></div>
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label>Interest Rate %</label>
-                    <div class="ui-slider" id="rate-slider" data-value-min="0" data-value-max="100"  data-step="10"><!--data-currency="$" data-currency-placement="before" data-value-type="price"-->
-                        <div class="values clearfix">
-                            <input class="value-min" id="minrate" name="minrate" readonly>
-                            <input class="value-max" id="maxrate" name="maxrate" readonly>
-                        </div>
-                        <div class="element"></div>
-                    </div>
-                </div>
-            </div>
+<header><h2>Loan calculator</h2></header>
+<figure>
+    <form>
+        <div class="form-group">
+            <label>Down Payment</label>
+            <input class="ui-slider" type="range" value="price" id="price-slider" min="0" max="<?php echo $vehicle_detail->price; ?>" start="50000"><br>
+            <span id="output01">Rs. 0</span>&nbsp;<i class="fa fa-info-circle" style="color: #36b6ff"></i>
         </div>
         <br>
-        <div class="details">
-            <div class="row">
-                <!--<div class="medium-8 large-8 column" data-bank-period="1">-->
-                <div class="car-value ">
-                    <label>Car Value: </label>
-                    <output> Rs.  <?php echo number_format($vehicle_detail->price, 2, '.', ','); ?></output>
-
-                </div>
-            </div>
-            <div class="row">
-                <br>
-
-
-                <label>Monthly Installment:</label>
-                <div class="output" >
-                    <!--<label> Rs</label>-->
-                    <output id="monthly-payment">Rs. 0</output>
-                </div>
-                <div class="medium-1 large-1 columns">
-                    <i class="icon-info-circled" data-selector="monthly-instalment-tooltip" data-tooltip="" aria-haspopup="true" title=""></i>
-                </div>
-
-            </div>
-            <br>
+        <div class="form-group">
+            <label>Loan Term (Months)</label>
+            <input class="ui-slider" type="range" id="month-slider" min="12" max="120" start="60"><br>
+             <span id="output02">Rs. 0</span>&nbsp;<i class="fa fa-info-circle" style="color: #36b6ff"></i>
         </div>
-    </div>
-</div>
+        <br>
+        <div class="form-group">
+            <label>Car Value: </label>
+            <span> Rs.  <?php echo number_format($vehicle_detail->price, 2); ?></span>
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Monthly Installment:</label>
+            <div class="output" >
+                <span id="val3">Rs. 0</span>&nbsp;<i class="fa fa-info-circle" style="color: #36b6ff"></i>
+            </div>
+        </div>
+    </form>
+</figure>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-   $('#price-slider').on('change', function(){
+        var carvalue =<?php echo $vehicle_detail->price; ?>;
 
-        var maxprice = 0;
-        var carPrice = number_format(<?php echo $vehicle_detail->price;?>, 2, '.', ',');
-//        var maxmonth = $('#maxmonth').val();
-//        var maxrate = $('#maxrate').val();
-        $('#monthly-payment').html('Rs.'+$('#maxprice').val());
-        function changeValue() {
-            var installment = (carPrice - $("#price-slider").slider(".value"));
-//                    + (($vehicle_detail - > price) * maxrate) / 100.0;
-            $("#monthly-payment").val(installment);
-        }
-
-        $("#price-slider").slider({
-            value: 100,
-            min: 0,
-            max: 500,
-            step: 50,
-            slide: function (event, ui) {
-                maxprice = ui.value;
-                changeValue();
-            }
+        $("#price-slider").change(function () {
+             $("#output01").html(parseFloat($("#price-slider").val()).toFixed(2));
+            var month_val = parseInt(carvalue) - parseInt($("#price-slider").val());
+            $("#val3").html("Rs. " + month_val.toFixed(2));
+           
         });
 
+        $("#month-slider").change(function () {
+             $("#output02").html(parseInt($("#month-slider").val()));
+            var month_val = (parseInt(carvalue) - parseInt($("#price-slider").val())) / parseInt($("#month-slider").val());
+            $("#val3").html("Rs. " + month_val.toFixed(2));
+        });
 
     });
 
-});
 
 </script>
-

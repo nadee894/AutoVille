@@ -25,7 +25,7 @@
             <input type="hidden" value="SU092CA68QPZINTCARLK" name="sku">
             <div data-ajax-local-messages=""></div>
             <input type="hidden" name="sender_email" id="sender_email" value="<?php echo $vehicle_detail->user_email; ?>" />
-            <button type="button" class="btn framed icon" onclick="send_email()">Send<i class="fa fa-angle-right"></i></button>
+            <button type="submit" class="btn framed icon" >Send<i class="fa fa-angle-right"></i></button>
         </div>
         <!-- /.form-group -->
     </form>
@@ -33,18 +33,69 @@
 
 <script src="<?php echo base_url(); ?>application_resources/assets/toastr-master/toastr.js"></script>
 <script type="text/javascript">
-
-                function send_email() {
-
-                    $.ajax({
-                        type: "POST",
-                        url: '<?php echo site_url(); ?>/vehicle_advertisements/send_email_to_sellers',
-                        data: $('#ask_form').serialize(),
-                        success: function(msg) {
-                            toastr.success("Email successfully sent !!", "AutoVille");
-                        }
-                    });
+//    $('#ask_for_price').addClass('active open');
+    $(document).ready(function () {
+        $('#ask_form').validate({
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                phone: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
                 }
+            },
+            messages: {
+                name: {
+                    required: "Please Enter your Name"
+                },
+                email: {
+                    required: "Please Enter an Email",
+                    email: "Invalid Email"
+                },
+                phone: {
+                    required: "Please enter a phone no",
+                    digits: "Enter numbers only",
+                    maxlength: "Phone number is too long",
+                    minlength: "Phone number is too short"
+                }
+            }, submitHandler: function (form)
+            {                                                  
+                $.post(site_url + '/vehicle_advertisements/send_email_to_sellers', $('#ask_form').serialize(), function (msg) 
+                {
+                    alert("method executed");
+                    if (msg == 1) {
+                        alert("Done");
+                        $('#rtn_msg').html('<div class="alert alert-success fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>Successfully Sent!!.</strong></div>');
+                        ask_form.reset();
+//                        window.location = site_url + '/body_type/manage_body_types';
+                    } else {
+                        $('#rtn_msg').html('<div class="alert alert-block alert-danger fade in"><button class="close close-sm" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button><strong>An error occured.</strong></div>');
+
+                    }
+
+                });
+            }
+        });
+
+    });
+
+
+//                function send_email() {
+//
+//                    $.ajax({
+//                        type: "POST",
+//                        url: '<?php echo site_url(); ?>/vehicle_advertisements/send_email_to_sellers',
+//                        data: $('#ask_form').serialize(),
+//                        success: function (msg) {
+//                            toastr.success("Email successfully sent !!", "AutoVille");
+//                        }
+//                    });
+//                }
 </script>
 
 

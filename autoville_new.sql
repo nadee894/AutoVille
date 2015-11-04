@@ -1,23 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2015 at 07:04 AM
--- Server version: 5.6.25
--- PHP Version: 5.5.27
+-- Generation Time: Sep 17, 2015 at 05:14 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `autoville`
+-- Database: `autoville_new`
 --
 
 -- --------------------------------------------------------
@@ -27,15 +27,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `advanced_search_content` (
-  `advanced_search_content_id` int(11) NOT NULL,
+  `advanced_search_content_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `field_name` varchar(200) NOT NULL,
   `is_deleted` enum('1','0') NOT NULL DEFAULT '0',
   `added_by` int(11) NOT NULL,
   `added_date` datetime NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`advanced_search_content_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `advanced_search_content`
+--
+
+INSERT INTO `advanced_search_content` (`advanced_search_content_id`, `user_id`, `field_name`, `is_deleted`, `added_by`, `added_date`, `updated_by`, `updated_date`) VALUES
+(4, 1, 'price', '0', 1, '2015-09-17 12:38:11', NULL, NULL),
+(5, 1, 'manufacture_id', '0', 1, '2015-09-17 12:38:50', NULL, NULL),
+(6, 1, 'model_id', '0', 1, '2015-09-17 12:38:50', NULL, NULL),
+(7, 1, 'body_type_id', '0', 1, '2015-09-17 12:38:50', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -44,15 +55,17 @@ CREATE TABLE IF NOT EXISTS `advanced_search_content` (
 --
 
 CREATE TABLE IF NOT EXISTS `body_type` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `body_type`
@@ -70,15 +83,25 @@ INSERT INTO `body_type` (`id`, `name`, `is_published`, `is_deleted`, `added_date
 --
 
 CREATE TABLE IF NOT EXISTS `bookmarked_vehicles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` datetime NOT NULL,
   `added_by` int(11) NOT NULL,
   `updated_date` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `bookmarked_vehicles`
+--
+
+INSERT INTO `bookmarked_vehicles` (`id`, `user_id`, `vehicle_id`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(1, 1, 8, '0', '2015-09-17 12:33:55', 1, NULL, NULL),
+(4, 1, 10, '0', '2015-09-17 12:35:56', 1, NULL, NULL),
+(5, 1, 14, '0', '2015-09-17 12:36:03', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -87,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `bookmarked_vehicles` (
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(300) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
@@ -95,8 +118,9 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `comment`
@@ -117,7 +141,7 @@ INSERT INTO `comment` (`id`, `title`, `description`, `is_published`, `is_deleted
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
-  `content_id` int(11) NOT NULL,
+  `content_id` int(11) NOT NULL AUTO_INCREMENT,
   `content_title` varchar(100) NOT NULL,
   `content` text NOT NULL,
   `content_hcode` varchar(20) NOT NULL,
@@ -125,8 +149,9 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `added_by` int(11) NOT NULL,
   `added_date` datetime NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `updated_date` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `updated_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`content_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `contents`
@@ -148,9 +173,11 @@ INSERT INTO `contents` (`content_id`, `content_title`, `content`, `content_hcode
 --
 
 CREATE TABLE IF NOT EXISTS `country` (
-  `id` int(11) NOT NULL,
-  `country` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `country` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `country` (`country`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=251 ;
 
 --
 -- Dumping data for table `country`
@@ -416,7 +443,8 @@ INSERT INTO `country` (`id`, `country`) VALUES
 
 CREATE TABLE IF NOT EXISTS `district` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -458,15 +486,16 @@ INSERT INTO `district` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `equipment` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `equipment`
@@ -486,19 +515,40 @@ INSERT INTO `equipment` (`id`, `name`, `is_published`, `is_deleted`, `added_date
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `faq`
+--
+
+CREATE TABLE IF NOT EXISTS `faq` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) NOT NULL,
+  `question` varchar(1000) NOT NULL,
+  `answer` varchar(1000) DEFAULT NULL,
+  `is_published` enum('1','0') NOT NULL DEFAULT '1',
+  `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
+  `added_date` datetime DEFAULT NULL,
+  `added_by` int(11) DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fuel_type`
 --
 
 CREATE TABLE IF NOT EXISTS `fuel_type` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `fuel_type`
@@ -518,16 +568,14 @@ INSERT INTO `fuel_type` (`id`, `name`, `is_published`, `is_deleted`, `added_date
 --
 
 CREATE TABLE IF NOT EXISTS `inqurie` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
   `message` text NOT NULL,
   `is_deleted` enum('1','0') NOT NULL DEFAULT '0',
-  `added_by` int(11) NOT NULL,
-  `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_by` int(11) NOT NULL,
-  `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `added_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -536,7 +584,7 @@ CREATE TABLE IF NOT EXISTS `inqurie` (
 --
 
 CREATE TABLE IF NOT EXISTS `manufacture` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `description` varchar(500) NOT NULL,
   `logo` varchar(1000) NOT NULL,
@@ -546,8 +594,9 @@ CREATE TABLE IF NOT EXISTS `manufacture` (
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `manufacture`
@@ -569,7 +618,7 @@ INSERT INTO `manufacture` (`id`, `name`, `description`, `logo`, `vehicle_type`, 
 --
 
 CREATE TABLE IF NOT EXISTS `model` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `manufacturer_id` int(11) NOT NULL,
   `name` varchar(500) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
@@ -577,8 +626,9 @@ CREATE TABLE IF NOT EXISTS `model` (
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `model`
@@ -603,13 +653,15 @@ INSERT INTO `model` (`id`, `manufacturer_id`, `name`, `is_published`, `is_delete
 --
 
 CREATE TABLE IF NOT EXISTS `privilege` (
-  `privilege_code` int(11) NOT NULL,
+  `privilege_code` int(11) NOT NULL AUTO_INCREMENT,
   `privilege_master_code` int(11) NOT NULL,
   `privilege` varchar(100) NOT NULL,
   `privilege_description` varchar(1000) NOT NULL,
   `priviledge_code_HF` varchar(100) NOT NULL COMMENT 'Human Friendly Priviledge Code',
-  `assign_for` enum('1','2','3','4') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+  `assign_for` enum('1','2','3','4') NOT NULL,
+  PRIMARY KEY (`privilege_code`),
+  KEY `lcs_privilege_ibfk_1` (`privilege_master_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `privilege`
@@ -637,11 +689,12 @@ INSERT INTO `privilege` (`privilege_code`, `privilege_master_code`, `privilege`,
 --
 
 CREATE TABLE IF NOT EXISTS `privilege_master` (
-  `privilege_master_code` int(11) NOT NULL,
+  `privilege_master_code` int(11) NOT NULL AUTO_INCREMENT,
   `master_privilege` varchar(100) NOT NULL,
   `master_privilege_description` varchar(1000) NOT NULL,
-  `system_code` varchar(400) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `system_code` varchar(400) NOT NULL,
+  PRIMARY KEY (`privilege_master_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `privilege_master`
@@ -660,7 +713,7 @@ INSERT INTO `privilege_master` (`privilege_master_code`, `master_privilege`, `ma
 --
 
 CREATE TABLE IF NOT EXISTS `registration` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_id` int(11) NOT NULL,
   `reg_no` varchar(200) NOT NULL,
   `reg_date` date DEFAULT NULL,
@@ -672,8 +725,9 @@ CREATE TABLE IF NOT EXISTS `registration` (
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -682,7 +736,7 @@ CREATE TABLE IF NOT EXISTS `registration` (
 --
 
 CREATE TABLE IF NOT EXISTS `review` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(1000) NOT NULL,
   `user_id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
@@ -691,8 +745,9 @@ CREATE TABLE IF NOT EXISTS `review` (
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `review`
@@ -708,19 +763,23 @@ INSERT INTO `review` (`id`, `description`, `user_id`, `vehicle_id`, `is_publishe
 --
 
 CREATE TABLE IF NOT EXISTS `searched_vehicles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `searched_vehicles`
 --
 
 INSERT INTO `searched_vehicles` (`id`, `user_id`, `vehicle_id`, `date`) VALUES
-(70, 1, 4, '2015-07-17 13:37:18'),
-(71, 1, 5, '2015-07-17 13:37:43');
+(1, 1, 1, '2015-09-11 12:34:26'),
+(2, 1, 11, '2015-09-11 12:36:59'),
+(4, 2, 2, '2015-09-17 07:33:47'),
+(5, 2, 4, '2015-09-17 07:51:09'),
+(6, 1, 4, '2015-09-17 07:57:04');
 
 -- --------------------------------------------------------
 
@@ -729,15 +788,16 @@ INSERT INTO `searched_vehicles` (`id`, `user_id`, `vehicle_id`, `date`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `transmission` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(300) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
 -- Dumping data for table `transmission`
@@ -756,7 +816,7 @@ INSERT INTO `transmission` (`id`, `name`, `is_published`, `is_deleted`, `added_d
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
   `name` varchar(300) NOT NULL,
   `user_name` varchar(300) NOT NULL,
@@ -774,20 +834,21 @@ CREATE TABLE IF NOT EXISTS `user` (
   `added_by` int(11) DEFAULT NULL,
   `added_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `address`, `contact_no_1`, `contact_no_2`, `profile_pic`, `password`, `account_activation_code`, `is_online`, `is_published`, `is_deleted`, `added_by`, `added_date`, `updated_date`, `updated_by`) VALUES
-(1, 'Mr', 'Robert Pattinson', 'admin', 1, 'tom@gmail.com', 'No 6,USA', '0772348892', '', 'avatar.png', '81dc9bdb52d04dc20036dbd8313ed055', '', '1', '1', '0', 0, '2015-03-21 18:29:36', '2015-08-17 05:38:44', 0),
-(2, 'Ms', 'Gayathma Perera', 'gayathma', 1, 'gayathma3@gmail.com', 'No 6,Panadura', '0719234567', NULL, 'avatar.png', 'e10adc3949ba59abbe56e057f20f883e', '', '0', '1', '0', 0, '2015-08-24 06:21:03', NULL, 0),
+(1, 'Mr', 'Robert Pattinson', 'admin', 1, 'tom@gmail.com', 'No 6,USA', '0772348892', '', 'avatar.png', '81dc9bdb52d04dc20036dbd8313ed055', '', '0', '1', '0', 0, '2015-03-21 18:29:36', '2015-08-17 05:38:44', 0),
+(2, 'Ms', 'Gayathma Perera', 'gayathma', 1, 'gayathma3@gmail.com', 'No 6,Panadura', '0719234567', NULL, 'avatar.png', 'e10adc3949ba59abbe56e057f20f883e', '', '1', '1', '0', 0, '2015-08-24 06:21:03', NULL, 0),
 (3, 'Ms', 'Nadeesha Perera', 'nadeesha', 3, 'niklakshaya@gmail.com', 'No 5,Angoda', '0716273829', NULL, 'avatar.png', '827548485795e8a0b2670d3981427ec2', '', '0', '1', '0', 0, '2015-08-24 06:21:38', NULL, 0),
 (4, 'Ms', 'Ashani Dias', 'ashani', 3, 'ashanidiaz@gmail.com', 'No 7,Galle', '0756778234', NULL, 'avatar.png', 'aad619af8f7157a1d4d40cfbebf0de8e', '', '1', '1', '0', 0, '2015-08-24 06:22:07', NULL, 0),
 (5, 'Ms', 'Ishani Pathinayake', 'ishani', 2, 'ishanipathinayake@gmail.com', 'No 9,Moratuwa', '0716728356', NULL, 'avatar.png', '8cb50fdc11cf40b2a2f0a5a78c7bfe8f', '', '0', '1', '0', 0, '2015-08-24 06:22:34', NULL, 0),
-(6, 'Ms', 'Heshani Herath', 'heshani', 1, 'heshani7.herath@gmail.com', 'No 4,Rathmalana', '0719234567', NULL, 'avatar.png', 'f970e2767d0cfe75876ea857f92e319b', '', '0', '1', '0', 0, '2015-08-24 06:23:02', NULL, 0);
+(6, 'Ms', 'Heshani Herath', 'heshani', 3, 'heshani7.herath@gmail.com', 'No 4,Rathmalana', '0719234567', NULL, 'avatar.png', 'ad8e9ec499f16542d9ac8873ddef9afe', '', '0', '1', '0', 0, '2015-08-24 06:23:02', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -796,11 +857,15 @@ INSERT INTO `user` (`id`, `title`, `name`, `user_name`, `user_type`, `email`, `a
 --
 
 CREATE TABLE IF NOT EXISTS `user_privileges` (
-  `user_privilege_code` int(11) NOT NULL,
+  `user_privilege_code` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `privilege_code` int(11) NOT NULL,
-  `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+  `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_privilege_code`),
+  UNIQUE KEY `Employeeuser_Priviledge_Code` (`user_privilege_code`),
+  KEY `Employee_Code` (`user_id`),
+  KEY `Privilege_Code` (`privilege_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `user_privileges`
@@ -824,9 +889,10 @@ INSERT INTO `user_privileges` (`user_privilege_code`, `user_id`, `privilege_code
 --
 
 CREATE TABLE IF NOT EXISTS `user_type` (
-  `id` int(11) NOT NULL,
-  `type` varchar(300) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `user_type`
@@ -844,7 +910,7 @@ INSERT INTO `user_type` (`id`, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_type` enum('1','2','3') NOT NULL DEFAULT '1',
   `transmission_id` int(11) NOT NULL,
   `year` int(5) NOT NULL,
@@ -860,6 +926,8 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `price` decimal(20,2) NOT NULL,
   `kilometers` int(10) DEFAULT NULL,
   `sale_type` enum('Used','New','Reconditioned') NOT NULL DEFAULT 'New',
+  `latitude` double DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
   `location_id` int(11) NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('0','1') NOT NULL DEFAULT '0',
@@ -868,31 +936,32 @@ CREATE TABLE IF NOT EXISTS `vehicle_advertisements` (
   `updated_date` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `is_featured` enum('2','1','0') NOT NULL DEFAULT '0',
-  `is_price_drop` enum('1','0') NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `is_price_drop` enum('1','0') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `vehicle_advertisements`
 --
 
-INSERT INTO `vehicle_advertisements` (`id`, `vehicle_type`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `kilometers`, `sale_type`, `location_id`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`, `is_featured`, `is_price_drop`) VALUES
-(1, '1', 55, 2005, 3, 2, 7, 1, 4, NULL, 'White', 'The BMW M3 is a high-performance version of the BMW 3-Series\r\n', '3421', '250000.00', 23, 'Used', 5, '1', '0', '2015-03-21 14:51:03', 1, NULL, NULL, '1', '1'),
-(2, '1', 55, 2006, 3, 1, 1, 2, 4, NULL, 'White', 'The Toyota Corolla is a line of subcompact and compact cars manufactured by Toyota.', '235', '345000.00', 12, 'New', 7, '1', '0', '2015-03-21 14:55:23', 1, '2015-05-12 00:42:40', 1, '2', '0'),
-(3, '1', 55, 2008, 2, 4, 4, 3, 4, NULL, 'Red', 'The Ford Mustang is an American automobile manufactured by the Ford Motor Company. ', '654', '540000.00', 12, 'Used', 6, '1', '0', '2015-03-21 15:01:02', 1, '2015-05-12 00:37:30', 1, '1', '0'),
-(4, '1', 54, 2013, 2, 5, 10, 1, 4, NULL, 'Red', 'The Mazda RX-8 was a sports car manufactured by Mazda', '546', '400000.00', 23, 'Used', 3, '1', '0', '2015-03-21 15:03:14', 1, NULL, NULL, '2', '0'),
-(5, '1', 55, 2001, 2, 6, 11, 3, 4, NULL, 'Blue', 'The Nissan Skyline is a line of compact cars, sports cars and compact executive cars originally produced by the Prince Motor Company.', '43', '540200.00', 12, 'New', 5, '1', '0', '2015-03-21 15:05:37', 1, NULL, NULL, '2', '0'),
-(6, '1', 55, 1996, 3, 7, 12, 1, 4, NULL, 'Blue', 'Maruti Suzuki  is an automobile manufacturer in India.', '542', '230000.00', 32, 'Used', 7, '1', '0', '2015-03-21 15:08:06', 1, NULL, NULL, '0', '0'),
-(7, '1', 54, 2013, 4, 1, 15, 1, 4, NULL, 'Black', 'The Toyota Prius is a full hybrid electric mid-size hatchback, developed and manufactured by Toyota.', '432', '1000000.00', 42, 'New', 5, '1', '0', '2015-03-21 15:10:47', 1, NULL, NULL, '2', '0'),
-(8, '1', 55, 2010, 3, 7, 13, 1, 4, NULL, 'Blue', 'The Suzuki Swift is a subcompact car produced by Suzuki in Japan since 2000', '32', '230300.00', 65, 'Used', 5, '1', '0', '2015-03-21 15:14:18', 1, NULL, NULL, '0', '1'),
-(9, '1', 55, 2003, 3, 1, 16, 2, 4, NULL, 'White', 'The Toyota Vitz is a line of three- and five-door hatchback subcompact cars produced  by the Japanese automobile manufacturer Toyota', '54', '540000.00', 12, 'Used', 5, '1', '0', '2015-03-21 15:16:43', 1, NULL, NULL, '0', '0'),
-(10, '1', 55, 1993, 2, 5, 10, 2, 4, NULL, 'Yellow', 'Mazda RX-8 yellow car', '434', '3005000.00', 23, 'Used', 5, '1', '0', '2015-03-26 02:04:01', 1, NULL, NULL, '0', '0'),
-(11, '1', 54, 2004, 3, 4, 8, 1, 4, NULL, 'Purple', 'Ford Mustang GT purple', '874', '5000000.00', 200, 'Used', 7, '1', '0', '2015-03-26 02:12:04', 1, NULL, NULL, '0', '1'),
-(12, '1', 55, 2003, 3, 4, 8, 1, 4, NULL, 'Blue', 'Ford Mustang GT blue', '234', '10000000.00', 56, 'New', 4, '1', '0', '2015-03-26 02:13:24', 1, NULL, NULL, '0', '0'),
-(13, '1', 57, 2007, 3, 4, 8, 1, 4, NULL, 'Yellow', 'Ford Mustang GT yellow', '32', '3000000.00', 43, 'Used', 1, '1', '0', '2015-03-26 02:15:05', 1, NULL, NULL, '0', '0'),
-(14, '1', 57, 2006, 2, 6, 11, 1, 4, NULL, 'Pink', 'Nissan Skyline pink', '43', '3000000.00', 34, 'New', 2, '1', '0', '2015-03-26 02:21:29', 1, NULL, NULL, '0', '0'),
-(15, '1', 56, 2013, 3, 6, 11, 2, 4, NULL, 'Green', 'Nissan skyline green', '32', '4560000.00', 43, 'Used', 5, '1', '0', '2015-03-26 02:23:06', 1, NULL, NULL, '0', '0'),
-(16, '1', 56, 2006, 3, 1, 16, 3, 4, NULL, 'Pink', 'Toyota vits pink', '32', '5030000.00', 43, 'Used', 5, '1', '0', '2015-03-26 02:25:01', 1, NULL, NULL, '0', '0'),
-(17, '1', 56, 2011, 3, 1, 16, 3, 4, NULL, 'Green', 'Toyota vits green', '3242', '6703000.00', 424, 'Used', 5, '1', '0', '2015-03-26 02:25:59', 1, NULL, NULL, '0', '0');
+INSERT INTO `vehicle_advertisements` (`id`, `vehicle_type`, `transmission_id`, `year`, `fuel_type_id`, `manufacture_id`, `model_id`, `body_type_id`, `doors`, `cilindrics`, `colour`, `description`, `chassis_no`, `price`, `kilometers`, `sale_type`, `latitude`, `longitude`, `location_id`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`, `is_featured`, `is_price_drop`) VALUES
+(1, '1', 55, 2005, 3, 2, 7, 1, 4, NULL, 'White', 'The BMW M3 is a high-performance version of the BMW 3-Series\r\n', '3421', 250000.00, 23, 'Used', NULL, NULL, 5, '1', '0', '2015-03-21 14:51:03', 1, NULL, NULL, '1', '1'),
+(2, '1', 55, 2006, 3, 1, 1, 2, 4, NULL, 'White', 'The Toyota Corolla is a line of subcompact and compact cars manufactured by Toyota.', '235', 345000.00, 12, 'New', NULL, NULL, 7, '1', '0', '2015-03-21 14:55:23', 1, '2015-05-12 00:42:40', 1, '2', '0'),
+(3, '1', 55, 2008, 2, 4, 4, 3, 4, NULL, 'Red', 'The Ford Mustang is an American automobile manufactured by the Ford Motor Company. ', '654', 540000.00, 12, 'Used', NULL, NULL, 6, '1', '0', '2015-03-21 15:01:02', 1, '2015-05-12 00:37:30', 1, '1', '0'),
+(4, '1', 54, 2013, 2, 5, 10, 1, 4, NULL, 'Red', 'The Mazda RX-8 was a sports car manufactured by Mazda', '546', 400000.00, 23, 'Used', NULL, NULL, 3, '1', '0', '2015-03-21 15:03:14', 1, NULL, NULL, '2', '0'),
+(5, '1', 55, 2001, 2, 6, 11, 3, 4, NULL, 'Blue', 'The Nissan Skyline is a line of compact cars, sports cars and compact executive cars originally produced by the Prince Motor Company.', '43', 540200.00, 12, 'New', NULL, NULL, 5, '1', '0', '2015-03-21 15:05:37', 1, NULL, NULL, '2', '0'),
+(6, '1', 55, 1996, 3, 7, 12, 1, 4, NULL, 'Blue', 'Maruti Suzuki  is an automobile manufacturer in India.', '542', 230000.00, 32, 'Used', NULL, NULL, 7, '1', '0', '2015-03-21 15:08:06', 1, NULL, NULL, '0', '0'),
+(7, '1', 54, 2013, 4, 1, 15, 1, 4, NULL, 'Black', 'The Toyota Prius is a full hybrid electric mid-size hatchback, developed and manufactured by Toyota.', '432', 1000000.00, 42, 'New', NULL, NULL, 5, '1', '0', '2015-03-21 15:10:47', 1, NULL, NULL, '2', '0'),
+(8, '1', 55, 2010, 3, 7, 13, 1, 4, NULL, 'Blue', 'The Suzuki Swift is a subcompact car produced by Suzuki in Japan since 2000', '32', 230300.00, 65, 'Used', NULL, NULL, 5, '1', '0', '2015-03-21 15:14:18', 1, NULL, NULL, '0', '1'),
+(9, '1', 55, 2003, 3, 1, 16, 2, 4, NULL, 'White', 'The Toyota Vitz is a line of three- and five-door hatchback subcompact cars produced  by the Japanese automobile manufacturer Toyota', '54', 540000.00, 12, 'Used', NULL, NULL, 5, '1', '0', '2015-03-21 15:16:43', 1, NULL, NULL, '0', '0'),
+(10, '1', 55, 1993, 2, 5, 10, 2, 4, NULL, 'Yellow', 'Mazda RX-8 yellow car', '434', 3005000.00, 23, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:04:01', 1, NULL, NULL, '0', '0'),
+(11, '1', 54, 2004, 3, 4, 8, 1, 4, NULL, 'Purple', 'Ford Mustang GT purple', '874', 5000000.00, 200, 'Used', NULL, NULL, 7, '1', '0', '2015-03-26 02:12:04', 1, NULL, NULL, '0', '1'),
+(12, '1', 55, 2003, 3, 4, 8, 1, 4, NULL, 'Blue', 'Ford Mustang GT blue', '234', 10000000.00, 56, 'New', NULL, NULL, 4, '1', '0', '2015-03-26 02:13:24', 1, NULL, NULL, '0', '0'),
+(13, '1', 57, 2007, 3, 4, 8, 1, 4, NULL, 'Yellow', 'Ford Mustang GT yellow', '32', 3000000.00, 43, 'Used', NULL, NULL, 1, '1', '0', '2015-03-26 02:15:05', 1, NULL, NULL, '0', '0'),
+(14, '1', 57, 2006, 2, 6, 11, 1, 4, NULL, 'Pink', 'Nissan Skyline pink', '43', 3000000.00, 34, 'New', NULL, NULL, 2, '1', '0', '2015-03-26 02:21:29', 1, NULL, NULL, '0', '0'),
+(15, '1', 56, 2013, 3, 6, 11, 2, 4, NULL, 'Green', 'Nissan skyline green', '32', 4560000.00, 43, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:23:06', 1, NULL, NULL, '0', '0'),
+(16, '1', 56, 2006, 3, 1, 16, 3, 4, NULL, 'Pink', 'Toyota vits pink', '32', 5030000.00, 43, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:25:01', 1, NULL, NULL, '0', '0'),
+(17, '1', 56, 2011, 3, 1, 16, 3, 4, NULL, 'Green', 'Toyota vits green', '3242', 6703000.00, 424, 'Used', NULL, NULL, 5, '1', '0', '2015-03-26 02:25:59', 1, NULL, NULL, '0', '0');
 
 -- --------------------------------------------------------
 
@@ -901,19 +970,20 @@ INSERT INTO `vehicle_advertisements` (`id`, `vehicle_type`, `transmission_id`, `
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle_compare` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `vehicle_id` int(11) NOT NULL,
-  `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+  `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `vehicle_compare`
 --
 
 INSERT INTO `vehicle_compare` (`id`, `user_id`, `vehicle_id`, `added_date`) VALUES
-(30, 1, 12, '2015-07-17 13:31:29'),
-(31, 1, 15, '2015-07-17 13:32:06');
+(1, 1, 8, '2015-09-17 07:02:49'),
+(2, 1, 4, '2015-09-17 07:03:08');
 
 -- --------------------------------------------------------
 
@@ -922,10 +992,11 @@ INSERT INTO `vehicle_compare` (`id`, `user_id`, `vehicle_id`, `added_date`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle_equipment` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_id` int(11) NOT NULL,
-  `equipment_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+  `equipment_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `vehicle_equipment`
@@ -972,7 +1043,7 @@ INSERT INTO `vehicle_equipment` (`id`, `vehicle_id`, `equipment_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle_images` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `vehicle_id` int(11) NOT NULL,
   `caption` varchar(500) DEFAULT NULL,
   `image_path` varchar(500) NOT NULL,
@@ -981,8 +1052,9 @@ CREATE TABLE IF NOT EXISTS `vehicle_images` (
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) NOT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `vehicle_images`
@@ -1016,12 +1088,13 @@ INSERT INTO `vehicle_images` (`id`, `vehicle_id`, `caption`, `image_path`, `is_p
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle_images_temp` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `image_path` varchar(500) NOT NULL,
   `is_published` enum('1','0') DEFAULT '1',
   `added_date` timestamp NULL DEFAULT NULL,
-  `added_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `added_by` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1030,7 +1103,7 @@ CREATE TABLE IF NOT EXISTS `vehicle_images_temp` (
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle_news` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(300) NOT NULL,
   `content` text NOT NULL,
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
@@ -1039,8 +1112,9 @@ CREATE TABLE IF NOT EXISTS `vehicle_news` (
   `added_date` timestamp NULL DEFAULT NULL,
   `added_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `updated_date` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `updated_date` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `vehicle_news`
@@ -1058,330 +1132,33 @@ INSERT INTO `vehicle_news` (`id`, `title`, `content`, `is_published`, `is_delete
 --
 
 CREATE TABLE IF NOT EXISTS `website_advertisements` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic` varchar(500) NOT NULL,
   `description` text NOT NULL,
   `price` decimal(20,2) NOT NULL,
+  `image` varchar(1000) NOT NULL,
+  `url` varchar(1000) NOT NULL,
+  `is_front_page` enum('1','0') DEFAULT '1',
   `is_published` enum('1','0') NOT NULL DEFAULT '1',
   `is_deleted` enum('1','0') NOT NULL DEFAULT '0',
   `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `added_by` int(11) NOT NULL,
   `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_by` int(11) NOT NULL,
-  `is_featured` enum('2','1','0') NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `website_advertisements`
 --
 
---
--- Indexes for table `advanced_search_content`
---
-ALTER TABLE `advanced_search_content`
-  ADD PRIMARY KEY (`advanced_search_content_id`);
+INSERT INTO `website_advertisements` (`id`, `topic`, `description`, `price`, `image`, `url`, `is_front_page`, `is_published`, `is_deleted`, `added_date`, `added_by`, `updated_date`, `updated_by`) VALUES
+(7, 'test', 'test', 22222.00, 'commercial_images_1441951882-advertisement-poster-7.jpg', '', '1', '1', '0', '2015-09-11 00:41:53', 2, '2015-09-11 00:41:24', 1),
+(8, 'test', 'test', 5.00, 'commercial_images_1441952016-creative-advertisement (13).jpg', '', '1', '1', '0', '2015-09-11 00:55:17', 2, '2015-09-11 00:43:38', 1),
+(9, 'test', 'test', 60000.00, 'commercial_images_1441952032-australia-post.jpg', '', '1', '1', '0', '2015-09-11 00:55:25', 2, '2015-09-11 00:43:54', 1),
+(10, 'test', 'test', 63333.00, 'commercial_images_1441952094-advertisements-hung-sing-g-running-shoe-series-psd.jpg', '', '1', '1', '0', '2015-09-11 00:55:35', 2, '2015-09-11 00:44:57', 1),
+(11, 'test', 'test', 5222.00, 'commercial_images_1441952681-Print-Advertisements-20.jpg', '', '1', '1', '0', '2015-09-11 00:55:41', 2, '2015-09-11 00:54:43', 1);
 
---
--- Indexes for table `body_type`
---
-ALTER TABLE `body_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `bookmarked_vehicles`
---
-ALTER TABLE `bookmarked_vehicles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contents`
---
-ALTER TABLE `contents`
-  ADD PRIMARY KEY (`content_id`);
-
---
--- Indexes for table `country`
---
-ALTER TABLE `country`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `country` (`country`);
-
---
--- Indexes for table `district`
---
-ALTER TABLE `district`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `equipment`
---
-ALTER TABLE `equipment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fuel_type`
---
-ALTER TABLE `fuel_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `inqurie`
---
-ALTER TABLE `inqurie`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `manufacture`
---
-ALTER TABLE `manufacture`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `model`
---
-ALTER TABLE `model`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `privilege`
---
-ALTER TABLE `privilege`
-  ADD PRIMARY KEY (`privilege_code`),
-  ADD KEY `lcs_privilege_ibfk_1` (`privilege_master_code`);
-
---
--- Indexes for table `privilege_master`
---
-ALTER TABLE `privilege_master`
-  ADD PRIMARY KEY (`privilege_master_code`);
-
---
--- Indexes for table `registration`
---
-ALTER TABLE `registration`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `review`
---
-ALTER TABLE `review`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `searched_vehicles`
---
-ALTER TABLE `searched_vehicles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transmission`
---
-ALTER TABLE `transmission`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_privileges`
---
-ALTER TABLE `user_privileges`
-  ADD PRIMARY KEY (`user_privilege_code`),
-  ADD UNIQUE KEY `Employeeuser_Priviledge_Code` (`user_privilege_code`),
-  ADD KEY `Employee_Code` (`user_id`),
-  ADD KEY `Privilege_Code` (`privilege_code`);
-
---
--- Indexes for table `user_type`
---
-ALTER TABLE `user_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `vehicle_advertisements`
---
-ALTER TABLE `vehicle_advertisements`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `vehicle_compare`
---
-ALTER TABLE `vehicle_compare`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `vehicle_equipment`
---
-ALTER TABLE `vehicle_equipment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `vehicle_images`
---
-ALTER TABLE `vehicle_images`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `vehicle_images_temp`
---
-ALTER TABLE `vehicle_images_temp`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `vehicle_news`
---
-ALTER TABLE `vehicle_news`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `website_advertisements`
---
-ALTER TABLE `website_advertisements`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `body_type`
---
-ALTER TABLE `body_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `bookmarked_vehicles`
---
-ALTER TABLE `bookmarked_vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `comment`
---
-ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `contents`
---
-ALTER TABLE `contents`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `country`
---
-ALTER TABLE `country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=251;
---
--- AUTO_INCREMENT for table `equipment`
---
-ALTER TABLE `equipment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `fuel_type`
---
-ALTER TABLE `fuel_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `inqurie`
---
-ALTER TABLE `inqurie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `manufacture`
---
-ALTER TABLE `manufacture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `model`
---
-ALTER TABLE `model`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
---
--- AUTO_INCREMENT for table `privilege`
---
-ALTER TABLE `privilege`
-  MODIFY `privilege_code` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `privilege_master`
---
-ALTER TABLE `privilege_master`
-  MODIFY `privilege_master_code` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `registration`
---
-ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `review`
---
-ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `searched_vehicles`
---
-ALTER TABLE `searched_vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
---
--- AUTO_INCREMENT for table `transmission`
---
-ALTER TABLE `transmission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `user_privileges`
---
-ALTER TABLE `user_privileges`
-  MODIFY `user_privilege_code` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
---
--- AUTO_INCREMENT for table `user_type`
---
-ALTER TABLE `user_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `vehicle_advertisements`
---
-ALTER TABLE `vehicle_advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `vehicle_compare`
---
-ALTER TABLE `vehicle_compare`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
---
--- AUTO_INCREMENT for table `vehicle_equipment`
---
-ALTER TABLE `vehicle_equipment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
---
--- AUTO_INCREMENT for table `vehicle_images`
---
-ALTER TABLE `vehicle_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT for table `vehicle_images_temp`
---
-ALTER TABLE `vehicle_images_temp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `vehicle_news`
---
-ALTER TABLE `vehicle_news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `website_advertisements`
---
-ALTER TABLE `website_advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --

@@ -2,9 +2,9 @@
 <section class="panel">
     <header class="panel-heading">
         All Advertisements
-        <span class="pull-right">
+<!--        <span class="pull-right">
             <button type="button" onclick="reload_advertisements()" class="btn btn-warning btn-xs"><i class="fa fa-refresh"></i> Refresh</button>
-        </span>
+        </span>-->
     </header>
     <div class="panel-body">
         <div class="row">
@@ -140,15 +140,17 @@
     }
 
     //Reloading advertisements
-    function reload_advertisements() {
-        $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
-        var x = $('.load-anim').show().delay(5000);
-        $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function (msg) {
-            $('#advertisement_div').html('');
-            $('#advertisement_div').html(msg);
-            x.fadeOut('slow');
-        });
-    }
+//    function reload_advertisements() {
+//        $('#advertisement_div').html('<center><div class="load-anim"><i id="animate-icon" class="fa fa-spinner fa-3x fa-spin loader-icon-margin"></i></div></center>');
+//        var x = $('.load-anim').show().delay(5000);
+//        $.post(site_url + '/vehicle_advertisements/search_advertisements', {}, function (msg) {
+//            $('#advertisement_div').html('');
+//            $('#advertisement_div').html(msg);
+//            x.fadeOut('slow');
+//        });
+//    }
+    
+    
 
 </script>
 

@@ -9,6 +9,9 @@ class Website_comments extends CI_Controller {
 
         $this->load->model('comments/comments_model');
         $this->load->model('comments/comments_service');
+        
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
     }
 
     function load_all_website_comments() {
@@ -21,8 +24,12 @@ class Website_comments extends CI_Controller {
 
     function list_website_comments() {
         $comments_service              = new Comments_service();
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        
         $data['website_comments_list'] = $comments_service->get_all_comments_list();
-        $parials                       = array('content' => 'vehicle_news/website_reviews_view');
+        $data['latest_vehicles']= $vehicle_advertisments_service->get_new_arrival(2);
+        
+        $parials                       = array('content' => 'vehicle_news/website_reviews_view','new_arrivals' => 'vehicle_adds/new_arrivals');
         $this->template->load('template/main_template', $parials, $data);
     }
 

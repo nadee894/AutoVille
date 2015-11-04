@@ -10,14 +10,36 @@ class Register_Users extends CI_Controller {
 
         $this->load->model('register_users/register_users_model');
         $this->load->model('register_users/register_users_service');
-    }
 
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_model');
+        $this->load->model('vehicle_advertisments/vehicle_advertisments_service');
+    }
+    
+    function check_email(){
+        if($this->register_users_service->check_email($_POST['email']) )
+            echo 1;
+        else
+            echo -1;
+    }
+    
+    function check_username(){
+        if($this->register_users_service->check_username($_POST['username']) )
+            echo 1;
+        else
+            echo -1;
+    }
+    
+    
     function load_registration() {
+
+        $vehicle_advertisments_service = new Vehicle_advertisments_service();
+        $data['latest_vehicles']       = $vehicle_advertisments_service->get_new_arrival(2);
+
         if ($this->session->userdata('USER_LOGGED_IN')) {
             redirect(site_url() . '/home/index');
         } else {
-            $parials = array('content' => 'register_user/register');
-            $this->template->load('template/main_template', $parials);
+            $parials = array('content' => 'register_user/register', 'new_arrivals' => 'vehicle_adds/new_arrivals');
+            $this->template->load('template/main_template', $parials, $data);
         }
     }
 
@@ -30,14 +52,18 @@ class Register_Users extends CI_Controller {
         $register_users_model->set_name($this->input->post('form_register_full_name', TRUE));
         $register_users_model->set_user_name($this->input->post('form_register_user_name', TRUE));
         $register_users_model->set_user_type('3');
-        $register_users_model->set_email($this->input->post('form_register_email', TRUE));
+        $register_users_model->set_email(trim($this->input->post('form_register_email', TRUE)));
         $register_users_model->set_address($this->input->post('form_register_address', TRUE));
         $register_users_model->set_contact1($this->input->post('form_register_contact', TRUE));
         //$register_users_model->set_contact2($this->input->post('contact_no_2', TRUE));
         $register_users_model->set_profile_pic('avatar.png');
         $register_users_model->set_password(md5($this->input->post('form_register_password', TRUE)));
-        //$register_users_model->set_account_activation_code($this->input->post('account_activation_code', TRUE));
         $register_users_model->set_is_online('0');
+        $register_users_model->set_title(trim($this->input->post('title', TRUE)));
+        
+        $token = $this->generate_random_string(); //generate account activation token
+
+        $register_users_model->set_account_activation_code($token);
         $register_users_model->set_is_published('0');
         $register_users_model->set_is_deleted('0');
         //$register_users_model->set_added_by($this->input->post('added_by', TRUE));
@@ -45,29 +71,34 @@ class Register_Users extends CI_Controller {
         //$register_users_model->set_updated_date($this->input->post('updated_date', TRUE));
         //$register_users_model->set_updated_by($this->input->post('updated_by', TRUE));
 
+        $register_users_model->set_account_activation_code($token);
+
         $register_users_service->add_new_user_registration($register_users_model);
 
-        $token = $this->generate_random_string(); //generate account activation token
-        $register_users_model->set_account_activation_code(md5($token));
 
-        $email             = 'gayathma3@gmail.com';
+        $email             = trim($this->input->post('form_register_email', TRUE)); //'ashanidiaz@gmail.com';  
         $email_subject     = "AutoVille Account Activation";
         $data['name']      = $this->input->post('form_register_full_name', TRUE);
         $data['user_name'] = $this->input->post('form_register_user_name', TRUE);
         $data['pasword']   = $this->input->post('form_register_password', TRUE);
-        $data['link']     = $token;
+        $data['link']      = site_url() . '/login/activate?email=' . $this->input->post('form_register_email', TRUE) . '&token=' . $token;
         $msg               = $this->load->view('template/mail_template/body', $data, TRUE);
 
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: Autoville <autoville@gmail.com>' . "\r\n";
-        $headers .= 'Cc: gayathma3@gmail.com' . "\r\n";
+        $headers .= 'From: Autoville <info.autovillle@gmail.com>' . "\r\n";
+        $headers .= 'Cc: info.autovillle@gmail.com' . "\r\n";
+//        echo $msg;
+//        return;
 
         if (mail($email, $email_subject, $msg, $headers)) {
             echo "1";
+            $this->session->set_flashdata('info', 'Please go to your email account and continue the registration process');
         } else {
             echo "0";
         }
+
+        return true;
     }
 
     public function generate_random_string($length = 10) {
